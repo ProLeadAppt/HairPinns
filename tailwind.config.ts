@@ -37,7 +37,8 @@ export default {
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          foreground: "hsl(var(--accent-text))",
+          color: "hsl(var(--accent-color))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -47,37 +48,34 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "rose-gold": {
-          DEFAULT: "hsl(var(--rose-gold))",
-          foreground: "hsl(var(--rose-gold-foreground))",
-        },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
       },
-      fontFamily: {
-        serif: ["Playfair Display", "serif"],
-        sans: ["Inter", "sans-serif"],
+      spacing: {
+        xs: "var(--space-xs)",
+        sm: "var(--space-sm)",
+        md: "var(--space-md)",
+        lg: "var(--space-lg)",
+        xl: "var(--space-xl)",
+        "2xl": "var(--space-2xl)",
+        "3xl": "var(--space-3xl)",
       },
-      backgroundImage: {
-        "gradient-primary": "var(--gradient-primary)",
-        "gradient-hero": "var(--gradient-hero)",
+      fontSize: {
+        "h1": ["var(--text-h1)", { lineHeight: "1.2", letterSpacing: "-0.025em" }],
+        "h1-lg": ["var(--text-h1-lg)", { lineHeight: "1.2", letterSpacing: "-0.025em" }],
+        "h2": ["var(--text-h2)", { lineHeight: "1.3", letterSpacing: "-0.02em" }],
+        "h2-lg": ["var(--text-h2-lg)", { lineHeight: "1.3", letterSpacing: "-0.02em" }],
+        "body": ["var(--text-body)", { lineHeight: "1.6" }],
+        "button": ["var(--text-button)", { lineHeight: "1.5" }],
+        "button-lg": ["var(--text-button-lg)", { lineHeight: "1.5" }],
       },
       boxShadow: {
-        soft: "var(--shadow-soft)",
-        medium: "var(--shadow-medium)",
-        strong: "var(--shadow-strong)",
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
       },
-      transitionTimingFunction: {
-        smooth: "var(--transition-smooth)",
-        spring: "var(--transition-spring)",
+      transitionDuration: {
+        fast: "var(--transition-fast)",
+        base: "var(--transition-base)",
+        slow: "var(--transition-slow)",
       },
       borderRadius: {
         lg: "var(--radius)",

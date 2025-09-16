@@ -55,10 +55,10 @@ const ProductsSection = () => {
               </div>
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-sm text-rose-gold font-medium">{product.category}</span>
+                  <span className="text-sm text-accent-color font-medium">{product.category}</span>
                   <div className="flex">
                     {[...Array(product.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-rose-gold text-rose-gold" />
+                      <Star key={i} className="w-4 h-4 fill-accent-color text-accent-color" />
                     ))}
                   </div>
                 </div>
@@ -71,7 +71,7 @@ const ProductsSection = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-xl font-bold text-foreground">{product.price}</span>
                   <Button 
-                    variant="rose-gold" 
+                    variant="primary" 
                     size="sm"
                     onClick={() => window.open('https://shopify.com', '_blank')}
                   >
@@ -86,7 +86,7 @@ const ProductsSection = () => {
         
         <div className="text-center">
           <Button 
-            variant="rose-gold-outline" 
+            variant="accent" 
             size="lg"
             onClick={() => window.open('https://shopify.com', '_blank')}
           >

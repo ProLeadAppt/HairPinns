@@ -46,8 +46,8 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth border-border">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 rounded-full bg-rose-gold/10 flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="w-6 h-6 text-rose-gold" />
+                <div className="w-12 h-12 rounded-full bg-accent-color/10 flex items-center justify-center mx-auto mb-4">
+                  <service.icon className="w-6 h-6 text-accent-color" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   {service.title}
@@ -55,7 +55,7 @@ const ServicesSection = () => {
                 <p className="text-muted-foreground mb-4 text-sm">
                   {service.description}
                 </p>
-                <div className="text-rose-gold font-semibold">
+                <div className="text-accent-color font-semibold">
                   {service.price}
                 </div>
               </CardContent>

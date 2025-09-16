@@ -19,16 +19,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-foreground hover:text-rose-gold transition-smooth">
+            <a href="#services" className="text-foreground hover:text-accent-color transition-colors duration-fast">
               Services
             </a>
-            <a href="#products" className="text-foreground hover:text-rose-gold transition-smooth">
+            <a href="#products" className="text-foreground hover:text-accent-color transition-colors duration-fast">
               Products
             </a>
-            <a href="#about" className="text-foreground hover:text-rose-gold transition-smooth">
+            <a href="#about" className="text-foreground hover:text-accent-color transition-colors duration-fast">
               About
             </a>
-            <a href="#contact" className="text-foreground hover:text-rose-gold transition-smooth">
+            <a href="#contact" className="text-foreground hover:text-accent-color transition-colors duration-fast">
               Contact
             </a>
           </nav>
@@ -43,16 +43,16 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="right">
               <nav className="flex flex-col space-y-6 mt-8">
-                <a href="#services" className="text-lg font-medium text-foreground hover:text-rose-gold transition-smooth">
+                <a href="#services" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
                   Services
                 </a>
-                <a href="#products" className="text-lg font-medium text-foreground hover:text-rose-gold transition-smooth">
+                <a href="#products" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
                   Products
                 </a>
-                <a href="#about" className="text-lg font-medium text-foreground hover:text-rose-gold transition-smooth">
+                <a href="#about" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
                   About
                 </a>
-                <a href="#contact" className="text-lg font-medium text-foreground hover:text-rose-gold transition-smooth">
+                <a href="#contact" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
                   Contact
                 </a>
               </nav>

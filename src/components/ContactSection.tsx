@@ -46,8 +46,8 @@ const ContactSection = () => {
           {contactInfo.map((info, index) => (
             <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth border-border">
               <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 rounded-full bg-rose-gold/10 flex items-center justify-center mx-auto mb-4">
-                  <info.icon className="w-6 h-6 text-rose-gold" />
+                <div className="w-12 h-12 rounded-full bg-accent-color/10 flex items-center justify-center mx-auto mb-4">
+                  <info.icon className="w-6 h-6 text-accent-color" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">
                   {info.title}
@@ -58,7 +58,7 @@ const ContactSection = () => {
                       {info.link ? (
                         <a 
                           href={info.link} 
-                          className="hover:text-rose-gold transition-smooth"
+                          className="hover:text-accent-color transition-colors duration-fast"
                           {...(info.link.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                         >
                           {detail}
@@ -76,7 +76,7 @@ const ContactSection = () => {
         
         <div className="text-center space-y-4">
           <Button 
-            variant="rose-gold" 
+            variant="primary" 
             size="xl"
             onClick={() => window.open('https://fresha.com', '_blank')}
           >

@@ -35,7 +35,7 @@ const HeroSection = () => {
           
           <div className="flex flex-col sm:flex-row gap-4">
             <Button 
-              variant="rose-gold" 
+              variant="primary" 
               size="xl"
               onClick={() => window.open('https://fresha.com', '_blank')}
               className="w-full sm:w-auto"
@@ -44,7 +44,7 @@ const HeroSection = () => {
               Book Your Appointment
             </Button>
             <Button 
-              variant="rose-gold-outline" 
+              variant="accent" 
               size="xl"
               onClick={() => window.open('https://shopify.com', '_blank')}
               className="w-full sm:w-auto"

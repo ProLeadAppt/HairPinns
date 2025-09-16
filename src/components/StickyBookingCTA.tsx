@@ -6,7 +6,7 @@ const StickyBookingCTA = () => {
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border p-4 shadow-strong">
       <div className="max-w-7xl mx-auto flex gap-3 justify-center">
         <Button 
-          variant="rose-gold" 
+          variant="primary" 
           size="lg" 
           className="flex-1 max-w-xs"
           onClick={() => window.open('https://fresha.com', '_blank')}
@@ -15,7 +15,7 @@ const StickyBookingCTA = () => {
           Book on Fresha
         </Button>
         <Button 
-          variant="rose-gold-outline" 
+          variant="accent" 
           size="lg" 
           className="flex-1 max-w-xs"
           onClick={() => window.open('https://shopify.com', '_blank')}

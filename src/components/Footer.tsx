@@ -17,7 +17,7 @@ const Footer = () => {
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-rose-gold/20 flex items-center justify-center hover:bg-rose-gold/30 transition-smooth"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors duration-fast"
                 aria-label="Follow us on Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -26,7 +26,7 @@ const Footer = () => {
                 href="https://facebook.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-rose-gold/20 flex items-center justify-center hover:bg-rose-gold/30 transition-smooth"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors duration-fast"
                 aria-label="Follow us on Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -38,20 +38,20 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <nav className="space-y-2">
-              <a href="#services" className="block text-primary-foreground/80 hover:text-rose-gold transition-smooth">
+              <a href="#services" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
                 Services & Pricing
               </a>
-              <a href="#products" className="block text-primary-foreground/80 hover:text-rose-gold transition-smooth">
+              <a href="#products" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
                 Professional Products
               </a>
-              <a href="#about" className="block text-primary-foreground/80 hover:text-rose-gold transition-smooth">
+              <a href="#about" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
                 About Our Team
               </a>
               <a 
                 href="https://fresha.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block text-primary-foreground/80 hover:text-rose-gold transition-smooth"
+                className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm"
               >
                 Online Booking
               </a>
@@ -63,7 +63,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Visit Us</h4>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-rose-gold mt-0.5" />
+                <MapPin className="w-5 h-5 text-accent-color mt-0.5" />
                 <div>
                   <p className="text-primary-foreground/80">123 River Road</p>
                   <p className="text-primary-foreground/80">Bangor NSW 2234</p>
@@ -75,7 +75,7 @@ const Footer = () => {
                 <strong>Sunday:</strong> Closed
               </p>
               <p className="text-primary-foreground/80">
-                <a href="tel:+61295550123" className="hover:text-rose-gold transition-smooth">
+                <a href="tel:+61295550123" className="hover:text-primary-foreground transition-colors duration-fast">
                   (02) 9555 0123
                 </a>
               </p>

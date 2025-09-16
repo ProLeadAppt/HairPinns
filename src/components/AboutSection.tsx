@@ -36,9 +36,9 @@ const AboutSection = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-12 h-12 rounded-full bg-rose-gold/10 flex items-center justify-center mx-auto mb-2">
-                    <stat.icon className="w-6 h-6 text-rose-gold" />
-                  </div>
+                <div className="w-12 h-12 rounded-full bg-accent-color/10 flex items-center justify-center mx-auto mb-2">
+                  <stat.icon className="w-6 h-6 text-accent-color" />
+                </div>
                   <div className="text-2xl font-bold text-foreground">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
@@ -52,9 +52,9 @@ const AboutSection = () => {
               <CardContent className="p-0">
                 <div className="aspect-square bg-gradient-hero flex items-center justify-center">
                   <div className="text-center p-8">
-                    <div className="w-20 h-20 rounded-full bg-rose-gold/20 flex items-center justify-center mx-auto mb-4">
-                      <Award className="w-10 h-10 text-rose-gold" />
-                    </div>
+                  <div className="w-20 h-20 rounded-full bg-accent-color/20 flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-10 h-10 text-accent-color" />
+                  </div>
                     <h3 className="text-xl font-serif font-semibold text-foreground mb-2">
                       Professional Excellence
                     </h3>
