@@ -42,7 +42,7 @@ const Testimonial = ({
     <>
       {renderStars()}
       <blockquote className="text-lg text-foreground leading-relaxed mb-6">
-        <Quote className="w-6 h-6 text-accent-color mb-2 opacity-50" />
+        <Quote className="w-6 h-6 text-brand-500 mb-2 opacity-50" />
         "{quote}"
       </blockquote>
       <div className="flex items-center">
@@ -88,7 +88,7 @@ const Testimonial = ({
   }
 
   return (
-    <div className="bg-accent/5 border border-border rounded-lg p-6">
+    <div className="bg-accent/5 border border-border rounded-card p-6">
       {renderContent()}
     </div>
   );

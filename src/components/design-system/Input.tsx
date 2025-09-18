@@ -22,9 +22,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
   const variants = {
-    default: "border-input bg-background",
-    outline: "border-2 border-border bg-background focus:border-accent-color",
-    filled: "border-transparent bg-muted focus:bg-background focus:border-accent-color",
+    default: "border-input bg-background rounded-btn",
+    outline: "border-2 border-border bg-background focus:border-brand-500 rounded-btn",
+    filled: "border-transparent bg-muted focus:bg-background focus:border-brand-500 rounded-btn",
   };
 
   return (

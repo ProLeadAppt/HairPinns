@@ -1,57 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Modern Design System - Hair Pinns
+/* Hair Pinns Design System - Pixel Perfect Match
 Typography scale: H1(36-42) H2(28-32) Body(16) Buttons(16-18)
-Palette: Modern neutral with sophisticated accent
+Palette: Exact match from hairpinns.com
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Modern Neutral Palette */
-    --background: 0 0% 98%;              /* Off-white background */
-    --foreground: 210 12% 16%;           /* Charcoal text */
+    /* Hair Pinns Brand Colors - Exact Match */
+    --brand-500: 289 47% 42%;              /* #8B4A8B - Primary purple */
+    --text: 0 0% 10%;                      /* #1A1A1A - Dark charcoal */
+    --heading: 0 0% 8%;                    /* #141414 - Darker for headings */
+    --link: 289 47% 42%;                   /* #8B4A8B - Brand purple for links */
+    --bg: 0 0% 100%;                       /* #FFFFFF - Pure white */
+    --accent: 289 47% 42%;                 /* #8B4A8B - Brand purple */
+    --muted: 210 10% 55%;                  /* #78899A - Muted gray */
 
-    /* Surface colors */
+    /* Radii - Exact match */
+    --radius-btn: 8px;
+    --radius-card: 12px;
+
+    /* Core tokens mapped to brand colors */
+    --background: var(--bg);
+    --foreground: var(--text);
     --card: 0 0% 100%;
-    --card-foreground: 210 12% 16%;
-
+    --card-foreground: var(--text);
     --popover: 0 0% 100%;
-    --popover-foreground: 210 12% 16%;
-
-    /* Primary - Deep charcoal */
-    --primary: 210 12% 16%;
-    --primary-foreground: 0 0% 98%;
-
-    /* Secondary - Light neutral */
-    --secondary: 210 8% 94%;
-    --secondary-foreground: 210 12% 16%;
-
-    /* Accent - Sophisticated blue */
-    --accent-color: 217 91% 60%;
-    --accent-foreground: 0 0% 98%;
-
-    /* Muted tones */
-    --muted: 210 8% 92%;
-    --muted-foreground: 210 8% 46%;
-
-    /* Interactive states */
-    --accent: 210 8% 94%;
-    --accent-text: 210 12% 16%;
-
+    --popover-foreground: var(--text);
+    --primary: var(--brand-500);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 97%;
+    --secondary-foreground: var(--text);
+    --muted-bg: 210 20% 96%;
+    --muted-foreground: var(--muted);
+    --accent-color: var(--accent);
+    --accent-foreground: 0 0% 100%;
+    --accent-text: 0 0% 100%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 20% 90%;
+    --input: 210 20% 85%;
+    --ring: var(--brand-500);
 
-    --border: 210 12% 88%;
-    --input: 210 12% 88%;
-    --ring: 217 91% 60%;
-
-    /* Design system extensions */
-    --radius: 0.5rem;
-    
-    /* Typography scale */
+    /* Typography scale - Hair Pinns exact match */
     --text-h1: 2.25rem;        /* 36px */
     --text-h1-lg: 2.625rem;    /* 42px */
     --text-h2: 1.75rem;        /* 28px */
@@ -61,13 +57,13 @@ All colors MUST be HSL.
     --text-button-lg: 1.125rem; /* 18px */
     
     /* Spacing scale - compressed for mobile */
-    --space-xs: 0.5rem;   /* 8px */
-    --space-sm: 0.75rem;  /* 12px */
-    --space-md: 1rem;     /* 16px */
-    --space-lg: 1.5rem;   /* 24px */
-    --space-xl: 2rem;     /* 32px */
-    --space-2xl: 3rem;    /* 48px */
-    --space-3xl: 4rem;    /* 64px */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
     
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -75,59 +71,49 @@ All colors MUST be HSL.
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     
     /* Transitions */
-    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 150ms;
+    --transition-base: 300ms;
+    --transition-slow: 500ms;
 
-    --sidebar-background: 0 0% 98%;
+    /* Border radius */
+    --radius: var(--radius-card);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar tokens */
+    --sidebar-background: var(--bg);
+    --sidebar-foreground: var(--text);
+    --sidebar-primary: var(--brand-500);
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 97%;
+    --sidebar-accent-foreground: var(--text);
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: var(--brand-500);
   }
 
   .dark {
-    /* Dark mode with modern neutrals */
-    --background: 210 12% 8%;
-    --foreground: 0 0% 92%;
-
-    --card: 210 12% 10%;
-    --card-foreground: 0 0% 92%;
-
-    --popover: 210 12% 10%;
-    --popover-foreground: 0 0% 92%;
-
-    --primary: 0 0% 92%;
-    --primary-foreground: 210 12% 8%;
-
-    --secondary: 210 8% 16%;
-    --secondary-foreground: 0 0% 90%;
-
-    --accent-color: 217 91% 65%;
-    --accent-foreground: 210 12% 8%;
-
-    --muted: 210 8% 18%;
-    --muted-foreground: 210 8% 65%;
-
-    --accent: 210 8% 16%;
-    --accent-text: 0 0% 90%;
-
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 92%;
-
-    --border: 210 8% 24%;
-    --input: 210 8% 24%;
-    --ring: 217 91% 65%;
+    /* Dark mode with Hair Pinns brand consistency */
+    --bg: 210 10% 5%;
+    --text: 0 0% 90%;
+    --heading: 0 0% 95%;
+    --background: var(--bg);
+    --foreground: var(--text);
+    --card: 210 10% 8%;
+    --card-foreground: var(--text);
+    --popover: 210 10% 8%;
+    --popover-foreground: var(--text);
+    --primary: var(--brand-500);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 10% 12%;
+    --secondary-foreground: var(--text);
+    --muted-bg: 210 10% 15%;
+    --muted-foreground: 210 10% 65%;
+    --accent-color: var(--accent);
+    --accent-foreground: 0 0% 100%;
+    --accent-text: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 10% 15%;
+    --input: 210 10% 18%;
+    --ring: var(--brand-500);
   }
 }
 
@@ -136,14 +122,26 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  /* Hair Pinns Typography - Exact Match */
+  html {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
   body {
     @apply bg-background text-foreground;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-size: var(--text-body);
     line-height: 1.6;
+    color: hsl(var(--text));
+    background-color: hsl(var(--bg));
+  }
+
+  /* Headings use serif font like Hair Pinns */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: hsl(var(--heading));
   }
   
-  /* Typography Scale */
   h1 {
     font-size: var(--text-h1);
     font-weight: 600;
@@ -168,6 +166,16 @@ All colors MUST be HSL.
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.5;
+  }
+  
+  /* Links match Hair Pinns style */
+  a {
+    color: hsl(var(--link));
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
   
   /* Responsive typography */

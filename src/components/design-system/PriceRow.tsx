@@ -36,7 +36,7 @@ const PriceRow = ({
   return (
     <div className={cn(
       "relative p-6 bg-card border border-border rounded-lg transition-all duration-base",
-      highlighted && "border-accent-color shadow-lg scale-105",
+      highlighted && "border-brand-500 shadow-lg scale-105",
       className
     )}>
       {badge && (
@@ -104,7 +104,7 @@ const PriceRow = ({
           className={cn(
             "w-full py-3 px-4 rounded-md font-medium transition-all duration-base",
             highlighted
-              ? "bg-accent-color text-accent-foreground hover:bg-accent-color/90 shadow-sm hover:shadow-md"
+              ? "bg-brand-500 text-white hover:bg-brand-500/92 shadow-sm hover:shadow-md"
               : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
           )}
         >

@@ -32,12 +32,12 @@ export default {
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
+          DEFAULT: "hsl(var(--muted-bg))",
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-text))",
+          foreground: "hsl(var(--accent-foreground))",
           color: "hsl(var(--accent-color))",
         },
         popover: {
@@ -48,6 +48,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Brand-specific colors
+        brand: {
+          500: "hsl(var(--brand-500))",
+        },
+        text: "hsl(var(--text))",
+        heading: "hsl(var(--heading))",
+        link: "hsl(var(--link))",
+        bg: "hsl(var(--bg))",
       },
       spacing: {
         xs: "var(--space-xs)",
@@ -81,6 +89,14 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        btn: "var(--radius-btn)",
+        card: "var(--radius-card)",
+      },
+      fontFamily: {
+        'heading': ["Playfair Display", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        'body': ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        'sans': ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        'serif': ["Playfair Display", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

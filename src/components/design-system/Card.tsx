@@ -19,9 +19,9 @@ const Card = ({
   footer
 }: CardProps) => {
   const variants = {
-    default: "border-border",
-    bordered: "border-2 border-border",
-    elevated: "shadow-md hover:shadow-lg transition-shadow duration-base border-border",
+    default: "border-border rounded-card",
+    bordered: "border-2 border-border rounded-card",
+    elevated: "shadow-md hover:shadow-lg transition-shadow duration-base border-border rounded-card",
   };
 
   const paddings = {
