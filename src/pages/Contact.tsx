@@ -81,31 +81,64 @@ const Contact = () => {
     ]
   };
 
-  const handleSmsSubmit = (e: React.FormEvent) => {
+  const handleSmsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // In production, this would integrate with GoHighLevel
-    console.log("SMS opt-in:", smsPhone);
+    const { hpCapture } = await import("@/lib/hpCapture");
     
-    setSmsSubmitted(true);
-    toast({
-      title: "Success!",
-      description: "You're subscribed to our SMS updates.",
-    });
+    const success = await hpCapture.postToZapier(
+      {
+        form_name: "sms_optin",
+        phone: smsPhone,
+      },
+      { event: "sms_subscription" }
+    );
+    
+    if (success) {
+      setSmsSubmitted(true);
+      toast({
+        title: "Success!",
+        description: "You're subscribed to our SMS updates.",
+      });
+    } else {
+      toast({
+        title: "Submission Error",
+        description: "We couldn't process your subscription. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleMessageSubmit = (e: React.FormEvent) => {
+  const handleMessageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // In production, this would POST to GoHighLevel webhook
-    console.log("Message to GHL:", formData);
+    const { hpCapture } = await import("@/lib/hpCapture");
     
-    toast({
-      title: "Message Sent!",
-      description: "Jena will get back to you within 24 hours.",
-    });
+    const success = await hpCapture.postToZapier(
+      {
+        form_name: "contact_jena",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      },
+      { event: "contact_form_submission" }
+    );
     
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    if (success) {
+      toast({
+        title: "Message Sent!",
+        description: "Jena will get back to you within 24 hours.",
+      });
+      
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } else {
+      toast({
+        title: "Submission Error",
+        description: "We couldn't send your message. Please call us instead.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

@@ -9,20 +9,35 @@ const LeadMagnetBox = () => {
   const [phone, setPhone] = useState("");
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // In production, this would integrate with GoHighLevel
-    // For now, we'll show a success message
-    console.log("Lead capture:", { email, phone });
+    const { hpCapture } = await import("@/lib/hpCapture");
     
-    toast({
-      title: "Success!",
-      description: "You're subscribed! Check your inbox for your exclusive hair care guide.",
-    });
+    const success = await hpCapture.postToZapier(
+      {
+        form_name: "blog_lead_magnet",
+        email,
+        phone,
+      },
+      { event: "lead_magnet_subscription" }
+    );
     
-    setEmail("");
-    setPhone("");
+    if (success) {
+      toast({
+        title: "Success!",
+        description: "You're subscribed! Check your inbox for your exclusive hair care guide.",
+      });
+      
+      setEmail("");
+      setPhone("");
+    } else {
+      toast({
+        title: "Submission Error",
+        description: "We couldn't process your subscription. Please try again or call us.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
