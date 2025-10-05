@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { hpCapture } from "@/lib/hpCapture";
 
 interface FaqFeedbackWidgetProps {
+  faqId?: string;  // Optional FAQ ID for tracking
   question: string;
 }
 
-const FaqFeedbackWidget = ({ question }: FaqFeedbackWidgetProps) => {
+const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
   const [feedback, setFeedback] = useState<'yes' | 'no' | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -17,6 +18,7 @@ const FaqFeedbackWidget = ({ question }: FaqFeedbackWidgetProps) => {
     try {
       // Track with hpCapture for internal analytics
       await hpCapture.trackEvent('faq_feedback', {
+        faq_id: faqId || 'unknown',
         faq_question: question,
         helpful: helpful,
       });
@@ -27,6 +29,7 @@ const FaqFeedbackWidget = ({ question }: FaqFeedbackWidgetProps) => {
       const session = hpCapture.getSession();
       const payload = {
         event_name: 'faq_feedback',
+        faq_id: faqId || 'unknown',
         faq_question: question,
         helpful: helpful,
         source_page: window.location.pathname,

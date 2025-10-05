@@ -3,15 +3,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, Check, Sparkles, Wind, Scissors, Plus } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
+import FAQSection from "@/components/FAQSection";
 import {
   generateOrganizationSchema,
   generateLocalBusinessSchema,
@@ -19,6 +13,7 @@ import {
   generateFAQPageSchema,
 } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
+import { comprehensiveFAQs } from "@/data/faqs";
 
 const Services = () => {
   const services = {
@@ -122,42 +117,7 @@ const Services = () => {
     ],
   };
 
-  const faqs = [
-    {
-      question: "What's the best treatment for frizz in humid Sydney weather?",
-      answer: "A keratin-free smoothing treatment paired with a humidity-resistant leave-in works best for Sydney's changeable climate. Start with a gentle, sulphate-free wash, add a protein-balanced mask weekly, then seal with a heat-activated protectant before blow-drying. On high-humidity days, finish with a light, flexible-hold spray rather than heavy oils (they can collapse volume). If your hair is colour-treated, choose formulas labelled 'colour-safe' to prevent fade. For persistent halo frizz around the hairline, sleep on a silk pillowcase and avoid rough towel drying."
-    },
-    {
-      question: "How often should I tone blonde hair at home?",
-      answer: "Every 1–2 weeks for maintenance, using a pH-balanced violet or blue-violet treatment, depending on your undertone. Keep dwell time short (3–5 mins) to avoid over-ash. Follow with a hydrating mask because toners can be slightly drying. If your water is mineral-rich (common around the Shire), use a chelating shampoo once every 2–4 weeks to remove buildup that accelerates brassiness. In-salon glosses every 6–8 weeks will keep the tone fresher for longer."
-    },
-    {
-      question: "Keratin vs. smoothing — which lasts longer?",
-      answer: "Keratin treatments (formaldehyde-free) generally outlast quick smoothing services, giving 2–4 months of frizz reduction with proper care. Smoothing services are gentler and great for first-timers or colour-treated hair, lasting 4–8 weeks. Longevity depends on aftercare: sulphate-free cleanser, low heat, UV protection, and avoiding salt/chlorine. If you're blonde or fine-textured, start with smoothing; if you're coarse or highly porous, a keratin option may give better durability."
-    },
-    {
-      question: "How do I book an appointment?",
-      answer: "Click any 'Book on Fresha' button on this page or visit our booking page. You can book 24/7 online and choose your preferred date and time. New clients are always welcome! If you're unsure which service to book, start with a free consultation."
-    },
-    {
-      question: "What should I do to prepare for my color appointment?",
-      answer: "Come with clean, dry hair (no product). Bring inspiration photos if you have them. During your complimentary consultation, we'll discuss your hair goals, assess your current condition, and create a custom color plan tailored to your lifestyle and maintenance preferences."
-    },
-    {
-      question: "How long do color services take?",
-      answer: "Full color and highlights typically take 2-3 hours. Balayage can take 3-4 hours for a full application. Root touch-ups are usually 90 minutes. We always allocate extra time for consultations and customization to ensure you're comfortable throughout."
-    },
-    {
-      question: "Are your products safe for color-treated hair?",
-      answer: "Yes! All our retail products and in-salon treatments are sulfate-free and formulated to protect color. We use premium brands like Olaplex, Kevin Murphy, and Moroccan Oil—chosen specifically for their gentle, color-preserving formulas that extend vibrancy between appointments."
-    },
-    {
-      question: "What's the difference between Olaplex and Keratin treatments?",
-      answer: "Olaplex repairs broken bonds in damaged hair—great for color-treated or over-processed hair that needs structural repair. Keratin smooths frizz and adds shine for 3–4 months by infusing proteins into the cuticle. Both can be combined for maximum results if you want repair and smoothing."
-    },
-  ];
-
-  // Generate schemas
+  // Generate schemas with comprehensive FAQs
   const organizationSchema = generateOrganizationSchema();
   const localBusinessSchema = generateLocalBusinessSchema('https://hairpinns.com/services');
   
@@ -179,7 +139,12 @@ const Services = () => {
     }),
   ];
 
-  const faqSchema = generateFAQPageSchema(faqs);
+  const faqSchema = generateFAQPageSchema(
+    comprehensiveFAQs.map(faq => ({
+      question: faq.question,
+      answer: faq.answer,
+    }))
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -449,47 +414,13 @@ const Services = () => {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-16 bg-background">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
-              Frequently Asked Questions
-            </h2>
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`faq-${index}`}
-                  className="bg-card border border-border rounded-card px-6"
-                >
-                  <AccordionTrigger className="text-left font-semibold text-heading hover:text-brand-500">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-foreground leading-relaxed">
-                    <div>{faq.answer}</div>
-                    <FaqFeedbackWidget question={faq.question} />
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-
-            <div className="text-center mt-12 pt-8 border-t border-border">
-              <p className="text-foreground mb-6">
-                Still have questions? We're here to help.
-              </p>
-              <a
-                href="https://www.fresha.com/book-now/hair-pinns-example"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="primary" size="lg">
-                  <Calendar className="w-5 h-5" />
-                  Book Your Appointment
-                </Button>
-              </a>
-            </div>
-          </div>
-        </section>
+        {/* FAQ Section with comprehensive FAQs */}
+        <FAQSection
+          faqs={comprehensiveFAQs}
+          title="Frequently Asked Questions"
+          subtitle="Expert answers to your hair care questions from Jena and the Hair Pinns team."
+          showFeedback={true}
+        />
       </main>
       <Footer />
     </div>
