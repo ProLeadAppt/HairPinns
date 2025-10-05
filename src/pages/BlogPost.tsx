@@ -7,6 +7,11 @@ import Badge from "@/components/design-system/Badge";
 import ProductModule from "@/components/blog/ProductModule";
 import LeadMagnetBox from "@/components/blog/LeadMagnetBox";
 import { getPostBySlug } from "@/data/blogPosts";
+import {
+  generateOrganizationSchema,
+  generateBlogPostSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/schema";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -16,45 +21,44 @@ const BlogPost = () => {
     return <Navigate to="/404" replace />;
   }
 
-  const blogPostingSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.excerpt,
-    "image": post.image,
-    "datePublished": new Date(post.date).toISOString(),
-    "dateModified": new Date(post.date).toISOString(),
-    "author": {
-      "@type": "Person",
-      "name": post.author,
-      "jobTitle": "Senior Hair Stylist",
-      "worksFor": {
-        "@type": "HairSalon",
-        "name": "Hair Pinns"
-      }
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Hair Pinns",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://hairpinns.com.au/logo.png"
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://hairpinns.com.au/blog/${post.slug}`
-    }
-  };
+  // Calculate word count from content
+  const wordCount = 
+    post.content.introduction.split(/\s+/).filter((word) => word.length > 0).length +
+    post.content.sections.reduce((total, section) => 
+      total + section.content.split(/\s+/).filter((word) => word.length > 0).length, 0
+    );
+
+  const organizationSchema = generateOrganizationSchema();
+  const blogPostSchema = generateBlogPostSchema({
+    title: post.title,
+    description: post.excerpt,
+    author: post.author,
+    datePublished: new Date(post.date).toISOString(),
+    image: post.image,
+    url: `https://hairpinns.com/blog/${post.slug}`,
+    wordCount: wordCount,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://hairpinns.com' },
+    { name: 'Blog', url: 'https://hairpinns.com/blog' },
+    { name: post.title, url: `https://hairpinns.com/blog/${post.slug}` },
+  ]);
 
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>{post.title} | Hair Pinns Bangor</title>
+        <title>{post.title} | Hair Pinns Blog</title>
         <meta name="description" content={post.excerpt} />
-        <link rel="canonical" href={`https://hairpinns.com.au/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://hairpinns.com/blog/${post.slug}`} />
         <script type="application/ld+json">
-          {JSON.stringify(blogPostingSchema)}
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(blogPostSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       </Helmet>
 

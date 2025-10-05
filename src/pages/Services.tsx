@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
+import {
+  generateOrganizationSchema,
+  generateLocalBusinessSchema,
+  generateServiceSchema,
+  generateFAQPageSchema,
+} from "@/lib/schema";
 
 const Services = () => {
   const services = {
@@ -155,66 +162,54 @@ const Services = () => {
     },
   ];
 
-  // Structured Data (JSON-LD)
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "HairSalon",
-        "name": "Hair Pinns",
-        "image": "https://hairpinns.com/salon-image.jpg",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "123 River Road",
-          "addressLocality": "Bangor",
-          "addressRegion": "NSW",
-          "postalCode": "2234",
-          "addressCountry": "AU"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": -34.0167,
-          "longitude": 151.0333
-        },
-        "url": "https://hairpinns.com/services",
-        "telephone": "+61295550123",
-        "priceRange": "$45-$250",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00",
-            "closes": "19:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "08:00",
-            "closes": "17:00"
-          }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": faqs.map(faq => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer
-          }
-        }))
-      }
-    ]
-  };
+  // Generate schemas
+  const organizationSchema = generateOrganizationSchema();
+  const localBusinessSchema = generateLocalBusinessSchema('https://hairpinns.com/services');
+  
+  const serviceSchemas = [
+    generateServiceSchema({
+      name: 'Colour & Blonding Services',
+      description: 'Expert hair colouring including balayage, highlights, full colour, and toning services for vibrant, long-lasting results.',
+      url: 'https://hairpinns.com/services#colour',
+    }),
+    generateServiceSchema({
+      name: 'Smoothing & Treatment Services',
+      description: 'Keratin smoothing, deep conditioning, and bond-building treatments to restore health and eliminate frizz.',
+      url: 'https://hairpinns.com/services#smoothing',
+    }),
+    generateServiceSchema({
+      name: 'Cuts & Styling Services',
+      description: 'Precision haircuts and expert styling tailored to your face shape, hair texture, and lifestyle.',
+      url: 'https://hairpinns.com/services#cuts',
+    }),
+  ];
+
+  const faqSchema = generateFAQPageSchema(faqs);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <Helmet>
+        <title>Hair Salon Services | Colour, Smoothing & Cuts | Hair Pinns Bangor</title>
+        <meta
+          name="description"
+          content="Expert hair services in Bangor: Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Over 20 years of experience. Book online now."
+        />
+        <link rel="canonical" href="https://hairpinns.com/services" />
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(localBusinessSchema)}
+        </script>
+        {serviceSchemas.map((schema, index) => (
+          <script key={`service-${index}`} type="application/ld+json">
+            {JSON.stringify(schema)}
+          </script>
+        ))}
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
 
       <Header />
       <main>
