@@ -1,0 +1,302 @@
+// Suburb page data for service area landing pages
+
+export interface SuburbData {
+  slug: string;
+  name: string;
+  driveTime: string;
+  route: string;
+  localNote: string;
+  intro: string;
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
+  nearbySuburbs: string[]; // slugs of nearby suburbs for internal linking
+}
+
+export const suburbPages: Record<string, SuburbData> = {
+  menai: {
+    slug: "menai",
+    name: "Menai",
+    driveTime: "5–7 minutes",
+    route: "Menai Road",
+    localNote: "The humidity from the Georges River can intensify frizz—our smoothing treatments are designed for local conditions.",
+    intro: "Just minutes from Menai, Hair Pinns is your boutique hair salon specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena brings over 20 years of experience to every appointment, with a focus on results that work with Sydney's coastal humidity. Whether you're after dimensional colour, frizz-taming smoothing, or a fresh cut, we'll help you leave feeling confident.",
+    faqs: [
+      {
+        question: "How does Menai's humidity affect my hair?",
+        answer: "Living near the Georges River means higher humidity levels, which can cause frizz and volume loss. We use professional smoothing treatments like Juuce and Aromaganic to seal the cuticle and protect your style. Regular treatments every 3–4 months help maintain smoothness, especially during Sydney's humid summer months.",
+      },
+      {
+        question: "What's the best way to maintain blonde hair from Menai?",
+        answer: "Sydney's mineral-rich water can cause brassiness in blonde hair. We recommend using purple shampoo 1–2 times per week and a hydrating treatment to counteract dryness. Our custom toning techniques ensure your blonde stays bright and balanced between appointments. Book a toning refresh every 6–8 weeks for optimal results.",
+      },
+      {
+        question: "How long do smoothing treatments last in this area?",
+        answer: "With proper aftercare, smoothing treatments typically last 3–4 months in Menai's climate. Avoid washing hair for 48 hours post-treatment, use sulfate-free products, and apply a leave-in treatment to extend results. We'll create a custom home care plan based on your hair type and lifestyle.",
+      },
+    ],
+    nearbySuburbs: ["illawong", "bangor"],
+  },
+  illawong: {
+    slug: "illawong",
+    name: "Illawong",
+    driveTime: "8–10 minutes",
+    route: "Alfords Point Road and Menai Road",
+    localNote: "Illawong's riverside location means extra humidity—perfect for our anti-frizz smoothing treatments.",
+    intro: "Hair Pinns is your local expert salon serving Illawong and surrounding suburbs. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's unique climate. With Jena's 20+ years of experience, you'll receive personalized service in a welcoming, boutique environment. From balayage to keratin treatments, we've got your hair goals covered.",
+    faqs: [
+      {
+        question: "Why does my hair get so frizzy near the river?",
+        answer: "Illawong's proximity to the Georges River creates high humidity, which causes hair cuticles to swell and frizz. Our smoothing treatments seal the cuticle to lock out moisture and keep your style smooth. We use professional-grade products designed specifically for humid climates, ensuring long-lasting results even on the most humid Sydney days.",
+      },
+      {
+        question: "Can you fix brassy blonde hair from swimming?",
+        answer: "Absolutely. Chlorine and Sydney's hard water can turn blonde hair brassy or green-tinted. We offer corrective toning and deep conditioning treatments to restore your blonde's vibrancy. For prevention, wet your hair with clean water before swimming and use a leave-in UV protectant. Regular toning appointments every 6–8 weeks keep brassiness at bay.",
+      },
+      {
+        question: "What aftercare do you recommend for smoothing treatments?",
+        answer: "After a smoothing treatment, avoid washing your hair for 48 hours and skip tying it up or using clips. Use sulfate-free shampoo and conditioner to preserve the treatment. Apply a heat protectant before styling, and avoid excessive heat. With proper care, your smoothing treatment will last 3–4 months, even in Illawong's humid climate.",
+      },
+    ],
+    nearbySuburbs: ["menai", "alfords-point"],
+  },
+  "alfords-point": {
+    slug: "alfords-point",
+    name: "Alfords Point",
+    driveTime: "6–8 minutes",
+    route: "Alfords Point Road",
+    localNote: "The coastal breeze and river humidity make frizz control essential—our treatments are proven to work.",
+    intro: "Located just minutes from Alfords Point, Hair Pinns is your go-to boutique salon for expert Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena's 20+ years of experience means you'll get personalized, professional service every visit. Whether you need a colour refresh, frizz-taming treatment, or a fresh cut, we understand the unique challenges of Sydney's climate and hair care.",
+    faqs: [
+      {
+        question: "How do I manage frizz from the coastal breeze?",
+        answer: "The combination of river humidity and coastal breeze in Alfords Point creates perfect conditions for frizz. Our smoothing treatments seal the hair cuticle to block moisture and maintain sleekness. We also recommend anti-humidity serums and leave-in conditioners for daily styling. Regular treatments every 3–4 months keep your hair manageable year-round.",
+      },
+      {
+        question: "What's the best blonde maintenance routine?",
+        answer: "Sydney's sun and mineral-rich water can quickly turn blonde brassy. Use a purple shampoo 1–2 times weekly and a hydrating mask once a week to maintain tone and moisture. Book a gloss or toner every 6–8 weeks to refresh your colour. We'll customize a blonde care plan based on your specific shade and lifestyle needs.",
+      },
+      {
+        question: "Are smoothing treatments safe for coloured hair?",
+        answer: "Yes! Our smoothing treatments are safe for colour-treated hair and won't strip your colour. In fact, they help seal the cuticle, which can make your colour last longer and appear more vibrant. We use gentle, professional formulas designed to work with coloured hair. Always book colour services at least 2 weeks before or after smoothing treatments for best results.",
+      },
+    ],
+    nearbySuburbs: ["illawong", "bangor"],
+  },
+  woronora: {
+    slug: "woronora",
+    name: "Woronora",
+    driveTime: "10–12 minutes",
+    route: "Woronora Road via Bangor",
+    localNote: "Woronora's river valley traps moisture, making our anti-frizz treatments especially effective.",
+    intro: "Hair Pinns welcomes clients from Woronora to experience boutique hair care with over 20 years of expertise. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for Sydney's unique climate. Jena's personalized approach ensures you leave with hair that looks and feels amazing, with results that last in even the most humid conditions.",
+    faqs: [
+      {
+        question: "Why is Woronora so humid and how does it affect hair?",
+        answer: "Woronora's river valley geography traps moisture, creating high humidity levels that cause frizz and limp styles. Our smoothing treatments are specifically formulated to combat this, sealing the hair cuticle and preventing moisture absorption. We also recommend humidity-resistant styling products and techniques tailored to your hair type for lasting results between salon visits.",
+      },
+      {
+        question: "How often should I get my blonde hair toned?",
+        answer: "In Sydney's climate, blonde hair typically needs toning every 6–8 weeks to maintain vibrancy and neutralize brassiness. If you swim frequently or spend time outdoors, you may need more frequent toning. We use custom-blended toners to match your desired shade perfectly. Between appointments, purple shampoo and UV protection help extend your colour.",
+      },
+      {
+        question: "Can you help with heat-damaged hair?",
+        answer: "Absolutely. Heat damage is common in Sydney's climate where styling tools are used to combat humidity. We offer deep conditioning treatments and bond-rebuilding services to restore hair health. Our smoothing treatments also reduce the need for daily heat styling, giving your hair a break. We'll assess your hair's condition and create a recovery plan.",
+      },
+    ],
+    nearbySuburbs: ["sutherland", "bangor"],
+  },
+  sutherland: {
+    slug: "sutherland",
+    name: "Sutherland",
+    driveTime: "8–10 minutes",
+    route: "Princes Highway via Bangor",
+    localNote: "Sutherland's hard water can cause buildup and brassiness—our clarifying treatments restore shine.",
+    intro: "Serving Sutherland with over 20 years of hair expertise, Hair Pinns is your boutique destination for Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Whether you're dealing with frizz, need a colour refresh, or want a fresh cut, Jena's personalized approach delivers results that work with your lifestyle and Sydney's climate. Experience professional hair care in a welcoming, expert environment.",
+    faqs: [
+      {
+        question: "How does Sutherland's water affect my hair?",
+        answer: "Sutherland's mineral-rich water can cause product buildup, dullness, and brassiness in coloured hair. We recommend using a clarifying treatment once a month to remove buildup and restore shine. Our in-salon clarifying treatments deep-clean the hair and scalp, preparing your hair to better absorb conditioning treatments and colour services for optimal results.",
+      },
+      {
+        question: "What's the best way to prevent blonde from going brassy?",
+        answer: "Brassy blonde is often caused by mineral buildup, sun exposure, and oxidation. Use a chelating shampoo weekly to remove minerals, followed by purple shampoo to neutralize warmth. Apply a UV protectant spray before going outdoors. Professional toning every 6–8 weeks keeps your blonde cool and bright. We'll create a custom maintenance plan for your specific shade.",
+      },
+      {
+        question: "How long does a smoothing treatment appointment take?",
+        answer: "A full smoothing treatment typically takes 2–3 hours, depending on your hair length and thickness. This includes consultation, application, processing time, blow-dry, and flat-iron sealing. The results last 3–4 months with proper aftercare. We'll schedule your appointment to ensure you have plenty of time for the full service without feeling rushed.",
+      },
+    ],
+    nearbySuburbs: ["woronora", "kirrawee"],
+  },
+  kirrawee: {
+    slug: "kirrawee",
+    name: "Kirrawee",
+    driveTime: "12–15 minutes",
+    route: "Princes Highway",
+    localNote: "Kirrawee's coastal air brings salt and humidity—our treatments protect against both.",
+    intro: "Hair Pinns is proud to serve Kirrawee with boutique hair services including expert Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With over 20 years of experience, Jena understands how to create beautiful, lasting results in Sydney's coastal climate. From balayage to keratin smoothing, we offer personalized service in a relaxed, professional environment.",
+    faqs: [
+      {
+        question: "How does coastal air affect my hair in Kirrawee?",
+        answer: "Coastal air brings both salt and humidity, which can dry out hair while also causing frizz. Our smoothing treatments seal moisture inside while blocking humidity from outside. We recommend using a leave-in conditioner with UV protection daily, and a deep conditioning mask weekly to counteract salt and sun damage. Regular trims every 6–8 weeks prevent split ends.",
+      },
+      {
+        question: "Can you fix uneven colour from box dye?",
+        answer: "Yes, we specialize in colour correction. Box dyes often result in uneven colour, brassiness, or damage. We'll assess your current colour and hair condition, then create a custom plan to achieve your desired shade safely. This may involve multiple sessions to preserve hair health. Always book a consultation before attempting colour correction at home.",
+      },
+      {
+        question: "What's included in your smoothing treatment service?",
+        answer: "Our smoothing treatment includes a thorough consultation, clarifying shampoo to remove buildup, application of professional smoothing formula, processing time, blow-dry, and flat-iron sealing. We'll also provide aftercare instructions and product recommendations. The service takes 2–3 hours and results last 3–4 months. Follow-up appointments can be booked online via Fresha.",
+      },
+    ],
+    nearbySuburbs: ["sutherland", "gymea"],
+  },
+  kareela: {
+    slug: "kareela",
+    name: "Kareela",
+    driveTime: "10–12 minutes",
+    route: "President Avenue via Bangor",
+    localNote: "Kareela's bushland surrounds can mean extra dryness—our hydrating treatments restore moisture.",
+    intro: "Just a short drive from Kareela, Hair Pinns offers boutique hair expertise with over 20 years of experience. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for your lifestyle and Sydney's climate. Jena's personalized approach ensures you receive the perfect service, whether you need a colour transformation, frizz control, or a fresh new look.",
+    faqs: [
+      {
+        question: "Why does my hair feel so dry in Kareela?",
+        answer: "Kareela's bushland environment can be drier than coastal areas, leading to dehydrated hair. We recommend deep conditioning treatments monthly and using a leave-in conditioner daily. Our in-salon hydrating treatments penetrate deeply to restore moisture balance. Avoid over-washing (2–3 times per week is ideal) and use lukewarm water instead of hot to prevent further dryness.",
+      },
+      {
+        question: "How do I maintain my colour between appointments?",
+        answer: "Use colour-safe, sulfate-free shampoo and conditioner to prevent fading. Wash hair in cool water and limit washing to 2–3 times per week. Apply a colour-protecting leave-in spray before heat styling. For blonde hair, use purple shampoo weekly to neutralize brassiness. Book a gloss treatment every 6–8 weeks to refresh vibrancy between full colour services.",
+      },
+      {
+        question: "What's the difference between smoothing and straightening?",
+        answer: "Smoothing treatments reduce frizz and volume while maintaining natural movement and texture. Straightening (like Japanese straightening) permanently alters hair structure for poker-straight results. Smoothing is gentler, lasts 3–4 months, and gives you flexible styling options. We'll recommend the best option based on your hair type, texture, and desired outcome during your consultation.",
+      },
+    ],
+    nearbySuburbs: ["sutherland", "como"],
+  },
+  como: {
+    slug: "como",
+    name: "Como",
+    driveTime: "12–14 minutes",
+    route: "Princes Highway",
+    localNote: "Como's riverside location means high humidity—our smoothing treatments are proven effective.",
+    intro: "Hair Pinns welcomes clients from Como to experience boutique hair care with a focus on Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With over 20 years of expertise, Jena delivers personalized service that considers your hair's unique needs and Sydney's challenging climate. Whether you're battling frizz, seeking the perfect blonde, or ready for a style refresh, we're here to help.",
+    faqs: [
+      {
+        question: "How do I combat frizz from Como's riverside humidity?",
+        answer: "Como's riverside location creates high humidity levels that cause frizz. Our smoothing treatments seal the hair cuticle to block moisture and maintain sleekness for 3–4 months. Between treatments, use anti-humidity serums and avoid touching your hair throughout the day. Silk pillowcases also help reduce friction and frizz overnight. We'll customize a frizz-control routine for your hair type.",
+      },
+      {
+        question: "What causes blonde hair to turn brassy in Sydney?",
+        answer: "Brassiness is caused by mineral buildup from water, UV oxidation, and colour fading. Sydney's hard water accelerates this process. Use a chelating shampoo weekly to remove minerals, purple shampoo 1–2 times weekly to neutralize warmth, and UV protectant spray daily. Professional toning every 6–8 weeks keeps your blonde cool and vibrant. We use custom-blended toners for perfect results.",
+      },
+      {
+        question: "Can I swim after a smoothing treatment?",
+        answer: "Wait at least 48 hours before swimming after a smoothing treatment to allow the formula to fully set. Before swimming, wet your hair with clean water and apply a leave-in conditioner to create a barrier against chlorine. Rinse immediately after swimming and use a clarifying shampoo weekly to remove chlorine buildup. With proper care, your smoothing treatment will last the full 3–4 months.",
+      },
+    ],
+    nearbySuburbs: ["kareela", "gymea"],
+  },
+  gymea: {
+    slug: "gymea",
+    name: "Gymea",
+    driveTime: "15–18 minutes",
+    route: "Princes Highway",
+    localNote: "Gymea's coastal proximity means salt air and humidity—our treatments protect your hair from both.",
+    intro: "Hair Pinns is your boutique hair salon serving Gymea and the Sutherland Shire with over 20 years of expertise. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's coastal climate. Jena's personalized approach ensures you receive expert service in a welcoming environment, with results that last through humidity, salt air, and sun exposure.",
+    faqs: [
+      {
+        question: "How does coastal salt air damage hair in Gymea?",
+        answer: "Salt air draws moisture out of hair, causing dryness, brittleness, and frizz. The salt also oxidizes colour, leading to fading and brassiness. Use a UV and salt protectant spray daily, and rinse hair with fresh water after beach visits. Deep conditioning treatments weekly restore moisture. Our smoothing treatments also create a protective barrier against environmental damage for 3–4 months.",
+      },
+      {
+        question: "What's the best blonde shade for Sydney's climate?",
+        answer: "Warmer, sun-kissed blondes tend to age more gracefully in Sydney's climate than cool, icy blondes. Balayage and dimensional colour with varied tones look more natural as they grow out and are more forgiving with brassiness. We'll customize a blonde shade that complements your skin tone and lifestyle while being low-maintenance between appointments. Toning every 6–8 weeks keeps it fresh.",
+      },
+      {
+        question: "How do I know if I need a smoothing treatment?",
+        answer: "If you spend more than 20 minutes styling your hair daily, struggle with frizz and flyaways, or your hair loses its style by midday, a smoothing treatment can help. It reduces styling time by 50%, makes hair more manageable, and provides lasting smoothness for 3–4 months. Book a consultation and we'll assess your hair and recommend the best treatment for your needs.",
+      },
+    ],
+    nearbySuburbs: ["miranda", "como"],
+  },
+  miranda: {
+    slug: "miranda",
+    name: "Miranda",
+    driveTime: "15–18 minutes",
+    route: "Princes Highway",
+    localNote: "Miranda's shopping district bustle means you need hair that lasts—our treatments deliver all-day hold.",
+    intro: "Located near Miranda, Hair Pinns offers boutique hair expertise with over 20 years of experience in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena understands the demands of busy lifestyles and creates hair that looks great from morning to evening. Whether you're shopping, working, or socializing, we'll ensure your hair stays polished and manageable all day long.",
+    faqs: [
+      {
+        question: "How can I make my style last all day in Miranda?",
+        answer: "Long-lasting styles require the right foundation. Our smoothing treatments reduce frizz and make hair more manageable, so your style holds better. Use volumizing mousse at the roots and a light hold hairspray to set your style. Avoid touching your hair throughout the day, which can disrupt the style. Silk pillowcases at night help preserve blow-dries for 2–3 days between washes.",
+      },
+      {
+        question: "What's the best way to maintain keratin smoothing?",
+        answer: "After a keratin treatment, wait 48 hours before washing and avoid tying hair up or using clips. Use sulfate-free shampoo and conditioner exclusively to prevent stripping the treatment. Apply a heat protectant before styling and avoid excessive heat. Wash hair only 2–3 times per week with lukewarm water. With proper care, keratin smoothing lasts 3–4 months in Sydney's climate.",
+      },
+      {
+        question: "Can you match my current hair colour exactly?",
+        answer: "Yes, we can match your current colour or recreate a shade from a photo. Bring reference images to your consultation so we can discuss your goals. We'll assess your current colour, hair condition, and history to create a custom formula. For the most accurate match, avoid washing your hair right before the appointment so we can see your true colour.",
+      },
+    ],
+    nearbySuburbs: ["gymea", "kirrawee"],
+  },
+  engadine: {
+    slug: "engadine",
+    name: "Engadine",
+    driveTime: "10–12 minutes",
+    route: "Princes Highway via Heathcote",
+    localNote: "Engadine's bush surrounds can mean dryness and dust—our hydrating treatments restore vitality.",
+    intro: "Hair Pinns is your local boutique salon serving Engadine with over 20 years of expertise in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena's personalized approach delivers results that work with your lifestyle and Sydney's environment. Whether you're dealing with dry, damaged hair or seeking a fresh colour and cut, we'll help you achieve healthy, beautiful hair you'll love.",
+    faqs: [
+      {
+        question: "How do I protect my hair from Engadine's dry conditions?",
+        answer: "Engadine's bushland environment can be drier than coastal areas, leading to dehydrated, brittle hair. Use a deep conditioning mask weekly and a leave-in conditioner daily to lock in moisture. Avoid over-washing and use lukewarm water instead of hot. Our in-salon hydrating treatments penetrate deeply to restore moisture balance. Regular trims every 6–8 weeks prevent split ends from traveling up the hair shaft.",
+      },
+      {
+        question: "What's the best way to refresh faded colour?",
+        answer: "For a quick refresh between full colour services, book a gloss treatment. Glosses add shine, neutralize unwanted tones, and revive vibrancy in just 30–40 minutes. They're gentle on hair and can be customized to your desired tone. For more significant colour changes or coverage of greys, a full colour service is needed. We'll recommend the best option during your consultation based on your goals.",
+      },
+      {
+        question: "How do smoothing treatments work in dry climates?",
+        answer: "Smoothing treatments work well in dry climates by sealing the cuticle and locking moisture inside. Unlike humid areas where we fight moisture from outside, in drier areas we preserve internal moisture. The treatment creates a protective barrier that prevents environmental dryness from dehydrating your hair. Results last 3–4 months with proper sulfate-free aftercare and regular hydrating masks.",
+      },
+    ],
+    nearbySuburbs: ["heathcote", "woronora"],
+  },
+  heathcote: {
+    slug: "heathcote",
+    name: "Heathcote",
+    driveTime: "5–7 minutes",
+    route: "Princes Highway",
+    localNote: "Heathcote's bush setting means low humidity but dusty air—our protective treatments seal your style.",
+    intro: "Hair Pinns is your nearby boutique salon serving Heathcote with over 20 years of hair expertise. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for your unique hair needs. Jena's personalized approach ensures you receive professional service in a welcoming environment, with results that withstand Sydney's diverse climate conditions from bush to coast.",
+    faqs: [
+      {
+        question: "How does Heathcote's bushland air affect hair?",
+        answer: "Heathcote's bushland environment typically has lower humidity than coastal areas, but dust and pollen can accumulate in hair, making it look dull and feel rough. Use a clarifying shampoo weekly to remove buildup and restore shine. Our smoothing treatments create a protective barrier that helps prevent dust adhesion while keeping hair sleek and manageable for 3–4 months. Regular deep conditioning maintains moisture levels.",
+      },
+      {
+        question: "What colour services do you offer?",
+        answer: "We offer full colour services including root touch-ups, all-over colour, balayage, foil highlights, colour correction, toning, and glossing. Each service includes a consultation to assess your hair and discuss your goals. We use professional-grade products that minimize damage while delivering vibrant, long-lasting colour. Custom colour formulation ensures your shade is unique to you and complements your skin tone perfectly.",
+      },
+      {
+        question: "How far in advance should I book my appointment?",
+        answer: "We recommend booking 2–4 weeks in advance for colour services and smoothing treatments, especially for weekends and school holidays. For cuts or simple services, 1–2 weeks is usually sufficient. If you need an urgent appointment, call us directly and we'll do our best to accommodate you. You can book easily online via Fresha or call the salon during business hours.",
+      },
+    ],
+    nearbySuburbs: ["engadine", "bangor"],
+  },
+};
+
+export const getAllSuburbSlugs = (): string[] => {
+  return Object.keys(suburbPages);
+};
+
+export const getSuburbData = (slug: string): SuburbData | undefined => {
+  return suburbPages[slug];
+};

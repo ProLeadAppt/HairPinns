@@ -20,6 +20,7 @@ import Shipping from "./pages/Shipping";
 import Returns from "./pages/Returns";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import SuburbPage from "./pages/SuburbPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/confirm" element={<Confirm />} />
+          <Route path="/near/:suburb" element={<SuburbPage />} />
           <Route path="/policies/shipping" element={<Shipping />} />
           <Route path="/policies/returns" element={<Returns />} />
           <Route path="/privacy" element={<Privacy />} />
