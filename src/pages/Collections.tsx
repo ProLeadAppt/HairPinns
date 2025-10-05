@@ -1,81 +1,138 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import CollectionGrid from "@/components/design-system/CollectionGrid";
-import Section from "@/components/design-system/Section";
-import SectionHeader from "@/components/design-system/SectionHeader";
+import { ArrowRight, Gift, Droplet, Sparkles, Wind } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Collections = () => {
   const collections = [
     {
+      handle: "christmas-gift-packs",
       title: "Christmas Gift Packs",
-      description: "Curated gift sets perfect for the holiday season",
+      description: "Curated bundles perfect for gifting — salon-quality care sets at special prices",
       image: "/placeholder.svg",
-      href: "/collections/christmas-gift-packs",
-      itemCount: 12
+      icon: Gift,
+      productCount: 8
     },
     {
-      title: "Hair Care Essentials",
-      description: "Professional products for daily hair care",
+      handle: "hair-care",
+      title: "Hair Care",
+      description: "Daily shampoos, conditioners & treatments for every hair type and concern",
       image: "/placeholder.svg",
-      href: "/collections/hair-care",
-      itemCount: 24
+      icon: Droplet,
+      productCount: 24
     },
     {
-      title: "Styling Tools",
-      description: "Professional tools for salon-quality results",
+      handle: "treatments",
+      title: "Treatments & Masks",
+      description: "Deep conditioning, repair treatments & intensive care for damaged hair",
       image: "/placeholder.svg",
-      href: "/collections/styling-tools",
-      itemCount: 18
+      icon: Sparkles,
+      productCount: 12
     },
     {
-      title: "Treatment Products",
-      description: "Intensive care for damaged or special hair needs",
+      handle: "styling",
+      title: "Styling Products",
+      description: "Heat protectants, sprays, creams & finishing products for salon results at home",
       image: "/placeholder.svg",
-      href: "/collections/treatments",
-      itemCount: 15
+      icon: Wind,
+      productCount: 16
     }
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Header />
-      
-      <main className="flex-grow">
-        <Section className="pt-xl">
-          <SectionHeader 
-            title="Shop Collections" 
-            subtitle="Explore our curated product collections"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {collections.map((collection) => (
-              <Link 
-                key={collection.href}
-                to={collection.href}
-                className="group block"
-              >
-                <div className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base">
-                  <div className="aspect-video bg-muted relative overflow-hidden">
-                    <img 
-                      src={collection.image} 
-                      alt={collection.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-h2 font-heading text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                      {collection.title}
-                    </h3>
-                    <p className="text-foreground mb-3">{collection.description}</p>
-                    <p className="text-sm text-muted-foreground">{collection.itemCount} products</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+      <main>
+        {/* Hero */}
+        <section className="bg-accent py-12 md:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
+              Shop Collections
+            </h1>
+            <p className="text-lg text-foreground max-w-2xl mx-auto">
+              Professional hair care products hand-picked by Jena. 
+              From gift-ready bundles to daily essentials — find what your hair needs.
+            </p>
           </div>
-        </Section>
+        </section>
+
+        {/* Collections Grid */}
+        <section className="py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {collections.map((collection) => {
+                const Icon = collection.icon;
+                return (
+                  <Link
+                    key={collection.handle}
+                    to={`/collections/${collection.handle}`}
+                    className="group"
+                  >
+                    <article className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-all duration-base h-full">
+                      <div className="aspect-video bg-muted relative overflow-hidden">
+                        <img
+                          src={collection.image}
+                          alt={collection.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+                          loading="lazy"
+                          width="800"
+                          height="450"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        <div className="absolute top-4 left-4 w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center">
+                          <Icon className="w-6 h-6" />
+                        </div>
+                      </div>
+                      
+                      <div className="p-6">
+                        <div className="flex items-baseline justify-between mb-2">
+                          <h2 className="text-2xl font-heading font-semibold text-heading group-hover:text-brand-500 transition-colors">
+                            {collection.title}
+                          </h2>
+                          <span className="text-sm text-muted-foreground">
+                            {collection.productCount} products
+                          </span>
+                        </div>
+                        
+                        <p className="text-foreground mb-4 leading-relaxed">
+                          {collection.description}
+                        </p>
+                        
+                        <div className="flex items-center text-brand-500 font-semibold group-hover:gap-2 transition-all">
+                          <span>Shop Collection</span>
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section className="bg-brand-500 text-white py-12 md:py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-h2-lg font-heading font-bold mb-4">
+              Need Help Choosing?
+            </h2>
+            <p className="text-lg mb-6 opacity-90">
+              Book a free consultation with Jena to get personalized product recommendations.
+            </p>
+            <a 
+              href="https://www.fresha.com/book-now/hair-pinns-example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
+                Book Free Consult
+              </Button>
+            </a>
+          </div>
+        </section>
       </main>
-      
       <Footer />
     </div>
   );
