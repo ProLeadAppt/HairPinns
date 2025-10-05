@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Star, Check } from "lucide-react";
@@ -433,7 +433,7 @@ const CollectionDetail = () => {
                   How do I know if I need volume or smoothing products?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground leading-relaxed">
-                  If your hair is fine, flat, or lacks body, choose the <strong>Volume Boost Pack</strong> with lightweight formulas that lift at the roots. For thick, frizzy, or coarse hair that needs control, the <strong>Smooth & Sleek Set</strong> uses smoothing serums and anti-humidity technology. If you're unsure, book a free consult with Jena for personalized recommendations.
+                  If your hair is fine, flat, or lacks body, choose the <strong>Volume Boost Pack</strong> with lightweight formulas that lift at the roots. For thick, frizzy, or coarse hair that needs control, the <strong>Smooth & Sleek Set</strong> uses smoothing serums and anti-humidity technology. Need help choosing? <a href="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</a>
                 </AccordionContent>
               </AccordionItem>
 
@@ -448,18 +448,9 @@ const CollectionDetail = () => {
             </Accordion>
 
             <div className="text-center mt-8">
-              <p className="text-foreground mb-4">
-                Still not sure? We're here to help.
+              <p className="text-foreground mb-6">
+                Need help choosing? <Link to="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</Link>
               </p>
-              <a 
-                href="https://www.fresha.com/book-now/hair-pinns-example"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="primary" size="lg">
-                  Book Free Consultation
-                </Button>
-              </a>
             </div>
           </div>
         </section>

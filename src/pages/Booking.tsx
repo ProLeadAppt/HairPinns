@@ -3,54 +3,10 @@ import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, Check, Sparkles, Wind, Scissors, MessageCircle } from "lucide-react";
+import { Calendar, Check } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 
 const Booking = () => {
-  const bookingCategories = [
-    {
-      title: "Colour & Blonding",
-      icon: Sparkles,
-      description: "Balayage, highlights, full color, toning",
-      deepLink: "https://www.fresha.com/book-now/hair-pinns-example?category=colour"
-    },
-    {
-      title: "Smoothing & Treatments",
-      icon: Wind,
-      description: "Keratin, Olaplex, deep conditioning",
-      deepLink: "https://www.fresha.com/book-now/hair-pinns-example?category=treatments"
-    },
-    {
-      title: "Cuts & Styling",
-      icon: Scissors,
-      description: "Women's, men's, blow dry, styling",
-      deepLink: "https://www.fresha.com/book-now/hair-pinns-example?category=cuts"
-    },
-    {
-      title: "Free Consultation",
-      icon: MessageCircle,
-      description: "15-min hair & product advice",
-      deepLink: "https://www.fresha.com/book-now/hair-pinns-example?service=consultation"
-    }
-  ];
-
-  const steps = [
-    {
-      number: 1,
-      title: "Select Service",
-      description: "Browse our services and choose what suits your hair goals. Not sure? Book a free consultation first."
-    },
-    {
-      number: 2,
-      title: "Choose Time",
-      description: "Pick a date and time that works for you. View real-time availability 24/7 through Fresha."
-    },
-    {
-      number: 3,
-      title: "Confirm",
-      description: "Enter your details, add any notes, and confirm. You'll receive instant confirmation via email and SMS."
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -62,7 +18,7 @@ const Booking = () => {
         />
         <link rel="canonical" href="https://hairpinns.com/booking" />
         <meta property="og:title" content="Book Your Appointment | Hair Pinns Bangor" />
-        <meta property="og:description" content="Book online 24/7 via Fresha. Colour, smoothing, cuts & styling. Instant confirmation. Free consultations available." />
+        <meta property="og:description" content="Book online 24/7 via Fresha. Colour, smoothing, cuts & styling. Instant confirmation." />
         <meta property="og:url" content="https://hairpinns.com/booking" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('service')} />
@@ -80,102 +36,20 @@ const Booking = () => {
               Ready to transform your hair? Book online 24/7 through Fresha—choose your service, 
               pick your time, and get instant confirmation. It's fast, secure, and hassle-free.
             </p>
+            <p className="text-foreground mb-8">
+              Need help choosing? <Link to="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</Link>
+            </p>
             
-            {/* Above-the-fold Consult Button */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://www.fresha.com/book-now/hair-pinns-example"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="primary" size="xl">
-                  <Calendar className="w-5 h-5" />
-                  Book Now on Fresha
-                </Button>
-              </a>
-              <a
-                href="https://www.fresha.com/book-now/hair-pinns-example?service=consultation"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="accent" size="xl">
-                  <MessageCircle className="w-5 h-5" />
-                  Free Consultation
-                </Button>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Booking Categories */}
-        <section className="py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
-              Choose Your Service
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {bookingCategories.map((category, index) => {
-                const Icon = category.icon;
-                return (
-                  <a
-                    key={index}
-                    href={category.deepLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group"
-                  >
-                    <div className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base text-center h-full flex flex-col">
-                      <div className="w-14 h-14 bg-brand-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-base">
-                        <Icon className="w-7 h-7" />
-                      </div>
-                      <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                        {category.title}
-                      </h3>
-                      <p className="text-sm text-foreground mb-4 flex-grow">
-                        {category.description}
-                      </p>
-                      <Button variant="outline" size="sm" className="w-full">
-                        Book This Service
-                      </Button>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* What to Expect */}
-        <section className="py-16 bg-muted">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-12 text-center">
-              What to Expect
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {steps.map((step) => (
-                <div key={step.number} className="relative">
-                  <div className="bg-card border border-border rounded-card p-6 h-full">
-                    <div className="w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center mb-4 font-bold text-xl">
-                      {step.number}
-                    </div>
-                    <h3 className="text-xl font-heading font-semibold text-heading mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-foreground leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                  {/* Connector Arrow (hidden on mobile, shown on desktop) */}
-                  {step.number < 3 && (
-                    <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-brand-500">
-                      <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            <a
+              href="https://www.fresha.com/book-now/hair-pinns-example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="primary" size="xl">
+                <Calendar className="w-5 h-5" />
+                Book Now on Fresha
+              </Button>
+            </a>
           </div>
         </section>
 
@@ -249,8 +123,7 @@ const Booking = () => {
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">
-                    <strong>Consultation:</strong> All color services include a complimentary consultation. 
-                    First-time clients are encouraged to book a separate consultation first.
+                    <strong>First-Time Clients:</strong> We'll discuss your hair goals and recommend the best service for you during your appointment.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">

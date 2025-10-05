@@ -160,8 +160,7 @@ const About = () => {
                 </p>
                 <p className="text-foreground leading-relaxed">
                   Our Christmas Gift Packs make it easy to try complete routines at a great price. 
-                  Not sure what you need? Book a free product consultation, and I'll help you build 
-                  a custom care plan for your hair type and goals.
+                  Need help choosing? <a href="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</a>
                 </p>
               </div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden">

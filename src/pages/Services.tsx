@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ConsultBanner from "@/components/partials/ConsultBanner";
 import { Button } from "@/components/ui/button";
 import { Calendar, Check, Sparkles, Wind, Scissors, Plus, MapPin } from "lucide-react";
 import StickyBooking from "@/components/conversion/StickyBooking";
@@ -335,15 +334,14 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Mid-page Consult CTA */}
+        {/* Mid-page Help CTA */}
         <section className="py-12 bg-brand-500 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-h2-lg font-heading font-bold mb-4">
               Not sure which service is right for you?
             </h2>
             <p className="text-lg mb-6 opacity-90">
-              Book a free 15-minute consultation with Jena. We'll assess your hair, 
-              discuss your goals, and create a custom plan.
+              Need help choosing? <Link to="/contact" className="text-white font-semibold hover:text-white/90 underline">Message us on the contact page.</Link>
             </p>
             <a
               href="https://www.fresha.com/book-now/hair-pinns-example"
@@ -352,7 +350,7 @@ const Services = () => {
             >
               <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
                 <Calendar className="w-5 h-5" />
-                Book Free Consult
+                Book Now
               </Button>
             </a>
           </div>
@@ -441,13 +439,6 @@ const Services = () => {
           subtitle="Expert answers to your hair care questions from Jena and the Hair Pinns team."
           showFeedback={true}
         />
-        
-        {/* Consult Banner */}
-        <section className="py-12 bg-muted/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ConsultBanner variant="default" />
-          </div>
-        </section>
         
         {/* Nearby Suburbs We Serve */}
         <section className="py-12">

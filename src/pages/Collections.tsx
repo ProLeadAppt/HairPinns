@@ -136,17 +136,8 @@ const Collections = () => {
               Need Help Choosing?
             </h2>
             <p className="text-lg mb-6 opacity-90">
-              Book a free consultation with Jena to get personalized product recommendations.
+              <a href="/contact" className="text-white font-semibold hover:text-white/90 underline">Message us on the contact page</a> for personalized product recommendations.
             </p>
-            <a 
-              href="https://www.fresha.com/book-now/hair-pinns-example"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
-                Book Free Consult
-              </Button>
-            </a>
           </div>
         </section>
       </main>

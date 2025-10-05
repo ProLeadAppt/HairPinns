@@ -38,7 +38,7 @@ const ContactSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Located in Bangor NSW, we're easily accessible throughout the Sutherland Shire. 
-            Book your appointment today or drop by for a consultation.
+            Need help choosing? <a href="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</a>
           </p>
         </div>
         
