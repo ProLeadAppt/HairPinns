@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,17 +13,18 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Hair Pinns Brand Colors - Exact Match */
-    --brand-500: 289 47% 42%;              /* #8B4A8B - Primary purple */
-    --text: 0 0% 10%;                      /* #1A1A1A - Dark charcoal */
-    --heading: 0 0% 8%;                    /* #141414 - Darker for headings */
-    --link: 289 47% 42%;                   /* #8B4A8B - Brand purple for links */
+    --brand-500: 289 100% 22%;             /* #59006E - Primary purple */
+    --brand-600: 289 100% 14%;             /* 8% darker for hover */
+    --text: 216 7% 14%;                    /* #212326 - Dark charcoal */
+    --heading: 216 7% 14%;                 /* #212326 - Headings */
+    --link: 289 100% 22%;                  /* #59006E - Brand purple for links */
     --bg: 0 0% 100%;                       /* #FFFFFF - Pure white */
-    --accent: 289 47% 42%;                 /* #8B4A8B - Brand purple */
-    --muted: 210 10% 55%;                  /* #78899A - Muted gray */
+    --accent: 290 43% 95%;                 /* #F6ECF8 - Light purple accent */
+    --muted: 220 11% 91%;                  /* #E6E8EC - Muted gray */
 
     /* Radii - Exact match */
-    --radius-btn: 8px;
-    --radius-card: 12px;
+    --radius-btn: 1px;
+    --radius-card: 1px;
 
     /* Core tokens mapped to brand colors */
     --background: var(--bg);

@@ -51,6 +51,7 @@ export default {
         // Brand-specific colors
         brand: {
           500: "hsl(var(--brand-500))",
+          600: "hsl(var(--brand-600))",
         },
         text: "hsl(var(--text))",
         heading: "hsl(var(--heading))",
