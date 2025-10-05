@@ -1,85 +1,126 @@
-import { Menu, Calendar } from "lucide-react";
+import { Menu, Calendar, ShoppingBag, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [showPromo, setShowPromo] = useState(true);
+
   return (
-    <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border h-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex items-center justify-between h-full">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <h1 className="text-2xl font-serif font-bold text-foreground">
-              Hair Pinns
-            </h1>
-            <span className="ml-2 text-sm text-muted-foreground hidden sm:block">
-              Boutique Salon
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
-            <Link to="/collections" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
-              Shop
-            </Link>
-            <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
-              Services
-            </Link>
-            <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
-              Blog
-            </Link>
-            <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
-              About
-            </Link>
-            <Link to="/contact" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
-              Contact
-            </Link>
-            <Link to="/booking">
-              <Button variant="primary" size="sm">
-                <Calendar className="w-4 h-4" />
-                Book on Fresha
-              </Button>
-            </Link>
-          </nav>
-
-          {/* Mobile Menu */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
-                <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                  Shop
-                </Link>
-                <Link to="/services" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                  Services
-                </Link>
-                <Link to="/blog" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                  Blog
-                </Link>
-                <Link to="/about" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                  About
-                </Link>
-                <Link to="/contact" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                  Contact
-                </Link>
-                <Link to="/booking">
-                  <Button variant="primary" size="lg" className="w-full">
-                    <Calendar className="w-5 h-5" />
-                    Book on Fresha
-                  </Button>
-                </Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
+    <>
+      {/* Top Promo Strip */}
+      {showPromo && (
+        <div className="bg-brand-500 text-white py-2 px-4 text-center text-sm relative">
+          <p className="font-medium">
+            ✨ Free shipping on orders over $100 • Christmas Gift Packs now available
+          </p>
+          <button
+            onClick={() => setShowPromo(false)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-80"
+            aria-label="Close promo banner"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
-      </div>
-    </header>
+      )}
+
+      {/* Main Header */}
+      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border h-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex items-center justify-between h-full gap-4">
+            {/* Logo */}
+            <Link to="/" className="flex items-center flex-shrink-0">
+              <h1 className="text-xl lg:text-2xl font-serif font-bold text-foreground">
+                Hair Pinns
+              </h1>
+              <span className="ml-2 text-xs lg:text-sm text-muted-foreground hidden sm:block">
+                Boutique Salon
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-6" aria-label="Main navigation">
+              <Link to="/collections" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+                Shop
+              </Link>
+              <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+                Services
+              </Link>
+              <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+                About
+              </Link>
+              <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+                Blog
+              </Link>
+              <Link to="/contact" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+                Contact
+              </Link>
+            </nav>
+
+            {/* Desktop CTAs */}
+            <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+              <Link to="/collections/christmas-gift-packs">
+                <Button variant="ghost" size="sm">
+                  <ShoppingBag className="w-4 h-4" />
+                  Shop Featured
+                </Button>
+              </Link>
+              <Link to="/booking">
+                <Button variant="primary" size="sm">
+                  <Calendar className="w-4 h-4" />
+                  Book on Fresha
+                </Button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="lg:hidden flex-shrink-0">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px]">
+                <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
+                  <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    Shop
+                  </Link>
+                  <Link to="/services" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    Services
+                  </Link>
+                  <Link to="/about" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    About
+                  </Link>
+                  <Link to="/blog" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    Blog
+                  </Link>
+                  <Link to="/contact" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    Contact
+                  </Link>
+                  
+                  <div className="pt-6 border-t border-border space-y-3">
+                    <Link to="/collections/christmas-gift-packs" className="block">
+                      <Button variant="ghost" size="lg" className="w-full justify-start">
+                        <ShoppingBag className="w-5 h-5" />
+                        Shop Featured
+                      </Button>
+                    </Link>
+                    <Link to="/booking" className="block">
+                      <Button variant="primary" size="lg" className="w-full">
+                        <Calendar className="w-5 h-5" />
+                        Book on Fresha
+                      </Button>
+                    </Link>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </header>
+    </>
   );
 };
 
