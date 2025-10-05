@@ -129,31 +129,35 @@ const ProductDetail = () => {
     setIsSubmittingLead(true);
 
     try {
-      // GHL webhook for lead capture
-      const webhookUrl = "https://services.leadconnectorhq.com/hooks/YOUR_WEBHOOK_ID";
+      const { hpCapture } = await import("@/lib/hpCapture");
       
-      await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        mode: "no-cors",
-        body: JSON.stringify({
-          email,
-          source: "pdp_lead_magnet",
-          product: handle,
-          timestamp: new Date().toISOString(),
-        }),
-      });
+      const success = await hpCapture.postToZapier(
+        {
+          form_name: "product_lead_magnet",
+          email: email,
+          product_handle: handle,
+          product_title: product.title,
+          product_price: product.price,
+          lead_magnet_title: "7-Day Frizz-Free Plan",
+          consent_marketing: true, // Implicit consent via opt-in
+        },
+        { event: "product_lead_capture" }
+      );
 
-      toast({
-        title: "Success! Check your inbox",
-        description: "We've sent you Jena's 7-Day Frizz-Free Plan.",
-      });
-      setEmail("");
+      if (success) {
+        toast({
+          title: "Success! Check your inbox",
+          description: "We've sent you Jena's 7-Day Frizz-Free Plan.",
+        });
+        setEmail("");
+      } else {
+        throw new Error("Submission failed");
+      }
     } catch (error) {
       console.error("Lead capture error:", error);
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: "Something went wrong. Please try again or contact us.",
         variant: "destructive",
       });
     } finally {

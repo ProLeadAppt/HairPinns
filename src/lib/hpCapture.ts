@@ -498,4 +498,44 @@ export const hpCapture = {
   },
 };
 
+// QA Testing Utility - Accessible in browser console
+if (typeof window !== 'undefined') {
+  (window as any).__hpTest = async (formName: string = 'test_form') => {
+    console.log(`[hpCapture] Testing form submission: ${formName}`);
+    
+    const testPayload = {
+      form_name: formName,
+      email: 'test@hairpinns.com',
+      first_name: 'Test',
+      phone: '0412345678',
+      message: 'This is a test submission from the console',
+      consent_marketing: true,
+    };
+    
+    console.log('[hpCapture] Test payload:', testPayload);
+    
+    try {
+      const success = await hpCapture.postToZapier(testPayload, {
+        event: 'test_submission',
+      });
+      
+      if (success) {
+        console.log('✅ [hpCapture] Test submission successful!');
+        console.log('Check Zapier Task History to verify webhook received');
+        return { success: true, payload: testPayload };
+      } else {
+        console.error('❌ [hpCapture] Test submission failed');
+        console.log('Check window.__hpErrors for details:', window.__hpErrors);
+        return { success: false, payload: testPayload, errors: window.__hpErrors };
+      }
+    } catch (error) {
+      console.error('❌ [hpCapture] Test submission error:', error);
+      return { success: false, error, payload: testPayload };
+    }
+  };
+  
+  // Log availability message
+  console.log('[hpCapture] Test utility loaded. Run window.__hpTest("form_name") to test.');
+}
+
 export default hpCapture;
