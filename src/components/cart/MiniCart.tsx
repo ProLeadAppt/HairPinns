@@ -3,6 +3,7 @@ import { X, ShoppingBag, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Cart } from "@/lib/cartManagement";
+import { trackBeginCheckout } from "@/lib/ecommerceTracking";
 
 interface MiniCartProps {
   isOpen: boolean;
@@ -28,6 +29,20 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
   const total = cart?.cost?.totalAmount
     ? parseFloat(cart.cost.totalAmount.amount)
     : 0;
+
+  const handleCheckout = () => {
+    if (!cart || !cart.checkoutUrl) return;
+    
+    // Track begin_checkout to Zapier
+    trackBeginCheckout({
+      cart_total: total,
+      item_count: itemCount,
+      currency: "AUD",
+    });
+    
+    // Redirect to Shopify checkout
+    window.location.href = cart.checkoutUrl;
+  };
 
   return (
     <>
@@ -131,11 +146,7 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
               variant="primary"
               size="lg"
               className="w-full"
-              onClick={() => {
-                if (cart.checkoutUrl) {
-                  window.location.href = cart.checkoutUrl;
-                }
-              }}
+              onClick={handleCheckout}
             >
               Checkout
               <ExternalLink className="w-4 h-4 ml-2" />

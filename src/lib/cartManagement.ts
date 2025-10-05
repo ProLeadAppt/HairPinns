@@ -96,6 +96,13 @@ export async function addToBag(
 }
 
 /**
+ * Get checkout URL from cart
+ */
+export function getCheckoutUrl(cart: Cart): string {
+  return cart.checkoutUrl;
+}
+
+/**
  * Navigate to checkout
  */
 export function goToCheckout(checkoutUrl: string): void {
