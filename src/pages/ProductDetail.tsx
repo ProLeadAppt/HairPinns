@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/accordion";
 import { Star, Check, ChevronLeft, ChevronRight, Truck, Package, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -546,7 +547,8 @@ const ProductDetail = () => {
                         {faq.question}
                       </AccordionTrigger>
                       <AccordionContent className="text-foreground">
-                        {faq.answer}
+                        <div>{faq.answer}</div>
+                        <FaqFeedbackWidget question={faq.question} />
                       </AccordionContent>
                     </AccordionItem>
                   ))}

@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 
 const Services = () => {
   const services = {
@@ -462,7 +463,8 @@ const Services = () => {
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-foreground leading-relaxed">
-                    {faq.answer}
+                    <div>{faq.answer}</div>
+                    <FaqFeedbackWidget question={faq.question} />
                   </AccordionContent>
                 </AccordionItem>
               ))}
