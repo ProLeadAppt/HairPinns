@@ -6,39 +6,45 @@ const FeatureStrip = () => {
     {
       icon: Sparkles,
       title: "Colour & Blonding",
-      anchor: "colour"
+      anchor: "colour",
+      description: "Balayage, highlights, toning"
     },
     {
       icon: Wind,
       title: "Smoothing & Treatments",
-      anchor: "treatments"
+      anchor: "treatments",
+      description: "Keratin, deep conditioning"
     },
     {
       icon: Scissors,
       title: "Cuts & Styling",
-      anchor: "cuts"
+      anchor: "cuts",
+      description: "Precision cuts for all hair types"
     }
   ];
 
   return (
     <section className="bg-accent py-12 md:py-16" style={{ contentVisibility: "auto", containIntrinsicSize: "0 400px" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <Link 
                 key={index}
                 to={`/services#${feature.anchor}`}
-                className="group text-center"
+                className="group bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base text-center"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-brand-500 text-white rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-base">
-                    <Icon className="w-8 h-8" />
+                  <div className="w-14 h-14 bg-brand-500 text-white rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-base">
+                    <Icon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-lg font-semibold text-heading group-hover:text-brand-500 transition-colors">
+                  <h3 className="text-lg font-heading font-semibold text-heading group-hover:text-brand-500 transition-colors mb-2">
                     {feature.title}
                   </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {feature.description}
+                  </p>
                 </div>
               </Link>
             );

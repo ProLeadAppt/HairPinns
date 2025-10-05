@@ -71,6 +71,28 @@ const ProductSpotlight = () => {
         "Scrub, treatment & tonic",
         "Great for all hair types"
       ]
+    },
+    {
+      slug: "volume-boost-pack",
+      title: "Volume Boost Pack",
+      price: "$79.00",
+      image: "/placeholder.svg",
+      bullets: [
+        "Lift & body for fine hair",
+        "Volumizing shampoo, spray & powder",
+        "Save $20 vs individual items"
+      ]
+    },
+    {
+      slug: "smooth-sleek-set",
+      title: "Smooth & Sleek Set",
+      price: "$92.00",
+      image: "/placeholder.svg",
+      bullets: [
+        "Frizz control & shine",
+        "Smoothing shampoo, serum & cream",
+        "Salon-quality results at home"
+      ]
     }
   ];
 
@@ -119,12 +141,18 @@ const ProductSpotlight = () => {
               <div className="flex gap-2">
                 <Link to={`/products/${product.slug}`} className="flex-1">
                   <Button variant="outline" size="sm" className="w-full">
-                    <Eye className="w-4 h-4" />
                     View Pack
                   </Button>
                 </Link>
-                <Button variant="primary" size="sm" className="flex-1">
-                  <ShoppingBag className="w-4 h-4" />
+                <Button 
+                  variant="primary" 
+                  size="sm" 
+                  className="flex-1"
+                  onClick={() => {
+                    console.log("Reserve clicked:", product.slug);
+                    // Deep link to Shopify or Fresha booking
+                  }}
+                >
                   Reserve
                 </Button>
               </div>

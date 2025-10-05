@@ -7,33 +7,33 @@ import Badge from "@/components/design-system/Badge";
 const BlogTrio = () => {
   const posts = [
     {
-      slug: "winter-hair-care-tips",
-      title: "Winter Hair Care: Essential Tips",
-      hook: "Keep your hair healthy and vibrant through the cold months",
+      slug: "how-to-maintain-color-at-home",
+      title: "How to Maintain Color at Home",
+      hook: "Keep your salon color vibrant longer with these pro tips and product picks",
       image: "/placeholder.svg",
       category: "Hair Care"
     },
     {
-      slug: "latest-color-trends",
-      title: "2024 Hair Color Trends",
-      hook: "From warm caramels to icy blondes, discover this season's hottest colors",
+      slug: "choosing-right-treatment",
+      title: "Choosing the Right Treatment",
+      hook: "Match your hair concerns to the perfect professional treatment for visible results",
       image: "/placeholder.svg",
-      category: "Trends"
+      category: "Guides"
     },
     {
-      slug: "product-recommendations",
-      title: "Our Top Picks for Damaged Hair",
-      hook: "Professional recommendations for repairing over-processed hair",
+      slug: "holiday-hair-gifting-guide",
+      title: "Holiday Hair Gifting Guide",
+      hook: "Gift bundles that suit every hair type — from fine to curly to color-treated",
       image: "/placeholder.svg",
-      category: "Products"
+      category: "Gift Ideas"
     }
   ];
 
   return (
     <Section className="content-visibility-auto">
       <SectionHeader 
-        title="From the Blog"
-        subtitle="Hair care tips, trends, and expert advice"
+        title="Hair Care Guides"
+        subtitle="Expert tips to get the most from your products and services"
       />
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 1500px" }}>
