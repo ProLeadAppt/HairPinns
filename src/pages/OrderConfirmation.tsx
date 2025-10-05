@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import { CheckCircle2, Package, Mail, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import PostPurchaseModule from "@/components/conversion/PostPurchaseModule";
 
 interface OrderItem {
   title: string;
@@ -222,7 +223,7 @@ const OrderConfirmation = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button
                 variant="primary"
                 size="lg"
@@ -239,6 +240,9 @@ const OrderConfirmation = () => {
                 Book an Appointment
               </Button>
             </div>
+
+            {/* Post-Purchase Module */}
+            <PostPurchaseModule />
 
             {/* Support */}
             <p className="text-sm text-muted-foreground mt-8">

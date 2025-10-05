@@ -15,6 +15,10 @@ import {
 import { Star, Check, ChevronLeft, ChevronRight, Truck, Package, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
+import StickyAddToCart from "@/components/conversion/StickyAddToCart";
+import TrustStrip from "@/components/conversion/TrustStrip";
+import ExitIntentModal from "@/components/conversion/ExitIntentModal";
+import ProductBadges from "@/components/conversion/ProductBadges";
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -33,6 +37,8 @@ const ProductDetail = () => {
     rating: 5,
     reviewCount: 47,
     inStock: true,
+    stock: 7, // Low stock example
+    soldLast24h: 12, // Fast moving example
     images: [
       { src: "/placeholder.svg", alt: "Hydrate & Restore Pack - Full Set" },
       { src: "/placeholder.svg", alt: "Product bottles close-up" },
@@ -232,6 +238,21 @@ const ProductDetail = () => {
       />
 
       <Header />
+      
+      {/* Trust Strip */}
+      <TrustStrip />
+      
+      {/* Exit Intent Modal */}
+      <ExitIntentModal enabled={true} />
+      
+      {/* Sticky Add to Cart (mobile only) */}
+      <StickyAddToCart
+        productTitle={product.title}
+        price={product.price}
+        inStock={product.inStock}
+        onAddToCart={handleAddToCart}
+      />
+      
       <main>
         {/* Product Section */}
         <section className="py-8 md:py-12">
@@ -327,6 +348,12 @@ const ProductDetail = () => {
                 <h1 className="text-h1-lg font-heading font-bold text-heading">
                   {product.title}
                 </h1>
+
+                {/* Product Badges */}
+                <ProductBadges
+                  stock={product.stock}
+                  soldLast24h={product.soldLast24h}
+                />
 
                 {/* Price */}
                 <div className="flex items-baseline gap-3">

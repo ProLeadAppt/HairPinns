@@ -10,6 +10,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
+import StickyBooking from "@/components/conversion/StickyBooking";
+import TrustStrip from "@/components/conversion/TrustStrip";
 import {
   generateOrganizationSchema,
   generateLocalBusinessSchema,
@@ -204,6 +206,13 @@ const Services = () => {
       </Helmet>
 
       <Header />
+      
+      {/* Trust Strip */}
+      <TrustStrip />
+      
+      {/* Sticky Booking CTA (mobile only) */}
+      <StickyBooking />
+      
       <main>
         {/* Hero */}
         <section className="bg-accent py-12 md:py-16">

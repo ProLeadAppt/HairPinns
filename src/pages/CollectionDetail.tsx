@@ -18,6 +18,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import ExitIntentModal from "@/components/conversion/ExitIntentModal";
+import TrustStrip from "@/components/conversion/TrustStrip";
+import ProductBadges from "@/components/conversion/ProductBadges";
 
 const CollectionDetail = () => {
   const { handle } = useParams();
@@ -66,6 +69,8 @@ const CollectionDetail = () => {
       reviewCount: 47,
       isBestSeller: true,
       goals: ["repair"],
+      stock: 3, // Low stock
+      soldLast24h: 15, // Fast moving
       bullets: ["For dry, damaged hair", "Shampoo, conditioner & treatment", "Save $25 vs buying separately"],
     },
     {
@@ -188,6 +193,13 @@ const CollectionDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      
+      {/* Trust Strip */}
+      <TrustStrip />
+      
+      {/* Exit Intent Modal */}
+      <ExitIntentModal enabled={true} />
+      
       <main>
         {/* Collection Header */}
         <section className="bg-accent py-12 md:py-16">
@@ -278,6 +290,13 @@ const CollectionDetail = () => {
                           Best Seller
                         </Badge>
                       )}
+                      {/* Product Badges (low stock, fast moving) */}
+                      <div className="absolute top-3 right-3">
+                        <ProductBadges
+                          stock={product.stock}
+                          soldLast24h={product.soldLast24h}
+                        />
+                      </div>
                     </div>
 
                     {/* Content */}
