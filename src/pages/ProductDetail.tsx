@@ -134,11 +134,17 @@ const ProductDetail = () => {
       const success = await hpCapture.postToZapier(
         {
           form_name: "product_lead_magnet",
+          first_name: '',
+          last_name: '',
           email: email,
+          phone: '',
           product_handle: handle,
           product_title: product.title,
-          product_price: product.price,
+          product_id: '', // Add if available
+          price: product.price.toString(),
+          currency: 'AUD',
           lead_magnet_title: "7-Day Frizz-Free Plan",
+          lead_magnet_slug: "frizz7_pdp",
           consent_marketing: true, // Implicit consent via opt-in
         },
         { event: "product_lead_capture" }

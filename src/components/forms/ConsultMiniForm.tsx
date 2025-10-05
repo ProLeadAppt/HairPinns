@@ -81,6 +81,8 @@ const ConsultMiniForm = ({
         {
           form_name: "consult_request",
           name: formData.name,
+          first_name: formData.name.split(' ')[0] || formData.name,
+          last_name: formData.name.split(' ').slice(1).join(' ') || '',
           email: formData.email,
           phone: formData.phone,
           preferred_time: formData.preferred_time,

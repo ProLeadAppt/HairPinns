@@ -305,69 +305,12 @@ async function postToZapier(
   const firstTouch = getFirstTouchData();
   const pageTracking = getPageTrackingData();
   
-  // Merge payload with session data, first-touch data, and page tracking
-  const fullPayload: CapturePayload & {
-    utms?: Record<string, string>;
-    click_ids?: Record<string, string>;
-    first_touch?: Record<string, string>;
-    first_touch_click_ids?: Record<string, string>;
-  } = {
-    page_url: typeof window !== 'undefined' ? window.location.href : '',
-    timestamp: new Date().toISOString(),
-    ...cleanPayload,
-    // Core session identifiers
-    client_id: sessionData.client_id,
-    referrer: sessionData.referrer,
-    // Page tracking (only for form submissions)
-    last_seen_page: pageTracking.last_seen_page,
-    seconds_on_page: pageTracking.seconds_on_page,
-    // Add GDPR compliance and project config fields
-    gdpr_region_detected: projectConfig.gdpr_region,
-    timestamp_consent: payload.consent_marketing ? new Date().toISOString() : undefined,
-    double_opt_in: projectConfig.double_opt_in,
-    // Last-touch attribution (current session UTMs)
-    utms: {
-      utm_source: sessionData.utm_source || '',
-      utm_medium: sessionData.utm_medium || '',
-      utm_campaign: sessionData.utm_campaign || '',
-      utm_content: sessionData.utm_content || '',
-      utm_term: sessionData.utm_term || '',
-    },
-    // Last-touch click IDs
-    click_ids: {
-      gclid: sessionData.gclid || '',
-      fbclid: sessionData.fbclid || '',
-      ttclid: sessionData.ttclid || '',
-    },
-    // First-touch attribution (initial visit)
-    first_touch: {
-      first_utm_source: firstTouch.first_utm_source || '',
-      first_utm_medium: firstTouch.first_utm_medium || '',
-      first_utm_campaign: firstTouch.first_utm_campaign || '',
-      first_utm_content: firstTouch.first_utm_content || '',
-      first_utm_term: firstTouch.first_utm_term || '',
-      first_referrer: firstTouch.first_referrer,
-      first_landing_page: firstTouch.first_landing_page,
-      first_seen_timestamp: firstTouch.first_seen_timestamp,
-    },
-    // First-touch click IDs
-    first_touch_click_ids: {
-      first_gclid: firstTouch.first_gclid || '',
-      first_fbclid: firstTouch.first_fbclid || '',
-      first_ttclid: firstTouch.first_ttclid || '',
-    },
-  };
-  
-  // Add event_name or form_name
-  if (event) {
-    fullPayload.event_name = event;
-  }
-  
-  // Generate dedupe_key if we have identifier info
+  // Generate dedupe_key first
   const identifier = cleanPayload.email || cleanPayload.phone || '';
+  let dedupeKey = '';
   if (identifier && (cleanPayload.form_name || event)) {
     try {
-      fullPayload.dedupe_key = await generateDedupeKey(
+      dedupeKey = await generateDedupeKey(
         sessionData.client_id,
         cleanPayload.form_name || event || 'unknown',
         identifier
@@ -375,6 +318,100 @@ async function postToZapier(
     } catch (e) {
       console.error('Failed to generate dedupe_key:', e);
     }
+  }
+
+  // Build standardized nested payload structure
+  const fullPayload: any = {
+    // Contact information
+    contact: {
+      first_name: cleanPayload.first_name || cleanPayload.name || '',
+      last_name: cleanPayload.last_name || '',
+      email: cleanPayload.email || '',
+      phone: cleanPayload.phone || '',
+    },
+    
+    // Context (tracking metadata)
+    context: {
+      form_name: cleanPayload.form_name || '',
+      event_name: event || cleanPayload.event_name || '',
+      source_page: typeof window !== 'undefined' ? window.location.href : '',
+      referrer: sessionData.referrer,
+      timestamp: new Date().toISOString(),
+      client_id: sessionData.client_id,
+      dedupe_key: dedupeKey,
+      last_seen_page: pageTracking.last_seen_page,
+      seconds_on_page: pageTracking.seconds_on_page,
+    },
+    
+    // Consent and GDPR
+    consent: {
+      marketing: cleanPayload.consent_marketing || false,
+      gdpr_region_detected: projectConfig.gdpr_region,
+      timestamp_consent: cleanPayload.consent_marketing ? new Date().toISOString() : undefined,
+      double_opt_in: projectConfig.double_opt_in,
+    },
+    
+    // Session attribution (last-touch)
+    session: {
+      utm_source: sessionData.utm_source || '',
+      utm_medium: sessionData.utm_medium || '',
+      utm_campaign: sessionData.utm_campaign || '',
+      utm_content: sessionData.utm_content || '',
+      utm_term: sessionData.utm_term || '',
+      gclid: sessionData.gclid || '',
+      fbclid: sessionData.fbclid || '',
+      ttclid: sessionData.ttclid || '',
+    },
+    
+    // First-touch attribution (lifetime)
+    first_touch: {
+      first_utm_source: firstTouch.first_utm_source || '',
+      first_utm_medium: firstTouch.first_utm_medium || '',
+      first_utm_campaign: firstTouch.first_utm_campaign || '',
+      first_utm_content: firstTouch.first_utm_content || '',
+      first_utm_term: firstTouch.first_utm_term || '',
+      first_gclid: firstTouch.first_gclid || '',
+      first_fbclid: firstTouch.first_fbclid || '',
+      first_ttclid: firstTouch.first_ttclid || '',
+      first_referrer: firstTouch.first_referrer,
+      first_landing_page: firstTouch.first_landing_page,
+      first_seen_timestamp: firstTouch.first_seen_timestamp,
+    },
+  };
+  
+  // Add optional commerce data if present
+  if (cleanPayload.product_id || cleanPayload.product_title || cleanPayload.order_id || cleanPayload.items) {
+    fullPayload.commerce = {
+      product_id: cleanPayload.product_id || '',
+      product_title: cleanPayload.product_title || '',
+      product_handle: cleanPayload.product_handle || '',
+      price: cleanPayload.price || '',
+      currency: cleanPayload.currency || 'AUD',
+      variant: cleanPayload.variant || '',
+      quantity: cleanPayload.quantity || '',
+      cart_total: cleanPayload.cart_total || '',
+      order_id: cleanPayload.order_id || '',
+      items: cleanPayload.items || [],
+    };
+  }
+  
+  // Add optional free-text data if present
+  if (cleanPayload.message || cleanPayload.topic) {
+    fullPayload.free_text = {
+      message: cleanPayload.message || '',
+      topic: cleanPayload.topic || '',
+      topic_label: cleanPayload.topic_label || '',
+      preferred_time: cleanPayload.preferred_time || '',
+      preferred_time_label: cleanPayload.preferred_time_label || '',
+    };
+  }
+  
+  // Add lead magnet data if present
+  if (cleanPayload.lead_magnet_title) {
+    fullPayload.lead_magnet = {
+      title: cleanPayload.lead_magnet_title,
+      slug: cleanPayload.lead_magnet_slug || '',
+    };
   }
   
   // Retry logic with exponential backoff
@@ -505,37 +542,35 @@ if (typeof window !== 'undefined') {
     
     const testPayload = {
       form_name: formName,
-      email: 'test@hairpinns.com',
+      name: 'Test User',
       first_name: 'Test',
+      last_name: 'User',
+      email: 'test@hairpinns.com',
       phone: '0412345678',
       message: 'This is a test submission from the console',
       consent_marketing: true,
     };
     
-    console.log('[hpCapture] Test payload:', testPayload);
+    console.log('[hpCapture] Test payload (before transformation):', testPayload);
     
     try {
-      const success = await hpCapture.postToZapier(testPayload, {
-        event: 'test_submission',
-      });
+      const success = await hpCapture.postToZapier(
+        testPayload,
+        { event: 'test_submission' }
+      );
       
       if (success) {
         console.log('✅ [hpCapture] Test submission successful!');
         console.log('Check Zapier Task History to verify webhook received');
-        return { success: true, payload: testPayload };
+        console.log('Payload should be nested as: contact, context, consent, session, first_touch');
       } else {
         console.error('❌ [hpCapture] Test submission failed');
-        console.log('Check window.__hpErrors for details:', window.__hpErrors);
-        return { success: false, payload: testPayload, errors: window.__hpErrors };
+        console.log('Check window.__hpErrors for details');
       }
     } catch (error) {
       console.error('❌ [hpCapture] Test submission error:', error);
-      return { success: false, error, payload: testPayload };
     }
   };
-  
-  // Log availability message
-  console.log('[hpCapture] Test utility loaded. Run window.__hpTest("form_name") to test.');
 }
 
 export default hpCapture;

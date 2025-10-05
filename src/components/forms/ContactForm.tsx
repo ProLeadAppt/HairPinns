@@ -82,6 +82,8 @@ const ContactForm = ({
       const payload: Record<string, any> = {
         form_name: formName,
         name: formData.name,
+        first_name: formData.name.split(' ')[0] || formData.name,
+        last_name: formData.name.split(' ').slice(1).join(' ') || '',
         email: formData.email,
         phone: formData.phone,
         message: formData.message,

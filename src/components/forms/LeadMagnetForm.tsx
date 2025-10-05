@@ -59,11 +59,13 @@ const LeadMagnetForm = ({
       const payload = {
         form_name: formName,
         first_name: formData.first_name,
+        last_name: '',
         email: formData.email,
         phone: formData.phone,
         consent_marketing: formData.consent,
         source_page: typeof window !== 'undefined' ? window.location.href : '',
         lead_magnet_title: magnetTitle,
+        lead_magnet_slug: formName.replace('lead_magnet_', ''),
         // Session data will be merged by hpCapture.postToZapier
       };
 

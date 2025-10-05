@@ -58,6 +58,7 @@ const NewsletterForm = ({
       const payload = {
         form_name: formName,
         first_name: formData.first_name,
+        last_name: '',
         email: formData.email,
         phone: formData.phone,
         consent_marketing: formData.consent,
