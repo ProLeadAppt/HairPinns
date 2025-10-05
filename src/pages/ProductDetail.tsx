@@ -82,11 +82,34 @@ const ProductDetail = () => {
     shippingNote: "In stock • Ships within 1-2 business days",
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    // Fire non-blocking Zapier event
+    const trackAddToCart = async () => {
+      try {
+        const { hpCapture } = await import("@/lib/hpCapture");
+        
+        await hpCapture.trackEvent("add_to_cart", {
+          product_id: handle,
+          product_title: product.title,
+          price: product.price,
+          variant: "default", // Update when variants are implemented
+          quantity: quantity,
+          currency: "AUD",
+        });
+      } catch (error) {
+        console.error("Failed to track add_to_cart:", error);
+      }
+    };
+    
+    // Fire tracking in background (non-blocking)
+    trackAddToCart();
+    
+    // Show immediate user feedback
     toast({
       title: "Added to cart!",
       description: `${quantity}x ${product.title} added to your cart.`,
     });
+    
     console.log("Add to cart:", { product: handle, quantity });
   };
 
