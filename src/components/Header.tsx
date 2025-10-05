@@ -1,6 +1,7 @@
-import { Menu } from "lucide-react";
+import { Menu, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -8,29 +9,38 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <h1 className="text-2xl font-serif font-bold text-foreground">
               Hair Pinns
             </h1>
             <span className="ml-2 text-sm text-muted-foreground hidden sm:block">
               Boutique Salon
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-foreground hover:text-accent-color transition-colors duration-fast">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
+            <Link to="/collections" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
+              Shop
+            </Link>
+            <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
               Services
-            </a>
-            <a href="#products" className="text-foreground hover:text-accent-color transition-colors duration-fast">
-              Products
-            </a>
-            <a href="#about" className="text-foreground hover:text-accent-color transition-colors duration-fast">
+            </Link>
+            <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
+              Blog
+            </Link>
+            <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
               About
-            </a>
-            <a href="#contact" className="text-foreground hover:text-accent-color transition-colors duration-fast">
+            </Link>
+            <Link to="/contact" className="text-foreground hover:text-brand-500 transition-colors duration-fast">
               Contact
-            </a>
+            </Link>
+            <Link to="/booking">
+              <Button variant="primary" size="sm">
+                <Calendar className="w-4 h-4" />
+                Book on Fresha
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu */}
@@ -42,19 +52,28 @@ const Header = () => {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
-              <nav className="flex flex-col space-y-6 mt-8">
-                <a href="#services" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
+              <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
+                <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  Shop
+                </Link>
+                <Link to="/services" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                   Services
-                </a>
-                <a href="#products" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
-                  Products
-                </a>
-                <a href="#about" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
+                </Link>
+                <Link to="/blog" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  Blog
+                </Link>
+                <Link to="/about" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                   About
-                </a>
-                <a href="#contact" className="text-lg font-medium text-foreground hover:text-accent-color transition-colors duration-fast">
+                </Link>
+                <Link to="/contact" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                   Contact
-                </a>
+                </Link>
+                <Link to="/booking">
+                  <Button variant="primary" size="lg" className="w-full">
+                    <Calendar className="w-5 h-5" />
+                    Book on Fresha
+                  </Button>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>

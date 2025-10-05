@@ -1,4 +1,5 @@
 import { Instagram, Facebook, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -37,24 +38,22 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <nav className="space-y-2">
-              <a href="#services" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
+            <nav className="space-y-2" aria-label="Footer navigation">
+              <Link to="/services" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
                 Services & Pricing
-              </a>
-              <a href="#products" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
-                Professional Products
-              </a>
-              <a href="#about" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
-                About Our Team
-              </a>
-              <a 
-                href="https://fresha.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm"
-              >
-                Online Booking
-              </a>
+              </Link>
+              <Link to="/collections" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
+                Shop Products
+              </Link>
+              <Link to="/about" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
+                About Us
+              </Link>
+              <Link to="/blog" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
+                Blog
+              </Link>
+              <Link to="/booking" className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-fast text-sm">
+                Book Appointment
+              </Link>
             </nav>
           </div>
           
@@ -83,10 +82,26 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
-          <p className="text-primary-foreground/60 text-sm">
-            © 2024 Hair Pinns. All rights reserved. • Boutique Salon • Bangor NSW • Sutherland Shire
-          </p>
+        <div className="border-t border-primary-foreground/20 mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
+            <p>
+              © 2024 Hair Pinns. All rights reserved.
+            </p>
+            <nav className="flex flex-wrap justify-center gap-4" aria-label="Legal links">
+              <Link to="/policies/shipping" className="hover:text-primary-foreground transition-colors">
+                Shipping
+              </Link>
+              <Link to="/policies/returns" className="hover:text-primary-foreground transition-colors">
+                Returns
+              </Link>
+              <Link to="/privacy" className="hover:text-primary-foreground transition-colors">
+                Privacy
+              </Link>
+              <Link to="/terms" className="hover:text-primary-foreground transition-colors">
+                Terms
+              </Link>
+            </nav>
+          </div>
         </div>
       </div>
     </footer>
