@@ -155,6 +155,14 @@ export async function getCollectionByHandle(handle: string) {
                   }
                 }
               }
+              variants(first: 10) {
+                edges {
+                  node {
+                    id
+                    availableForSale
+                  }
+                }
+              }
             }
           }
         }

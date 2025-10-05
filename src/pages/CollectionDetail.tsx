@@ -3,9 +3,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Star, Check } from "lucide-react";
+import { Star, Check, ShoppingBag } from "lucide-react";
+import { getCollectionByHandle, getProductUrl } from "@/lib/shopify";
+import { addToBag, Cart } from "@/lib/cartManagement";
+import MiniCart from "@/components/cart/MiniCart";
+import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -30,180 +34,144 @@ const CollectionDetail = () => {
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("best-sellers");
+  const [collection, setCollection] = useState<any>(null);
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState<Cart | null>(null);
+  const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+  const [addingToCart, setAddingToCart] = useState<string | null>(null);
 
-  // Collection metadata (would come from Shopify)
-  const collectionData = {
-    "christmas-gift-packs": {
-      title: "Christmas Gift Packs",
-      description: "Give the gift of beautiful hair this holiday season. Our curated Christmas gift packs combine salon-quality products in luxe bundles that solve specific hair concerns. Each set is thoughtfully paired to deliver professional results at home, beautifully packaged and ready to gift.",
-    },
-    "hair-care": {
-      title: "Hair Care",
-      description: "Build your perfect hair care routine with professional-grade shampoos, conditioners and leave-ins. Every product is selected for performance and compatibility with salon color treatments. From daily cleansing to intensive hydration, find formulas that work as hard as you do.",
-    },
-    "treatments": {
-      title: "Treatments & Masks",
-      description: "Transform damaged, dull or over-processed hair with intensive repair treatments. These deep-conditioning masks and bond-building treatments deliver visible results in one use, restoring strength, shine and manageability. Professional formulas for at-home use.",
-    },
-    "styling": {
-      title: "Styling Products",
-      description: "Achieve salon-worthy results at home with our curated styling range. From heat protection to finishing sprays, these professional products give you control, hold and shine without the stiffness. Perfect for all hair types and styling techniques.",
-    },
+  // Fetch collection from Shopify
+  useEffect(() => {
+    const fetchCollection = async () => {
+      if (!handle) return;
+      
+      setLoading(true);
+      try {
+        const collectionData = await getCollectionByHandle(handle);
+        
+        if (collectionData) {
+          setCollection(collectionData);
+          
+          // Map Shopify products to our format
+          const mappedProducts = collectionData.products.edges.map((edge: any) => {
+            const product = edge.node;
+            const firstImage = product.images.edges[0]?.node;
+            const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+            
+            // Get first available variant ID (Shopify uses base64 encoded IDs)
+            const variants = product.variants?.edges || [];
+            const firstVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
+            const variantId = firstVariant?.id || null;
+            
+            return {
+              id: product.id,
+              handle: product.handle,
+              title: product.title,
+              price: minPrice,
+              image: firstImage?.url || "/placeholder.svg",
+              availableForSale: product.availableForSale,
+              firstVariantId: variantId,
+            };
+          });
+          
+          setProducts(mappedProducts);
+        }
+      } catch (error) {
+        console.error("Failed to fetch collection:", error);
+        toast.error("Failed to load collection");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCollection();
+  }, [handle]);
+
+  // Handle add to bag
+  const handleAddToBag = async (productHandle: string, variantId: string) => {
+    setAddingToCart(productHandle);
+    
+    try {
+      const updatedCart = await addToBag(variantId, 1);
+      setCart(updatedCart);
+      setIsMiniCartOpen(true);
+      toast.success("Added to bag!");
+    } catch (error) {
+      console.error("Add to bag failed:", error);
+      toast.error("Failed to add to bag. Redirecting to product page...");
+      
+      // Fallback: redirect to product page on hairpinns.com
+      setTimeout(() => {
+        window.location.href = getProductUrl(productHandle);
+      }, 1500);
+    } finally {
+      setAddingToCart(null);
+    }
   };
 
-  const collection = collectionData[handle as keyof typeof collectionData] || collectionData["christmas-gift-packs"];
+  // Filter and sort logic
+  const filteredProducts = products.filter((p) => {
+    if (priceRange === "all") return true;
+    if (priceRange === "under-80") return p.price < 80;
+    if (priceRange === "80-90") return p.price >= 80 && p.price <= 90;
+    if (priceRange === "over-90") return p.price > 90;
+    return true;
+  });
 
-  // Hair goals filter options
-  const hairGoals = [
-    { value: "frizz", label: "Frizz Control" },
-    { value: "blonde", label: "Blonde Care" },
-    { value: "volume", label: "Volume" },
-    { value: "repair", label: "Repair & Strengthen" },
-  ];
-
-  // Dummy products (replace with Shopify API)
-  const products = [
-    {
-      id: 1,
-      title: "Hydrate & Restore Pack",
-      price: 89.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 47,
-      isBestSeller: true,
-      goals: ["repair"],
-      stock: 3, // Low stock
-      soldLast24h: 15, // Fast moving
-      bullets: ["For dry, damaged hair", "Shampoo, conditioner & treatment", "Save $25 vs buying separately"],
-    },
-    {
-      id: 2,
-      title: "Blonde Brilliance Set",
-      price: 95.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 38,
-      isBestSeller: true,
-      goals: ["blonde"],
-      bullets: ["Tone & brighten blonde hair", "Purple shampoo, mask & oil", "Save $30 on this bundle"],
-    },
-    {
-      id: 3,
-      title: "Ultimate Styling Trio",
-      price: 75.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 52,
-      isBestSeller: true,
-      goals: ["frizz"],
-      bullets: ["Salon-quality styling at home", "Heat protectant, cream & spray", "Perfect gift for hair lovers"],
-    },
-    {
-      id: 4,
-      title: "Volume Boost Pack",
-      price: 79.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 31,
-      isBestSeller: false,
-      goals: ["volume"],
-      bullets: ["Lift & body for fine hair", "Volumizing shampoo, spray & powder", "Save $20 vs individual items"],
-    },
-    {
-      id: 5,
-      title: "Curl Care Collection",
-      price: 82.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 29,
-      isBestSeller: false,
-      goals: ["frizz", "repair"],
-      bullets: ["Define & nourish curls", "Curl cream, gel & leave-in", "Save $22 in this pack"],
-    },
-    {
-      id: 6,
-      title: "Color Protect Bundle",
-      price: 88.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 44,
-      isBestSeller: false,
-      goals: ["repair"],
-      bullets: ["Extend your color vibrancy", "Shampoo, conditioner & serum", "Professional salon formula"],
-    },
-    {
-      id: 7,
-      title: "Smooth & Sleek Set",
-      price: 92.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 36,
-      isBestSeller: false,
-      goals: ["frizz"],
-      bullets: ["Frizz control & shine", "Smoothing shampoo, serum & cream", "Salon-quality results at home"],
-    },
-    {
-      id: 8,
-      title: "Scalp Wellness Set",
-      price: 72.00,
-      image: "/placeholder.svg",
-      rating: 5,
-      reviewCount: 25,
-      isBestSeller: false,
-      goals: ["repair"],
-      bullets: ["Healthy scalp, healthy hair", "Scrub, treatment & tonic", "Great for all hair types"],
-    },
-  ];
-
-  // Filter logic
-  const filteredProducts = products
-    .filter((p) => {
-      if (selectedGoals.length === 0) return true;
-      return selectedGoals.some((goal) => p.goals.includes(goal));
-    })
-    .filter((p) => {
-      if (priceRange === "all") return true;
-      if (priceRange === "under-80") return p.price < 80;
-      if (priceRange === "80-90") return p.price >= 80 && p.price <= 90;
-      if (priceRange === "over-90") return p.price > 90;
-      return true;
-    });
-
-  // Sort logic
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "best-sellers") {
-      if (a.isBestSeller && !b.isBestSeller) return -1;
-      if (!a.isBestSeller && b.isBestSeller) return 1;
-      return b.reviewCount - a.reviewCount;
-    }
     if (sortBy === "price-low") return a.price - b.price;
     if (sortBy === "price-high") return b.price - a.price;
     return 0;
   });
 
-  // Inject review badge every 3 items
-  const productsWithBadges = sortedProducts.map((product, index) => ({
-    ...product,
-    showReviewBadge: (index + 1) % 3 === 0,
-  }));
+  const collectionTitle = collection?.title || "Collection";
+  const collectionDescription = collection?.description || "Shop our curated hair care collection";
 
-  const toggleGoal = (goal: string) => {
-    setSelectedGoals((prev) =>
-      prev.includes(goal) ? prev.filter((g) => g !== goal) : [...prev, goal]
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500 mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading collection...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
     );
-  };
+  }
+
+  if (!collection) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-heading mb-2">Collection not found</h2>
+            <p className="text-muted-foreground mb-6">This collection doesn't exist or has been removed.</p>
+            <Button asChild variant="primary">
+              <Link to="/collections">Browse Collections</Link>
+            </Button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{collection.title} | Hair Care Products | Hair Pinns</title>
+        <title>{collectionTitle} | Hair Care Products | Hair Pinns</title>
         <meta 
           name="description" 
-          content={`${collection.description.substring(0, 155)}`}
+          content={collectionDescription.substring(0, 155)}
         />
         <link rel="canonical" href={`https://hairpinns.com/collections/${handle}`} />
-        <meta property="og:title" content={`${collection.title} | Hair Pinns`} />
-        <meta property="og:description" content={collection.description.substring(0, 155)} />
+        <meta property="og:title" content={`${collectionTitle} | Hair Pinns`} />
+        <meta property="og:description" content={collectionDescription.substring(0, 155)} />
         <meta property="og:url" content={`https://hairpinns.com/collections/${handle}`} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('collection')} />
@@ -211,6 +179,13 @@ const CollectionDetail = () => {
         <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/collections/${handle}`} />
       </Helmet>
       <Header />
+      
+      {/* Mini Cart */}
+      <MiniCart 
+        isOpen={isMiniCartOpen}
+        onClose={() => setIsMiniCartOpen(false)}
+        cart={cart}
+      />
       
       {/* Trust Strip */}
       <TrustStrip />
@@ -221,11 +196,11 @@ const CollectionDetail = () => {
       <main>
         {/* Breadcrumbs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <Breadcrumbs 
+            <Breadcrumbs 
             items={[
               { label: 'Home', href: '/' },
               { label: 'Collections', href: '/collections' },
-              { label: collection.title }
+              { label: collectionTitle }
             ]}
           />
         </div>
@@ -234,10 +209,10 @@ const CollectionDetail = () => {
         <section className="bg-accent py-12 md:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
-              {collection.title}
+              {collectionTitle}
             </h1>
             <p className="text-lg text-foreground max-w-3xl leading-relaxed">
-              {collection.description}
+              {collectionDescription}
             </p>
           </div>
         </section>
@@ -246,24 +221,6 @@ const CollectionDetail = () => {
         <section className="border-b border-border bg-card sticky top-16 z-30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
-              {/* Hair Goals */}
-              <div className="flex flex-wrap gap-2">
-                <span className="text-sm font-medium text-foreground self-center mr-2">
-                  Hair Goals:
-                </span>
-                {hairGoals.map((goal) => (
-                  <Button
-                    key={goal.value}
-                    variant={selectedGoals.includes(goal.value) ? "primary" : "outline"}
-                    size="sm"
-                    onClick={() => toggleGoal(goal.value)}
-                  >
-                    {goal.label}
-                    {selectedGoals.includes(goal.value) && <Check className="w-3 h-3 ml-1" />}
-                  </Button>
-                ))}
-              </div>
-
               {/* Price & Sort */}
               <div className="flex gap-3 flex-wrap">
                 <Select value={priceRange} onValueChange={setPriceRange}>
@@ -296,10 +253,19 @@ const CollectionDetail = () => {
         {/* Products Grid */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {productsWithBadges.map((product) => (
-                <div key={product.id} className="space-y-4">
-                  <article className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-all duration-base group">
+            {sortedProducts.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-lg text-muted-foreground">
+                  No products available in this collection.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {sortedProducts.map((product) => (
+                  <article 
+                    key={product.id} 
+                    className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-all duration-base group"
+                  >
                     {/* Image */}
                     <div className="aspect-square bg-muted relative overflow-hidden">
                       <img
@@ -311,41 +277,19 @@ const CollectionDetail = () => {
                         height="600"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                      {product.isBestSeller && (
+                      {!product.availableForSale && (
                         <Badge
-                          variant="default"
+                          variant="destructive"
                           className="absolute top-3 left-3"
                         >
-                          Best Seller
+                          Out of Stock
                         </Badge>
                       )}
-                      {/* Product Badges (low stock, fast moving) */}
-                      <div className="absolute top-3 right-3">
-                        <ProductBadges
-                          stock={product.stock}
-                          soldLast24h={product.soldLast24h}
-                        />
-                      </div>
                     </div>
 
                     {/* Content */}
                     <div className="p-6">
-                      {/* Rating */}
-                      <div className="flex items-center gap-1 mb-2">
-                        <div className="flex">
-                          {[...Array(product.rating)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3 h-3 text-[hsl(var(--star-color))] fill-current"
-                            />
-                          ))}
-                        </div>
-                        <span className="text-xs text-muted-foreground">
-                          ({product.reviewCount})
-                        </span>
-                      </div>
-
-                      <h3 className="text-lg font-heading font-semibold text-heading mb-2">
+                      <h3 className="text-lg font-heading font-semibold text-heading mb-2 line-clamp-2">
                         {product.title}
                       </h3>
 
@@ -353,59 +297,32 @@ const CollectionDetail = () => {
                         ${product.price.toFixed(2)}
                       </p>
 
-                      {/* Bullets */}
-                      <ul className="space-y-2 mb-6">
-                        {product.bullets.map((bullet, index) => (
-                          <li
-                            key={index}
-                            className="flex items-start gap-2 text-sm text-foreground"
-                          >
-                            <Check className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-
                       {/* Actions */}
                       <div className="flex gap-2">
-                        <Button variant="outline" size="sm" className="flex-1">
-                          View Pack
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                          asChild
+                        >
+                          <Link to={`/products/${product.handle}`}>
+                            View Product
+                          </Link>
                         </Button>
-                        <Button variant="primary" size="sm" className="flex-1">
-                          Reserve
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          className="flex-1"
+                          onClick={() => handleAddToBag(product.handle, product.firstVariantId)}
+                          disabled={!product.availableForSale || addingToCart === product.handle}
+                        >
+                          <ShoppingBag className="w-4 h-4 mr-1" />
+                          {addingToCart === product.handle ? "Adding..." : "Add to Bag"}
                         </Button>
                       </div>
                     </div>
                   </article>
-
-                  {/* Review Badge */}
-                  {product.showReviewBadge && (
-                    <div className="bg-accent border border-border rounded-card p-4 text-center">
-                      <div className="flex justify-center mb-2">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="w-4 h-4 text-[hsl(var(--star-color))] fill-current"
-                          />
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-heading mb-1">
-                        4.9★ Average Rating
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        From {product.reviewCount}+ verified customers
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {sortedProducts.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-lg text-muted-foreground">
-                  No products match your filters. Try adjusting your selection.
-                </p>
+                ))}
               </div>
             )}
           </div>
