@@ -43,17 +43,20 @@ export const getSitemapUrls = (): SitemapUrl[] => {
     { loc: `${baseUrl}/collections/treatments`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/styling`, changefreq: 'weekly', priority: 0.8 },
     
-    // Suburb pages (example - generate dynamically in production)
-    { loc: `${baseUrl}/near/menai`, changefreq: 'monthly', priority: 0.7 },
-    { loc: `${baseUrl}/near/engadine`, changefreq: 'monthly', priority: 0.7 },
+    // Suburb pages - all valid service areas
     { loc: `${baseUrl}/near/bangor`, changefreq: 'monthly', priority: 0.7 },
-    { loc: `${baseUrl}/near/woronora`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/menai`, changefreq: 'monthly', priority: 0.7 },
     { loc: `${baseUrl}/near/illawong`, changefreq: 'monthly', priority: 0.7 },
-    { loc: `${baseUrl}/near/barden-ridge`, changefreq: 'monthly', priority: 0.7 },
-    { loc: `${baseUrl}/near/lucas-heights`, changefreq: 'monthly', priority: 0.7 },
     { loc: `${baseUrl}/near/alfords-point`, changefreq: 'monthly', priority: 0.7 },
-    { loc: `${baseUrl}/near/sandy-point`, changefreq: 'monthly', priority: 0.7 },
-    { loc: `${baseUrl}/near/padstow`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/woronora`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/sutherland`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/kirrawee`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/kareela`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/como`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/gymea`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/miranda`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/engadine`, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${baseUrl}/near/heathcote`, changefreq: 'monthly', priority: 0.7 },
     
     // Policy pages
     { loc: `${baseUrl}/policies/shipping`, changefreq: 'monthly', priority: 0.4 },

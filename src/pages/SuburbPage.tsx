@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import InvalidSuburb from "./InvalidSuburb";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -52,8 +53,9 @@ const SuburbPage = () => {
     trackPageView();
   }, [suburb, suburbData]);
 
+  // Show friendly invalid suburb page for unknown slugs
   if (!suburbData) {
-    return <Navigate to="/404" replace />;
+    return <InvalidSuburb />;
   }
 
   const breadcrumbSchema = {

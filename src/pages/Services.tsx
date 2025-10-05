@@ -441,7 +441,7 @@ const Services = () => {
         />
         
         {/* Nearby Suburbs We Serve */}
-        <section className="py-12">
+        <section className="py-12" id="areas">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 mb-6">
               <MapPin className="w-5 h-5 text-brand-500" />
@@ -449,27 +449,152 @@ const Services = () => {
                 Areas We Serve
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <p className="text-foreground mb-8 max-w-3xl">
+              Hair Pinns proudly serves clients throughout the Sutherland Shire from our Bangor salon. 
+              Click your area to see local info, drive times, and area-specific hair care tips.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <Link 
-                to="/suburbs/menai" 
+                to="/near/bangor" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Bangor
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  On-site — our home salon in Bangor
+                </p>
+              </Link>
+              <Link 
+                to="/near/menai" 
                 className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
               >
                 <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
                   Hair Salon Menai
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Just 5 minutes from Bangor — expert colour, smoothing & cuts
+                  5–7 mins — expert colour, smoothing & cuts
                 </p>
               </Link>
               <Link 
-                to="/suburbs/illawong" 
+                to="/near/illawong" 
                 className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
               >
                 <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
                   Hair Salon Illawong
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Local boutique salon serving Illawong residents
+                  8–10 mins — riverside suburb specialist
+                </p>
+              </Link>
+              <Link 
+                to="/near/alfords-point" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Alfords Point
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  6–8 mins — coastal breeze hair care
+                </p>
+              </Link>
+              <Link 
+                to="/near/woronora" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Woronora
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  10–12 mins — river valley humidity solutions
+                </p>
+              </Link>
+              <Link 
+                to="/near/sutherland" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Sutherland
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  8–10 mins — hard water treatment specialists
+                </p>
+              </Link>
+              <Link 
+                to="/near/kirrawee" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Kirrawee
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  12–15 mins — coastal air protection
+                </p>
+              </Link>
+              <Link 
+                to="/near/kareela" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Kareela
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  10–12 mins — hydrating treatments for dry climates
+                </p>
+              </Link>
+              <Link 
+                to="/near/como" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Como
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  12–14 mins — riverside humidity expertise
+                </p>
+              </Link>
+              <Link 
+                to="/near/gymea" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Gymea
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  15–18 mins — salt air and sun protection
+                </p>
+              </Link>
+              <Link 
+                to="/near/miranda" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Miranda
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  15–18 mins — all-day style hold
+                </p>
+              </Link>
+              <Link 
+                to="/near/engadine" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Engadine
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  10–12 mins — dry bushland hair recovery
+                </p>
+              </Link>
+              <Link 
+                to="/near/heathcote" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Heathcote
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  5–7 mins — dust and pollen protection
                 </p>
               </Link>
             </div>

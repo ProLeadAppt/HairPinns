@@ -56,22 +56,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hairpinns.com/near/menai</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/near/engadine</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://hairpinns.com/near/bangor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hairpinns.com/near/woronora</loc>
+    <loc>https://hairpinns.com/near/menai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -81,27 +71,52 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hairpinns.com/near/barden-ridge</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/near/lucas-heights</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://hairpinns.com/near/alfords-point</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hairpinns.com/near/sandy-point</loc>
+    <loc>https://hairpinns.com/near/woronora</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hairpinns.com/near/padstow</loc>
+    <loc>https://hairpinns.com/near/sutherland</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/near/kirrawee</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/near/kareela</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/near/como</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/near/gymea</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/near/miranda</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/near/engadine</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/near/heathcote</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -22,6 +22,7 @@ import Returns from "./pages/Returns";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import SuburbPage from "./pages/SuburbPage";
+import SuburbRedirect from "./pages/SuburbRedirect";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/confirm" element={<Confirm />} />
           <Route path="/near/:suburb" element={<SuburbPage />} />
+          <Route path="/suburbs/:suburb" element={<SuburbRedirect />} />
           <Route path="/policies/shipping" element={<Shipping />} />
           <Route path="/policies/returns" element={<Returns />} />
           <Route path="/privacy" element={<Privacy />} />

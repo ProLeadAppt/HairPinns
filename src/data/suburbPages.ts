@@ -15,6 +15,29 @@ export interface SuburbData {
 }
 
 export const suburbPages: Record<string, SuburbData> = {
+  bangor: {
+    slug: "bangor",
+    name: "Bangor",
+    driveTime: "On-site",
+    route: "We're located right here in Bangor",
+    localNote: "As Bangor locals, we understand the unique climate challenges—river humidity mixed with coastal breeze—and tailor every service accordingly.",
+    intro: "Welcome to Hair Pinns, your boutique hair salon right here in Bangor, NSW. With over 20 years of experience, Jena specializes in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling designed for our local climate. As Bangor locals serving the Sutherland Shire, we understand exactly what your hair needs to look and feel amazing in our unique river-valley microclimate.",
+    faqs: [
+      {
+        question: "Why is Hair Pinns the best choice in Bangor?",
+        answer: "As Bangor locals with over 20 years of experience, we understand our unique microclimate—river humidity from the Georges River combined with coastal breeze. Our treatments are specifically designed for these conditions. We offer personalized, boutique service where you're never just a number. Every client receives a custom approach tailored to their hair type, lifestyle, and the challenges of living in the Sutherland Shire.",
+      },
+      {
+        question: "How do I maintain my hair in Bangor's climate?",
+        answer: "Bangor's river-valley location creates unique humidity patterns that require specific care. Use anti-humidity serums daily, especially in summer months. Our smoothing treatments seal the cuticle to protect against moisture absorption for 3–4 months. For colour-treated hair, UV protection is essential as the river reflects additional sunlight. We'll create a custom home care plan based on your specific needs and lifestyle.",
+      },
+      {
+        question: "What makes your smoothing treatments different?",
+        answer: "We use professional-grade formulas specifically chosen for Sydney's climate, not generic products. Our smoothing treatments are customized to your hair type—fine hair gets lightweight formulas, while thick, coarse hair receives stronger treatments. The service includes thorough aftercare education and product recommendations. With 20+ years of experience, we know exactly how to achieve lasting results in humid conditions like ours in Bangor.",
+      },
+    ],
+    nearbySuburbs: ["menai", "woronora", "heathcote"],
+  },
   menai: {
     slug: "menai",
     name: "Menai",
