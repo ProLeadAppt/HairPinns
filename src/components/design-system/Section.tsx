@@ -6,6 +6,7 @@ interface SectionProps {
   variant?: "default" | "muted" | "accent";
   padding?: "sm" | "md" | "lg" | "xl";
   maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
+  style?: React.CSSProperties;
 }
 
 const Section = ({ 
@@ -13,7 +14,8 @@ const Section = ({
   className,
   variant = "default",
   padding = "lg",
-  maxWidth = "xl"
+  maxWidth = "xl",
+  style
 }: SectionProps) => {
   const variants = {
     default: "bg-background",
@@ -42,7 +44,9 @@ const Section = ({
       variants[variant],
       paddings[padding],
       className
-    )}>
+    )}
+    style={style}
+    >
       <div className={cn(
         maxWidths[maxWidth],
         "mx-auto px-4 sm:px-6 lg:px-8"

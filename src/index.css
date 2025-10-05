@@ -191,6 +191,11 @@ All colors MUST be HSL.
   a:hover {
     text-decoration: underline;
   }
+
+  /* Content visibility for performance */
+  .content-visibility-auto {
+    content-visibility: auto;
+  }
   
   /* Responsive typography */
   @media (min-width: 1024px) {

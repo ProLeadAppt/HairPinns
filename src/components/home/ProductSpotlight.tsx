@@ -75,13 +75,13 @@ const ProductSpotlight = () => {
   ];
 
   return (
-    <Section>
+    <Section className="content-visibility-auto">
       <SectionHeader 
         title="Christmas Gift Packs"
         subtitle="Curated hair care bundles — perfect for gifting or treating yourself"
       />
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 2000px" }}>
         {products.map((product) => (
           <div 
             key={product.slug}
@@ -92,6 +92,10 @@ const ProductSpotlight = () => {
                 src={product.image} 
                 alt={product.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+                loading="lazy"
+                width="600"
+                height="600"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
             

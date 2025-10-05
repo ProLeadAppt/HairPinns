@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const FooterCTA = () => {
   return (
-    <section className="bg-accent py-12 md:py-16">
+    <section className="bg-accent py-12 md:py-16" style={{ contentVisibility: "auto", containIntrinsicSize: "0 400px" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-h2 font-heading font-bold text-heading mb-4">
           Questions?

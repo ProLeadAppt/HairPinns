@@ -32,8 +32,8 @@ const ReviewsHome = () => {
   ];
 
   return (
-    <Section variant="accent">
-      <SectionHeader 
+    <Section variant="accent" className="content-visibility-auto" style={{ containIntrinsicSize: "0 1200px" }}>
+      <SectionHeader
         title="What Our Clients Say"
         subtitle="Real reviews from real people"
       />

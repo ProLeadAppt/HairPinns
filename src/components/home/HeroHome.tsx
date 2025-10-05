@@ -12,6 +12,11 @@ const HeroHome = () => {
           src={heroImage} 
           alt="Hair Pinns boutique salon interior with professional styling stations"
           className="w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          width="1920"
+          height="1080"
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-background/60"></div>
       </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const BookingBanner = () => {
   return (
-    <section className="bg-brand-500 text-white py-16 md:py-20">
+    <section className="bg-brand-500 text-white py-16 md:py-20" style={{ contentVisibility: "auto", containIntrinsicSize: "0 500px" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-h2-lg font-heading font-bold mb-6">
           Want advice? Book a quick consult.

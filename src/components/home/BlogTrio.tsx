@@ -30,13 +30,13 @@ const BlogTrio = () => {
   ];
 
   return (
-    <Section>
+    <Section className="content-visibility-auto">
       <SectionHeader 
         title="From the Blog"
         subtitle="Hair care tips, trends, and expert advice"
       />
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 1500px" }}>
         {posts.map((post) => (
           <Link 
             key={post.slug}
@@ -49,6 +49,10 @@ const BlogTrio = () => {
                   src={post.image} 
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+                  loading="lazy"
+                  width="600"
+                  height="338"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               
