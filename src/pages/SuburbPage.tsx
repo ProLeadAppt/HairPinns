@@ -343,7 +343,7 @@ const SuburbPage = () => {
           {/* CTA Section */}
           <section className="bg-gradient-to-br from-brand-500 via-brand-600 to-accent text-white py-16 md:py-20">
             <div className="container-custom text-center">
-              <h2 className="text-h1 font-heading mb-6">
+              <h2 className="text-h2-lg font-heading mb-6">
                 Ready to transform your hair?
               </h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
