@@ -1,8 +1,11 @@
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import ConsultBanner from "@/components/partials/ConsultBanner";
 import { Button } from "@/components/ui/button";
-import { Calendar, Check, Sparkles, Wind, Scissors, Plus } from "lucide-react";
+import { Calendar, Check, Sparkles, Wind, Scissors, Plus, MapPin } from "lucide-react";
 import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
@@ -186,6 +189,16 @@ const Services = () => {
       <StickyBooking />
       
       <main>
+        {/* Breadcrumbs */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+          <Breadcrumbs 
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Services' }
+            ]}
+          />
+        </div>
+        
         {/* Hero */}
         <section className="bg-accent py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -421,6 +434,49 @@ const Services = () => {
           subtitle="Expert answers to your hair care questions from Jena and the Hair Pinns team."
           showFeedback={true}
         />
+        
+        {/* Consult Banner */}
+        <section className="py-12 bg-muted/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ConsultBanner variant="default" />
+          </div>
+        </section>
+        
+        {/* Nearby Suburbs We Serve */}
+        <section className="py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-2 mb-6">
+              <MapPin className="w-5 h-5 text-brand-500" />
+              <h2 className="text-h2 font-heading font-semibold text-heading">
+                Areas We Serve
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Link 
+                to="/suburbs/menai" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Menai
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Just 5 minutes from Bangor — expert colour, smoothing & cuts
+                </p>
+              </Link>
+              <Link 
+                to="/suburbs/illawong" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Hair Salon Illawong
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Local boutique salon serving Illawong residents
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

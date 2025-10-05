@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -314,6 +315,18 @@ const ProductDetail = () => {
       />
       
       <main>
+        {/* Breadcrumbs */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+          <Breadcrumbs 
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Collections', href: '/collections' },
+              { label: 'Hair Care', href: '/collections/hair-care' },
+              { label: product.title }
+            ]}
+          />
+        </div>
+        
         {/* Product Section */}
         <section className="py-8 md:py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -600,6 +613,20 @@ const ProductDetail = () => {
                     </li>
                   ))}
                 </ol>
+                
+                {/* Blog Tutorial Link */}
+                <div className="mt-8 pt-6 border-t border-border">
+                  <p className="text-sm font-semibold text-heading mb-3">
+                    Want a detailed guide?
+                  </p>
+                  <Link 
+                    to="/blog/frizz-free-in-7-days" 
+                    className="inline-flex items-center gap-2 text-brand-500 hover:text-brand-600 transition-colors font-medium"
+                  >
+                    Read Jena's 7-Day Frizz-Free Plan
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </TabsContent>
 
               <TabsContent value="results" className="bg-card rounded-card p-6">

@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -18,8 +19,7 @@ import {
   ShoppingBag,
   Palette,
   Sparkles,
-  Scissors,
-  ChevronRight
+  Scissors
 } from "lucide-react";
 import { getSuburbData } from "@/data/suburbPages";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
@@ -181,13 +181,13 @@ const SuburbPage = () => {
           {/* Breadcrumbs */}
           <div className="bg-background border-b border-border">
             <div className="container-custom py-4">
-              <nav className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Link to="/" className="hover:text-brand-500 transition-colors">
-                  Home
-                </Link>
-                <ChevronRight className="w-4 h-4" />
-                <span className="text-foreground">Near {suburbData.name}</span>
-              </nav>
+              <Breadcrumbs 
+                items={[
+                  { label: 'Home', href: '/' },
+                  { label: 'Areas We Serve', href: '/services#areas' },
+                  { label: `Near ${suburbData.name}` }
+                ]}
+              />
             </div>
           </div>
 
@@ -272,8 +272,7 @@ const SuburbPage = () => {
                       to={service.link}
                       className="text-brand-500 hover:text-brand-600 font-semibold inline-flex items-center gap-2"
                     >
-                      Learn More
-                      <ChevronRight className="w-4 h-4" />
+                      Learn More →
                     </Link>
                   </Card>
                 ))}

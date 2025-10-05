@@ -1,10 +1,16 @@
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
+interface Product {
+  name: string;
+  link: string;
+  description: string;
+}
+
 interface ProductModuleProps {
   title: string;
-  products: string[];
+  products: Product[];
 }
 
 const ProductModule = ({ title, products }: ProductModuleProps) => {
@@ -16,19 +22,27 @@ const ProductModule = ({ title, products }: ProductModuleProps) => {
         </div>
         <div className="flex-1">
           <h3 className="text-h3 font-heading text-heading mb-3">{title}</h3>
-          <ul className="space-y-2 mb-4">
+          <div className="space-y-3 mb-4">
             {products.map((product, index) => (
-              <li key={index} className="text-foreground flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                {product}
-              </li>
+              <Link 
+                key={index} 
+                to={product.link}
+                className="group block p-3 bg-background rounded-lg hover:shadow-md transition-all border border-border hover:border-accent"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-semibold text-heading group-hover:text-brand-500 transition-colors">
+                      {product.name}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {product.description}
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand-500 transition-colors" />
+                </div>
+              </Link>
             ))}
-          </ul>
-          <Link to="/collections">
-            <Button variant="accent" size="sm">
-              Shop Products
-            </Button>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

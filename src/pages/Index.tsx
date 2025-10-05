@@ -45,6 +45,53 @@ const Index = () => {
       <main>
         <HeroHome />
         <FeatureStrip />
+        
+        {/* Quick Links to Key Pages */}
+        <section className="py-8 bg-muted/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Services Link */}
+              <a 
+                href="/services#colour" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Expert Colour Services
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Balayage, toning, and colour correction
+                </p>
+              </a>
+              
+              {/* Featured Collection Link */}
+              <a 
+                href="/collections/christmas-gift-packs" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Christmas Gift Packs
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Curated bundles perfect for gifting
+                </p>
+              </a>
+              
+              {/* Smoothing Link */}
+              <a 
+                href="/services#smoothing" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
+              >
+                <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Keratin Smoothing
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Frizz-free hair for 2-4 months
+                </p>
+              </a>
+            </div>
+          </div>
+        </section>
+        
         <ProductSpotlight />
         <ReviewsHome />
         <BookingBanner />

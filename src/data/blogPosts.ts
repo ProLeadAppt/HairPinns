@@ -15,7 +15,11 @@ export interface BlogPost {
     }[];
     productModule?: {
       title: string;
-      products: string[];
+      products: {
+        name: string;
+        link: string;
+        description: string;
+      }[];
     };
   };
 }
@@ -64,7 +68,18 @@ export const blogPosts: BlogPost[] = [
       ],
       productModule: {
         title: "Recommended Products for This Plan",
-        products: ["Aromaganic Organic Shampoo & Conditioner", "Juuce Smoothing Serum", "Heat Protection Spray"]
+        products: [
+          {
+            name: "Aromaganic Organic Shampoo & Conditioner",
+            link: "/products/hydrate-restore-pack",
+            description: "Sulfate-free duo for daily cleansing"
+          },
+          {
+            name: "Smoothing Serum",
+            link: "/collections/treatments",
+            description: "Shop frizz control treatments"
+          }
+        ]
       }
     }
   },
@@ -111,7 +126,18 @@ export const blogPosts: BlogPost[] = [
       ],
       productModule: {
         title: "Essential Blonde Care Products",
-        products: ["Purple Toning Shampoo", "Bond Building Treatment", "UV Protection Spray"]
+        products: [
+          {
+            name: "Blonde Brilliance Pack",
+            link: "/products/blonde-pack",
+            description: "Complete blonde care system"
+          },
+          {
+            name: "Shop Hair Care Collection",
+            link: "/collections/hair-care",
+            description: "Browse color-safe products"
+          }
+        ]
       }
     }
   },
@@ -158,7 +184,18 @@ export const blogPosts: BlogPost[] = [
       ],
       productModule: {
         title: "Aftercare Must-Haves",
-        products: ["Sulfate-Free Shampoo", "Smoothing Serum", "Silk Pillowcase"]
+        products: [
+          {
+            name: "Smoothing Treatment Pack",
+            link: "/products/smooth-sleek-set",
+            description: "Professional smoothing care"
+          },
+          {
+            name: "Shop All Treatments",
+            link: "/collections/treatments",
+            description: "Browse smoothing products"
+          }
+        ]
       }
     }
   },
@@ -205,7 +242,18 @@ export const blogPosts: BlogPost[] = [
       ],
       productModule: {
         title: "Humidity-Fighting Heroes",
-        products: ["Anti-Humidity Spray", "Curl Defining Cream", "Strong-Hold Gel"]
+        products: [
+          {
+            name: "Anti-Humidity Treatment Pack",
+            link: "/products/smooth-sleek-set",
+            description: "Frizz control for humid weather"
+          },
+          {
+            name: "Shop Styling Products",
+            link: "/collections/styling",
+            description: "Browse humidity-resistant products"
+          }
+        ]
       }
     }
   },
@@ -252,7 +300,18 @@ export const blogPosts: BlogPost[] = [
       ],
       productModule: {
         title: "Colour Protection Essentials",
-        products: ["Sulfate-Free Color Shampoo", "UV Protection Spray", "Color-Depositing Conditioner"]
+        products: [
+          {
+            name: "Color Protect Bundle",
+            link: "/products/color-protect-bundle",
+            description: "Complete colour care system"
+          },
+          {
+            name: "Shop Hair Care",
+            link: "/collections/hair-care",
+            description: "Browse color-safe products"
+          }
+        ]
       }
     }
   },
@@ -299,7 +358,18 @@ export const blogPosts: BlogPost[] = [
       ],
       productModule: {
         title: "Home Maintenance Must-Haves",
-        products: ["Weekly Deep Conditioning Mask", "Leave-In Conditioner", "Dry Shampoo"]
+        products: [
+          {
+            name: "Hair Care Essentials",
+            link: "/collections/hair-care",
+            description: "Daily care products"
+          },
+          {
+            name: "Deep Treatment Pack",
+            link: "/collections/treatments",
+            description: "Intensive repair treatments"
+          }
+        ]
       }
     }
   }

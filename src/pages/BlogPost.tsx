@@ -2,7 +2,8 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ChevronRight, Calendar, Clock, User } from "lucide-react";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { Calendar, Clock, User } from "lucide-react";
 import Badge from "@/components/design-system/Badge";
 import ProductModule from "@/components/blog/ProductModule";
 import LeadMagnetBox from "@/components/blog/LeadMagnetBox";
@@ -89,13 +90,13 @@ const BlogPost = () => {
       <main className="flex-grow">
         {/* Breadcrumbs */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <nav className="flex items-center text-sm text-muted-foreground" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
-            <ChevronRight className="w-4 h-4 mx-2" />
-            <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
-            <ChevronRight className="w-4 h-4 mx-2" />
-            <span className="text-foreground">{post.title}</span>
-          </nav>
+          <Breadcrumbs 
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Blog', href: '/blog' },
+              { label: post.title }
+            ]}
+          />
         </div>
 
         {/* Article */}
@@ -187,8 +188,7 @@ const BlogPost = () => {
               to="/blog" 
               className="inline-flex items-center text-brand-500 hover:text-brand-600 transition-colors font-medium"
             >
-              <ChevronRight className="w-4 h-4 mr-1 rotate-180" />
-              Back to All Articles
+              ← Back to All Articles
             </Link>
           </div>
         </article>
