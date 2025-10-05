@@ -54,16 +54,32 @@ export default function MiniCartDrawer({
     })();
   }, [open, cartId]);
 
-  const handleCheckout = () => {
-    // Track begin_checkout to Zapier
-    trackBeginCheckout({
-      cart_total: subtotalAmount,
-      item_count: lines.length,
-      currency: "AUD",
-    });
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
-    // Redirect to checkout
-    window.location.href = checkout || getCheckoutUrl({ checkoutUrl: checkout } as any);
+  const handleCheckout = async () => {
+    // Validate checkout URL exists
+    if (!checkout) {
+      console.error("❌ No checkout URL available");
+      return;
+    }
+
+    setIsCheckingOut(true);
+
+    // Track begin_checkout to Zapier (non-blocking)
+    try {
+      await trackBeginCheckout({
+        cart_total: subtotalAmount,
+        item_count: lines.length,
+        currency: "AUD",
+      });
+      console.log("✅ Checkout tracking successful");
+    } catch (error) {
+      console.warn("⚠️ Tracking failed, but proceeding to checkout:", error);
+    }
+
+    // Redirect to Shopify checkout
+    console.log("🛒 Redirecting to checkout:", checkout);
+    window.location.href = checkout;
   };
 
   if (!open) return null;
@@ -96,9 +112,10 @@ export default function MiniCartDrawer({
           </div>
           <button
             onClick={handleCheckout}
-            className="block w-full text-center py-3 rounded-card bg-brand-500 text-primary-foreground font-semibold hover:bg-brand-600 transition-colors"
+            disabled={isCheckingOut || lines.length === 0}
+            className="block w-full text-center py-3 rounded-card bg-brand-500 text-primary-foreground font-semibold hover:bg-brand-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Checkout
+            {isCheckingOut ? "Redirecting..." : "Checkout"}
           </button>
         </div>
       </aside>

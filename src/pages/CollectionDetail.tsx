@@ -42,49 +42,73 @@ const CollectionDetail = () => {
 
   // Fetch collection from Shopify
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchCollection = async () => {
       if (!handle) return;
       
       setLoading(true);
       try {
+        console.log("🔍 Fetching collection:", handle);
         const collectionData = await getCollectionByHandle(handle);
+        console.log("✅ Collection data fetched:", collectionData);
+        
+        if (!isMounted) {
+          console.log("⚠️ Component unmounted, skipping state update");
+          return;
+        }
         
         if (collectionData) {
           setCollection(collectionData);
           
           // Map Shopify products to our format
-          const mappedProducts = collectionData.products.edges.map((edge: any) => {
-            const product = edge.node;
-            const firstImage = product.images.edges[0]?.node;
-            const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+          if (collectionData.products?.edges && Array.isArray(collectionData.products.edges)) {
+            const mappedProducts = collectionData.products.edges.map((edge: any) => {
+              const product = edge.node;
+              const firstImage = product.images.edges[0]?.node;
+              const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+              
+              // Get first available variant ID (Shopify uses base64 encoded IDs)
+              const variants = product.variants?.edges || [];
+              const firstVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
+              const variantId = firstVariant?.id || null;
+              
+              return {
+                id: product.id,
+                handle: product.handle,
+                title: product.title,
+                price: minPrice,
+                image: firstImage?.url || "/placeholder.svg",
+                availableForSale: product.availableForSale,
+                firstVariantId: variantId,
+              };
+            });
             
-            // Get first available variant ID (Shopify uses base64 encoded IDs)
-            const variants = product.variants?.edges || [];
-            const firstVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
-            const variantId = firstVariant?.id || null;
-            
-            return {
-              id: product.id,
-              handle: product.handle,
-              title: product.title,
-              price: minPrice,
-              image: firstImage?.url || "/placeholder.svg",
-              availableForSale: product.availableForSale,
-              firstVariantId: variantId,
-            };
-          });
-          
-          setProducts(mappedProducts);
+            console.log("✅ Mapped products:", mappedProducts.length);
+            setProducts(mappedProducts);
+          } else {
+            console.warn("⚠️ No products found in collection");
+          }
         }
       } catch (error) {
-        console.error("Failed to fetch collection:", error);
-        toast.error("Failed to load collection");
+        console.error("❌ Failed to fetch collection:", error);
+        if (isMounted) {
+          toast.error("Failed to load collection");
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          console.log("✅ Setting loading to false");
+          setLoading(false);
+        }
       }
     };
 
     fetchCollection();
+    
+    return () => {
+      isMounted = false;
+      console.log("🧹 CollectionDetail cleanup");
+    };
   }, [handle]);
 
   // Handle add to bag

@@ -12,11 +12,20 @@ const ProductSpotlight = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchProducts = async () => {
       try {
+        console.log("🔍 Fetching christmas-gift-packs collection...");
         const collection = await getCollectionByHandle("christmas-gift-packs");
+        console.log("✅ Collection fetched:", collection);
         
-        if (collection?.products?.edges) {
+        if (!isMounted) {
+          console.log("⚠️ Component unmounted, skipping state update");
+          return;
+        }
+        
+        if (collection?.products?.edges && Array.isArray(collection.products.edges)) {
           const mappedProducts = collection.products.edges.slice(0, 8).map((edge: any) => {
             const product = edge.node;
             const firstImage = product.images.edges[0]?.node;
@@ -36,16 +45,27 @@ const ProductSpotlight = () => {
             };
           });
           
+          console.log("✅ Mapped products:", mappedProducts.length);
           setProducts(mappedProducts);
+        } else {
+          console.warn("⚠️ No products found in collection");
         }
       } catch (error) {
-        console.error("Failed to fetch gift packs:", error);
+        console.error("❌ Failed to fetch gift packs:", error);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          console.log("✅ Setting loading to false");
+          setLoading(false);
+        }
       }
     };
 
     fetchProducts();
+    
+    return () => {
+      isMounted = false;
+      console.log("🧹 ProductSpotlight cleanup");
+    };
   }, []);
 
   if (loading) {
