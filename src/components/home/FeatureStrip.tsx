@@ -36,7 +36,7 @@ const FeatureStrip = () => {
                 className="group bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base text-center"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 bg-brand-500 text-white rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-base">
+                  <div className="w-14 h-14 bg-brand-500 text-primary-foreground rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-base">
                     <Icon className="w-7 h-7" />
                   </div>
                   <h3 className="text-lg font-heading font-semibold text-heading group-hover:text-brand-500 transition-colors mb-2">

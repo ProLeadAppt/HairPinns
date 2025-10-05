@@ -125,7 +125,7 @@ const ProductCard = ({
               "absolute top-3 right-3 p-2 rounded-full transition-colors duration-fast",
               isFavorite 
                 ? "bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-400" 
-                : "bg-white/80 text-muted-foreground hover:bg-white hover:text-foreground"
+                : "bg-background/80 text-muted-foreground hover:bg-background hover:text-foreground"
             )}
             aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
           >

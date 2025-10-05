@@ -12,7 +12,7 @@ const Header = () => {
     <>
       {/* Top Promo Strip */}
       {showPromo && (
-        <div className="bg-brand-500 text-white py-2 px-4 text-center text-sm relative">
+        <div className="bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative">
           <p className="font-medium">
             ✨ Free shipping on orders over $100 • Christmas Gift Packs now available
           </p>

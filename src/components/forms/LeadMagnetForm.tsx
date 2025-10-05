@@ -144,7 +144,7 @@ const LeadMagnetForm = ({
   }
 
   return (
-    <div className={`bg-brand-500 text-white rounded-card p-8 ${className}`}>
+    <div className={`bg-brand-500 text-primary-foreground rounded-card p-8 ${className}`}>
       <div className="text-center mb-6">
         <Download className="w-12 h-12 mx-auto mb-4 opacity-90" />
         <h3 className="text-h2 font-heading mb-2">{magnetTitle}</h3>
@@ -160,7 +160,7 @@ const LeadMagnetForm = ({
             placeholder="First name"
             value={formData.first_name}
             onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+            className="bg-background/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
           />
         )}
 
@@ -170,7 +170,7 @@ const LeadMagnetForm = ({
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
-          className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+          className="bg-background/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
         />
 
         {showPhone && (
@@ -179,11 +179,11 @@ const LeadMagnetForm = ({
             placeholder="Phone number (optional)"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+            className="bg-background/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
           />
         )}
 
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+        <div className="bg-background/10 backdrop-blur-sm rounded-lg p-4">
           <ConsentRow
             checked={formData.consent}
             onCheckedChange={(checked) => setFormData({ ...formData, consent: checked })}
@@ -195,7 +195,7 @@ const LeadMagnetForm = ({
         <Button
           type="submit"
           size="lg"
-          className="w-full bg-white text-brand-500 hover:bg-white/90"
+          className="w-full bg-background text-brand-500 hover:bg-background/90"
           disabled={isSubmitting}
         >
           {isSubmitting ? (
@@ -212,7 +212,7 @@ const LeadMagnetForm = ({
         </Button>
 
         <p className="text-xs text-center opacity-75">
-          Protected by our <Link to="/privacy" className="text-white hover:underline">Privacy Policy</Link>.
+          Protected by our <Link to="/privacy" className="text-primary-foreground hover:underline">Privacy Policy</Link>.
         </p>
       </form>
     </div>

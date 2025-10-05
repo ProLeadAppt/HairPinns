@@ -54,7 +54,7 @@ const LeadMagnetBox = () => {
   };
 
   return (
-    <div className="my-12 p-8 bg-brand-500 text-white rounded-card">
+    <div className="my-12 p-8 bg-brand-500 text-primary-foreground rounded-card">
       <div className="max-w-xl mx-auto text-center">
         <h3 className="text-h2 font-heading mb-3">
           Get Your Free Hair Care Guide
@@ -65,7 +65,7 @@ const LeadMagnetBox = () => {
         </p>
         
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg p-1">
+          <div className="flex items-center gap-2 bg-background/10 backdrop-blur-sm rounded-lg p-1">
             <Mail className="w-5 h-5 ml-3 opacity-70" />
             <Input
               type="email"
@@ -73,22 +73,22 @@ const LeadMagnetBox = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="border-0 bg-transparent text-white placeholder:text-white/60 focus-visible:ring-0"
+              className="border-0 bg-transparent text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-0"
             />
           </div>
           
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg p-1">
+          <div className="flex items-center gap-2 bg-background/10 backdrop-blur-sm rounded-lg p-1">
             <MessageSquare className="w-5 h-5 ml-3 opacity-70" />
             <Input
               type="tel"
               placeholder="Your phone number (optional)"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="border-0 bg-transparent text-white placeholder:text-white/60 focus-visible:ring-0"
+              className="border-0 bg-transparent text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-0"
             />
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+          <div className="bg-background/10 backdrop-blur-sm rounded-lg p-4">
             <ConsentRow 
               checked={consent}
               onCheckedChange={setConsent}
@@ -100,7 +100,7 @@ const LeadMagnetBox = () => {
           <Button 
             type="submit" 
             size="lg" 
-            className="w-full bg-white text-brand-500 hover:bg-white/90"
+            className="w-full bg-background text-brand-500 hover:bg-background/90"
           >
             Get My Free Guide
           </Button>

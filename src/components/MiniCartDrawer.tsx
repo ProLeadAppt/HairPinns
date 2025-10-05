@@ -69,7 +69,7 @@ export default function MiniCartDrawer({
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-[60]">
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-foreground/40" onClick={onClose} />
       <aside className="absolute right-0 top-0 h-full w-[92%] sm:w-[420px] bg-card shadow-xl p-6 flex flex-col">
         <header className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-heading">Your bag</h2>
@@ -96,7 +96,7 @@ export default function MiniCartDrawer({
           </div>
           <button
             onClick={handleCheckout}
-            className="block w-full text-center py-3 rounded-card bg-brand-500 text-white font-semibold hover:bg-brand-600 transition-colors"
+            className="block w-full text-center py-3 rounded-card bg-brand-500 text-primary-foreground font-semibold hover:bg-brand-600 transition-colors"
           >
             Checkout
           </button>

@@ -59,24 +59,24 @@ const CollectionGrid = ({
               alt={collection.name}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-base" />
+            <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/10 transition-colors duration-base" />
           </div>
           
           {/* Content Overlay */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <div className="absolute inset-0 flex flex-col justify-end p-6 text-primary-foreground">
             <div className="space-y-2">
               <h3 className="text-xl font-semibold">
                 {collection.name}
               </h3>
               
               {collection.description && (
-                <p className="text-sm text-white/90 line-clamp-2">
+                <p className="text-sm text-primary-foreground/90 line-clamp-2">
                   {collection.description}
                 </p>
               )}
               
               {showItemCount && collection.itemCount !== undefined && (
-                <p className="text-sm text-white/80">
+                <p className="text-sm text-primary-foreground/80">
                   {collection.itemCount} items
                 </p>
               )}
@@ -87,7 +87,7 @@ const CollectionGrid = ({
                     <Button 
                       variant="secondary" 
                       size="sm"
-                      className="bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30"
+                      className="bg-background/20 backdrop-blur-sm text-primary-foreground border-primary-foreground/30 hover:bg-background/30"
                     >
                       View Collection
                     </Button>
@@ -97,7 +97,7 @@ const CollectionGrid = ({
                     onClick={collection.onClick}
                     variant="secondary" 
                     size="sm"
-                    className="bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30"
+                    className="bg-background/20 backdrop-blur-sm text-primary-foreground border-primary-foreground/30 hover:bg-background/30"
                   >
                     View Collection
                   </Button>

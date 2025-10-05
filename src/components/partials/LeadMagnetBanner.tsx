@@ -203,7 +203,7 @@ export const LeadMagnetBanner = ({
 
   // Default variant
   return (
-    <div className={`bg-brand-500 text-white rounded-card p-8 md:p-10 ${className}`}>
+    <div className={`bg-brand-500 text-primary-foreground rounded-card p-8 md:p-10 ${className}`}>
       <div className="max-w-3xl mx-auto">
         <div className="flex items-start gap-4 mb-6 justify-center">
           <FileText className="w-12 h-12 flex-shrink-0" />
@@ -225,25 +225,25 @@ export const LeadMagnetBanner = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/60"
+              className="flex-1 bg-background/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
             />
             <Input
               type="tel"
               placeholder="Mobile (optional)"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/60"
+              className="flex-1 bg-background/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
             />
           </div>
 
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+          <div className="bg-background/10 backdrop-blur-sm rounded-lg p-3">
             <ConsentRow
               checked={consent}
               onCheckedChange={setConsent}
               required
               id={`consent_${magnet.formName}`}
-              textColor="text-white"
-              linkColor="text-white hover:text-white/80"
+              textColor="text-primary-foreground"
+              linkColor="text-primary-foreground hover:text-primary-foreground/80"
             />
           </div>
 
@@ -251,7 +251,7 @@ export const LeadMagnetBanner = ({
             type="submit"
             variant="secondary"
             size="lg"
-            className="w-full bg-white text-brand-500 hover:bg-white/90"
+            className="w-full bg-background text-brand-500 hover:bg-background/90"
             disabled={isSubmitting || !consent}
           >
             {isSubmitting ? "Sending..." : magnet.ctaText}

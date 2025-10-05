@@ -104,7 +104,7 @@ const PriceRow = ({
           className={cn(
             "w-full py-3 px-4 rounded-md font-medium transition-all duration-base",
             highlighted
-              ? "bg-brand-500 text-white hover:bg-brand-500/92 shadow-sm hover:shadow-md"
+              ? "bg-brand-500 text-primary-foreground hover:bg-brand-500/92 shadow-sm hover:shadow-md"
               : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
           )}
         >

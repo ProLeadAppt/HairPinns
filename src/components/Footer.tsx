@@ -77,7 +77,7 @@ const Footer = () => {
                 href="https://instagram.com/hairpinns" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all duration-base"
+                className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
                 aria-label="Follow us on Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -86,7 +86,7 @@ const Footer = () => {
                 href="https://facebook.com/hairpinns" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all duration-base"
+                className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
                 aria-label="Follow us on Facebook"
               >
                 <Facebook className="w-4 h-4" />
