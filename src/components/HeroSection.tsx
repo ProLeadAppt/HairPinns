@@ -13,7 +13,7 @@ const HeroSection = () => {
           alt="Hair Pinns boutique salon interior with elegant styling chairs and professional atmosphere"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-background/40"></div>
+        <div className="absolute inset-0 bg-[hsl(0,0%,0%)/0.45]"></div>
       </div>
       
       {/* Content */}
@@ -35,32 +35,34 @@ const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <a 
-              href={BOOK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-              onClick={() => trackBookingClick("hero_section", window.location.pathname)}
-            >
+            <div className="inline-flex w-full sm:w-auto flex-col sm:flex-row gap-3 p-2 rounded-xl bg-[hsl(0,0%,0%)/0.25] backdrop-blur-sm ring-1 ring-[hsl(0,0%,0%)/0.2]">
               <Button 
+                asChild
                 variant="primary" 
                 size="xl"
                 className="w-full sm:w-auto"
                 aria-label="Book an appointment"
               >
-                <Calendar className="w-5 h-5" />
-                {BOOK_CTA_LABEL}
+                <a 
+                  href={BOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackBookingClick("hero_section", window.location.pathname)}
+                >
+                  <Calendar className="w-5 h-5" />
+                  {BOOK_CTA_LABEL}
+                </a>
               </Button>
-            </a>
-            <Button 
-              variant="accent" 
-              size="xl"
-              onClick={() => window.open('https://shopify.com', '_blank')}
-              className="w-full sm:w-auto"
-            >
-              <ShoppingBag className="w-5 h-5" />
-              Shop Our Products
-            </Button>
+              <Button 
+                variant="accent" 
+                size="xl"
+                onClick={() => window.open('https://shopify.com', '_blank')}
+                className="w-full sm:w-auto"
+              >
+                <ShoppingBag className="w-5 h-5" />
+                Shop Our Products
+              </Button>
+            </div>
           </div>
         </div>
       </div>

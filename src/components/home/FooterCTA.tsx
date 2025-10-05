@@ -15,18 +15,18 @@ const FooterCTA = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="tel:+61295550123">
-            <Button variant="primary" size="lg">
+          <Button asChild variant="primary" size="lg">
+            <a href="tel:+61295550123" aria-label="Text us on (02) 9555 0123">
               <MessageCircle className="w-5 h-5" />
               Text Us: (02) 9555 0123
-            </Button>
-          </a>
-          <Link to="/contact">
-            <Button variant="accent" size="lg">
+            </a>
+          </Button>
+          <Button asChild variant="accent" size="lg">
+            <Link to="/contact" aria-label="Send a message">
               <Mail className="w-5 h-5" />
               Send a Message
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

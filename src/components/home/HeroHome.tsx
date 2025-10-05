@@ -19,7 +19,7 @@ const HeroHome = () => {
           height="1080"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-background/60"></div>
+        <div className="absolute inset-0 bg-[hsl(0,0%,0%)/0.45]"></div>
       </div>
       
       {/* Content */}
@@ -33,24 +33,27 @@ const HeroHome = () => {
             Beautiful hair, honest care, salon-quality at home.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Link to="/collections/christmas-gift-packs">
-              <Button variant="primary" size="xl" className="w-full sm:w-auto">
-                <ShoppingBag className="w-5 h-5" />
-                Shop Christmas Packs
+          <div className="mb-12">
+            <div className="inline-flex w-full sm:w-auto flex-col sm:flex-row gap-3 p-2 rounded-xl bg-[hsl(0,0%,0%)/0.25] backdrop-blur-sm ring-1 ring-[hsl(0,0%,0%)/0.2]">
+              <Button asChild variant="primary" size="xl" className="w-full sm:w-auto">
+                <Link to="/collections/christmas-gift-packs">
+                  <ShoppingBag className="w-5 h-5" />
+                  Shop Christmas Packs
+                </Link>
               </Button>
-            </Link>
-            <a 
-              href={BOOK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackBookingClick("hero_home", "/")}
-            >
-              <Button variant="accent" size="xl" className="w-full sm:w-auto" aria-label="Book an appointment">
-                <Calendar className="w-5 h-5" />
-                {BOOK_CTA_LABEL}
+              <Button asChild variant="accent" size="xl" className="w-full sm:w-auto">
+                <a 
+                  href={BOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackBookingClick("hero_home", "/")}
+                  aria-label="Book an appointment"
+                >
+                  <Calendar className="w-5 h-5" />
+                  {BOOK_CTA_LABEL}
+                </a>
               </Button>
-            </a>
+            </div>
           </div>
 
           {/* Trust Row */}

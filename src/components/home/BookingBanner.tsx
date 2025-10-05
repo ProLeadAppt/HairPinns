@@ -12,22 +12,22 @@ const BookingBanner = () => {
         <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
           Book online 24/7—choose your service, pick your time, and get instant confirmation.
         </p>
-        <a 
-          href={BOOK_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackBookingClick("booking_banner", window.location.pathname)}
+        <Button asChild 
+          variant="secondary" 
+          size="xl"
+          className="bg-background text-brand-500 hover:bg-background/90"
         >
-          <Button 
-            variant="secondary" 
-            size="xl"
-            className="bg-background text-brand-500 hover:bg-background/90"
+          <a 
+            href={BOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackBookingClick("booking_banner", window.location.pathname)}
             aria-label="Book an appointment"
           >
             <Calendar className="w-5 h-5" />
             {BOOK_CTA_LABEL}
-          </Button>
-        </a>
+          </a>
+        </Button>
       </div>
     </section>
   );

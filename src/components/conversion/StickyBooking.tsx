@@ -24,18 +24,19 @@ const StickyBooking = ({ threshold = 300 }: StickyBookingProps) => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border shadow-lg animate-slide-in-bottom md:hidden">
       <div className="max-w-7xl mx-auto px-4 py-3">
-        <a
-          href={BOOK_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block w-full"
-          onClick={() => trackBookingClick("sticky_mobile", window.location.pathname)}
-        >
-          <Button variant="primary" size="lg" className="w-full" aria-label="Book an appointment">
+        <Button asChild variant="primary" size="lg" className="w-full">
+          <a
+            href={BOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full"
+            onClick={() => trackBookingClick("sticky_mobile", window.location.pathname)}
+            aria-label="Book an appointment"
+          >
             <Calendar className="w-5 h-5" />
             {BOOK_CTA_LABEL}
-          </Button>
-        </a>
+          </a>
+        </Button>
       </div>
     </div>
   );
