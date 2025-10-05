@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
+import { pixelTracking } from "@/lib/pixelTracking";
 
 interface ConsultMiniFormProps {
   title?: string;
@@ -93,6 +94,15 @@ const ConsultMiniForm = ({
       );
 
       if (success) {
+        // Track lead generation in pixels
+        await pixelTracking.trackFormSubmission({
+          email: formData.email,
+          phone: formData.phone,
+          firstName: formData.name.split(' ')[0],
+          lastName: formData.name.split(' ').slice(1).join(' '),
+          leadValue: 50, // High-intent consult request
+        });
+
         setIsSuccess(true);
         
         // Open Fresha in new tab

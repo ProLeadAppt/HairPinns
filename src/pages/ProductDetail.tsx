@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -19,6 +19,7 @@ import StickyAddToCart from "@/components/conversion/StickyAddToCart";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import ProductBadges from "@/components/conversion/ProductBadges";
+import { pixelTracking } from "@/lib/pixelTracking";
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -89,8 +90,44 @@ const ProductDetail = () => {
     shippingNote: "In stock • Ships within 1-2 business days",
   };
 
+  // Track view_item on page load
+  useEffect(() => {
+    // Track view_item pixel event (NO PII)
+    pixelTracking.trackProductView({
+      id: handle || 'unknown',
+      title: product.title,
+      price: product.price,
+      currency: 'AUD',
+    });
+
+    // Track to Zapier for analytics (NO PII)
+    const trackView = async () => {
+      try {
+        const { hpCapture } = await import("@/lib/hpCapture");
+        await hpCapture.trackEvent("view_item", {
+          product_id: handle,
+          product_title: product.title,
+          price: product.price,
+          currency: "AUD",
+        });
+      } catch (error) {
+        console.error("Failed to track view_item:", error);
+      }
+    };
+    trackView();
+  }, [handle, product.title, product.price]);
+
   const handleAddToCart = async () => {
-    // Fire non-blocking Zapier event
+    // Fire pixel tracking (NO PII)
+    pixelTracking.trackAddToCart({
+      id: handle || 'unknown',
+      title: product.title,
+      price: product.price,
+      quantity: quantity,
+      currency: 'AUD',
+    });
+
+    // Fire Zapier tracking (NO PII)
     const trackAddToCart = async () => {
       try {
         const { hpCapture } = await import("@/lib/hpCapture");
@@ -99,7 +136,7 @@ const ProductDetail = () => {
           product_id: handle,
           product_title: product.title,
           price: product.price,
-          variant: "default", // Update when variants are implemented
+          variant: "default",
           quantity: quantity,
           currency: "AUD",
         });
@@ -146,17 +183,23 @@ const ProductDetail = () => {
           phone: '',
           product_handle: handle,
           product_title: product.title,
-          product_id: '', // Add if available
+          product_id: '',
           price: product.price.toString(),
           currency: 'AUD',
           lead_magnet_title: "7-Day Frizz-Free Plan",
           lead_magnet_slug: "frizz7_pdp",
-          consent_marketing: true, // Implicit consent via opt-in
+          consent_marketing: true,
         },
-        { event: "product_lead_capture" }
+        { event: "leadmagnet_frizz7_pdp" }
       );
 
       if (success) {
+        // Track lead generation in pixels
+        await pixelTracking.trackFormSubmission({
+          email: email,
+          leadValue: 25, // Estimated lead value
+        });
+
         toast({
           title: "Success! Check your inbox",
           description: "We've sent you Jena's 7-Day Frizz-Free Plan.",

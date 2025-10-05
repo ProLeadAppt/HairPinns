@@ -7,6 +7,7 @@ import Section from "@/components/design-system/Section";
 import { CheckCircle2, Package, Mail, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PostPurchaseModule from "@/components/conversion/PostPurchaseModule";
+import { pixelTracking } from "@/lib/pixelTracking";
 
 interface OrderItem {
   title: string;
@@ -118,6 +119,19 @@ const OrderConfirmation = () => {
             currency: order.currency,
             items: order.items,
             item_count: order.items.reduce((sum, item) => sum + item.quantity, 0),
+          });
+
+          // Track purchase pixels (NO PII)
+          pixelTracking.trackPurchase({
+            orderId: order.order_id,
+            items: order.items.map(item => ({
+              id: item.id,
+              title: item.title,
+              price: item.price,
+              quantity: item.quantity,
+            })),
+            total: order.total,
+            currency: order.currency,
           });
           
           console.log("[Order Confirmation] Purchase tracked:", order.order_id);

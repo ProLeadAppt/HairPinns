@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TrackingInitializer from "./components/tracking/TrackingInitializer";
+import TrackingScripts from "./components/tracking/TrackingScripts";
 import Index from "./pages/Index";
 import Collections from "./pages/Collections";
 import CollectionDetail from "./pages/CollectionDetail";
@@ -28,6 +29,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <TrackingScripts />
       <Toaster />
       <Sonner />
       <BrowserRouter>

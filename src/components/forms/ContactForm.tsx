@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
+import { pixelTracking } from "@/lib/pixelTracking";
 
 interface ContactFormProps {
   formName?: string;
@@ -97,10 +98,19 @@ const ContactForm = ({
 
       const success = await hpCapture.postToZapier(
         payload,
-        { event: "contact_submission" }
+        { event: "contact_page" }
       );
 
       if (success) {
+        // Track lead generation in pixels
+        await pixelTracking.trackFormSubmission({
+          email: formData.email,
+          phone: formData.phone,
+          firstName: formData.name.split(' ')[0],
+          lastName: formData.name.split(' ').slice(1).join(' '),
+          leadValue: 20,
+        });
+
         setIsSuccess(true);
         toast({
           title: "Message Sent!",

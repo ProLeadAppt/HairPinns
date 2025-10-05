@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
+import { pixelTracking } from "@/lib/pixelTracking";
 
 interface LeadMagnetFormProps {
   formName: string;
@@ -74,6 +75,14 @@ const LeadMagnetForm = ({
       });
 
       if (success) {
+        // Track lead generation in pixels
+        await pixelTracking.trackFormSubmission({
+          email: formData.email,
+          phone: formData.phone,
+          firstName: formData.first_name,
+          leadValue: 25,
+        });
+
         setIsSuccess(true);
         toast({
           title: "Success!",

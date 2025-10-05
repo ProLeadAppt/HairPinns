@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { hpCapture } from "@/lib/hpCapture";
+import { pixelTracking } from "@/lib/pixelTracking";
 
 interface ExitIntentModalProps {
   enabled?: boolean;
@@ -71,10 +72,17 @@ const ExitIntentModal = ({ enabled = true }: ExitIntentModalProps) => {
           lead_magnet_slug: "exit_intent_frizz7",
           consent_marketing: true,
         },
-        { event: "exit_intent_submitted" }
+        { event: "exit_intent_offer" }
       );
 
       if (success) {
+        // Track lead generation in pixels
+        await pixelTracking.trackFormSubmission({
+          email: email,
+          phone: phone,
+          leadValue: 30,
+        });
+
         toast({
           title: "Success!",
           description: "Check your email for your 7-Day Plan and discount code.",
