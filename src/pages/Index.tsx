@@ -8,6 +8,8 @@ import ReviewsHome from "@/components/home/ReviewsHome";
 import BookingBanner from "@/components/home/BookingBanner";
 import BlogTrio from "@/components/home/BlogTrio";
 import FooterCTA from "@/components/home/FooterCTA";
+import ReviewCarousel from "@/components/reviews/ReviewCarousel";
+import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import { 
   generateOrganizationSchema, 
   generateLocalBusinessSchema 
@@ -42,6 +44,7 @@ const Index = () => {
         </script>
       </Helmet>
       <Header />
+      <GoogleReviewBadge variant="micro" showCTA />
       <main>
         <HeroHome />
         <FeatureStrip />
@@ -93,7 +96,7 @@ const Index = () => {
         </section>
         
         <ProductSpotlight />
-        <ReviewsHome />
+        <ReviewCarousel />
         <BookingBanner />
         <BlogTrio />
         <FooterCTA />

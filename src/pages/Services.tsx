@@ -9,6 +9,8 @@ import { Calendar, Check, Sparkles, Wind, Scissors, Plus, MapPin } from "lucide-
 import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
+import ReviewStrip from "@/components/reviews/ReviewStrip";
+import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import {
   generateOrganizationSchema,
   generateLocalBusinessSchema,
@@ -182,6 +184,8 @@ const Services = () => {
 
       <Header />
       
+      <GoogleReviewBadge variant="micro" showCTA />
+      
       {/* Trust Strip */}
       <TrustStrip />
       
@@ -213,6 +217,9 @@ const Services = () => {
             </p>
           </div>
         </section>
+
+        {/* Review Strip */}
+        <ReviewStrip variant="compact" />
 
         {/* Why Choose Hair Pinns */}
         <section className="py-12 bg-muted">

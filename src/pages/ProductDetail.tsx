@@ -21,8 +21,11 @@ import StickyAddToCart from "@/components/conversion/StickyAddToCart";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import ProductBadges from "@/components/conversion/ProductBadges";
+import ProductReviews from "@/components/reviews/ProductReviews";
+import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import { pixelTracking } from "@/lib/pixelTracking";
 import { getOGImage } from "@/lib/sitemap";
+import { productReviews } from "@/data/reviews";
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -231,6 +234,13 @@ const ProductDetail = () => {
     setCurrentImage((prev) => (prev - 1 + product.images.length) % product.images.length);
   };
 
+  // Get product reviews for schema
+  const reviews = productReviews[handle || "hydrate-restore-pack"] || [];
+  const averageRating = reviews.length > 0 
+    ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length 
+    : product.rating;
+  const reviewCount = reviews.length || product.reviewCount;
+
   // Structured Data (JSON-LD)
   const structuredData = {
     "@context": "https://schema.org",
@@ -257,9 +267,28 @@ const ProductDetail = () => {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": product.rating,
-          "reviewCount": product.reviewCount
-        }
+          "ratingValue": averageRating,
+          "reviewCount": reviewCount,
+          "bestRating": 5,
+          "worstRating": 1
+        },
+        ...(reviews.length > 0 && {
+          "review": reviews.map(review => ({
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": review.author
+            },
+            "datePublished": review.date,
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": review.rating,
+              "bestRating": 5,
+              "worstRating": 1
+            },
+            "reviewBody": review.text
+          }))
+        })
       },
       {
         "@type": "FAQPage",
@@ -299,6 +328,8 @@ const ProductDetail = () => {
       </Helmet>
       
       <Header />
+      
+      <GoogleReviewBadge variant="micro" showCTA />
       
       {/* Trust Strip */}
       <TrustStrip />
@@ -679,6 +710,18 @@ const ProductDetail = () => {
                 </Accordion>
               </TabsContent>
             </Tabs>
+          </div>
+        </section>
+
+        {/* Product Reviews */}
+        <section className="py-16 bg-muted">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8">
+              Customer Reviews
+            </h2>
+            <div className="bg-card rounded-card p-8">
+              <ProductReviews productHandle={handle || "hydrate-restore-pack"} />
+            </div>
           </div>
         </section>
 
