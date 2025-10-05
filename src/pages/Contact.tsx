@@ -6,24 +6,16 @@ import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Input from "@/components/design-system/Input";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { MapPin, Phone, Mail, Clock, MessageSquare, Car, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
+import ContactForm from "@/components/forms/ContactForm";
 
 const Contact = () => {
   const { toast } = useToast();
   const [smsPhone, setSmsPhone] = useState("");
   const [smsConsent, setSmsConsent] = useState(false);
   const [smsSubmitted, setSmsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    consent: false,
-  });
 
   const businessInfo = {
     name: "Hair Pinns",
@@ -117,48 +109,6 @@ const Contact = () => {
       toast({
         title: "Submission Error",
         description: "We couldn't process your subscription. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const handleMessageSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.consent) {
-      toast({
-        title: "Consent Required",
-        description: "Please agree to receive updates to continue.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    const { hpCapture } = await import("@/lib/hpCapture");
-    
-    const success = await hpCapture.postToZapier(
-      {
-        form_name: "contact_jena",
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-        consent_marketing: formData.consent,
-      },
-      { event: "contact_form_submission" }
-    );
-    
-    if (success) {
-      toast({
-        title: "Message Sent!",
-        description: "Jena will get back to you within 24 hours.",
-      });
-      
-      setFormData({ name: "", email: "", phone: "", message: "", consent: false });
-    } else {
-      toast({
-        title: "Submission Error",
-        description: "We couldn't send your message. Please call us instead.",
         variant: "destructive",
       });
     }
@@ -376,70 +326,12 @@ const Contact = () => {
               </p>
             </div>
 
-            <div className="bg-card border border-border rounded-card p-8">
-              <form onSubmit={handleMessageSubmit} className="space-y-6">
-                <Input 
-                  label="Your Name"
-                  type="text"
-                  placeholder="Jane Smith"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                />
-                
-                <Input 
-                  label="Email Address"
-                  type="email"
-                  placeholder="jane@example.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                />
-                
-                <Input 
-                  label="Phone Number"
-                  type="tel"
-                  placeholder="(02) 1234 5678"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                />
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-sm font-medium text-foreground">
-                    Your Message
-                  </Label>
-                  <Textarea 
-                    id="message"
-                    placeholder="Tell Jena what you need help with..."
-                    rows={6}
-                    className="rounded-btn"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    required
-                  />
-                </div>
-
-                <ConsentRow 
-                  checked={formData.consent}
-                  onCheckedChange={(checked) => setFormData({ ...formData, consent: checked })}
-                  required
-                  id="contact_consent"
-                />
-
-                <Button 
-                  variant="primary" 
-                  size="lg" 
-                  type="submit"
-                  className="w-full"
-                >
-                  Send Message to Jena
-                </Button>
-
-                <p className="text-sm text-muted-foreground text-center">
-                  For urgent appointments, please call <a href={`tel:${businessInfo.phoneRaw}`} className="text-brand-500 hover:underline">{businessInfo.phone}</a>
-                </p>
-              </form>
-            </div>
+            <ContactForm
+              formName="contact_page"
+              title=""
+              description=""
+              showTopic={true}
+            />
           </div>
         </Section>
       </main>
