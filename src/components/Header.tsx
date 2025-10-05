@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
@@ -66,12 +67,17 @@ const Header = () => {
                   Shop Featured
                 </Button>
               </Link>
-              <Link to="/booking">
-                <Button variant="primary" size="sm">
+              <a 
+                href={BOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBookingClick("header_desktop", window.location.pathname)}
+              >
+                <Button variant="primary" size="sm" aria-label="Book an appointment">
                   <Calendar className="w-4 h-4" />
-                  Book on Fresha
+                  {BOOK_CTA_LABEL}
                 </Button>
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu */}
@@ -107,12 +113,18 @@ const Header = () => {
                         Shop Featured
                       </Button>
                     </Link>
-                    <Link to="/booking" className="block">
-                      <Button variant="primary" size="lg" className="w-full">
+                    <a 
+                      href={BOOK_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                      onClick={() => trackBookingClick("header_mobile", window.location.pathname)}
+                    >
+                      <Button variant="primary" size="lg" className="w-full" aria-label="Book an appointment">
                         <Calendar className="w-5 h-5" />
-                        Book on Fresha
+                        {BOOK_CTA_LABEL}
                       </Button>
-                    </Link>
+                    </a>
                   </div>
                 </nav>
               </SheetContent>

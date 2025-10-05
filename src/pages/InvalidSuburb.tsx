@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { MapPin, Home, Calendar } from "lucide-react";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 /**
  * InvalidSuburb Component
@@ -78,12 +79,13 @@ const InvalidSuburb = () => {
               
               <Button size="lg" variant="accent" asChild>
                 <a 
-                  href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer?share=true&pId=227127"
+                  href={BOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackBookingClick("invalid_suburb", "/near/invalid")}
                 >
                   <Calendar className="w-5 h-5 mr-2" />
-                  Book Now
+                  {BOOK_CTA_LABEL}
                 </a>
               </Button>
             </div>

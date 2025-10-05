@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, Check } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const Booking = () => {
 
@@ -41,13 +42,14 @@ const Booking = () => {
             </p>
             
             <a
-              href="https://www.fresha.com/book-now/hair-pinns-example"
+              href={BOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackBookingClick("booking_hero", "/booking")}
             >
-              <Button variant="primary" size="xl">
+              <Button variant="primary" size="xl" aria-label="Book an appointment">
                 <Calendar className="w-5 h-5" />
-                Book Now on Fresha
+                {BOOK_CTA_LABEL}
               </Button>
             </a>
           </div>
@@ -64,16 +66,17 @@ const Booking = () => {
             <div className="bg-card border border-border rounded-card overflow-hidden" style={{ minHeight: "600px" }}>
               <div className="p-12 text-center">
                 <p className="text-foreground mb-6">
-                  Click below to open the Fresha booking widget and secure your appointment.
+                  Click below to secure your appointment.
                 </p>
                 <a
-                  href="https://www.fresha.com/book-now/hair-pinns-example"
+                  href={BOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackBookingClick("booking_widget", "/booking")}
                 >
-                  <Button variant="primary" size="xl">
+                  <Button variant="primary" size="xl" aria-label="Book an appointment">
                     <Calendar className="w-5 h-5" />
-                    Open Fresha Booking
+                    {BOOK_CTA_LABEL}
                   </Button>
                 </a>
                 <p className="text-sm text-muted-foreground mt-6">

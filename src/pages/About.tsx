@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const About = () => {
   const testimonials = [
@@ -272,13 +273,14 @@ const About = () => {
                 </Button>
               </Link>
               <a
-                href="https://www.fresha.com/book-now/hair-pinns-example"
+                href={BOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackBookingClick("about_footer_cta", "/about")}
               >
-                <Button variant="secondary" size="xl" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-500 w-full sm:w-auto">
+                <Button variant="secondary" size="xl" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-500 w-full sm:w-auto" aria-label="Book an appointment">
                   <Calendar className="w-5 h-5" />
-                  Book on Fresha
+                  {BOOK_CTA_LABEL}
                 </Button>
               </a>
             </div>

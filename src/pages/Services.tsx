@@ -18,6 +18,7 @@ import {
 } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const Services = () => {
   const services = {
@@ -281,14 +282,18 @@ const Services = () => {
                     {service.price}
                   </p>
                   <a
-                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    href={BOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackBookingClick("services_colour_card", "/services")}
                   >
-                    <Button variant="primary" size="sm" className="w-full">
+                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
                       <Calendar className="w-4 h-4" />
-                      Book on Fresha
+                      {BOOK_CTA_LABEL}
                     </Button>
+                  </a>
+                  <a href="#colour" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
+                    Learn more
                   </a>
                 </div>
               ))}
@@ -319,14 +324,18 @@ const Services = () => {
                     {service.price}
                   </p>
                   <a
-                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    href={BOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackBookingClick("services_treatments_card", "/services")}
                   >
-                    <Button variant="primary" size="sm" className="w-full">
+                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
                       <Calendar className="w-4 h-4" />
-                      Book on Fresha
+                      {BOOK_CTA_LABEL}
                     </Button>
+                  </a>
+                  <a href="#treatments" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
+                    Learn more
                   </a>
                 </div>
               ))}
@@ -344,13 +353,14 @@ const Services = () => {
               Need help choosing? <Link to="/contact" className="text-white font-semibold hover:text-white/90 underline">Message us on the contact page.</Link>
             </p>
             <a
-              href="https://www.fresha.com/book-now/hair-pinns-example"
+              href={BOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackBookingClick("services_mid_page_cta", "/services")}
             >
-              <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
+              <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90" aria-label="Book an appointment">
                 <Calendar className="w-5 h-5" />
-                Book Now
+                {BOOK_CTA_LABEL}
               </Button>
             </a>
           </div>
@@ -379,14 +389,18 @@ const Services = () => {
                     {service.price}
                   </p>
                   <a
-                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    href={BOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackBookingClick("services_cuts_card", "/services")}
                   >
-                    <Button variant="primary" size="sm" className="w-full">
+                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
                       <Calendar className="w-4 h-4" />
-                      Book on Fresha
+                      {BOOK_CTA_LABEL}
                     </Button>
+                  </a>
+                  <a href="#cuts" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
+                    Learn more
                   </a>
                 </div>
               ))}
@@ -417,14 +431,18 @@ const Services = () => {
                     {service.price}
                   </p>
                   <a
-                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    href={BOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackBookingClick("services_addons_card", "/services")}
                   >
-                    <Button variant="primary" size="sm" className="w-full">
+                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
                       <Calendar className="w-4 h-4" />
-                      Book on Fresha
+                      {BOOK_CTA_LABEL}
                     </Button>
+                  </a>
+                  <a href="#add-ons" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
+                    Learn more
                   </a>
                 </div>
               ))}

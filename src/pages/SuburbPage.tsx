@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { getSuburbData } from "@/data/suburbPages";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const SuburbPage = () => {
   const { suburb } = useParams<{ suburb: string }>();
@@ -210,12 +211,13 @@ const SuburbPage = () => {
                     asChild
                   >
                     <a 
-                      href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer?share=true&pId=227127"
+                      href={BOOK_URL}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackBookingClick("suburb_hero", `/near/${suburb}`)}
                     >
                       <ExternalLink className="w-5 h-5 mr-2" />
-                      Book on Fresha
+                      {BOOK_CTA_LABEL}
                     </a>
                   </Button>
                   <Button 
@@ -358,12 +360,13 @@ const SuburbPage = () => {
                   asChild
                 >
                   <a 
-                    href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer?share=true&pId=227127"
+                    href={BOOK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackBookingClick("suburb_footer_cta", `/near/${suburb}`)}
                   >
                     <ExternalLink className="w-5 h-5 mr-2" />
-                    Book on Fresha
+                    {BOOK_CTA_LABEL}
                   </a>
                 </Button>
                 <Button 

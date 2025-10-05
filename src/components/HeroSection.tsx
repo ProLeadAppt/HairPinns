@@ -1,6 +1,7 @@
 import { Calendar, ShoppingBag, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-salon.jpg";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const HeroSection = () => {
   return (
@@ -34,15 +35,23 @@ const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button 
-              variant="primary" 
-              size="xl"
-              onClick={() => window.open('https://fresha.com', '_blank')}
+            <a 
+              href={BOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto"
+              onClick={() => trackBookingClick("hero_section", window.location.pathname)}
             >
-              <Calendar className="w-5 h-5" />
-              Book Your Appointment
-            </Button>
+              <Button 
+                variant="primary" 
+                size="xl"
+                className="w-full sm:w-auto"
+                aria-label="Book an appointment"
+              >
+                <Calendar className="w-5 h-5" />
+                {BOOK_CTA_LABEL}
+              </Button>
+            </a>
             <Button 
               variant="accent" 
               size="xl"

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag, Calendar, Star, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-salon.jpg";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const HeroHome = () => {
   return (
@@ -39,12 +40,17 @@ const HeroHome = () => {
                 Shop Christmas Packs
               </Button>
             </Link>
-            <Link to="/booking">
-              <Button variant="accent" size="xl" className="w-full sm:w-auto">
+            <a 
+              href={BOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackBookingClick("hero_home", "/")}
+            >
+              <Button variant="accent" size="xl" className="w-full sm:w-auto" aria-label="Book an appointment">
                 <Calendar className="w-5 h-5" />
-                Book on Fresha
+                {BOOK_CTA_LABEL}
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Trust Row */}

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useState, FormEvent } from "react";
+import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
 
 const Footer = () => {
   const { toast } = useToast();
@@ -141,7 +142,7 @@ const Footer = () => {
                 Blog & Tips
               </Link>
               <Link to="/booking" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
-                Book Appointment
+                {BOOK_CTA_LABEL}
               </Link>
               <Link to="/contact" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
                 Contact

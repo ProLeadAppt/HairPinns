@@ -1,6 +1,7 @@
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const contactInfo = [
   {
@@ -75,13 +76,20 @@ const ContactSection = () => {
         </div>
         
         <div className="text-center space-y-4">
-          <Button 
-            variant="primary" 
-            size="xl"
-            onClick={() => window.open('https://fresha.com', '_blank')}
+          <a 
+            href={BOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackBookingClick("contact_section", window.location.pathname)}
           >
-            Book Your Appointment Now
-          </Button>
+            <Button 
+              variant="primary" 
+              size="xl"
+              aria-label="Book an appointment"
+            >
+              {BOOK_CTA_LABEL}
+            </Button>
+          </a>
           <p className="text-sm text-muted-foreground">
             Online booking available 24/7 • Same-day appointments often available
           </p>

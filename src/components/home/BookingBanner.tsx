@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
-import { Link } from "react-router-dom";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const BookingBanner = () => {
   return (
@@ -10,20 +10,22 @@ const BookingBanner = () => {
           Ready to Book Your Appointment?
         </h2>
         <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-          Book online 24/7 through Fresha—choose your service, pick your time, and get instant confirmation.
+          Book online 24/7—choose your service, pick your time, and get instant confirmation.
         </p>
         <a 
-          href="https://www.fresha.com/book-now/hair-pinns-example" 
+          href={BOOK_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackBookingClick("booking_banner", window.location.pathname)}
         >
           <Button 
             variant="secondary" 
             size="xl"
             className="bg-white text-brand-500 hover:bg-white/90"
+            aria-label="Book an appointment"
           >
             <Calendar className="w-5 h-5" />
-            Book on Fresha
+            {BOOK_CTA_LABEL}
           </Button>
         </a>
       </div>
