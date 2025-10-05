@@ -2,6 +2,8 @@ import { ShoppingCart, Heart, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Badge from "./Badge";
+import { getProductUrl } from "@/lib/shopify";
+import { useState } from "react";
 
 interface ProductCardProps {
   name: string;
@@ -13,6 +15,7 @@ interface ProductCardProps {
   reviewCount?: number;
   badge?: string;
   inStock?: boolean;
+  handle?: string; // Shopify product handle
   onAddToCart?: () => void;
   onToggleFavorite?: () => void;
   onViewProduct?: () => void;
@@ -30,12 +33,45 @@ const ProductCard = ({
   reviewCount,
   badge,
   inStock = true,
+  handle,
   onAddToCart,
   onToggleFavorite,
   onViewProduct,
   isFavorite = false,
   className
 }: ProductCardProps) => {
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  
+  const handleAddToCart = async () => {
+    if (!inStock) return;
+    
+    setIsAddingToCart(true);
+    
+    try {
+      if (onAddToCart) {
+        await onAddToCart();
+      } else if (handle) {
+        // Fallback: redirect to product page on hairpinns.com
+        window.location.href = getProductUrl(handle);
+      }
+    } catch (error) {
+      console.error("Add to cart failed:", error);
+      // Fallback to product page
+      if (handle) {
+        window.location.href = getProductUrl(handle);
+      }
+    } finally {
+      setIsAddingToCart(false);
+    }
+  };
+  
+  const handleViewProduct = () => {
+    if (onViewProduct) {
+      onViewProduct();
+    } else if (handle) {
+      window.location.href = getProductUrl(handle);
+    }
+  };
   const renderRating = () => {
     if (!rating) return null;
     
@@ -125,21 +161,19 @@ const ProductCard = ({
         
         {/* Actions */}
         <div className="flex gap-2">
-          {onAddToCart && (
+          <Button
+            onClick={handleAddToCart}
+            disabled={!inStock || isAddingToCart}
+            variant="primary"
+            size="sm"
+            className="flex-1"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            {isAddingToCart ? "Adding..." : "Add to Cart"}
+          </Button>
+          {(onViewProduct || handle) && (
             <Button
-              onClick={onAddToCart}
-              disabled={!inStock}
-              variant="primary"
-              size="sm"
-              className="flex-1"
-            >
-              <ShoppingCart className="w-4 h-4" />
-              Add to Cart
-            </Button>
-          )}
-          {onViewProduct && (
-            <Button
-              onClick={onViewProduct}
+              onClick={handleViewProduct}
               variant="outline"
               size="sm"
               className="flex-1"

@@ -23,6 +23,17 @@ export const projectConfig = {
    * Set the detected region for GDPR compliance
    */
   gdpr_region: 'AU',
+  
+  /**
+   * Shopify Storefront API Configuration
+   * These are PUBLIC credentials safe for client-side use
+   */
+  shopify: {
+    domain: 'femtat-zu.myshopify.com',
+    storefrontToken: 'c4e78c2d75c37a6a3ae370dfc1e71bf4',
+    apiVersion: '2024-07',
+    storeUrl: 'https://hairpinns.com', // User-facing store URL
+  },
 } as const;
 
 export default projectConfig;
