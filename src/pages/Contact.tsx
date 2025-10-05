@@ -117,9 +117,14 @@ const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Contact Hair Pinns Bangor | Book Your Appointment</title>
-        <meta name="description" content="Visit Hair Pinns salon in Bangor, Sutherland Shire. Call (02) 9555 0123 or message Jena directly. Easy parking, walk-ins welcome." />
-        <link rel="canonical" href="https://hairpinns.com.au/contact" />
+        <title>Contact Hair Pinns Bangor | Call (02) 9555 0123</title>
+        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire. Call (02) 9555 0123. Free parking, easy access. Open Mon-Sat." />
+        <link rel="canonical" href="https://hairpinns.com/contact" />
+        <meta property="og:title" content="Contact Hair Pinns Bangor | Visit Our Salon" />
+        <meta property="og:description" content="123 River Road, Bangor NSW 2234. Call (02) 9555 0123. Free parking, open Mon-Sat." />
+        <meta property="og:url" content="https://hairpinns.com/contact" />
+        <meta property="og:type" content="website" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/contact" />
         <script type="application/ld+json">
           {JSON.stringify(localBusinessSchema)}
         </script>

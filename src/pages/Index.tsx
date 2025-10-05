@@ -12,6 +12,7 @@ import {
   generateOrganizationSchema, 
   generateLocalBusinessSchema 
 } from "@/lib/schema";
+import { getOGImage } from "@/lib/sitemap";
 
 const Index = () => {
   const organizationSchema = generateOrganizationSchema();
@@ -20,12 +21,19 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background font-sans">
       <Helmet>
-        <title>Hair Pinns | Boutique Hair Salon in Bangor</title>
+        <title>Hair Pinns | Boutique Hair Salon Bangor | Expert Colour & Cuts</title>
         <meta 
           name="description" 
-          content="Expert hair salon in Bangor specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Over 20 years of experience serving the Sutherland Shire." 
+          content="Boutique hair salon in Bangor. Expert Colour & Blonding, Keratin Smoothing, Precision Cuts. 12+ years experience. Book online 24/7." 
         />
         <link rel="canonical" href="https://hairpinns.com" />
+        <meta property="og:title" content="Hair Pinns | Boutique Hair Salon in Bangor NSW" />
+        <meta property="og:description" content="Expert colour, smoothing & cuts. Serving Sutherland Shire with 12+ years experience. Book online via Fresha." />
+        <meta property="og:url" content="https://hairpinns.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('default')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com" />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>

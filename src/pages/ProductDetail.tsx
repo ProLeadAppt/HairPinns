@@ -1,5 +1,6 @@
 import { useState, FormEvent, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import ProductBadges from "@/components/conversion/ProductBadges";
 import { pixelTracking } from "@/lib/pixelTracking";
+import { getOGImage } from "@/lib/sitemap";
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -274,12 +276,27 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
+      <Helmet>
+        <title>{product.title} | ${product.price} | Hair Pinns</title>
+        <meta 
+          name="description" 
+          content={`${product.bullets.join(". ")}. Save $${(product.compareAtPrice - product.price).toFixed(0)}. In stock, ships fast.`}
+        />
+        <link rel="canonical" href={`https://hairpinns.com/products/${handle}`} />
+        <meta property="og:title" content={`${product.title} - $${product.price}`} />
+        <meta property="og:description" content={product.bullets.join(". ")} />
+        <meta property="og:url" content={`https://hairpinns.com/products/${handle}`} />
+        <meta property="og:type" content="product" />
+        <meta property="og:image" content={`https://hairpinns.com${product.images[0].src}`} />
+        <meta property="product:price:amount" content={product.price.toString()} />
+        <meta property="product:price:currency" content="AUD" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/products/${handle}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
       <Header />
       
       {/* Trust Strip */}

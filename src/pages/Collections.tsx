@@ -1,8 +1,10 @@
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Gift, Droplet, Sparkles, Wind } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getOGImage } from "@/lib/sitemap";
 
 const Collections = () => {
   const collections = [
@@ -42,6 +44,21 @@ const Collections = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Shop Hair Care Collections | Professional Products | Hair Pinns</title>
+        <meta 
+          name="description" 
+          content="Shop professional hair care: Christmas Gift Packs, Daily Care, Treatments & Styling. Olaplex, Kevin Murphy & more. Curated by experts." 
+        />
+        <link rel="canonical" href="https://hairpinns.com/collections" />
+        <meta property="og:title" content="Professional Hair Care Collections | Hair Pinns" />
+        <meta property="og:description" content="Salon-quality products curated by Jena. Gift packs, daily care, treatments & styling essentials." />
+        <meta property="og:url" content="https://hairpinns.com/collections" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('collection')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/collections" />
+      </Helmet>
       <Header />
       <main>
         {/* Hero */}

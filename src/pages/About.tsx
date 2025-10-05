@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react";
+import { getOGImage } from "@/lib/sitemap";
 
 const About = () => {
   const testimonials = [
@@ -32,6 +34,24 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>About Jena & Hair Pinns Bangor | Boutique Hair Salon</title>
+        <meta 
+          name="description" 
+          content="Meet Jena, founder of Hair Pinns boutique salon in Bangor. 12+ years experience in colour, balayage & keratin. Honest care, expert results." 
+        />
+        <link rel="canonical" href="https://hairpinns.com/about" />
+        <meta property="og:title" content="About Jena & Hair Pinns | Boutique Salon Bangor" />
+        <meta property="og:description" content="Meet Jena, your expert stylist with 12+ years experience. Specializing in colour, balayage & treatments in Bangor, NSW." />
+        <meta property="og:url" content="https://hairpinns.com/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('default')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Jena & Hair Pinns Bangor" />
+        <meta name="twitter:description" content="12+ years experience in colour, balayage & keratin treatments. Honest care, expert results." />
+        <meta name="twitter:image" content={getOGImage('default')} />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/about" />
+      </Helmet>
       <Header />
       <main>
         {/* Hero with Jena's Photo */}

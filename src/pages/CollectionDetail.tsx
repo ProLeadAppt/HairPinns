@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useParams } from "react-router-dom";
@@ -21,6 +22,7 @@ import {
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
+import { getOGImage } from "@/lib/sitemap";
 
 const CollectionDetail = () => {
   const { handle } = useParams();
@@ -192,6 +194,21 @@ const CollectionDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{collection.title} | Hair Care Products | Hair Pinns</title>
+        <meta 
+          name="description" 
+          content={`${collection.description.substring(0, 155)}`}
+        />
+        <link rel="canonical" href={`https://hairpinns.com/collections/${handle}`} />
+        <meta property="og:title" content={`${collection.title} | Hair Pinns`} />
+        <meta property="og:description" content={collection.description.substring(0, 155)} />
+        <meta property="og:url" content={`https://hairpinns.com/collections/${handle}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('collection')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/collections/${handle}`} />
+      </Helmet>
       <Header />
       
       {/* Trust Strip */}

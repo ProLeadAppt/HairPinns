@@ -153,17 +153,19 @@ const SuburbPage = () => {
   return (
     <>
       <Helmet>
-        <title>Hair Salon Near {suburbData.name} — Hair Pinns | Expert Colour, Smoothing & Cuts</title>
+        <title>Hair Salon {suburbData.name} | Hair Pinns Bangor | Book Online</title>
         <meta 
           name="description" 
-          content={`Hair Pinns is ${suburbData.driveTime} from ${suburbData.name}. Expert Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Book now on Fresha.`}
+          content={`${suburbData.driveTime} from ${suburbData.name}. Colour, smoothing & cuts. Expert care since 2018. Book online 24/7.`}
         />
-        <meta name="keywords" content={`hair salon ${suburbData.name}, hairdresser near ${suburbData.name}, hair colour ${suburbData.name}, keratin treatment ${suburbData.name}, hair smoothing ${suburbData.name}, balayage ${suburbData.name}`} />
+        <meta name="keywords" content={`hair salon ${suburbData.name}, hairdresser ${suburbData.name}, balayage ${suburbData.name}, keratin ${suburbData.name}`} />
         <link rel="canonical" href={`https://hairpinns.com/near/${suburbData.slug}`} />
-        <meta property="og:title" content={`Hair Salon Near ${suburbData.name} — Hair Pinns`} />
-        <meta property="og:description" content={`Just ${suburbData.driveTime} from ${suburbData.name}. Expert hair services in Colour, Smoothing & Styling.`} />
+        <meta property="og:title" content={`Hair Salon Near ${suburbData.name} | Hair Pinns`} />
+        <meta property="og:description" content={`${suburbData.driveTime} from ${suburbData.name}. Colour, smoothing, cuts. Book online.`} />
         <meta property="og:url" content={`https://hairpinns.com/near/${suburbData.slug}`} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://hairpinns.com/og-suburb.jpg" />
+        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/near/${suburbData.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>

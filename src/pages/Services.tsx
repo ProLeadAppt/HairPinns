@@ -18,6 +18,7 @@ import {
   generateServiceSchema,
   generateFAQPageSchema,
 } from "@/lib/schema";
+import { getOGImage } from "@/lib/sitemap";
 
 const Services = () => {
   const services = {
@@ -183,12 +184,18 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Hair Salon Services | Colour, Smoothing & Cuts | Hair Pinns Bangor</title>
+        <title>Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns</title>
         <meta
           name="description"
-          content="Expert hair services in Bangor: Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Over 20 years of experience. Book online now."
+          content="Expert salon services: Balayage, Keratin Smoothing, Precision Cuts. 12+ years experience. Book online 24/7 via Fresha."
         />
         <link rel="canonical" href="https://hairpinns.com/services" />
+        <meta property="og:title" content="Hair Services Bangor | Colour, Smoothing & Cuts" />
+        <meta property="og:description" content="Balayage, highlights, keratin smoothing, cuts & styling. Expert care in Bangor. Book online now." />
+        <meta property="og:url" content="https://hairpinns.com/services" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('service')} />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/services" />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>

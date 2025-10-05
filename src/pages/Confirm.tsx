@@ -49,6 +49,7 @@ const Confirm = () => {
       <Helmet>
         <title>Confirm Subscription | Hair Pinns</title>
         <meta name="description" content="Confirm your email subscription to Hair Pinns" />
+        <link rel="canonical" href="https://hairpinns.com/confirm" />
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
 
