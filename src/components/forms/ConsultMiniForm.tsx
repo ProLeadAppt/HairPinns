@@ -151,10 +151,10 @@ const ConsultMiniForm = ({
       <div className={`bg-accent/10 border border-accent/20 rounded-card p-8 text-center ${className}`}>
         <CheckCircle2 className="w-16 h-16 text-accent mx-auto mb-4" />
         <h3 className="text-h2 font-heading text-heading mb-3">
-          Thanks! We'll text you shortly.
+          Thanks—link sent!
         </h3>
         <p className="text-foreground mb-6">
-          You can also book instantly on Fresha for immediate confirmation.
+          Check your email/SMS, or book on Fresha now for instant confirmation.
         </p>
         <Button
           variant="primary"
@@ -266,13 +266,13 @@ const ConsultMiniForm = ({
           ) : (
             <>
               <Calendar className="w-5 h-5 mr-2" />
-              Request Free Consult
+              Request a quick consult
             </>
           )}
         </Button>
 
         <p className="text-xs text-muted-foreground text-center">
-          No obligation. We'll text you within 24 hours to confirm.
+          Protected by our <Link to="/privacy" className="text-brand-500 hover:underline">Privacy Policy</Link>.
         </p>
       </form>
     </div>

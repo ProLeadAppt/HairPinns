@@ -23,8 +23,8 @@ const LeadMagnetForm = ({
   magnetDescription,
   showFirstName = true,
   showPhone = true,
-  buttonText = "Get Free Guide",
-  successMessage = "Thanks! Check your inbox in a moment.",
+  buttonText = "Get the 7-Day Plan",
+  successMessage = "Sent! Watch your email/SMS.",
   className = "",
 }: LeadMagnetFormProps) => {
   const [formData, setFormData] = useState({
@@ -203,7 +203,7 @@ const LeadMagnetForm = ({
         </Button>
 
         <p className="text-xs text-center opacity-75">
-          No spam, ever. Unsubscribe anytime.
+          Protected by our <Link to="/privacy" className="text-white hover:underline">Privacy Policy</Link>.
         </p>
       </form>
     </div>

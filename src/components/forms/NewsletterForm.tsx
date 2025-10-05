@@ -19,8 +19,8 @@ const NewsletterForm = ({
   formName = "newsletter_footer",
   showFirstName = false,
   showPhone = false,
-  buttonText = "Subscribe",
-  successMessage = "Thanks! Check your inbox in a moment.",
+  buttonText = "Join the list",
+  successMessage = "Thanks! Check your inbox shortly.",
   className = "",
 }: NewsletterFormProps) => {
   const [formData, setFormData] = useState({
@@ -186,6 +186,10 @@ const NewsletterForm = ({
           </>
         )}
       </Button>
+
+      <p className="text-xs text-muted-foreground text-center">
+        Protected by our <Link to="/privacy" className="text-brand-500 hover:underline">Privacy Policy</Link>.
+      </p>
     </form>
   );
 };
