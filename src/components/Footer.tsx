@@ -153,7 +153,7 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-semibold text-heading mb-3 uppercase tracking-wide">Stay Connected</h4>
             <p className="text-sm text-foreground mb-4">
-              Get hair tips, exclusive offers & new product alerts.
+              Tips, launches & salon-only offers—join the list.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="space-y-2">
               <Input

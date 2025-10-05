@@ -19,8 +19,7 @@ const Returns = () => {
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Return Policy</h2>
             <p className="text-foreground leading-relaxed mb-4">
-              We accept returns within 30 days of purchase for unused, unopened products 
-              in their original packaging.
+              Changed your mind? 14-day easy returns on unopened products.
             </p>
             <ul className="space-y-2 text-foreground mb-6">
               <li>• Products must be unused and in original condition</li>

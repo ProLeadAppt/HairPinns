@@ -3,16 +3,16 @@ import { Truck, Award, Lock } from "lucide-react";
 const TrustStrip = () => {
   const trustSignals = [
     {
-      icon: Truck,
-      text: "AU shipping",
-    },
-    {
       icon: Award,
       text: "Salon-approved",
     },
     {
-      icon: Lock,
-      text: "Secure checkout",
+      icon: Truck,
+      text: "Easy returns",
+    },
+    {
+      icon: Truck,
+      text: "Fast AU shipping",
     },
   ];
 
@@ -26,6 +26,9 @@ const TrustStrip = () => {
               <span className="text-sm font-medium text-foreground">
                 {signal.text}
               </span>
+              {index < trustSignals.length - 1 && (
+                <span className="hidden md:inline text-border mx-4">•</span>
+              )}
             </div>
           ))}
         </div>

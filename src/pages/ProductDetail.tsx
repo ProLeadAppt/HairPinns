@@ -527,8 +527,16 @@ const ProductDetail = () => {
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Truck className="w-4 h-4" />
-                      <span>Free shipping over $100</span>
+                      <span>Free shipping over $99</span>
                     </div>
+                  </div>
+                  
+                  {/* Returns Policy */}
+                  <div className="text-sm text-muted-foreground">
+                    Changed your mind? 14-day easy returns on unopened products.{" "}
+                    <Link to="/policies/returns" className="text-brand-500 hover:text-brand-600 underline">
+                      Learn more
+                    </Link>
                   </div>
 
                   {/* Payment Options */}

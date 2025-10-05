@@ -69,7 +69,7 @@ export const ConsultBanner = ({
         Not Sure Which Product Fits Your Hair?
       </h3>
       <p className="text-lg md:text-xl mb-6 opacity-90 max-w-2xl mx-auto">
-        Book a quick consult with Jena — fast, friendly, and tailored to your hair goals.
+        A 10-minute consult can save months of trial-and-error.
       </p>
       <a href={freshaUrl} target="_blank" rel="noopener noreferrer">
         <Button 
