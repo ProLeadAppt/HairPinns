@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Star, Check, ShoppingBag } from "lucide-react";
 import { getCollectionByHandle, getProductUrl } from "@/lib/shopify";
-import { addToBag, Cart } from "@/lib/cartManagement";
-import MiniCart from "@/components/cart/MiniCart";
+import { addToBag, getCartId } from "@/lib/cartManagement";
+import MiniCartDrawer from "@/components/MiniCartDrawer";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -37,8 +37,7 @@ const CollectionDetail = () => {
   const [collection, setCollection] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState<Cart | null>(null);
-  const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+  const [miniCartOpen, setMiniCartOpen] = useState(false);
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
 
   // Fetch collection from Shopify
@@ -93,9 +92,8 @@ const CollectionDetail = () => {
     setAddingToCart(productHandle);
     
     try {
-      const updatedCart = await addToBag(variantId, 1);
-      setCart(updatedCart);
-      setIsMiniCartOpen(true);
+      await addToBag(variantId, 1);
+      setMiniCartOpen(true);
       toast.success("Added to bag!");
     } catch (error) {
       console.error("Add to bag failed:", error);
@@ -180,11 +178,11 @@ const CollectionDetail = () => {
       </Helmet>
       <Header />
       
-      {/* Mini Cart */}
-      <MiniCart 
-        isOpen={isMiniCartOpen}
-        onClose={() => setIsMiniCartOpen(false)}
-        cart={cart}
+      {/* Mini Cart Drawer */}
+      <MiniCartDrawer
+        open={miniCartOpen}
+        onClose={() => setMiniCartOpen(false)}
+        cartId={getCartId() || ""}
       />
       
       {/* Trust Strip */}

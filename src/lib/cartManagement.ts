@@ -21,7 +21,7 @@ export interface Cart {
   };
 }
 
-const CART_STORAGE_KEY = "hairpinns_cart_id";
+const CART_STORAGE_KEY = "hp_cart_id";
 
 /**
  * Get cart ID from localStorage

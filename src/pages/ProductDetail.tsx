@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/select";
 import { Star, ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
-import { addToBag, getCheckoutUrl, Cart } from "@/lib/cartManagement";
+import { addToBag, getCheckoutUrl, getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout } from "@/lib/ecommerceTracking";
-import MiniCart from "@/components/cart/MiniCart";
+import MiniCartDrawer from "@/components/MiniCartDrawer";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import { getOGImage } from "@/lib/sitemap";
@@ -31,8 +31,7 @@ const ProductDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [activeVariantId, setActiveVariantId] = useState<string | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
-  const [cart, setCart] = useState<Cart | null>(null);
-  const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+  const [miniCartOpen, setMiniCartOpen] = useState(false);
   const [addingToCart, setAddingToCart] = useState(false);
   const [buyingNow, setBuyingNow] = useState(false);
 
@@ -100,7 +99,6 @@ const ProductDetail = () => {
     
     try {
       const updatedCart = await addToBag(activeVariantId, 1);
-      setCart(updatedCart);
       
       // Track add_to_cart to Zapier
       const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
@@ -116,7 +114,7 @@ const ProductDetail = () => {
       });
       
       toast.success("Added to bag!");
-      setIsMiniCartOpen(true);
+      setMiniCartOpen(true);
     } catch (error) {
       console.error("Add to bag failed:", error);
       toast.error("Failed to add to bag. Redirecting...");
@@ -267,11 +265,11 @@ const ProductDetail = () => {
       
       <Header />
       
-      {/* Mini Cart */}
-      <MiniCart 
-        isOpen={isMiniCartOpen}
-        onClose={() => setIsMiniCartOpen(false)}
-        cart={cart}
+      {/* Mini Cart Drawer */}
+      <MiniCartDrawer
+        open={miniCartOpen}
+        onClose={() => setMiniCartOpen(false)}
+        cartId={getCartId() || ""}
       />
       
       {/* Trust Strip */}
