@@ -228,20 +228,20 @@ const Contact = () => {
               {/* Parking Tips */}
               <div className="bg-accent/10 border border-accent/20 rounded-card p-6">
                 <div className="flex items-start gap-4">
-                  <Car className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
+                  <Car className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-heading mb-2">Parking Tips</h3>
                     <ul className="space-y-2 text-foreground text-sm">
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
                         <span>Free street parking directly in front of salon</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
                         <span>Additional parking behind building (rear entrance)</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
                         <span>Wheelchair accessible entrance and facilities</span>
                       </li>
                     </ul>

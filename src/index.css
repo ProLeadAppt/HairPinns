@@ -51,7 +51,7 @@ All colors MUST be HSL.
     --secondary: 210 20% 97%;
     --secondary-foreground: var(--text);
     --muted-bg: 210 20% 96%;
-    --muted-foreground: var(--muted);
+    --muted-foreground: 216 7% 45%;
     --accent-color: var(--accent);
     --accent-foreground: 0 0% 100%;
     --accent-text: 0 0% 100%;
