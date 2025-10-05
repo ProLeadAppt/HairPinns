@@ -121,44 +121,36 @@ const Services = () => {
 
   const faqs = [
     {
+      question: "What's the best treatment for frizz in humid Sydney weather?",
+      answer: "A keratin-free smoothing treatment paired with a humidity-resistant leave-in works best for Sydney's changeable climate. Start with a gentle, sulphate-free wash, add a protein-balanced mask weekly, then seal with a heat-activated protectant before blow-drying. On high-humidity days, finish with a light, flexible-hold spray rather than heavy oils (they can collapse volume). If your hair is colour-treated, choose formulas labelled 'colour-safe' to prevent fade. For persistent halo frizz around the hairline, sleep on a silk pillowcase and avoid rough towel drying."
+    },
+    {
+      question: "How often should I tone blonde hair at home?",
+      answer: "Every 1–2 weeks for maintenance, using a pH-balanced violet or blue-violet treatment, depending on your undertone. Keep dwell time short (3–5 mins) to avoid over-ash. Follow with a hydrating mask because toners can be slightly drying. If your water is mineral-rich (common around the Shire), use a chelating shampoo once every 2–4 weeks to remove buildup that accelerates brassiness. In-salon glosses every 6–8 weeks will keep the tone fresher for longer."
+    },
+    {
+      question: "Keratin vs. smoothing — which lasts longer?",
+      answer: "Keratin treatments (formaldehyde-free) generally outlast quick smoothing services, giving 2–4 months of frizz reduction with proper care. Smoothing services are gentler and great for first-timers or colour-treated hair, lasting 4–8 weeks. Longevity depends on aftercare: sulphate-free cleanser, low heat, UV protection, and avoiding salt/chlorine. If you're blonde or fine-textured, start with smoothing; if you're coarse or highly porous, a keratin option may give better durability."
+    },
+    {
       question: "How do I book an appointment?",
-      answer: "Click any 'Book on Fresha' button on this page or visit our booking page. You can book 24/7 online and choose your preferred date and time. New clients are always welcome!"
+      answer: "Click any 'Book on Fresha' button on this page or visit our booking page. You can book 24/7 online and choose your preferred date and time. New clients are always welcome! If you're unsure which service to book, start with a free consultation."
     },
     {
       question: "What should I do to prepare for my color appointment?",
-      answer: "Come with clean, dry hair (no product). Bring inspiration photos if you have them. During your complimentary consultation, we'll discuss your hair goals, assess your current condition, and create a custom color plan."
+      answer: "Come with clean, dry hair (no product). Bring inspiration photos if you have them. During your complimentary consultation, we'll discuss your hair goals, assess your current condition, and create a custom color plan tailored to your lifestyle and maintenance preferences."
     },
     {
       question: "How long do color services take?",
-      answer: "Full color and highlights typically take 2-3 hours. Balayage can take 3-4 hours for a full application. Root touch-ups are usually 90 minutes. We always allocate extra time for consultations and customization."
+      answer: "Full color and highlights typically take 2-3 hours. Balayage can take 3-4 hours for a full application. Root touch-ups are usually 90 minutes. We always allocate extra time for consultations and customization to ensure you're comfortable throughout."
     },
     {
       question: "Are your products safe for color-treated hair?",
-      answer: "Yes! All our retail products and in-salon treatments are sulfate-free and formulated to protect color. We use premium brands like Olaplex, Kevin Murphy, and Moroccan Oil."
-    },
-    {
-      question: "Do you offer bridal or special event styling?",
-      answer: "Absolutely! We recommend booking a trial run 4-6 weeks before your event. Bridal packages include trial, wedding day styling, and optional touch-ups. Contact us to discuss your vision."
+      answer: "Yes! All our retail products and in-salon treatments are sulfate-free and formulated to protect color. We use premium brands like Olaplex, Kevin Murphy, and Moroccan Oil—chosen specifically for their gentle, color-preserving formulas that extend vibrancy between appointments."
     },
     {
       question: "What's the difference between Olaplex and Keratin treatments?",
-      answer: "Olaplex repairs broken bonds in damaged hair—great for color-treated or over-processed hair. Keratin smooths frizz and adds shine for 3-4 months. Both can be combined for maximum results."
-    },
-    {
-      question: "How often should I get a cut?",
-      answer: "Every 6-8 weeks for short styles, 8-12 weeks for medium to long hair. Regular trims prevent split ends and maintain shape. Bang trims are recommended every 3-4 weeks."
-    },
-    {
-      question: "Do you have parking at the salon?",
-      answer: "Yes! Free parking is available directly in front of our Bangor salon on River Road. We're easily accessible from all Sutherland Shire suburbs."
-    },
-    {
-      question: "What's your cancellation policy?",
-      answer: "We require 24 hours notice for cancellations or rescheduling. Late cancellations or no-shows may incur a 50% service fee. We understand emergencies happen—just let us know as soon as possible."
-    },
-    {
-      question: "Can I purchase products without a service?",
-      answer: "Yes! Browse our curated product selection in-salon or shop online. All retail products come with complimentary usage guidance. Not sure what you need? Book a free product consultation."
+      answer: "Olaplex repairs broken bonds in damaged hair—great for color-treated or over-processed hair that needs structural repair. Keratin smooths frizz and adds shine for 3–4 months by infusing proteins into the cuticle. Both can be combined for maximum results if you want repair and smoothing."
     },
   ];
 
