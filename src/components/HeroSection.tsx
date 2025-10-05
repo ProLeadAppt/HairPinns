@@ -13,29 +13,29 @@ const HeroSection = () => {
           alt="Hair Pinns boutique salon interior with elegant styling chairs and professional atmosphere"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[hsl(0,0%,0%)/0.45]"></div>
+        <div className="absolute inset-0 bg-[hsl(0,0%,0%)/0.6]"></div>
       </div>
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-2xl">
         <div className="flex items-center gap-2 mb-4">
-          <MapPin className="w-4 h-4 text-brand-500" />
-          <span className="text-sm text-muted-foreground">Bangor NSW • Sutherland Shire</span>
+          <MapPin className="w-4 h-4 text-primary-foreground" />
+          <span className="text-sm text-primary-foreground/90">Bangor NSW • Sutherland Shire</span>
         </div>
         
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-heading mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-primary-foreground mb-6 leading-tight">
           Where Hair Dreams
-          <span className="text-brand-500 block">Come to Life</span>
+          <span className="text-primary-foreground block">Come to Life</span>
         </h1>
           
-          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-lg">
+          <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 max-w-lg">
             Expert styling, premium treatments, and personalized care. 
             Your boutique salon experience in the heart of Sutherland Shire.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <div className="inline-flex w-full sm:w-auto flex-col sm:flex-row gap-3 p-2 rounded-xl bg-[hsl(0,0%,0%)/0.25] backdrop-blur-sm ring-1 ring-[hsl(0,0%,0%)/0.2]">
+            <div className="inline-flex w-full sm:w-auto flex-col sm:flex-row gap-3 p-2 rounded-xl bg-[hsl(0,0%,0%)/0.25] backdrop-blur-sm ring-1 ring-[hsl(0,0%,0%)/0.2] no-link-color">
               <Button 
                 asChild
                 variant="primary" 
@@ -54,13 +54,15 @@ const HeroSection = () => {
                 </a>
               </Button>
               <Button 
-                variant="accent" 
+                asChild
+                variant="inverted" 
                 size="xl"
-                onClick={() => window.open('https://shopify.com', '_blank')}
                 className="w-full sm:w-auto"
               >
-                <ShoppingBag className="w-5 h-5" />
-                Shop Our Products
+                <a href="https://shopify.com" target="_blank" rel="noopener noreferrer">
+                  <ShoppingBag className="w-5 h-5" />
+                  Shop Our Products
+                </a>
               </Button>
             </div>
           </div>

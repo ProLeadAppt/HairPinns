@@ -214,3 +214,10 @@ All colors MUST be HSL.
     outline-offset: 2px;
   }
 }
+
+@layer components {
+  .no-link-color a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
