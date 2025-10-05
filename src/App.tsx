@@ -14,6 +14,7 @@ import About from "./pages/About";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
+import OrderConfirmation from "./pages/OrderConfirmation";
 import Shipping from "./pages/Shipping";
 import Returns from "./pages/Returns";
 import Privacy from "./pages/Privacy";
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/policies/shipping" element={<Shipping />} />
           <Route path="/policies/returns" element={<Returns />} />
           <Route path="/privacy" element={<Privacy />} />
