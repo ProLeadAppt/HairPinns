@@ -1,63 +1,33 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Badge from "@/components/design-system/Badge";
 import { Calendar, Clock } from "lucide-react";
+import { blogPosts } from "@/data/blogPosts";
 
 const Blog = () => {
-  const posts = [
-    {
-      slug: "winter-hair-care-tips",
-      title: "Winter Hair Care: Essential Tips for Healthy Hair",
-      excerpt: "Keep your hair healthy and vibrant through the cold months with our expert tips and product recommendations.",
-      category: "Hair Care",
-      date: "Dec 15, 2024",
-      readTime: "5 min read",
-      image: "/placeholder.svg"
-    },
-    {
-      slug: "latest-color-trends",
-      title: "2024 Hair Color Trends You Need to Try",
-      excerpt: "From warm caramels to icy blondes, discover the hottest hair color trends this season.",
-      category: "Trends",
-      date: "Dec 10, 2024",
-      readTime: "4 min read",
-      image: "/placeholder.svg"
-    },
-    {
-      slug: "bridal-hair-guide",
-      title: "The Ultimate Bridal Hair Guide",
-      excerpt: "Everything you need to know about choosing and preparing your perfect wedding day hairstyle.",
-      category: "Weddings",
-      date: "Dec 5, 2024",
-      readTime: "7 min read",
-      image: "/placeholder.svg"
-    },
-    {
-      slug: "product-recommendations",
-      title: "Our Top Product Picks for Damaged Hair",
-      excerpt: "Professional recommendations for repairing and restoring damaged, over-processed hair.",
-      category: "Products",
-      date: "Nov 28, 2024",
-      readTime: "6 min read",
-      image: "/placeholder.svg"
-    }
-  ];
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Hair Care Blog | Expert Tips from Hair Pinns Bangor</title>
+        <meta name="description" content="Expert hair care advice, styling tips, and product recommendations from Hair Pinns salon in Bangor, Sutherland Shire. Learn from experienced stylists." />
+        <link rel="canonical" href="https://hairpinns.com.au/blog" />
+      </Helmet>
+
       <Header />
       
       <main className="flex-grow">
         <Section className="pt-xl">
           <SectionHeader 
             title="Hair Care Blog" 
-            subtitle="Expert tips, trends, and advice from our stylists"
+            subtitle="Expert tips, trends, and advice from our Bangor stylists"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {posts.map((post) => (
+            {blogPosts.map((post) => (
               <Link 
                 key={post.slug}
                 to={`/blog/${post.slug}`}
