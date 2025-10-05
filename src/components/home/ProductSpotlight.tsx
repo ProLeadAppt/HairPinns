@@ -1,100 +1,70 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Eye, Check } from "lucide-react";
+import { ShoppingBag, Check } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
+import { getCollectionByHandle } from "@/lib/shopify";
+import { Badge } from "@/components/ui/badge";
 
 const ProductSpotlight = () => {
-  const products = [
-    {
-      slug: "hydrate-restore-pack",
-      title: "Hydrate & Restore Pack",
-      price: "$89.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "For dry, damaged hair",
-        "Shampoo, conditioner & treatment",
-        "Save $25 vs buying separately"
-      ]
-    },
-    {
-      slug: "blonde-brilliance-set",
-      title: "Blonde Brilliance Set",
-      price: "$95.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "Tone & brighten blonde hair",
-        "Purple shampoo, mask & oil",
-        "Save $30 on this bundle"
-      ]
-    },
-    {
-      slug: "ultimate-styling-trio",
-      title: "Ultimate Styling Trio",
-      price: "$75.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "Salon-quality styling at home",
-        "Heat protectant, cream & spray",
-        "Perfect gift for hair lovers"
-      ]
-    },
-    {
-      slug: "curl-care-collection",
-      title: "Curl Care Collection",
-      price: "$82.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "Define & nourish curls",
-        "Curl cream, gel & leave-in",
-        "Save $22 in this pack"
-      ]
-    },
-    {
-      slug: "color-protect-bundle",
-      title: "Color Protect Bundle",
-      price: "$88.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "Extend your color vibrancy",
-        "Shampoo, conditioner & serum",
-        "Professional salon formula"
-      ]
-    },
-    {
-      slug: "scalp-wellness-set",
-      title: "Scalp Wellness Set",
-      price: "$72.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "Healthy scalp, healthy hair",
-        "Scrub, treatment & tonic",
-        "Great for all hair types"
-      ]
-    },
-    {
-      slug: "volume-boost-pack",
-      title: "Volume Boost Pack",
-      price: "$79.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "Lift & body for fine hair",
-        "Volumizing shampoo, spray & powder",
-        "Save $20 vs individual items"
-      ]
-    },
-    {
-      slug: "smooth-sleek-set",
-      title: "Smooth & Sleek Set",
-      price: "$92.00",
-      image: "/placeholder.svg",
-      bullets: [
-        "Frizz control & shine",
-        "Smoothing shampoo, serum & cream",
-        "Salon-quality results at home"
-      ]
-    }
-  ];
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const collection = await getCollectionByHandle("christmas-gift-packs");
+        
+        if (collection?.products?.edges) {
+          const mappedProducts = collection.products.edges.slice(0, 8).map((edge: any) => {
+            const product = edge.node;
+            const firstImage = product.images.edges[0]?.node;
+            const price = parseFloat(product.priceRange.minVariantPrice.amount);
+            
+            return {
+              slug: product.handle,
+              title: product.title,
+              price: `$${price.toFixed(2)}`,
+              image: firstImage?.url || "/placeholder.svg",
+              availableForSale: product.availableForSale,
+              bullets: [
+                product.description?.substring(0, 40) || "Premium hair care",
+                "Professional salon formula",
+                `Starting at $${price.toFixed(2)}`
+              ]
+            };
+          });
+          
+          setProducts(mappedProducts);
+        }
+      } catch (error) {
+        console.error("Failed to fetch gift packs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <Section className="content-visibility-auto">
+        <SectionHeader 
+          title="Christmas Gift Packs"
+          subtitle="Curated hair care bundles — perfect for gifting or treating yourself"
+        />
+        <div className="flex justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
+        </div>
+      </Section>
+    );
+  }
+
+  if (products.length === 0) {
+    return null; // Don't show section if no products
+  }
 
   return (
     <Section className="content-visibility-auto">
@@ -119,6 +89,11 @@ const ProductSpotlight = () => {
                 height="600"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
+              {!product.availableForSale && (
+                <Badge variant="destructive" className="absolute top-3 left-3">
+                  Out of Stock
+                </Badge>
+              )}
             </div>
             
             <div className="p-6">
@@ -141,20 +116,20 @@ const ProductSpotlight = () => {
               <div className="flex gap-2">
                 <Link to={`/products/${product.slug}`} className="flex-1">
                   <Button variant="outline" size="sm" className="w-full">
-                    View Pack
+                    View Details
                   </Button>
                 </Link>
-                <Button 
-                  variant="primary" 
-                  size="sm" 
-                  className="flex-1"
-                  onClick={() => {
-                    console.log("Reserve clicked:", product.slug);
-                    // Deep link to Shopify or Fresha booking
-                  }}
-                >
-                  Reserve
-                </Button>
+                <Link to={`/products/${product.slug}`} className="flex-1">
+                  <Button 
+                    variant="primary" 
+                    size="sm" 
+                    className="w-full"
+                    disabled={!product.availableForSale}
+                  >
+                    <ShoppingBag className="w-4 h-4 mr-1" />
+                    Shop Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@ const ReviewStrip = ({ variant = "default" }: ReviewStripProps) => {
                     <Star key={i} className="w-3 h-3 text-[hsl(var(--star-color))] fill-current" />
                   ))}
                 </div>
-                <span className="text-muted-foreground">"{review.text.slice(0, 50)}..."</span>
+                <span className="text-foreground/90">"{review.text.slice(0, 50)}..."</span>
                 <span className="font-medium text-foreground">— {review.author}</span>
                 {index < displayedReviews.length - 1 && (
                   <span className="text-border">|</span>

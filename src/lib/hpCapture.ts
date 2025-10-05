@@ -453,13 +453,14 @@ async function postToZapier(
         await sleep(backoffDelays[attempt]);
       }
     } catch (error) {
-      console.error(`[hpCapture] Attempt ${attempt + 1} failed with error:`, error);
+      // Silently handle network errors - don't break the UI
+      console.warn(`[hpCapture] Attempt ${attempt + 1} failed with error:`, error);
       
-      // Log network/fetch errors
+      // Log network/fetch errors for debugging
       if (typeof window !== 'undefined' && window.__hpErrors) {
         window.__hpErrors.push({
           timestamp: new Date().toISOString(),
-          error: `Network error on attempt ${attempt + 1}: ${error}`,
+          error: `Network error on attempt ${attempt + 1}: ${error instanceof Error ? error.message : String(error)}`,
           payload: fullPayload,
         });
       }
@@ -471,7 +472,7 @@ async function postToZapier(
     }
   }
   
-  // All retries failed
+  // All retries failed - log but don't break the UI
   const errorLog = {
     timestamp: new Date().toISOString(),
     error: 'Failed to submit after all retry attempts',
@@ -482,7 +483,9 @@ async function postToZapier(
     window.__hpErrors.push(errorLog);
   }
   
-  console.error('[hpCapture] All retry attempts failed:', errorLog);
+  console.warn('[hpCapture] All retry attempts failed. Data logged for debugging:', errorLog);
+  
+  // Return false to indicate failure, but this should be handled gracefully by callers
   return false;
 }
 
