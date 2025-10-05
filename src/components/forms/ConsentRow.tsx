@@ -7,13 +7,17 @@ interface ConsentRowProps {
   onCheckedChange: (checked: boolean) => void;
   required?: boolean;
   id?: string;
+  textColor?: string; // Allow custom text color
+  linkColor?: string; // Allow custom link color
 }
 
 const ConsentRow = ({ 
   checked, 
   onCheckedChange, 
   required = false,
-  id = "consent_marketing" 
+  id = "consent_marketing",
+  textColor = "text-foreground",
+  linkColor = "text-brand-500 hover:text-brand-600"
 }: ConsentRowProps) => {
   return (
     <>
@@ -45,12 +49,12 @@ const ConsentRow = ({
         />
         <Label
           htmlFor={id}
-          className="text-sm text-foreground leading-relaxed cursor-pointer"
+          className={`text-sm ${textColor} leading-relaxed cursor-pointer`}
         >
           I agree to receive updates from Hair Pinns. I can unsubscribe anytime.{" "}
           <Link 
             to="/privacy" 
-            className="text-brand-500 hover:text-brand-600 underline"
+            className={`${linkColor} underline`}
             onClick={(e) => e.stopPropagation()}
           >
             Privacy Policy
