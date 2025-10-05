@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand-500 text-white hover:bg-brand-600 rounded-btn",
+        default: "bg-[hsl(var(--brand-500))] text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] rounded-btn",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-btn",
         outline: "border border-input bg-background hover:bg-muted hover:text-foreground rounded-btn",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-btn",
         ghost: "hover:bg-muted hover:text-foreground rounded-btn",
         link: "text-link underline-offset-4 hover:underline",
-        primary: "bg-brand-500 text-white hover:bg-brand-600 shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
-        accent: "border-2 border-brand-500 text-brand-500 bg-white hover:bg-brand-500 hover:text-white shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
+        primary: "bg-[hsl(var(--brand-500))] text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
+        accent: "border-2 border-[hsl(var(--brand-500))] text-[hsl(var(--brand-500))] bg-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-500))] hover:text-[hsl(0,0%,100%)] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
       },
       size: {
         default: "h-10 px-4 py-2 text-button",
