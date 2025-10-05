@@ -1,117 +1,271 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Section from "@/components/design-system/Section";
-import SectionHeader from "@/components/design-system/SectionHeader";
-import { Award, Heart, Users, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react";
 
 const About = () => {
-  const values = [
+  const testimonials = [
     {
-      icon: Heart,
-      title: "Passionate Care",
-      description: "Every client receives personalized attention and care"
+      name: "Sarah M.",
+      text: "Jena transformed my damaged hair into something I'm actually proud of. She took the time to understand what I needed and recommended a treatment plan that really worked. Best salon experience I've ever had!",
+      rating: 5
     },
     {
-      icon: Award,
-      title: "Expert Team",
-      description: "Highly trained stylists with years of experience"
+      name: "Emma L.",
+      text: "I've been coming to Hair Pinns for 3 years now. Jena's balayage is flawless, and I love that she's honest about what will and won't work for my hair. No upselling, just genuine care.",
+      rating: 5
     },
     {
-      icon: Sparkles,
-      title: "Premium Products",
-      description: "Only the finest professional-grade products"
-    },
-    {
-      icon: Users,
-      title: "Community Focus",
-      description: "Proud to serve the Sutherland Shire for over 10 years"
+      name: "Michelle T.",
+      text: "As someone with curly hair, I've struggled to find a stylist who gets it. Jena is amazing! She understands texture and gave me a cut that actually works with my curls. Plus, her product recommendations are spot-on.",
+      rating: 5
     }
   ];
 
+  const galleryImages = [
+    { src: "/placeholder.svg", alt: "Hair Pinns salon interior with styling stations" },
+    { src: "/placeholder.svg", alt: "Jena styling a client" },
+    { src: "/placeholder.svg", alt: "Product display with premium hair care" },
+    { src: "/placeholder.svg", alt: "Welcome area and reception" }
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Header />
-      
-      <main className="flex-grow">
-        {/* Hero */}
-        <div className="bg-accent py-xl">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-h1-lg font-heading text-heading mb-6">
-              About Hair Pinns
-            </h1>
-            <p className="text-lg text-foreground leading-relaxed">
-              Your boutique salon experience in the heart of Bangor, NSW. 
-              We combine expert technique with genuine care to create beautiful, 
-              confidence-building results for every client.
-            </p>
-          </div>
-        </div>
-
-        {/* Story */}
-        <Section className="pt-xl">
-          <SectionHeader title="Our Story" />
-          <div className="max-w-3xl mx-auto">
-            <p className="text-foreground leading-relaxed mb-6">
-              Founded in 2014, Hair Pinns began with a simple vision: to create a welcoming, 
-              boutique salon where every client feels valued and leaves feeling their best. 
-              What started as a small team has grown into a trusted name in the Sutherland Shire, 
-              known for exceptional service and stunning results.
-            </p>
-            <p className="text-foreground leading-relaxed mb-6">
-              Our team of experienced stylists stays current with the latest techniques and trends, 
-              attending regular training and education. But beyond technical skill, we pride ourselves 
-              on truly listening to our clients and creating looks that enhance their natural beauty 
-              and lifestyle.
-            </p>
-            <p className="text-foreground leading-relaxed">
-              Located in beautiful Bangor NSW, we serve clients throughout the Sutherland Shire 
-              and beyond. Whether you're looking for a fresh new style, expert color work, or 
-              special occasion styling, we're here to make your hair dreams a reality.
-            </p>
-          </div>
-        </Section>
-
-        {/* Values */}
-        <Section variant="accent">
-          <SectionHeader title="What Sets Us Apart" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-brand-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-8 h-8" />
-                  </div>
-                  <h3 className="font-semibold text-heading mb-2">{value.title}</h3>
-                  <p className="text-sm text-muted-foreground">{value.description}</p>
+      <main>
+        {/* Hero with Jena's Photo */}
+        <section className="py-16 md:py-20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Photo */}
+              <div className="order-2 lg:order-1">
+                <div className="aspect-[3/4] bg-muted rounded-card overflow-hidden">
+                  <img
+                    src="/placeholder.svg"
+                    alt="Jena Pinn, founder and lead stylist at Hair Pinns salon"
+                    className="w-full h-full object-cover"
+                    width="600"
+                    height="800"
+                  />
                 </div>
-              );
-            })}
-          </div>
-        </Section>
+              </div>
 
-        {/* Salon Photos */}
-        <Section>
-          <SectionHeader title="Our Salon" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="aspect-video bg-muted rounded-card overflow-hidden">
-              <img 
-                src="/placeholder.svg" 
-                alt="Hair Pinns salon interior"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="aspect-video bg-muted rounded-card overflow-hidden">
-              <img 
-                src="/placeholder.svg" 
-                alt="Hair Pinns styling station"
-                className="w-full h-full object-cover"
-              />
+              {/* Bio */}
+              <div className="order-1 lg:order-2">
+                <h1 className="text-h1-lg font-heading font-bold text-heading mb-6">
+                  Meet Jena
+                </h1>
+                <p className="text-lg text-foreground leading-relaxed mb-6">
+                  Hi, I'm Jena Pinn—founder and lead stylist at Hair Pinns. After over 12 years in the industry, 
+                  I opened my own boutique salon in 2018 with one goal: to create a space where honest care, 
+                  expert technique, and genuine connection come together.
+                </p>
+                <p className="text-foreground leading-relaxed mb-6">
+                  I believe beautiful hair starts with listening. Whether you're looking for a subtle refresh 
+                  or a complete transformation, I'll take the time to understand your hair goals, lifestyle, 
+                  and concerns—then create a plan that actually works for you. No gimmicks, no upsells, 
+                  just real results you can feel good about.
+                </p>
+
+                {/* Credentials */}
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-start gap-3">
+                    <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">
+                      <strong>Advanced Colorist Certificate</strong> — Toni&Guy Academy
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">
+                      <strong>Olaplex Certified Specialist</strong> — Bond-building treatments
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">
+                      <strong>12+ years experience</strong> — Specializing in color, balayage & keratin
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-foreground italic">
+                  "My favorite part of this job? Seeing clients leave the salon feeling confident and beautiful. 
+                  That's what it's all about."
+                </p>
+              </div>
             </div>
           </div>
-        </Section>
+        </section>
+
+        {/* Salon Philosophy */}
+        <section className="py-16 bg-accent">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="w-16 h-16 bg-brand-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+              <Heart className="w-8 h-8" />
+            </div>
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-6">
+              Our Philosophy: Honest Care
+            </h2>
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              At Hair Pinns, "honest care" isn't just a tagline—it's how we operate every day. 
+              I'll never recommend a service you don't need or push products that won't work for your hair. 
+              Instead, I focus on what will genuinely help you achieve your goals, within your budget and lifestyle.
+            </p>
+            <p className="text-foreground leading-relaxed max-w-2xl mx-auto">
+              Whether you're maintaining healthy color, repairing damage, or trying something new, 
+              you'll always get my honest opinion, transparent pricing, and a plan that makes sense for you. 
+              That's the Hair Pinns difference.
+            </p>
+          </div>
+        </section>
+
+        {/* Product Line Story */}
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-h2-lg font-heading font-bold text-heading mb-6">
+                  Why We Curate Our Own Product Line
+                </h2>
+                <p className="text-foreground leading-relaxed mb-6">
+                  After years of trying every brand on the market, I got tired of recommending products 
+                  that didn't live up to their promises. So I partnered with premium brands I actually trust—
+                  like Olaplex, Kevin Murphy, and Moroccan Oil—to create a curated retail line that delivers real results.
+                </p>
+                <p className="text-foreground leading-relaxed mb-6">
+                  Every product in our collection is salon-tested and client-approved. I use these same formulas 
+                  in my own hair and in the salon every day. If it doesn't pass my standards, it doesn't make the cut.
+                </p>
+                <p className="text-foreground leading-relaxed">
+                  Our Christmas Gift Packs make it easy to try complete routines at a great price. 
+                  Not sure what you need? Book a free product consultation, and I'll help you build 
+                  a custom care plan for your hair type and goals.
+                </p>
+              </div>
+              <div className="aspect-square bg-muted rounded-card overflow-hidden">
+                <img
+                  src="/placeholder.svg"
+                  alt="Hair Pinns curated product collection display"
+                  className="w-full h-full object-cover"
+                  width="600"
+                  height="600"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Community Love */}
+        <section className="py-16 bg-muted">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="w-16 h-16 bg-brand-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+              <MapPin className="w-8 h-8" />
+            </div>
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-6">
+              Proud to Call Bangor Home
+            </h2>
+            <p className="text-lg text-foreground leading-relaxed mb-6">
+              Hair Pinns is more than a salon—it's part of the Bangor community. We're proud to serve 
+              clients from across the Sutherland Shire, from Menai to Woronora, Engadine to Illawong. 
+              Many of our clients have been with us since day one, and we've built relationships that go 
+              beyond just hair appointments.
+            </p>
+            <p className="text-foreground leading-relaxed max-w-2xl mx-auto">
+              Located on River Road with free parking out front, we're easy to find and accessible 
+              for the whole Shire. Whether you're a local or visiting from nearby suburbs, 
+              you'll always feel welcome here.
+            </p>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-12 text-center">
+              What Clients Say
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-card p-6"
+                >
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 text-[hsl(var(--star-color))] fill-current"
+                      />
+                    ))}
+                  </div>
+                  <p className="text-foreground leading-relaxed mb-4 italic">
+                    "{testimonial.text}"
+                  </p>
+                  <p className="font-semibold text-heading">— {testimonial.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery */}
+        <section className="py-16 bg-muted">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-12 text-center">
+              Inside Hair Pinns
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {galleryImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="aspect-square bg-muted rounded-card overflow-hidden"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-slow"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Row */}
+        <section className="py-16 bg-brand-500 text-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-h2-lg font-heading font-bold mb-4">
+              Ready to Experience Hair Pinns?
+            </h2>
+            <p className="text-lg mb-8 opacity-90">
+              Book your appointment or explore our curated product collection.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/collections/christmas-gift-packs">
+                <Button variant="secondary" size="xl" className="bg-white text-brand-500 hover:bg-white/90 w-full sm:w-auto">
+                  <ShoppingBag className="w-5 h-5" />
+                  Shop Featured Packs
+                </Button>
+              </Link>
+              <a
+                href="https://www.fresha.com/book-now/hair-pinns-example"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="secondary" size="xl" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-500 w-full sm:w-auto">
+                  <Calendar className="w-5 h-5" />
+                  Book on Fresha
+                </Button>
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
-      
       <Footer />
     </div>
   );
