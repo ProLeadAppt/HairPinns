@@ -20,6 +20,8 @@ interface CapturePayload {
   form_name?: string;
   event_name?: string;
   timestamp: string;
+  source_page?: string;
+  lead_magnet_title?: string;
   [key: string]: any;
 }
 
@@ -184,14 +186,33 @@ async function postToZapier(
   const sessionData = getSessionData();
   
   // Merge payload with session data and GDPR info
-  const fullPayload: CapturePayload = {
+  const fullPayload: CapturePayload & {
+    utms?: Record<string, string>;
+    click_ids?: Record<string, string>;
+  } = {
     page_url: typeof window !== 'undefined' ? window.location.href : '',
     timestamp: new Date().toISOString(),
-    ...sessionData,
     ...cleanPayload,
+    // Core session identifiers
+    client_id: sessionData.client_id,
+    referrer: sessionData.referrer,
     // Add GDPR compliance fields
     gdpr_region_detected: 'AU',
     timestamp_consent: payload.consent_marketing ? new Date().toISOString() : undefined,
+    // Group UTMs
+    utms: {
+      utm_source: sessionData.utm_source || '',
+      utm_medium: sessionData.utm_medium || '',
+      utm_campaign: sessionData.utm_campaign || '',
+      utm_content: sessionData.utm_content || '',
+      utm_term: sessionData.utm_term || '',
+    },
+    // Group click IDs
+    click_ids: {
+      gclid: sessionData.gclid || '',
+      fbclid: sessionData.fbclid || '',
+      ttclid: sessionData.ttclid || '',
+    },
   };
   
   // Add event_name or form_name

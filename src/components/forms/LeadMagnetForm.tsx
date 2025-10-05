@@ -1,0 +1,173 @@
+import { useState } from "react";
+import { Download, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import ConsentRow from "@/components/forms/ConsentRow";
+
+interface LeadMagnetFormProps {
+  formName: string;
+  magnetTitle: string;
+  magnetDescription?: string;
+  showFirstName?: boolean;
+  showPhone?: boolean;
+  buttonText?: string;
+  successMessage?: string;
+  className?: string;
+}
+
+const LeadMagnetForm = ({
+  formName,
+  magnetTitle,
+  magnetDescription,
+  showFirstName = true,
+  showPhone = true,
+  buttonText = "Get Free Guide",
+  successMessage = "Thanks! Check your inbox in a moment.",
+  className = "",
+}: LeadMagnetFormProps) => {
+  const [formData, setFormData] = useState({
+    first_name: "",
+    email: "",
+    phone: "",
+    consent: false,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.consent) {
+      toast({
+        title: "Consent Required",
+        description: "Please agree to receive updates to continue.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { hpCapture } = await import("@/lib/hpCapture");
+      
+      // Build payload with exact structure requested
+      const payload = {
+        form_name: formName,
+        first_name: formData.first_name,
+        email: formData.email,
+        phone: formData.phone,
+        consent_marketing: formData.consent,
+        source_page: typeof window !== 'undefined' ? window.location.href : '',
+        lead_magnet_title: magnetTitle,
+        // Session data will be merged by hpCapture.postToZapier
+      };
+
+      const success = await hpCapture.postToZapier(payload, {
+        event: "lead_magnet_download",
+      });
+
+      if (success) {
+        setIsSuccess(true);
+        toast({
+          title: "Success!",
+          description: successMessage,
+        });
+      } else {
+        throw new Error("Submission failed");
+      }
+    } catch (error) {
+      console.error("Lead magnet form error:", error);
+      toast({
+        title: "Submission Error",
+        description: "We couldn't process your request. Please try again or call us.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSuccess) {
+    return (
+      <div className={`bg-brand-500 text-white rounded-card p-8 text-center ${className}`}>
+        <CheckCircle2 className="w-16 h-16 mx-auto mb-4 opacity-90" />
+        <h3 className="text-h2 font-heading mb-3">You're All Set!</h3>
+        <p className="text-lg opacity-90 mb-4">{successMessage}</p>
+        <p className="text-sm opacity-75">
+          Can't find the email? Check your spam folder or contact us.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`bg-brand-500 text-white rounded-card p-8 ${className}`}>
+      <div className="text-center mb-6">
+        <Download className="w-12 h-12 mx-auto mb-4 opacity-90" />
+        <h3 className="text-h2 font-heading mb-2">{magnetTitle}</h3>
+        {magnetDescription && (
+          <p className="text-lg opacity-90">{magnetDescription}</p>
+        )}
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {showFirstName && (
+          <Input
+            type="text"
+            placeholder="First name"
+            value={formData.first_name}
+            onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
+            className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+          />
+        )}
+
+        <Input
+          type="email"
+          placeholder="Email address"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          required
+          className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+        />
+
+        {showPhone && (
+          <Input
+            type="tel"
+            placeholder="Phone number (optional)"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+          />
+        )}
+
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+          <ConsentRow
+            checked={formData.consent}
+            onCheckedChange={(checked) => setFormData({ ...formData, consent: checked })}
+            required
+            id={`consent_${formName}`}
+          />
+        </div>
+
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full bg-white text-brand-500 hover:bg-white/90"
+          disabled={isSubmitting}
+        >
+          <Download className="w-5 h-5 mr-2" />
+          {isSubmitting ? "Processing..." : buttonText}
+        </Button>
+
+        <p className="text-xs text-center opacity-75">
+          No spam, ever. Unsubscribe anytime.
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default LeadMagnetForm;
