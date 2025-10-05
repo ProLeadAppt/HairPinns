@@ -3,14 +3,25 @@ import { Mail, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import ConsentRow from "@/components/forms/ConsentRow";
 
 const LeadMagnetBox = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [consent, setConsent] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!consent) {
+      toast({
+        title: "Consent Required",
+        description: "Please agree to receive updates to continue.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     const { hpCapture } = await import("@/lib/hpCapture");
     
@@ -19,6 +30,7 @@ const LeadMagnetBox = () => {
         form_name: "blog_lead_magnet",
         email,
         phone,
+        consent_marketing: consent,
       },
       { event: "lead_magnet_subscription" }
     );
@@ -31,6 +43,7 @@ const LeadMagnetBox = () => {
       
       setEmail("");
       setPhone("");
+      setConsent(false);
     } else {
       toast({
         title: "Submission Error",
@@ -72,6 +85,15 @@ const LeadMagnetBox = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="border-0 bg-transparent text-white placeholder:text-white/60 focus-visible:ring-0"
+            />
+          </div>
+          
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <ConsentRow 
+              checked={consent}
+              onCheckedChange={setConsent}
+              required
+              id="lead_magnet_consent"
             />
           </div>
           

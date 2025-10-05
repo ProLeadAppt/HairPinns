@@ -161,14 +161,37 @@ async function postToZapier(
 ): Promise<boolean> {
   const { event, retryAttempts = 3 } = options;
   
+  // Check honeypot field - if filled, reject silently
+  if (payload.company && payload.company !== '') {
+    console.warn('[hpCapture] Honeypot triggered - submission rejected');
+    
+    // Log as potential bot
+    if (typeof window !== 'undefined' && window.__hpErrors) {
+      window.__hpErrors.push({
+        timestamp: new Date().toISOString(),
+        error: 'Honeypot field filled - potential bot',
+        payload: { ...payload, company: '[REDACTED]' },
+      });
+    }
+    
+    // Return success to not alert bots
+    return true;
+  }
+  
+  // Remove honeypot field from payload before sending
+  const { company, ...cleanPayload } = payload as any;
+  
   const sessionData = getSessionData();
   
-  // Merge payload with session data
+  // Merge payload with session data and GDPR info
   const fullPayload: CapturePayload = {
     page_url: typeof window !== 'undefined' ? window.location.href : '',
     timestamp: new Date().toISOString(),
     ...sessionData,
-    ...payload,
+    ...cleanPayload,
+    // Add GDPR compliance fields
+    gdpr_region_detected: 'AU',
+    timestamp_consent: payload.consent_marketing ? new Date().toISOString() : undefined,
   };
   
   // Add event_name or form_name
@@ -177,12 +200,12 @@ async function postToZapier(
   }
   
   // Generate dedupe_key if we have identifier info
-  const identifier = payload.email || payload.phone || '';
-  if (identifier && (payload.form_name || event)) {
+  const identifier = cleanPayload.email || cleanPayload.phone || '';
+  if (identifier && (cleanPayload.form_name || event)) {
     try {
       fullPayload.dedupe_key = await generateDedupeKey(
         sessionData.client_id,
-        payload.form_name || event || 'unknown',
+        cleanPayload.form_name || event || 'unknown',
         identifier
       );
     } catch (e) {

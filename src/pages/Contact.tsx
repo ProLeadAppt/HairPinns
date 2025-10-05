@@ -10,16 +10,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { MapPin, Phone, Mail, Clock, MessageSquare, Car, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ConsentRow from "@/components/forms/ConsentRow";
 
 const Contact = () => {
   const { toast } = useToast();
   const [smsPhone, setSmsPhone] = useState("");
+  const [smsConsent, setSmsConsent] = useState(false);
   const [smsSubmitted, setSmsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    consent: false,
   });
 
   const businessInfo = {
@@ -84,12 +87,22 @@ const Contact = () => {
   const handleSmsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!smsConsent) {
+      toast({
+        title: "Consent Required",
+        description: "Please agree to receive SMS updates to continue.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     const { hpCapture } = await import("@/lib/hpCapture");
     
     const success = await hpCapture.postToZapier(
       {
         form_name: "sms_optin",
         phone: smsPhone,
+        consent_marketing: smsConsent,
       },
       { event: "sms_subscription" }
     );
@@ -112,6 +125,15 @@ const Contact = () => {
   const handleMessageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!formData.consent) {
+      toast({
+        title: "Consent Required",
+        description: "Please agree to receive updates to continue.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     const { hpCapture } = await import("@/lib/hpCapture");
     
     const success = await hpCapture.postToZapier(
@@ -121,6 +143,7 @@ const Contact = () => {
         email: formData.email,
         phone: formData.phone,
         message: formData.message,
+        consent_marketing: formData.consent,
       },
       { event: "contact_form_submission" }
     );
@@ -131,7 +154,7 @@ const Contact = () => {
         description: "Jena will get back to you within 24 hours.",
       });
       
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", message: "", consent: false });
     } else {
       toast({
         title: "Submission Error",
@@ -301,7 +324,7 @@ const Contact = () => {
               </p>
               
               {!smsSubmitted ? (
-                <form onSubmit={handleSmsSubmit} className="max-w-md mx-auto">
+                <form onSubmit={handleSmsSubmit} className="max-w-md mx-auto space-y-4">
                   <div className="flex gap-2">
                     <Input
                       type="tel"
@@ -318,8 +341,18 @@ const Contact = () => {
                       Sign Up
                     </Button>
                   </div>
-                  <p className="text-xs mt-3 opacity-75">
-                    By signing up, you agree to receive SMS updates. Reply STOP to opt out anytime.
+                  
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                    <ConsentRow 
+                      checked={smsConsent}
+                      onCheckedChange={setSmsConsent}
+                      required
+                      id="sms_consent"
+                    />
+                  </div>
+                  
+                  <p className="text-xs opacity-75">
+                    Reply STOP to opt out anytime.
                   </p>
                 </form>
               ) : (
@@ -385,6 +418,13 @@ const Contact = () => {
                     required
                   />
                 </div>
+
+                <ConsentRow 
+                  checked={formData.consent}
+                  onCheckedChange={(checked) => setFormData({ ...formData, consent: checked })}
+                  required
+                  id="contact_consent"
+                />
 
                 <Button 
                   variant="primary" 
