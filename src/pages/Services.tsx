@@ -1,97 +1,491 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Section from "@/components/design-system/Section";
-import SectionHeader from "@/components/design-system/SectionHeader";
-import ServiceRow from "@/components/design-system/ServiceRow";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Calendar, Check, Sparkles, Wind, Scissors, Plus } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Services = () => {
-  const services = [
+  const services = {
+    colour: [
+      {
+        name: "Full Colour",
+        value: "Rich, vibrant color that lasts",
+        price: "From $120",
+      },
+      {
+        name: "Balayage",
+        value: "Natural, sun-kissed dimension",
+        price: "From $180",
+      },
+      {
+        name: "Highlights (Full)",
+        value: "Brightening all-over lift",
+        price: "From $180",
+      },
+      {
+        name: "Highlights (Partial)",
+        value: "Focused brightness & dimension",
+        price: "From $140",
+      },
+      {
+        name: "Toner & Gloss",
+        value: "Eliminate brass, add shine",
+        price: "From $45",
+      },
+      {
+        name: "Root Touch-Up",
+        value: "Seamless color refresh",
+        price: "From $95",
+      },
+    ],
+    treatments: [
+      {
+        name: "Keratin Smoothing",
+        value: "Frizz control for 3-4 months",
+        price: "From $250",
+      },
+      {
+        name: "Olaplex Bond Treatment",
+        value: "Repair damage at the molecular level",
+        price: "From $55",
+      },
+      {
+        name: "Deep Conditioning",
+        value: "Instant hydration & shine",
+        price: "From $45",
+      },
+      {
+        name: "Scalp Wellness Therapy",
+        value: "Detox, exfoliate, nourish",
+        price: "From $65",
+      },
+    ],
+    cuts: [
+      {
+        name: "Women's Cut & Style",
+        value: "Precision cut tailored to your face shape",
+        price: "From $85",
+      },
+      {
+        name: "Men's Cut",
+        value: "Sharp, modern styling",
+        price: "From $45",
+      },
+      {
+        name: "Bang/Fringe Trim",
+        value: "Quick refresh between cuts",
+        price: "From $25",
+      },
+      {
+        name: "Blow Dry & Style",
+        value: "Smooth, polished finish",
+        price: "From $55",
+      },
+    ],
+    addons: [
+      {
+        name: "Olaplex Boost",
+        value: "Add to any color service",
+        price: "+$35",
+      },
+      {
+        name: "K18 Leave-In Treatment",
+        value: "Instant repair & softness",
+        price: "+$40",
+      },
+      {
+        name: "Gloss Refresh",
+        value: "Add shine to any service",
+        price: "+$30",
+      },
+      {
+        name: "Scalp Massage",
+        value: "10-minute relaxation add-on",
+        price: "+$15",
+      },
+    ],
+  };
+
+  const faqs = [
     {
-      category: "Cuts & Styling",
-      items: [
-        { name: "Women's Cut & Style", price: "$85", duration: "60 min" },
-        { name: "Men's Cut", price: "$45", duration: "30 min" },
-        { name: "Children's Cut (under 12)", price: "$35", duration: "30 min" },
-        { name: "Blow Dry & Style", price: "$55", duration: "45 min" },
-      ]
+      question: "How do I book an appointment?",
+      answer: "Click any 'Book on Fresha' button on this page or visit our booking page. You can book 24/7 online and choose your preferred date and time. New clients are always welcome!"
     },
     {
-      category: "Colour Services",
-      items: [
-        { name: "Full Colour", price: "From $120", duration: "2-3 hours" },
-        { name: "Balayage", price: "From $180", duration: "3-4 hours" },
-        { name: "Highlights (half head)", price: "$140", duration: "2 hours" },
-        { name: "Highlights (full head)", price: "$180", duration: "3 hours" },
-        { name: "Toner", price: "$45", duration: "30 min" },
-      ]
+      question: "What should I do to prepare for my color appointment?",
+      answer: "Come with clean, dry hair (no product). Bring inspiration photos if you have them. During your complimentary consultation, we'll discuss your hair goals, assess your current condition, and create a custom color plan."
     },
     {
-      category: "Treatments",
-      items: [
-        { name: "Deep Conditioning Treatment", price: "$45", duration: "30 min" },
-        { name: "Keratin Treatment", price: "From $250", duration: "3-4 hours" },
-        { name: "Scalp Treatment", price: "$65", duration: "45 min" },
-        { name: "Olaplex Treatment", price: "$55", duration: "30 min" },
-      ]
+      question: "How long do color services take?",
+      answer: "Full color and highlights typically take 2-3 hours. Balayage can take 3-4 hours for a full application. Root touch-ups are usually 90 minutes. We always allocate extra time for consultations and customization."
     },
     {
-      category: "Special Occasions",
-      items: [
-        { name: "Bridal Hair (trial)", price: "$150", duration: "2 hours" },
-        { name: "Bridal Hair (wedding day)", price: "$180", duration: "2 hours" },
-        { name: "Special Event Styling", price: "$95", duration: "90 min" },
-        { name: "Hair Extensions Consultation", price: "Free", duration: "30 min" },
-      ]
-    }
+      question: "Are your products safe for color-treated hair?",
+      answer: "Yes! All our retail products and in-salon treatments are sulfate-free and formulated to protect color. We use premium brands like Olaplex, Kevin Murphy, and Moroccan Oil."
+    },
+    {
+      question: "Do you offer bridal or special event styling?",
+      answer: "Absolutely! We recommend booking a trial run 4-6 weeks before your event. Bridal packages include trial, wedding day styling, and optional touch-ups. Contact us to discuss your vision."
+    },
+    {
+      question: "What's the difference between Olaplex and Keratin treatments?",
+      answer: "Olaplex repairs broken bonds in damaged hair—great for color-treated or over-processed hair. Keratin smooths frizz and adds shine for 3-4 months. Both can be combined for maximum results."
+    },
+    {
+      question: "How often should I get a cut?",
+      answer: "Every 6-8 weeks for short styles, 8-12 weeks for medium to long hair. Regular trims prevent split ends and maintain shape. Bang trims are recommended every 3-4 weeks."
+    },
+    {
+      question: "Do you have parking at the salon?",
+      answer: "Yes! Free parking is available directly in front of our Bangor salon on River Road. We're easily accessible from all Sutherland Shire suburbs."
+    },
+    {
+      question: "What's your cancellation policy?",
+      answer: "We require 24 hours notice for cancellations or rescheduling. Late cancellations or no-shows may incur a 50% service fee. We understand emergencies happen—just let us know as soon as possible."
+    },
+    {
+      question: "Can I purchase products without a service?",
+      answer: "Yes! Browse our curated product selection in-salon or shop online. All retail products come with complimentary usage guidance. Not sure what you need? Book a free product consultation."
+    },
   ];
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      <main className="flex-grow">
-        <Section className="pt-xl">
-          <SectionHeader 
-            title="Salon Services" 
-            subtitle="Expert styling, colouring, and treatments tailored to you"
-          />
-          <div className="max-w-4xl mx-auto">
-            {services.map((serviceGroup, index) => (
-              <div key={index} className="mb-12 last:mb-0">
-                <h2 className="text-h2 font-heading text-heading mb-6 pb-3 border-b border-border">
-                  {serviceGroup.category}
-                </h2>
-                <div className="space-y-4">
-                  {serviceGroup.items.map((item, itemIndex) => (
-                    <ServiceRow 
-                      key={itemIndex}
-                      title={item.name}
-                      price={item.price}
-                      description={item.duration}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
+  // Structured Data (JSON-LD)
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "HairSalon",
+        "name": "Hair Pinns",
+        "image": "https://hairpinns.com/salon-image.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 River Road",
+          "addressLocality": "Bangor",
+          "addressRegion": "NSW",
+          "postalCode": "2234",
+          "addressCountry": "AU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -34.0167,
+          "longitude": 151.0333
+        },
+        "url": "https://hairpinns.com/services",
+        "telephone": "+61295550123",
+        "priceRange": "$45-$250",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      }
+    ]
+  };
 
-            <div className="mt-12 pt-8 border-t border-border text-center">
-              <p className="text-muted-foreground mb-6">
-                All services include a complimentary consultation. Prices may vary based on hair length and condition.
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
+      <Header />
+      <main>
+        {/* Hero */}
+        <section className="bg-accent py-12 md:py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
+              Salon Services
+            </h1>
+            <p className="text-lg text-foreground leading-relaxed">
+              Welcome to Hair Pinns, your boutique hair salon in Bangor, NSW. 
+              Serving the Sutherland Shire with expert cuts, color, and treatments since 2018. 
+              Jena brings over 10 years of professional experience, honest care, 
+              and a passion for helping you love your hair.
+            </p>
+          </div>
+        </section>
+
+        {/* Why Choose Hair Pinns */}
+        <section className="py-12 bg-muted">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-6 text-center">
+              Why Choose Hair Pinns?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex flex-col items-center text-center p-6 bg-card rounded-card border border-border">
+                <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center mb-4">
+                  <Check className="w-6 h-6" />
+                </div>
+                <h3 className="font-semibold text-heading mb-2">Honest Care</h3>
+                <p className="text-sm text-foreground">
+                  No upsells, no gimmicks—just expert advice tailored to your hair goals and budget
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center p-6 bg-card rounded-card border border-border">
+                <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center mb-4">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <h3 className="font-semibold text-heading mb-2">Premium Products</h3>
+                <p className="text-sm text-foreground">
+                  Olaplex, Kevin Murphy, Moroccan Oil—salon-quality results you can trust
+                </p>
+              </div>
+              <div className="flex flex-col items-center text-center p-6 bg-card rounded-card border border-border">
+                <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center mb-4">
+                  <Check className="w-6 h-6" />
+                </div>
+                <h3 className="font-semibold text-heading mb-2">Local Love</h3>
+                <p className="text-sm text-foreground">
+                  Proud to serve Bangor & the Sutherland Shire with personalized, boutique service
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Colour & Blonding */}
+        <section id="colour" className="py-16 scroll-mt-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-3 mb-8">
+              <Sparkles className="w-8 h-8 text-brand-500" />
+              <h2 className="text-h2-lg font-heading font-bold text-heading">
+                Colour & Blonding
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.colour.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base"
+                >
+                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
+                    {service.name}
+                  </h3>
+                  <p className="text-sm text-foreground mb-4">{service.value}</p>
+                  <p className="text-xl font-bold text-brand-500 mb-4">
+                    {service.price}
+                  </p>
+                  <a
+                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="primary" size="sm" className="w-full">
+                      <Calendar className="w-4 h-4" />
+                      Book on Fresha
+                    </Button>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Smoothing & Treatments */}
+        <section id="treatments" className="py-16 bg-muted scroll-mt-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-3 mb-8">
+              <Wind className="w-8 h-8 text-brand-500" />
+              <h2 className="text-h2-lg font-heading font-bold text-heading">
+                Smoothing & Treatments
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.treatments.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base"
+                >
+                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
+                    {service.name}
+                  </h3>
+                  <p className="text-sm text-foreground mb-4">{service.value}</p>
+                  <p className="text-xl font-bold text-brand-500 mb-4">
+                    {service.price}
+                  </p>
+                  <a
+                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="primary" size="sm" className="w-full">
+                      <Calendar className="w-4 h-4" />
+                      Book on Fresha
+                    </Button>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Mid-page Consult CTA */}
+        <section className="py-12 bg-brand-500 text-white">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-h2-lg font-heading font-bold mb-4">
+              Not sure which service is right for you?
+            </h2>
+            <p className="text-lg mb-6 opacity-90">
+              Book a free 15-minute consultation with Jena. We'll assess your hair, 
+              discuss your goals, and create a custom plan.
+            </p>
+            <a
+              href="https://www.fresha.com/book-now/hair-pinns-example"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
+                <Calendar className="w-5 h-5" />
+                Book Free Consult
+              </Button>
+            </a>
+          </div>
+        </section>
+
+        {/* Cuts & Styling */}
+        <section id="cuts" className="py-16 scroll-mt-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-3 mb-8">
+              <Scissors className="w-8 h-8 text-brand-500" />
+              <h2 className="text-h2-lg font-heading font-bold text-heading">
+                Cuts & Styling
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.cuts.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base"
+                >
+                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
+                    {service.name}
+                  </h3>
+                  <p className="text-sm text-foreground mb-4">{service.value}</p>
+                  <p className="text-xl font-bold text-brand-500 mb-4">
+                    {service.price}
+                  </p>
+                  <a
+                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="primary" size="sm" className="w-full">
+                      <Calendar className="w-4 h-4" />
+                      Book on Fresha
+                    </Button>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Add-ons */}
+        <section id="add-ons" className="py-16 bg-muted scroll-mt-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-3 mb-8">
+              <Plus className="w-8 h-8 text-brand-500" />
+              <h2 className="text-h2-lg font-heading font-bold text-heading">
+                Add-ons & Enhancements
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.addons.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base"
+                >
+                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
+                    {service.name}
+                  </h3>
+                  <p className="text-sm text-foreground mb-4">{service.value}</p>
+                  <p className="text-xl font-bold text-brand-500 mb-4">
+                    {service.price}
+                  </p>
+                  <a
+                    href="https://www.fresha.com/book-now/hair-pinns-example"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="primary" size="sm" className="w-full">
+                      <Calendar className="w-4 h-4" />
+                      Book on Fresha
+                    </Button>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-background">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
+              Frequently Asked Questions
+            </h2>
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`faq-${index}`}
+                  className="bg-card border border-border rounded-card px-6"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-heading hover:text-brand-500">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            <div className="text-center mt-12 pt-8 border-t border-border">
+              <p className="text-foreground mb-6">
+                Still have questions? We're here to help.
               </p>
-              <Link to="/booking">
-                <Button variant="primary" size="xl">
+              <a
+                href="https://www.fresha.com/book-now/hair-pinns-example"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="primary" size="lg">
                   <Calendar className="w-5 h-5" />
                   Book Your Appointment
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
-        </Section>
+        </section>
       </main>
-      
       <Footer />
     </div>
   );
