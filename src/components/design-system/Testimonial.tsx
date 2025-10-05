@@ -30,7 +30,7 @@ const Testimonial = ({
             key={i} 
             className={cn(
               "w-4 h-4",
-              i < rating ? "text-yellow-400 fill-current" : "text-muted-foreground"
+              i < rating ? "text-[hsl(var(--star-color))] fill-current" : "text-muted-foreground"
             )} 
           />
         ))}

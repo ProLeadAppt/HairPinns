@@ -11,8 +11,8 @@ const badgeVariants = cva(
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground border border-border",
         accent: "bg-brand-500 text-white",
-        success: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-        warning: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+        success: "bg-[hsl(var(--success-bg))] text-[hsl(var(--success-fg))]",
+        warning: "bg-[hsl(var(--warning-bg))] text-[hsl(var(--warning-fg))]",
       },
       size: {
         default: "px-2.5 py-0.5 text-xs",

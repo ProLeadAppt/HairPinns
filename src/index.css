@@ -14,13 +14,26 @@ All colors MUST be HSL.
   :root {
     /* Hair Pinns Brand Colors - Exact Match */
     --brand-500: 289 100% 22%;             /* #59006E - Primary purple */
-    --brand-600: 289 100% 14%;             /* 8% darker for hover */
+    --brand-600: 289 100% 19%;             /* #4F0063 - 8% darker for hover */
     --text: 216 7% 14%;                    /* #212326 - Dark charcoal */
     --heading: 216 7% 14%;                 /* #212326 - Headings */
     --link: 289 100% 22%;                  /* #59006E - Brand purple for links */
     --bg: 0 0% 100%;                       /* #FFFFFF - Pure white */
     --accent: 290 43% 95%;                 /* #F6ECF8 - Light purple accent */
     --muted: 220 11% 91%;                  /* #E6E8EC - Muted gray */
+
+    /* Container & Layout */
+    --container: 1200px;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    
+    /* Semantic UI Colors */
+    --star-color: 45 93% 58%;              /* Gold for ratings */
+    --success: 142 71% 45%;                /* Success green */
+    --success-bg: 142 76% 96%;
+    --success-fg: 142 71% 25%;
+    --warning: 38 92% 50%;                 /* Warning amber */
+    --warning-bg: 38 100% 96%;
+    --warning-fg: 38 92% 30%;
 
     /* Radii - Exact match */
     --radius-btn: 1px;

@@ -45,7 +45,7 @@ const HeroHome = () => {
           {/* Trust Row */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-foreground">
             <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-yellow-500 fill-current" />
+              <Star className="w-4 h-4 text-[hsl(var(--star-color))] fill-current" />
               <span className="font-semibold">4.9★ Google</span>
             </div>
             <div className="flex items-center gap-2">

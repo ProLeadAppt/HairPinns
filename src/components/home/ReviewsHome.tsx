@@ -48,7 +48,7 @@ const ReviewsHome = () => {
               {[...Array(review.stars)].map((_, i) => (
                 <Star 
                   key={i} 
-                  className="w-4 h-4 text-yellow-500 fill-current" 
+                  className="w-4 h-4 text-[hsl(var(--star-color))] fill-current" 
                 />
               ))}
             </div>

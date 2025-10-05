@@ -72,7 +72,7 @@ const PriceRow = ({
             <div className={cn(
               "mt-0.5 rounded-full p-0.5",
               feature.included 
-                ? "text-green-600 bg-green-100 dark:bg-green-900 dark:text-green-400" 
+                ? "text-[hsl(var(--success-fg))] bg-[hsl(var(--success-bg))]" 
                 : "text-muted-foreground bg-muted"
             )}>
               {feature.included ? (

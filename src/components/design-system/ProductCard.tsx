@@ -47,7 +47,7 @@ const ProductCard = ({
               key={i} 
               className={cn(
                 "w-3 h-3",
-                i < Math.floor(rating) ? "text-yellow-400 fill-current" : "text-muted-foreground"
+                i < Math.floor(rating) ? "text-[hsl(var(--star-color))] fill-current" : "text-muted-foreground"
               )} 
             />
           ))}
