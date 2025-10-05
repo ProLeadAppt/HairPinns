@@ -9,16 +9,25 @@ const TrackingInitializer = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Initialize session data on first load
+    // Initialize tracking on first load
     const session = hpCapture.getSession();
+    const firstTouch = hpCapture.getFirstTouch();
+    const pageTracking = hpCapture.getPageTracking();
+    
     console.log('[Tracking] Session initialized:', session);
+    console.log('[Tracking] First-touch data:', firstTouch);
+    console.log('[Tracking] Page tracking:', pageTracking);
   }, []);
 
   useEffect(() => {
+    // Update page tracking on route change
+    const pageTracking = hpCapture.getPageTracking();
+    
     // Track page views on route change
     hpCapture.trackEvent('page_view', {
       path: location.pathname,
       search: location.search,
+      seconds_on_previous_page: pageTracking.seconds_on_page,
     });
   }, [location]);
 

@@ -15,6 +15,26 @@ interface SessionData {
   referrer: string;
 }
 
+interface FirstTouchData {
+  first_utm_source?: string;
+  first_utm_medium?: string;
+  first_utm_campaign?: string;
+  first_utm_content?: string;
+  first_utm_term?: string;
+  first_gclid?: string;
+  first_fbclid?: string;
+  first_ttclid?: string;
+  first_referrer: string;
+  first_landing_page: string;
+  first_seen_timestamp: string;
+}
+
+interface PageTrackingData {
+  last_seen_page: string;
+  page_entry_time: number;
+  seconds_on_page?: number;
+}
+
 interface CapturePayload {
   page_url: string;
   form_name?: string;
@@ -81,7 +101,57 @@ function getUrlParams(): Record<string, string> {
   return params;
 }
 
-// Get and persist session data
+// Get or create first-touch attribution data (persists across sessions)
+function getFirstTouchData(): FirstTouchData {
+  const STORAGE_KEY = 'hp_first_touch';
+  
+  if (typeof window === 'undefined') {
+    return {
+      first_referrer: '',
+      first_landing_page: '',
+      first_seen_timestamp: new Date().toISOString(),
+    };
+  }
+  
+  // Check if we already have first-touch data
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch (e) {
+      console.error('Failed to parse first-touch data:', e);
+    }
+  }
+  
+  // Capture first-touch data
+  const params = getUrlParams();
+  const firstTouch: FirstTouchData = {
+    first_referrer: document.referrer || '(direct)',
+    first_landing_page: window.location.href,
+    first_seen_timestamp: new Date().toISOString(),
+  };
+  
+  // Capture first UTM parameters
+  if (params.utm_source) firstTouch.first_utm_source = params.utm_source;
+  if (params.utm_medium) firstTouch.first_utm_medium = params.utm_medium;
+  if (params.utm_campaign) firstTouch.first_utm_campaign = params.utm_campaign;
+  if (params.utm_content) firstTouch.first_utm_content = params.utm_content;
+  if (params.utm_term) firstTouch.first_utm_term = params.utm_term;
+  
+  // Capture first click IDs
+  if (params.gclid) firstTouch.first_gclid = params.gclid;
+  if (params.fbclid) firstTouch.first_fbclid = params.fbclid;
+  if (params.ttclid) firstTouch.first_ttclid = params.ttclid;
+  
+  // Store permanently in localStorage
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(firstTouch));
+  
+  console.log('[hpCapture] First-touch data captured:', firstTouch);
+  
+  return firstTouch;
+}
+
+// Get current session data (last-touch attribution)
 function getSessionData(): SessionData {
   const STORAGE_KEY = 'hp_session_data';
   
@@ -102,7 +172,7 @@ function getSessionData(): SessionData {
     }
   }
   
-  // Capture new session data
+  // Capture new session data (last-touch)
   const params = getUrlParams();
   const sessionData: SessionData = {
     client_id: getClientId(),
@@ -125,6 +195,50 @@ function getSessionData(): SessionData {
   sessionStorage.setItem(STORAGE_KEY, JSON.stringify(sessionData));
   
   return sessionData;
+}
+
+// Track page entry time and calculate time on page
+function getPageTrackingData(): PageTrackingData {
+  const STORAGE_KEY = 'hp_page_tracking';
+  
+  if (typeof window === 'undefined') {
+    return {
+      last_seen_page: '',
+      page_entry_time: Date.now(),
+    };
+  }
+  
+  const currentPage = window.location.href;
+  const now = Date.now();
+  
+  // Get previous page data
+  const stored = sessionStorage.getItem(STORAGE_KEY);
+  let previousData: PageTrackingData | null = null;
+  
+  if (stored) {
+    try {
+      previousData = JSON.parse(stored);
+    } catch (e) {
+      console.error('Failed to parse page tracking data:', e);
+    }
+  }
+  
+  // Calculate seconds on previous page
+  let secondsOnPage: number | undefined;
+  if (previousData && previousData.page_entry_time) {
+    secondsOnPage = Math.round((now - previousData.page_entry_time) / 1000);
+  }
+  
+  // Store current page data
+  const currentData: PageTrackingData = {
+    last_seen_page: currentPage,
+    page_entry_time: now,
+    seconds_on_page: secondsOnPage,
+  };
+  
+  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(currentData));
+  
+  return currentData;
 }
 
 // SHA-256 hash function
@@ -184,11 +298,15 @@ async function postToZapier(
   const { company, ...cleanPayload } = payload as any;
   
   const sessionData = getSessionData();
+  const firstTouch = getFirstTouchData();
+  const pageTracking = getPageTrackingData();
   
-  // Merge payload with session data and GDPR info
+  // Merge payload with session data, first-touch data, and page tracking
   const fullPayload: CapturePayload & {
     utms?: Record<string, string>;
     click_ids?: Record<string, string>;
+    first_touch?: Record<string, string>;
+    first_touch_click_ids?: Record<string, string>;
   } = {
     page_url: typeof window !== 'undefined' ? window.location.href : '',
     timestamp: new Date().toISOString(),
@@ -196,10 +314,13 @@ async function postToZapier(
     // Core session identifiers
     client_id: sessionData.client_id,
     referrer: sessionData.referrer,
+    // Page tracking (only for form submissions)
+    last_seen_page: pageTracking.last_seen_page,
+    seconds_on_page: pageTracking.seconds_on_page,
     // Add GDPR compliance fields
     gdpr_region_detected: 'AU',
     timestamp_consent: payload.consent_marketing ? new Date().toISOString() : undefined,
-    // Group UTMs
+    // Last-touch attribution (current session UTMs)
     utms: {
       utm_source: sessionData.utm_source || '',
       utm_medium: sessionData.utm_medium || '',
@@ -207,11 +328,28 @@ async function postToZapier(
       utm_content: sessionData.utm_content || '',
       utm_term: sessionData.utm_term || '',
     },
-    // Group click IDs
+    // Last-touch click IDs
     click_ids: {
       gclid: sessionData.gclid || '',
       fbclid: sessionData.fbclid || '',
       ttclid: sessionData.ttclid || '',
+    },
+    // First-touch attribution (initial visit)
+    first_touch: {
+      first_utm_source: firstTouch.first_utm_source || '',
+      first_utm_medium: firstTouch.first_utm_medium || '',
+      first_utm_campaign: firstTouch.first_utm_campaign || '',
+      first_utm_content: firstTouch.first_utm_content || '',
+      first_utm_term: firstTouch.first_utm_term || '',
+      first_referrer: firstTouch.first_referrer,
+      first_landing_page: firstTouch.first_landing_page,
+      first_seen_timestamp: firstTouch.first_seen_timestamp,
+    },
+    // First-touch click IDs
+    first_touch_click_ids: {
+      first_gclid: firstTouch.first_gclid || '',
+      first_fbclid: firstTouch.first_fbclid || '',
+      first_ttclid: firstTouch.first_ttclid || '',
     },
   };
   
@@ -287,10 +425,24 @@ async function postToZapier(
 // Exported utility object
 export const hpCapture = {
   /**
-   * Get current session data including UTMs, click IDs, referrer, and client_id
+   * Get current session data including UTMs, click IDs, referrer, and client_id (last-touch)
    */
   getSession: (): SessionData => {
     return getSessionData();
+  },
+  
+  /**
+   * Get first-touch attribution data from initial visit
+   */
+  getFirstTouch: (): FirstTouchData => {
+    return getFirstTouchData();
+  },
+  
+  /**
+   * Get page tracking data including time on page
+   */
+  getPageTracking: (): PageTrackingData => {
+    return getPageTrackingData();
   },
   
   /**
