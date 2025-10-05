@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Calendar, Clock, CheckCircle2, ExternalLink } from "lucide-react";
+import { Calendar, Clock, CheckCircle2, ExternalLink, Loader2, AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,6 +36,7 @@ const ConsultMiniForm = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const { toast } = useToast();
 
   const timeSlots = [
@@ -103,15 +105,44 @@ const ConsultMiniForm = ({
       }
     } catch (error) {
       console.error("Consult form error:", error);
+      setHasError(true);
       toast({
         title: "Submission Error",
-        description: "We couldn't process your request. Please call us instead.",
+        description: "We couldn't process your request. Please try again or call us.",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (hasError) {
+    return (
+      <div className={`bg-destructive/10 border border-destructive/20 rounded-card p-8 text-center ${className}`}>
+        <AlertCircle className="w-16 h-16 text-destructive mx-auto mb-4" />
+        <h3 className="text-h2 font-heading text-heading mb-3">
+          Submission Failed
+        </h3>
+        <p className="text-foreground mb-6">
+          We couldn't process your consult request. This might be a temporary network issue.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button
+            variant="outline"
+            onClick={() => setHasError(false)}
+          >
+            Try Again
+          </Button>
+          <Button variant="default" asChild>
+            <Link to="/contact">Contact Us</Link>
+          </Button>
+        </div>
+        <p className="text-sm text-muted-foreground mt-4">
+          Or call us: <a href="tel:+61295550123" className="text-brand-500 hover:underline font-semibold">(02) 9555 0123</a>
+        </p>
+      </div>
+    );
+  }
 
   if (isSuccess) {
     return (
@@ -225,8 +256,17 @@ const ConsultMiniForm = ({
           className="w-full"
           disabled={isSubmitting}
         >
-          <Calendar className="w-5 h-5 mr-2" />
-          {isSubmitting ? "Submitting..." : "Request Free Consult"}
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Submitting...
+            </>
+          ) : (
+            <>
+              <Calendar className="w-5 h-5 mr-2" />
+              Request Free Consult
+            </>
+          )}
         </Button>
 
         <p className="text-xs text-muted-foreground text-center">

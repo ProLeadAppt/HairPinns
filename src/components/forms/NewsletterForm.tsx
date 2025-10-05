@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Mail, CheckCircle2 } from "lucide-react";
+import { Mail, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -30,6 +31,7 @@ const NewsletterForm = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -79,15 +81,42 @@ const NewsletterForm = ({
       }
     } catch (error) {
       console.error("Newsletter form error:", error);
+      setHasError(true);
       toast({
         title: "Submission Error",
-        description: "We couldn't process your subscription. Please try again or call us.",
+        description: "We couldn't process your subscription. Please try again or contact us.",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (hasError) {
+    return (
+      <div className={`bg-destructive/10 border border-destructive/20 rounded-card p-6 text-center ${className}`}>
+        <AlertCircle className="w-12 h-12 text-destructive mx-auto mb-4" />
+        <h3 className="text-lg font-heading text-heading mb-2">Submission Failed</h3>
+        <p className="text-foreground mb-4">
+          We couldn't process your subscription. This might be a temporary network issue.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button
+            variant="outline"
+            onClick={() => {
+              setHasError(false);
+              setFormData({ first_name: "", email: "", phone: "", consent: false });
+            }}
+          >
+            Try Again
+          </Button>
+          <Button variant="default" asChild>
+            <Link to="/contact">Contact Us</Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   if (isSuccess) {
     return (
@@ -144,8 +173,17 @@ const NewsletterForm = ({
         className="w-full"
         disabled={isSubmitting}
       >
-        <Mail className="w-5 h-5 mr-2" />
-        {isSubmitting ? "Subscribing..." : buttonText}
+        {isSubmitting ? (
+          <>
+            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+            Subscribing...
+          </>
+        ) : (
+          <>
+            <Mail className="w-5 h-5 mr-2" />
+            {buttonText}
+          </>
+        )}
       </Button>
     </form>
   );

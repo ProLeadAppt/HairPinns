@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Download, CheckCircle2 } from "lucide-react";
+import { Download, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -34,6 +35,7 @@ const LeadMagnetForm = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -80,15 +82,42 @@ const LeadMagnetForm = ({
       }
     } catch (error) {
       console.error("Lead magnet form error:", error);
+      setHasError(true);
       toast({
         title: "Submission Error",
-        description: "We couldn't process your request. Please try again or call us.",
+        description: "We couldn't process your request. Please try again or contact us.",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (hasError) {
+    return (
+      <div className={`bg-destructive text-white rounded-card p-8 text-center ${className}`}>
+        <AlertCircle className="w-16 h-16 mx-auto mb-4" />
+        <h3 className="text-h2 font-heading mb-3">Submission Failed</h3>
+        <p className="text-lg mb-6">
+          We couldn't process your download request. This might be a temporary network issue.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setHasError(false);
+              setFormData({ first_name: "", email: "", phone: "", consent: false });
+            }}
+          >
+            Try Again
+          </Button>
+          <Button variant="secondary" asChild>
+            <Link to="/contact">Contact Us</Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   if (isSuccess) {
     return (
@@ -158,8 +187,17 @@ const LeadMagnetForm = ({
           className="w-full bg-white text-brand-500 hover:bg-white/90"
           disabled={isSubmitting}
         >
-          <Download className="w-5 h-5 mr-2" />
-          {isSubmitting ? "Processing..." : buttonText}
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Processing...
+            </>
+          ) : (
+            <>
+              <Download className="w-5 h-5 mr-2" />
+              {buttonText}
+            </>
+          )}
         </Button>
 
         <p className="text-xs text-center opacity-75">

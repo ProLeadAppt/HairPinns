@@ -58,6 +58,8 @@ declare global {
     __hpErrors?: Array<{
       timestamp: string;
       error: string;
+      status_code?: number;
+      response_text?: string;
       payload?: any;
     }>;
   }
@@ -393,8 +395,21 @@ async function postToZapier(
         return true;
       }
       
-      // Non-2xx response
+      // Non-2xx response - log detailed error
+      const responseText = await response.text().catch(() => 'Could not read response text');
+      
       console.warn(`[hpCapture] Attempt ${attempt + 1} failed with status ${response.status}`);
+      
+      // Log to window.__hpErrors for QA
+      if (typeof window !== 'undefined' && window.__hpErrors) {
+        window.__hpErrors.push({
+          timestamp: new Date().toISOString(),
+          error: `HTTP ${response.status} on attempt ${attempt + 1}`,
+          status_code: response.status,
+          response_text: responseText,
+          payload: fullPayload,
+        });
+      }
       
       // If this isn't the last attempt, wait before retrying
       if (attempt < retryAttempts - 1) {
@@ -402,6 +417,15 @@ async function postToZapier(
       }
     } catch (error) {
       console.error(`[hpCapture] Attempt ${attempt + 1} failed with error:`, error);
+      
+      // Log network/fetch errors
+      if (typeof window !== 'undefined' && window.__hpErrors) {
+        window.__hpErrors.push({
+          timestamp: new Date().toISOString(),
+          error: `Network error on attempt ${attempt + 1}: ${error}`,
+          payload: fullPayload,
+        });
+      }
       
       // If this isn't the last attempt, wait before retrying
       if (attempt < retryAttempts - 1) {

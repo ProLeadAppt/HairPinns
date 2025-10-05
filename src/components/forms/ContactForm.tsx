@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Mail, CheckCircle2, MessageCircle } from "lucide-react";
+import { Mail, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,6 +40,7 @@ const ContactForm = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const { toast } = useToast();
 
   const topics = [
@@ -107,15 +109,44 @@ const ContactForm = ({
       }
     } catch (error) {
       console.error("Contact form error:", error);
+      setHasError(true);
       toast({
         title: "Submission Error",
-        description: "We couldn't send your message. Please call us instead.",
+        description: "We couldn't send your message. Please try again or call us.",
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (hasError) {
+    return (
+      <div className={`bg-destructive/10 border border-destructive/20 rounded-card p-8 text-center ${className}`}>
+        <AlertCircle className="w-16 h-16 text-destructive mx-auto mb-4" />
+        <h3 className="text-h2 font-heading text-heading mb-3">
+          Submission Failed
+        </h3>
+        <p className="text-foreground mb-6">
+          We couldn't send your message. This might be a temporary network issue.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button
+            variant="outline"
+            onClick={() => setHasError(false)}
+          >
+            Try Again
+          </Button>
+          <p className="text-sm text-muted-foreground">
+            Or call us at{" "}
+            <a href="tel:+61295550123" className="text-brand-500 hover:underline font-semibold">
+              (02) 9555 0123
+            </a>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (isSuccess) {
     return (
@@ -133,7 +164,17 @@ const ContactForm = ({
           <Button
             variant="outline"
             size="lg"
-            onClick={() => setIsSuccess(false)}
+            onClick={() => {
+              setIsSuccess(false);
+              setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                topic: "",
+                message: "",
+                consent: false,
+              });
+            }}
             className="w-full"
           >
             Send Another Message
@@ -247,8 +288,17 @@ const ContactForm = ({
           className="w-full"
           disabled={isSubmitting}
         >
-          <Mail className="w-5 h-5 mr-2" />
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            <>
+              <Mail className="w-5 h-5 mr-2" />
+              Send Message
+            </>
+          )}
         </Button>
 
         <p className="text-xs text-muted-foreground text-center">
