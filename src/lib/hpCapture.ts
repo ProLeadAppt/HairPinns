@@ -1,5 +1,7 @@
 // Hair Pinns Capture - Analytics & Form Submission Utility
 
+import { projectConfig } from '@/config/projectConfig';
+
 const ZAPIER_CATCH_HOOK_URL = "https://hooks.zapier.com/hooks/catch/23975177/u9frxmo/";
 
 interface SessionData {
@@ -317,9 +319,10 @@ async function postToZapier(
     // Page tracking (only for form submissions)
     last_seen_page: pageTracking.last_seen_page,
     seconds_on_page: pageTracking.seconds_on_page,
-    // Add GDPR compliance fields
-    gdpr_region_detected: 'AU',
+    // Add GDPR compliance and project config fields
+    gdpr_region_detected: projectConfig.gdpr_region,
     timestamp_consent: payload.consent_marketing ? new Date().toISOString() : undefined,
+    double_opt_in: projectConfig.double_opt_in,
     // Last-touch attribution (current session UTMs)
     utms: {
       utm_source: sessionData.utm_source || '',
