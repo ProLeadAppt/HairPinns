@@ -80,8 +80,8 @@ export const generateOrganizationSchema = () => ({
   url: BASE_URL,
   logo: LOGO_URL,
   sameAs: [
-    'https://www.facebook.com/hairpinns',
-    'https://www.instagram.com/hairpinns',
+    'https://www.facebook.com/Hair.Pinns',
+    'https://www.instagram.com/hair.pinns/',
     'https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer',
   ],
   contactPoint: {

@@ -89,8 +89,8 @@ const Contact = () => {
     "priceRange": "$$",
     "url": "https://hairpinns.com.au",
     "sameAs": [
-      "https://www.facebook.com/hairpinns",
-      "https://www.instagram.com/hairpinns"
+      "https://www.facebook.com/Hair.Pinns",
+      "https://www.instagram.com/hair.pinns/"
     ]
   };
 

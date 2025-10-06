@@ -74,7 +74,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-3">
               <a 
-                href="https://instagram.com/hairpinns" 
+                href="https://www.instagram.com/hair.pinns/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
@@ -83,7 +83,7 @@ const Footer = () => {
                 <Instagram className="w-4 h-4" />
               </a>
               <a 
-                href="https://facebook.com/hairpinns" 
+                href="https://www.facebook.com/Hair.Pinns" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
