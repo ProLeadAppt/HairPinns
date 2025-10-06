@@ -141,4 +141,4 @@ export const productReviews: Record<string, Review[]> = {
 
 export const averageRating = 4.9;
 export const totalReviews = 53;
-export const googleReviewsUrl = "https://g.page/r/CaNuuFnyRrYOEAE/review";
+export const googleReviewsUrl = "https://search.google.com/local/writereview?placeid=ChIJs9xoWku_EmsRo264WfJGtg4";
