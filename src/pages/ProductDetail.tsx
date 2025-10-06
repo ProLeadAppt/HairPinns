@@ -176,12 +176,8 @@ const ProductDetail = () => {
     } catch (error) {
       console.error("Buy now failed:", error);
       toast.error("Unable to proceed to checkout. Please try again.");
-      toast.error("Failed to process. Redirecting...");
-      
-      // Fallback to product page
-      setTimeout(() => {
-        window.location.href = getProductUrl(handle || "");
-      }, 1500);
+    } finally {
+      setBuyingNow(false);
     }
   };
 
