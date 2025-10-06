@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { X, ShoppingBag, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Cart } from "@/lib/cartManagement";
+import { Cart, getCheckoutUrl } from "@/lib/cartManagement";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
 import { gotoCheckout } from "@/lib/checkout";
+import { toast } from "sonner";
 
 interface MiniCartProps {
   isOpen: boolean;
@@ -34,17 +35,18 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
   const handleCheckout = () => {
     if (!cart || itemCount === 0) return;
     
-    // Track begin_checkout to Zapier
+    // Track begin_checkout to Zapier (non-blocking)
     trackBeginCheckout({
       cart_total: total,
       item_count: itemCount,
       currency: "AUD",
     });
     
-    // Use checkout URL if available, otherwise fallback to native cart
-    if (cart.checkoutUrl) {
-      console.log("🛒 Redirecting to checkout:", cart.checkoutUrl);
-      gotoCheckout(cart.checkoutUrl);
+    // Get stored checkout URL (set during Add to Bag)
+    const url = getCheckoutUrl();
+    if (url) {
+      console.log("🛒 Redirecting to checkout:", url);
+      gotoCheckout(url);
     } else {
       // Fallback to native cart with first variant
       const firstLine = cart.lines[0];
@@ -55,6 +57,7 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
         gotoCheckout(fallbackUrl);
       } else {
         console.error("❌ No checkout URL or variant available");
+        toast.error("Unable to proceed to checkout. Please try again.");
       }
     }
   };

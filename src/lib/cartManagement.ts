@@ -22,6 +22,7 @@ export interface Cart {
 }
 
 const CART_STORAGE_KEY = "hp_cart_id";
+const CHECKOUT_URL_KEY = "hp_checkout_url";
 
 /**
  * Get cart ID from localStorage
@@ -42,6 +43,21 @@ export function saveCartId(cartId: string): void {
  */
 export function clearCartId(): void {
   localStorage.removeItem(CART_STORAGE_KEY);
+  localStorage.removeItem(CHECKOUT_URL_KEY);
+}
+
+/**
+ * Get checkout URL from localStorage
+ */
+export function getStoredCheckoutUrl(): string | null {
+  return localStorage.getItem(CHECKOUT_URL_KEY);
+}
+
+/**
+ * Save checkout URL to localStorage
+ */
+export function saveCheckoutUrl(url: string): void {
+  localStorage.setItem(CHECKOUT_URL_KEY, url);
 }
 
 /**
@@ -78,6 +94,9 @@ export async function addToBag(
       throw new Error("Cart checkout URL is missing");
     }
 
+    // Store checkout URL for later use
+    saveCheckoutUrl(cart.checkoutUrl);
+
     console.log("✅ Added to bag:", {
       cartId: cart.id,
       checkoutUrl: cart.checkoutUrl,
@@ -101,6 +120,7 @@ export async function addToBag(
       }
       
       saveCartId(newCart.id);
+      saveCheckoutUrl(newCart.checkoutUrl);
       return newCart;
     }
     
@@ -109,31 +129,9 @@ export async function addToBag(
 }
 
 /**
- * Get checkout URL from cart with fallback to native cart
+ * Get checkout URL from localStorage (set during Add to Bag)
  */
-export function getCheckoutUrl(cart?: Cart | null, variantId?: string): string | null {
-  if (cart?.checkoutUrl) {
-    return cart.checkoutUrl;
-  }
-  
-  // Fallback: Return null to trigger native cart fallback
-  return null;
+export function getCheckoutUrl(): string | null {
+  return getStoredCheckoutUrl();
 }
 
-/**
- * Navigate to checkout with fallback to native Shopify cart
- */
-export function goToCheckout(cart?: Cart | null, variantId?: string): void {
-  const url = getCheckoutUrl(cart, variantId);
-  
-  if (url) {
-    window.location.href = url;
-  } else if (variantId) {
-    // Fallback to native Shopify cart with variant
-    const cleanVariantId = variantId.split('/').pop(); // Extract numeric ID from GID
-    window.location.href = `https://hairpinns.com/cart/${cleanVariantId}:1`;
-    console.warn("⚠️ Using native cart fallback:", variantId);
-  } else {
-    console.error("❌ No checkout URL or variant ID available");
-  }
-}

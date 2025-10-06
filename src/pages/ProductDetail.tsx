@@ -19,11 +19,11 @@ import { getProductByHandle, getProductUrl } from "@/lib/shopify";
 import { addToBag, getCheckoutUrl, getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout } from "@/lib/ecommerceTracking";
 import { gotoCheckout } from "@/lib/checkout";
+import { toast } from "sonner";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import { getOGImage } from "@/lib/sitemap";
-import { toast } from "sonner";
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -161,10 +161,11 @@ const ProductDetail = () => {
         currency: "AUD",
       });
       
-      // Redirect to checkout with fallback
-      const checkoutUrl = getCheckoutUrl(updatedCart, activeVariantId);
-      if (checkoutUrl) {
-        gotoCheckout(checkoutUrl);
+      // Get stored checkout URL (set during Add to Bag)
+      const url = getCheckoutUrl();
+      if (url) {
+        console.log("🛒 Redirecting to checkout:", url);
+        gotoCheckout(url);
       } else {
         // Fallback to native cart
         const cleanVariantId = activeVariantId.split('/').pop();
@@ -174,6 +175,7 @@ const ProductDetail = () => {
       }
     } catch (error) {
       console.error("Buy now failed:", error);
+      toast.error("Unable to proceed to checkout. Please try again.");
       toast.error("Failed to process. Redirecting...");
       
       // Fallback to product page

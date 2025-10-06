@@ -3,6 +3,7 @@ import { getCheckoutUrl } from "@/lib/cartManagement";
 import { fetchShopify } from "@/lib/shopify";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
 import { gotoCheckout } from "@/lib/checkout";
+import { toast } from "sonner";
 
 type Line = { qty: number; title: string; variant: string };
 
@@ -72,10 +73,11 @@ export default function MiniCartDrawer({
       console.warn("⚠️ Tracking failed, but proceeding to checkout:", error);
     }
 
-    // Use checkout URL if available, otherwise fallback to native cart
-    if (checkout) {
-      console.log("🛒 Redirecting to checkout:", checkout);
-      gotoCheckout(checkout);
+    // Get stored checkout URL (set during Add to Bag)
+    const url = getCheckoutUrl();
+    if (url) {
+      console.log("🛒 Redirecting to checkout:", url);
+      gotoCheckout(url);
     } else {
       // Fallback to native cart with first variant
       const firstVariantId = lines[0]?.variant?.split('/').pop();
@@ -85,6 +87,8 @@ export default function MiniCartDrawer({
         gotoCheckout(fallbackUrl);
       } else {
         console.error("❌ No checkout URL or variant available");
+        toast.error("Unable to proceed to checkout. Please try again.");
+        setIsCheckingOut(false);
       }
     }
   };
