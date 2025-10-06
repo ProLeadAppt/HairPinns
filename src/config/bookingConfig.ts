@@ -4,7 +4,7 @@
  */
 
 export const BOOK_CTA_LABEL = "Book now";
-export const BOOK_URL = "https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer?share=true&pId=227127";
+export const BOOK_URL = "https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb";
 
 /**
  * Track booking CTA click event
