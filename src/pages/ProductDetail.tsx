@@ -18,6 +18,7 @@ import { Star, ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react"
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
 import { addToBag, getCheckoutUrl, getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout } from "@/lib/ecommerceTracking";
+import { gotoCheckout } from "@/lib/checkout";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
@@ -163,13 +164,13 @@ const ProductDetail = () => {
       // Redirect to checkout with fallback
       const checkoutUrl = getCheckoutUrl(updatedCart, activeVariantId);
       if (checkoutUrl) {
-        window.location.href = checkoutUrl;
+        gotoCheckout(checkoutUrl);
       } else {
         // Fallback to native cart
         const cleanVariantId = activeVariantId.split('/').pop();
         const fallbackUrl = `https://hairpinns.com/cart/${cleanVariantId}:1`;
         console.warn("⚠️ Using native cart fallback:", fallbackUrl);
-        window.location.href = fallbackUrl;
+        gotoCheckout(fallbackUrl);
       }
     } catch (error) {
       console.error("Buy now failed:", error);

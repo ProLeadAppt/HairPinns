@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Cart } from "@/lib/cartManagement";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
+import { gotoCheckout } from "@/lib/checkout";
 
 interface MiniCartProps {
   isOpen: boolean;
@@ -43,7 +44,7 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
     // Use checkout URL if available, otherwise fallback to native cart
     if (cart.checkoutUrl) {
       console.log("🛒 Redirecting to checkout:", cart.checkoutUrl);
-      window.location.href = cart.checkoutUrl;
+      gotoCheckout(cart.checkoutUrl);
     } else {
       // Fallback to native cart with first variant
       const firstLine = cart.lines[0];
@@ -51,7 +52,7 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
       if (variantId) {
         const fallbackUrl = `https://hairpinns.com/cart/${variantId}:1`;
         console.warn("⚠️ Using native cart fallback:", fallbackUrl);
-        window.location.href = fallbackUrl;
+        gotoCheckout(fallbackUrl);
       } else {
         console.error("❌ No checkout URL or variant available");
       }

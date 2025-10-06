@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getCheckoutUrl } from "@/lib/cartManagement";
 import { fetchShopify } from "@/lib/shopify";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
+import { gotoCheckout } from "@/lib/checkout";
 
 type Line = { qty: number; title: string; variant: string };
 
@@ -74,14 +75,14 @@ export default function MiniCartDrawer({
     // Use checkout URL if available, otherwise fallback to native cart
     if (checkout) {
       console.log("🛒 Redirecting to checkout:", checkout);
-      window.location.href = checkout;
+      gotoCheckout(checkout);
     } else {
       // Fallback to native cart with first variant
       const firstVariantId = lines[0]?.variant?.split('/').pop();
       if (firstVariantId) {
         const fallbackUrl = `https://hairpinns.com/cart/${firstVariantId}:1`;
         console.warn("⚠️ Using native cart fallback:", fallbackUrl);
-        window.location.href = fallbackUrl;
+        gotoCheckout(fallbackUrl);
       } else {
         console.error("❌ No checkout URL or variant available");
       }
