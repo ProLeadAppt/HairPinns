@@ -345,6 +345,33 @@ export async function getShopInfo() {
 }
 
 /**
+ * Get all collections (for debugging)
+ */
+export async function getAllCollections(first: number = 20) {
+  const query = `
+    query getCollections($first: Int!) {
+      collections(first: $first) {
+        edges {
+          node {
+            id
+            handle
+            title
+          }
+        }
+      }
+    }
+  `;
+  
+  try {
+    const data = await fetchShopify<{ collections: any }>(query, { first });
+    return data.collections.edges.map((edge: any) => edge.node);
+  } catch (error) {
+    console.error("❌ Failed to fetch collections:", error);
+    throw error;
+  }
+}
+
+/**
  * Get product URL for fallback
  */
 export function getProductUrl(handle: string): string {

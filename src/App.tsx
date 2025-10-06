@@ -25,6 +25,7 @@ import SuburbPage from "./pages/SuburbPage";
 import SuburbRedirect from "./pages/SuburbRedirect";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
+import DevCollections from "./pages/DevCollections";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/dev/collections" element={<DevCollections />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

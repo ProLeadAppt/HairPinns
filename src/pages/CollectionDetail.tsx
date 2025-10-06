@@ -5,12 +5,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Star, Check, ShoppingBag } from "lucide-react";
-import { getCollectionByHandle, getProductUrl } from "@/lib/shopify";
+import { Star, Check, ShoppingBag, ExternalLink } from "lucide-react";
+import { getCollectionByHandle, getProductUrl, getCollectionUrl } from "@/lib/shopify";
 import { addToBag, getCartId } from "@/lib/cartManagement";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Select,
   SelectContent,
@@ -30,7 +31,8 @@ import ProductBadges from "@/components/conversion/ProductBadges";
 import { getOGImage } from "@/lib/sitemap";
 
 const CollectionDetail = () => {
-  const { handle } = useParams();
+  const { slug } = useParams(); // Route uses :slug, not :handle
+  const handle = slug; // But we'll use "handle" internally for clarity
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("best-sellers");
@@ -40,60 +42,79 @@ const CollectionDetail = () => {
   const [miniCartOpen, setMiniCartOpen] = useState(false);
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
 
-  // Fetch collection from Shopify
+  // Fetch collection from Shopify with timeout
   useEffect(() => {
     let isMounted = true;
+    let timeoutId: NodeJS.Timeout;
     
     const fetchCollection = async () => {
       if (!handle) return;
       
       setLoading(true);
+      
       try {
-        console.log("🔍 Fetching collection:", handle);
-        const collectionData = await getCollectionByHandle(handle);
-        console.log("✅ Collection data fetched:", collectionData);
+        console.log("🔍 Fetching", handle, "collection...");
+        
+        // 8s timeout wrapper
+        const fetchPromise = getCollectionByHandle(handle);
+        const timeoutPromise = new Promise((_, reject) => {
+          timeoutId = setTimeout(() => reject(new Error("Request timeout")), 8000);
+        });
+        
+        const collectionData = await Promise.race([fetchPromise, timeoutPromise]) as any;
+        clearTimeout(timeoutId);
+        
+        console.log("✅ Collection fetched:", collectionData);
         
         if (!isMounted) {
           console.log("⚠️ Component unmounted, skipping state update");
           return;
         }
         
-        if (collectionData) {
-          setCollection(collectionData);
-          
-          // Map Shopify products to our format
-          if (collectionData.products?.edges && Array.isArray(collectionData.products.edges)) {
-            const mappedProducts = collectionData.products.edges.map((edge: any) => {
-              const product = edge.node;
-              const firstImage = product.images.edges[0]?.node;
-              const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
-              
-              // Get first available variant ID (Shopify uses base64 encoded IDs)
-              const variants = product.variants?.edges || [];
-              const firstVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
-              const variantId = firstVariant?.id || null;
-              
-              return {
-                id: product.id,
-                handle: product.handle,
-                title: product.title,
-                price: minPrice,
-                image: firstImage?.url || "/placeholder.svg",
-                availableForSale: product.availableForSale,
-                firstVariantId: variantId,
-              };
-            });
-            
-            console.log("✅ Mapped products:", mappedProducts.length);
-            setProducts(mappedProducts);
-          } else {
-            console.warn("⚠️ No products found in collection");
-          }
+        // Check if collection exists and has products
+        const productEdges = collectionData?.products?.edges || [];
+        if (!collectionData || productEdges.length === 0) {
+          console.warn("Collection fallback", { handle });
+          setCollection(null);
+          setProducts([]);
+          setLoading(false);
+          return;
         }
-      } catch (error) {
+        
+        setCollection(collectionData);
+        
+        // Map Shopify products to our format
+        const mappedProducts = productEdges.map((edge: any) => {
+          const product = edge.node;
+          const firstImage = product.images.edges[0]?.node;
+          const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+          
+          // Get first available variant ID
+          const variants = product.variants?.edges || [];
+          const firstVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
+          const variantId = firstVariant?.id || null;
+          
+          return {
+            id: product.id,
+            handle: product.handle,
+            title: product.title,
+            price: minPrice,
+            image: firstImage?.url || "/placeholder.svg",
+            availableForSale: product.availableForSale,
+            firstVariantId: variantId,
+          };
+        });
+        
+        console.log("✅ Mapped products:", mappedProducts.length);
+        setProducts(mappedProducts);
+        
+      } catch (error: any) {
+        console.warn("Collection fallback", { handle });
         console.error("❌ Failed to fetch collection:", error);
+        
         if (isMounted) {
-          toast.error("Failed to load collection");
+          setCollection(null);
+          setProducts([]);
         }
       } finally {
         if (isMounted) {
@@ -107,6 +128,7 @@ const CollectionDetail = () => {
     
     return () => {
       isMounted = false;
+      clearTimeout(timeoutId);
       console.log("🧹 CollectionDetail cleanup");
     };
   }, [handle]);
@@ -154,28 +176,65 @@ const CollectionDetail = () => {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500 mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading collection...</p>
+        
+        {/* Skeleton Loader */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <Skeleton className="h-4 w-48 mb-8" />
+          
+          <div className="bg-accent py-12 rounded-card mb-8">
+            <Skeleton className="h-12 w-3/4 mb-4" />
+            <Skeleton className="h-6 w-full max-w-3xl" />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <div key={n} className="bg-card border border-border rounded-card overflow-hidden">
+                <Skeleton className="aspect-square w-full" />
+                <div className="p-6 space-y-3">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-8 w-24" />
+                  <div className="flex gap-2">
+                    <Skeleton className="h-9 flex-1" />
+                    <Skeleton className="h-9 flex-1" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+        
         <Footer />
       </div>
     );
   }
 
-  if (!collection) {
+  // Fallback if collection doesn't exist or has no products
+  if (!collection || products.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-heading mb-2">Collection not found</h2>
-            <p className="text-muted-foreground mb-6">This collection doesn't exist or has been removed.</p>
-            <Button asChild variant="primary">
-              <Link to="/collections">Browse Collections</Link>
-            </Button>
+        <div className="flex items-center justify-center min-h-[60vh] px-4">
+          <div className="text-center max-w-lg">
+            <h2 className="text-3xl font-bold text-heading mb-4">Collection Unavailable</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              We couldn't load this collection right now. It may have been moved or temporarily unavailable.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button asChild variant="primary" size="lg">
+                <a 
+                  href={getCollectionUrl(handle || "")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  View on Shopify
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/collections">Browse All Collections</Link>
+              </Button>
+            </div>
           </div>
         </div>
         <Footer />
