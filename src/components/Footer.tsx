@@ -187,9 +187,22 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>
-              © {new Date().getFullYear()} Hair Pinns. All rights reserved. Est. by Jena Pinn.
-            </p>
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <p>
+                © {new Date().getFullYear()} Hair Pinns. All rights reserved. Est. by Jena Pinn.
+              </p>
+              <p>
+                This website was built by{" "}
+                <a 
+                  href="https://proleadappt.com.au/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors underline"
+                >
+                  Pro Lead Appointment
+                </a>
+              </p>
+            </div>
             <nav className="flex flex-wrap justify-center gap-4" aria-label="Legal links">
               <Link to="/policies/shipping" className="hover:text-foreground transition-colors">
                 Shipping
