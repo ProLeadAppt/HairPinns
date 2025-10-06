@@ -140,5 +140,5 @@ export const productReviews: Record<string, Review[]> = {
 };
 
 export const averageRating = 4.9;
-export const totalReviews = googleReviews.length;
+export const totalReviews = 53;
 export const googleReviewsUrl = "https://g.page/r/CaNuuFnyRrYOEAE/review";
