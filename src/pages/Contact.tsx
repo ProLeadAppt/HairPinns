@@ -19,17 +19,17 @@ const Contact = () => {
 
   const businessInfo = {
     name: "Hair Pinns",
-    address: "123 River Road, Bangor NSW 2234",
-    phone: "(02) 9555 0123",
-    phoneRaw: "+61295550123",
+    address: "60 Goorgool Rd, Bangor NSW 2234",
+    phone: "0468 020 624",
+    phoneRaw: "+61468020624",
     email: "hello@hairpinns.com",
     hours: [
-      { day: "Monday", hours: "9:00 AM - 7:00 PM", isOpen: true },
-      { day: "Tuesday", hours: "9:00 AM - 7:00 PM", isOpen: true },
-      { day: "Wednesday", hours: "9:00 AM - 7:00 PM", isOpen: true },
-      { day: "Thursday", hours: "9:00 AM - 7:00 PM", isOpen: true },
-      { day: "Friday", hours: "9:00 AM - 7:00 PM", isOpen: true },
-      { day: "Saturday", hours: "8:00 AM - 5:00 PM", isOpen: true },
+      { day: "Monday", hours: "Closed", isOpen: false },
+      { day: "Tuesday", hours: "10:00 AM - 5:00 PM", isOpen: true },
+      { day: "Wednesday", hours: "6:00 PM - 9:00 PM", isOpen: true },
+      { day: "Thursday", hours: "9:00 AM - 9:00 PM", isOpen: true },
+      { day: "Friday", hours: "9:00 AM - 5:30 PM", isOpen: true },
+      { day: "Saturday", hours: "8:00 AM - 2:00 PM", isOpen: true },
       { day: "Sunday", hours: "Closed", isOpen: false }
     ]
   };
@@ -41,7 +41,7 @@ const Contact = () => {
     "image": "https://hairpinns.com.au/logo.png",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 River Road",
+      "streetAddress": "60 Goorgool Rd",
       "addressLocality": "Bangor",
       "addressRegion": "NSW",
       "postalCode": "2234",
@@ -57,15 +57,33 @@ const Contact = () => {
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "dayOfWeek": "Tuesday",
+        "opens": "10:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Wednesday",
+        "opens": "18:00",
+        "closes": "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Thursday",
         "opens": "09:00",
-        "closes": "19:00"
+        "closes": "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Friday",
+        "opens": "09:00",
+        "closes": "17:30"
       },
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": "Saturday",
         "opens": "08:00",
-        "closes": "17:00"
+        "closes": "14:00"
       }
     ],
     "priceRange": "$$",
@@ -117,11 +135,11 @@ const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Contact Hair Pinns Bangor | Call (02) 9555 0123</title>
-        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire. Call (02) 9555 0123. Free parking, easy access. Open Mon-Sat." />
+        <title>Contact Hair Pinns Bangor | Call 0468 020 624</title>
+        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire. Call 0468 020 624. Free parking, easy access. Open Tue-Sat." />
         <link rel="canonical" href="https://hairpinns.com/contact" />
         <meta property="og:title" content="Contact Hair Pinns Bangor | Visit Our Salon" />
-        <meta property="og:description" content="123 River Road, Bangor NSW 2234. Call (02) 9555 0123. Free parking, open Mon-Sat." />
+        <meta property="og:description" content="60 Goorgool Rd, Bangor NSW 2234. Call 0468 020 624. Free parking, open Tue-Sat." />
         <meta property="og:url" content="https://hairpinns.com/contact" />
         <meta property="og:type" content="website" />
         <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/contact" />
@@ -155,12 +173,12 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold text-heading mb-1">Address</h3>
                       <a 
-                        href="https://maps.google.com/?q=123+River+Road+Bangor+NSW+2234"
+                        href="https://maps.google.com/?q=60+Goorgool+Rd+Bangor+NSW+2234"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-foreground hover:text-brand-500 transition-colors"
                       >
-                        123 River Road<br/>Bangor NSW 2234
+                        60 Goorgool Rd<br/>Bangor NSW 2234
                       </a>
                     </div>
                   </div>
@@ -254,7 +272,7 @@ const Contact = () => {
             <div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden sticky top-4">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.3!2d151.0367!3d-34.0186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAxJzA2LjkiUyAxNTHCsDAyJzEyLjEiRQ!5e0!3m2!1sen!2sau!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d151.0333!3d-34.0186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12c4d1c7b3c3b3%3A0xe36f79e949fabda0!2s60%20Goorgool%20Rd%2C%20Bangor%20NSW%202234!5e0!3m2!1sen!2sau!4v1234567890"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

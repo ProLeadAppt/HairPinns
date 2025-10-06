@@ -141,4 +141,4 @@ export const productReviews: Record<string, Review[]> = {
 
 export const averageRating = 4.9;
 export const totalReviews = googleReviews.length;
-export const googleReviewsUrl = "https://www.google.com/maps/place/Hair+Pinns+Bangor"; // Replace with actual Google Business URL
+export const googleReviewsUrl = "https://g.page/r/CaNuuFnyRrYOEAE/review";

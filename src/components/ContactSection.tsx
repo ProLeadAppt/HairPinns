@@ -7,19 +7,19 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    details: ["123 River Road", "Bangor NSW 2234"],
-    link: "https://maps.google.com",
+    details: ["60 Goorgool Rd", "Bangor NSW 2234"],
+    link: "https://maps.google.com/?q=60+Goorgool+Rd+Bangor+NSW+2234",
   },
   {
     icon: Phone,
     title: "Phone",
-    details: ["(02) 9555 0123"],
-    link: "tel:+61295550123",
+    details: ["0468 020 624"],
+    link: "tel:+61468020624",
   },
   {
     icon: Clock,
     title: "Hours",
-    details: ["Mon-Fri: 9am-7pm", "Sat: 8am-5pm", "Sun: Closed"],
+    details: ["Tue: 10am-5pm, Wed: 6-9pm", "Thu: 9am-9pm, Fri: 9am-5:30pm", "Sat: 8am-2pm"],
   },
   {
     icon: Mail,
@@ -106,10 +106,10 @@ const ContactSection = () => {
             "name": "Hair Pinns",
             "description": "Boutique hair salon in Bangor NSW serving Sutherland Shire",
             "url": "https://hairpinns.com/",
-            "telephone": "+61295550123",
+            "telephone": "+61468020624",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "123 River Road",
+              "streetAddress": "60 Goorgool Rd",
               "addressLocality": "Bangor",
               "addressRegion": "NSW",
               "postalCode": "2234",
@@ -117,12 +117,15 @@ const ContactSection = () => {
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": -34.0156,
+              "latitude": -34.0186,
               "longitude": 151.0302
             },
             "openingHours": [
-              "Mo-Fr 09:00-19:00",
-              "Sa 08:00-17:00"
+              "Tu 10:00-17:00",
+              "We 18:00-21:00",
+              "Th 09:00-21:00",
+              "Fr 09:00-17:30",
+              "Sa 08:00-14:00"
             ],
             "priceRange": "$65-$200",
             "servesCuisine": null,

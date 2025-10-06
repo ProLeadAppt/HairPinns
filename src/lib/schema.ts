@@ -45,7 +45,7 @@ interface BlogPostData {
 const BASE_URL = 'https://hairpinns.com';
 const LOGO_URL = `${BASE_URL}/logo.png`;
 const SALON_ADDRESS = {
-  streetAddress: 'Shop 1, 123 Main Street',
+  streetAddress: '60 Goorgool Rd',
   addressLocality: 'Bangor',
   addressRegion: 'NSW',
   postalCode: '2234',
@@ -55,7 +55,7 @@ const SALON_GEO = {
   latitude: '-34.0186',
   longitude: '151.0333',
 };
-const SALON_PHONE = '+61-2-9555-0123';
+const SALON_PHONE = '+61-468-020-624';
 
 const AREA_SERVED = [
   'Bangor',
@@ -116,15 +116,33 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '09:00',
+      dayOfWeek: 'Tuesday',
+      opens: '10:00',
       closes: '17:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Wednesday',
+      opens: '18:00',
+      closes: '21:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Thursday',
+      opens: '09:00',
+      closes: '21:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Friday',
+      opens: '09:00',
+      closes: '17:30',
     },
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: 'Saturday',
       opens: '08:00',
-      closes: '15:00',
+      closes: '14:00',
     },
   ],
   areaServed: AREA_SERVED.map((area) => ({

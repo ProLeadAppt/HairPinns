@@ -101,25 +101,29 @@ const Footer = () => {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
                 <address className="not-italic text-foreground">
-                  123 River Road<br />
+                  60 Goorgool Rd<br />
                   Bangor NSW 2234
                 </address>
               </div>
               
               <div className="text-foreground">
                 <p className="font-medium mb-1">Hours</p>
-                <p className="text-muted-foreground">Mon-Fri: 9am-7pm</p>
-                <p className="text-muted-foreground">Sat: 8am-5pm</p>
+                <p className="text-muted-foreground">Mon: Closed</p>
+                <p className="text-muted-foreground">Tue: 10am-5pm</p>
+                <p className="text-muted-foreground">Wed: 6pm-9pm</p>
+                <p className="text-muted-foreground">Thu: 9am-9pm</p>
+                <p className="text-muted-foreground">Fri: 9am-5:30pm</p>
+                <p className="text-muted-foreground">Sat: 8am-2pm</p>
                 <p className="text-muted-foreground">Sun: Closed</p>
               </div>
               
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-brand-500" />
                 <a 
-                  href="tel:+61295550123" 
+                  href="tel:+61468020624" 
                   className="text-foreground hover:text-brand-500 transition-colors font-medium"
                 >
-                  (02) 9555 0123
+                  0468 020 624
                 </a>
               </div>
             </div>
