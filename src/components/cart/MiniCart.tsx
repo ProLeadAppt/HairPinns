@@ -31,7 +31,7 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
     : 0;
 
   const handleCheckout = () => {
-    if (!cart || !cart.checkoutUrl) return;
+    if (!cart || itemCount === 0) return;
     
     // Track begin_checkout to Zapier
     trackBeginCheckout({
@@ -40,8 +40,22 @@ const MiniCart = ({ isOpen, onClose, cart }: MiniCartProps) => {
       currency: "AUD",
     });
     
-    // Redirect to Shopify checkout
-    window.location.href = cart.checkoutUrl;
+    // Use checkout URL if available, otherwise fallback to native cart
+    if (cart.checkoutUrl) {
+      console.log("🛒 Redirecting to checkout:", cart.checkoutUrl);
+      window.location.href = cart.checkoutUrl;
+    } else {
+      // Fallback to native cart with first variant
+      const firstLine = cart.lines[0];
+      const variantId = firstLine?.merchandise?.id?.split('/').pop();
+      if (variantId) {
+        const fallbackUrl = `https://hairpinns.com/cart/${variantId}:1`;
+        console.warn("⚠️ Using native cart fallback:", fallbackUrl);
+        window.location.href = fallbackUrl;
+      } else {
+        console.error("❌ No checkout URL or variant available");
+      }
+    }
   };
 
   return (

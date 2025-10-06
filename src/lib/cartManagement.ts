@@ -72,6 +72,12 @@ export async function addToBag(
       saveCartId(cart.id);
     }
 
+    // Guard: Validate checkout URL exists
+    if (!cart.checkoutUrl) {
+      console.error("❌ Cart missing checkoutUrl:", cart);
+      throw new Error("Cart checkout URL is missing");
+    }
+
     console.log("✅ Added to bag:", {
       cartId: cart.id,
       checkoutUrl: cart.checkoutUrl,
@@ -87,6 +93,13 @@ export async function addToBag(
       clearCartId();
       console.log("Clearing invalid cart, creating new one...");
       const newCart = await cartCreate([{ merchandiseId: variantId, quantity }]);
+      
+      // Guard: Validate new cart has checkout URL
+      if (!newCart.checkoutUrl) {
+        console.error("❌ New cart missing checkoutUrl:", newCart);
+        throw new Error("Cart checkout URL is missing");
+      }
+      
       saveCartId(newCart.id);
       return newCart;
     }
@@ -96,15 +109,31 @@ export async function addToBag(
 }
 
 /**
- * Get checkout URL from cart
+ * Get checkout URL from cart with fallback to native cart
  */
-export function getCheckoutUrl(cart: Cart): string {
-  return cart.checkoutUrl;
+export function getCheckoutUrl(cart?: Cart | null, variantId?: string): string | null {
+  if (cart?.checkoutUrl) {
+    return cart.checkoutUrl;
+  }
+  
+  // Fallback: Return null to trigger native cart fallback
+  return null;
 }
 
 /**
- * Navigate to checkout
+ * Navigate to checkout with fallback to native Shopify cart
  */
-export function goToCheckout(checkoutUrl: string): void {
-  window.location.href = checkoutUrl;
+export function goToCheckout(cart?: Cart | null, variantId?: string): void {
+  const url = getCheckoutUrl(cart, variantId);
+  
+  if (url) {
+    window.location.href = url;
+  } else if (variantId) {
+    // Fallback to native Shopify cart with variant
+    const cleanVariantId = variantId.split('/').pop(); // Extract numeric ID from GID
+    window.location.href = `https://hairpinns.com/cart/${cleanVariantId}:1`;
+    console.warn("⚠️ Using native cart fallback:", variantId);
+  } else {
+    console.error("❌ No checkout URL or variant ID available");
+  }
 }

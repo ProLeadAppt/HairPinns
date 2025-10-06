@@ -160,8 +160,17 @@ const ProductDetail = () => {
         currency: "AUD",
       });
       
-      // Redirect to checkout (fast path)
-      window.location.href = getCheckoutUrl(updatedCart);
+      // Redirect to checkout with fallback
+      const checkoutUrl = getCheckoutUrl(updatedCart, activeVariantId);
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        // Fallback to native cart
+        const cleanVariantId = activeVariantId.split('/').pop();
+        const fallbackUrl = `https://hairpinns.com/cart/${cleanVariantId}:1`;
+        console.warn("⚠️ Using native cart fallback:", fallbackUrl);
+        window.location.href = fallbackUrl;
+      }
     } catch (error) {
       console.error("Buy now failed:", error);
       toast.error("Failed to process. Redirecting...");

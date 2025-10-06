@@ -57,12 +57,6 @@ export default function MiniCartDrawer({
   const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   const handleCheckout = async () => {
-    // Validate checkout URL exists
-    if (!checkout) {
-      console.error("❌ No checkout URL available");
-      return;
-    }
-
     setIsCheckingOut(true);
 
     // Track begin_checkout to Zapier (non-blocking)
@@ -77,9 +71,21 @@ export default function MiniCartDrawer({
       console.warn("⚠️ Tracking failed, but proceeding to checkout:", error);
     }
 
-    // Redirect to Shopify checkout
-    console.log("🛒 Redirecting to checkout:", checkout);
-    window.location.href = checkout;
+    // Use checkout URL if available, otherwise fallback to native cart
+    if (checkout) {
+      console.log("🛒 Redirecting to checkout:", checkout);
+      window.location.href = checkout;
+    } else {
+      // Fallback to native cart with first variant
+      const firstVariantId = lines[0]?.variant?.split('/').pop();
+      if (firstVariantId) {
+        const fallbackUrl = `https://hairpinns.com/cart/${firstVariantId}:1`;
+        console.warn("⚠️ Using native cart fallback:", fallbackUrl);
+        window.location.href = fallbackUrl;
+      } else {
+        console.error("❌ No checkout URL or variant available");
+      }
+    }
   };
 
   if (!open) return null;
@@ -114,6 +120,7 @@ export default function MiniCartDrawer({
             onClick={handleCheckout}
             disabled={isCheckingOut || lines.length === 0}
             className="block w-full text-center py-3 rounded-card bg-brand-500 text-primary-foreground font-semibold hover:bg-brand-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Proceed to checkout"
           >
             {isCheckingOut ? "Redirecting..." : "Checkout"}
           </button>
