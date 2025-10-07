@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import jenaHeadshot from "@/assets/jena-headshot.jpg";
 
 const About = () => {
   const testimonials = [
@@ -63,7 +64,7 @@ const About = () => {
               <div className="order-2 lg:order-1">
                 <div className="aspect-[3/4] bg-muted rounded-card overflow-hidden">
                   <img
-                    src="/placeholder.svg"
+                    src={jenaHeadshot}
                     alt="Jena Pinn, founder and lead stylist at Hair Pinns salon"
                     className="w-full h-full object-cover"
                     width="600"
