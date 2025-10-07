@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import hairPinnsLogo from "@/assets/hair-pinns-logo.png";
 
 const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
@@ -32,12 +33,11 @@ const Header = () => {
           <div className="flex items-center justify-between h-full gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
-              <h1 className="text-xl lg:text-2xl font-serif font-bold text-foreground">
-                Hair Pinns
-              </h1>
-              <span className="ml-2 text-xs lg:text-sm text-muted-foreground hidden sm:block">
-                Boutique Salon
-              </span>
+              <img 
+                src={hairPinnsLogo} 
+                alt="Hair Pinns - Happy Hair Specialist" 
+                className="h-10 lg:h-12 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}
