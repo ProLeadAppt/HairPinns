@@ -5,25 +5,16 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import hairPinnsLogo from "@/assets/hair-pinns-logo.png";
-
 const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
-
-  return (
-    <>
+  return <>
       {/* Top Promo Strip */}
-      {showPromo && (
-        <div className="bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative">
+      {showPromo && <div className="bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative">
           <p className="font-medium">✨ Free shipping on orders over $100 • Christmas Gift Packs now available</p>
-          <button
-            onClick={() => setShowPromo(false)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-80"
-            aria-label="Close promo banner"
-          >
+          <button onClick={() => setShowPromo(false)} className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-80" aria-label="Close promo banner">
             <X className="w-4 h-4" />
           </button>
-        </div>
-      )}
+        </div>}
 
       {/* Main Header */}
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border h-16">
@@ -31,39 +22,24 @@ const Header = () => {
           <div className="flex items-center justify-between h-full gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
-              <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-20 lg:h-22 w-auto" />
+              <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-12 lg:h-14 w-auto" />
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6" aria-label="Main navigation">
-              <Link
-                to="/collections"
-                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
-              >
+              <Link to="/collections" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Shop
               </Link>
-              <Link
-                to="/services"
-                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
-              >
+              <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Services
               </Link>
-              <Link
-                to="/about"
-                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
-              >
+              <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 About
               </Link>
-              <Link
-                to="/blog"
-                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
-              >
+              <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Blog
               </Link>
-              <Link
-                to="/contact"
-                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
-              >
+              <Link to="/contact" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Contact
               </Link>
             </nav>
@@ -76,12 +52,7 @@ const Header = () => {
                   Shop Featured
                 </Button>
               </Link>
-              <a
-                href={BOOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackBookingClick("header_desktop", window.location.pathname)}
-              >
+              <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_desktop", window.location.pathname)}>
                 <Button variant="primary" size="sm" aria-label="Book an appointment">
                   <Calendar className="w-4 h-4" />
                   {BOOK_CTA_LABEL}
@@ -99,34 +70,19 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
                 <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
-                  <Link
-                    to="/collections"
-                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
-                  >
+                  <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     Shop
                   </Link>
-                  <Link
-                    to="/services"
-                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
-                  >
+                  <Link to="/services" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     Services
                   </Link>
-                  <Link
-                    to="/about"
-                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
-                  >
+                  <Link to="/about" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     About
                   </Link>
-                  <Link
-                    to="/blog"
-                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
-                  >
+                  <Link to="/blog" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     Blog
                   </Link>
-                  <Link
-                    to="/contact"
-                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
-                  >
+                  <Link to="/contact" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     Contact
                   </Link>
 
@@ -137,13 +93,7 @@ const Header = () => {
                         Shop Featured
                       </Button>
                     </Link>
-                    <a
-                      href={BOOK_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                      onClick={() => trackBookingClick("header_mobile", window.location.pathname)}
-                    >
+                    <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" className="block" onClick={() => trackBookingClick("header_mobile", window.location.pathname)}>
                       <Button variant="primary" size="lg" className="w-full" aria-label="Book an appointment">
                         <Calendar className="w-5 h-5" />
                         {BOOK_CTA_LABEL}
@@ -156,8 +106,6 @@ const Header = () => {
           </div>
         </div>
       </header>
-    </>
-  );
+    </>;
 };
-
 export default Header;
