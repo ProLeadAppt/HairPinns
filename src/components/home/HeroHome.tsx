@@ -60,9 +60,11 @@ const HeroHome = () => {
                   Shop Christmas Packs
                 </Link>
               </Button>
-              <Button asChild size="lg" className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white font-medium border-2 border-white transition-colors" style={{
+              <Button asChild size="lg" className="w-full sm:w-auto text-white font-medium border-2 border-white transition-colors" style={{
                 borderRadius: '999px',
-                padding: '0.8rem 1.2rem'
+                padding: '0.8rem 1.2rem',
+                background: 'rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(8px)'
               }}>
                 <a 
                   href={BOOK_URL}
@@ -70,6 +72,7 @@ const HeroHome = () => {
                   rel="noopener noreferrer"
                   onClick={() => trackBookingClick("hero_home", "/")}
                   aria-label="Book an appointment"
+                  className="hover:bg-white/25"
                 >
                   <Calendar className="w-5 h-5" />
                   {BOOK_CTA_LABEL}
