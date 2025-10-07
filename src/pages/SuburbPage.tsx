@@ -143,7 +143,7 @@ const SuburbPage = () => {
       icon: Sparkles,
       title: "Smoothing & Treatments",
       description: "Professional keratin smoothing and deep conditioning treatments designed to combat frizz and restore shine in humid conditions.",
-      link: "/services#smoothing"
+      link: "/services#treatments"
     },
     {
       icon: Scissors,

@@ -81,7 +81,7 @@ const Index = () => {
               
               {/* Smoothing Link */}
               <a 
-                href="/services#smoothing" 
+                href="/services#treatments" 
                 className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all"
               >
                 <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
