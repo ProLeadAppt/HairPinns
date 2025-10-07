@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Calendar, Star, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-salon.jpg";
+import heroImage from "@/assets/hero-home.png";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const HeroHome = () => {
@@ -11,7 +11,7 @@ const HeroHome = () => {
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
-          alt="Hair Pinns boutique salon interior with professional styling stations"
+          alt="Hair Pinns - Elevate your hairstyle journey with expert care featuring beautiful hairstyles"
           className="w-full h-full object-cover"
           loading="eager"
           fetchPriority="high"
