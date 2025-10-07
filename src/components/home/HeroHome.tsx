@@ -12,36 +12,58 @@ const HeroHome = () => {
         <img 
           src={heroImage} 
           alt="Hair Pinns - Elevate your hairstyle journey with expert care featuring beautiful hairstyles"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-[65%_center] brightness-[0.92]"
           loading="eager"
           fetchPriority="high"
           width="1920"
           height="1080"
           sizes="100vw"
+          style={{ filter: 'brightness(0.92)' }}
         />
-        <div className="absolute inset-0 bg-[hsl(0,0%,0%)/0.6]"></div>
+        {/* Desktop/Tablet: Left to Right Gradient */}
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[rgba(24,0,30,0.78)] via-[rgba(24,0,30,0.22)] to-transparent"></div>
+        {/* Mobile: Top to Bottom Gradient */}
+        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-[rgba(24,0,30,0.82)] via-[rgba(24,0,30,0.18)] to-transparent"></div>
       </div>
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-        <div className="max-w-2xl">
-          <h1 className="text-h1-lg font-heading font-bold text-primary-foreground mb-6 leading-tight">
+        {/* Text Backplate Container */}
+        <div className="max-w-[46rem] rounded-[14px] p-5 sm:p-6 md:p-8" style={{
+          background: 'rgba(24, 0, 30, 0.38)',
+          backdropFilter: 'blur(4px)',
+          boxShadow: '0 8px 28px rgba(0, 0, 0, 0.25)'
+        }}>
+          <h1 className="font-heading font-bold text-white mb-6 leading-[1.05]" style={{
+            fontSize: 'clamp(32px, 6vw, 72px)',
+            textShadow: '0 2px 24px rgba(0, 0, 0, 0.45)'
+          }}>
             Hair Pinns — Salon & Self-Care
           </h1>
           
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-lg leading-relaxed">
+          <p className="mb-8 max-w-lg leading-relaxed" style={{
+            color: 'rgba(255, 255, 255, 0.92)',
+            fontSize: 'clamp(16px, 2.2vw, 20px)'
+          }}>
             Beautiful hair, honest care, salon-quality at home.
           </p>
           
-          <div className="mb-12">
-            <div className="inline-flex w-full sm:w-auto flex-col sm:flex-row gap-3 p-2 rounded-xl bg-[hsl(0,0%,0%)/0.25] backdrop-blur-sm ring-1 ring-[hsl(0,0%,0%)/0.2] no-link-color">
-              <Button asChild variant="primary" size="xl" className="w-full sm:w-auto">
+          <div className="mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 no-link-color">
+              <Button asChild size="lg" className="w-full sm:w-auto bg-[#8B4A8B] hover:bg-[#7A4079] text-white font-medium transition-colors" style={{
+                borderRadius: '999px',
+                padding: '0.8rem 1.2rem',
+                boxShadow: '0 8px 20px rgba(139, 74, 139, 0.35)'
+              }}>
                 <Link to="/collections/christmas-gift-packs">
                   <ShoppingBag className="w-5 h-5" />
                   Shop Christmas Packs
                 </Link>
               </Button>
-              <Button asChild variant="inverted" size="xl" className="w-full sm:w-auto">
+              <Button asChild size="lg" className="w-full sm:w-auto bg-transparent hover:bg-white/10 text-white font-medium border-2 border-white transition-colors" style={{
+                borderRadius: '999px',
+                padding: '0.8rem 1.2rem'
+              }}>
                 <a 
                   href={BOOK_URL}
                   target="_blank"
@@ -57,17 +79,17 @@ const HeroHome = () => {
           </div>
 
           {/* Trust Row */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-primary-foreground/90">
+          <div className="flex flex-wrap items-center gap-6 text-sm" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4 text-[hsl(var(--star-color))] fill-current" />
               <span className="font-semibold">4.9★ Google</span>
             </div>
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-primary-foreground" />
+              <MapPin className="w-4 h-4 text-white" />
               <span>Bangor, NSW</span>
             </div>
             <div>
-              <span className="text-primary-foreground/70">Est. by Jena Pinn</span>
+              <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Est. by Jena Pinn</span>
             </div>
           </div>
         </div>
