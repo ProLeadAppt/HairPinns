@@ -49,14 +49,22 @@ const HeroHome = () => {
           </p>
           
           <div className="mb-8">
-            <div className="flex flex-col sm:flex-row gap-[10px] sm:gap-3 no-link-color">
-              {/* Primary CTA: Book Now */}
-              <Button asChild size="lg" className="w-full sm:w-auto text-white font-medium transition-all duration-200 focus-visible:outline-none" style={{
-                background: 'var(--brand-500)',
-                borderRadius: '9999px',
-                padding: '0.9rem 1.25rem',
-                boxShadow: '0 10px 24px rgba(139, 74, 139, 0.35)',
-                border: 'none'
+            <div className="flex flex-col sm:flex-row gap-3 no-link-color">
+              <Button asChild size="lg" className="w-full sm:w-auto bg-[#8B4A8B] hover:bg-[#7A4079] text-white font-medium transition-colors" style={{
+                borderRadius: '999px',
+                padding: '0.8rem 1.2rem',
+                boxShadow: '0 8px 20px rgba(139, 74, 139, 0.35)'
+              }}>
+                <Link to="/collections/christmas-gift-packs">
+                  <ShoppingBag className="w-5 h-5" />
+                  Shop Christmas Packs
+                </Link>
+              </Button>
+              <Button asChild size="lg" className="w-full sm:w-auto text-white font-medium border-2 border-white transition-colors" style={{
+                borderRadius: '999px',
+                padding: '0.8rem 1.2rem',
+                background: 'rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(8px)'
               }}>
                 <a 
                   href={BOOK_URL}
@@ -64,32 +72,11 @@ const HeroHome = () => {
                   rel="noopener noreferrer"
                   onClick={() => trackBookingClick("hero_home", "/")}
                   aria-label="Book an appointment"
-                  className="hover:bg-[#783D78] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.35),0_0_0_6px_rgba(139,74,139,0.45)]"
-                  style={{ background: 'inherit' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = '#783D78'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'inherit'}
+                  className="hover:bg-white/25"
                 >
-                  <Calendar className="w-5 h-5 text-white" />
+                  <Calendar className="w-5 h-5" />
                   {BOOK_CTA_LABEL}
                 </a>
-              </Button>
-              
-              {/* Secondary CTA: Shop Christmas Packs */}
-              <Button asChild size="lg" className="w-full sm:w-auto text-white font-medium transition-all duration-200 focus-visible:outline-none" style={{
-                background: 'rgba(255, 255, 255, 0.16)',
-                border: '2px solid rgba(255, 255, 255, 0.45)',
-                borderRadius: '9999px',
-                padding: '0.9rem 1.25rem'
-              }}>
-                <Link 
-                  to="/collections/christmas-gift-packs"
-                  className="hover:bg-[rgba(255,255,255,0.24)] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.55)]"
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.24)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)'}
-                >
-                  <ShoppingBag className="w-5 h-5 text-white" />
-                  Shop Christmas Packs
-                </Link>
               </Button>
             </div>
           </div>
