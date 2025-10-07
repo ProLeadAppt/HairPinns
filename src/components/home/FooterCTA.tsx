@@ -16,7 +16,7 @@ const FooterCTA = () => {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild variant="primary" size="lg">
-            <a href="tel:+61295550123" aria-label="Text us on (02) 9555 0123">
+            <a href="tel:+61295550123" aria-label="Text us on (02) 9555 0123" className="no-link-color">
               <MessageCircle className="w-5 h-5" />
               Text Us: (02) 9555 0123
             </a>
