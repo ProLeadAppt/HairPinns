@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TrackingInitializer from "./components/tracking/TrackingInitializer";
 import TrackingScripts from "./components/tracking/TrackingScripts";
+import GoogleTagManager from "./components/tracking/GoogleTagManager";
 import Index from "./pages/Index";
 import Collections from "./pages/Collections";
 import CollectionDetail from "./pages/CollectionDetail";
@@ -33,7 +34,16 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <GoogleTagManager />
       <TrackingScripts />
+      <noscript>
+        <iframe 
+          src="https://www.googletagmanager.com/ns.html?id=GTM-KFH27CHQ"
+          height="0" 
+          width="0" 
+          style={{ display: 'none', visibility: 'hidden' }}
+        />
+      </noscript>
       <Toaster />
       <Sonner />
       <BrowserRouter>
