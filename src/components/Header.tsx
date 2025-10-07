@@ -9,12 +9,20 @@ const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
   return <>
       {/* Top Promo Strip */}
-      {showPromo && <div className="bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative">
+      {showPromo && <Link to="/collections/christmas-gift-packs" className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
           <p className="font-medium">✨ Free shipping on orders over $100 • Christmas Gift Packs now available</p>
-          <button onClick={() => setShowPromo(false)} className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-80" aria-label="Close promo banner">
+          <button 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setShowPromo(false);
+            }} 
+            className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-80" 
+            aria-label="Close promo banner"
+          >
             <X className="w-4 h-4" />
           </button>
-        </div>}
+        </Link>}
 
       {/* Main Header */}
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border h-16">
