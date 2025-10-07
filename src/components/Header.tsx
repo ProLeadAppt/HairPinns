@@ -14,9 +14,7 @@ const Header = () => {
       {/* Top Promo Strip */}
       {showPromo && (
         <div className="bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative">
-          <p className="font-medium">
-            ✨ Free shipping on orders over $100 • Christmas Gift Packs now available
-          </p>
+          <p className="font-medium">✨ Free shipping on orders over $100 • Christmas Gift Packs now available</p>
           <button
             onClick={() => setShowPromo(false)}
             className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-80"
@@ -33,28 +31,39 @@ const Header = () => {
           <div className="flex items-center justify-between h-full gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
-              <img 
-                src={hairPinnsLogo} 
-                alt="Hair Pinns - Happy Hair Specialist" 
-                className="h-10 lg:h-12 w-auto"
-              />
+              <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-20 lg:h-22 w-auto" />
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6" aria-label="Main navigation">
-              <Link to="/collections" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link
+                to="/collections"
+                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
+              >
                 Shop
               </Link>
-              <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link
+                to="/services"
+                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
+              >
                 Services
               </Link>
-              <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link
+                to="/about"
+                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
+              >
                 About
               </Link>
-              <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link
+                to="/blog"
+                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
+              >
                 Blog
               </Link>
-              <Link to="/contact" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link
+                to="/contact"
+                className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium"
+              >
                 Contact
               </Link>
             </nav>
@@ -67,7 +76,7 @@ const Header = () => {
                   Shop Featured
                 </Button>
               </Link>
-              <a 
+              <a
                 href={BOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -90,22 +99,37 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
                 <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
-                  <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  <Link
+                    to="/collections"
+                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
+                  >
                     Shop
                   </Link>
-                  <Link to="/services" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  <Link
+                    to="/services"
+                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
+                  >
                     Services
                   </Link>
-                  <Link to="/about" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  <Link
+                    to="/about"
+                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
+                  >
                     About
                   </Link>
-                  <Link to="/blog" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  <Link
+                    to="/blog"
+                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
+                  >
                     Blog
                   </Link>
-                  <Link to="/contact" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  <Link
+                    to="/contact"
+                    className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast"
+                  >
                     Contact
                   </Link>
-                  
+
                   <div className="pt-6 border-t border-border space-y-3">
                     <Link to="/collections/christmas-gift-packs" className="block">
                       <Button variant="ghost" size="lg" className="w-full justify-start">
@@ -113,7 +137,7 @@ const Header = () => {
                         Shop Featured
                       </Button>
                     </Link>
-                    <a 
+                    <a
                       href={BOOK_URL}
                       target="_blank"
                       rel="noopener noreferrer"
