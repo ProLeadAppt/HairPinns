@@ -28,9 +28,7 @@ const Footer = () => {
     console.log("Newsletter signup:", email);
 
     try {
-      // GHL webhook URL would be configured here
-      // For now, we'll simulate success
-      const webhookUrl = "https://services.leadconnectorhq.com/hooks/YOUR_WEBHOOK_ID";
+      const webhookUrl = "https://hooks.zapier.com/hooks/catch/23975177/u539h9a/";
       
       const response = await fetch(webhookUrl, {
         method: "POST",
