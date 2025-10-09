@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag, Calendar, Star, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-home.png";
+import heroImageWebp from "@/assets/hero-home.webp";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const HeroHome = () => {
@@ -9,17 +10,20 @@ const HeroHome = () => {
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
-          alt="Hair Pinns - Elevate your hairstyle journey with expert care featuring beautiful hairstyles"
-          className="w-full h-full object-cover object-[65%_center] brightness-[0.92]"
-          loading="eager"
-          fetchPriority="high"
-          width="1920"
-          height="1080"
-          sizes="100vw"
-          style={{ filter: 'brightness(0.92)' }}
-        />
+        <picture>
+          <source srcSet={heroImageWebp} type="image/webp" />
+          <img 
+            src={heroImage} 
+            alt="Hair Pinns - Elevate your hairstyle journey with expert care featuring beautiful hairstyles"
+            className="w-full h-full object-cover object-[65%_center] brightness-[0.92]"
+            loading="eager"
+            fetchPriority="high"
+            width="1920"
+            height="1080"
+            sizes="100vw"
+            style={{ filter: 'brightness(0.92)' }}
+          />
+        </picture>
         {/* Desktop/Tablet: Left to Right Gradient */}
         <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[rgba(24,0,30,0.78)] via-[rgba(24,0,30,0.22)] to-transparent"></div>
         {/* Mobile: Top to Bottom Gradient */}
