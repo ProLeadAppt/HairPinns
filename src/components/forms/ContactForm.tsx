@@ -75,11 +75,10 @@ const ContactForm = ({
     setIsSubmitting(true);
 
     try {
-      const webhookUrl = "https://hooks.zapier.com/hooks/catch/23975177/u539h9a/";
-
       // Find readable topic label
       const topicLabel = topics.find(t => t.value === formData.topic)?.label || formData.topic;
 
+      // Build payload for hpCapture (flat; library will enrich and route to Zapier)
       const payload: Record<string, any> = {
         form_name: formName,
         name: formData.name,
@@ -89,8 +88,7 @@ const ContactForm = ({
         phone: formData.phone,
         message: formData.message,
         consent_marketing: formData.consent,
-        timestamp: new Date().toISOString(),
-        source: "contact_form",
+        source_page: typeof window !== 'undefined' ? window.location.href : '',
       };
 
       if (showTopic) {
@@ -98,14 +96,12 @@ const ContactForm = ({
         payload.topic_label = topicLabel;
       }
 
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-        body: JSON.stringify(payload),
-      });
+      const { hpCapture } = await import("@/lib/hpCapture");
+      const success = await hpCapture.postToZapier(payload, { event: "contact_form_submit" });
+
+      if (!success) {
+        throw new Error("Zapier submission failed");
+      }
 
       // Track lead generation in pixels
       await pixelTracking.trackFormSubmission({
