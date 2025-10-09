@@ -49,6 +49,27 @@ The ContactForm component on the /contact page captures customer inquiries and r
 
 ## Zapier Workflow Setup
 
+### Overview: Tagging Strategy
+
+This workflow automatically tags contacts in GoHighLevel based on:
+- **Topic** (general, appointment, product, order help, feedback)
+- **Consent** (marketing consent vs none)
+- **Attribution** (utm_source: instagram, facebook, google, email, organic)
+- **Interest** (derived from message keywords: colour, smoothing, cuts, events, braids)
+- **Priority** (urgent flag for order help)
+
+#### Tag Categories Applied
+
+| Category | Tags |
+|----------|------|
+| **Topic** | lead_general, lead_appointment, lead_product, lead_order_help, lead_feedback |
+| **Consent** | consent_marketing, consent_none |
+| **Source** | source_instagram, source_facebook, source_google, source_email, source_organic |
+| **Interest** | interest_colour, interest_smoothing, interest_cuts, interest_events, interest_braids |
+| **Priority** | priority_order_help, needs_immediate_response |
+
+---
+
 ### Trigger
 
 **App**: Webhooks by Zapier  
@@ -61,6 +82,8 @@ The ContactForm component on the /contact page captures customer inquiries and r
 
 **Action**: GoHighLevel - Find or Create Contact
 
+**Purpose**: Create base contact record with attribution data before applying tags
+
 **Search Fields**:
 - Email: `{{email}}`
 - Phone: `{{phone}}`
@@ -72,24 +95,208 @@ The ContactForm component on the /contact page captures customer inquiries and r
 - Phone: `{{phone}}`
 
 **Custom Fields to Update**:
+- `form_name`: `{{form_name}}`
 - `client_id`: `{{client_id}}`
+- `source_page`: `{{source_page}}`
+- `topic`: `{{topic}}`
+- `last_form_submit`: `{{timestamp}}`
 - `utm_source`: `{{utm_source}}`
+- `utm_medium`: `{{utm_medium}}`
 - `utm_campaign`: `{{utm_campaign}}`
-- `last_contact_topic`: `{{topic_label}}`
-- `last_form_submission`: `{{timestamp}}`
+- `first_touch_source`: `{{first_touch_source}}`
+- `first_touch_landing`: `{{first_touch_landing}}`
 - `consent_marketing`: `{{consent_marketing}}`
 - `gdpr_region`: `{{gdpr_region_detected}}`
 
-**Tags to Apply**:
-- Based on topic:
-  - If `topic` = `product_question` → Tag: `inquiry_product`
-  - If `topic` = `service_question` → Tag: `inquiry_service`
-  - If `topic` = `order_help` → Tag: `inquiry_order_help`
-  - If `topic` = `other` → Tag: `inquiry_other`
+---
+
+### Step 2: Add Base Topic Tag
+
+**Action**: GoHighLevel - Add Tag to Contact
+
+**Contact ID**: Use output from Step 1
+
+**Purpose**: Tag contact based on inquiry topic for segmentation
+
+**Configuration** (use Zapier Formatter → Lookup Table):
+
+| Input (topic field) | Output Tag |
+|---------------------|------------|
+| general | lead_general |
+| appointment | lead_appointment |
+| product | lead_product |
+| product_question | lead_product |
+| service_question | lead_general |
+| order_help | lead_order_help |
+| feedback | lead_feedback |
+| other | lead_general |
+
+```
+Formatter by Zapier:
+  Transform: Lookup Table
+  Input: {{topic}}
+  Lookup Table: (as above)
+  Default Value: lead_general
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: {{Formatted Output}}
+```
 
 ---
 
-### Step 2: Create Note with Message Content
+### Step 3: Add Consent Tag
+
+**Action**: GoHighLevel - Add Tag to Contact
+
+**Contact ID**: Use output from Step 1
+
+**Purpose**: Track marketing consent for GDPR compliance and segmentation
+
+**Configuration**:
+
+```
+Filter:
+  Continue only if: consent_marketing (Exists)
+
+Formatter by Zapier:
+  Transform: Lookup Table
+  Input: {{consent_marketing}}
+  
+  Lookup Table:
+    true → consent_marketing
+    false → consent_none
+  
+  Default: consent_none
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: {{Formatted Output}}
+```
+
+---
+
+### Step 4: Add Attribution Source Tag
+
+**Action**: GoHighLevel - Add Tag to Contact
+
+**Contact ID**: Use output from Step 1
+
+**Purpose**: Track where the lead came from for attribution reporting
+
+**Configuration**:
+
+```
+Filter:
+  Continue only if: utm_source (Exists)
+
+Formatter by Zapier:
+  Transform: Text
+  Template: source_{{utm_source}}
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: {{Formatted Output}}
+```
+
+**Supported Source Tags**:
+- source_instagram
+- source_facebook
+- source_google
+- source_email
+- source_organic
+
+---
+
+### Step 5: Add Interest Tags (Keyword Detection)
+
+**Action**: Multiple parallel paths using GoHighLevel - Add Tag to Contact
+
+**Contact ID**: Use output from Step 1
+
+**Purpose**: Derive service interest from message content for targeted follow-up
+
+Create **5 parallel paths**, each with a filter and tag action:
+
+#### Path A: Colour Interest
+```
+Filter:
+  Continue only if: message (Text Contains)
+  Any of: blonde, foils, highlights, balayage, color, colour
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: interest_colour
+```
+
+#### Path B: Smoothing Interest
+```
+Filter:
+  Continue only if: message (Text Contains)
+  Any of: keratin, smoothing, straight, frizz, sleek
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: interest_smoothing
+```
+
+#### Path C: Cuts Interest
+```
+Filter:
+  Continue only if: message (Text Contains)
+  Any of: cut, trim, haircut, style, fringe, chop
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: interest_cuts
+```
+
+#### Path D: Events Interest
+```
+Filter:
+  Continue only if: message (Text Contains)
+  Any of: wedding, bridal, formal, upstyle, event
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: interest_events
+```
+
+#### Path E: Braids Interest
+```
+Filter:
+  Continue only if: message (Text Contains)
+  Any of: braid, cornrow, princess
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: interest_braids
+```
+
+---
+
+### Step 6: Priority Tag for Order Help
+
+**Action**: GoHighLevel - Add Tag to Contact
+
+**Contact ID**: Use output from Step 1
+
+**Purpose**: Flag urgent order-related inquiries requiring immediate attention
+
+**Configuration**:
+
+```
+Filter:
+  Continue only if: topic (Text Exactly Matches) order_help
+
+GoHighLevel → Add Tag to Contact:
+  Contact ID: {{Step 1 Contact ID}}
+  Tags: priority_order_help, needs_immediate_response
+```
+
+---
+
+### Step 7: Create Note with Message Content
 
 **Action**: GoHighLevel - Create Note
 
@@ -116,7 +323,7 @@ UTM: {{utm_source}} / {{utm_campaign}}
 
 ---
 
-### Step 3: Route to Conversations (GoHighLevel Inbox)
+### Step 8: Route to Conversations (GoHighLevel Inbox)
 
 **Action**: GoHighLevel - Create Conversation
 
@@ -147,7 +354,7 @@ Reply to this conversation to respond directly to the customer.
 
 ---
 
-### Step 4: Conditional Alert for Order Help
+### Step 9: Conditional Alert for Order Help
 
 **Filter**: Only continue if `topic` = `order_help`
 
@@ -207,7 +414,7 @@ Reply to this conversation to respond directly to the customer.
 
 ---
 
-### Step 5: Send Auto-Reply Email (Optional)
+### Step 10: Send Auto-Reply Email (Optional)
 
 **Action**: Email by Zapier - Send Email
 
@@ -365,7 +572,7 @@ Based on topic:
    - Contact created/updated in GHL
    - Note attached with message
    - Conversation created in GHL Inbox
-   - Tag `inquiry_service` applied
+   - Tags applied: `lead_general`, `consent_marketing`, `interest_colour` (from "balayage" keyword)
 
 ### Test Order Help (Priority Alert)
 
@@ -382,7 +589,7 @@ Based on topic:
 3. Verify:
    - Success message mentions 2-hour response
    - Contact created in GHL
-   - Tag `inquiry_order_help` applied
+   - Tags applied: `lead_order_help`, `priority_order_help`, `needs_immediate_response`, `consent_marketing`
    - **Email sent to Jena** with 🚨 URGENT prefix
    - **Slack notification sent** (if configured)
    - Conversation created and assigned to Jena
