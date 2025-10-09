@@ -662,34 +662,28 @@ const Services = () => {
                       </a>
                       {/* Learn more link */}
                       {(() => {
-                        // Generate slug from service title
-                        const serviceSlug = service.title
-                          .toLowerCase()
-                          .replace(/[^a-z0-9\s-]/g, '')
-                          .replace(/\s+/g, '-')
-                          .replace(/-+/g, '-')
-                          .trim();
+                        // Map service titles to their actual slugs in serviceDetails.ts
+                        const serviceSlugMap: Record<string, string> = {
+                          "Mid-Length Straight Up Smoothing Treatment": "mid-length-straight-up-smoothing",
+                          "Long/Thick Straight Up Smoothing Treatment": "long-thick-straight-up-smoothing",
+                          "Straight Up Smoothing for Teens": "straight-up-smoothing-teens",
+                          "Full Head of Foils Package": "full-head-foils-package",
+                          "1/2 Head of Foils, cut & blowdry": "half-head-foils-cut-blowdry",
+                          "1/4 Head Foils, cut and blowdry": "quarter-head-foils-cut-blowdry",
+                          "Long Hair Colour Package": "long-hair-colour-package",
+                          "Mid-Length Colour Package": "mid-length-colour-package",
+                          "Short Hair Colour Package": "short-hair-colour-package",
+                          "Long Hair wash/cut/blow-dry": "long-hair-wash-cut-blowdry",
+                          "Mid-length wash/cut/blow-dry": "mid-length-wash-cut-blowdry",
+                          "Short wash/cut/blow-dry": "short-wash-cut-blowdry",
+                          "Kids cut & blowdry bundle": "kids-cut-blowdry-bundle",
+                          "Primary Formal Hairstyle": "primary-formal-hairstyle",
+                          "High School Formal Hairstyle": "high-school-formal-hairstyle"
+                        };
                         
-                        // Check if this service has a detail page
-                        const hasDetailPage = [
-                          'mid-length-straight-up-smoothing-treatment',
-                          'long-thick-straight-up-smoothing-treatment',
-                          'straight-up-smoothing-for-teens',
-                          'full-head-of-foils-package',
-                          '12-head-of-foils-cut-blowdry',
-                          '14-head-foils-cut-and-blowdry',
-                          'long-hair-colour-package',
-                          'mid-length-colour-package',
-                          'short-hair-colour-package',
-                          'long-hair-wash-cut-blowdry',
-                          'mid-length-wash-cut-blowdry',
-                          'short-wash-cut-blowdry',
-                          'kids-cut-blowdry-bundle',
-                          'primary-formal-hairstyle',
-                          'high-school-formal-hairstyle'
-                        ].includes(serviceSlug);
+                        const serviceSlug = serviceSlugMap[service.title];
 
-                        if (hasDetailPage) {
+                        if (serviceSlug) {
                           return (
                             <div className="text-center">
                               <Link
