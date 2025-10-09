@@ -13,19 +13,17 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Hair Pinns Brand Colors - Exact Match */
-    --brand-500: 300 30% 41%;              /* #8B4A8B - Primary purple */
-    --brand-600: 300 30% 35%;              /* #773E77 - Darker for hover */
-    --text: 270 16% 15%;                   /* #2A2230 - Dark charcoal */
-    --heading: 288 30% 11%;                /* #241327 - Headings */
-    --link: 300 30% 41%;                   /* #8B4A8B - Brand purple for links */
-    --bg: 300 100% 99%;                    /* #FFF8FF - Light blush */
-    --surface: 0 0% 100%;                  /* #FFFFFF - Pure white */
-    --accent: 300 100% 99%;                /* #FFF8FF - Light purple accent */
-    --muted: 285 5% 52%;                   /* #8A8191 - Muted gray */
+    --brand-500: 289 100% 22%;             /* #59006E - Primary purple */
+    --brand-600: 289 100% 19%;             /* #4F0063 - 8% darker for hover */
+    --text: 216 7% 14%;                    /* #212326 - Dark charcoal */
+    --heading: 216 7% 14%;                 /* #212326 - Headings */
+    --link: 289 100% 22%;                  /* #59006E - Brand purple for links */
+    --bg: 0 0% 100%;                       /* #FFFFFF - Pure white */
+    --accent: 290 43% 95%;                 /* #F6ECF8 - Light purple accent */
+    --muted: 220 11% 91%;                  /* #E6E8EC - Muted gray */
 
     /* Container & Layout */
     --container: 1200px;
-    --shadow-card: 0 8px 24px rgba(36, 19, 39, 0.08);
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     
     /* Semantic UI Colors */
@@ -38,8 +36,8 @@ All colors MUST be HSL.
     --warning-fg: 38 92% 30%;
 
     /* Radii - Exact match */
-    --radius-btn: 12px;
-    --radius-card: 18px;
+    --radius-btn: 1px;
+    --radius-card: 1px;
 
     /* Core tokens mapped to brand colors */
     --background: var(--bg);
