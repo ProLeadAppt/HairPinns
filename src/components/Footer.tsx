@@ -6,7 +6,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
 import hairPinnsLogo from "@/assets/hair-pinns-logo.png";
-import hairPinnsLogoWebp from "@/assets/hair-pinns-logo.webp";
 
 const Footer = () => {
   const { toast } = useToast();
@@ -67,16 +66,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand & Social */}
           <div>
-            <picture>
-              <source srcSet={hairPinnsLogoWebp} type="image/webp" />
-              <img 
-                src={hairPinnsLogo} 
-                alt="Hair Pinns - Happy Hair Specialist" 
-                className="h-16 w-auto mb-4"
-                width="250"
-                height="160"
-              />
-            </picture>
+            <img 
+              src={hairPinnsLogo} 
+              alt="Hair Pinns - Happy Hair Specialist" 
+              className="h-16 w-auto mb-4"
+            />
             <p className="text-foreground mb-4 text-sm leading-relaxed">
               Boutique salon in Bangor NSW. Expert cuts, colour & treatments. 
               Salon-quality products for home care.

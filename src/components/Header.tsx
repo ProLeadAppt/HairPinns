@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import hairPinnsLogo from "@/assets/hair-pinns-logo.png";
-import hairPinnsLogoWebp from "@/assets/hair-pinns-logo.webp";
 const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
   return <>
@@ -31,10 +30,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-full gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
-              <picture>
-                <source srcSet={hairPinnsLogoWebp} type="image/webp" />
-                <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-12 lg:h-14 w-auto" width="250" height="160" />
-              </picture>
+              <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-12 lg:h-14 w-auto" />
             </Link>
 
             {/* Desktop Navigation */}
