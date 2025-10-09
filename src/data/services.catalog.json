@@ -1,0 +1,84 @@
+[
+  {"category":"Straight Up Smoothing Treatments","name":"Mid-Length Straight Up Smoothing Treatment","duration":"2h 20min","services_count":"2 services","price_aud":"A$ 324","description":""},
+  {"category":"Straight Up Smoothing Treatments","name":"Long/Thick Straight Up Smoothing Treatment","duration":"2h 20min","services_count":"2 services","price_aud":"A$ 349","description":"Straight Up is the first natural hair smoothing treatment \nThis package includes the 2.5 hour pampering session where you leave feeling great with smooth and silky hair and a take home hair mask to prolong your amazing results "},
+  {"category":"Straight Up Smoothing Treatments","name":"Straight Up Smoothing for Teens","duration":"2h 20min","services_count":"2 services","price_aud":"A$ 234","description":"The perfect treatment for your Teen who needs to tame her mane "},
+
+  {"category":"Foil Packages","name":"Short Hair Colour+ Foils & cut/blowdry","duration":"2h 30min","services_count":"3 services","price_aud":"A$ 257","description":"Root touch up, highlights, cut and blow-dry package "},
+  {"category":"Foil Packages","name":"Long Hair Colour + Foils & cut/blowdry","duration":"2h 45min","services_count":"3 services","price_aud":"A$ 262","description":""},
+  {"category":"Foil Packages","name":"1/4 Head Foils, cut and blowdry","duration":"2h 15min","services_count":"3 services","price_aud":"A$ 202","description":"Enhance your hair with a 1/4 head of foils, cut and blow-dry "},
+  {"category":"Foil Packages","name":"1/2 Head of Foils, cut & blowdry","duration":"2h 15min","services_count":"3 services","price_aud":"A$ 237","description":"Spice up is the perfect package that combines highlights, style cut and blowdry in one pampering session "},
+  {"category":"Foil Packages","name":"Full Head of Foils Package","duration":"2h 45min","services_count":"3 services","price_aud":"A$ 267","description":"This package includes a full head of foils, style-cut & blow-dry"},
+
+  {"category":"Colouring Packages","name":"Long Hair Colour Package","duration":"2h 30min","services_count":"3 services","price_aud":"A$ 205","description":"Freshen up your look with regrowth or full colour, plus a cut and blowdry for women with long hair. Enjoy a complete service designed especially for long-haired clients."},
+  {"category":"Colouring Packages","name":"Mid-Length Colour Package","duration":"2h 15min","services_count":"3 services","price_aud":"A$ 178","description":"Regrowth or full colour, cut and blowdry for mid length hair "},
+  {"category":"Colouring Packages","name":"Short Hair Colour Package","duration":"2h 15min","services_count":"3 services","price_aud":"A$ 184","description":"Regrowth or full colour cut and blowdry for short hair "},
+
+  {"category":"Cut & Blow-dry Packages","name":"Kids cut & blowdry bundle","duration":"40min","services_count":"2 services","price_aud":"A$ 54","description":"Pamper your kids with a deep cleanse shampoo, relaxing head massage and condition paired with a haircut and blowdry"},
+  {"category":"Cut & Blow-dry Packages","name":"Short wash/cut/blow-dry","duration":"1h","services_count":"2 services","price_aud":"A$ 79","description":""},
+  {"category":"Cut & Blow-dry Packages","name":"Mid-length wash/cut/blow-dry","duration":"1h","services_count":"2 services","price_aud":"A$ 89","description":""},
+  {"category":"Cut & Blow-dry Packages","name":"Long Hair wash/cut/blow-dry","duration":"1h 15min","services_count":"2 services","price_aud":"A$ 99","description":""},
+
+  {"category":"Pretty Princess Braids","name":"Coloured Hair Braids","duration":"","services_count":"","price_aud":"","description":"Crown Braid is a headband type style braid with coloured hair extensions added in\n\n2 x braids is 2 dutch braids with added coloured hair extensions"},
+  {"category":"Pretty Princess Braids","name":"Little Princess Crown Braid","duration":"20min","services_count":"","price_aud":"A$ 29","description":""},
+  {"category":"Pretty Princess Braids","name":"2 x Hair Braids with Coloured Extensions","duration":"20min","services_count":"","price_aud":"A$ 45","description":""},
+  {"category":"Pretty Princess Braids","name":"Single Braid","duration":"15min","services_count":"","price_aud":"A$ 20","description":"Headband style braid or one directly down the centre of the head "},
+  {"category":"Pretty Princess Braids","name":"Double Braids","duration":"20min","services_count":"","price_aud":"A$ 30","description":""},
+  {"category":"Pretty Princess Braids","name":"3-4 Braids (cornrows)","duration":"40min","services_count":"","price_aud":"A$ 40","description":""},
+  {"category":"Pretty Princess Braids","name":"Custom Braided Hairstyle","duration":"1h","services_count":"","price_aud":"from A$ 50","description":""},
+
+  {"category":"Time-Out","name":"Hot Towel Treatment Add On","duration":"10min","services_count":"","price_aud":"A$ 12.50","description":"Add a hot towel treatment to any service to relax, unwind and get the best results from a hair mask."},
+  {"category":"Time-Out","name":"Infrared Sauna","duration":"","services_count":"","price_aud":"","description":"Enjoy flexible wellness options with our casual, 5, or 10 visit passes. Choose the package that suits your lifestyle and experience soothing infrared sauna sessions whenever you need a relaxing escape."},
+  {"category":"Time-Out","name":"Express Sauna Seah","duration":"30min","services_count":"","price_aud":"A$ 25","description":""},
+  {"category":"Time-Out","name":"1 hour Seesion","duration":"1h","services_count":"","price_aud":"A$ 35","description":""},
+  {"category":"Time-Out","name":"Scalp Detox","duration":"1h","services_count":"","price_aud":"A$ 62","description":"Refresh your scalp with a gentle treatment designed to remove everyday buildup and impurities. Enjoy a soothing experience that leaves your hair feeling cleaner and your scalp revitalised. Perfect for anyone seeking a clean, balanced foundation for healthier hair.\nWe use a scope camera to check your scalp for impurities and build up then after the specialized cleanse and blowdry, we re-scope to show you the amazing results afterwards "},
+  {"category":"Time-Out","name":"Complete Pamper Package","duration":"1h","services_count":"2 services","price_aud":"A$ 62","description":"Escape to a blissful retreat as you surrender to a luxurious hair and scalp revamp, unveiling magnificent shine, banishing frizz, and experiencing a rejuvenating transformation. Leave the world behind and revel in being pampered and reclaim your hair's youthful charm while soaring to new heights of beauty.\n\nIncluded in this package is a scalp cleanse, deep conditioning treatment under heat or with hot towel, scalp massage and style so you can continue your Happy Hair Day :)"},
+
+  {"category":"Hair","name":"Kids Blow-dry","duration":"20min","services_count":"","price_aud":"A$ 34","description":"Spoil your kids with a deep cleanse shampoo, condition & blow-dry\n\nThis is great to give your kids a deep wash to remove any scalp build up and pamper them with knot-.free smooth hair "},
+  {"category":"Hair","name":"Haircut","duration":"","services_count":"","price_aud":"","description":""},
+  {"category":"Hair","name":"Mens","duration":"20min","services_count":"","price_aud":"A$ 39","description":""},
+  {"category":"Hair","name":"Womens","duration":"30min","services_count":"","price_aud":"A$ 54","description":""},
+  {"category":"Hair","name":"Hair Wash & dry off","duration":"20min","services_count":"","price_aud":"A$ 15.50","description":""},
+  {"category":"Hair","name":"Fringe Trim","duration":"10min","services_count":"","price_aud":"A$ 15.50","description":"Keep your fringe perfect and pop in for a quick trim "},
+  {"category":"Hair","name":"Kids Haircuts","duration":"","services_count":"","price_aud":"","description":""},
+  {"category":"Hair","name":"Boys/Girls 0-10 years old","duration":"20min","services_count":"","price_aud":"A$ 24","description":""},
+  {"category":"Hair","name":"Boys/Girls 11-17 years old","duration":"20min","services_count":"","price_aud":"A$ 32","description":""},
+
+  {"category":"Styling","name":"Add curls to other service","duration":"10min","services_count":"","price_aud":"A$ 24","description":""},
+  {"category":"Styling","name":"GHD Curls SHORT","duration":"30min","services_count":"","price_aud":"A$ 52","description":""},
+  {"category":"Styling","name":"Child Formal Hairstyle","duration":"45min","services_count":"","price_aud":"A$ 59","description":""},
+  {"category":"Styling","name":"GHD Curls LONG","duration":"45min","services_count":"","price_aud":"A$ 67","description":""},
+  {"category":"Styling","name":"Upstyle SHORT","duration":"30min","services_count":"","price_aud":"A$ 87","description":""},
+  {"category":"Styling","name":"Upstyle short/mid-length","duration":"45min","services_count":"","price_aud":"A$ 94","description":""},
+  {"category":"Styling","name":"Upstyle LONG","duration":"1h","services_count":"","price_aud":"A$ 107","description":""},
+  {"category":"Styling","name":"Wedding PP","duration":"1h","services_count":"","price_aud":"A$ 114","description":""},
+
+  {"category":"Kids Formal Hairstyle","name":"Primary Formal Hairstyle","duration":"45min","services_count":"","price_aud":"A$ 59","description":""},
+  {"category":"Kids Formal Hairstyle","name":"High School Formal Hairstyle","duration":"1h","services_count":"","price_aud":"A$ 69","description":""},
+
+  {"category":"Treatments","name":"Superior Conditioning Treatment","duration":"15min","services_count":"","price_aud":"A$ 32","description":"Enjoy a deep scalp cleanse & a superior conditioning masque under heat for deep hydration and long-lasting shine and smoothness.\nCan be added to any hair treatment"},
+  {"category":"Treatments","name":"Express Miracle Treatment","duration":"5min","services_count":"","price_aud":"A$ 22","description":"Add a 1 minute miracle treatment & hot towel to any service and give your hair a new life :)\nWith the value of Moroccan clay, this treatment quickly binds to your hair creating the soft and silky hair you deserve in only 60 seconds "},
+
+  {"category":"Straight Up Treatment","name":"Straight Up Treatment","duration":"","services_count":"","price_aud":"","description":"Perfectly Straight Hair That Lasts\nInstantly boost your confidence in just a few hours. Lose that unmanageable mop forever and wake up every morning feeling sexy and looking good with beautiful straight hair.\n\nIn just two hours and lasting for months, transform your hair with a market leading hair straightening treatment that's quick, easy and completely natural – using eco friendly, hair-protecting products for the very best results.\n\n*Please book both Step 1 & 2. These are both completed at time of your appointment & are just split to allow for processing time."},
+  {"category":"Straight Up Treatment","name":"Step 1- Cleanse, Treat & Heat","duration":"1h 20min","services_count":"","price_aud":"Free","description":""},
+  {"category":"Straight Up Treatment","name":"Step 2- Rinse, dry/straighten","duration":"2h","services_count":"","price_aud":"A$ 350","description":""},
+
+  {"category":"Rinse-out Colour","name":"Rinse-out Colour","duration":"10min","services_count":"","price_aud":"Free","description":"If not having cut or blow-dry, please select the rinse-out options to allow time."},
+
+  {"category":"OSTEO","name":"OSTEO","duration":"1h","services_count":"","price_aud":"Free","description":""},
+
+  {"category":"Tints","name":"Toner","duration":"40min","services_count":"","price_aud":"from A$ 29","description":""},
+  {"category":"Tints","name":"Men's Colour","duration":"1h","services_count":"","price_aud":"A$ 49","description":""},
+  {"category":"Tints","name":"Regrowth of Colour","duration":"1h 10min","services_count":"","price_aud":"A$ 79","description":""},
+  {"category":"Tints","name":"Full Colour Short Hair","duration":"1h 15min","services_count":"","price_aud":"A$ 86","description":""},
+  {"category":"Tints","name":"Full Colour Mid-length","duration":"1h 15min","services_count":"","price_aud":"A$ 92","description":""},
+  {"category":"Tints","name":"Full Colour Long Hair","duration":"1h 15min","services_count":"","price_aud":"A$ 97","description":""},
+  {"category":"Tints","name":"Regrowth colour + 20 foils","duration":"1h 30min","services_count":"","price_aud":"A$ 154","description":""},
+
+  {"category":"Foils","name":"1/4 head of foils","duration":"1h 15min","services_count":"","price_aud":"A$ 99","description":""},
+  {"category":"Foils","name":"1/2 head of foils","duration":"1h 15min","services_count":"","price_aud":"A$ 134","description":""},
+  {"category":"Foils","name":"Full Head of Foils","duration":"1h 45min","services_count":"","price_aud":"A$ 164","description":""},
+
+  {"category":"Blow Dry","name":"Short Hair","duration":"30min","services_count":"","price_aud":"A$ 44","description":""},
+  {"category":"Blow Dry","name":"Mid-length Hair","duration":"30min","services_count":"","price_aud":"A$ 49","description":""},
+  {"category":"Blow Dry","name":"Long Hair","duration":"45min","services_count":"","price_aud":"A$ 54","description":""}
+]
