@@ -139,6 +139,9 @@ const Footer = () => {
               <Link to="/services" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
                 Services & Pricing
               </Link>
+              <Link to="/areas" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
+                Areas We Serve
+              </Link>
               <Link to="/collections" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
                 Shop Products
               </Link>
