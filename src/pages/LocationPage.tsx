@@ -158,15 +158,20 @@ const LocationPage = () => {
     }))
   };
 
-  // Get top 6-8 services to display
+  // Get top 6-8 services to display (find by category slug)
+  const smoothingCategory = serviceDetailData.find(cat => cat.slug === "smoothing");
+  const colourCategory = serviceDetailData.find(cat => cat.slug === "colour");
+  const cutsCategory = serviceDetailData.find(cat => cat.slug === "cuts");
+  const braidsCategory = serviceDetailData.find(cat => cat.slug === "braids");
+  
   const topServices = [
-    serviceDetailData.colour.categories[0].services[0], // Balayage
-    serviceDetailData.colour.categories[1].services[0], // Full Colour
-    serviceDetailData.smoothing.categories[0].services[0], // Keratin Smoothing
-    serviceDetailData.braids.categories[0].services[0], // Boho Braids
-    serviceDetailData.cuts.categories[0].services[0], // Women's Cut
-    serviceDetailData.treatments.categories[0].services[0], // Deep Conditioning
-  ];
+    smoothingCategory?.services[0],
+    smoothingCategory?.services[1],
+    colourCategory?.services[0],
+    colourCategory?.services[1],
+    cutsCategory?.services[0],
+    braidsCategory?.services[0],
+  ].filter(Boolean); // Remove any undefined values
 
   return (
     <>
@@ -291,20 +296,21 @@ const LocationPage = () => {
             />
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {topServices.map((service, index) => {
+                if (!service) return null;
                 const icons = [Palette, Sparkles, Zap, Scissors, Palette, Heart];
                 const Icon = icons[index % icons.length];
                 return (
                   <Card key={index} variant="default" padding="md" className="hover:shadow-lg transition-shadow">
                     <Icon className="w-10 h-10 text-brand-500 mb-3" />
                     <h3 className="text-lg font-heading text-heading mb-2">
-                      {service.name}
+                      {service.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
                       {service.description}
                     </p>
                     <div className="flex items-center justify-between">
                       <span className="text-brand-500 font-semibold">
-                        from {service.price}
+                        {service.price}
                       </span>
                       <Button 
                         size="sm" 
