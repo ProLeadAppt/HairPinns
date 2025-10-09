@@ -596,13 +596,13 @@ const Services = () => {
                     }}
                   >
                     {/* Title */}
-                    <h3 className="text-xl font-heading font-semibold text-heading mb-2" style={{ lineHeight: '1.5' }}>
+                    <h3 className="text-xl font-heading font-bold mb-2" style={{ color: 'hsl(var(--heading))', lineHeight: '1.5' }}>
                       {service.title}
                     </h3>
 
                     {/* Subtitle */}
                     {service.subtitle && (
-                      <p className="text-sm text-foreground mb-3" style={{ lineHeight: '1.5' }}>
+                      <p className="text-sm mb-3" style={{ color: 'hsl(var(--text))', lineHeight: '1.5', opacity: 0.9 }}>
                         {service.subtitle}
                       </p>
                     )}
@@ -611,12 +611,12 @@ const Services = () => {
                     {(service.duration || service.serviceCount) && (
                       <div className="flex flex-wrap gap-2 mb-3">
                         {service.duration && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full border border-[rgba(139,74,139,0.10)] text-xs text-muted">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
                             {service.duration}
                           </span>
                         )}
                         {service.serviceCount && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full border border-[rgba(139,74,139,0.10)] text-xs text-muted">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
                             {service.serviceCount}
                           </span>
                         )}
@@ -625,7 +625,7 @@ const Services = () => {
 
                     {/* Description */}
                     {service.description && (
-                      <p className="text-sm text-foreground mb-4 whitespace-pre-line" style={{ lineHeight: '1.5' }}>
+                      <p className="text-sm mb-4 whitespace-pre-line" style={{ color: 'hsl(var(--text))', lineHeight: '1.5', opacity: 0.9 }}>
                         {service.description}
                       </p>
                     )}
