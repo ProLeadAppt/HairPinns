@@ -44,12 +44,7 @@ export default defineConfig(({ mode }) => ({
     },
     // Target modern browsers for better optimization
     target: 'es2015',
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: mode === 'production',
-      },
-    },
+    // Use esbuild minification (default, faster than terser)
+    minify: 'esbuild',
   },
 }));
