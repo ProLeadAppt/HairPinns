@@ -16,17 +16,12 @@ import {
 } from "@/components/ui/accordion";
 import { 
   MapPin, 
-  Clock, 
   Phone,
-  CheckCircle2,
-  Sparkles,
   Palette,
-  Scissors,
-  Zap,
-  Heart,
-  Shield
+  Sparkles,
+  Scissors
 } from "lucide-react";
-import { getLocationData, getAllLocationSlugs } from "@/data/locationPages";
+import { getLocationData } from "@/data/locationPages";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { serviceDetailData } from "@/data/serviceDetails";
@@ -95,7 +90,7 @@ const LocationPage = () => {
     "@type": "HairSalon",
     "name": "Hair Pinns",
     "image": "https://hairpinns.com/hair-pinns-logo.png",
-    "description": `Boutique hair salon serving ${locationData.name} ${locationData.postcode}. Expert colour, blonding, keratin smoothing, braids & cuts with Jena. Easy parking & quick callbacks.`,
+    "description": `Boutique hair salon near ${locationData.name}. Colour, blonding, keratin smoothing, braids & cuts with Jena. Easy parking & quick callbacks.`,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "60 Goorgool Road",
@@ -104,18 +99,7 @@ const LocationPage = () => {
       "postalCode": "2234",
       "addressCountry": "AU"
     },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": locationData.name,
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": locationData.name,
-          "postalCode": locationData.postcode,
-          "addressCountry": "AU"
-        }
-      }
-    ],
+    "areaServed": `${locationData.name} NSW`,
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": "-34.0186",
@@ -138,10 +122,11 @@ const LocationPage = () => {
         "closes": "15:00"
       }
     ],
-    "hasMap": "https://goo.gl/maps/example",
+    "hasMap": `https://www.google.com/maps/dir/${encodeURIComponent(locationData.fullName)}/Hair+Pinns,+60+Goorgool+Road,+Bangor+NSW+2234`,
     "sameAs": [
       "https://www.facebook.com/hairpinns",
-      "https://www.instagram.com/hairpinns"
+      "https://www.instagram.com/hairpinns",
+      "https://g.page/r/YOUR_GOOGLE_BUSINESS_ID"
     ]
   };
 
@@ -158,38 +143,37 @@ const LocationPage = () => {
     }))
   };
 
-  // Get top 6-8 services to display (find by category slug)
+  // Get 6 top services for mini-grid
   const smoothingCategory = serviceDetailData.find(cat => cat.slug === "smoothing");
   const colourCategory = serviceDetailData.find(cat => cat.slug === "colour");
   const cutsCategory = serviceDetailData.find(cat => cat.slug === "cuts");
-  const braidsCategory = serviceDetailData.find(cat => cat.slug === "braids");
   
   const topServices = [
-    smoothingCategory?.services[0],
-    smoothingCategory?.services[1],
-    colourCategory?.services[0],
-    colourCategory?.services[1],
-    cutsCategory?.services[0],
-    braidsCategory?.services[0],
-  ].filter(Boolean); // Remove any undefined values
+    { name: "Foils & Highlights", price: "from A$ 180", slug: "colour#foils" },
+    { name: "Regrowth Colour", price: "from A$ 130", slug: "colour#regrowth" },
+    { name: "Toner & Gloss", price: "from A$ 95", slug: "colour#toner" },
+    smoothingCategory?.services[0] || { title: "Keratin Smoothing", price: "A$ 324", slug: "smoothing" },
+    cutsCategory?.services[0] || { title: "Women's Cut", price: "A$ 85", slug: "cuts" },
+    { name: "Blow-Dry & Style", price: "from A$ 65", slug: "cuts#blowdry" },
+  ];
 
   return (
     <>
       <Helmet>
-        <title>Hair Salon {locationData.name} – Colour, Smoothing, Braids | Hair Pinns</title>
+        <title>Hairdresser {locationData.name} | Hair Salon near {locationData.name} – Hair Pinns</title>
         <meta 
           name="description" 
-          content={`Boutique hair salon near ${locationData.name}. Colour, blonding, keratin smoothing, braids & cuts with Jena. Easy parking & quick callbacks. Book online.`}
+          content={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call +61 468 020 624.`}
         />
         <link rel="canonical" href={`https://hairpinns.com/areas/${locationData.slug}`} />
-        <meta property="og:title" content={`Hair Salon ${locationData.name} | Hair Pinns`} />
-        <meta property="og:description" content={locationData.heroSubtitle} />
+        <meta property="og:title" content={`Hairdresser ${locationData.name} | Hair Pinns`} />
+        <meta property="og:description" content={`${locationData.driveTime} from Bangor salon • easy parking • one-on-one care with Jena`} />
         <meta property="og:url" content={`https://hairpinns.com/areas/${locationData.slug}`} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`Hair Salon ${locationData.name} | Hair Pinns`} />
-        <meta name="twitter:description" content={locationData.heroSubtitle} />
+        <meta name="twitter:title" content={`Hairdresser ${locationData.name} | Hair Pinns`} />
+        <meta name="twitter:description" content={`${locationData.driveTime} from Bangor • easy parking • expert colour, smoothing & cuts`} />
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>
@@ -218,21 +202,18 @@ const LocationPage = () => {
             </div>
           </div>
 
-          {/* Hero Section */}
+          {/* Hero Section with Gradient Overlay */}
           <Section 
             variant="default" 
             padding="xl"
-            className="relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, hsl(var(--brand-500) / 0.05) 0%, hsl(var(--accent) / 0.15) 100%)'
-            }}
+            className="relative overflow-hidden bg-gradient-to-br from-brand-500/10 via-accent/20 to-brand-500/5"
           >
             <div className="max-w-4xl">
-              <h1 className="text-h1 font-heading text-heading mb-6">
-                Hair Salon in {locationData.name}
+              <h1 className="text-h1 font-heading text-heading mb-4">
+                Hairdresser near {locationData.name} – Hair Pinns
               </h1>
-              <p className="text-xl text-foreground leading-relaxed mb-8">
-                {locationData.heroSubtitle}
+              <p className="text-xl text-foreground mb-8">
+                {locationData.driveTime} from Bangor salon • easy parking • one-on-one care with Jena
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -254,163 +235,111 @@ const LocationPage = () => {
                   variant="outline"
                   asChild
                 >
-                  <Link to="/services">
-                    See services
-                  </Link>
+                  <a href="tel:+61468020624" className="flex items-center gap-2">
+                    <Phone className="w-5 h-5" />
+                    Call +61 468 020 624
+                  </a>
                 </Button>
               </div>
             </div>
           </Section>
 
-          {/* Why Choose Hair Pinns */}
+          {/* Local Intro */}
           <Section padding="lg">
+            <div className="max-w-3xl mx-auto">
+              <p className="text-lg text-foreground leading-relaxed">
+                {locationData.localIntro}
+              </p>
+            </div>
+          </Section>
+
+          {/* Popular in {Suburb} */}
+          <Section variant="muted" padding="lg">
             <SectionHeader 
-              title="Why Choose Hair Pinns"
+              title={`Popular in ${locationData.name}`}
               align="center"
             />
-            <div className="grid md:grid-cols-3 gap-8">
-              {locationData.whyChoose.map((item, index) => {
-                const icons = [Heart, Shield, CheckCircle2];
-                const Icon = icons[index];
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {locationData.popularServices.map((service, index) => {
+                const icons = [Palette, Sparkles, Scissors];
+                const Icon = icons[index % icons.length];
+                const slugs = ["colour", "smoothing", "cuts"];
                 return (
-                  <Card key={index} variant="elevated" padding="lg" className="text-center">
-                    <Icon className="w-12 h-12 text-brand-500 mx-auto mb-4" />
-                    <h3 className="text-h3 font-heading text-heading mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-foreground">
-                      {item.description}
-                    </p>
-                  </Card>
+                  <Link
+                    key={index}
+                    to={`/services#${slugs[index]}`}
+                    className="group"
+                  >
+                    <Card variant="elevated" padding="md" className="text-center hover:shadow-xl transition-all">
+                      <Icon className="w-12 h-12 text-brand-500 mx-auto mb-3" />
+                      <h3 className="text-lg font-heading text-heading group-hover:text-brand-500 transition-colors">
+                        {service}
+                      </h3>
+                    </Card>
+                  </Link>
                 );
               })}
             </div>
           </Section>
 
-          {/* Top Services */}
-          <Section variant="muted" padding="lg">
+          {/* Services Mini-Grid */}
+          <Section padding="lg">
             <SectionHeader 
-              title={`Top Services near ${locationData.name}`}
-              subtitle="Expert care with premium products and personalized attention"
+              title="Our Services"
+              subtitle="Book online or text for a personalized quote"
               align="center"
             />
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {topServices.map((service, index) => {
-                if (!service) return null;
-                const icons = [Palette, Sparkles, Zap, Scissors, Palette, Heart];
-                const Icon = icons[index % icons.length];
-                return (
-                  <Card key={index} variant="default" padding="md" className="hover:shadow-lg transition-shadow">
-                    <Icon className="w-10 h-10 text-brand-500 mb-3" />
-                    <h3 className="text-lg font-heading text-heading mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-brand-500 font-semibold">
-                        {service.price}
-                      </span>
-                      <Button 
-                        size="sm" 
-                        variant="outline"
-                        asChild
+              {topServices.map((service, index) => (
+                <Card key={index} variant="default" padding="md" className="hover:shadow-lg transition-shadow">
+                  <h3 className="text-lg font-heading text-heading mb-2">
+                    {'name' in service ? service.name : service.title}
+                  </h3>
+                  <p className="text-brand-500 font-semibold mb-4">
+                    {service.price}
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    <Button 
+                      size="sm" 
+                      variant="primary"
+                      className="w-full"
+                      asChild
+                    >
+                      <a 
+                        href={BOOK_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackBookingClick("location_service_grid", `/areas/${slug}`)}
                       >
-                        <a 
-                          href={BOOK_URL}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => trackBookingClick("location_service_card", `/areas/${slug}`)}
-                        >
-                          {BOOK_CTA_LABEL}
-                        </a>
-                      </Button>
-                    </div>
-                  </Card>
-                );
-              })}
+                        {BOOK_CTA_LABEL}
+                      </a>
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      className="w-full"
+                      asChild
+                    >
+                      <Link to={`/services#${service.slug.split('#')[0]}`}>
+                        Learn more
+                      </Link>
+                    </Button>
+                  </div>
+                </Card>
+              ))}
             </div>
             <div className="text-center">
-              <Button 
-                variant="primary" 
-                size="lg"
-                asChild
-              >
-                <Link to="/services">
-                  View all services
-                </Link>
+              <Button variant="primary" size="lg" asChild>
+                <Link to="/services">View all services</Link>
               </Button>
             </div>
           </Section>
 
-          {/* Map & Travel Time */}
-          <Section padding="lg">
-            <div className="max-w-3xl mx-auto">
-              <div className="flex items-start gap-4 mb-6">
-                <MapPin className="w-10 h-10 text-brand-500 flex-shrink-0 mt-1" />
-                <div>
-                  <h2 className="text-h2 font-heading text-heading mb-4">
-                    Easy to reach from {locationData.name}
-                  </h2>
-                  <p className="text-lg text-foreground mb-4">
-                    Approximately <strong>{locationData.driveTime}</strong> from {locationData.name} to our salon in Bangor with easy parking.
-                  </p>
-                  <p className="text-foreground mb-4">
-                    <strong>Route:</strong> {locationData.route}
-                  </p>
-                </div>
-              </div>
-              <Card variant="bordered" padding="md" className="bg-muted/30">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <MapPin className="w-5 h-5 text-brand-500" />
-                    <p className="text-sm text-foreground">
-                      <strong>Address:</strong> 60 Goorgool Road, Bangor NSW 2234
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-brand-500" />
-                    <p className="text-sm text-foreground">
-                      <strong>Hours:</strong> Tue–Fri 9am–5pm | Sat 8am–3pm | Sun–Mon Closed
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-brand-500" />
-                    <p className="text-sm text-foreground">
-                      <strong>Phone:</strong> <a href="tel:+61468020624" className="text-brand-500 hover:underline">+61 468 020 624</a>
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </Section>
-
-          {/* Local Tips */}
-          <Section variant="accent" padding="lg">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-h2 font-heading text-heading mb-6 text-center">
-                Local Tips for {locationData.name}
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {locationData.localTips.map((tip, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" />
-                    <p className="text-foreground text-sm">
-                      {tip}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Section>
-
-          {/* FAQs */}
-          <Section padding="lg">
+          {/* Micro-FAQs (AEO) */}
+          <Section variant="muted" padding="lg">
             <div className="max-w-3xl mx-auto">
               <SectionHeader 
-                title={`Frequently Asked Questions`}
-                subtitle={`Common questions from ${locationData.name} clients`}
+                title="Common Questions"
                 align="center"
               />
               <Accordion type="single" collapsible className="space-y-4">
@@ -420,14 +349,12 @@ const LocationPage = () => {
                     value={`faq-${index}`}
                     className="bg-card border border-border rounded-lg px-6"
                   >
-                    <AccordionTrigger className="text-left text-lg font-heading text-heading hover:text-brand-500 py-6">
+                    <AccordionTrigger className="text-left font-heading text-heading hover:text-brand-500 py-6">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-foreground pb-6 leading-relaxed">
+                    <AccordionContent className="text-foreground pb-6">
                       {faq.answer}
-                      <FaqFeedbackWidget 
-                        question={faq.question}
-                      />
+                      <FaqFeedbackWidget question={faq.question} />
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -435,7 +362,42 @@ const LocationPage = () => {
             </div>
           </Section>
 
-          {/* CTA Band */}
+          {/* Map & Directions */}
+          <Section padding="lg">
+            <div className="max-w-3xl mx-auto">
+              <SectionHeader 
+                title="Directions"
+                align="center"
+              />
+              <Card variant="bordered" padding="lg" className="text-center">
+                <MapPin className="w-12 h-12 text-brand-500 mx-auto mb-4" />
+                <p className="text-lg text-foreground mb-4">
+                  Approximately <strong>{locationData.driveTime}</strong> from {locationData.name} to our salon in Bangor
+                </p>
+                <p className="text-foreground mb-6">
+                  <strong>Hair Pinns</strong><br />
+                  60 Goorgool Road, Bangor NSW 2234
+                </p>
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                  asChild
+                >
+                  <a 
+                    href={`https://www.google.com/maps/dir/${encodeURIComponent(locationData.fullName)}/Hair+Pinns,+60+Goorgool+Road,+Bangor+NSW+2234`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <MapPin className="w-5 h-5" />
+                    Get directions
+                  </a>
+                </Button>
+              </Card>
+            </div>
+          </Section>
+
+          {/* Footer CTA */}
           <Section 
             padding="xl"
             className="text-center text-white"
@@ -444,11 +406,8 @@ const LocationPage = () => {
             }}
           >
             <h2 className="text-h2-lg font-heading mb-6">
-              Ready for great hair, {locationData.name}?
+              Ready for salon-quality hair near {locationData.name}?
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto opacity-95">
-              Book your appointment now or get in touch for a personalized quote
-            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
@@ -459,7 +418,7 @@ const LocationPage = () => {
                   href={BOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackBookingClick("location_cta_band", `/areas/${slug}`)}
+                  onClick={() => trackBookingClick("location_footer_cta", `/areas/${slug}`)}
                 >
                   {BOOK_CTA_LABEL}
                 </a>
@@ -470,19 +429,19 @@ const LocationPage = () => {
                 className="border-white text-white hover:bg-white/10"
                 asChild
               >
-                <a href="sms:+61468020624" className="flex items-center gap-2">
+                <a href="tel:+61468020624" className="flex items-center gap-2">
                   <Phone className="w-5 h-5" />
-                  Message us
+                  Call +61 468 020 624
                 </a>
               </Button>
             </div>
           </Section>
 
-          {/* Nearby Suburbs */}
+          {/* Cross-link to Other Areas */}
           <Section padding="lg">
             <div className="max-w-4xl mx-auto">
               <h3 className="font-heading text-xl text-heading mb-6 text-center">
-                We also serve nearby areas
+                Serving the Sutherland Shire
               </h3>
               <div className="flex flex-wrap gap-3 justify-center">
                 {locationData.nearbyLocations.map((nearbySlug) => {

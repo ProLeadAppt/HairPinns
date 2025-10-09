@@ -125,7 +125,7 @@ const AreasIndex = () => {
                           </span>
                         </div>
                         <p className="text-sm text-muted-foreground line-clamp-2">
-                          {location.heroSubtitle}
+                          {location.localIntro.substring(0, 120)}...
                         </p>
                       </div>
                       <div className="mt-4 pt-4 border-t border-border">
