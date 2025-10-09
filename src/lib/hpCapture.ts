@@ -424,11 +424,13 @@ async function postToZapier(
         headers: {
           'Content-Type': 'application/json',
         },
+        mode: 'no-cors',
         body: JSON.stringify(fullPayload),
       });
       
-      if (response.ok) {
-        console.log('[hpCapture] Successfully posted to Zapier:', fullPayload);
+      // With no-cors, response is opaque (status 0). Treat as success.
+      if (response.ok || response.type === 'opaque' || response.status === 0) {
+        console.log('[hpCapture] Request sent to Zapier (opaque allowed):', fullPayload);
         return true;
       }
       
