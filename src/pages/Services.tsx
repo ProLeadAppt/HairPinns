@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Calendar, Check, Sparkles, Wind, Scissors, Plus, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
@@ -14,354 +15,674 @@ import { generateOrganizationSchema, generateLocalBusinessSchema, generateServic
 import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
-const Services = () => {
-  const services = {
-    colour: [{
-      name: "Full Colour",
-      value: "Rich, vibrant color that lasts",
-      price: "From $120"
-    }, {
-      name: "Balayage",
-      value: "Natural, sun-kissed dimension",
-      price: "From $180"
-    }, {
-      name: "Highlights (Full)",
-      value: "Brightening all-over lift",
-      price: "From $180"
-    }, {
-      name: "Highlights (Partial)",
-      value: "Focused brightness & dimension",
-      price: "From $140"
-    }, {
-      name: "Toner & Gloss",
-      value: "Eliminate brass, add shine",
-      price: "From $45"
-    }, {
-      name: "Root Touch-Up",
-      value: "Seamless color refresh",
-      price: "From $95"
-    }],
-    treatments: [{
-      name: "Keratin Smoothing",
-      value: "Frizz control for 3-4 months",
-      price: "From $250"
-    }, {
-      name: "Olaplex Bond Treatment",
-      value: "Repair damage at the molecular level",
-      price: "From $55"
-    }, {
-      name: "Deep Conditioning",
-      value: "Instant hydration & shine",
-      price: "From $45"
-    }, {
-      name: "Scalp Wellness Therapy",
-      value: "Detox, exfoliate, nourish",
-      price: "From $65"
-    }],
-    cuts: [{
-      name: "Women's Cut & Style",
-      value: "Precision cut tailored to your face shape",
-      price: "From $85"
-    }, {
-      name: "Men's Cut",
-      value: "Sharp, modern styling",
-      price: "From $45"
-    }, {
-      name: "Bang/Fringe Trim",
-      value: "Quick refresh between cuts",
-      price: "From $25"
-    }, {
-      name: "Blow Dry & Style",
-      value: "Smooth, polished finish",
-      price: "From $55"
-    }],
-    addons: [{
-      name: "Olaplex Boost",
-      value: "Add to any color service",
-      price: "+$35"
-    }, {
-      name: "K18 Leave-In Treatment",
-      value: "Instant repair & softness",
-      price: "+$40"
-    }, {
-      name: "Gloss Refresh",
-      value: "Add shine to any service",
-      price: "+$30"
-    }, {
-      name: "Scalp Massage",
-      value: "10-minute relaxation add-on",
-      price: "+$15"
-    }]
-  };
 
-  // Generate schemas with comprehensive FAQs
+interface Service {
+  title: string;
+  subtitle?: string;
+  duration?: string;
+  serviceCount?: string;
+  price: string;
+  description?: string;
+}
+
+interface ServiceCategory {
+  id: string;
+  title: string;
+  services: Service[];
+}
+
+const Services = () => {
+  const [activeSection, setActiveSection] = useState("smoothing");
+
+  // Exact Fresha data - Source of Truth
+  const serviceCategories: ServiceCategory[] = [
+    {
+      id: "smoothing",
+      title: "Straight Up Smoothing Treatments",
+      services: [
+        {
+          title: "Mid-Length Straight Up Smoothing Treatment",
+          duration: "2h 20min",
+          serviceCount: "2 services",
+          price: "A$ 324"
+        },
+        {
+          title: "Long/Thick Straight Up Smoothing Treatment",
+          duration: "2h 20min",
+          serviceCount: "2 services",
+          description: "Straight Up is the first natural hair smoothing treatment\nThis package includes the 2.5 hour pampering session where you leave feeling great with smooth and silky hair and a take home hair mask to prolong your amazing results",
+          price: "A$ 349"
+        },
+        {
+          title: "Straight Up Smoothing for Teens",
+          duration: "2h 20min",
+          serviceCount: "2 services",
+          description: "The perfect treatment for your Teen who needs to tame her mane",
+          price: "A$ 234"
+        }
+      ]
+    },
+    {
+      id: "foil-packages",
+      title: "Foil Packages",
+      services: [
+        {
+          title: "Short Hair Colour+ Foils & cut/blowdry",
+          duration: "2h 30min",
+          serviceCount: "3 services",
+          description: "Root touch up, highlights, cut and blow-dry package",
+          price: "A$ 257"
+        },
+        {
+          title: "Long Hair Colour + Foils & cut/blowdry",
+          duration: "2h 45min",
+          serviceCount: "3 services",
+          price: "A$ 262"
+        },
+        {
+          title: "1/4 Head Foils, cut and blowdry",
+          duration: "2h 15min",
+          serviceCount: "3 services",
+          description: "Enhance your hair with a 1/4 head of foils, cut and blow-dry",
+          price: "A$ 202"
+        },
+        {
+          title: "1/2 Head of Foils, cut & blowdry",
+          duration: "2h 15min",
+          serviceCount: "3 services",
+          description: "Spice up is the perfect package that combines highlights, style cut and blowdry in one pampering session",
+          price: "A$ 237"
+        },
+        {
+          title: "Full Head of Foils Package",
+          duration: "2h 45min",
+          serviceCount: "3 services",
+          description: "This package includes a full head of foils, style-cut & blow-dry",
+          price: "A$ 267"
+        }
+      ]
+    },
+    {
+      id: "colouring-packages",
+      title: "Colouring Packages",
+      services: [
+        {
+          title: "Long Hair Colour Package",
+          duration: "2h 30min",
+          serviceCount: "3 services",
+          description: "Freshen up your look with regrowth or full colour, plus a cut and blowdry for women with long hair. Enjoy a complete service designed especially for long-haired clients.",
+          price: "A$ 205"
+        },
+        {
+          title: "Mid-Length Colour Package",
+          duration: "2h 15min",
+          serviceCount: "3 services",
+          description: "Regrowth or full colour, cut and blowdry for mid length hair",
+          price: "A$ 178"
+        },
+        {
+          title: "Short Hair Colour Package",
+          duration: "2h 15min",
+          serviceCount: "3 services",
+          description: "Regrowth or full colour cut and blowdry for short hair",
+          price: "A$ 184"
+        }
+      ]
+    },
+    {
+      id: "cut-packages",
+      title: "Cut & Blow-dry Packages",
+      services: [
+        {
+          title: "Kids cut & blowdry bundle",
+          duration: "40min",
+          serviceCount: "2 services",
+          description: "Pamper your kids with a deep cleanse shampoo, relaxing head massage and condition paired with a haircut and blowdry",
+          price: "A$ 54"
+        },
+        {
+          title: "Short wash/cut/blow-dry",
+          duration: "1h",
+          serviceCount: "2 services",
+          price: "A$ 79"
+        },
+        {
+          title: "Mid-length wash/cut/blow-dry",
+          duration: "1h",
+          serviceCount: "2 services",
+          price: "A$ 89"
+        },
+        {
+          title: "Long Hair wash/cut/blow-dry",
+          duration: "1h 15min",
+          serviceCount: "2 services",
+          price: "A$ 99"
+        }
+      ]
+    },
+    {
+      id: "braids",
+      title: "Pretty Princess Braids",
+      services: [
+        {
+          title: "Little Princess Crown Braid",
+          duration: "20min",
+          price: "A$ 29"
+        },
+        {
+          title: "2 x Hair Braids with Coloured Extensions",
+          duration: "20min",
+          price: "A$ 45"
+        },
+        {
+          title: "Single Braid",
+          duration: "15min",
+          description: "Headband style braid or one directly down the centre of the head",
+          price: "A$ 20"
+        },
+        {
+          title: "Double Braids",
+          duration: "20min",
+          price: "A$ 30"
+        },
+        {
+          title: "3-4 Braids (cornrows)",
+          duration: "40min",
+          price: "A$ 40"
+        },
+        {
+          title: "Custom Braided Hairstyle",
+          duration: "1h",
+          price: "from A$ 50"
+        }
+      ]
+    },
+    {
+      id: "timeout",
+      title: "Time-Out",
+      services: [
+        {
+          title: "Hot Towel Treatment Add On",
+          duration: "10min",
+          description: "Add a hot towel treatment to any service to relax, unwind and get the best results from a hair mask.",
+          price: "A$ 12.50"
+        },
+        {
+          title: "Infrared Sauna",
+          subtitle: "Enjoy flexible wellness options with our casual, 5, or 10 visit passes. Choose the package that suits your lifestyle and experience soothing infrared sauna sessions whenever you need a relaxing escape.",
+          description: "Express Sauna Seah — 30min — A$ 25\n1 hour Seesion — 1h — A$ 35",
+          price: "from A$ 25"
+        },
+        {
+          title: "Scalp Detox",
+          duration: "1h",
+          description: "Refresh your scalp with a gentle treatment designed to remove everyday buildup and impurities. Enjoy a soothing experience that leaves your hair feeling cleaner and your scalp revitalised. Perfect for anyone seeking a clean, balanced foundation for healthier hair.\nWe use a scope camera to check your scalp for impurities and build up then after the specialized cleanse and blowdry, we re-scope to show you the amazing results afterwards",
+          price: "A$ 62"
+        },
+        {
+          title: "Complete Pamper Package",
+          duration: "1h",
+          serviceCount: "2 services",
+          description: "Escape to a blissful retreat as you surrender to a luxurious hair and scalp revamp, unveiling magnificent shine, banishing frizz, and experiencing a rejuvenating transformation. Leave the world behind and revel in being pampered and reclaim your hair's youthful charm while soaring to new heights of beauty.\nIncluded in this package is a scalp cleanse, deep conditioning treatment under heat or with hot towel, scalp massage and style so you can continue your Happy Hair Day :)",
+          price: "A$ 62"
+        }
+      ]
+    },
+    {
+      id: "hair",
+      title: "Hair",
+      services: [
+        {
+          title: "Kids Blow-dry",
+          duration: "20min",
+          description: "Spoil your kids with a deep cleanse shampoo, condition & blow-dry\nThis is great to give your kids a deep wash to remove any scalp build up and pamper them with knot-.free smooth hair",
+          price: "A$ 34"
+        },
+        {
+          title: "Haircut",
+          description: "Mens — 20min — A$ 39\n\nWomens — 30min — A$ 54",
+          price: "from A$ 39"
+        },
+        {
+          title: "Hair Wash & dry off",
+          duration: "20min",
+          price: "A$ 15.50"
+        },
+        {
+          title: "Fringe Trim",
+          duration: "10min",
+          description: "Keep your fringe perfect and pop in for a quick trim",
+          price: "A$ 15.50"
+        },
+        {
+          title: "Kids Haircuts",
+          description: "Boys/Girls 0-10 years old — 20min — A$ 24\n\nBoys/Girls 11-17 years old — 20min — A$ 32",
+          price: "from A$ 24"
+        }
+      ]
+    },
+    {
+      id: "styling",
+      title: "Styling",
+      services: [
+        {
+          title: "Add curls to other service",
+          duration: "10min",
+          price: "A$ 24"
+        },
+        {
+          title: "GHD Curls SHORT",
+          duration: "30min",
+          price: "A$ 52"
+        },
+        {
+          title: "Child Formal Hairstyle",
+          duration: "45min",
+          price: "A$ 59"
+        },
+        {
+          title: "GHD Curls LONG",
+          duration: "45min",
+          price: "A$ 67"
+        },
+        {
+          title: "Upstyle SHORT",
+          duration: "30min",
+          price: "A$ 87"
+        },
+        {
+          title: "Upstyle short/mid-length",
+          duration: "45min",
+          price: "A$ 94"
+        },
+        {
+          title: "Upstyle LONG",
+          duration: "1h",
+          price: "A$ 107"
+        },
+        {
+          title: "Wedding PP",
+          duration: "1h",
+          price: "A$ 114"
+        }
+      ]
+    },
+    {
+      id: "kids-formal",
+      title: "Kids Formal Hairstyle",
+      services: [
+        {
+          title: "Primary Formal Hairstyle",
+          duration: "45min",
+          price: "A$ 59"
+        },
+        {
+          title: "High School Formal Hairstyle",
+          duration: "1h",
+          price: "A$ 69"
+        }
+      ]
+    },
+    {
+      id: "treatments",
+      title: "Treatments",
+      services: [
+        {
+          title: "Superior Conditioning Treatment",
+          duration: "15min",
+          description: "Enjoy a deep scalp cleanse & a superior conditioning masque under heat for deep hydration and long-lasting shine and smoothness.\nCan be added to any hair treatment",
+          price: "A$ 32"
+        },
+        {
+          title: "Express Miracle Treatment",
+          duration: "5min",
+          description: "Add a 1 minute miracle treatment & hot towel to any service and give your hair a new life :)\nWith the value of Moroccan clay, this treatment quickly binds to your hair creating the soft and silky hair you deserve in only 60 seconds",
+          price: "A$ 22"
+        }
+      ]
+    },
+    {
+      id: "straight-up",
+      title: "Straight Up Treatment",
+      services: [
+        {
+          title: "Step 1- Cleanse, Treat & Heat",
+          duration: "1h 20min",
+          description: "Perfectly Straight Hair That Lasts\nInstantly boost your confidence in just a few hours. Lose that unmanageable mop forever and wake up every morning feeling sexy and looking good with beautiful straight hair.\nIn just two hours and lasting for months, transform your hair with a market leading hair straightening treatment that's quick, easy and completely natural – using eco friendly, hair-protecting products for the very best results.\nPlease book both Step 1 & 2. These are both completed at time of your appointment & are just split to allow for processing time.",
+          price: "Free"
+        },
+        {
+          title: "Step 2- Rinse, dry/straighten",
+          duration: "2h",
+          price: "A$ 350"
+        },
+        {
+          title: "Rinse-out Colour",
+          duration: "10min",
+          description: "If not having cut or blow-dry, please select the rinse-out options to allow time.",
+          price: "Free"
+        },
+        {
+          title: "OSTEO",
+          duration: "1h",
+          price: "Free"
+        }
+      ]
+    },
+    {
+      id: "tints",
+      title: "Tints",
+      services: [
+        {
+          title: "Toner",
+          duration: "40min",
+          price: "from A$ 29"
+        },
+        {
+          title: "Men's Colour",
+          duration: "1h",
+          price: "A$ 49"
+        },
+        {
+          title: "Regrowth of Colour",
+          duration: "1h 10min",
+          price: "A$ 79"
+        },
+        {
+          title: "Full Colour Short Hair",
+          duration: "1h 15min",
+          price: "A$ 86"
+        },
+        {
+          title: "Full Colour Mid-length",
+          duration: "1h 15min",
+          price: "A$ 92"
+        },
+        {
+          title: "Full Colour Long Hair",
+          duration: "1h 15min",
+          price: "A$ 97"
+        },
+        {
+          title: "Regrowth colour + 20 foils",
+          duration: "1h 30min",
+          price: "A$ 154"
+        }
+      ]
+    },
+    {
+      id: "foils",
+      title: "Foils",
+      services: [
+        {
+          title: "1/4 head of foils",
+          duration: "1h 15min",
+          price: "A$ 99"
+        },
+        {
+          title: "1/2 head of foils",
+          duration: "1h 15min",
+          price: "A$ 134"
+        },
+        {
+          title: "Full Head of Foils",
+          duration: "1h 45min",
+          price: "A$ 164"
+        }
+      ]
+    },
+    {
+      id: "blow-dry",
+      title: "Blow Dry",
+      services: [
+        {
+          title: "Short Hair",
+          duration: "30min",
+          price: "A$ 44"
+        },
+        {
+          title: "Mid-length Hair",
+          duration: "30min",
+          price: "A$ 49"
+        },
+        {
+          title: "Long Hair",
+          duration: "45min",
+          price: "A$ 54"
+        }
+      ]
+    }
+  ];
+
+  // Scroll spy for sticky nav
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = serviceCategories.map(cat => document.getElementById(cat.id));
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        if (section) {
+          const top = section.offsetTop;
+          const bottom = top + section.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < bottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Generate schemas
   const organizationSchema = generateOrganizationSchema();
   const localBusinessSchema = generateLocalBusinessSchema('https://hairpinns.com/services');
-  const serviceSchemas = [generateServiceSchema({
-    name: 'Colour & Blonding Services',
-    description: 'Expert hair colouring including balayage, highlights, full colour, and toning services for vibrant, long-lasting results.',
-    url: 'https://hairpinns.com/services#colour'
-  }), generateServiceSchema({
-    name: 'Smoothing & Treatment Services',
-    description: 'Keratin smoothing, deep conditioning, and bond-building treatments to restore health and eliminate frizz.',
-    url: 'https://hairpinns.com/services#smoothing'
-  }), generateServiceSchema({
-    name: 'Cuts & Styling Services',
-    description: 'Precision haircuts and expert styling tailored to your face shape, hair texture, and lifestyle.',
-    url: 'https://hairpinns.com/services#cuts'
-  })];
   const faqSchema = generateFAQPageSchema(comprehensiveFAQs.map(faq => ({
     question: faq.question,
     answer: faq.answer
   })));
-  return <div className="min-h-screen bg-background">
+
+  return (
+    <div className="min-h-screen bg-bg">
       <Helmet>
         <title>Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns</title>
-        <meta name="description" content="Expert salon services: Balayage, Keratin Smoothing, Precision Cuts. 12+ years experience. Book online 24/7 via Fresha." />
+        <meta name="description" content="Expert salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Exact pricing and timings as listed in our booking system." />
         <link rel="canonical" href="https://hairpinns.com/services" />
         <meta property="og:title" content="Hair Services Bangor | Colour, Smoothing & Cuts" />
-        <meta property="og:description" content="Balayage, highlights, keratin smoothing, cuts & styling. Expert care in Bangor. Book online now." />
+        <meta property="og:description" content="Expert salon services with transparent pricing. Book online now via Fresha." />
         <meta property="og:url" content="https://hairpinns.com/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('service')} />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/services" />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>
         <script type="application/ld+json">
           {JSON.stringify(localBusinessSchema)}
         </script>
-        {serviceSchemas.map((schema, index) => <script key={`service-${index}`} type="application/ld+json">
-            {JSON.stringify(schema)}
-          </script>)}
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
 
       <Header />
-      
       <GoogleReviewBadge variant="micro" showCTA />
-      
-      {/* Trust Strip */}
       <TrustStrip />
-      
-      {/* Sticky Booking CTA (mobile only) */}
       <StickyBooking />
-      
+
       <main>
         {/* Breadcrumbs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <Breadcrumbs items={[{
-          label: 'Home',
-          href: '/'
-        }, {
-          label: 'Services'
-        }]} />
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
         </div>
-        
-        {/* Hero */}
-        <section className="bg-accent py-12 md:py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
-              Salon Services
+
+        {/* Hero - Compact Premium */}
+        <section className="relative py-12 md:py-16 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-bg via-[#FBF7FD] to-bg"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-sm font-medium text-brand-500 tracking-wide uppercase mb-3">
+              Our Services
+            </p>
+            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4" style={{ letterSpacing: '-0.2px' }}>
+              Services & Packages
             </h1>
-            <p className="text-lg text-foreground leading-relaxed">Welcome to Hair Pinns, your boutique hair salon in Bangor, NSW. Serving the Sutherland Shire with expert cuts, color, and treatments since 2009. Jena brings over 16 years of professional experience, honest care, and a passion for helping you love your hair.</p>
+            <p className="text-lg text-foreground leading-relaxed" style={{ lineHeight: '1.5' }}>
+              Exact pricing and timings as listed in our booking system.
+            </p>
           </div>
         </section>
 
-        {/* Review Strip */}
+        {/* Sticky Sub-Nav */}
+        <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[rgba(139,74,139,0.10)] shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-hide">
+              <span className="text-sm text-muted whitespace-nowrap mr-2">Jump to:</span>
+              {[
+                { id: 'smoothing', label: 'Smoothing' },
+                { id: 'foil-packages', label: 'Foil Packages' },
+                { id: 'colouring-packages', label: 'Colour' },
+                { id: 'cut-packages', label: 'Cuts' },
+                { id: 'braids', label: 'Braids' },
+                { id: 'styling', label: 'Styling' }
+              ].map(nav => (
+                <a
+                  key={nav.id}
+                  href={`#${nav.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById(nav.id);
+                    if (element) {
+                      const offset = 120;
+                      const top = element.offsetTop - offset;
+                      window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                  }}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-150 ${
+                    activeSection === nav.id
+                      ? 'bg-brand-500 text-white shadow-sm'
+                      : 'text-muted hover:text-brand-600 hover:bg-accent'
+                  }`}
+                >
+                  {nav.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <ReviewStrip variant="compact" />
 
-        {/* Why Choose Hair Pinns */}
-        <section className="py-12 bg-muted">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-6 text-center">
-              Why Choose Hair Pinns?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="flex flex-col items-center text-center p-6 bg-card rounded-card border border-border">
-                <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center mb-4">
-                  <Check className="w-6 h-6" />
-                </div>
-                <h3 className="font-semibold text-heading mb-2">Honest Care</h3>
-                <p className="text-sm text-foreground">
-                  No upsells, no gimmicks—just expert advice tailored to your hair goals and budget
-                </p>
+        {/* Service Categories */}
+        {serviceCategories.map((category, catIndex) => (
+          <section
+            key={category.id}
+            id={category.id}
+            className={`py-16 scroll-mt-32 ${catIndex % 2 === 1 ? 'bg-muted' : ''}`}
+          >
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-h2-lg font-heading font-bold text-heading mb-8" style={{ letterSpacing: '-0.2px', lineHeight: '1.5' }}>
+                {category.title}
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {category.services.map((service, idx) => (
+                  <div
+                    key={idx}
+                    className="group bg-white rounded-card p-6 border border-[rgba(139,74,139,0.10)] hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-150"
+                    style={{ 
+                      boxShadow: 'var(--shadow)',
+                      borderRadius: 'var(--radius-card)'
+                    }}
+                  >
+                    {/* Title */}
+                    <h3 className="text-xl font-heading font-semibold text-heading mb-2" style={{ lineHeight: '1.5' }}>
+                      {service.title}
+                    </h3>
+
+                    {/* Subtitle */}
+                    {service.subtitle && (
+                      <p className="text-sm text-foreground mb-3" style={{ lineHeight: '1.5' }}>
+                        {service.subtitle}
+                      </p>
+                    )}
+
+                    {/* Meta chips */}
+                    {(service.duration || service.serviceCount) && (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {service.duration && (
+                          <span className="inline-flex items-center px-3 py-1 rounded-full border border-[rgba(139,74,139,0.10)] text-xs text-muted">
+                            {service.duration}
+                          </span>
+                        )}
+                        {service.serviceCount && (
+                          <span className="inline-flex items-center px-3 py-1 rounded-full border border-[rgba(139,74,139,0.10)] text-xs text-muted">
+                            {service.serviceCount}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Description */}
+                    {service.description && (
+                      <p className="text-sm text-foreground mb-4 whitespace-pre-line" style={{ lineHeight: '1.5' }}>
+                        {service.description}
+                      </p>
+                    )}
+
+                    {/* Price */}
+                    <div className="mb-4">
+                      <span 
+                        className="inline-block px-4 py-1.5 rounded-full bg-brand-500 text-white text-sm font-bold"
+                        style={{ borderRadius: '999px' }}
+                      >
+                        {service.price}
+                      </span>
+                    </div>
+
+                    {/* CTAs */}
+                    <div className="space-y-2">
+                      <a 
+                        href={BOOK_URL} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={() => trackBookingClick(`services_${category.id}_card`, "/services")}
+                        aria-label={`Book now — ${service.title}`}
+                      >
+                        <Button 
+                          variant="primary" 
+                          size="sm" 
+                          className="w-full transition-all duration-150 hover:scale-[1.02]"
+                          style={{ borderRadius: 'var(--radius-btn)' }}
+                        >
+                          <Calendar className="w-4 h-4 group-hover:animate-pulse" />
+                          Book now
+                        </Button>
+                      </a>
+                      <a
+                        href={`#${category.id}`}
+                        className="block text-center text-sm font-medium text-brand-600 hover:text-brand-500 transition-colors duration-150"
+                      >
+                        Learn more
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="flex flex-col items-center text-center p-6 bg-card rounded-card border border-border">
-                <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center mb-4">
-                  <Sparkles className="w-6 h-6" />
-                </div>
-                <h3 className="font-semibold text-heading mb-2">Premium Products</h3>
-                <p className="text-sm text-foreground">
-                  Olaplex, Kevin Murphy, Moroccan Oil—salon-quality results you can trust
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center p-6 bg-card rounded-card border border-border">
-                <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center mb-4">
-                  <Check className="w-6 h-6" />
-                </div>
-                <h3 className="font-semibold text-heading mb-2">Local Love</h3>
-                <p className="text-sm text-foreground">
-                  Proud to serve Bangor & the Sutherland Shire with personalized, boutique service
-                </p>
-              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ))}
 
-        {/* Colour & Blonding */}
-        <section id="colour" className="py-16 scroll-mt-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 mb-8">
-              <Sparkles className="w-8 h-8 text-brand-500" />
-              <h2 className="text-h2-lg font-heading font-bold text-heading">
-                Colour & Blonding
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.colour.map((service, index) => <div key={index} className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base">
-                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
-                    {service.name}
-                  </h3>
-                  <p className="text-sm text-foreground mb-4">{service.value}</p>
-                  <p className="text-xl font-bold text-brand-500 mb-4">
-                    {service.price}
-                  </p>
-                  <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("services_colour_card", "/services")}>
-                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
-                      <Calendar className="w-4 h-4" />
-                      {BOOK_CTA_LABEL}
-                    </Button>
-                  </a>
-                  <a href="#colour" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
-                    Learn more
-                  </a>
-                </div>)}
-            </div>
-          </div>
-        </section>
+        {/* FAQ Section */}
+        <FAQSection 
+          faqs={comprehensiveFAQs} 
+          title="Frequently Asked Questions" 
+          subtitle="Expert answers to your hair care questions from Jena and the Hair Pinns team." 
+          showFeedback={true} 
+        />
 
-        {/* Smoothing & Treatments */}
-        <section id="treatments" className="py-16 bg-muted scroll-mt-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 mb-8">
-              <Wind className="w-8 h-8 text-brand-500" />
-              <h2 className="text-h2-lg font-heading font-bold text-heading">
-                Smoothing & Treatments
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.treatments.map((service, index) => <div key={index} className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base">
-                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
-                    {service.name}
-                  </h3>
-                  <p className="text-sm text-foreground mb-4">{service.value}</p>
-                  <p className="text-xl font-bold text-brand-500 mb-4">
-                    {service.price}
-                  </p>
-                  <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("services_treatments_card", "/services")}>
-                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
-                      <Calendar className="w-4 h-4" />
-                      {BOOK_CTA_LABEL}
-                    </Button>
-                  </a>
-                  <a href="#treatments" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
-                    Learn more
-                  </a>
-                </div>)}
-            </div>
-          </div>
-        </section>
-
-        {/* Mid-page Help CTA */}
-        <section className="py-12 bg-brand-500 text-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-h2-lg font-heading font-bold mb-4">
-              Not sure which service is right for you?
-            </h2>
-            <p className="text-lg mb-6 opacity-90">
-              Need help choosing? <Link to="/contact" className="text-white font-semibold hover:text-white/90 underline">Message us on the contact page.</Link>
-            </p>
-            <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("services_mid_page_cta", "/services")}>
-              <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90" aria-label="Book an appointment">
-                <Calendar className="w-5 h-5" />
-                {BOOK_CTA_LABEL}
-              </Button>
-            </a>
-          </div>
-        </section>
-
-        {/* Cuts & Styling */}
-        <section id="cuts" className="py-16 scroll-mt-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 mb-8">
-              <Scissors className="w-8 h-8 text-brand-500" />
-              <h2 className="text-h2-lg font-heading font-bold text-heading">
-                Cuts & Styling
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.cuts.map((service, index) => <div key={index} className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base">
-                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
-                    {service.name}
-                  </h3>
-                  <p className="text-sm text-foreground mb-4">{service.value}</p>
-                  <p className="text-xl font-bold text-brand-500 mb-4">
-                    {service.price}
-                  </p>
-                  <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("services_cuts_card", "/services")}>
-                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
-                      <Calendar className="w-4 h-4" />
-                      {BOOK_CTA_LABEL}
-                    </Button>
-                  </a>
-                  <a href="#cuts" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
-                    Learn more
-                  </a>
-                </div>)}
-            </div>
-          </div>
-        </section>
-
-        {/* Add-ons */}
-        <section id="add-ons" className="py-16 bg-muted scroll-mt-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3 mb-8">
-              <Plus className="w-8 h-8 text-brand-500" />
-              <h2 className="text-h2-lg font-heading font-bold text-heading">
-                Add-ons & Enhancements
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.addons.map((service, index) => <div key={index} className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-all duration-base">
-                  <h3 className="text-lg font-heading font-semibold text-heading mb-2">
-                    {service.name}
-                  </h3>
-                  <p className="text-sm text-foreground mb-4">{service.value}</p>
-                  <p className="text-xl font-bold text-brand-500 mb-4">
-                    {service.price}
-                  </p>
-                  <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("services_addons_card", "/services")}>
-                    <Button variant="primary" size="sm" className="w-full" aria-label="Book an appointment">
-                      <Calendar className="w-4 h-4" />
-                      {BOOK_CTA_LABEL}
-                    </Button>
-                  </a>
-                  <a href="#add-ons" className="block text-center text-sm text-brand-500 hover:text-brand-600 mt-2 font-medium">
-                    Learn more
-                  </a>
-                </div>)}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section with comprehensive FAQs */}
-        <FAQSection faqs={comprehensiveFAQs} title="Frequently Asked Questions" subtitle="Expert answers to your hair care questions from Jena and the Hair Pinns team." showFeedback={true} />
-        
-        {/* Nearby Suburbs We Serve */}
-        <section className="py-12" id="areas">
+        {/* Areas We Serve */}
+        <section className="py-12 bg-muted" id="areas">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 mb-6">
               <MapPin className="w-5 h-5 text-brand-500" />
@@ -369,120 +690,48 @@ const Services = () => {
                 Areas We Serve
               </h2>
             </div>
-            <p className="text-foreground mb-8 max-w-3xl">
-              Hair Pinns proudly serves clients throughout the Sutherland Shire from our Bangor salon. 
-              Click your area to see local info, drive times, and area-specific hair care tips.
+            <p className="text-foreground mb-8 max-w-3xl" style={{ lineHeight: '1.5' }}>
+              Hair Pinns proudly serves clients throughout the Sutherland Shire from our Bangor salon.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              <Link to="/near/bangor" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Bangor
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  On-site — our home salon in Bangor
-                </p>
-              </Link>
-              <Link to="/near/menai" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Menai
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  5–7 mins — expert colour, smoothing & cuts
-                </p>
-              </Link>
-              <Link to="/near/illawong" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Illawong
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  8–10 mins — riverside suburb specialist
-                </p>
-              </Link>
-              <Link to="/near/alfords-point" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Alfords Point
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  6–8 mins — coastal breeze hair care
-                </p>
-              </Link>
-              <Link to="/near/woronora" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Woronora
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  10–12 mins — river valley humidity solutions
-                </p>
-              </Link>
-              <Link to="/near/sutherland" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Sutherland
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  8–10 mins — hard water treatment specialists
-                </p>
-              </Link>
-              <Link to="/near/kirrawee" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Kirrawee
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  12–15 mins — coastal air protection
-                </p>
-              </Link>
-              <Link to="/near/kareela" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Kareela
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  10–12 mins — hydrating treatments for dry climates
-                </p>
-              </Link>
-              <Link to="/near/como" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Como
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  12–14 mins — riverside humidity expertise
-                </p>
-              </Link>
-              <Link to="/near/gymea" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Gymea
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  15–18 mins — salt air and sun protection
-                </p>
-              </Link>
-              <Link to="/near/miranda" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Miranda
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  15–18 mins — all-day style hold
-                </p>
-              </Link>
-              <Link to="/near/engadine" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Engadine
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  10–12 mins — dry bushland hair recovery
-                </p>
-              </Link>
-              <Link to="/near/heathcote" className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all">
-                <h3 className="text-lg font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Hair Salon Heathcote
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  5–7 mins — dust and pollen protection
-                </p>
-              </Link>
+              {[
+                { name: "Bangor", slug: "bangor" },
+                { name: "Menai", slug: "menai" },
+                { name: "Illawong", slug: "illawong" },
+                { name: "Barden Ridge", slug: "barden-ridge" },
+                { name: "Woronora Heights", slug: "woronora-heights" },
+                { name: "Sutherland", slug: "sutherland" }
+              ].map(area => (
+                <Link
+                  key={area.slug}
+                  to={`/near/${area.slug}`}
+                  className="group p-6 bg-card border border-[rgba(139,74,139,0.10)] rounded-card hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-150"
+                  style={{ 
+                    boxShadow: 'var(--shadow)',
+                    borderRadius: 'var(--radius-card)'
+                  }}
+                >
+                  <h3 className="font-semibold text-heading mb-1 group-hover:text-brand-500 transition-colors">
+                    {area.name}
+                  </h3>
+                  <p className="text-sm text-muted">View local info →</p>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
+
+        {/* Footer Note */}
+        <div className="py-6 text-center bg-white">
+          <p className="text-sm text-muted">
+            All services, durations and prices shown exactly as listed in our booking system.
+          </p>
+        </div>
       </main>
+
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Services;
