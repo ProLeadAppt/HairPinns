@@ -418,5 +418,562 @@ export const serviceDetailData: ServiceCategoryData[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "colouring-packages",
+    title: "Colouring Packages",
+    services: [
+      {
+        slug: "long-hair-colour-package",
+        title: "Long Hair Colour Package",
+        tagline: "Complete colour transformation for long locks",
+        duration: "2h 30min",
+        price: "A$ 205",
+        description: "Freshen up your look with regrowth or full colour, plus a cut and blowdry for women with long hair. Enjoy a complete service designed especially for long-haired clients.",
+        metaDescription: "Long hair colour package Bangor. Full colour or regrowth with cut & blow-dry, 2h 30min, $205. Transform your long hair at Hair Pinns.",
+        whatsIncluded: [
+          "Regrowth or full head colour",
+          "Colour consultation and formulation",
+          "Precision cut for long hair",
+          "Deep conditioning treatment",
+          "Professional blow-dry and styling",
+          "Colour care recommendations"
+        ],
+        whoItsFor: [
+          "Women with long hair past shoulders",
+          "Those covering grey or changing colour",
+          "Anyone wanting a complete refresh",
+          "Clients maintaining existing colour"
+        ],
+        process: [
+          {
+            step: "Colour Consultation",
+            description: "We discuss your colour goals and create the perfect shade for you."
+          },
+          {
+            step: "Application & Processing",
+            description: "Colour is carefully applied to regrowth or full head, depending on your needs."
+          },
+          {
+            step: "Cut, Condition & Style",
+            description: "Hair is cut, deeply conditioned, and blow-dried to perfection."
+          }
+        ],
+        benefits: [
+          "Complete colour service in one visit",
+          "Professional colour-safe products",
+          "Covers grey completely",
+          "Long-lasting, vibrant results",
+          "Leaves hair soft and shiny",
+          "All-inclusive package"
+        ],
+        faqs: [
+          {
+            question: "How often should I colour my long hair?",
+            answer: "Every 6-8 weeks for regrowth touch-ups, or 10-12 weeks for full colour refresh depending on your natural growth rate."
+          },
+          {
+            question: "Will colouring damage my long hair?",
+            answer: "With quality products and proper aftercare, damage is minimal. We include a deep conditioning treatment and recommend colour-safe products."
+          }
+        ],
+        relatedServices: [
+          "mid-length-colour-package",
+          "long-thick-straight-up-smoothing",
+          "superior-conditioning-treatment"
+        ]
+      },
+      {
+        slug: "mid-length-colour-package",
+        title: "Mid-Length Colour Package",
+        tagline: "Perfect colour for mid-length hair",
+        duration: "2h 15min",
+        price: "A$ 178",
+        description: "Regrowth or full colour, cut and blowdry for mid length hair. A complete package that refreshes your colour and style in one appointment.",
+        metaDescription: "Mid-length colour package Bangor. Regrowth or full colour with cut & blow-dry, 2h 15min, $178. Book at Hair Pinns NSW.",
+        whatsIncluded: [
+          "Regrowth or full colour application",
+          "Custom colour matching",
+          "Style cut",
+          "Conditioning treatment",
+          "Professional blow-dry",
+          "Aftercare advice"
+        ],
+        whoItsFor: [
+          "Anyone with shoulder-length hair",
+          "Those maintaining current colour",
+          "Clients covering grey roots",
+          "People wanting a colour refresh"
+        ],
+        process: [
+          {
+            step: "Consultation",
+            description: "We determine whether you need regrowth or full colour and select your perfect shade."
+          },
+          {
+            step: "Colour Application",
+            description: "Professional colour is applied to achieve even, beautiful results."
+          },
+          {
+            step: "Finish & Style",
+            description: "Fresh cut and blow-dry complete your transformation."
+          }
+        ],
+        benefits: [
+          "Great value all-in-one package",
+          "Even colour coverage",
+          "Fresh cut included",
+          "Saves time with combined services",
+          "Professional results",
+          "Leaves hair healthy and shiny"
+        ],
+        faqs: [
+          {
+            question: "What's the difference between regrowth and full colour?",
+            answer: "Regrowth covers new growth at the roots only. Full colour refreshes your entire head. We'll recommend which is best during consultation."
+          },
+          {
+            question: "Can I change my colour completely?",
+            answer: "Yes! During consultation we'll discuss the best approach for your desired colour, whether subtle or dramatic."
+          }
+        ],
+        relatedServices: [
+          "long-hair-colour-package",
+          "short-hair-colour-package",
+          "half-head-foils-cut-blowdry"
+        ]
+      },
+      {
+        slug: "short-hair-colour-package",
+        title: "Short Hair Colour Package",
+        tagline: "Quick colour refresh for short styles",
+        duration: "2h 15min",
+        price: "A$ 184",
+        description: "Regrowth or full colour cut and blowdry for short hair. Perfect for maintaining your short style with fresh, vibrant colour.",
+        metaDescription: "Short hair colour package Bangor. Regrowth or full colour with cut & blow-dry, 2h 15min, $184. Quick colour at Hair Pinns.",
+        whatsIncluded: [
+          "Regrowth or full colour",
+          "Colour consultation",
+          "Precision short haircut",
+          "Conditioning treatment",
+          "Styled blow-dry or finish",
+          "Product recommendations"
+        ],
+        whoItsFor: [
+          "Anyone with short hair (above shoulders)",
+          "Those maintaining a short style",
+          "Clients wanting efficient colour service",
+          "People with quick-growing greys"
+        ],
+        process: [
+          {
+            step: "Quick Consultation",
+            description: "We assess your regrowth and discuss your colour needs."
+          },
+          {
+            step: "Colour Application",
+            description: "Efficient colour application for short hair ensures even coverage."
+          },
+          {
+            step: "Cut & Style",
+            description: "Precision cut and professional finish complete your look."
+          }
+        ],
+        benefits: [
+          "Perfect for short styles",
+          "Less product needed",
+          "Quick processing time",
+          "Complete service package",
+          "Refreshes cut and colour together",
+          "Great value"
+        ],
+        faqs: [
+          {
+            question: "How often do I need to colour short hair?",
+            answer: "Typically every 4-6 weeks as short hair shows regrowth more quickly, especially with lighter colours or grey coverage."
+          },
+          {
+            question: "Is this suitable for pixie cuts?",
+            answer: "Absolutely! This package is perfect for pixie, bob, and other short styles."
+          }
+        ],
+        relatedServices: [
+          "mid-length-colour-package",
+          "quarter-head-foils-cut-blowdry",
+          "short-wash-cut-blowdry"
+        ]
+      }
+    ]
+  },
+  {
+    slug: "cut-packages",
+    title: "Cut & Blow-dry Packages",
+    services: [
+      {
+        slug: "long-hair-wash-cut-blowdry",
+        title: "Long Hair Wash, Cut & Blow-dry",
+        tagline: "Pampered experience for beautiful long hair",
+        duration: "1h 15min",
+        price: "A$ 99",
+        description: "The ultimate refresh for long hair. Enjoy a relaxing wash, precision cut, and professional blow-dry that leaves your long locks looking absolutely gorgeous.",
+        metaDescription: "Long hair cut & blow-dry Bangor. Wash, precision cut, professional styling, 1h 15min, $99. Book at Hair Pinns NSW.",
+        whatsIncluded: [
+          "Luxurious hair wash with scalp massage",
+          "Deep conditioning treatment",
+          "Precision cut maintaining length or reshaping",
+          "Professional blow-dry and styling",
+          "Style advice for at-home maintenance"
+        ],
+        whoItsFor: [
+          "Anyone with hair past shoulders",
+          "Those wanting to maintain healthy long hair",
+          "Clients needing regular trims",
+          "People seeking a pampering experience"
+        ],
+        process: [
+          {
+            step: "Relaxing Wash",
+            description: "Enjoy a thorough cleanse with scalp massage and conditioning."
+          },
+          {
+            step: "Precision Cutting",
+            description: "We carefully trim split ends or reshape your style while maintaining length."
+          },
+          {
+            step: "Professional Styling",
+            description: "Beautiful blow-dry that showcases your healthy, freshly cut hair."
+          }
+        ],
+        benefits: [
+          "Maintains long hair health",
+          "Removes split ends",
+          "Adds shape and movement",
+          "Relaxing scalp massage included",
+          "Professional styling tips",
+          "Leave feeling pampered"
+        ],
+        faqs: [
+          {
+            question: "How much length will be cut?",
+            answer: "That's entirely up to you! During consultation we'll discuss whether you want a trim, reshape, or more dramatic cut."
+          },
+          {
+            question: "How often should I get my long hair cut?",
+            answer: "Every 8-12 weeks to maintain health and prevent split ends from traveling up the hair shaft."
+          }
+        ],
+        relatedServices: [
+          "mid-length-wash-cut-blowdry",
+          "long-hair-colour-package",
+          "superior-conditioning-treatment"
+        ]
+      },
+      {
+        slug: "mid-length-wash-cut-blowdry",
+        title: "Mid-Length Wash, Cut & Blow-dry",
+        tagline: "Perfect trim and style for mid-length hair",
+        duration: "1h",
+        price: "A$ 89",
+        description: "Complete hair service for shoulder-length hair. Includes relaxing wash, precision cut, and beautiful blow-dry.",
+        metaDescription: "Mid-length cut & blow-dry Bangor. Wash, cut, styling for shoulder-length hair, 1h, $89. Book at Hair Pinns.",
+        whatsIncluded: [
+          "Cleansing shampoo with massage",
+          "Nourishing conditioner",
+          "Style cut or trim",
+          "Professional blow-dry",
+          "Styling recommendations"
+        ],
+        whoItsFor: [
+          "Anyone with shoulder-length hair",
+          "Those maintaining a mid-length style",
+          "Clients needing regular maintenance",
+          "People wanting a refresh"
+        ],
+        process: [
+          {
+            step: "Wash & Condition",
+            description: "Relaxing cleanse prepares your hair for cutting."
+          },
+          {
+            step: "Precision Cut",
+            description: "We shape your mid-length hair to perfection."
+          },
+          {
+            step: "Style & Finish",
+            description: "Beautiful blow-dry brings out the best in your new cut."
+          }
+        ],
+        benefits: [
+          "Maintains perfect mid-length",
+          "Removes damaged ends",
+          "Adds body and shape",
+          "Quick yet thorough",
+          "Great value service",
+          "Professional results"
+        ],
+        faqs: [
+          {
+            question: "Can I change my style during this service?",
+            answer: "Absolutely! We can discuss any style changes you'd like during the consultation before cutting."
+          }
+        ],
+        relatedServices: [
+          "long-hair-wash-cut-blowdry",
+          "short-wash-cut-blowdry",
+          "mid-length-colour-package"
+        ]
+      },
+      {
+        slug: "short-wash-cut-blowdry",
+        title: "Short Wash, Cut & Blow-dry",
+        tagline: "Keep your short style sharp and fresh",
+        duration: "1h",
+        price: "A$ 79",
+        description: "Maintain your short hairstyle with a professional wash, precision cut, and styled finish.",
+        metaDescription: "Short hair cut & blow-dry Bangor. Quick wash, precision cut, styling, 1h, $79. Maintain your short style at Hair Pinns.",
+        whatsIncluded: [
+          "Thorough hair wash",
+          "Conditioning treatment",
+          "Precision short haircut",
+          "Styled blow-dry or finish",
+          "Maintenance advice"
+        ],
+        whoItsFor: [
+          "Anyone with short hair above shoulders",
+          "Those with pixie cuts or bobs",
+          "Clients needing frequent trims",
+          "People wanting to maintain their shape"
+        ],
+        process: [
+          {
+            step: "Cleanse",
+            description: "Quick, efficient wash prepares hair for cutting."
+          },
+          {
+            step: "Precision Cutting",
+            description: "We maintain or refine your short style shape."
+          },
+          {
+            step: "Finish",
+            description: "Professional styling showcases your fresh cut."
+          }
+        ],
+        benefits: [
+          "Maintains short style shape",
+          "Quick turnaround time",
+          "Professional precision",
+          "Great for frequent trims",
+          "Affordable maintenance",
+          "Leave looking sharp"
+        ],
+        faqs: [
+          {
+            question: "How often should I get my short hair cut?",
+            answer: "Every 4-6 weeks to maintain the shape and style of short haircuts."
+          }
+        ],
+        relatedServices: [
+          "mid-length-wash-cut-blowdry",
+          "short-hair-colour-package",
+          "kids-cut-blowdry-bundle"
+        ]
+      },
+      {
+        slug: "kids-cut-blowdry-bundle",
+        title: "Kids Cut & Blow-dry Bundle",
+        tagline: "Pamper your kids with a professional salon experience",
+        duration: "40min",
+        price: "A$ 54",
+        description: "Pamper your kids with a deep cleanse shampoo, relaxing head massage and condition paired with a haircut and blowdry.",
+        metaDescription: "Kids haircut & blow-dry Bangor. Fun salon experience with massage, cut, styling, 40min, $54. Hair Pinns NSW.",
+        whatsIncluded: [
+          "Deep cleanse shampoo",
+          "Relaxing head massage",
+          "Nourishing conditioner",
+          "Age-appropriate haircut",
+          "Fun blow-dry styling"
+        ],
+        whoItsFor: [
+          "Kids who need regular haircuts",
+          "Parents wanting a salon experience for children",
+          "Kids preparing for special events",
+          "Children who enjoy being pampered"
+        ],
+        process: [
+          {
+            step: "Fun Wash Time",
+            description: "Gentle cleanse with scalp massage makes washing fun."
+          },
+          {
+            step: "Kid-Friendly Cutting",
+            description: "Patient, careful cutting while keeping kids comfortable."
+          },
+          {
+            step: "Style & Smile",
+            description: "Fun blow-dry that makes them feel special."
+          }
+        ],
+        benefits: [
+          "Kid-friendly environment",
+          "Removes scalp buildup",
+          "Knot-free smooth hair",
+          "Teaches good hair care",
+          "Professional results",
+          "Makes haircuts enjoyable"
+        ],
+        faqs: [
+          {
+            question: "What age is this suitable for?",
+            answer: "This package is perfect for kids of all ages who can sit comfortably in the salon chair."
+          },
+          {
+            question: "My child gets nervous at the salon. Can you help?",
+            answer: "Absolutely! Jena is experienced with kids and creates a calm, friendly environment. We go at your child's pace."
+          }
+        ],
+        relatedServices: [
+          "primary-formal-hairstyle",
+          "high-school-formal-hairstyle",
+          "kids-blowdry"
+        ]
+      }
+    ]
+  },
+  {
+    slug: "kids-formal",
+    title: "Kids Formal Hairstyles",
+    services: [
+      {
+        slug: "primary-formal-hairstyle",
+        title: "Primary Formal Hairstyle",
+        tagline: "Make their special day unforgettable",
+        duration: "45min",
+        price: "A$ 59",
+        description: "Beautiful formal styling for primary school events. We create age-appropriate, long-lasting styles that make kids feel special.",
+        metaDescription: "Primary school formal hair Bangor. Kids formal hairstyling, 45min, $59. Special occasion hair at Hair Pinns NSW.",
+        whatsIncluded: [
+          "Style consultation with child and parent",
+          "Hair preparation and styling",
+          "Curls, braids, or upstyle as desired",
+          "Accessories placement (if provided)",
+          "Strong-hold finish for long-lasting style"
+        ],
+        whoItsFor: [
+          "Kids attending primary school formals",
+          "Special occasions like communions or parties",
+          "Children wanting to feel grown-up",
+          "Parents seeking professional styling"
+        ],
+        process: [
+          {
+            step: "Style Planning",
+            description: "We discuss style ideas with you and your child to pick the perfect look."
+          },
+          {
+            step: "Hair Preparation",
+            description: "Hair is prepped and ready for styling with appropriate products."
+          },
+          {
+            step: "Creating Magic",
+            description: "Beautiful styling brings the chosen look to life."
+          }
+        ],
+        benefits: [
+          "Age-appropriate formal styles",
+          "Lasts through the whole event",
+          "Makes kids feel special",
+          "Professional quality",
+          "Parent-approved looks",
+          "Photo-ready results"
+        ],
+        faqs: [
+          {
+            question: "Should we book a trial before the formal?",
+            answer: "It's not essential for primary formals, but if your child has a very specific look in mind, a trial can be arranged."
+          },
+          {
+            question: "Can we bring hair accessories?",
+            answer: "Absolutely! Bring any ribbons, flowers, or clips you'd like incorporated into the style."
+          },
+          {
+            question: "How long before the event should we book?",
+            answer: "Aim to have hair done 1-2 hours before the event for best results."
+          }
+        ],
+        relatedServices: [
+          "high-school-formal-hairstyle",
+          "kids-cut-blowdry-bundle",
+          "custom-braided-hairstyle"
+        ]
+      },
+      {
+        slug: "high-school-formal-hairstyle",
+        title: "High School Formal Hairstyle",
+        tagline: "Stunning formal hair for your special night",
+        duration: "1h",
+        price: "A$ 69",
+        description: "Sophisticated formal styling for high school formals and special events. We create stunning, long-lasting looks that photograph beautifully.",
+        metaDescription: "High school formal hair Bangor. Teen formal hairstyling, upstyles, curls, 1h, $69. Book formal hair at Hair Pinns.",
+        whatsIncluded: [
+          "Detailed style consultation",
+          "Professional hair preparation",
+          "Advanced styling (upstyle, curls, braids)",
+          "Accessory placement and finishing",
+          "Long-lasting hold products",
+          "Styling photos for memory"
+        ],
+        whoItsFor: [
+          "High school students attending formals",
+          "Teens going to special events",
+          "Young adults wanting sophisticated styles",
+          "Anyone seeking professional formal hair"
+        ],
+        process: [
+          {
+            step: "Detailed Consultation",
+            description: "We look at inspiration photos and plan your dream formal hair."
+          },
+          {
+            step: "Hair Prep & Base",
+            description: "Hair is prepared with products that ensure long-lasting hold."
+          },
+          {
+            step: "Creating Your Look",
+            description: "Careful styling brings your vision to life with professional techniques."
+          }
+        ],
+        benefits: [
+          "Sophisticated, mature styling",
+          "Lasts through dancing and photos",
+          "Photograph beautifully",
+          "Complementary to dress and makeup",
+          "Professional techniques",
+          "Confidence-boosting results"
+        ],
+        faqs: [
+          {
+            question: "Should I book a trial?",
+            answer: "Highly recommended! A trial 1-2 weeks before ensures we perfect your look and you feel confident."
+          },
+          {
+            question: "Can I bring inspiration photos?",
+            answer: "Please do! Bring photos of styles you love so we can create something perfect for you."
+          },
+          {
+            question: "Will my hair stay all night?",
+            answer: "Yes! We use professional products and techniques to ensure your style stays perfect through the entire event."
+          },
+          {
+            question: "When should I book for my formal?",
+            answer: "Book as early as possible, especially during formal season (May-November). Last-minute bookings can be accommodated when possible."
+          }
+        ],
+        relatedServices: [
+          "straight-up-smoothing-teens",
+          "primary-formal-hairstyle",
+          "wedding-pp"
+        ]
+      }
+    ]
   }
 ];

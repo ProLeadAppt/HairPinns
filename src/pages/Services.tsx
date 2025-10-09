@@ -660,12 +660,51 @@ const Services = () => {
                           Book now
                         </Button>
                       </a>
-                      {/* Learn more link - coming soon with detail pages */}
-                      <div className="text-center">
-                        <span className="text-sm" style={{ color: 'hsl(var(--text))', opacity: 0.6 }}>
-                          More details coming soon
-                        </span>
-                      </div>
+                      {/* Learn more link */}
+                      {(() => {
+                        // Generate slug from service title
+                        const serviceSlug = service.title
+                          .toLowerCase()
+                          .replace(/[^a-z0-9\s-]/g, '')
+                          .replace(/\s+/g, '-')
+                          .replace(/-+/g, '-')
+                          .trim();
+                        
+                        // Check if this service has a detail page
+                        const hasDetailPage = [
+                          'mid-length-straight-up-smoothing-treatment',
+                          'long-thick-straight-up-smoothing-treatment',
+                          'straight-up-smoothing-for-teens',
+                          'full-head-of-foils-package',
+                          '12-head-of-foils-cut-blowdry',
+                          '14-head-foils-cut-and-blowdry',
+                          'long-hair-colour-package',
+                          'mid-length-colour-package',
+                          'short-hair-colour-package',
+                          'long-hair-wash-cut-blowdry',
+                          'mid-length-wash-cut-blowdry',
+                          'short-wash-cut-blowdry',
+                          'kids-cut-blowdry-bundle',
+                          'primary-formal-hairstyle',
+                          'high-school-formal-hairstyle'
+                        ].includes(serviceSlug);
+
+                        if (hasDetailPage) {
+                          return (
+                            <div className="text-center">
+                              <Link
+                                to={`/services/${category.id}/${serviceSlug}`}
+                                className="inline-flex items-center gap-2 text-sm font-medium transition-colors group"
+                                style={{ color: 'hsl(var(--brand-500))' }}
+                              >
+                                Learn more
+                                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                              </Link>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })()}
                     </div>
                   </div>
                 ))}
