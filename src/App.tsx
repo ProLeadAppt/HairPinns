@@ -11,6 +11,7 @@ import Collections from "./pages/Collections";
 import CollectionDetail from "./pages/CollectionDetail";
 import ProductDetail from "./pages/ProductDetail";
 import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
 import Booking from "./pages/Booking";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/collections/:slug" element={<CollectionDetail />} />
           <Route path="/products/:handle" element={<ProductDetail />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:categorySlug/:serviceSlug" element={<ServiceDetail />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />

@@ -537,7 +537,7 @@ const Services = () => {
         <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[rgba(139,74,139,0.10)] shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-hide">
-              <span className="text-sm text-muted whitespace-nowrap mr-2">Jump to:</span>
+              <span className="text-sm whitespace-nowrap mr-2" style={{ color: 'hsl(var(--text))', opacity: 0.7 }}>Jump to:</span>
               {[
                 { id: 'smoothing', label: 'Smoothing' },
                 { id: 'foil-packages', label: 'Foil Packages' },
@@ -561,8 +561,9 @@ const Services = () => {
                   className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-150 ${
                     activeSection === nav.id
                       ? 'bg-brand-500 text-white shadow-sm'
-                      : 'text-muted hover:text-brand-600 hover:bg-accent'
+                      : 'hover:bg-accent'
                   }`}
+                  style={activeSection !== nav.id ? { color: 'hsl(var(--text))', opacity: 0.8 } : {}}
                 >
                   {nav.label}
                 </a>
@@ -659,12 +660,12 @@ const Services = () => {
                           Book now
                         </Button>
                       </a>
-                      <a
-                        href={`#${category.id}`}
-                        className="block text-center text-sm font-medium text-brand-600 hover:text-brand-500 transition-colors duration-150"
-                      >
-                        Learn more
-                      </a>
+                      {/* Learn more link - coming soon with detail pages */}
+                      <div className="text-center">
+                        <span className="text-sm" style={{ color: 'hsl(var(--text))', opacity: 0.6 }}>
+                          More details coming soon
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}
