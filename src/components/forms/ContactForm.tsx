@@ -75,7 +75,7 @@ const ContactForm = ({
     setIsSubmitting(true);
 
     try {
-      const { hpCapture } = await import("@/lib/hpCapture");
+      const webhookUrl = "https://hooks.zapier.com/hooks/catch/23975177/u539h9a/";
 
       // Find readable topic label
       const topicLabel = topics.find(t => t.value === formData.topic)?.label || formData.topic;
@@ -89,6 +89,8 @@ const ContactForm = ({
         phone: formData.phone,
         message: formData.message,
         consent_marketing: formData.consent,
+        timestamp: new Date().toISOString(),
+        source: "contact_form",
       };
 
       if (showTopic) {
@@ -96,29 +98,29 @@ const ContactForm = ({
         payload.topic_label = topicLabel;
       }
 
-      const success = await hpCapture.postToZapier(
-        payload,
-        { event: "contact_page" }
-      );
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify(payload),
+      });
 
-      if (success) {
-        // Track lead generation in pixels
-        await pixelTracking.trackFormSubmission({
-          email: formData.email,
-          phone: formData.phone,
-          firstName: formData.name.split(' ')[0],
-          lastName: formData.name.split(' ').slice(1).join(' '),
-          leadValue: 20,
-        });
+      // Track lead generation in pixels
+      await pixelTracking.trackFormSubmission({
+        email: formData.email,
+        phone: formData.phone,
+        firstName: formData.name.split(' ')[0],
+        lastName: formData.name.split(' ').slice(1).join(' '),
+        leadValue: 20,
+      });
 
-        setIsSuccess(true);
-        toast({
-          title: "Message Sent!",
-          description: "We'll get back to you within 24 hours.",
-        });
-      } else {
-        throw new Error("Submission failed");
-      }
+      setIsSuccess(true);
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
     } catch (error) {
       console.error("Contact form error:", error);
       setHasError(true);
