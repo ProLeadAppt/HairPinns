@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Calendar, Star, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-home.png";
+import heroImage from "@/assets/hero-home-new.webp";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const HeroHome = () => {
