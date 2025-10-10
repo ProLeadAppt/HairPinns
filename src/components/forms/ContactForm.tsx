@@ -251,7 +251,9 @@ const ContactForm = ({
 
         <p className="text-xs text-muted-foreground text-center">
           For urgent matters, call us at{" "}
-          <a href="tel:+61295550123" className="text-brand-500 hover:underline"></a>
+          <a href="tel:+61468020624" className="text-brand-500 hover:underline font-semibold">
+            0468 020 624
+          </a>
         </p>
       </form>
     </div>;
