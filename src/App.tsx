@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import TrackingInitializer from "./components/tracking/TrackingInitializer";
 import TrackingScripts from "./components/tracking/TrackingScripts";
 import GoogleTagManager from "./components/tracking/GoogleTagManager";
@@ -50,6 +51,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <TrackingInitializer />
         <Routes>
           <Route path="/" element={<Index />} />

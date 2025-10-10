@@ -232,7 +232,7 @@ const LocationPage = () => {
                 </Button>
                 <Button 
                   size="lg" 
-                  variant="outline"
+                  variant="accent"
                   asChild
                 >
                   <a href="tel:+61468020624" className="flex items-center gap-2">
@@ -316,7 +316,7 @@ const LocationPage = () => {
                     </Button>
                     <Button 
                       size="sm" 
-                      variant="outline"
+                      variant="accent"
                       className="w-full"
                       asChild
                     >
@@ -425,8 +425,7 @@ const LocationPage = () => {
               </Button>
               <Button 
                 size="lg" 
-                variant="outline"
-                className="border-white text-white hover:bg-white/10"
+                variant="inverted"
                 asChild
               >
                 <a href="tel:+61468020624" className="flex items-center gap-2">
