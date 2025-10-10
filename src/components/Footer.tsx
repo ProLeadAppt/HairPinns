@@ -66,11 +66,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand & Social */}
           <div>
-            <img 
-              src={hairPinnsLogo} 
-              alt="Hair Pinns - Happy Hair Specialist" 
-              className="h-16 w-auto mb-4"
-            />
+            <Link to="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+              <img 
+                src={hairPinnsLogo} 
+                alt="Hair Pinns - Happy Hair Specialist" 
+                className="h-16 w-auto"
+              />
+            </Link>
             <p className="text-foreground mb-4 text-sm leading-relaxed">
               Boutique salon in Bangor NSW. Expert cuts, colour & treatments. 
               Salon-quality products for home care.
