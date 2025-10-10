@@ -202,23 +202,40 @@ const LocationPage = () => {
             </div>
           </div>
 
-          {/* Hero Section with Gradient Overlay */}
+          {/* Hero Section - Premium Design */}
           <Section 
             variant="default" 
             padding="xl"
-            className="relative overflow-hidden bg-gradient-to-br from-brand-500/10 via-accent/20 to-brand-500/5"
+            className="relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--brand-500)) 0%, hsl(var(--brand-600)) 60%, #5D2C5D 100%)',
+            }}
           >
-            <div className="max-w-4xl">
-              <h1 className="text-h1 font-heading text-heading mb-4">
-                Hairdresser near {locationData.name} – Hair Pinns
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
+              <div className="absolute top-10 right-10 w-96 h-96 rounded-full bg-white blur-3xl"></div>
+              <div className="absolute bottom-10 right-32 w-64 h-64 rounded-full bg-accent blur-2xl"></div>
+            </div>
+            
+            <div className="relative z-10 max-w-4xl">
+              <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
+                <span className="text-white text-sm font-medium">📍 {locationData.driveTime} from Bangor</span>
+              </div>
+              
+              <h1 className="text-h1 font-heading text-white mb-6 leading-tight" style={{
+                textShadow: '0 2px 20px rgba(0, 0, 0, 0.3)'
+              }}>
+                Hairdresser near {locationData.name}
               </h1>
-              <p className="text-xl text-foreground mb-8">
-                {locationData.driveTime} from Bangor salon • easy parking • one-on-one care with Jena
+              
+              <p className="text-xl text-white/95 mb-8 max-w-2xl leading-relaxed">
+                One-on-one salon care with Jena • Expert colour & blonding • Easy parking • Premium products
               </p>
+              
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
-                  size="lg" 
-                  variant="primary"
+                  size="xl" 
+                  className="bg-white text-brand-600 hover:bg-white/95 shadow-2xl font-semibold"
                   asChild
                 >
                   <a 
@@ -231,8 +248,9 @@ const LocationPage = () => {
                   </a>
                 </Button>
                 <Button 
-                  size="lg" 
-                  variant="accent"
+                  size="xl" 
+                  variant="inverted"
+                  className="font-semibold"
                   asChild
                 >
                   <a href="tel:+61468020624" className="flex items-center gap-2">
@@ -244,22 +262,23 @@ const LocationPage = () => {
             </div>
           </Section>
 
-          {/* Local Intro */}
-          <Section padding="lg">
-            <div className="max-w-3xl mx-auto">
-              <p className="text-lg text-foreground leading-relaxed">
+          {/* Local Intro - Premium Style */}
+          <Section padding="xl" className="bg-gradient-to-b from-white to-accent/10">
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-xl text-foreground leading-relaxed font-light">
                 {locationData.localIntro}
               </p>
             </div>
           </Section>
 
-          {/* Popular in {Suburb} */}
-          <Section variant="muted" padding="lg">
+          {/* Popular in {Suburb} - Premium Cards */}
+          <Section variant="muted" padding="xl">
             <SectionHeader 
               title={`Popular in ${locationData.name}`}
+              subtitle="Our most requested services in your area"
               align="center"
             />
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {locationData.popularServices.map((service, index) => {
                 const icons = [Palette, Sparkles, Scissors];
                 const Icon = icons[index % icons.length];
@@ -270,9 +289,15 @@ const LocationPage = () => {
                     to={`/services#${slugs[index]}`}
                     className="group"
                   >
-                    <Card variant="elevated" padding="md" className="text-center hover:shadow-xl transition-all">
-                      <Icon className="w-12 h-12 text-brand-500 mx-auto mb-3" />
-                      <h3 className="text-lg font-heading text-heading group-hover:text-brand-500 transition-colors">
+                    <Card 
+                      variant="elevated" 
+                      padding="lg" 
+                      className="text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-brand-500/5 border-2 border-transparent hover:border-brand-500/30"
+                    >
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-500/10 flex items-center justify-center group-hover:bg-brand-500 group-hover:scale-110 transition-all duration-300">
+                        <Icon className="w-8 h-8 text-brand-500 group-hover:text-white transition-colors" />
+                      </div>
+                      <h3 className="text-xl font-heading text-heading group-hover:text-brand-500 transition-colors font-semibold">
                         {service}
                       </h3>
                     </Card>
@@ -282,27 +307,34 @@ const LocationPage = () => {
             </div>
           </Section>
 
-          {/* Services Mini-Grid */}
-          <Section padding="lg">
+          {/* Services Mini-Grid - Premium Design */}
+          <Section padding="xl" className="bg-gradient-to-b from-white to-accent/5">
             <SectionHeader 
               title="Our Services"
-              subtitle="Book online or text for a personalized quote"
+              subtitle="Premium hair care with transparent pricing"
               align="center"
             />
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 max-w-6xl mx-auto">
               {topServices.map((service, index) => (
-                <Card key={index} variant="default" padding="md" className="hover:shadow-lg transition-shadow">
-                  <h3 className="text-lg font-heading text-heading mb-2">
-                    {'name' in service ? service.name : service.title}
-                  </h3>
-                  <p className="text-brand-500 font-semibold mb-4">
-                    {service.price}
-                  </p>
-                  <div className="flex flex-col gap-2">
+                <Card 
+                  key={index} 
+                  variant="default" 
+                  padding="lg" 
+                  className="hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-border hover:border-brand-500/40 bg-white group"
+                >
+                  <div className="mb-4">
+                    <h3 className="text-lg font-heading text-heading mb-2 font-semibold group-hover:text-brand-500 transition-colors">
+                      {'name' in service ? service.name : service.title}
+                    </h3>
+                    <p className="text-brand-500 font-bold text-xl">
+                      {service.price}
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3">
                     <Button 
-                      size="sm" 
+                      size="lg" 
                       variant="primary"
-                      className="w-full"
+                      className="w-full font-semibold shadow-lg"
                       asChild
                     >
                       <a 
@@ -315,9 +347,9 @@ const LocationPage = () => {
                       </a>
                     </Button>
                     <Button 
-                      size="sm" 
+                      size="lg" 
                       variant="accent"
-                      className="w-full"
+                      className="w-full font-semibold"
                       asChild
                     >
                       <Link to={`/services#${service.slug.split('#')[0]}`}>
@@ -329,17 +361,18 @@ const LocationPage = () => {
               ))}
             </div>
             <div className="text-center">
-              <Button variant="primary" size="lg" asChild>
-                <Link to="/services">View all services</Link>
+              <Button variant="primary" size="xl" asChild className="shadow-xl font-semibold">
+                <Link to="/services">View all services & pricing</Link>
               </Button>
             </div>
           </Section>
 
-          {/* Micro-FAQs (AEO) */}
-          <Section variant="muted" padding="lg">
+          {/* Micro-FAQs - Premium Accordion */}
+          <Section variant="muted" padding="xl">
             <div className="max-w-3xl mx-auto">
               <SectionHeader 
                 title="Common Questions"
+                subtitle="Get quick answers about our services"
                 align="center"
               />
               <Accordion type="single" collapsible className="space-y-4">
@@ -347,12 +380,12 @@ const LocationPage = () => {
                   <AccordionItem 
                     key={index} 
                     value={`faq-${index}`}
-                    className="bg-card border border-border rounded-lg px-6"
+                    className="bg-white border-2 border-border rounded-xl px-6 hover:border-brand-500/40 transition-all shadow-sm hover:shadow-md"
                   >
-                    <AccordionTrigger className="text-left font-heading text-heading hover:text-brand-500 py-6">
+                    <AccordionTrigger className="text-left font-heading text-heading hover:text-brand-500 py-6 text-lg font-semibold">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-foreground pb-6">
+                    <AccordionContent className="text-foreground pb-6 text-base leading-relaxed">
                       {faq.answer}
                       <FaqFeedbackWidget question={faq.question} />
                     </AccordionContent>
@@ -362,25 +395,31 @@ const LocationPage = () => {
             </div>
           </Section>
 
-          {/* Map & Directions */}
-          <Section padding="lg">
+          {/* Map & Directions - Premium Card */}
+          <Section padding="xl" className="bg-gradient-to-b from-white to-accent/10">
             <div className="max-w-3xl mx-auto">
               <SectionHeader 
-                title="Directions"
+                title="Easy to Find"
+                subtitle="Just a short drive from your location"
                 align="center"
               />
-              <Card variant="bordered" padding="lg" className="text-center">
-                <MapPin className="w-12 h-12 text-brand-500 mx-auto mb-4" />
-                <p className="text-lg text-foreground mb-4">
-                  Approximately <strong>{locationData.driveTime}</strong> from {locationData.name} to our salon in Bangor
+              <Card variant="elevated" padding="lg" className="text-center border-2 border-brand-500/20 shadow-xl bg-gradient-to-br from-white to-brand-500/5">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-brand-500/10 flex items-center justify-center">
+                  <MapPin className="w-10 h-10 text-brand-500" />
+                </div>
+                <p className="text-2xl text-heading mb-6 font-heading font-semibold">
+                  <span className="text-brand-500">{locationData.driveTime}</span> from {locationData.name}
                 </p>
-                <p className="text-foreground mb-6">
-                  <strong>Hair Pinns</strong><br />
-                  60 Goorgool Road, Bangor NSW 2234
-                </p>
+                <div className="mb-8 text-foreground text-lg space-y-2">
+                  <p className="font-bold text-heading">Hair Pinns</p>
+                  <p>60 Goorgool Road</p>
+                  <p>Bangor NSW 2234</p>
+                  <p className="text-brand-500 font-semibold mt-4">✓ Easy parking available</p>
+                </div>
                 <Button 
                   variant="primary" 
-                  size="lg"
+                  size="xl"
+                  className="shadow-xl font-semibold"
                   asChild
                 >
                   <a 
@@ -390,76 +429,90 @@ const LocationPage = () => {
                     className="flex items-center gap-2"
                   >
                     <MapPin className="w-5 h-5" />
-                    Get directions
+                    Get directions on Google Maps
                   </a>
                 </Button>
               </Card>
             </div>
           </Section>
 
-          {/* Footer CTA */}
+          {/* Footer CTA - Premium Banner */}
           <Section 
             padding="xl"
-            className="text-center text-white"
+            className="text-center text-white relative overflow-hidden"
             style={{
-              background: 'linear-gradient(135deg, hsl(var(--brand-500)) 0%, hsl(var(--brand-600)) 100%)'
+              background: 'linear-gradient(135deg, hsl(var(--brand-500)) 0%, hsl(var(--brand-600)) 60%, #5D2C5D 100%)',
             }}
           >
-            <h2 className="text-h2-lg font-heading mb-6">
-              Ready for salon-quality hair near {locationData.name}?
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-white text-brand-600 hover:bg-white/90"
-                asChild
-              >
-                <a 
-                  href={BOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackBookingClick("location_footer_cta", `/areas/${slug}`)}
+            {/* Decorative Elements */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-white blur-3xl"></div>
+              <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent blur-2xl"></div>
+            </div>
+            
+            <div className="relative z-10">
+              <h2 className="text-h1 font-heading mb-4" style={{
+                textShadow: '0 2px 20px rgba(0, 0, 0, 0.3)'
+              }}>
+                Ready for salon-quality hair?
+              </h2>
+              <p className="text-xl text-white/95 mb-8 max-w-2xl mx-auto">
+                Book your appointment near {locationData.name} today
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="xl" 
+                  className="bg-white text-brand-600 hover:bg-white/95 shadow-2xl font-semibold"
+                  asChild
                 >
-                  {BOOK_CTA_LABEL}
-                </a>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="inverted"
-                asChild
-              >
-                <a href="tel:+61468020624" className="flex items-center gap-2">
-                  <Phone className="w-5 h-5" />
-                  Call +61 468 020 624
-                </a>
-              </Button>
+                  <a 
+                    href={BOOK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackBookingClick("location_footer_cta", `/areas/${slug}`)}
+                  >
+                    {BOOK_CTA_LABEL}
+                  </a>
+                </Button>
+                <Button 
+                  size="xl" 
+                  variant="inverted"
+                  className="font-semibold"
+                  asChild
+                >
+                  <a href="tel:+61468020624" className="flex items-center gap-2">
+                    <Phone className="w-5 h-5" />
+                    Call +61 468 020 624
+                  </a>
+                </Button>
+              </div>
             </div>
           </Section>
 
-          {/* Cross-link to Other Areas */}
-          <Section padding="lg">
-            <div className="max-w-4xl mx-auto">
-              <h3 className="font-heading text-xl text-heading mb-6 text-center">
-                Serving the Sutherland Shire
+          {/* Cross-link to Other Areas - Premium Pills */}
+          <Section padding="xl" className="bg-muted">
+            <div className="max-w-5xl mx-auto">
+              <h3 className="font-heading text-2xl text-heading mb-8 text-center font-semibold">
+                Also serving nearby suburbs
               </h3>
-              <div className="flex flex-wrap gap-3 justify-center">
+              <div className="flex flex-wrap gap-4 justify-center mb-8">
                 {locationData.nearbyLocations.map((nearbySlug) => {
                   const nearbyData = getLocationData(nearbySlug);
                   return nearbyData ? (
                     <Link
                       key={nearbySlug}
                       to={`/areas/${nearbySlug}`}
-                      className="px-5 py-2.5 bg-card border border-border rounded-lg hover:border-brand-500 hover:text-brand-500 transition-colors text-foreground text-sm font-medium"
+                      className="px-6 py-3 bg-white border-2 border-border rounded-full hover:border-brand-500 hover:text-brand-500 hover:shadow-lg transition-all duration-300 text-foreground text-base font-semibold hover:-translate-y-0.5"
                     >
                       {nearbyData.name}
                     </Link>
                   ) : null;
                 })}
               </div>
-              <div className="mt-6 text-center">
+              <div className="text-center">
                 <Link
                   to="/areas"
-                  className="text-brand-500 hover:text-brand-600 font-semibold inline-flex items-center gap-2"
+                  className="inline-flex items-center text-brand-500 hover:text-brand-600 font-semibold text-lg transition-colors"
                 >
                   View all service areas →
                 </Link>
