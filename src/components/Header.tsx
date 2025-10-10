@@ -4,7 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
-import hairPinnsLogo from "@/assets/hair-pinns-logo.png";
+import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
   return <>

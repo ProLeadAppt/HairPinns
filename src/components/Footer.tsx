@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
-import hairPinnsLogo from "@/assets/hair-pinns-logo.png";
+import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 
 const Footer = () => {
   const { toast } = useToast();
