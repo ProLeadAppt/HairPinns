@@ -215,11 +215,11 @@ const ContactForm = ({
           ...formData,
           topic: value
         })} required>
-              <SelectTrigger id="contact_topic" className="bg-background">
+              <SelectTrigger id="contact_topic" className="bg-surface border-border">
                 <SelectValue placeholder="Select a topic" />
               </SelectTrigger>
-              <SelectContent className="bg-card border border-border z-50">
-                {topics.map(topic => <SelectItem key={topic.value} value={topic.value}>
+              <SelectContent className="bg-surface border border-border z-50">
+                {topics.map(topic => <SelectItem key={topic.value} value={topic.value} className="focus:bg-transparent hover:bg-accent/20 data-[highlighted]:bg-transparent">
                     {topic.label}
                   </SelectItem>)}
               </SelectContent>
