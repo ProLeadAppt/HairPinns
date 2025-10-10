@@ -724,31 +724,43 @@ const Services = () => {
                 Areas We Serve
               </h2>
             </div>
-            <p className="text-foreground mb-8 max-w-3xl" style={{ lineHeight: '1.5' }}>
-              Hair Pinns proudly serves clients throughout the Sutherland Shire from our Bangor salon.
+            <p className="text-heading mb-8 max-w-3xl text-base leading-relaxed">
+              Hair Pinns proudly serves clients throughout Sydney and the Sutherland Shire from our Bangor salon.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {[
-                { name: "Bangor", slug: "bangor" },
-                { name: "Menai", slug: "menai" },
-                { name: "Illawong", slug: "illawong" },
-                { name: "Barden Ridge", slug: "barden-ridge" },
-                { name: "Woronora Heights", slug: "woronora-heights" },
-                { name: "Sutherland", slug: "sutherland" }
+                { name: "Sydney", slug: "sydney" },
+                { name: "Como", slug: "como-2226" },
+                { name: "Gymea", slug: "gymea-2227" },
+                { name: "Menai", slug: "menai-2234" },
+                { name: "Bangor", slug: "bangor-2234" },
+                { name: "Jannali", slug: "jannali-2226" },
+                { name: "Kareela", slug: "kareela-2232" },
+                { name: "Miranda", slug: "miranda-2228" },
+                { name: "Padstow", slug: "padstow-2211" },
+                { name: "Cronulla", slug: "cronulla-2230" },
+                { name: "Illawong", slug: "illawong-2234" },
+                { name: "Kirrawee", slug: "kirrawee-2232" },
+                { name: "Sylvania", slug: "sylvania-2224" },
+                { name: "Caringbah", slug: "caringbah-2229" },
+                { name: "Oyster Bay", slug: "oyster-bay-2225" },
+                { name: "Sutherland", slug: "sutherland-2232" },
+                { name: "Barden Ridge", slug: "barden-ridge-2234" },
+                { name: "Alfords Point", slug: "alfords-point-2234" }
               ].map(area => (
                 <Link
                   key={area.slug}
-                  to={`/near/${area.slug}`}
-                  className="group p-6 bg-card border border-[rgba(139,74,139,0.10)] rounded-card hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-150"
+                  to={`/areas/${area.slug}`}
+                  className="group p-5 bg-card border border-[rgba(139,74,139,0.10)] rounded-card hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-150"
                   style={{ 
                     boxShadow: 'var(--shadow)',
                     borderRadius: 'var(--radius-card)'
                   }}
                 >
-                  <h3 className="font-semibold text-heading mb-1 group-hover:text-brand-500 transition-colors">
+                  <h3 className="font-semibold text-heading text-base mb-1 group-hover:text-brand-500 transition-colors">
                     {area.name}
                   </h3>
-                  <p className="text-sm text-muted">View local info →</p>
+                  <p className="text-sm text-foreground/70">View local info →</p>
                 </Link>
               ))}
             </div>
