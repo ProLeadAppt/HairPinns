@@ -5,25 +5,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--brand-500))] text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] rounded-btn",
+        default: "bg-[hsl(var(--brand-500))] !text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] rounded-btn",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-btn",
-        outline: "border border-input bg-background hover:bg-muted hover:text-foreground rounded-btn",
+        outline: "border border-input bg-background hover:bg-muted text-foreground hover:text-foreground rounded-btn",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-btn",
-        ghost: "hover:bg-muted hover:text-foreground rounded-btn",
+        ghost: "hover:bg-muted text-foreground hover:text-foreground rounded-btn",
         link: "text-link underline-offset-4 hover:underline",
-        primary: "bg-[hsl(var(--brand-500))] text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
-        accent: "border-2 border-[hsl(var(--brand-500))] text-[hsl(var(--brand-500))] bg-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-500))] hover:text-[hsl(0,0%,100%)] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
-        inverted: "border-2 border-[hsl(0,0%,100%)] text-[hsl(0,0%,100%)] bg-transparent hover:bg-[hsl(0,0%,100%)] hover:text-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
+        primary: "bg-[hsl(var(--brand-500))] !text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
+        accent: "border-2 border-[hsl(var(--brand-500))] !text-[hsl(var(--brand-600))] bg-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-500))] hover:!text-[hsl(0,0%,100%)] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
+        inverted: "border-2 border-[hsl(0,0%,100%)] !text-[hsl(0,0%,100%)] bg-transparent hover:bg-[hsl(0,0%,100%)] hover:!text-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
       },
       size: {
-        default: "h-10 px-4 py-2 text-button",
+        default: "h-10 px-4 py-2 text-[length:var(--text-button)]",
         sm: "h-8 rounded-md px-3 text-sm",
-        lg: "h-12 rounded-md px-6 text-button-lg",
-        xl: "h-14 rounded-lg px-8 text-button-lg font-semibold",
+        lg: "h-12 rounded-md px-6 text-[length:var(--text-button)]",
+        xl: "h-14 rounded-lg px-8 text-[length:var(--text-button-lg)]",
         icon: "h-10 w-10",
       },
     },
