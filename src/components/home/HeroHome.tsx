@@ -51,8 +51,9 @@ const HeroHome = () => {
           <div className="mb-8">
             <div className="flex flex-col sm:flex-row gap-3 no-link-color">
               {/* PRIMARY: Book now - Solid white with dark text for maximum contrast */}
-              <Button asChild size="lg" className="w-full sm:w-auto font-bold transition-all hover:bg-[#F5F5F7] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#8B4A8B]" style={{
+              <Button asChild size="lg" className="w-full sm:w-auto font-bold transition-all hover:bg-[#F5F5F7] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#8B4A8B] [&_*]:!text-[#2A2230]" style={{
                 background: '#FFFFFF',
+                color: '#2A2230',
                 borderRadius: '999px',
                 padding: '0.95rem 1.4rem',
                 boxShadow: '0 10px 24px rgba(0, 0, 0, 0.35)',
@@ -64,10 +65,11 @@ const HeroHome = () => {
                   rel="noopener noreferrer"
                   onClick={() => trackBookingClick("hero_home", "/")}
                   aria-label="Book an appointment"
+                  className="flex items-center gap-2"
                   style={{ color: '#2A2230' }}
                 >
-                  <Calendar className="w-5 h-5" />
-                  {BOOK_CTA_LABEL}
+                  <Calendar className="w-5 h-5" style={{ color: '#2A2230' }} />
+                  <span style={{ color: '#2A2230' }}>{BOOK_CTA_LABEL}</span>
                 </a>
               </Button>
               {/* SECONDARY: Shop Christmas Packs - Solid purple with white text */}
