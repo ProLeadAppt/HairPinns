@@ -267,50 +267,39 @@ const ReviewFeedback = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="mb-8"
+              className="flex justify-center"
             >
-              <div className="bg-accent/20 rounded-btn p-6 mb-6 border border-accent">
-                <p className="text-sm text-text mb-4">
-                  Had a great experience overall? We'd love a Google review too:
-                </p>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button 
-                    onClick={handleGoogleReview}
-                    size="lg" 
-                    variant="outline"
-                    className="hover:bg-brand-500/5 border-brand-500/30"
-                  >
-                    <ExternalLink className="w-5 h-5 mr-2" />
-                    Leave Google Review
-                  </Button>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={handleGoogleReview}
-                  size="lg"
-                  className="bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-500 text-white"
-                >
-                  <ExternalLink className="w-5 h-5 mr-2" />
-                  Leave Google Review
-                </Button>
-              </motion.div>
-              
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   onClick={handleGoHome}
-                  variant="outline"
                   size="lg"
-                  className="text-brand-500 border-brand-500/30 hover:bg-brand-500/5"
+                  className="bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-500 text-white"
                 >
                   <Home className="w-5 h-5 mr-2" />
                   Back to Home
                 </Button>
               </motion.div>
-            </div>
+            </motion.div>
+
+            {/* Small compliance link at bottom */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="mt-8 pt-6 border-t border-accent/30"
+            >
+              <p className="text-xs text-muted text-center">
+                <a 
+                  href="https://g.page/r/CX-F0vOcpJLhEBM/review" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={soundEffects.playClick}
+                  className="hover:text-brand-500 transition-colors"
+                >
+                  Leave a public Google review
+                </a>
+              </p>
+            </motion.div>
             </div>
           </motion.div>
         </div>
