@@ -77,14 +77,19 @@ const HeroHome = () => {
 
           {/* Trust Row */}
           <div className="flex flex-wrap items-center gap-6 text-sm" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>
-            <div className="flex items-center gap-2">
+            <Link to="/reviews" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Star className="w-4 h-4 text-[hsl(var(--star-color))] fill-current" />
               <span className="font-semibold">4.9★ Google</span>
-            </div>
-            <div className="flex items-center gap-2">
+            </Link>
+            <a 
+              href="https://www.google.com/maps/dir//Hair+Pinns,+60+Goorgool+Road,+Bangor+NSW+2234" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
               <MapPin className="w-4 h-4 text-white" />
               <span>Bangor, NSW</span>
-            </div>
+            </a>
             <div>
               <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Est. by Jena Pinn</span>
             </div>
