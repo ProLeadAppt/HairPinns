@@ -154,6 +154,10 @@ const ReviewFeedback = () => {
         "https://hooks.zapier.com/hooks/catch/20777536/2e3k17e/",
         {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors",
           body: JSON.stringify(feedbackData),
         }
       );
