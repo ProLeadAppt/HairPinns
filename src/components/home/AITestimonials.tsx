@@ -20,13 +20,13 @@ const AITestimonials = () => {
   ];
 
   return (
-    <section className="py-8 bg-white/5 backdrop-blur-sm" style={{ contentVisibility: "auto" }}>
+    <section className="py-8 bg-accent" style={{ contentVisibility: "auto" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <div 
               key={index}
-              className="bg-white/10 backdrop-blur-md rounded-card p-5 border border-white/20 hover:bg-white/15 transition-all"
+              className="bg-card rounded-card p-5 border border-border shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex gap-1 mb-3">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
@@ -36,10 +36,10 @@ const AITestimonials = () => {
                   />
                 ))}
               </div>
-              <p className="text-sm mb-3 leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              <p className="text-sm mb-3 leading-relaxed text-text">
                 "{testimonial.text}"
               </p>
-              <p className="text-xs font-semibold" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              <p className="text-xs font-semibold text-muted">
                 - {testimonial.author}
               </p>
             </div>
