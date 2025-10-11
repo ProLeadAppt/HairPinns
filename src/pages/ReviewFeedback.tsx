@@ -255,7 +255,7 @@ const ReviewFeedback = () => {
               </motion.h1>
 
               <motion.p 
-                className="text-lg text-muted mb-10 max-w-md mx-auto"
+                className="text-lg text-text mb-10 max-w-md mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -270,7 +270,7 @@ const ReviewFeedback = () => {
               className="mb-8"
             >
               <div className="bg-accent/20 rounded-btn p-6 mb-6 border border-accent">
-                <p className="text-sm text-muted mb-4">
+                <p className="text-sm text-text mb-4">
                   Had a great experience overall? We'd love a Google review too:
                 </p>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -355,7 +355,7 @@ const ReviewFeedback = () => {
               <h1 className="text-h2-lg md:text-[2rem] font-heading text-heading mb-3">
                 Help Us Improve
               </h1>
-              <p className="text-lg text-muted">
+              <p className="text-lg text-text">
                 We're sorry we didn't meet your expectations. Your honest feedback helps us do better.
               </p>
             </motion.div>
@@ -368,7 +368,7 @@ const ReviewFeedback = () => {
               transition={{ delay: 0.3 }}
             >
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-muted">Progress</span>
+                <span className="text-sm text-text">Progress</span>
                 <span className="text-sm font-medium text-brand-500">
                   {completedCount}/3 fields
                 </span>
@@ -467,7 +467,7 @@ const ReviewFeedback = () => {
                       className="mt-2 flex items-center gap-2 text-sm"
                     >
                       <span className="text-2xl">{sentiment.emoji}</span>
-                      <span className="text-muted">
+                      <span className="text-text">
                         Sentiment: <strong className="text-brand-500 capitalize">{sentiment.label}</strong>
                       </span>
                     </motion.div>
@@ -535,7 +535,7 @@ const ReviewFeedback = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 }}
             >
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-text">
                 💜 Your feedback is private and helps us improve
               </p>
             </motion.div>

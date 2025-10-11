@@ -7,12 +7,13 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import confetti from "canvas-confetti";
 import { soundEffects } from "@/lib/soundEffects";
 import { haptics } from "@/lib/haptics";
+import { totalReviews } from "@/data/reviews";
 
 const ReviewGoogle = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const rating = location.state?.rating || 5;
-  const [socialProofCount, setSocialProofCount] = useState(847);
+  const [socialProofCount, setSocialProofCount] = useState(totalReviews);
 
   // Parallax effect
   const mouseX = useMotionValue(0);
@@ -66,9 +67,9 @@ const ReviewGoogle = () => {
     })();
 
     // Animate social proof counter
-    const startCount = 840;
-    const endCount = 847;
-    const duration2 = 2000;
+    const startCount = Math.max(1, totalReviews - 5);
+    const endCount = totalReviews;
+    const duration2 = 1500;
     const startTime = Date.now();
 
     const animate = () => {
@@ -199,7 +200,7 @@ const ReviewGoogle = () => {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mb-8"
             >
-              <p className="text-lg text-muted mb-4 max-w-lg mx-auto">
+              <p className="text-lg text-text mb-4 max-w-lg mx-auto">
                 Your {rating}-star experience means the world to us! Share it on Google to help other clients discover Hair Pinns.
               </p>
               
@@ -208,7 +209,7 @@ const ReviewGoogle = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 text-sm text-muted"
+                className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 text-sm text-text"
               >
                 <motion.span
                   animate={{ scale: [1, 1.2, 1] }}
@@ -217,7 +218,7 @@ const ReviewGoogle = () => {
                   💜
                 </motion.span>
                 <span>
-                  Join <strong className="text-brand-500">{socialProofCount}+</strong> happy clients
+                  Join <strong className="text-brand-500">{socialProofCount}</strong> happy clients
                 </span>
               </motion.div>
             </motion.div>
@@ -274,7 +275,7 @@ const ReviewGoogle = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1 }}
               >
-                <p className="text-sm text-foreground flex items-center justify-center gap-2 relative z-10">
+                <p className="text-sm text-text flex items-center justify-center gap-2 relative z-10">
                   <motion.span
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}

@@ -150,14 +150,15 @@ const Reviews = () => {
               >
                 How was your experience with Hair Pinns?
               </motion.h1>
-              <motion.p 
-                className="text-lg text-muted max-w-md mx-auto"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <p className="text-lg text-text max-w-md mx-auto">
                 Tap a star below to rate us
-              </motion.p>
+              </p>
+            </motion.div>
             </motion.div>
 
             {/* Star Rating with sequential appearance */}
@@ -238,7 +239,7 @@ const Reviews = () => {
 
             {/* Helper Text */}
             <motion.p 
-              className="text-sm text-muted-foreground"
+              className="text-sm text-text"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
@@ -249,7 +250,7 @@ const Reviews = () => {
 
           {/* Footer Note */}
           <motion.p 
-            className="text-center text-xs text-muted-foreground mt-6"
+            className="text-center text-xs text-text mt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4 }}
