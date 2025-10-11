@@ -1,82 +1,46 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Calendar } from "lucide-react";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { toast } from "@/hooks/use-toast";
 
 const AIAgentsCTA = () => {
-  const openWebchat = () => {
-    console.log('🔵 openWebchat called');
-    
-    // Track the interaction first
+  const guideToBubble = () => {
+    // Track the interaction
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
         agent: 'isabella',
-        action: 'chat_opened',
+        action: 'chat_bubble_prompted',
         location: 'hero_cta'
       });
     }
 
-    // Wait a bit for widget to load if needed
-    const attemptOpen = () => {
-      // Method 1: Try direct window methods
-      if ((window as any).ChatWidget) {
-        console.log('✅ Found ChatWidget');
-        (window as any).ChatWidget.open();
-        return true;
+    // Try to visually highlight the chat bubble if present
+    const selectors = [
+      'div[id*="chat-widget"]',
+      'div[class*="chat-widget"]',
+      '[data-chat-bubble]',
+      'button[aria-label*="chat"]'
+    ];
+    
+    for (const selector of selectors) {
+      const element = document.querySelector(selector) as HTMLElement | null;
+      if (element && element.tagName !== 'IFRAME') {
+        element.style.outline = '3px solid rgba(255,255,255,0.9)';
+        element.style.outlineOffset = '3px';
+        element.style.transition = 'outline-color 300ms ease';
+        setTimeout(() => {
+          element.style.outline = '';
+          element.style.outlineOffset = '';
+        }, 2500);
+        break;
       }
-
-      // Method 2: Try LeadConnector API
-      if (window.LeadConnector?.openWidget) {
-        console.log('✅ Found LeadConnector.openWidget');
-        window.LeadConnector.openWidget();
-        return true;
-      }
-
-      // Method 3: Find and click chat bubble/button
-      const selectors = [
-        'div[id*="chat-widget"]',
-        'div[class*="chat-widget"]',
-        'iframe[src*="leadconnectorhq"]',
-        '[data-chat-bubble]',
-        'button[aria-label*="chat"]',
-      ];
-
-      console.log('🔍 Searching for chat widget with selectors...');
-      
-      for (const selector of selectors) {
-        const elements = document.querySelectorAll(selector);
-        console.log(`Found ${elements.length} elements for selector: ${selector}`);
-        
-        if (elements.length > 0) {
-          const element = elements[0];
-          console.log('✅ Found element:', element);
-          
-          // If it's a visible button/div, click it
-          if (element.tagName !== 'IFRAME') {
-            (element as HTMLElement).click();
-            return true;
-          }
-        }
-      }
-
-      return false;
-    };
-
-    // Try immediately
-    if (attemptOpen()) {
-      console.log('✅ Widget opened successfully');
-      return;
     }
 
-    // If failed, try again after a short delay
-    console.log('⏳ Widget not found, retrying in 500ms...');
-    setTimeout(() => {
-      if (attemptOpen()) {
-        console.log('✅ Widget opened on retry');
-      } else {
-        console.error('❌ Could not open chat widget');
-        alert('Chat widget is loading. Please try clicking again in a moment.');
-      }
-    }, 500);
+    // Show toast notification
+    toast({
+      title: "Open the chat",
+      description: "Tap the chat bubble at the bottom-right to start chatting with Isabella.",
+    });
   };
 
   const trackPhoneClick = () => {
@@ -107,8 +71,8 @@ const AIAgentsCTA = () => {
         {/* PRIMARY: Chat with Isabella */}
         <Button 
           size="lg" 
-          onClick={openWebchat}
-          className="w-full sm:w-auto font-bold transition-all hover:bg-[#F5F5F7] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#8B4A8B] [&_*]:!text-[#2A2230]" 
+          onClick={guideToBubble}
+          className="w-full sm:w-auto font-bold transition-all hover:bg-[#F5F5F7] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#8B4A8B] [&_*]:!text-[#2A2230]"
           style={{
             background: '#FFFFFF',
             color: '#2A2230',

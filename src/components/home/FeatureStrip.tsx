@@ -2,68 +2,46 @@ import { Phone, MessageCircle, Calendar, Sparkles, Wind, Scissors } from "lucide
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { toast } from "@/hooks/use-toast";
 
 const FeatureStrip = () => {
-  const openWebchat = () => {
-    console.log('🔵 FeatureStrip openWebchat called');
-    
+  const guideToBubble = () => {
     // Track the interaction
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
         agent: 'isabella',
-        action: 'chat_opened',
+        action: 'chat_bubble_prompted',
         location: 'feature_strip'
       });
     }
 
-    const attemptOpen = () => {
-      // Try direct window methods
-      if ((window as any).ChatWidget) {
-        console.log('✅ Found ChatWidget');
-        (window as any).ChatWidget.open();
-        return true;
+    // Try to visually highlight the chat bubble if present
+    const selectors = [
+      'div[id*="chat-widget"]',
+      'div[class*="chat-widget"]',
+      '[data-chat-bubble]',
+      'button[aria-label*="chat"]'
+    ];
+    
+    for (const selector of selectors) {
+      const element = document.querySelector(selector) as HTMLElement | null;
+      if (element && element.tagName !== 'IFRAME') {
+        element.style.outline = '3px solid rgba(255,255,255,0.9)';
+        element.style.outlineOffset = '3px';
+        element.style.transition = 'outline-color 300ms ease';
+        setTimeout(() => {
+          element.style.outline = '';
+          element.style.outlineOffset = '';
+        }, 2500);
+        break;
       }
-
-      if (window.LeadConnector?.openWidget) {
-        console.log('✅ Found LeadConnector.openWidget');
-        window.LeadConnector.openWidget();
-        return true;
-      }
-
-      // Find chat widget elements
-      const selectors = [
-        'div[id*="chat-widget"]',
-        'div[class*="chat-widget"]',
-        'iframe[src*="leadconnectorhq"]',
-        '[data-chat-bubble]',
-      ];
-
-      for (const selector of selectors) {
-        const elements = document.querySelectorAll(selector);
-        if (elements.length > 0) {
-          const element = elements[0];
-          if (element.tagName !== 'IFRAME') {
-            (element as HTMLElement).click();
-            return true;
-          }
-        }
-      }
-      return false;
-    };
-
-    if (attemptOpen()) {
-      console.log('✅ Widget opened');
-      return;
     }
 
-    setTimeout(() => {
-      if (attemptOpen()) {
-        console.log('✅ Widget opened on retry');
-      } else {
-        console.error('❌ Could not open chat widget');
-        alert('Chat widget is loading. Please try again in a moment.');
-      }
-    }, 500);
+    // Show toast notification
+    toast({
+      title: "Open the chat",
+      description: "Tap the chat bubble at the bottom-right to start chatting with Isabella.",
+    });
   };
 
   const trackPhoneClick = () => {
@@ -115,100 +93,87 @@ const FeatureStrip = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10">
-            <div className="rounded-card p-6 text-center" style={{
-              background: 'rgba(255, 255, 255, 0.15)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.25)'
-            }}>
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto" style={{
-                background: 'rgba(255, 255, 255, 0.25)'
-              }}>
-                <Phone className="w-7 h-7" style={{ color: '#FFFFFF' }} />
+            {/* Call Sam Card */}
+            <div className="bg-surface rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
+              <div 
+                className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
+                style={{ background: 'hsl(var(--accent))' }}
+              >
+                <Phone className="w-7 h-7" style={{ color: 'hsl(var(--brand-500))' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: '#FFFFFF' }}>
+              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: 'hsl(var(--heading))' }}>
                 📞 Call Sam
               </h3>
-              <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              <p className="mb-4 text-sm" style={{ color: 'hsl(var(--text))' }}>
                 Instant answers over the phone, anytime day or night
               </p>
-              <Button
+              <Button 
                 asChild
-                size="sm"
-                className="font-semibold"
-                style={{ 
-                  borderRadius: '999px',
-                  background: '#FFFFFF',
-                  color: 'hsl(var(--brand-500))'
-                }}
+                size="sm" 
+                className="bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-full"
               >
-                <a href="tel:+61468020624" onClick={trackPhoneClick}>
+                <a 
+                  href="tel:+61468020624"
+                  onClick={trackPhoneClick}
+                  className="flex items-center gap-2"
+                >
+                  <Phone className="w-4 h-4" />
                   Call Now
                 </a>
               </Button>
             </div>
 
-            <div className="rounded-card p-6 text-center" style={{
-              background: 'rgba(255, 255, 255, 0.15)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.25)'
-            }}>
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto" style={{
-                background: 'rgba(255, 255, 255, 0.25)'
-              }}>
-                <MessageCircle className="w-7 h-7" style={{ color: '#FFFFFF' }} />
+            {/* Chat with Isabella Card */}
+            <div className="bg-surface rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
+              <div 
+                className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
+                style={{ background: 'hsl(var(--accent))' }}
+              >
+                <MessageCircle className="w-7 h-7" style={{ color: 'hsl(var(--brand-500))' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: '#FFFFFF' }}>
+              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: 'hsl(var(--heading))' }}>
                 💬 Chat with Isabella
               </h3>
-              <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              <p className="mb-4 text-sm" style={{ color: 'hsl(var(--text))' }}>
                 Quick chat for service info, pricing & recommendations
               </p>
-              <Button
-                size="sm"
-                onClick={openWebchat}
-                className="font-semibold"
-                style={{ 
-                  borderRadius: '999px',
-                  background: '#FFFFFF',
-                  color: 'hsl(var(--brand-500))'
-                }}
+              <Button 
+                size="sm" 
+                onClick={guideToBubble}
+                className="bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-full"
               >
+                <MessageCircle className="w-4 h-4" />
                 Start Chat
               </Button>
             </div>
 
-            <div className="rounded-card p-6 text-center" style={{
-              background: 'rgba(255, 255, 255, 0.15)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.25)'
-            }}>
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto" style={{
-                background: 'rgba(255, 255, 255, 0.25)'
-              }}>
-                <Calendar className="w-7 h-7" style={{ color: '#FFFFFF' }} />
+            {/* Book Direct Card */}
+            <div className="bg-surface rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
+              <div 
+                className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
+                style={{ background: 'hsl(var(--accent))' }}
+              >
+                <Calendar className="w-7 h-7" style={{ color: 'hsl(var(--brand-500))' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: '#FFFFFF' }}>
+              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: 'hsl(var(--heading))' }}>
                 📅 Book Direct
               </h3>
-              <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              <p className="mb-4 text-sm" style={{ color: 'hsl(var(--text))' }}>
                 Already know what you need? Book instantly via Fresha
               </p>
-              <Button
+              <Button 
                 asChild
-                size="sm"
-                className="font-semibold"
-                style={{ 
-                  borderRadius: '999px',
-                  background: '#FFFFFF',
-                  color: 'hsl(var(--brand-500))'
-                }}
+                size="sm" 
+                className="bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-full"
               >
                 <a 
                   href={BOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackBookingClick("feature_strip", "/")}
+                  className="flex items-center gap-2"
                 >
+                  <Calendar className="w-4 h-4" />
                   Book Now
                 </a>
               </Button>
