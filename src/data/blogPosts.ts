@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     category: "Hair Care",
     date: "Jan 15, 2025",
     readTime: "6 min read",
-    image: "/placeholder.svg",
+    image: "/src/assets/blog/frizz-free-hero.jpg",
     author: "Jena",
     content: {
       introduction: "Living in Bangor means dealing with humidity year-round. After 15 years styling hair in the Sutherland Shire, I've perfected a 7-day plan that actually works. No expensive salon visits required—just commitment and the right products. Here's exactly how to transform frizzy, unruly hair into sleek, manageable locks that stay put through our coastal humidity.",
@@ -90,7 +90,7 @@ export const blogPosts: BlogPost[] = [
     category: "Colour",
     date: "Jan 12, 2025",
     readTime: "7 min read",
-    image: "/placeholder.svg",
+    image: "/src/assets/blog/blonde-care-hero.jpg",
     author: "Jena",
     content: {
       introduction: "Blonde hair is high-maintenance—there's no way around it. But damage and brassiness aren't inevitable consequences of going blonde. After thousands of blonde transformations at Hair Pinns, I've learned exactly what works to keep colour vibrant and hair healthy. Whether you're platinum, golden, or somewhere in between, this guide will save your blonde from turning brassy, brittle, or both.",
@@ -148,7 +148,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "Jan 8, 2025",
     readTime: "8 min read",
-    image: "/placeholder.svg",
+    image: "/src/assets/blog/keratin-hero.jpg",
     author: "Jena",
     content: {
       introduction: "Walk into any salon and you'll hear about keratin treatments, Brazilian blowouts, smoothing systems, and straightening treatments. The terminology is confusing, and every salon seems to offer something different. After performing hundreds of smoothing services at Hair Pinns, I'm breaking down exactly what each treatment does, how they differ, and which one is right for your hair type, texture, and lifestyle goals.",
@@ -206,7 +206,7 @@ export const blogPosts: BlogPost[] = [
     category: "Styling",
     date: "Jan 5, 2025",
     readTime: "6 min read",
-    image: "/placeholder.svg",
+    image: "/src/assets/blog/humidity-hero.jpg",
     author: "Jena",
     content: {
       introduction: "Bangor's proximity to the Georges River and coastal weather creates unique humidity challenges for hair. I've been styling hair in the Sutherland Shire for over 15 years, and I've learned exactly what works—and what doesn't—when humidity levels hit 80% or higher. This isn't generic advice from a glossy magazine; these are real-world strategies tested on real Bangor hair in real humidity. Here's your complete playbook for styles that actually hold.",
