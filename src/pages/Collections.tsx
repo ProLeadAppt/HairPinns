@@ -1,46 +1,50 @@
 import { Helmet } from "react-helmet";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Droplet, Sparkles, Wind } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { getAllCollections } from "@/lib/shopify";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { getOGImage } from "@/lib/sitemap";
 
+interface ShopifyCollection {
+  id: string;
+  handle: string;
+  title: string;
+  description: string;
+  image?: {
+    url: string;
+    altText?: string;
+  };
+  products: {
+    edges: Array<{ node: { id: string } }>;
+  };
+}
+
 const Collections = () => {
-  const collections = [
-    {
-      handle: "christmas-gift-packs",
-      title: "Christmas Gift Packs",
-      description: "Curated bundles perfect for gifting — salon-quality care sets at special prices",
-      image: "/placeholder.svg",
-      icon: Gift,
-      productCount: 8
-    },
-    {
-      handle: "hair-care",
-      title: "Hair Care",
-      description: "Daily shampoos, conditioners & treatments for every hair type and concern",
-      image: "/placeholder.svg",
-      icon: Droplet,
-      productCount: 24
-    },
-    {
-      handle: "treatments",
-      title: "Treatments & Masks",
-      description: "Deep conditioning, repair treatments & intensive care for damaged hair",
-      image: "/placeholder.svg",
-      icon: Sparkles,
-      productCount: 12
-    },
-    {
-      handle: "styling",
-      title: "Styling Products",
-      description: "Heat protectants, sprays, creams & finishing products for salon results at home",
-      image: "/placeholder.svg",
-      icon: Wind,
-      productCount: 16
-    }
-  ];
+  const [collections, setCollections] = useState<ShopifyCollection[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchCollections = async () => {
+      try {
+        setIsLoading(true);
+        const data = await getAllCollections(20);
+        setCollections(data);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching collections:", err);
+        setError("Unable to load collections. Please try again later.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCollections();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -59,88 +63,138 @@ const Collections = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/collections" />
       </Helmet>
-      <Header />
-      <main>
-        {/* Hero */}
-        <section className="bg-accent py-12 md:py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
-              Shop Collections
-            </h1>
-            <p className="text-lg text-foreground max-w-2xl mx-auto">
-              Professional hair care products hand-picked by Jena. 
-              From gift-ready bundles to daily essentials — find what your hair needs.
-            </p>
-          </div>
-        </section>
 
-        {/* Collections Grid */}
-        <section className="py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {collections.map((collection) => {
-                const Icon = collection.icon;
-                return (
-                  <Link
-                    key={collection.handle}
-                    to={`/collections/${collection.handle}`}
-                    className="group"
-                  >
-                    <article className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-all duration-base h-full">
-                      <div className="aspect-video bg-muted relative overflow-hidden">
-                        <img
-                          src={collection.image}
-                          alt={collection.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
-                          loading="lazy"
-                          width="800"
-                          height="450"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div className="absolute top-4 left-4 w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center">
-                          <Icon className="w-6 h-6" />
-                        </div>
-                      </div>
-                      
-                      <div className="p-6">
-                        <div className="flex items-baseline justify-between mb-2">
-                          <h2 className="text-2xl font-heading font-semibold text-heading group-hover:text-brand-500 transition-colors">
-                            {collection.title}
-                          </h2>
-                          <span className="text-sm text-muted-foreground">
-                            {collection.productCount} products
-                          </span>
-                        </div>
-                        
-                        <p className="text-foreground mb-4 leading-relaxed">
-                          {collection.description}
-                        </p>
-                        
-                        <div className="flex items-center text-brand-500 font-semibold group-hover:gap-2 transition-all">
-                          <span>Shop Collection</span>
-                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </div>
-                    </article>
-                  </Link>
-                );
-              })}
+      <Header />
+
+      <main>
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-br from-accent/30 via-background to-accent/20 py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.1),transparent_50%)]" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-heading font-heading tracking-tight leading-tight">
+                Shop Collections
+              </h1>
+              <p className="text-xl md:text-2xl text-muted max-w-2xl mx-auto leading-relaxed">
+                Explore our curated collections of premium hair care products.
+                From daily essentials to special treatments, find everything you
+                need for healthy, beautiful hair.
+              </p>
             </div>
           </div>
         </section>
 
+        {/* Collections Grid */}
+        <section className="py-20 md:py-32">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="space-y-4 animate-fade-in" style={{ animationDelay: `${i * 100}ms` }}>
+                    <Skeleton className="aspect-[4/3] w-full rounded-card" />
+                    <Skeleton className="h-8 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-2/3" />
+                  </div>
+                ))}
+              </div>
+            ) : error ? (
+              <div className="text-center py-16 max-w-2xl mx-auto">
+                <p className="text-muted text-lg mb-6">{error}</p>
+                <Button variant="default" asChild>
+                  <a href="https://hairpinns.com/collections" target="_blank" rel="noopener noreferrer">
+                    Visit Our Store
+                  </a>
+                </Button>
+              </div>
+            ) : collections.length === 0 ? (
+              <div className="text-center py-16 max-w-2xl mx-auto">
+                <p className="text-muted text-lg mb-6">No collections available at the moment.</p>
+                <Button variant="default" asChild>
+                  <Link to="/contact">Contact Us</Link>
+                </Button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {collections.map((collection, index) => (
+                  <Link
+                    key={collection.id}
+                    to={`/collections/${collection.handle}`}
+                    className="group relative bg-card rounded-card overflow-hidden border border-border hover:border-brand-500/30 hover:shadow-2xl transition-all duration-slow animate-fade-in hover:-translate-y-1"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Image Container */}
+                    <div className="aspect-[4/3] relative overflow-hidden bg-muted">
+                      {collection.image?.url ? (
+                        <img
+                          src={collection.image.url}
+                          alt={collection.image.altText || collection.title}
+                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-slow"
+                          loading="lazy"
+                          width="800"
+                          height="600"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent/40 to-accent/20">
+                          <span className="text-4xl font-heading text-brand-500">
+                            {collection.title.charAt(0)}
+                          </span>
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-heading/70 via-heading/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-slow" />
+                      
+                      {/* Product Count Badge */}
+                      <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-heading shadow-md">
+                        {collection.products.edges.length} {collection.products.edges.length === 1 ? 'item' : 'items'}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 space-y-3">
+                      <h2 className="text-3xl font-semibold text-heading font-heading group-hover:text-brand-500 transition-colors leading-tight">
+                        {collection.title}
+                      </h2>
+                      
+                      {collection.description && (
+                        <p className="text-muted leading-relaxed line-clamp-2">
+                          {collection.description}
+                        </p>
+                      )}
+
+                      {/* CTA */}
+                      <div className="pt-2 flex items-center gap-2 text-brand-500 font-medium group-hover:gap-3 transition-all">
+                        <span>Shop Collection</span>
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
         {/* CTA Banner */}
-        <section className="bg-brand-500 text-white py-12 md:py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-h2-lg font-heading font-bold mb-4">
-              Need Help Choosing?
-            </h2>
-            <p className="text-lg mb-6 opacity-90">
-              <a href="/contact" className="text-white font-semibold hover:text-white/90 underline">Message us on the contact page</a> for personalized product recommendations.
-            </p>
+        <section className="relative bg-gradient-to-br from-brand-500/5 via-accent/30 to-brand-500/5 py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(139,74,139,0.15),transparent_60%)]" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-3xl mx-auto text-center space-y-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-heading font-heading leading-tight">
+                Need help choosing?
+              </h2>
+              <p className="text-xl text-muted leading-relaxed">
+                Not sure which products are right for your hair? Get in touch with
+                Jena for personalised recommendations.
+              </p>
+              <Button asChild size="lg" className="text-lg px-8 py-6 shadow-lg hover:shadow-xl">
+                <Link to="/contact">Ask Jena</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
