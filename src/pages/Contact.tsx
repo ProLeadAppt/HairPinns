@@ -268,14 +268,101 @@ const Contact = () => {
           </div>
         </Section>
 
-        {/* Message Jena Form */}
-        <Section variant="muted" padding="xl">
-          <div className="max-w-2xl mx-auto">
+        {/* AI Agents CTA Section */}
+        <Section variant="muted" padding="lg">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-h2 font-heading text-heading mb-4">Need Help? We're Here 24/7</h2>
+              <p className="text-lg text-foreground mb-8">
+                Sam and Isabella are available around the clock to answer your questions, help with bookings, and provide product recommendations. For detailed inquiries that need Jena's expertise, you can leave a message and she'll call you back within 24 hours.
+              </p>
+            </div>
+
+            {/* Primary Contact Options */}
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <div className="bg-card border border-border rounded-card p-8 text-center">
+                <div className="w-16 h-16 rounded-full bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
+                  <Phone className="w-8 h-8 text-brand-500" />
+                </div>
+                <h3 className="text-xl font-heading font-bold text-heading mb-3">Call Sam</h3>
+                <p className="text-foreground mb-6">
+                  Speak directly with Sam for instant answers to your hair questions and booking assistance.
+                </p>
+                <Button 
+                  asChild
+                  size="lg"
+                  variant="primary"
+                  className="w-full bg-brand-500 hover:bg-brand-600"
+                >
+                  <a href="tel:+61468020624" className="no-link-color">
+                    <Phone className="w-5 h-5" />
+                    Call: 0468 020 624
+                  </a>
+                </Button>
+              </div>
+
+              <div className="bg-card border border-border rounded-card p-8 text-center">
+                <div className="w-16 h-16 rounded-full bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
+                  <MessageSquare className="w-8 h-8 text-brand-500" />
+                </div>
+                <h3 className="text-xl font-heading font-bold text-heading mb-3">Chat with Isabella</h3>
+                <p className="text-foreground mb-6">
+                  Get instant help from Isabella, our AI assistant, available 24/7 for product advice and booking.
+                </p>
+                <Button 
+                  onClick={() => {
+                    const selectors = [
+                      'div[id*="chat-widget"]',
+                      'div[class*="chat-widget"]',
+                      '[data-chat-bubble]',
+                      'button[aria-label*="chat"]'
+                    ];
+                    
+                    for (const selector of selectors) {
+                      const element = document.querySelector(selector) as HTMLElement | null;
+                      if (element && element.tagName !== 'IFRAME') {
+                        element.style.outline = '3px solid rgba(139,74,139,0.9)';
+                        element.style.outlineOffset = '3px';
+                        element.style.transition = 'outline-color 300ms ease';
+                        setTimeout(() => {
+                          element.style.outline = '';
+                          element.style.outlineOffset = '';
+                        }, 2500);
+                        break;
+                      }
+                    }
+
+                    toast({
+                      title: "Chat with Isabella",
+                      description: "Look for the chat bubble at the bottom-right to start chatting.",
+                    });
+                  }}
+                  size="lg"
+                  variant="primary"
+                  className="w-full bg-brand-500 hover:bg-brand-600"
+                >
+                  <MessageSquare className="w-5 h-5" />
+                  Chat Now
+                </Button>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="relative my-12">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-border"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-muted text-muted-foreground">Or leave a message for Jena</span>
+              </div>
+            </div>
+
+            {/* Contact Form */}
             <div className="text-center mb-8">
-              <h2 className="text-h2 font-heading text-heading mb-3">Message Jena</h2>
+              <h3 className="text-h3 font-heading font-bold text-heading mb-3">Leave a Message for Jena</h3>
               <p className="text-foreground">
-                Have questions about services, products, or availability? Send Jena a direct message 
-                and she'll reply within 24 hours.
+                For detailed inquiries that need Jena's personal expertise, leave a message below. 
+                She'll review it and call you back within 24 hours.
               </p>
             </div>
 

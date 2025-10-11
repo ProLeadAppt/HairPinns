@@ -52,6 +52,12 @@ export interface BlogPost {
       }[];
     };
   };
+  cta?: {
+    type: "call-sam" | "chat-isabella" | "service" | "product" | "booking";
+    servicePath?: string;
+    productPath?: string;
+    customText?: string;
+  };
 }
 
 export const blogPosts: BlogPost[] = [
@@ -107,6 +113,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/all",
+      customText: "Ready to upgrade your hair care?"
     }
   },
   {
@@ -134,6 +145,10 @@ export const blogPosts: BlogPost[] = [
           content: "You'll walk out of the sauna feeling like you just hit reset on your whole day—mind, body, and mood.\n\nReady to feel the difference? Book your session now and come experience the glow!\n\nP.S. Feel free to come in for a shampoo, head massage and blowdry straight after your Sauna Sesh for that extra pep in your step 😉"
         }
       ]
+    },
+    cta: {
+      type: "call-sam",
+      customText: "Ready to book your infrared sauna session?"
     }
   },
   {
@@ -181,6 +196,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      customText: "Shop heat protection products"
     }
   },
   {
@@ -204,6 +224,11 @@ export const blogPosts: BlogPost[] = [
           content: "Teens: $214\nMid-length: $324\nLong: $349\n\nExperience the benefits of a Straight Up and transform your hair care routine. For more information or to book an appointment, reach out!\n\nJena 0416037663\nE: hairpinns1@gmail.com"
         }
       ]
+    },
+    cta: {
+      type: "call-sam",
+      servicePath: "/services/keratin-smoothing",
+      customText: "Want to try a Straight Up treatment?"
     }
   },
   {
@@ -246,6 +271,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/christmas",
+      customText: "Shop Christmas gift packs now"
     }
   },
   {
@@ -281,6 +311,11 @@ export const blogPosts: BlogPost[] = [
           content: "Imagine waking up and your hair already looks good.\n\nImagine walking out into humid weather and still having a great hair day.\n\nImagine cutting your styling time in half while your hair stays smooth, shiny, and soft for months.\n\nThat's what QIQI Vega delivers.\n\n💜 Book your Straight Up Smoothing Treatment today and let your hair do less fighting and more shining.\n\n📲 Send me a message with any further questions or to secure your appointment"
         }
       ]
+    },
+    cta: {
+      type: "call-sam",
+      servicePath: "/services/keratin-smoothing",
+      customText: "Ready to book your Straight Up treatment?"
     }
   },
   {
@@ -327,6 +362,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "chat-isabella",
+      productPath: "https://hairpinns.com/collections/all",
+      customText: "Need help choosing the right shampoo?"
     }
   },
   {
@@ -366,6 +406,10 @@ export const blogPosts: BlogPost[] = [
           content: "Now is the perfect time to invest in your hair, skin, and overall wellness.\n\nFor a limited time at Hairpinns, enjoy our 10-session sauna pack for only $200 (was $250) and receive:\n✔ Free Head Towel\n✔ Free Hair Mask Sachet\n✔ Free Hairpinns Drink Bottle\n\n📅 Book your sauna experience today and let's make your self-care a priority."
         }
       ]
+    },
+    cta: {
+      type: "call-sam",
+      customText: "Book your infrared sauna session today"
     }
   },
   {
@@ -401,6 +445,10 @@ export const blogPosts: BlogPost[] = [
           content: "Absolutely. Hot towel treatments may feel indulgent, but they're actually functional self-care for your hair and your headspace.\n\nNext time you visit Hair Pinns, ask for a hot towel wrap with your treatment or blowdry. Your hair will feel it — and so will your soul.\n\nWant a mini spa moment during your next salon visit? We've got the towels ready. You just sit back and enjoy 🖤"
         }
       ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Add a hot towel treatment to your next visit"
     }
   },
   {
@@ -443,6 +491,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/qiqi",
+      customText: "Shop QIQI Bare Repair Oil"
     }
   },
   {
@@ -489,6 +542,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/pure-organic",
+      customText: "Shop Pure Precious Ends now"
     }
   },
   {
@@ -535,6 +593,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "chat-isabella",
+      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      customText: "Need help choosing the right hairspray?"
     }
   },
   {
@@ -581,6 +644,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/wet-brush-detanglers",
+      customText: "Shop Wet Brush Detanglers"
     }
   },
   {
@@ -616,6 +684,11 @@ export const blogPosts: BlogPost[] = [
           content: "We do a lot of QIQI treatments at Hair Pinns, and we love taking the time to tailor each session to suit your hair type, goals, and lifestyle. With the right aftercare and advice, your hair will stay smooth, healthy, and beautiful for months.\n\nIf you're still wondering which treatment is right for you, book a free consultation with us and we'll guide you every step of the way.\n\n💬 Have More Questions?\nFeel free to DM us or drop your questions in the comments – we love educating our clients and helping you make confident hair choices."
         }
       ]
+    },
+    cta: {
+      type: "call-sam",
+      servicePath: "/services/keratin-smoothing",
+      customText: "Want to learn more about QIQI Vega?"
     }
   },
   {
@@ -662,6 +735,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      customText: "Shop the Hydration Bundle"
     }
   },
   {
@@ -708,6 +786,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/pure-organic",
+      customText: "Try the Pure Walnut Scrub"
     }
   },
   {
@@ -754,6 +837,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "call-sam",
+      productPath: "https://hairpinns.com/collections/qiqi",
+      customText: "Questions about aftercare products?"
     }
   },
   {
@@ -800,6 +888,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      customText: "Shop winter hair care essentials"
     }
   },
   {
@@ -846,6 +939,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/pure-organic",
+      customText: "Shop the Lamellar Vitality Range"
     }
   },
   {
@@ -896,6 +994,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      customText: "Shop heat protection products"
     }
   },
   {
@@ -938,6 +1041,11 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/wet-brush-detanglers",
+      customText: "Get your Wet Brush today"
     }
   },
   {
@@ -976,6 +1084,10 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    },
+    cta: {
+      type: "chat-isabella",
+      customText: "Not sure which range? Chat with Isabella for personalized recommendations"
     }
   },
   {
@@ -1015,6 +1127,10 @@ export const blogPosts: BlogPost[] = [
           content: "Ask us about adding a 45 minute infrared sauna session to your next salon visit—or book it solo for a little self-care break that your scalp will thank you for.\n\nHealthy hair starts at the root—and we're here to help you glow from the inside out."
         }
       ]
+    },
+    cta: {
+      type: "call-sam",
+      customText: "Book your infrared sauna session"
     }
   }
 ];

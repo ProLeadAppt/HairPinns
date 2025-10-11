@@ -14,17 +14,47 @@ const FooterCTA = () => {
           or anything else hair-related.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button asChild variant="primary" size="lg" className="bg-brand-500 hover:bg-brand-600 text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent">
-            <a href="tel:+61468020624" aria-label="Text us on 0468 020 624" className="no-link-color">
+            <a href="tel:+61468020624" aria-label="Call Sam on 0468 020 624" className="no-link-color">
               <MessageCircle className="w-5 h-5" />
-              Text Us: 0468 020 624
+              Call Sam: 0468 020 624
             </a>
+          </Button>
+          <Button 
+            onClick={() => {
+              const selectors = [
+                'div[id*="chat-widget"]',
+                'div[class*="chat-widget"]',
+                '[data-chat-bubble]',
+                'button[aria-label*="chat"]'
+              ];
+              
+              for (const selector of selectors) {
+                const element = document.querySelector(selector) as HTMLElement | null;
+                if (element && element.tagName !== 'IFRAME') {
+                  element.style.outline = '3px solid rgba(139,74,139,0.9)';
+                  element.style.outlineOffset = '3px';
+                  element.style.transition = 'outline-color 300ms ease';
+                  setTimeout(() => {
+                    element.style.outline = '';
+                    element.style.outlineOffset = '';
+                  }, 2500);
+                  break;
+                }
+              }
+            }}
+            variant="accent" 
+            size="lg"
+            aria-label="Chat with Isabella"
+          >
+            <MessageCircle className="w-5 h-5" />
+            Chat with Isabella
           </Button>
           <Button asChild variant="accent" size="lg">
             <Link to="/contact" aria-label="Send a message">
               <Mail className="w-5 h-5" />
-              Send a Message
+              Leave a Message
             </Link>
           </Button>
         </div>

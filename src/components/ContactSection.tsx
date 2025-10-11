@@ -39,7 +39,7 @@ const ContactSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Located in Bangor NSW, we're easily accessible throughout the Sutherland Shire. 
-            Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
+            Need help? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam on 0468 020 624</a> or chat with Isabella (look for the chat bubble) for instant answers.
           </p>
         </div>
         

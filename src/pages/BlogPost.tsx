@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import ProductModule from "@/components/blog/ProductModule";
 import LeadMagnetBox from "@/components/blog/LeadMagnetBox";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
+import BlogCTA from "@/components/blog/BlogCTA";
 import ProgressBar from "@/components/blog/ProgressBar";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import SocialShareBar from "@/components/blog/SocialShareBar";
@@ -178,8 +179,28 @@ const BlogPost = () => {
 
               {/* Insert Lead Magnet after 5th section */}
               {index === 4 && <LeadMagnetBox />}
+
+              {/* Insert CTA after 2nd section if available */}
+              {index === 1 && post.cta && (
+                <BlogCTA 
+                  type={post.cta.type}
+                  servicePath={post.cta.servicePath}
+                  productPath={post.cta.productPath}
+                  customText={post.cta.customText}
+                />
+              )}
             </div>
           ))}
+
+          {/* Final CTA before FAQ */}
+          {post.cta && (
+            <BlogCTA 
+              type={post.cta.type}
+              servicePath={post.cta.servicePath}
+              productPath={post.cta.productPath}
+              customText={post.cta.customText}
+            />
+          )}
 
           {/* FAQ Section */}
           <div className="mt-16 pt-12 border-t border-border">
