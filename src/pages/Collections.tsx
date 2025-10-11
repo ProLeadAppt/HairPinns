@@ -145,9 +145,11 @@ const Collections = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-heading/70 via-heading/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-slow" />
                       
                       {/* Product Count Badge */}
-                      <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-heading shadow-md">
-                        {collection.products.edges.length} {collection.products.edges.length === 1 ? 'item' : 'items'}
-                      </div>
+                      {collection.products?.edges && collection.products.edges.length > 0 && (
+                        <div className="absolute top-4 right-4 bg-background/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-heading shadow-md">
+                          {collection.products.edges.length} {collection.products.edges.length === 1 ? 'item' : 'items'}
+                        </div>
+                      )}
                     </div>
 
                     {/* Content */}
