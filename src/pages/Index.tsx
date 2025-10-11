@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
 import FeatureStrip from "@/components/home/FeatureStrip";
+import AITestimonials from "@/components/home/AITestimonials";
 import ProductSpotlight from "@/components/home/ProductSpotlight";
 import ReviewsHome from "@/components/home/ReviewsHome";
 import BookingBanner from "@/components/home/BookingBanner";
@@ -47,6 +48,7 @@ const Index = () => {
       <GoogleReviewBadge variant="micro" showCTA />
       <main>
         <HeroHome />
+        <AITestimonials />
         <FeatureStrip />
         
         {/* Quick Links to Key Pages */}

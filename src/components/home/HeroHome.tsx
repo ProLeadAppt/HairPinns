@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Calendar, Star, MapPin } from "lucide-react";
+import { ShoppingBag, Star, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-home-new.webp";
-import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import AIAgentsCTA from "./AIAgentsCTA";
 
 const HeroHome = () => {
   return (
@@ -34,57 +34,45 @@ const HeroHome = () => {
           backdropFilter: 'blur(4px)',
           boxShadow: '0 8px 28px rgba(0, 0, 0, 0.25)'
         }}>
-          <h1 className="font-heading font-bold text-white mb-6 leading-[1.05]" style={{
-            fontSize: 'clamp(32px, 6vw, 72px)',
+          <h1 className="font-heading font-bold text-white mb-4 leading-[1.05]" style={{
+            fontSize: 'clamp(32px, 6vw, 64px)',
             textShadow: '0 2px 24px rgba(0, 0, 0, 0.45)'
           }}>
-            Hair Pinns — Salon & Self-Care
+            Questions About Your Hair?
           </h1>
           
-          <p className="mb-8 max-w-lg leading-relaxed" style={{
+          <p className="mb-6 max-w-lg leading-relaxed" style={{
             color: 'rgba(255, 255, 255, 0.92)',
-            fontSize: 'clamp(16px, 2.2vw, 20px)'
+            fontSize: 'clamp(18px, 2.4vw, 22px)',
+            fontWeight: 500
           }}>
-            Beautiful hair, honest care, salon-quality at home.
+            Get Instant Expert Answers 24/7
+          </p>
+
+          <p className="mb-8 max-w-xl leading-relaxed" style={{
+            color: 'rgba(255, 255, 255, 0.85)',
+            fontSize: 'clamp(15px, 2vw, 17px)'
+          }}>
+            <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>Call Sam</strong> or <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>Chat with Isabella</strong> — Our AI experts know every service, price range, and can help you choose the perfect treatment
           </p>
           
+          {/* AI Agents CTAs */}
           <div className="mb-8">
-            <div className="flex flex-col sm:flex-row gap-3 no-link-color">
-              {/* PRIMARY: Book now - Solid white with dark text for maximum contrast */}
-              <Button asChild size="lg" className="w-full sm:w-auto font-bold transition-all hover:bg-[#F5F5F7] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#8B4A8B] [&_*]:!text-[#2A2230]" style={{
-                background: '#FFFFFF',
-                color: '#2A2230',
-                borderRadius: '999px',
-                padding: '0.95rem 1.4rem',
-                boxShadow: '0 10px 24px rgba(0, 0, 0, 0.35)',
-                border: 'none'
-              }}>
-                <a 
-                  href={BOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackBookingClick("hero_home", "/")}
-                  aria-label="Book an appointment"
-                  className="flex items-center gap-2"
-                  style={{ color: '#2A2230' }}
-                >
-                  <Calendar className="w-5 h-5" style={{ color: '#2A2230' }} />
-                  <span style={{ color: '#2A2230' }}>{BOOK_CTA_LABEL}</span>
-                </a>
-              </Button>
-              {/* SECONDARY: Shop Christmas Packs - Solid purple with white text */}
-              <Button asChild size="lg" className="w-full sm:w-auto bg-[#8B4A8B] hover:bg-[#7A4079] text-white font-semibold transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50" style={{
-                borderRadius: '999px',
-                padding: '0.95rem 1.4rem',
-                boxShadow: '0 8px 20px rgba(139, 74, 139, 0.4)',
-                border: '2px solid rgba(255, 255, 255, 0.3)'
-              }}>
-                <Link to="/collections/christmas-gift-packs">
-                  <ShoppingBag className="w-5 h-5" />
-                  Shop Christmas Packs
-                </Link>
-              </Button>
-            </div>
+            <AIAgentsCTA />
+          </div>
+
+          {/* Secondary: Shop Christmas Packs */}
+          <div className="mb-8">
+            <Button asChild size="lg" className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50 backdrop-blur-md" style={{
+              borderRadius: '999px',
+              padding: '0.85rem 1.3rem',
+              border: '2px solid rgba(255, 255, 255, 0.3)'
+            }}>
+              <Link to="/collections/christmas-gift-packs" className="flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5" />
+                Shop Christmas Gift Packs
+              </Link>
+            </Button>
           </div>
 
           {/* Trust Row */}
