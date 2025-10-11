@@ -89,7 +89,7 @@ const ReviewGoogle = () => {
   const handleGoogleReview = () => {
     soundEffects.playSuccess();
     haptics.medium();
-    window.open("https://g.page/r/CX-F0vOcpJLhEBM/review", "_blank");
+    window.open("https://www.google.com/search?hl=en-AU&gl=au&q=Hair+Pinns%2C+60+Goorgool+Rd%2C+Bangor+NSW+2234&ludocid=1060112768993619619&lsig=AB86z5UhK1yIWe0_EzKvikeD0SfQ&num=100#lrd=0x6b12bf4b5a68dcb3:0xeb646f259b86ea3,3", "_blank");
   };
 
   const handleGoHome = () => {
