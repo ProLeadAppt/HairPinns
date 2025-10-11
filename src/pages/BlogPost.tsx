@@ -1,14 +1,17 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Calendar, Clock, User } from "lucide-react";
-import Badge from "@/components/design-system/Badge";
+import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import ProductModule from "@/components/blog/ProductModule";
 import LeadMagnetBox from "@/components/blog/LeadMagnetBox";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
-import { getPostBySlug } from "@/data/blogPosts";
+import ProgressBar from "@/components/blog/ProgressBar";
+import RelatedPosts from "@/components/blog/RelatedPosts";
+import SocialShareBar from "@/components/blog/SocialShareBar";
+import { blogPosts } from "@/data/blogPosts";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
@@ -18,13 +21,12 @@ import {
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const post = slug ? getPostBySlug(slug) : undefined;
+  const post = slug ? blogPosts.find(p => p.slug === slug) : undefined;
 
   if (!post) {
     return <Navigate to="/404" replace />;
   }
 
-  // Calculate word count from content
   const wordCount = 
     post.content.introduction.split(/\s+/).filter((word) => word.length > 0).length +
     post.content.sections.reduce((total, section) => 
@@ -45,15 +47,15 @@ const BlogPost = () => {
   const blogFaqs = [
     {
       question: "What's the best treatment for frizz in humid Sydney weather?",
-      answer: "A keratin-free smoothing treatment paired with a humidity-resistant leave-in works best for Sydney's changeable climate. Start with a gentle, sulphate-free wash, add a protein-balanced mask weekly, then seal with a heat-activated protectant before blow-drying. On high-humidity days, finish with a light, flexible-hold spray rather than heavy oils (they can collapse volume). If your hair is colour-treated, choose formulas labelled 'colour-safe' to prevent fade. For persistent halo frizz around the hairline, sleep on a silk pillowcase and avoid rough towel drying."
+      answer: "A keratin-free smoothing treatment paired with a humidity-resistant leave-in works best for Sydney's changeable climate. Start with a gentle, sulphate-free wash, add a protein-balanced mask weekly, then seal with a heat-activated protectant before blow-drying."
     },
     {
       question: "How often should I tone blonde hair at home?",
-      answer: "Every 1–2 weeks for maintenance, using a pH-balanced violet or blue-violet treatment, depending on your undertone. Keep dwell time short (3–5 mins) to avoid over-ash. Follow with a hydrating mask because toners can be slightly drying. If your water is mineral-rich (common around the Shire), use a chelating shampoo once every 2–4 weeks to remove buildup that accelerates brassiness. In-salon glosses every 6–8 weeks will keep the tone fresher for longer."
+      answer: "Every 1–2 weeks for maintenance, using a pH-balanced violet or blue-violet treatment, depending on your undertone. Keep dwell time short (3–5 mins) to avoid over-ash. Follow with a hydrating mask because toners can be slightly drying."
     },
     {
       question: "Keratin vs. smoothing — which lasts longer?",
-      answer: "Keratin treatments (formaldehyde-free) generally outlast quick smoothing services, giving 2–4 months of frizz reduction with proper care. Smoothing services are gentler and great for first-timers or colour-treated hair, lasting 4–8 weeks. Longevity depends on aftercare: sulphate-free cleanser, low heat, UV protection, and avoiding salt/chlorine. If you're blonde or fine-textured, start with smoothing; if you're coarse or highly porous, a keratin option may give better durability."
+      answer: "Keratin treatments (formaldehyde-free) generally outlast quick smoothing services, giving 2–4 months of frizz reduction with proper care. Smoothing services are gentler and great for first-timers or colour-treated hair, lasting 4–8 weeks."
     },
   ];
 
@@ -64,13 +66,23 @@ const BlogPost = () => {
   ]);
 
   const faqSchema = generateFAQPageSchema(blogFaqs);
+  const currentUrl = `https://hairpinns.com/blog/${post.slug}`;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Helmet>
         <title>{post.title} | Hair Pinns Blog</title>
         <meta name="description" content={post.excerpt} />
-        <link rel="canonical" href={`https://hairpinns.com/blog/${post.slug}`} />
+        <link rel="canonical" href={currentUrl} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={post.image} />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={post.image} />
         <script type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </script>
@@ -85,11 +97,49 @@ const BlogPost = () => {
         </script>
       </Helmet>
 
+      <ProgressBar />
       <Header />
       
-      <main className="flex-grow">
+      <main>
+        {/* Hero Section - Overlay Style */}
+        <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden">
+          <img 
+            src={post.image} 
+            alt={post.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-heading/90 via-heading/50 to-transparent" />
+          
+          <div className="absolute inset-0 flex items-end">
+            <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 lg:pb-16">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm text-brand-600 font-bold text-sm mb-4">
+                {post.category}
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight max-w-4xl">
+                {post.title}
+              </h1>
+              
+              <div className="flex items-center gap-6 text-sm text-white/90">
+                <span className="flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  {post.author}
+                </span>
+                <span className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  {post.date}
+                </span>
+                <span className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  {post.readTime}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Breadcrumbs */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Breadcrumbs 
             items={[
               { label: 'Home', href: '/' },
@@ -99,81 +149,50 @@ const BlogPost = () => {
           />
         </div>
 
-        {/* Article */}
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-xl">
-          <Badge variant="accent" className="mb-4">{post.category}</Badge>
-          
-          <h1 className="text-h1-lg font-heading text-heading mb-4">
-            {post.title}
-          </h1>
-          
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
-            <span className="flex items-center gap-1">
-              <User className="w-4 h-4" />
-              {post.author}
-            </span>
-            <span className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              {post.readTime}
-            </span>
-          </div>
-
-          <div className="aspect-video bg-muted rounded-card overflow-hidden mb-8">
-            <img 
-              src={post.image} 
-              alt={post.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* Introduction */}
-          <div className="prose prose-lg max-w-none mb-8">
-            <p className="text-lg text-foreground leading-relaxed font-medium">
-              {post.content.introduction}
-            </p>
-          </div>
+        {/* Article Content */}
+        <article className="max-w-[720px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Introduction with drop cap effect */}
+          <p className="text-xl leading-relaxed text-text mb-8 first-letter:text-5xl first-letter:font-heading first-letter:font-bold first-letter:text-brand-500 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+            {post.content.introduction}
+          </p>
 
           {/* Content Sections */}
-          <div className="prose prose-lg max-w-none">
-            {post.content.sections.map((section, index) => (
-              <div key={index} className="mb-8">
-                <h2 className="text-h2 font-heading text-heading mb-4">
-                  {section.heading}
-                </h2>
-                <p className="text-foreground leading-relaxed">
-                  {section.content}
-                </p>
+          {post.content.sections.map((section, index) => (
+            <div key={index} className="mb-12">
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading mb-6 mt-12">
+                {section.heading}
+              </h2>
+              <div className="h-1 w-20 bg-brand-500 mb-6" />
+              
+              <p className="text-lg leading-relaxed text-text">
+                {section.content}
+              </p>
 
-                {/* Insert Product Module after 3rd section */}
-                {index === 2 && post.content.productModule && (
-                  <ProductModule 
-                    title={post.content.productModule.title}
-                    products={post.content.productModule.products}
-                  />
-                )}
+              {/* Insert Product Module after 3rd section */}
+              {index === 2 && post.content.productModule && (
+                <ProductModule 
+                  title={post.content.productModule.title}
+                  products={post.content.productModule.products}
+                />
+              )}
 
-                {/* Insert Lead Magnet after 5th section */}
-                {index === 4 && <LeadMagnetBox />}
-              </div>
-            ))}
-          </div>
+              {/* Insert Lead Magnet after 5th section */}
+              {index === 4 && <LeadMagnetBox />}
+            </div>
+          ))}
 
           {/* FAQ Section */}
-          <div className="mt-12 pt-8 border-t border-border">
-            <h2 className="text-h2 font-heading text-heading mb-6">
+          <div className="mt-16 pt-12 border-t border-border">
+            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading mb-8">
               Frequently Asked Questions
             </h2>
             <div className="space-y-6">
               {blogFaqs.map((faq, index) => (
-                <div key={index} className="bg-muted rounded-card p-6">
-                  <h3 className="font-semibold text-heading mb-3">
+                <div key={index} className="bg-accent/5 rounded-card p-6 border border-accent/20">
+                  <h3 className="font-heading font-semibold text-xl text-heading mb-3">
                     {faq.question}
                   </h3>
-                  <p className="text-foreground leading-relaxed mb-4">
+                  <p className="text-text leading-relaxed mb-4">
                     {faq.answer}
                   </p>
                   <FaqFeedbackWidget question={faq.question} />
@@ -186,14 +205,21 @@ const BlogPost = () => {
           <div className="mt-12 pt-8 border-t border-border">
             <Link 
               to="/blog" 
-              className="inline-flex items-center text-brand-500 hover:text-brand-600 transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-brand-500 hover:text-brand-600 transition-colors font-semibold text-lg group"
             >
-              ← Back to All Articles
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              Back to All Articles
             </Link>
           </div>
         </article>
+
+        {/* Related Posts */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <RelatedPosts currentSlug={post.slug} />
+        </div>
       </main>
-      
+
+      <SocialShareBar url={currentUrl} title={post.title} />
       <Footer />
     </div>
   );
