@@ -9,12 +9,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_URL } from "@/config/bookingConfig";
-import juuceImage from "@/assets/Juuce-037.jpg";
-import aromaganicImage from "@/assets/Aromaganic_Organic_Shampoo_Conditoner.jpg";
-import accessoriesImage from "@/assets/Accessories-016.jpg";
-import islandVibesImage from "@/assets/IslandVibesTanning-BackApplicator.webp";
-import headMassagerImage from "@/assets/Head_Massager_Black_and_White.webp";
-import hairPinnsLogoImage from "@/assets/hair-pinns-logo-full.webp";
+import aromaganicImage from "@/assets/collections/aromaganic-collection.jpg";
+import christmasImage from "@/assets/collections/christmas-collection.jpg";
+import clearanceImage from "@/assets/collections/clearance-collection.jpg";
+import accessoriesImage from "@/assets/collections/accessories-collection.jpg";
+import islandVibesImage from "@/assets/collections/island-vibes-collection.jpg";
+import juuceImage from "@/assets/collections/juuce-collection.jpg";
+import poppetLocksImage from "@/assets/collections/poppet-locks-collection.jpg";
+import pureOrganicImage from "@/assets/collections/pure-organic-collection.jpg";
+import qiqiImage from "@/assets/collections/qiqi-collection.jpg";
+import perfectPonyImage from "@/assets/collections/perfect-pony-collection.jpg";
+import wetBrushImage from "@/assets/collections/wet-brush-collection.jpg";
 
 interface ShopifyCollection {
   id: string;
@@ -42,17 +47,19 @@ const Collections = () => {
     // Fuzzy match on handle and title
     const searchText = `${handle} ${title}`.toLowerCase();
     
-    if (searchText.includes('juuce')) return juuceImage;
-    if (searchText.includes('aromaganic') || searchText.includes('organic')) return aromaganicImage;
-    if (searchText.includes('island') || searchText.includes('tan')) return islandVibesImage;
-    if (searchText.includes('accessories') || searchText.includes('accessory')) return accessoriesImage;
-    if (searchText.includes('head') || searchText.includes('massag')) return headMassagerImage;
-    if (searchText.includes('wet brush') || searchText.includes('detangler')) return headMassagerImage;
-    if (searchText.includes('poppet') || searchText.includes('qiqi') || searchText.includes('pony')) return hairPinnsLogoImage;
-    if (searchText.includes('christmas') || searchText.includes('gift')) return accessoriesImage;
-    if (searchText.includes('clearance') || searchText.includes('sale')) return hairPinnsLogoImage;
+    if (searchText.includes('juuce') || searchText.includes('botanical')) return juuceImage;
+    if (searchText.includes('aromaganic') || searchText.includes('colour')) return aromaganicImage;
+    if (searchText.includes('pure') || searchText.includes('certified') || searchText.includes('organic')) return pureOrganicImage;
+    if (searchText.includes('island') || searchText.includes('vibes') || searchText.includes('tan')) return islandVibesImage;
+    if (searchText.includes('accessories') || searchText.includes('hair pinns accessories')) return accessoriesImage;
+    if (searchText.includes('wet brush') || searchText.includes('detangler')) return wetBrushImage;
+    if (searchText.includes('poppet') || searchText.includes('locks') || searchText.includes('ponytail') || searchText.includes('extension')) return poppetLocksImage;
+    if (searchText.includes('qiqi')) return qiqiImage;
+    if (searchText.includes('perfect pony') || searchText.includes('perfect-pony')) return perfectPonyImage;
+    if (searchText.includes('christmas') || searchText.includes('gift')) return christmasImage;
+    if (searchText.includes('clearance') || searchText.includes('sale') || searchText.includes('aisle')) return clearanceImage;
     
-    return hairPinnsLogoImage; // fallback to brand image
+    return juuceImage; // fallback to juuce image
   };
 
   useEffect(() => {
@@ -95,19 +102,20 @@ const Collections = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-brand-500/10 via-background to-accent/30 py-20 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.2),transparent_50%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/20" />
+        <section className="relative bg-gradient-to-br from-accent/40 via-background to-accent/30 py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.15),transparent_50%)]" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-heading font-heading tracking-tight leading-tight">
                 Shop Collections
               </h1>
-              <p className="text-xl md:text-2xl text-heading font-semibold max-w-2xl mx-auto leading-relaxed [text-shadow:_0_1px_8px_rgb(255_255_255_/_60%)]">
-                Explore our curated collections of premium hair care products.
-                From daily essentials to special treatments, find everything you
-                need for healthy, beautiful hair.
-              </p>
+              <div className="inline-block bg-background/80 backdrop-blur-sm px-8 py-6 rounded-2xl shadow-lg">
+                <p className="text-xl md:text-2xl text-heading font-semibold max-w-2xl leading-relaxed">
+                  Explore our curated collections of premium hair care products.
+                  From daily essentials to special treatments, find everything you
+                  need for healthy, beautiful hair.
+                </p>
+              </div>
             </div>
           </div>
         </section>
