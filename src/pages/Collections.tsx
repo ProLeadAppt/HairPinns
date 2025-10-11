@@ -213,7 +213,7 @@ const Collections = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-heading font-heading leading-tight">
                 Not Sure What's Right for Your Hair?
               </h2>
-              <p className="text-xl text-muted leading-relaxed">
+              <p className="text-lg md:text-xl text-heading font-semibold leading-relaxed inline-block bg-background/90 backdrop-blur-sm px-6 py-3 rounded-xl shadow-md">
                 Chat with Isabella for instant product recommendations or call Sam for personalized advice.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
