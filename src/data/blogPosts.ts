@@ -1,3 +1,14 @@
+import straightUpHero from "@/assets/blog/straight-up-smoothing-hero.png";
+import lamellarPack from "@/assets/blog/lamellar-vitality-pack.png";
+import shampooHero from "@/assets/blog/shampoo-replacement-hero.png";
+import saunaRoom from "@/assets/blog/infrared-sauna-room.png";
+import hotTowel from "@/assets/blog/hot-towel-treatment.png";
+import qiqiOil from "@/assets/blog/qiqi-bare-repair-oil.png";
+import pureEnds from "@/assets/blog/pure-precious-ends.png";
+import hairspray from "@/assets/blog/juuce-hairspray-collection.png";
+import wetBrush from "@/assets/blog/wet-brush-collection.png";
+import saunaInterior from "@/assets/blog/infrared-sauna-interior.png";
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -26,348 +37,400 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "frizz-free-in-7-days",
-    title: "Frizz-Free in 7 Days: Jena's At-Home Plan",
-    excerpt: "Combat humidity and achieve sleek, manageable hair with our proven 7-day transformation plan designed for Sutherland Shire's coastal climate.",
-    category: "Hair Care",
-    date: "Jan 15, 2025",
-    readTime: "6 min read",
-    image: "/src/assets/blog/frizz-free-hero.jpg",
-    author: "Jena",
-    content: {
-      introduction: "Living in Bangor means dealing with humidity year-round. After 15 years styling hair in the Sutherland Shire, I've perfected a 7-day plan that actually works. No expensive salon visits required—just commitment and the right products. Here's exactly how to transform frizzy, unruly hair into sleek, manageable locks that stay put through our coastal humidity.",
-      sections: [
-        {
-          heading: "Why Does Frizz Happen in the First Place?",
-          content: "Frizz occurs when your hair's cuticle layer lifts, allowing moisture from humid air to penetrate the hair shaft. This causes individual strands to swell and break formation. In Sutherland Shire's coastal climate, with humidity often above 70%, your hair is constantly fighting moisture absorption. The key is creating a barrier that locks in hydration while keeping external moisture out."
-        },
-        {
-          heading: "What Makes This 7-Day Plan Different?",
-          content: "Unlike quick-fix solutions, this plan rebuilds your hair's moisture barrier from the inside out. Each day builds on the previous one, progressively strengthening your hair's natural defenses. By day 7, you'll notice significantly reduced frizz, improved manageability, and hair that holds its style even on humid days. The secret is consistency and using products that work with your hair's natural structure, not against it."
-        },
-        {
-          heading: "Day 1-2: The Deep Cleanse and Reset",
-          content: "Start by removing product buildup that prevents moisture balance. Use a clarifying shampoo to strip away silicones, oils, and styling residue. Follow with a protein treatment to rebuild damaged bonds. Your hair may feel stripped initially—that's intentional. We're creating a clean canvas for the strengthening treatments ahead. Apply a lightweight leave-in conditioner and air-dry if possible."
-        },
-        {
-          heading: "Day 3-4: Moisture Lock Protocol",
-          content: "Now that your hair is clean, it's time to seal the cuticle. Use a sulfate-free hydrating shampoo and a rich, creamy conditioner. Apply conditioner from mid-length to ends, avoiding roots. Leave it on for 5 minutes while you finish showering. Rinse with cool water to close the cuticle. While hair is still damp, apply a smoothing serum focusing on the most frizz-prone areas. The goal is to trap moisture inside while creating a barrier against external humidity."
-        },
-        {
-          heading: "Day 5-6: Style Setting and Protection",
-          content: "Your hair should already feel different—smoother, more responsive. Now we set the style. Apply a heat protectant before blow-drying. Use a paddle brush to smooth sections while directing airflow down the hair shaft. Finish with a blast of cool air to seal everything. Before bed, loosely braid hair or use a silk pillowcase to prevent friction frizz overnight. This is when most people notice the dramatic difference—hair that holds its shape and resists humidity."
-        },
-        {
-          heading: "Day 7: The Maintenance Formula",
-          content: "By now, your routine should feel natural. Continue with sulfate-free products, weekly protein treatments, and daily leave-in protection. The transformation you've achieved in 7 days becomes your new baseline. Most clients report 60-80% frizz reduction that lasts for weeks with proper maintenance. The key is not breaking the moisture barrier you've built. Avoid harsh shampoos, excessive heat, and always protect hair before styling."
-        },
-        {
-          heading: "How Can I Maintain These Results Long-Term?",
-          content: "Maintenance is simpler than the initial 7 days. Wash 2-3 times weekly with sulfate-free products. Use a weekly deep conditioning treatment. Apply leave-in protection daily, even on non-wash days. Get trims every 6-8 weeks to remove split ends that cause frizz. Consider a professional keratin smoothing treatment every 3-4 months for extra protection during Sutherland Shire's humid summer months. The investment in good products pays for itself in reduced styling time and better hair health."
-        }
-      ],
-      productModule: {
-        title: "Recommended Products for This Plan",
-        products: [
-          {
-            name: "Aromaganic Organic Shampoo & Conditioner",
-            link: "/products/hydrate-restore-pack",
-            description: "Sulfate-free duo for daily cleansing"
-          },
-          {
-            name: "Smoothing Serum",
-            link: "/collections/treatments",
-            description: "Shop frizz control treatments"
-          }
-        ]
-      }
-    }
-  },
-  {
-    slug: "blonde-care-101",
-    title: "Blonde Care 101: Keep Tone, Skip Damage",
-    excerpt: "Maintain vibrant, healthy blonde hair without the brassiness or breakage. Essential tips from Sutherland Shire's blonde specialist.",
-    category: "Colour",
-    date: "Jan 12, 2025",
-    readTime: "7 min read",
-    image: "/src/assets/blog/blonde-care-hero.jpg",
-    author: "Jena",
-    content: {
-      introduction: "Blonde hair is high-maintenance—there's no way around it. But damage and brassiness aren't inevitable consequences of going blonde. After thousands of blonde transformations at Hair Pinns, I've learned exactly what works to keep colour vibrant and hair healthy. Whether you're platinum, golden, or somewhere in between, this guide will save your blonde from turning brassy, brittle, or both.",
-      sections: [
-        {
-          heading: "Why Does Blonde Hair Turn Brassy So Quickly?",
-          content: "Brass happens when blonde hair oxidizes and underlying warm pigments resurface. UV exposure, mineral deposits in water, and even heat styling accelerate this process. In Sutherland Shire, our coastal sun and mineral-rich water create the perfect storm for brass. Blonde hair is also more porous after lightening, making it prone to absorbing environmental pollutants that dull tone. Understanding this helps you prevent brass before it starts, rather than constantly correcting it."
-        },
-        {
-          heading: "What's the Right Washing Routine for Blonde Hair?",
-          content: "Wash no more than twice weekly with a purple shampoo designed for your specific blonde tone. Cool or icy blondes need violet-toned purple shampoo; warmer blondes need blue-toned versions. Alternate purple shampoo with a bond-building shampoo to maintain strength. Always follow with a deep conditioner—blonde hair needs 3x more moisture than virgin hair. Use lukewarm water; hot water opens the cuticle and accelerates color fade. Install a shower filter if your water has high mineral content—it's a game-changer for Sutherland Shire residents dealing with hard water."
-        },
-        {
-          heading: "How Do I Protect Blonde Hair from Heat Damage?",
-          content: "Blonde hair is already compromised from the lightening process, making it vulnerable to heat damage. Always—always—apply a heat protectant before any hot tool use. Keep tools below 350°F (177°C) and use ceramic or titanium plates that distribute heat evenly. Air-dry whenever possible; your hair will thank you. When blow-drying, use the cool shot button to seal the cuticle after each section. Limit heat styling to 2-3 times weekly maximum. Between salon visits, consider switching to heatless styling methods like overnight braids or velcro rollers."
-        },
-        {
-          heading: "What Products Should Every Blonde Have at Home?",
-          content: "Your blonde care kit needs five essentials: a purple shampoo for tone, a bond-building treatment for strength, a deep conditioning mask for moisture, a leave-in spray for daily protection, and a UV protection spray for outdoor exposure. Don't skimp on product quality—cheap purple shampoos can leave hair looking gray or lavender. Invest in salon-quality products; they're concentrated, so a little goes further. At Hair Pinns, we stock Juuce blonde ranges specifically formulated for Australian blonde hair and our unique climate challenges."
-        },
-        {
-          heading: "How Often Should I Get Touch-Ups?",
-          content: "Root touch-ups are typically needed every 6-8 weeks, but full highlight refreshes can stretch to 10-12 weeks with proper home care. Balayage grows out more gracefully than traditional highlights, reducing maintenance frequency. If you're seeing significant brass between appointments, book a toner-only service rather than waiting for your full appointment. This keeps color fresh without the time and cost of a full service. Communicate with your stylist about your lifestyle and budget—we can customize a maintenance schedule that works for you."
-        },
-        {
-          heading: "Can I Swim with Blonde Hair?",
-          content: "Chlorine and saltwater are blonde hair's enemies. Before swimming, wet hair with fresh water and apply a leave-in conditioner or coconut oil—saturated hair absorbs less pool or ocean water. Wear a swim cap when possible. Immediately after swimming, rinse thoroughly and use a clarifying shampoo to remove chlorine or salt deposits. Follow with a deep conditioning treatment. If you swim regularly, consider a weekly chelating treatment to remove mineral buildup. Many Sutherland Shire residents swim year-round; proper protection makes blonde hair and swimming compatible."
-        },
-        {
-          heading: "What If My Blonde Is Already Damaged?",
-          content: "Damaged blonde hair needs intensive repair before any further coloring. Book a consultation at Hair Pinns—sometimes the best approach is cutting off the most damaged ends and focusing on healing. Use a protein treatment weekly to rebuild broken bonds, alternating with moisture treatments to prevent protein overload. Space out all chemical services by at least 2-3 weeks. Consider Olaplex or K18 treatments in-salon for serious damage. Be patient; rebuilding blonde hair takes time, but it's absolutely possible with the right approach and professional guidance."
-        }
-      ],
-      productModule: {
-        title: "Essential Blonde Care Products",
-        products: [
-          {
-            name: "Blonde Brilliance Pack",
-            link: "/products/blonde-pack",
-            description: "Complete blonde care system"
-          },
-          {
-            name: "Shop Hair Care Collection",
-            link: "/collections/hair-care",
-            description: "Browse color-safe products"
-          }
-        ]
-      }
-    }
-  },
-  {
-    slug: "keratin-vs-smoothing",
-    title: "Keratin vs. Smoothing: Which Is Right for You?",
-    excerpt: "Confused about hair smoothing treatments? Learn the differences, benefits, and which treatment suits your hair type and lifestyle.",
+    slug: "say-goodbye-to-frizzy-hair-for-good",
+    title: "Say Goodbye to Frizzy Hair for Good?",
+    excerpt: "An all-natural, permanent hair straightening treatment designed to give you sleek, smooth locks without compromising hair health.",
     category: "Treatments",
-    date: "Jan 8, 2025",
-    readTime: "8 min read",
-    image: "/src/assets/blog/keratin-hero.jpg",
-    author: "Jena",
+    date: "March 21, 2025",
+    readTime: "4 min read",
+    image: straightUpHero,
+    author: "Jena Pinn",
     content: {
-      introduction: "Walk into any salon and you'll hear about keratin treatments, Brazilian blowouts, smoothing systems, and straightening treatments. The terminology is confusing, and every salon seems to offer something different. After performing hundreds of smoothing services at Hair Pinns, I'm breaking down exactly what each treatment does, how they differ, and which one is right for your hair type, texture, and lifestyle goals.",
+      introduction: "An all-natural, permanent hair straightening treatment designed to give you sleek, smooth locks without compromising hair health. Unlike traditional methods that often rely on harsh chemicals, Straight Up utilizes organic compounds, including citric acid, to achieve long lasting straightness safely.",
       sections: [
         {
-          heading: "What Exactly Is a Keratin Treatment?",
-          content: "Keratin treatments infuse processed keratin protein into the hair shaft, filling gaps and damage while coating the exterior. This creates smoother, shinier, more manageable hair. Traditional keratin treatments contain formaldehyde or formaldehyde-releasing ingredients that actually straighten hair by breaking and reforming bonds. Newer formaldehyde-free versions smooth without permanently altering curl pattern. Results last 3-4 months with proper care. Keratin treatments work best on wavy to curly hair that needs frizz control without complete straightening."
+          heading: "Why Choose a Straight Up?",
+          content: "Time-Efficient: Achieve silky, straight hair in under two hours, perfect for those with busy schedules.\n\nLow Maintenance: Enjoy a simplified daily hair routine with minimal styling effort, giving you more time for other activities.\n\nWeather Resistant: Maintain frizz-free hair regardless of humidity or rain, ensuring a perfect hair day every day.\n\nChemical-Free: Free from harsh chemicals, this treatment ensures no damage to your hair or scalp, promoting overall hair health.\n\nReduced Heat Styling: With naturally straight hair, there's less need for heat styling tools, minimizing potential heat damage."
         },
         {
-          heading: "How Are Smoothing Treatments Different?",
-          content: "Smoothing treatments is an umbrella term covering various frizz-reducing services that don't permanently alter hair structure. These include protein smoothing, tannic acid treatments, and moisture-based smoothing systems. They work by coating the hair shaft with smoothing agents that reduce frizz and add shine without breaking internal bonds. Results last 6-8 weeks and gradually fade rather than growing out. Smoothing treatments are ideal for those wanting temporary frizz control with minimal commitment or those with fine hair that keratin might weigh down."
-        },
-        {
-          heading: "What's the Difference in Application and Time?",
-          content: "Keratin treatments take 2-4 hours in-salon. After washing, keratin solution is applied section by section, then blow-dried and flat-ironed at high heat to seal the treatment. You can't wash hair for 48-72 hours post-treatment, and you must avoid ponytails, clips, or any styling that creates bends. Smoothing treatments typically take 1-2 hours and don't require the same intensive heat sealing. Most smoothing systems allow washing within 24 hours. The application is less rigid, making smoothing treatments better for busy schedules or those who can't commit to 3 days of strict aftercare."
-        },
-        {
-          heading: "Which One Works Better for Different Hair Types?",
-          content: "Thick, coarse, curly hair benefits most from keratin treatments—the protein infusion tames volume and dramatically reduces styling time. Keratin can handle the heavy lifting needed for very textured hair. Fine or thin hair often does better with smoothing treatments; keratin can be too heavy and make fine hair look limp. Coloured or highlighted hair should lean toward smoothing treatments or formaldehyde-free keratin to minimize damage. Extremely damaged hair needs repair before any smoothing service—ask us about Olaplex treatments first."
-        },
-        {
-          heading: "What Are the Cost and Maintenance Differences?",
-          content: "Keratin treatments at Hair Pinns range from $250-$450 depending on hair length and thickness. With 3-4 month longevity, the cost-per-month is competitive. Smoothing treatments cost $180-$300 and last 6-8 weeks. While keratin seems more expensive upfront, it's actually more cost-effective long-term if you need major frizz control. However, smoothing treatments require less dramatic aftercare and can be scheduled more spontaneously. Both require sulfate-free products at home to maximize longevity—factor that into your maintenance budget."
-        },
-        {
-          heading: "Can I Colour Hair Before or After These Treatments?",
-          content: "Timing matters. Colour should be done 1-2 weeks before keratin or smoothing treatments, never after. The treatments seal the cuticle, making it difficult for color to penetrate properly if done afterward. If you need both services, book colour first, let hair rest, then do the smoothing treatment. Root touch-ups can be done anytime after smoothing services without issue. At Hair Pinns, we coordinate these services to maximize both color vibrancy and smoothing effectiveness while protecting hair health."
-        },
-        {
-          heading: "How Do I Decide Which Treatment to Book?",
-          content: "Consider your goals and lifestyle. Want to eliminate frizz for months and dramatically reduce styling time? Keratin treatment. Need temporary frizz control with flexibility? Smoothing treatment. Have fine hair or colour-treated hair? Smoothing treatment. Have thick, coarse, or very curly hair and want long-term manageability? Keratin treatment. Still unsure? Book a consultation at Hair Pinns. We assess your hair condition, discuss your lifestyle and styling habits, and recommend the treatment that genuinely suits your needs—not just the most expensive option."
+          heading: "Pricing",
+          content: "Teens: $214\nMid-length: $324\nLong: $349\n\nExperience the benefits of a Straight Up and transform your hair care routine. For more information or to book an appointment, reach out!\n\nJena 0416037663\nE: hairpinns1@gmail.com"
         }
-      ],
-      productModule: {
-        title: "Aftercare Must-Haves",
-        products: [
-          {
-            name: "Smoothing Treatment Pack",
-            link: "/products/smooth-sleek-set",
-            description: "Professional smoothing care"
-          },
-          {
-            name: "Shop All Treatments",
-            link: "/collections/treatments",
-            description: "Browse smoothing products"
-          }
-        ]
-      }
+      ]
     }
   },
   {
-    slug: "bangors-humidity-playbook",
-    title: "Bangor's Humidity Playbook: Hair That Holds",
-    excerpt: "Local secrets for styling hair that survives Sutherland Shire's coastal humidity. Tried and tested by our Bangor salon.",
-    category: "Styling",
-    date: "Jan 5, 2025",
-    readTime: "6 min read",
-    image: "/src/assets/blog/humidity-hero.jpg",
-    author: "Jena",
-    content: {
-      introduction: "Bangor's proximity to the Georges River and coastal weather creates unique humidity challenges for hair. I've been styling hair in the Sutherland Shire for over 15 years, and I've learned exactly what works—and what doesn't—when humidity levels hit 80% or higher. This isn't generic advice from a glossy magazine; these are real-world strategies tested on real Bangor hair in real humidity. Here's your complete playbook for styles that actually hold.",
-      sections: [
-        {
-          heading: "Why Is Sutherland Shire Humidity So Challenging for Hair?",
-          content: "Our coastal location means consistent moisture in the air, often above 70% year-round and spiking to 90% in summer. This moisture penetrates hair strands, disrupting your carefully styled bonds and causing frizz, flatness, or both. Unlike inland areas with dry heat, our humidity is relentless. Traditional styling techniques that work elsewhere fail here because they don't account for constant moisture exposure. Success in Bangor means working with humidity, not fighting it. We use products that create moisture barriers and choose styles that embrace natural texture rather than forcing hair into unnatural shapes."
-        },
-        {
-          heading: "What Styling Products Actually Work in Humid Weather?",
-          content: "Forget lightweight mousses and aerosol sprays—humidity demands heavier artillery. You need products with humidity-blocking technology, usually containing silicones or polymers that create a seal around each strand. Look for keywords like 'anti-humidity,' 'moisture-resistant,' or 'frizz-control' on labels. Creams and gels outperform sprays in humid weather. At Hair Pinns, we've had massive success with Juuce's anti-humidity range, specifically formulated for Australian coastal conditions. Apply products to damp hair, not dry—this seals moisture in while keeping external moisture out."
-        },
-        {
-          heading: "Which Hairstyles Hold Best in Bangor's Climate?",
-          content: "Styles that work with your natural texture always outlast styles that fight it. If you have wavy hair, enhance the waves rather than straightening—straight styles fall fastest in humidity. Textured updos, braided styles, and high ponytails all hold remarkably well because they're secured mechanically, not just with product. Low-maintenance cuts like long layers or textured bobs reduce styling time and work with natural movement. Avoid blunt, one-length cuts that require precision styling; the second you step outside, humidity undermines all that work. Embrace movement and texture—they're your allies in humid weather."
-        },
-        {
-          heading: "How Should I Blow-Dry Hair for Maximum Hold?",
-          content: "The blow-dry technique matters as much as the products. Never blow-dry hair until it's completely dry—stop at 90% and let the last 10% air-dry. This prevents over-drying that makes hair porous and vulnerable to humidity. Always use a heat protectant first. Section hair and dry roots first, creating lift and volume that humidity can't flatten. Use a round brush to smooth sections while directing airflow down the hair shaft—this seals the cuticle. Finish each section with a cool shot to lock everything in place. Skip the blow-dry entirely on extremely humid days; embrace air-dried texture instead."
-        },
-        {
-          heading: "What's the Secret to Curls That Don't Frizz?",
-          content: "Curly and wavy hair shows frizz fastest in humidity, but the solution isn't straightening—it's proper curl definition. Use the 'squish to condish' method in the shower: flip hair upside down and scrunch conditioner into curls while they're soaking wet. Apply curl-defining cream to wet hair, scrunch again, then air-dry or diffuse on low heat. Never touch curls while drying—disturbing them breaks curl clumps and causes frizz. Once completely dry, scrunch out the 'cast' for soft, defined curls. Sleep with a silk bonnet or pillowcase to preserve curls overnight. This method works because it respects curl structure rather than fighting it."
-        },
-        {
-          heading: "How Can I Make Straight Styles Last Longer?",
-          content: "Straight hair is the hardest to maintain in humidity, but not impossible. Start with a keratin or smoothing treatment for a moisture-resistant base—this is a game-changer for Bangor residents. When heat-styling, use a ceramic flat iron at 360°F maximum; higher heat damages without improving hold. Work in small sections and pass the iron slowly to properly seal the cuticle. Apply anti-humidity spray immediately after straightening each section, not at the end. Throughout the day, a quick refresh with smoothing serum on any trouble spots maintains the look. Consider booking professional blowouts for special events rather than attempting perfect straightness daily."
-        },
-        {
-          heading: "What's Your Go-To Routine for Humid Days?",
-          content: "On high-humidity days, I completely change my approach. Wash hair the night before and let it air-dry with curl cream or mousse—morning styling is minimal. If styling in the morning, I skip the blow-dryer entirely and opt for heatless techniques: overnight braids for beachy waves, a sleek bun secured with strong-hold products, or enhanced natural texture with sea salt spray. The less I manipulate hair with heat on humid days, the better it behaves. I've learned that simplicity wins in Sutherland Shire weather. Save elaborate styling for dry, cool days; on humid days, work smarter, not harder."
-        }
-      ],
-      productModule: {
-        title: "Humidity-Fighting Heroes",
-        products: [
-          {
-            name: "Anti-Humidity Treatment Pack",
-            link: "/products/smooth-sleek-set",
-            description: "Frizz control for humid weather"
-          },
-          {
-            name: "Shop Styling Products",
-            link: "/collections/styling",
-            description: "Browse humidity-resistant products"
-          }
-        ]
-      }
-    }
-  },
-  {
-    slug: "colour-safe-washing",
-    title: "Colour-Safe Washing: The 3 Mistakes to Avoid",
-    excerpt: "Stop fading your expensive colour with these common washing mistakes. Essential advice for every colour-treated client.",
-    category: "Colour",
-    date: "Jan 2, 2025",
+    slug: "christmas-gift-packs-at-hair-pinns",
+    title: "🎁 Christmas Gift Packs at Hair Pinns 🎁",
+    excerpt: "The season of giving has arrived! Spoil someone special with our Juuce and Pure Christmas gift packs loaded with hair-loving products.",
+    category: "Seasonal",
+    date: "September 20, 2025",
     readTime: "5 min read",
-    image: "/placeholder.svg",
-    author: "Jena",
+    image: lamellarPack,
+    author: "Jena Pinn",
     content: {
-      introduction: "You've just left the salon with gorgeous, vibrant colour—and two weeks later, it looks washed out and dull. Sound familiar? Most colour fade isn't inevitable; it's caused by washing mistakes that literally rinse your investment down the drain. After thousands of colour services at Hair Pinns, I've identified three critical mistakes that cause 80% of premature colour fade. Fix these, and your colour will stay salon-fresh for weeks longer.",
+      introduction: "The season of giving has arrived, and at Hair Pinns we've made it simple to spoil someone special (or yourself!) with our Juuce and Pure Christmas gift packs. Each one is loaded with hair-loving products that suit different needs and comes with a little bonus gift to make it even better value.",
       sections: [
         {
-          heading: "Mistake #1: Washing Too Soon After Colouring",
-          content: "This is the biggest offender. Hair dye molecules need 48-72 hours to fully oxidize and settle into the hair shaft. Washing within this window rinses out colour before it's properly locked in. I know waiting is hard—your hair might feel coated or smell like chemicals—but washing too soon causes significant colour loss. If you absolutely must rinse, use only water and conditioner, never shampoo. The colour you lose in that first wash is permanent; it won't come back without recolouring. At Hair Pinns, we always explain this to clients because it's that important. Set a phone reminder if you need to: wait 72 hours before your first post-colour wash."
+          heading: "✨ Juuce Christmas Packs",
+          content: "Juuce is loved for its salon-quality formulas that combine natural extracts with targeted results. This year's Christmas packs cover a variety of hair goals, so there's something for everyone:\n\nFrizz control & smoothing – Tame unruly hair and create silky, polished finishes.\nColour care – Keep coloured and blonde hair vibrant, shiny and protected.\nRepair & nourishment – Strengthen damaged strands and restore softness.\nVolume & body – Add lift, bounce and fullness to fine hair.\n\nAnd as a festive bonus, every Juuce pack includes a free leave-in treatment. This hero product works behind the scenes all day to detangle, protect against heat and UV, and keep hair silky between washes. It's an everyday essential that makes these packs even more irresistible."
         },
         {
-          heading: "What Happens to Hair Colour When You Wash It?",
-          content: "Every time you wash, some colour molecules escape through the hair cuticle. Water swells the hair shaft, opening the cuticle layer and allowing colour to seep out. Hot water accelerates this process dramatically. Sulfates in regular shampoos strip colour even faster—they're designed to remove buildup, but they can't distinguish between buildup and colour molecules. Each wash fades colour incrementally; it's not dramatic enough to notice daily, but over weeks, the cumulative effect is significant. This is why washing frequency matters as much as what you wash with."
+          heading: "🌿 Pure Christmas Packs",
+          content: "Pure is Hair Pinns' go-to brand for certified organic, eco-friendly hair care that doesn't compromise on performance. Each pack is carefully matched to hair concerns like:\n\nDeep hydration – Perfect for dry or thirsty hair that needs moisture.\nRepair & strength – Ideal for restoring damaged or chemically treated hair.\nCurl care & definition – Designed to nourish natural curls while enhancing bounce.\nShine & smoothness – Great for anyone wanting naturally glossy, frizz-free locks.\n\nEvery Pure pack also comes with a free mask — a rich, intensive treatment designed to be used weekly for a big dose of nourishment. It's the kind of self-care product that makes hair feel instantly healthier and stronger, which is why it's such a special addition to these festive bundles."
         },
         {
-          heading: "Mistake #2: Using Hot Water and Wrong Products",
-          content: "Hot water is colour's enemy. It opens the cuticle wide, allowing maximum colour escape. Always wash colour-treated hair with lukewarm or cool water—as cool as you can tolerate. Rinse with the coolest water possible; this seals the cuticle and locks colour in. Never use clarifying shampoos or anti-dandruff shampoos on colour-treated hair; they're too strong. Only use shampoos labeled 'color-safe' or 'sulfate-free.' Yes, they cost more—but they're cheaper than getting your colour redone every 4 weeks. Drugstore shampoos almost universally contain harsh sulfates; invest in salon-quality products or buy during salon promotions to save."
-        },
-        {
-          heading: "How Often Should I Really Wash Colour-Treated Hair?",
-          content: "Maximum 2-3 times per week, ideally just twice. Every additional wash accelerates fade. If your hair feels dirty between washes, use dry shampoo—it's a color-treated client's best friend. Train your scalp to produce less oil by spacing out washes; it takes 2-3 weeks of adjustment, but your scalp will adapt. On non-wash days, rinse hair with water only if needed, apply leave-in conditioner, and style as usual. If you exercise daily, rinse sweat out with water and conditioner, reserving shampoo for true wash days. This single change extends colour life by weeks."
-        },
-        {
-          heading: "Mistake #3: Skipping Heat Protection and UV Protection",
-          content: "Heat styling without protection breaks down colour molecules. Every flat iron pass, every blow-dry session without heat protectant literally cooks your colour. The damage is cumulative and invisible until your colour looks suddenly faded. Always apply heat protectant to damp hair before any heat styling. UV exposure fades colour just like it fades fabric—sun damage is real and significant, especially in Sutherland Shire's strong Australian sun. Wear hats at the beach, apply UV protection spray before outdoor activities, and consider hair-specific sunscreen for extended sun exposure. These steps seem minor but make a massive difference in colour longevity."
-        },
-        {
-          heading: "What Products Do You Actually Need at Home?",
-          content: "Your color-care arsenal needs just four things: a sulfate-free color-safe shampoo, a color-depositing or moisturizing conditioner, a leave-in treatment with UV protection, and a heat protectant spray. That's it. You don't need expensive systems with ten products. Focus on quality over quantity. At Hair Pinns, we recommend Juuce colour care range—it's Australian-made, specifically formulated for our water and climate, and genuinely works. Buy larger sizes; they're more economical and you'll use them for months. Consider your product investment as insurance for your colour investment."
-        },
-        {
-          heading: "How Do I Revive Faded Colour Between Salon Visits?",
-          content: "Color-depositing shampoos and conditioners can refresh tone between full colour services. Purple shampoo neutralizes brass in blonde hair; blue shampoo handles brass in brunette hair; red-depositing shampoos boost red tones. Use these weekly, not daily—overuse can cause uneven colour buildup. Gloss treatments at the salon between full colours add shine and tone without full processing. At Hair Pinns, we offer gloss-only services that take 30 minutes and significantly refresh faded colour for a fraction of full service cost. Book these at 6-week intervals between your regular colour appointments to maintain vibrant colour year-round."
+          heading: "💜 The Perfect Gift",
+          content: "Whether you go for Juuce with its everyday must-have leave-in treatment, or Pure with its luxurious free mask, these Christmas packs are the perfect way to give the gift of healthy, beautiful hair. They're great for family, friends, teachers, or even as a little holiday treat for yourself.\n\n👉 Browse them all here: Hair Pinns Christmas Gift Packs"
         }
       ],
       productModule: {
-        title: "Colour Protection Essentials",
+        title: "Shop Christmas Gift Packs",
         products: [
           {
-            name: "Color Protect Bundle",
-            link: "/products/color-protect-bundle",
-            description: "Complete colour care system"
+            name: "Juuce Christmas Packs",
+            link: "/collections/juuce",
+            description: "Salon-quality formulas with free leave-in treatment"
           },
           {
-            name: "Shop Hair Care",
-            link: "/collections/hair-care",
-            description: "Browse color-safe products"
+            name: "Pure Christmas Packs",
+            link: "/collections/pure-organic",
+            description: "Certified organic care with free mask"
           }
         ]
       }
     }
   },
   {
-    slug: "stretch-salon-results",
-    title: "How to Stretch Salon Results Between Visits",
-    excerpt: "Professional strategies to make your cut, colour, and style last longer. Save money and maintain salon-quality results at home.",
-    category: "Maintenance",
-    date: "Dec 28, 2024",
-    readTime: "7 min read",
-    image: "/placeholder.svg",
-    author: "Jena",
+    slug: "whats-a-straight-up-smoothing-treatment",
+    title: "What's a Straight Up Smoothing Treatment??",
+    excerpt: "Smooth, Soft, Frizz-Free - Meet QIQI Vega, Your Hair's New Best Friend. The answer to all your frizz problems.",
+    category: "Treatments",
+    date: "September 02, 2025",
+    readTime: "5 min read",
+    image: straightUpHero,
+    author: "Jena Pinn",
     content: {
-      introduction: "Salon visits are an investment—cutting, colouring, and treating hair costs time and money. While you can't replicate professional services at home, you can absolutely extend their results with the right approach. I've coached hundreds of clients at Hair Pinns on home maintenance, and those who follow these strategies consistently stretch their salon visits 2-3 weeks longer without sacrificing quality. Here's exactly how to maximize your investment and keep your hair looking freshly styled between appointments.",
+      introduction: "If you've ever wished your hair would just behave — no frizz, no puff, no morning wrestling match — then our Straight Up Smoothing Treatment might be the answer you've been dreaming of. And here's the secret: we use QIQI Vega, one of the most advanced and hair-friendly smoothing systems in the world.",
       sections: [
         {
-          heading: "Why Do Salon Results Fade So Quickly for Some People?",
-          content: "The difference between hair that looks great for 8 weeks versus hair that loses its luster after 2 weeks comes down to home care. Heat damage, harsh products, and inadequate conditioning accelerate style breakdown. Environmental factors matter too—Sutherland Shire's chlorinated pools and hard water challenge hair more than neutral environments. Poor styling techniques stress hair and make cuts lose their shape faster. The good news: all these factors are controllable with knowledge and consistency. Most premature fade is user error, not inevitable decline."
+          heading: "This Isn't Your Typical Keratin Treatment",
+          content: "There's no harsh chemicals, no overpowering fumes, and no \"don't wash your hair for three days\" awkwardness. You'll leave the salon with hair that looks and feels ready for anything and it stays that way for months."
         },
         {
-          heading: "What's the First Step to Making Cuts Last Longer?",
-          content: "Protect your haircut's shape with proper daily styling. Use the styling technique your stylist demonstrated—there's a reason we style hair specific ways. Blow-drying with a round brush maintains volume and shape that air-drying won't achieve. Sleep on a silk or satin pillowcase to prevent friction damage overnight; cotton pillowcases rough up the cuticle and create tangles. Trim your own fringe (bangs) between cuts if you're comfortable—this single skill extends full haircut intervals significantly. For most cuts, weekly deep conditioning maintains hair health and manageability, so your cut's shape stays defined rather than becoming shaggy or shapeless."
+          heading: "Why Clients Love QIQI Vega 💗",
+          content: "Frizz? Gone. Humidity has nothing on you. Your hair will stay sleek and smooth, even on the muggiest days.\n\nTime-saving magic. Blow-drying is faster and easier, and some clients don't even need to touch the straightener afterward.\n\nKeeps your hair's natural body. It smooths without making hair poker straight — unless that's the look you want.\n\nShiny, healthy finish. Your hair will feel silky and soft, not coated or heavy.\n\nLasts for months. Enjoy your smooth, low-maintenance hair for up to 6 months, depending on your hair type and routine.\n\nNo downtime. Wash, style, and enjoy your hair the same day."
         },
         {
-          heading: "How Can I Make Hair Colour Last Until My Next Appointment?",
-          content: "Colour maintenance starts immediately after your salon visit. Wait 72 hours before washing to let colour fully set. Use only sulfate-free, color-safe products—no exceptions. Wash in lukewarm water maximum 2-3 times weekly. Apply UV protection before sun exposure. Between full colour services, use color-depositing products to maintain tone—purple shampoo for blondes, red-boosting treatments for redheads, blue shampoo for brunettes. Book toner-only appointments at 6 weeks if you're stretching to 10-12 weeks for highlights. Avoid chlorine and salt water, or pre-soak hair with fresh water and conditioner before swimming. These steps can extend colour vibrancy by 30-40%."
+          heading: "Perfect For:",
+          content: "• Hair that frizzes at the first hint of moisture\n• Waves or curls that you'd like to soften without losing all shape\n• Thick, hard-to-manage hair that takes forever to style\n• Anyone wanting a sleek, polished look without damage"
         },
         {
-          heading: "What About Smoothing and Keratin Treatments?",
-          content: "Keratin and smoothing treatments are expensive, so maximizing their lifespan matters. Never wash hair for the first 48-72 hours post-treatment—this is when the treatment fully bonds to hair. Use only sulfate-free products; sulfates strip the treatment coating. Avoid clarifying shampoos entirely. Don't tie hair back tightly or use elastic bands that create bends—loose styles only for the first week. Apply a smoothing serum or oil daily to reinforce the treatment's effects. Minimize heat styling; the treatment already provides smoothness, so excessive heat is redundant and damaging. With proper care, you can stretch treatments from 3 months to 4-5 months, significantly reducing annual treatment costs."
+          heading: "The QIQI Vega Difference",
+          content: "Most straightening systems rely on formaldehyde or harsh chemicals that can leave hair brittle or flat. QIQI Vega is formaldehyde-free and works on all hair types — even bleached or colour-treated hair — without compromising condition. In fact, many clients find their hair feels healthier after the treatment because it locks in moisture and seals the cuticle."
         },
         {
-          heading: "How Do I Maintain Healthy Hair Between Salon Treatments?",
-          content: "Professional treatments repair damage, but home maintenance prevents new damage. Use a weekly deep conditioning mask—not the 2-minute conditioner, but a true 10-15 minute intensive treatment. Apply leave-in conditioner or hair oil daily, focusing on ends. Get regular trims every 6-8 weeks even if you're growing hair; removing split ends prevents them from traveling up the shaft and causing more damage. Limit heat styling to 2-3 times weekly maximum. When you do heat style, always use protection spray and keep tools below 375°F. Brush gently with a wide-tooth comb when wet, starting at ends and working up—never brush from roots down on wet hair."
+          heading: "Your Hair Will Thank You 🙏🏼",
+          content: "Imagine waking up and your hair already looks good.\n\nImagine walking out into humid weather and still having a great hair day.\n\nImagine cutting your styling time in half while your hair stays smooth, shiny, and soft for months.\n\nThat's what QIQI Vega delivers.\n\n💜 Book your Straight Up Smoothing Treatment today and let your hair do less fighting and more shining.\n\n📲 Send me a message with any further questions or to secure your appointment"
+        }
+      ]
+    }
+  },
+  {
+    slug: "how-often-should-you-replace-your-shampoo",
+    title: "How Often Should You Replace Your Shampoo?",
+    excerpt: "Understanding shampoo longevity helps you plan ahead and keeps your hair clean and healthy without wasting product or money.",
+    category: "Education",
+    date: "September 01, 2025",
+    readTime: "3 min read",
+    image: shampooHero,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Shampoo isn't a \"forever\" product. Using the right amount keeps your hair clean and healthy without wasting product (or money). Plus, knowing when to replace it helps you plan ahead so you're never caught with an empty bottle in the shower!",
+      sections: [
+        {
+          heading: "How Long Does a 300ml Shampoo Last?",
+          content: "The average wash uses around 10ml of shampoo. That means:\n\n• 2 washes a week: ~20ml per week → 300ml lasts about 15 weeks (3.5 months)\n• 3 washes a week: ~30ml per week → 300ml lasts about 10 weeks (2.5 months)\n• Daily washers (7x): ~70ml per week → 300ml lasts about 4–5 weeks\n\n(Of course, hair length, thickness, and how much you lather up all make a difference!)"
         },
         {
-          heading: "What's the Secret to Second-Day (and Third-Day) Hair?",
-          content: "Salon blowouts can last 3-4 days with proper technique. Sleep with hair in a loose, high bun or braid to maintain volume and reduce tangles. Use a silk or satin pillowcase to minimize friction. In the morning, refresh roots with dry shampoo, focusing on oily areas. Use a large round brush and briefly blow-dry roots to restore volume. Curl or wave ends with a iron if needed—focus heat on areas that lost shape, not your entire head. Apply a small amount of styling cream or serum to smooth flyaways. This 5-minute refresh routine gives you salon-quality results without a full restyle, significantly extending your blowout's life."
+          heading: "Signs It's Time to Restock",
+          content: "• Your bottle feels lighter and you're squeezing the last drops.\n• Your hair isn't feeling as fresh—sometimes product loses its effectiveness if it's been open too long (12–18 months shelf life is standard).\n• You're tempted to use way more than you need because it's not lathering well anymore."
         },
         {
-          heading: "How Often Should I Really Book Salon Appointments?",
-          content: "Optimal timing varies by service. Cuts: every 6-8 weeks for short hair, 8-12 weeks for longer hair. Colour: full highlights every 10-12 weeks with toner touch-ups at 6 weeks; root touch-ups every 6-8 weeks for all-over colour. Treatments: keratin every 3-4 months, deep conditioning treatments monthly. Balayage stretches longest—12-16 weeks between full services. Book your next appointment before leaving the salon; this ensures you stay on schedule rather than waiting until hair is desperate. At Hair Pinns, we work with your budget and lifestyle to create realistic maintenance schedules that keep hair looking great without breaking the bank."
+          heading: "Pro Tip: Don't Overdo It",
+          content: "A 5–10 cent coin-sized amount is enough for most people. Fine or short hair = less, thick or long hair = a touch more. Overusing only makes you run out faster and can dry out your scalp."
+        },
+        {
+          heading: "Keep Your Routine Fresh",
+          content: "On average, most clients should expect to replace their 300ml shampoo every 2–3 months. If you wash less often, it'll stretch a bit longer.\n\n👉 Shop your next bottle here: HairPinns.com Shampoo Collection"
         }
       ],
       productModule: {
-        title: "Home Maintenance Must-Haves",
+        title: "Shop Our Shampoo Collection",
         products: [
           {
-            name: "Hair Care Essentials",
-            link: "/collections/hair-care",
-            description: "Daily care products"
+            name: "Juuce Shampoos",
+            link: "/collections/juuce",
+            description: "Premium salon-quality shampoos"
           },
           {
-            name: "Deep Treatment Pack",
-            link: "/collections/treatments",
-            description: "Intensive repair treatments"
+            name: "Pure Organic Shampoos",
+            link: "/collections/pure-organic",
+            description: "Certified organic hair care"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "5-ways-infrared-sauna-boosts-hair-skin-glow",
+    title: "5 Ways Infrared Sauna Sessions Boost Your Hair, Skin & Overall Glow",
+    excerpt: "In today's fast paced world, stress, pollution, and product buildup can leave your strands dull. Our infrared sauna experience works from the inside out.",
+    category: "Wellness",
+    date: "August 12, 2025",
+    readTime: "5 min read",
+    image: saunaRoom,
+    author: "Jena Pinn",
+    content: {
+      introduction: "When was the last time you gave your hair and skin the deep care they truly deserve? In today's fast paced world, stress, pollution, and product buildup can leave your strands dull and your skin feeling tired. At Hairpinns, our infrared sauna experience is more than just a way to relax it's a beauty and wellness treatment that works from the inside out. Whether you're looking for smoother hair, clearer skin, or an all over glow, here's how regular sauna sessions can transform your self care routine.",
+      sections: [
+        {
+          heading: "1. Detox for Healthy Skin & Hair",
+          content: "Infrared heat penetrates deeper than traditional saunas, encouraging a healthy sweat that helps remove toxins and impurities. By clearing out the buildup that clogs pores and weighs hair down, your scalp feels refreshed, and your hair can regain its natural shine."
+        },
+        {
+          heading: "2. Boosted Blood Circulation",
+          content: "Better circulation means more oxygen and nutrients reach your hair follicles and skin cells. This natural boost supports stronger hair growth, a healthier scalp, and a more radiant complexion helping you look and feel your best after every session."
+        },
+        {
+          heading: "3. Deep Hydration & Product Absorption",
+          content: "Heat from the infrared sauna gently opens the cuticles in your hair and the pores in your skin. This makes it the perfect time to apply nourishing treatments like our Hairpinns Hair Mask so they can penetrate deeper and work more effectively."
+        },
+        {
+          heading: "4. Stress Relief = Better Hair Growth",
+          content: "Stress is one of the most overlooked causes of hair thinning and poor skin health. Infrared sauna sessions help reduce cortisol (the stress hormone), creating a more relaxed state that supports healthy hair growth and a glowing complexion."
+        },
+        {
+          heading: "5. The Ultimate Self-Care Ritual",
+          content: "Pairing your sauna session with a hair mask, hydration, and relaxation time creates the ultimate self-care experience. You'll walk out not only looking refreshed but feeling renewed from the inside out."
+        },
+        {
+          heading: "Ready to Experience the Glow-Up?",
+          content: "Now is the perfect time to invest in your hair, skin, and overall wellness.\n\nFor a limited time at Hairpinns, enjoy our 10-session sauna pack for only $200 (was $250) and receive:\n✔ Free Head Towel\n✔ Free Hair Mask Sachet\n✔ Free Hairpinns Drink Bottle\n\n📅 Book your sauna experience today and let's make your self-care a priority."
+        }
+      ]
+    }
+  },
+  {
+    slug: "the-secret-behind-that-steamy-towel-moment",
+    title: "The Secret Behind That Steamy Towel Moment 🔥💆",
+    excerpt: "Why hot towel treatments deserve a spot in your hair routine. Beyond the spa-like feels, there's real hair and scalp science happening.",
+    category: "Treatments",
+    date: "August 04, 2025",
+    readTime: "4 min read",
+    image: hotTowel,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you've ever had a hot towel wrapped around your hair or neck during a salon treatment, you'll know it's heavenly. That moment when the warmth hits? Instant exhale. But beyond the spa-like feels, there's real hair and scalp science happening under that steamy towel. So let's break it down — why is everyone loving hot towel treatments, and should you be saying yes please at your next appointment?",
+      sections: [
+        {
+          heading: "🌿 1. It Opens the Hair Cuticle for Deeper Treatment",
+          content: "Your hair cuticle is like a protective outer shell. When it's closed, treatments can only do so much. The heat from a hot towel gently opens the cuticle, allowing masks, treatments, and conditioners to penetrate deeper. That means more moisture, more repair, and longer-lasting results.\n\nThink of it as giving your hair a VIP pass to hydration and nourishment."
+        },
+        {
+          heading: "💆 2. It Boosts Scalp Circulation",
+          content: "Your scalp is skin too – and it thrives on good circulation. The warmth from the towel increases blood flow, which helps stimulate hair follicles, support healthy growth, and even soothe tension headaches.\n\nWin-win-win."
+        },
+        {
+          heading: "🧘 3. It's Relaxation You Can Feel",
+          content: "Let's be honest – salon time is often the only real \"me time\" many of us get. A hot towel moment gives your nervous system a break. The warmth triggers a calming response in the body, helping reduce stress and tension.\n\nAnd less stress = healthier hair (it's all connected!)."
+        },
+        {
+          heading: "🌸 4. It Enhances Product Performance",
+          content: "Using a treatment mask? Adding a hot towel supercharges the results. It's like turning your in-salon treatment into a deep conditioning powerhouse, especially when paired with our fave nourishing masks and serums."
+        },
+        {
+          heading: "💜 So, Is It Worth It?",
+          content: "Absolutely. Hot towel treatments may feel indulgent, but they're actually functional self-care for your hair and your headspace.\n\nNext time you visit Hair Pinns, ask for a hot towel wrap with your treatment or blowdry. Your hair will feel it — and so will your soul.\n\nWant a mini spa moment during your next salon visit? We've got the towels ready. You just sit back and enjoy 🖤"
+        }
+      ]
+    }
+  },
+  {
+    slug: "qiqi-bare-repair-oil-shine-strength-smoothness",
+    title: "QIQI Bare Repair Oil – Shine, Strength & Smoothness in a Bottle",
+    excerpt: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel — QIQI Bare Repair Oil is the answer.",
+    category: "Products",
+    date: "July 27, 2025",
+    readTime: "3 min read",
+    image: qiqiOil,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel QIQI Bare Repair Oil is the answer. This luxe, dry-touch oil is designed to repair, smooth, and strengthen all hair types (yes, even fine or chemically treated strands). It's powered by performance-driven plant oils that hydrate and restore, while keeping your hair light, bouncy, and full of shine.",
+      sections: [
+        {
+          heading: "🌿 What Makes It So Good?",
+          content: "Lightweight, Dry Oil Finish – absorbs instantly with no residue\nPlant-Based Repair Blend – hydrates, protects and strengthens without buildup\nFrizz Control & Smooth Texture – say goodbye to flyaways and rough ends\nBoosts Shine & Softness – leaves hair silky, glossy and touchable\nSafe for All Hair Types – including coloured, dry, or damaged hair\n\nThis is not your average hair oil — it delivers deep nourishment and long-lasting results without ever feeling greasy or heavy."
+        },
+        {
+          heading: "🧴 How to Use It",
+          content: "1. Pump 1–3 drops into your palms and warm between your hands.\n2. Apply to damp or dry hair, focusing on the mid-lengths and ends.\n3. Style as usual – or use it to smooth flyaways and finish your look.\n4. Use daily or as needed. Avoid roots to keep volume natural.\n\nPro tip: A little goes a long way, so start small and build it up if your hair needs more love."
+        },
+        {
+          heading: "✨ The Result…",
+          content: "Stronger, shinier, smoother hair with every use — without any heaviness. Whether you're blowdrying, letting it air dry, or just refreshing in-between washes, QIQI Bare Repair Oil is your new go-to.\n\nTreat your hair to the repair oil it's been begging for.\n\nGET IT HERE"
+        }
+      ],
+      productModule: {
+        title: "Shop QIQI Products",
+        products: [
+          {
+            name: "QIQI Bare Repair Oil",
+            link: "/collections/qiqi",
+            description: "Lightweight dry-touch repair oil"
+          },
+          {
+            name: "Browse QIQI Collection",
+            link: "/collections/qiqi",
+            description: "Professional hair care range"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "smooth-seal-strengthen-pure-precious-ends",
+    title: "💧Smooth, Seal & Strengthen: Why Your Ends Need Pure Precious Ends",
+    excerpt: "If your hair feels dry at the ends, breaks easily, or looks frazzled — Pure Precious Ends is your new secret weapon.",
+    category: "Products",
+    date: "July 26, 2025",
+    readTime: "3 min read",
+    image: pureEnds,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If your hair feels dry at the ends, breaks easily, or looks a bit frazzled no matter how much you trim—Pure Precious Ends is your new secret weapon. Designed to rescue and protect your ends, this lightweight leave-in is a must-have in your routine (especially if you style with heat or colour your hair).",
+      sections: [
+        {
+          heading: "✨ Key Benefits:",
+          content: "• Repairs and seals split ends\n• Prevents breakage and frizz\n• Adds shine without weighing hair down\n• Protects against heat styling and environmental damage\n• Lightweight and silicone-free"
+        },
+        {
+          heading: "🌿 Hero Ingredients:",
+          content: "Certified Organic Goji Berry Extract – rich in antioxidants to nourish and restore damaged ends\n\nVitamin E – strengthens and smooths the hair cuticle for a glossy finish"
+        },
+        {
+          heading: "📋 How to Use:",
+          content: "1. Apply a small amount to dry or towel-dried hair\n2. Focus on the mid-lengths to ends (especially the driest areas)\n3. Style as usual – blowdry, straighten, or let it air dry\n4. Use daily or as needed for a silky, polished finish\n\n💡 Bonus Tip: You can also run a tiny bit over dry hair after styling to tame frizz and add shine!"
+        },
+        {
+          heading: "🛍️ Ready to rescue those ends?",
+          content: "👉 Shop Pure Precious Ends Now"
+        }
+      ],
+      productModule: {
+        title: "Shop Pure Organic Range",
+        products: [
+          {
+            name: "Pure Precious Ends",
+            link: "/collections/pure-organic",
+            description: "Leave-in treatment for split ends"
+          },
+          {
+            name: "Browse Pure Collection",
+            link: "/collections/pure-organic",
+            description: "Certified organic hair care"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "whats-the-best-hairspray-to-use",
+    title: "What's the Best Hairspray to Use?",
+    excerpt: "The 3 Types of Hair Spray We Love at Hair Pinns - delivering results without compromising hair health.",
+    category: "Products",
+    date: "July 13, 2025",
+    readTime: "5 min read",
+    image: hairspray,
+    author: "Jena Pinn",
+    content: {
+      introduction: "When it comes to styling, hairspray is a must-have — but not all sprays are created equal. At Hair Pinns, we only recommend styling products that deliver results without compromising hair health. Today, we're breaking down the three go-to hairsprays we use behind the chair and sell in our salon — so you can choose the right one for your hair goals!",
+      sections: [
+        {
+          heading: "1. Juuce Stuck Up – Maximum Hold Hairspray",
+          content: "If you're after serious staying power, Juuce Stuck Up is your styling soulmate. This is our favourite strong-hold hairspray for securing updos, taming frizz, or locking in curls that last all day (and night). It adds high shine, resists humidity, and is completely brush-out friendly — which means no sticky build-up and no drama when it's time to restyle or refresh.\n\n🖤 Best for: Upstyles, curls, frizz control\n💨 Hold level: Strong\n🪮 Formula: Brush-out formula with zero build-up\n🌿 Bonus: Vegan, paraben-free, and cruelty-free"
+        },
+        {
+          heading: "2. Pure Halo Spray – Flexible Everyday Hold",
+          content: "Think of Pure Halo Spray as your everyday go-to for soft, touchable hold. It keeps your style in place while allowing movement — so your hair never feels stiff or crunchy. Plus, it's enriched with organic extracts to nourish and protect your hair while you style.\n\n💛 Best for: Daily styling, soft waves, natural movement\n💨 Hold level: Flexible to medium\n🌿 Bonus: Sulphate- and paraben-free, with organic ingredients"
+        },
+        {
+          heading: "3. Pure Plumping Clay Spray – Texture + Volume",
+          content: "Need volume and texture without the stickiness of a traditional hairspray? Say hello to Pure Plumping Clay Spray. This unique spray blends the benefits of a texturiser, root booster, and dry clay into one. It lifts fine hair at the roots, adds body through the mid-lengths, and gives that lived-in, effortless look we all love.\n\n💗 Best for: Fine or flat hair, texture, volume at the roots\n💨 Hold level: Light to medium, with a matte finish\n🌿 Bonus: Gentle on the scalp, ideal for creating tousled styles or prepping for updos"
+        },
+        {
+          heading: "Which One Should You Choose?",
+          content: "It depends on your style goals!\n\n✔️ For volume and texture: Go with Pure Plumping Clay Spray\n✔️ For soft, flexible hold: Try Pure Halo Spray\n✔️ For strong, long-lasting styles: You'll love Juuce Stuck Up\n\nAll three are available now at HairPinns.com or in-salon. Need help choosing the best one? Pop in and chat with one of our stylists — we're always happy to help!"
+        }
+      ],
+      productModule: {
+        title: "Shop Our Hairspray Range",
+        products: [
+          {
+            name: "Juuce Stuck Up",
+            link: "/collections/juuce",
+            description: "Maximum hold hairspray"
+          },
+          {
+            name: "Pure Halo Spray",
+            link: "/collections/pure-organic",
+            description: "Flexible everyday hold"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "why-wet-brush-is-a-must-have",
+    title: "💖 Why a Wet Brush Is a Must-Have in Every Hair Routine",
+    excerpt: "Did you know your hair is at its most fragile when it's wet? That's why the right brush matters.",
+    category: "Products",
+    date: "July 13, 2025",
+    readTime: "3 min read",
+    image: wetBrush,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Did you know your hair is at its most fragile when it's wet? That's why tugging a regular brush through wet hair can lead to unnecessary breakage, split ends, and hair fall — especially if your hair is fine, coloured, curly, or damaged.",
+      sections: [
+        {
+          heading: "So… what makes the Wet Brush different?",
+          content: "Wet Brushes are specifically designed to detangle gently without causing damage — even on soaking wet, delicate strands."
+        },
+        {
+          heading: "✅ Here's why we love them at Hair Pinns:",
+          content: "Ultra-soft, flexible bristles\nThe IntelliFlex® bristles bend as needed to gently loosen knots without pulling or snapping your hair.\n\nSafe for all hair types\nWhether your hair is curly, straight, thick, fine, or somewhere in between — Wet Brushes work with your hair, not against it.\n\nKid & curl friendly\nNo more tears or tantrums! Great for sensitive scalps, kids, and anyone with curls that tangle easily.\n\nPerfect for treatments\nUse your Wet Brush to evenly distribute leave-ins, masks, or oils through damp hair without overworking it.\n\nSalon-approved + original quality\nWe only stock the original Wet Brush — no knock-offs. You'll notice the difference with every stroke."
+        },
+        {
+          heading: "💡 Hair Tip:",
+          content: "Always start brushing from the ends and gently work your way up — especially when hair is wet."
+        },
+        {
+          heading: "🛍️ Shop Our Range",
+          content: "Shop our range of original Wet Brushes here: https://hairpinns.com/collections/wet-brush-detanglers"
+        }
+      ],
+      productModule: {
+        title: "Shop Wet Brush Collection",
+        products: [
+          {
+            name: "Original Wet Brush",
+            link: "/collections/wet-brush-detanglers",
+            description: "Gentle detangling for all hair types"
+          },
+          {
+            name: "Browse Accessories",
+            link: "/collections/accessories",
+            description: "Hair tools and care essentials"
           }
         ]
       }
