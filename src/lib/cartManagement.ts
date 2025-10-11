@@ -70,6 +70,10 @@ export async function addToBag(
   variantId: string,
   quantity: number = 1
 ): Promise<Cart> {
+  if (!variantId) {
+    throw new Error("Variant ID is required");
+  }
+
   const existingCartId = getCartId();
 
   try {
@@ -82,8 +86,8 @@ export async function addToBag(
         { merchandiseId: variantId, quantity },
       ]);
     } else {
-      // Create new cart
-      console.log("Creating new cart");
+      // Create new cart with AU country
+      console.log("Creating new cart with AU country code");
       cart = await cartCreate([{ merchandiseId: variantId, quantity }]);
       saveCartId(cart.id);
     }
@@ -91,7 +95,7 @@ export async function addToBag(
     // Guard: Validate checkout URL exists
     if (!cart.checkoutUrl) {
       console.error("❌ Cart missing checkoutUrl:", cart);
-      throw new Error("Cart checkout URL is missing");
+      throw new Error("Checkout URL unavailable. Please try again.");
     }
 
     // Store checkout URL for later use
@@ -104,27 +108,32 @@ export async function addToBag(
     });
 
     return cart;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Failed to add to bag:", error);
     
     // If cart is invalid/expired, clear it and try creating a new one
-    if (existingCartId) {
+    if (existingCartId && error?.message?.includes("cart")) {
       clearCartId();
       console.log("Clearing invalid cart, creating new one...");
-      const newCart = await cartCreate([{ merchandiseId: variantId, quantity }]);
-      
-      // Guard: Validate new cart has checkout URL
-      if (!newCart.checkoutUrl) {
-        console.error("❌ New cart missing checkoutUrl:", newCart);
-        throw new Error("Cart checkout URL is missing");
+      try {
+        const newCart = await cartCreate([{ merchandiseId: variantId, quantity }]);
+        
+        // Guard: Validate new cart has checkout URL
+        if (!newCart.checkoutUrl) {
+          console.error("❌ New cart missing checkoutUrl:", newCart);
+          throw new Error("Checkout URL unavailable. Please try again.");
+        }
+        
+        saveCartId(newCart.id);
+        saveCheckoutUrl(newCart.checkoutUrl);
+        return newCart;
+      } catch (retryError) {
+        console.error("Retry failed:", retryError);
+        throw new Error("We couldn't add this to your bag. Please try again or contact us.");
       }
-      
-      saveCartId(newCart.id);
-      saveCheckoutUrl(newCart.checkoutUrl);
-      return newCart;
     }
     
-    throw error;
+    throw new Error("We couldn't add this to your bag. Please try again or contact us.");
   }
 }
 

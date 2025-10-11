@@ -135,20 +135,26 @@ const CollectionDetail = () => {
 
   // Handle add to bag
   const handleAddToBag = async (productHandle: string, variantId: string) => {
+    if (!variantId) {
+      toast.error("Product variant unavailable. Please try again.");
+      return;
+    }
+
     setAddingToCart(productHandle);
     
     try {
       await addToBag(variantId, 1);
       setMiniCartOpen(true);
       toast.success("Added to bag!");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Add to bag failed:", error);
-      toast.error("Failed to add to bag. Redirecting to product page...");
+      const errorMessage = error?.message || "We couldn't add this to your bag. Please try again or contact us.";
+      toast.error(errorMessage);
       
-      // Fallback: redirect to product page on hairpinns.com
+      // Fallback: redirect to product page on hairpinns.com after 2s
       setTimeout(() => {
         window.location.href = getProductUrl(productHandle);
-      }, 1500);
+      }, 2000);
     } finally {
       setAddingToCart(null);
     }

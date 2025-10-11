@@ -127,14 +127,15 @@ const ProductDetail = () => {
       
       toast.success("Added to bag!");
       setMiniCartOpen(true);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Add to bag failed:", error);
-      toast.error("Failed to add to bag. Redirecting...");
+      const errorMessage = error?.message || "We couldn't add this to your bag. Please try again or contact us.";
+      toast.error(errorMessage);
       
-      // Fallback to product page
+      // Fallback to product page after 2s
       setTimeout(() => {
         window.location.href = getProductUrl(handle || "");
-      }, 1500);
+      }, 2000);
     } finally {
       setAddingToCart(false);
     }

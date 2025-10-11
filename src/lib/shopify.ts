@@ -180,7 +180,7 @@ export async function getCollectionByHandle(handle: string) {
 }
 
 /**
- * Create a new cart
+ * Create a new cart with AU country code
  */
 export async function cartCreate(lines: Array<{ merchandiseId: string; quantity: number }>) {
   const query = `
@@ -232,7 +232,12 @@ export async function cartCreate(lines: Array<{ merchandiseId: string; quantity:
 
   try {
     const data = await fetchShopify<{ cartCreate: any }>(query, {
-      input: { lines },
+      input: { 
+        lines,
+        buyerIdentity: {
+          countryCode: "AU"
+        }
+      },
     });
 
     if (data.cartCreate.userErrors?.length > 0) {
