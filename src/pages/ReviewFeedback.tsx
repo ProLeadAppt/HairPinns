@@ -36,15 +36,25 @@ const ReviewFeedback = () => {
     setIsSubmitting(true);
 
     try {
-      // TODO: Replace with actual webhook/API endpoint
-      console.log("Feedback submission:", {
-        ...formData,
-        rating,
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        feedback: formData.feedback,
+        rating: rating,
         timestamp: new Date().toISOString(),
-      });
+        page_url: window.location.href,
+      };
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log("Sending feedback to Zapier:", payload);
+
+      await fetch("https://hooks.zapier.com/hooks/catch/23975177/u59txby/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify(payload),
+      });
 
       setIsSubmitted(true);
       
