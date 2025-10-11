@@ -10,30 +10,49 @@ import { MapPin, Phone, Mail, Clock, MessageSquare, Car, CheckCircle2 } from "lu
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
 import ContactForm from "@/components/forms/ContactForm";
-
 const Contact = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [smsPhone, setSmsPhone] = useState("");
   const [smsConsent, setSmsConsent] = useState(false);
   const [smsSubmitted, setSmsSubmitted] = useState(false);
-
   const businessInfo = {
     name: "Hair Pinns",
     address: "60 Goorgool Rd, Bangor NSW 2234",
     phone: "0468 020 624",
     phoneRaw: "+61468020624",
     email: "hello@hairpinns.com",
-    hours: [
-      { day: "Monday", hours: "Closed", isOpen: false },
-      { day: "Tuesday", hours: "10:00 AM - 5:00 PM", isOpen: true },
-      { day: "Wednesday", hours: "6:00 PM - 9:00 PM", isOpen: true },
-      { day: "Thursday", hours: "9:00 AM - 9:00 PM", isOpen: true },
-      { day: "Friday", hours: "9:00 AM - 5:30 PM", isOpen: true },
-      { day: "Saturday", hours: "8:00 AM - 2:00 PM", isOpen: true },
-      { day: "Sunday", hours: "Closed", isOpen: false }
-    ]
+    hours: [{
+      day: "Monday",
+      hours: "Closed",
+      isOpen: false
+    }, {
+      day: "Tuesday",
+      hours: "10:00 AM - 5:00 PM",
+      isOpen: true
+    }, {
+      day: "Wednesday",
+      hours: "6:00 PM - 9:00 PM",
+      isOpen: true
+    }, {
+      day: "Thursday",
+      hours: "9:00 AM - 9:00 PM",
+      isOpen: true
+    }, {
+      day: "Friday",
+      hours: "9:00 AM - 5:30 PM",
+      isOpen: true
+    }, {
+      day: "Saturday",
+      hours: "8:00 AM - 2:00 PM",
+      isOpen: true
+    }, {
+      day: "Sunday",
+      hours: "Closed",
+      isOpen: false
+    }]
   };
-
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "HairSalon",
@@ -54,86 +73,71 @@ const Contact = () => {
     },
     "telephone": businessInfo.phoneRaw,
     "email": businessInfo.email,
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Tuesday",
-        "opens": "10:00",
-        "closes": "17:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Wednesday",
-        "opens": "18:00",
-        "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Thursday",
-        "opens": "09:00",
-        "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Friday",
-        "opens": "09:00",
-        "closes": "17:30"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "08:00",
-        "closes": "14:00"
-      }
-    ],
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "10:00",
+      "closes": "17:00"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "18:00",
+      "closes": "21:00"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "09:00",
+      "closes": "21:00"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "09:00",
+      "closes": "17:30"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "14:00"
+    }],
     "priceRange": "$$",
     "url": "https://hairpinns.com.au",
-    "sameAs": [
-      "https://www.facebook.com/Hair.Pinns",
-      "https://www.instagram.com/hair.pinns/"
-    ]
+    "sameAs": ["https://www.facebook.com/Hair.Pinns", "https://www.instagram.com/hair.pinns/"]
   };
-
   const handleSmsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!smsConsent) {
       toast({
         title: "Consent Required",
         description: "Please agree to receive SMS updates to continue.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-    
-    const { hpCapture } = await import("@/lib/hpCapture");
-    
-    const success = await hpCapture.postToZapier(
-      {
-        form_name: "sms_optin",
-        phone: smsPhone,
-        consent_marketing: smsConsent,
-      },
-      { event: "sms_subscription" }
-    );
-    
+    const {
+      hpCapture
+    } = await import("@/lib/hpCapture");
+    const success = await hpCapture.postToZapier({
+      form_name: "sms_optin",
+      phone: smsPhone,
+      consent_marketing: smsConsent
+    }, {
+      event: "sms_subscription"
+    });
     if (success) {
       setSmsSubmitted(true);
       toast({
         title: "Success!",
-        description: "You're subscribed to our SMS updates.",
+        description: "You're subscribed to our SMS updates."
       });
     } else {
       toast({
         title: "Submission Error",
         description: "We couldn't process your subscription. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Contact Hair Pinns Bangor | Call 0468 020 624</title>
         <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire. Call 0468 020 624. Free parking, easy access. Open Tue-Sat." />
@@ -153,10 +157,7 @@ const Contact = () => {
       <main className="flex-grow">
         {/* Hero Section */}
         <Section className="pt-xl pb-lg">
-          <SectionHeader 
-            title="Visit Hair Pinns Bangor" 
-            subtitle="Your Sutherland Shire hair specialists—easy parking, warm welcome, honest care."
-          />
+          <SectionHeader title="Visit Hair Pinns Bangor" subtitle="Your Sutherland Shire hair specialists—easy parking, warm welcome, honest care." />
         </Section>
 
         {/* NAP Block & Map */}
@@ -172,13 +173,8 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-heading mb-1">Address</h3>
-                      <a 
-                        href="https://maps.google.com/?q=60+Goorgool+Rd+Bangor+NSW+2234"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-foreground hover:text-brand-500 transition-colors"
-                      >
-                        60 Goorgool Rd<br/>Bangor NSW 2234
+                      <a href="https://maps.google.com/?q=60+Goorgool+Rd+Bangor+NSW+2234" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-brand-500 transition-colors">
+                        60 Goorgool Rd<br />Bangor NSW 2234
                       </a>
                     </div>
                   </div>
@@ -188,16 +184,10 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold text-heading mb-1">Phone</h3>
                       <div className="flex flex-col gap-2">
-                        <a 
-                          href={`tel:${businessInfo.phoneRaw}`}
-                          className="text-foreground hover:text-brand-500 transition-colors"
-                        >
+                        <a href={`tel:${businessInfo.phoneRaw}`} className="text-foreground hover:text-brand-500 transition-colors">
                           {businessInfo.phone}
                         </a>
-                        <a 
-                          href={`sms:${businessInfo.phoneRaw}`}
-                          className="text-sm text-brand-500 hover:text-brand-600 transition-colors inline-flex items-center gap-1"
-                        >
+                        <a href={`sms:${businessInfo.phoneRaw}`} className="text-sm text-brand-500 hover:text-brand-600 transition-colors inline-flex items-center gap-1">
                           <MessageSquare className="w-4 h-4" />
                           Send SMS
                         </a>
@@ -209,10 +199,7 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-heading mb-1">Email</h3>
-                      <a 
-                        href={`mailto:${businessInfo.email}`}
-                        className="text-foreground hover:text-brand-500 transition-colors"
-                      >
+                      <a href={`mailto:${businessInfo.email}`} className="text-foreground hover:text-brand-500 transition-colors">
                         {businessInfo.email}
                       </a>
                     </div>
@@ -227,17 +214,12 @@ const Contact = () => {
                   <div className="flex-1">
                     <h3 className="font-semibold text-heading mb-4">Opening Hours</h3>
                     <div className="space-y-2">
-                      {businessInfo.hours.map((item) => (
-                        <div 
-                          key={item.day}
-                          className="flex justify-between items-center py-2 border-b border-border last:border-0"
-                        >
+                      {businessInfo.hours.map(item => <div key={item.day} className="flex justify-between items-center py-2 border-b border-border last:border-0">
                           <span className="text-foreground font-medium">{item.day}</span>
                           <span className={item.isOpen ? "text-foreground" : "text-muted-foreground"}>
                             {item.hours}
                           </span>
-                        </div>
-                      ))}
+                        </div>)}
                     </div>
                   </div>
                 </div>
@@ -271,16 +253,9 @@ const Contact = () => {
             {/* Map */}
             <div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden sticky top-4">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d151.0333!3d-34.0186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12c4d1c7b3c3b3%3A0xe36f79e949fabda0!2s60%20Goorgool%20Rd%2C%20Bangor%20NSW%202234!5e0!3m2!1sen!2sau!4v1234567890"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Hair Pinns Bangor Location"
-                />
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d151.0333!3d-34.0186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12c4d1c7b3c3b3%3A0xe36f79e949fabda0!2s60%20Goorgool%20Rd%2C%20Bangor%20NSW%202234!5e0!3m2!1sen!2sau!4v1234567890" width="100%" height="100%" style={{
+                border: 0
+              }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Hair Pinns Bangor Location" />
               </div>
             </div>
           </div>
@@ -289,52 +264,7 @@ const Contact = () => {
         {/* SMS Opt-in */}
         <Section padding="lg">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-brand-500 text-white rounded-card p-8 text-center">
-              <MessageSquare className="w-12 h-12 mx-auto mb-4 opacity-90" />
-              <h3 className="text-h2 font-heading mb-3">Get Appointment Reminders via SMS</h3>
-              <p className="mb-6 opacity-90">
-                Never miss your appointment. Plus, receive exclusive offers and hair care tips.
-              </p>
-              
-              {!smsSubmitted ? (
-                <form onSubmit={handleSmsSubmit} className="max-w-md mx-auto space-y-4">
-                  <div className="flex gap-2">
-                    <Input
-                      type="tel"
-                      placeholder="Your mobile number"
-                      value={smsPhone}
-                      onChange={(e) => setSmsPhone(e.target.value)}
-                      required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
-                    />
-                    <Button 
-                      type="submit"
-                      className="bg-white text-brand-500 hover:bg-white/90 whitespace-nowrap"
-                    >
-                      Sign Up
-                    </Button>
-                  </div>
-                  
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                    <ConsentRow 
-                      checked={smsConsent}
-                      onCheckedChange={setSmsConsent}
-                      required
-                      id="sms_consent"
-                    />
-                  </div>
-                  
-                  <p className="text-xs opacity-75">
-                    Reply STOP to opt out anytime.
-                  </p>
-                </form>
-              ) : (
-                <div className="flex items-center justify-center gap-2 text-lg">
-                  <CheckCircle2 className="w-6 h-6" />
-                  <span>You're subscribed! Thank you.</span>
-                </div>
-              )}
-            </div>
+            
           </div>
         </Section>
 
@@ -349,19 +279,12 @@ const Contact = () => {
               </p>
             </div>
 
-            <ContactForm
-              formName="contact_page"
-              title=""
-              description=""
-              showTopic={true}
-            />
+            <ContactForm formName="contact_page" title="" description="" showTopic={true} />
           </div>
         </Section>
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
