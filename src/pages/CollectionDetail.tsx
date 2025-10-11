@@ -431,7 +431,7 @@ const CollectionDetail = () => {
                   How do I know if I need volume or smoothing products?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground leading-relaxed">
-                  If your hair is fine, flat, or lacks body, choose the <strong>Volume Boost Pack</strong> with lightweight formulas that lift at the roots. For thick, frizzy, or coarse hair that needs control, the <strong>Smooth & Sleek Set</strong> uses smoothing serums and anti-humidity technology. Need help choosing? <a href="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</a>
+                  If your hair is fine, flat, or lacks body, choose the <strong>Volume Boost Pack</strong> with lightweight formulas that lift at the roots. For thick, frizzy, or coarse hair that needs control, the <strong>Smooth & Sleek Set</strong> uses smoothing serums and anti-humidity technology. Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant recommendations.
                 </AccordionContent>
               </AccordionItem>
 

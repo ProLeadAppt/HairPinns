@@ -162,7 +162,7 @@ const About = () => {
                 </p>
                 <p className="text-foreground leading-relaxed">
                   Our Christmas Gift Packs make it easy to try complete routines at a great price. 
-                  Need help choosing? <a href="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</a>
+                  Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant recommendations.
                 </p>
               </div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden">

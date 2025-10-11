@@ -38,7 +38,7 @@ const Booking = () => {
               pick your time, and get instant confirmation. It's fast, secure, and hassle-free.
             </p>
             <p className="text-foreground mb-8">
-              Need help choosing? <Link to="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</Link>
+              Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
             </p>
             
             <a
