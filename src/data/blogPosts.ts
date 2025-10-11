@@ -17,6 +17,16 @@ import heatProtection from "@/assets/blog/heat-protection-products.png";
 import wetBrushGlitter from "@/assets/blog/wet-brush-glitter.png";
 import juuceQuiz from "@/assets/blog/juuce-quiz-hero.png";
 import saunaExperience from "@/assets/blog/infrared-sauna-experience.png";
+import salonVsSupermarket from "@/assets/blog/salon-vs-supermarket.png";
+import saunaExterior from "@/assets/blog/infrared-sauna-exterior.png";
+import heatProtectionLifestyle from "@/assets/blog/heat-protection-lifestyle.png";
+import jenaProducts from "@/assets/blog/jena-products.png";
+import frizzFreeHero from "@/assets/blog/frizz-free-hero.png";
+import jenaWorking from "@/assets/blog/jena-working.png";
+import juuceTreatments from "@/assets/blog/juuce-treatments.png";
+import leaveInProducts from "@/assets/blog/leave-in-products.png";
+import welcomeHero from "@/assets/blog/welcome-hero.png";
+import qiqiExplorationSet from "@/assets/blog/qiqi-exploration-set.png";
 
 export interface BlogPost {
   slug: string;
@@ -46,13 +56,141 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "say-goodbye-to-frizzy-hair-for-good",
-    title: "Say Goodbye to Frizzy Hair for Good?",
-    excerpt: "An all-natural, permanent hair straightening treatment designed to give you sleek, smooth locks without compromising hair health.",
+    slug: "salon-vs-supermarket-hair-products",
+    title: "Supermarket VS Salon Hair Products",
+    excerpt: "We've all grabbed a $6 shampoo thinking we scored a bargain. But what if that 'cheap' product might be costing you more in the long run?",
+    category: "Products",
+    date: "April 20, 2025",
+    readTime: "5 min read",
+    image: salonVsSupermarket,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Let's be honest— we've all grabbed a $6 shampoo bottle from the supermarket thinking we scored a bargain. But what if we told you that \"cheap\" product might be costing you more in the long run? Here's the lowdown on why salon products from Hair Pinns (like Juuce and Pure) are a smarter, healthier choice for your hair.",
+      sections: [
+        {
+          heading: "1. Quality Ingredients That Actually Work",
+          content: "Salon products are loaded with high-performance ingredients like hyaluronic acid, plant extracts, proteins, and bond-builders. These nourish your hair from the inside out—rather than coating it in silicones to fake the look of shine (like many supermarket formulas do).\n\nExample: Juuce Bond Repair Duo works to actually rebuild hair strength—not just mask damage."
+        },
+        {
+          heading: "2. No Nasties That Strip Your Hair",
+          content: "Supermarket brands often use harsh sulfates, parabens, and heavy synthetic fragrances. These can dry out your hair, irritate your scalp, and fade your colour faster.\n\nSalon formulas are typically pH-balanced, sulphate-free, and gentle, making them safe for colour, keratin treatments, and sensitive skin.\n\nTry this instead: Juuce Radiant Colour Duo protects your colour and keeps your hair shiny and soft."
+        },
+        {
+          heading: "3. Less Is More",
+          content: "Salon-quality shampoos are highly concentrated, so you only need a small amount each wash. That means your bottle lasts longer—and your hair reaps the benefits.\n\nThink of it like skincare: you wouldn't use body soap on your face, right? Same goes for your hair."
+        },
+        {
+          heading: "4. They're Tailored to YOUR Hair",
+          content: "Whether you need volume, hydration, repair or frizz control, there's a targeted salon formula for you. No more one-size-fits-all.\n\nNeed help choosing? Take our Juuce Hair Quiz or DM us @HairPinns and we'll match you with your perfect pair."
+        },
+        {
+          heading: "5. Support Local, Not Big Corporates",
+          content: "When you shop with Hair Pinns, you're supporting a local salon that cares—not a massive corporation. Every order means the world to us, and we're here to make sure your hair feels amazing, always."
+        },
+        {
+          heading: "Your Hair Deserves Better",
+          content: "Salon haircare isn't just a splurge—it's an investment in the health, shine, and future of your hair. Ready to make the switch?\n\nShop all our premium Juuce and Pure products now at HairPinns.com\n\nYour best hair days are just a bottle away."
+        }
+      ],
+      productModule: {
+        title: "Shop Premium Hair Care",
+        products: [
+          {
+            name: "Juuce Hair Care Range",
+            link: "https://hairpinns.com/collections/juuce-hair-care",
+            description: "Salon-quality formulas for all hair types"
+          },
+          {
+            name: "Pure Certified Organic Range",
+            link: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+            description: "Clean, eco-friendly hair care"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "what-is-an-infrared-sauna",
+    title: "What is an 'Infrared Sauna'?",
+    excerpt: "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out.",
+    category: "Wellness",
+    date: "April 11, 2025",
+    readTime: "4 min read",
+    image: saunaExterior,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out. This isn't your average sauna session—it's a full-body, soul-soothing recharge that will leave you glowing from the inside out.",
+      sections: [
+        {
+          heading: "What Makes It Different?",
+          content: "Our infrared sauna uses gentle, deeply penetrating heat to melt away tension, relieve muscle aches, and support natural detoxification—without the overwhelming heat of traditional saunas. You'll sweat smarter, not harder.\n\nNow add in chromotherapy, or colour light therapy—a stunning, therapeutic experience that uses different hues to rebalance your mood and energy. Think: calming blues for stress, energizing reds when you're feeling flat, and soothing greens when you need to reset."
+        },
+        {
+          heading: "The Benefits",
+          content: "Together, infrared + chromotherapy creates a powerful wellness experience that helps:\n\n• Reduce stress and anxiety\n• Relieve muscle and joint pain\n• Boost circulation and detoxification\n• Improve skin tone and clarity\n• Leave you feeling lighter, brighter, and more grounded\n\nConnect to the Bluetooth speakers and listen to your favourite podcast or tunes or grab a book or simple sit and meditate 🧘‍♀️"
+        },
+        {
+          heading: "Your Experience Awaits",
+          content: "You'll walk out of the sauna feeling like you just hit reset on your whole day—mind, body, and mood.\n\nReady to feel the difference? Book your session now and come experience the glow!\n\nP.S. Feel free to come in for a shampoo, head massage and blowdry straight after your Sauna Sesh for that extra pep in your step 😉"
+        }
+      ]
+    }
+  },
+  {
+    slug: "prevent-heat-damage-on-your-hair",
+    title: "Do you Know how to Prevent Heat Damage on your Hair?",
+    excerpt: "We all love a good styling session, but if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
+    category: "Hair Care",
+    date: "March 25, 2025",
+    readTime: "6 min read",
+    image: heatProtectionLifestyle,
+    author: "Jena Pinn",
+    content: {
+      introduction: "We all love a good styling session—whether it's a sleek blowout, bouncy curls, or just taming frizz before heading out the door. But if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
+      sections: [
+        {
+          heading: "Why Heat Protection is Essential",
+          content: "When you apply heat from a blow dryer, straightener, or curling iron, your hair's cuticle (the outer layer) opens up, making it more vulnerable to damage. Over time, this can lead to:\n\n✔️ Dryness and split ends\n✔️ Weakened hair structure\n✔️ Increased frizz and breakage\n\nAnd let's not forget about environmental factors. The sun's UV rays, humidity, and chlorine from swimming pools all contribute to faded colour, dehydration, and even more frizz!"
+        },
+        {
+          heading: "The Best Products for Protection",
+          content: "To keep your hair looking and feeling amazing, I recommend these must-have products from Juuce:\n\n✔️ Juuce Solar Enz – Perfect for summer, this leave-in treatment protects your hair from UV damage, prevents colour fade, and repairs sun-exposed strands. A must-have if you spend a lot of time outdoors!\n\n✔️ Juuce Heat Shield – Your go-to for heat styling. This lightweight spray adds a protective barrier against hot tools while keeping your hair smooth and hydrated.\n\n✔️ Juuce Dry Heat Guard – Ideal for those who use heat tools frequently, this formula helps prevent heat stress, keeping your strands strong and resilient. It also is a quick fix to use to protect your hair against the sun."
+        },
+        {
+          heading: "Make Heat Protection a Habit",
+          content: "Think of heat protection like sunscreen for your hair—it's not an option; it's a necessity! Apply it every time you style and before heading into the sun. By incorporating these Juuce products into your routine, you'll keep your hair healthy, vibrant, and damage-free all year round.\n\nLooking to grab these must-haves? You can shop them now at HairPinns.com. Your hair will thank you!"
+        }
+      ],
+      productModule: {
+        title: "Shop Heat Protection",
+        products: [
+          {
+            name: "Juuce Solar Enz",
+            link: "https://hairpinns.com/products/solar-enz",
+            description: "UV protection leave-in treatment"
+          },
+          {
+            name: "Juuce Heat Shield",
+            link: "https://hairpinns.com/products/heat-shield",
+            description: "Thermal styling protector"
+          },
+          {
+            name: "Juuce Dry Heat Guard",
+            link: "https://hairpinns.com/products/dry-heat-guard",
+            description: "Heat defense for frequent styling"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "say-goodbye-to-frizzy-hair-march-2025",
+    title: "Say Goodbye to Frizzy Hair for Good? (March Edition)",
+    excerpt: "Learn about our Straight Up treatment - all-natural straightening without harsh chemicals.",
     category: "Treatments",
     date: "March 21, 2025",
     readTime: "4 min read",
-    image: straightUpHero,
+    image: frizzFreeHero,
     author: "Jena Pinn",
     content: {
       introduction: "An all-natural, permanent hair straightening treatment designed to give you sleek, smooth locks without compromising hair health. Unlike traditional methods that often rely on harsh chemicals, Straight Up utilizes organic compounds, including citric acid, to achieve long lasting straightness safely.",
