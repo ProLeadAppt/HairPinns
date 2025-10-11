@@ -33,6 +33,9 @@ import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 import DevCollections from "./pages/DevCollections";
 import DevShopify from "./pages/DevShopify";
+import Reviews from "./pages/Reviews";
+import ReviewFeedback from "./pages/ReviewFeedback";
+import ReviewGoogle from "./pages/ReviewGoogle";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +81,9 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/reviews/feedback" element={<ReviewFeedback />} />
+          <Route path="/reviews/google" element={<ReviewGoogle />} />
           <Route path="/dev/collections" element={<DevCollections />} />
           <Route path="/dev/shopify" element={<DevShopify />} />
           <Route path="/404" element={<NotFound />} />
