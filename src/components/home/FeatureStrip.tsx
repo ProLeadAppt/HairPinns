@@ -84,27 +84,27 @@ const FeatureStrip = () => {
       }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="font-heading text-h2-lg mb-3" style={{ color: '#FFFFFF' }}>
+            <h2 className="font-heading text-h2-lg mb-3 text-primary-foreground">
               🎯 Get Expert Help, Instantly
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+            <p className="text-lg max-w-2xl mx-auto text-primary-foreground/90">
               Not sure which service is right for you? Our AI experts are available 24/7 to answer questions, explain treatments, and help you book with confidence.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10">
             {/* Call Sam Card */}
-            <div className="bg-surface rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
+            <div className="glass-card bg-card rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
               <div 
                 className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
                 style={{ background: 'hsl(var(--accent))' }}
               >
                 <Phone className="w-7 h-7" style={{ color: 'hsl(var(--brand-500))' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: 'hsl(var(--heading))' }}>
+              <h3 className="text-lg font-heading font-semibold mb-2 text-heading">
                 📞 Call Sam
               </h3>
-              <p className="mb-4 text-sm" style={{ color: 'hsl(var(--text))' }}>
+              <p className="mb-4 text-sm text-text">
                 Instant answers over the phone, anytime day or night
               </p>
               <Button 
@@ -124,17 +124,17 @@ const FeatureStrip = () => {
             </div>
 
             {/* Chat with Isabella Card */}
-            <div className="bg-surface rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
+            <div className="glass-card bg-card rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
               <div 
                 className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
                 style={{ background: 'hsl(var(--accent))' }}
               >
                 <MessageCircle className="w-7 h-7" style={{ color: 'hsl(var(--brand-500))' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: 'hsl(var(--heading))' }}>
+              <h3 className="text-lg font-heading font-semibold mb-2 text-heading">
                 💬 Chat with Isabella
               </h3>
-              <p className="mb-4 text-sm" style={{ color: 'hsl(var(--text))' }}>
+              <p className="mb-4 text-sm text-text">
                 Quick chat for service info, pricing & recommendations
               </p>
               <Button 
@@ -148,17 +148,17 @@ const FeatureStrip = () => {
             </div>
 
             {/* Book Direct Card */}
-            <div className="bg-surface rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
+            <div className="glass-card bg-card rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
               <div 
                 className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
                 style={{ background: 'hsl(var(--accent))' }}
               >
                 <Calendar className="w-7 h-7" style={{ color: 'hsl(var(--brand-500))' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: 'hsl(var(--heading))' }}>
+              <h3 className="text-lg font-heading font-semibold mb-2 text-heading">
                 📅 Book Direct
               </h3>
-              <p className="mb-4 text-sm" style={{ color: 'hsl(var(--text))' }}>
+              <p className="mb-4 text-sm text-text">
                 Already know what you need? Book instantly via Fresha
               </p>
               <Button 
@@ -182,16 +182,16 @@ const FeatureStrip = () => {
 
           <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto text-center">
             <div>
-              <div className="text-3xl font-bold mb-1" style={{ color: '#FFFFFF' }}>24/7</div>
-              <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>Always Available</div>
+              <div className="text-3xl font-bold mb-1 text-primary-foreground">24/7</div>
+              <div className="text-sm text-primary-foreground/90">Always Available</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1" style={{ color: '#FFFFFF' }}>&lt;30s</div>
-              <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>Instant Answers</div>
+              <div className="text-3xl font-bold mb-1 text-primary-foreground">&lt;30s</div>
+              <div className="text-sm text-primary-foreground/90">Instant Answers</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1" style={{ color: '#FFFFFF' }}>100%</div>
-              <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>Personalized</div>
+              <div className="text-3xl font-bold mb-1 text-primary-foreground">100%</div>
+              <div className="text-sm text-primary-foreground/90">Personalized</div>
             </div>
           </div>
         </div>

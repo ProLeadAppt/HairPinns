@@ -61,7 +61,7 @@ const AIAgentsCTA = () => {
           <div className="w-3 h-3 bg-[hsl(var(--success))] rounded-full animate-breathing"></div>
           <div className="absolute inset-0 w-3 h-3 bg-[hsl(var(--success))] rounded-full animate-ping opacity-75"></div>
         </div>
-        <span className="text-sm font-semibold" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+        <span className="text-sm font-semibold text-primary-foreground">
           AI Agents Available 24/7
         </span>
       </div>
@@ -72,31 +72,17 @@ const AIAgentsCTA = () => {
         <Button 
           size="lg" 
           onClick={guideToBubble}
-          className="w-full sm:w-auto font-bold transition-all hover:bg-[#F5F5F7] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#8B4A8B] [&_*]:!text-[#2A2230]"
-          style={{
-            background: '#FFFFFF',
-            color: '#2A2230',
-            borderRadius: '999px',
-            padding: '0.95rem 1.4rem',
-            boxShadow: '0 10px 24px rgba(0, 0, 0, 0.35)',
-            border: 'none'
-          }}
+          className="w-full sm:w-auto bg-card text-foreground font-bold rounded-full shadow-lg px-6 py-3 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-foreground/60"
         >
-          <MessageCircle className="w-5 h-5" style={{ color: '#2A2230' }} />
-          <span style={{ color: '#2A2230' }}>Chat with Isabella</span>
+          <MessageCircle className="w-5 h-5 text-text" />
+          <span className="text-text">Chat with Isabella</span>
         </Button>
 
         {/* SECONDARY: Call Sam */}
         <Button 
           asChild
           size="lg" 
-          className="w-full sm:w-auto bg-[#8B4A8B] hover:bg-[#7A4079] text-white font-semibold transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50" 
-          style={{
-            borderRadius: '999px',
-            padding: '0.95rem 1.4rem',
-            boxShadow: '0 8px 20px rgba(139, 74, 139, 0.4)',
-            border: '2px solid rgba(255, 255, 255, 0.3)'
-          }}
+          className="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-primary-foreground font-semibold rounded-full shadow-md px-6 py-3 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-foreground/50"
         >
           <a 
             href="tel:+61468020624"
@@ -110,15 +96,14 @@ const AIAgentsCTA = () => {
       </div>
 
       {/* Book Direct Option */}
-      <div className="flex items-center gap-3 text-sm" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+      <div className="flex items-center gap-3 text-sm text-primary-foreground/85">
         <span>Already know what you need?</span>
         <a 
           href={BOOK_URL}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackBookingClick("hero_home_ai_cta", "/")}
-          className="inline-flex items-center gap-1 font-semibold hover:underline transition-all"
-          style={{ color: 'rgba(255, 255, 255, 0.95)' }}
+          className="inline-flex items-center gap-1 font-semibold hover:underline transition-all text-primary-foreground/95"
         >
           <Calendar className="w-4 h-4" />
           Book Direct
@@ -128,26 +113,26 @@ const AIAgentsCTA = () => {
       {/* Trust Elements */}
       <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/20">
         <div className="text-center">
-          <div className="text-xl font-bold" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+          <div className="text-xl font-bold text-primary-foreground">
             &lt;30s
           </div>
-          <div className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+          <div className="text-xs text-primary-foreground/70">
             Response Time
           </div>
         </div>
         <div className="text-center">
-          <div className="text-xl font-bold" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+          <div className="text-xl font-bold text-primary-foreground">
             24/7
           </div>
-          <div className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+          <div className="text-xs text-primary-foreground/70">
             Always Available
           </div>
         </div>
         <div className="text-center">
-          <div className="text-xl font-bold" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+          <div className="text-xl font-bold text-primary-foreground">
             100%
           </div>
-          <div className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+          <div className="text-xs text-primary-foreground/70">
             Expert Answers
           </div>
         </div>
