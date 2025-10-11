@@ -4,24 +4,60 @@ import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const AIAgentsCTA = () => {
   const openWebchat = () => {
-    // Open LeadConnector webchat widget (Isabella)
-    if (window.LeadConnector?.openWidget) {
-      window.LeadConnector.openWidget();
-    } else {
-      // Fallback: try to find and click the chat button
-      const chatButton = document.querySelector('[data-chat-widget-button]');
-      if (chatButton) {
-        (chatButton as HTMLElement).click();
-      }
-    }
-    
-    // Track the interaction
+    // Track the interaction first
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
         agent: 'isabella',
         action: 'chat_opened',
         location: 'hero_cta'
       });
+    }
+
+    // Method 1: Try LeadConnector's official API
+    if (window.LeadConnector?.openWidget) {
+      window.LeadConnector.openWidget();
+      return;
+    }
+
+    // Method 2: Try to find and click the chat bubble
+    const selectors = [
+      '[data-chat-widget-button]',
+      '.chat-widget-button',
+      '#chat-widget-container button',
+      '[class*="chat-bubble"]',
+      '[class*="ChatBubble"]',
+      'iframe[src*="leadconnectorhq"]',
+    ];
+
+    for (const selector of selectors) {
+      const element = document.querySelector(selector);
+      if (element) {
+        if (element.tagName === 'IFRAME') {
+          // If it's an iframe, try to click elements inside it
+          try {
+            const iframeDoc = (element as HTMLIFrameElement).contentDocument;
+            const button = iframeDoc?.querySelector('button');
+            if (button) {
+              button.click();
+              return;
+            }
+          } catch (e) {
+            // Cross-origin restriction, try next method
+            continue;
+          }
+        } else {
+          (element as HTMLElement).click();
+          return;
+        }
+      }
+    }
+
+    // Method 3: Dispatch a custom event that the widget might listen to
+    window.dispatchEvent(new CustomEvent('openChatWidget'));
+    
+    // Method 4: Try window.openChatWidget if it exists
+    if (typeof (window as any).openChatWidget === 'function') {
+      (window as any).openChatWidget();
     }
   };
 

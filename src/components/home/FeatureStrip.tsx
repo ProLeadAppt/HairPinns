@@ -5,14 +5,7 @@ import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const FeatureStrip = () => {
   const openWebchat = () => {
-    if (window.LeadConnector?.openWidget) {
-      window.LeadConnector.openWidget();
-    } else {
-      const chatButton = document.querySelector('[data-chat-widget-button]');
-      if (chatButton) {
-        (chatButton as HTMLElement).click();
-      }
-    }
+    // Track the interaction
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
         agent: 'isabella',
@@ -20,6 +13,32 @@ const FeatureStrip = () => {
         location: 'feature_strip'
       });
     }
+
+    // Method 1: Try LeadConnector's official API
+    if (window.LeadConnector?.openWidget) {
+      window.LeadConnector.openWidget();
+      return;
+    }
+
+    // Method 2: Try to find and click the chat bubble
+    const selectors = [
+      '[data-chat-widget-button]',
+      '.chat-widget-button',
+      '#chat-widget-container button',
+      '[class*="chat-bubble"]',
+      '[class*="ChatBubble"]',
+    ];
+
+    for (const selector of selectors) {
+      const element = document.querySelector(selector);
+      if (element) {
+        (element as HTMLElement).click();
+        return;
+      }
+    }
+
+    // Method 3: Dispatch custom event
+    window.dispatchEvent(new CustomEvent('openChatWidget'));
   };
 
   const trackPhoneClick = () => {
