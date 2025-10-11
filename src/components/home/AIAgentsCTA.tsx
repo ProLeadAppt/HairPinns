@@ -4,6 +4,8 @@ import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const AIAgentsCTA = () => {
   const openWebchat = () => {
+    console.log('🔵 openWebchat called');
+    
     // Track the interaction first
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
@@ -13,52 +15,68 @@ const AIAgentsCTA = () => {
       });
     }
 
-    // Method 1: Try LeadConnector's official API
-    if (window.LeadConnector?.openWidget) {
-      window.LeadConnector.openWidget();
+    // Wait a bit for widget to load if needed
+    const attemptOpen = () => {
+      // Method 1: Try direct window methods
+      if ((window as any).ChatWidget) {
+        console.log('✅ Found ChatWidget');
+        (window as any).ChatWidget.open();
+        return true;
+      }
+
+      // Method 2: Try LeadConnector API
+      if (window.LeadConnector?.openWidget) {
+        console.log('✅ Found LeadConnector.openWidget');
+        window.LeadConnector.openWidget();
+        return true;
+      }
+
+      // Method 3: Find and click chat bubble/button
+      const selectors = [
+        'div[id*="chat-widget"]',
+        'div[class*="chat-widget"]',
+        'iframe[src*="leadconnectorhq"]',
+        '[data-chat-bubble]',
+        'button[aria-label*="chat"]',
+      ];
+
+      console.log('🔍 Searching for chat widget with selectors...');
+      
+      for (const selector of selectors) {
+        const elements = document.querySelectorAll(selector);
+        console.log(`Found ${elements.length} elements for selector: ${selector}`);
+        
+        if (elements.length > 0) {
+          const element = elements[0];
+          console.log('✅ Found element:', element);
+          
+          // If it's a visible button/div, click it
+          if (element.tagName !== 'IFRAME') {
+            (element as HTMLElement).click();
+            return true;
+          }
+        }
+      }
+
+      return false;
+    };
+
+    // Try immediately
+    if (attemptOpen()) {
+      console.log('✅ Widget opened successfully');
       return;
     }
 
-    // Method 2: Try to find and click the chat bubble
-    const selectors = [
-      '[data-chat-widget-button]',
-      '.chat-widget-button',
-      '#chat-widget-container button',
-      '[class*="chat-bubble"]',
-      '[class*="ChatBubble"]',
-      'iframe[src*="leadconnectorhq"]',
-    ];
-
-    for (const selector of selectors) {
-      const element = document.querySelector(selector);
-      if (element) {
-        if (element.tagName === 'IFRAME') {
-          // If it's an iframe, try to click elements inside it
-          try {
-            const iframeDoc = (element as HTMLIFrameElement).contentDocument;
-            const button = iframeDoc?.querySelector('button');
-            if (button) {
-              button.click();
-              return;
-            }
-          } catch (e) {
-            // Cross-origin restriction, try next method
-            continue;
-          }
-        } else {
-          (element as HTMLElement).click();
-          return;
-        }
+    // If failed, try again after a short delay
+    console.log('⏳ Widget not found, retrying in 500ms...');
+    setTimeout(() => {
+      if (attemptOpen()) {
+        console.log('✅ Widget opened on retry');
+      } else {
+        console.error('❌ Could not open chat widget');
+        alert('Chat widget is loading. Please try clicking again in a moment.');
       }
-    }
-
-    // Method 3: Dispatch a custom event that the widget might listen to
-    window.dispatchEvent(new CustomEvent('openChatWidget'));
-    
-    // Method 4: Try window.openChatWidget if it exists
-    if (typeof (window as any).openChatWidget === 'function') {
-      (window as any).openChatWidget();
-    }
+    }, 500);
   };
 
   const trackPhoneClick = () => {

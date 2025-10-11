@@ -5,6 +5,8 @@ import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const FeatureStrip = () => {
   const openWebchat = () => {
+    console.log('🔵 FeatureStrip openWebchat called');
+    
     // Track the interaction
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
@@ -14,31 +16,54 @@ const FeatureStrip = () => {
       });
     }
 
-    // Method 1: Try LeadConnector's official API
-    if (window.LeadConnector?.openWidget) {
-      window.LeadConnector.openWidget();
+    const attemptOpen = () => {
+      // Try direct window methods
+      if ((window as any).ChatWidget) {
+        console.log('✅ Found ChatWidget');
+        (window as any).ChatWidget.open();
+        return true;
+      }
+
+      if (window.LeadConnector?.openWidget) {
+        console.log('✅ Found LeadConnector.openWidget');
+        window.LeadConnector.openWidget();
+        return true;
+      }
+
+      // Find chat widget elements
+      const selectors = [
+        'div[id*="chat-widget"]',
+        'div[class*="chat-widget"]',
+        'iframe[src*="leadconnectorhq"]',
+        '[data-chat-bubble]',
+      ];
+
+      for (const selector of selectors) {
+        const elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
+          const element = elements[0];
+          if (element.tagName !== 'IFRAME') {
+            (element as HTMLElement).click();
+            return true;
+          }
+        }
+      }
+      return false;
+    };
+
+    if (attemptOpen()) {
+      console.log('✅ Widget opened');
       return;
     }
 
-    // Method 2: Try to find and click the chat bubble
-    const selectors = [
-      '[data-chat-widget-button]',
-      '.chat-widget-button',
-      '#chat-widget-container button',
-      '[class*="chat-bubble"]',
-      '[class*="ChatBubble"]',
-    ];
-
-    for (const selector of selectors) {
-      const element = document.querySelector(selector);
-      if (element) {
-        (element as HTMLElement).click();
-        return;
+    setTimeout(() => {
+      if (attemptOpen()) {
+        console.log('✅ Widget opened on retry');
+      } else {
+        console.error('❌ Could not open chat widget');
+        alert('Chat widget is loading. Please try again in a moment.');
       }
-    }
-
-    // Method 3: Dispatch custom event
-    window.dispatchEvent(new CustomEvent('openChatWidget'));
+    }, 500);
   };
 
   const trackPhoneClick = () => {
@@ -75,33 +100,46 @@ const FeatureStrip = () => {
   return (
     <>
       {/* AI Agents Focus Section */}
-      <section className="bg-gradient-to-br from-brand-500 to-brand-600 py-12 md:py-16" style={{ contentVisibility: "auto" }}>
+      <section className="py-12 md:py-16" style={{ 
+        contentVisibility: "auto",
+        background: 'linear-gradient(135deg, hsl(var(--brand-500)) 0%, hsl(var(--brand-600)) 100%)'
+      }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="font-heading text-white text-h2-lg mb-3">
+            <h2 className="font-heading text-h2-lg mb-3" style={{ color: '#FFFFFF' }}>
               🎯 Get Expert Help, Instantly
             </h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
               Not sure which service is right for you? Our AI experts are available 24/7 to answer questions, explain treatments, and help you book with confidence.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-card p-6 text-center">
-              <div className="w-14 h-14 bg-white/20 text-white rounded-full flex items-center justify-center mb-4 mx-auto">
-                <Phone className="w-7 h-7" />
+            <div className="rounded-card p-6 text-center" style={{
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.25)'
+            }}>
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto" style={{
+                background: 'rgba(255, 255, 255, 0.25)'
+              }}>
+                <Phone className="w-7 h-7" style={{ color: '#FFFFFF' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold text-white mb-2">
+              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: '#FFFFFF' }}>
                 📞 Call Sam
               </h3>
-              <p className="text-sm text-white/80 mb-4">
+              <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 Instant answers over the phone, anytime day or night
               </p>
               <Button
                 asChild
                 size="sm"
-                className="bg-white text-brand-500 hover:bg-white/90 font-semibold"
-                style={{ borderRadius: '999px' }}
+                className="font-semibold"
+                style={{ 
+                  borderRadius: '999px',
+                  background: '#FFFFFF',
+                  color: 'hsl(var(--brand-500))'
+                }}
               >
                 <a href="tel:+61468020624" onClick={trackPhoneClick}>
                   Call Now
@@ -109,41 +147,61 @@ const FeatureStrip = () => {
               </Button>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-card p-6 text-center">
-              <div className="w-14 h-14 bg-white/20 text-white rounded-full flex items-center justify-center mb-4 mx-auto">
-                <MessageCircle className="w-7 h-7" />
+            <div className="rounded-card p-6 text-center" style={{
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.25)'
+            }}>
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto" style={{
+                background: 'rgba(255, 255, 255, 0.25)'
+              }}>
+                <MessageCircle className="w-7 h-7" style={{ color: '#FFFFFF' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold text-white mb-2">
+              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: '#FFFFFF' }}>
                 💬 Chat with Isabella
               </h3>
-              <p className="text-sm text-white/80 mb-4">
+              <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 Quick chat for service info, pricing & recommendations
               </p>
               <Button
                 size="sm"
                 onClick={openWebchat}
-                className="bg-white text-brand-500 hover:bg-white/90 font-semibold"
-                style={{ borderRadius: '999px' }}
+                className="font-semibold"
+                style={{ 
+                  borderRadius: '999px',
+                  background: '#FFFFFF',
+                  color: 'hsl(var(--brand-500))'
+                }}
               >
                 Start Chat
               </Button>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-card p-6 text-center">
-              <div className="w-14 h-14 bg-white/20 text-white rounded-full flex items-center justify-center mb-4 mx-auto">
-                <Calendar className="w-7 h-7" />
+            <div className="rounded-card p-6 text-center" style={{
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.25)'
+            }}>
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto" style={{
+                background: 'rgba(255, 255, 255, 0.25)'
+              }}>
+                <Calendar className="w-7 h-7" style={{ color: '#FFFFFF' }} />
               </div>
-              <h3 className="text-lg font-heading font-semibold text-white mb-2">
+              <h3 className="text-lg font-heading font-semibold mb-2" style={{ color: '#FFFFFF' }}>
                 📅 Book Direct
               </h3>
-              <p className="text-sm text-white/80 mb-4">
+              <p className="text-sm mb-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 Already know what you need? Book instantly via Fresha
               </p>
               <Button
                 asChild
                 size="sm"
-                className="bg-white text-brand-500 hover:bg-white/90 font-semibold"
-                style={{ borderRadius: '999px' }}
+                className="font-semibold"
+                style={{ 
+                  borderRadius: '999px',
+                  background: '#FFFFFF',
+                  color: 'hsl(var(--brand-500))'
+                }}
               >
                 <a 
                   href={BOOK_URL}
@@ -159,16 +217,16 @@ const FeatureStrip = () => {
 
           <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto text-center">
             <div>
-              <div className="text-3xl font-bold text-white mb-1">24/7</div>
-              <div className="text-sm text-white/80">Always Available</div>
+              <div className="text-3xl font-bold mb-1" style={{ color: '#FFFFFF' }}>24/7</div>
+              <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>Always Available</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white mb-1">&lt;30s</div>
-              <div className="text-sm text-white/80">Instant Answers</div>
+              <div className="text-3xl font-bold mb-1" style={{ color: '#FFFFFF' }}>&lt;30s</div>
+              <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>Instant Answers</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white mb-1">100%</div>
-              <div className="text-sm text-white/80">Personalized</div>
+              <div className="text-3xl font-bold mb-1" style={{ color: '#FFFFFF' }}>100%</div>
+              <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>Personalized</div>
             </div>
           </div>
         </div>
