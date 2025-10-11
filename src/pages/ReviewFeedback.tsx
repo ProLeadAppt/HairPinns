@@ -151,7 +151,7 @@ const ReviewFeedback = () => {
 
     try {
       await fetch(
-        "https://hooks.zapier.com/hooks/catch/20777536/2e3k17e/",
+        "https://hooks.zapier.com/hooks/catch/23975177/u59txby/",
         {
           method: "POST",
           headers: {
