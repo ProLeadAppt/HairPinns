@@ -103,8 +103,11 @@ const ProductCard = ({
       !inStock && "opacity-75",
       className
     )}>
-      {/* Image Container */}
-      <div className="relative aspect-square overflow-hidden bg-muted">
+      {/* Image Container - Clickable */}
+      <div 
+        className="relative aspect-square overflow-hidden bg-muted cursor-pointer"
+        onClick={handleViewProduct}
+      >
         <img 
           src={image} 
           alt={name}

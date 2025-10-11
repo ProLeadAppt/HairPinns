@@ -89,6 +89,17 @@ const ProductDetail = () => {
     
     if (matchingVariant) {
       setActiveVariantId(matchingVariant.node.id);
+      
+      // Update image to match variant if available
+      const variantImage = matchingVariant.node.image;
+      if (variantImage) {
+        const imageIndex = product.images.edges.findIndex(
+          (edge: any) => edge.node.url === variantImage.url
+        );
+        if (imageIndex !== -1) {
+          setCurrentImage(imageIndex);
+        }
+      }
     }
   };
 
@@ -161,17 +172,13 @@ const ProductDetail = () => {
         currency: "AUD",
       });
       
-      // Get stored checkout URL (set during Add to Bag)
-      const url = getCheckoutUrl();
-      if (url) {
-        console.log("🛒 Redirecting to checkout:", url);
-        gotoCheckout(url);
+      // Use the checkout URL directly from the cart
+      const checkoutUrl = updatedCart.checkoutUrl;
+      if (checkoutUrl) {
+        console.log("🛒 Redirecting to Shopify checkout:", checkoutUrl);
+        gotoCheckout(checkoutUrl);
       } else {
-        // Fallback to native cart
-        const cleanVariantId = activeVariantId.split('/').pop();
-        const fallbackUrl = `https://hairpinns.com/cart/${cleanVariantId}:1`;
-        console.warn("⚠️ Using native cart fallback:", fallbackUrl);
-        gotoCheckout(fallbackUrl);
+        throw new Error("No checkout URL available");
       }
     } catch (error) {
       console.error("Buy now failed:", error);
