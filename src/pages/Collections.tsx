@@ -9,6 +9,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_URL } from "@/config/bookingConfig";
+import juuceImage from "@/assets/Juuce-037.jpg";
+import aromaganicImage from "@/assets/Aromaganic_Organic_Shampoo_Conditoner.jpg";
+import accessoriesImage from "@/assets/Accessories-016.jpg";
+import islandVibesImage from "@/assets/IslandVibesTanning-BackApplicator.webp";
+import headMassagerImage from "@/assets/Head_Massager_Black_and_White.webp";
+import hairPinnsLogoImage from "@/assets/hair-pinns-logo-full.webp";
 
 interface ShopifyCollection {
   id: string;
@@ -29,21 +35,24 @@ const Collections = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Collection image mapping for beautiful, representative images
-  const collectionImageMap: Record<string, string> = {
-    'christmas-gift-packs': '/placeholder.svg', // Will be replaced with actual gift pack image
-    'daily-care': '/placeholder.svg',
-    'treatments': '/placeholder.svg',
-    'styling': '/placeholder.svg',
-    'color-care': '/placeholder.svg',
-    'volumizing': '/placeholder.svg',
-    'smoothing': '/placeholder.svg',
-  };
-
-  const getCollectionImage = (handle: string, shopifyImage?: string) => {
-    // Prefer Shopify image if available, otherwise use our curated map
+  const getCollectionImage = (handle: string, title: string, shopifyImage?: string) => {
+    // Prefer Shopify image if available
     if (shopifyImage) return shopifyImage;
-    return collectionImageMap[handle] || '/placeholder.svg';
+    
+    // Fuzzy match on handle and title
+    const searchText = `${handle} ${title}`.toLowerCase();
+    
+    if (searchText.includes('juuce')) return juuceImage;
+    if (searchText.includes('aromaganic') || searchText.includes('organic')) return aromaganicImage;
+    if (searchText.includes('island') || searchText.includes('tan')) return islandVibesImage;
+    if (searchText.includes('accessories') || searchText.includes('accessory')) return accessoriesImage;
+    if (searchText.includes('head') || searchText.includes('massag')) return headMassagerImage;
+    if (searchText.includes('wet brush') || searchText.includes('detangler')) return headMassagerImage;
+    if (searchText.includes('poppet') || searchText.includes('qiqi') || searchText.includes('pony')) return hairPinnsLogoImage;
+    if (searchText.includes('christmas') || searchText.includes('gift')) return accessoriesImage;
+    if (searchText.includes('clearance') || searchText.includes('sale')) return hairPinnsLogoImage;
+    
+    return hairPinnsLogoImage; // fallback to brand image
   };
 
   useEffect(() => {
@@ -86,14 +95,15 @@ const Collections = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-accent/30 via-background to-accent/20 py-20 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.1),transparent_50%)]" />
+        <section className="relative bg-gradient-to-br from-brand-500/10 via-background to-accent/30 py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.2),transparent_50%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/20" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-heading font-heading tracking-tight leading-tight">
                 Shop Collections
               </h1>
-              <p className="text-xl md:text-2xl text-heading font-medium max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-heading font-semibold max-w-2xl mx-auto leading-relaxed [text-shadow:_0_1px_8px_rgb(255_255_255_/_60%)]">
                 Explore our curated collections of premium hair care products.
                 From daily essentials to special treatments, find everything you
                 need for healthy, beautiful hair.
@@ -143,23 +153,15 @@ const Collections = () => {
                   >
                     {/* Image Container */}
                     <div className="aspect-[4/3] relative overflow-hidden bg-muted">
-                      {collection.image?.url ? (
-                        <img
-                          src={getCollectionImage(collection.handle, collection.image.url)}
-                          alt={collection.image.altText || collection.title}
-                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-slow"
-                          loading="lazy"
-                          width="800"
-                          height="600"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent/40 to-accent/20">
-                          <span className="text-4xl font-heading text-brand-500">
-                            {collection.title.charAt(0)}
-                          </span>
-                        </div>
-                      )}
+                      <img
+                        src={getCollectionImage(collection.handle, collection.title, collection.image?.url)}
+                        alt={collection.image?.altText || collection.title}
+                        className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-slow"
+                        loading="lazy"
+                        width="800"
+                        height="600"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-heading/70 via-heading/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-slow" />
                       
                       {/* Product Count Badge */}
