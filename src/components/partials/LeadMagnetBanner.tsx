@@ -67,7 +67,7 @@ export const LeadMagnetBanner = ({
     });
 
     if (!validation.success) {
-      const error = validation.error.errors[0];
+      const error = validation.error.issues[0];
       toast({
         title: "Validation Error",
         description: error.message,

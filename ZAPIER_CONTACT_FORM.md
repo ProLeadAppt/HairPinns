@@ -1,21 +1,57 @@
-# Contact Form - Zapier Integration
+# Contact Form → Zapier Integration
 
 ## Overview
+This document details the Contact Form component and its integration with Zapier → GoHighLevel (GHL).
 
-The ContactForm component on the /contact page captures customer inquiries and routes them to GoHighLevel for proper handling, conversation management, and priority alerts.
+**IMPORTANT**: The Contact Form sends a **nested JSON payload** to Zapier. Make sure your Zap filters and field mappings use the correct nested keys (see below).
+
+---
 
 ## Form Details
 
-**Form Name**: `contact_page`
+**Component**: `ContactForm.tsx`  
+**Location**: Used on `/contact`, `/product/:handle` (sidebar), `/blog/:slug` (footer), and anywhere a general contact form is needed.
 
-**Fields**:
+**Form Name**: `contact_page`  
+**Event Name**: `contact_form_submit`
+
+**Webhook URL**: `https://hooks.zapier.com/hooks/catch/23975177/u9frxmo/`
+
+---
+
+## ⚠️ Nested Payload Structure
+
+The Contact Form uses `hpCapture.postToZapier()`, which **automatically nests fields** into categories like `contact`, `context`, `consent`, `session`, `first_touch`, and `free_text`.
+
+### Critical Zapier Setup Notes:
+
+1. **Zapier Filters** must use nested keys:
+   - ✅ `context.form_name` equals `contact_page`
+   - ✅ `context.event_name` equals `contact_form_submit`
+   - ❌ NOT `form_name` or `event_name` at root level
+
+2. **Field Mapping** must use nested keys:
+   - ✅ `contact.email` for email
+   - ✅ `contact.phone` for phone
+   - ✅ `contact.name` for full name
+   - ✅ `free_text.message` for message content
+   - ✅ `free_text.topic_label` for topic selection
+   - ✅ `consent.consent_marketing` for marketing consent
+   - ❌ NOT `email`, `phone`, `message` at root level
+
+3. **Check your Zap Task History** to see the actual nested structure received.
+
+---
+
+## Form Fields
+
 - `name` (string, required) - Customer's full name
 - `email` (string, required) - Email address
 - `phone` (string, optional) - Phone number
-- `topic` (string, required) - Selected inquiry topic
+- `topic` (string, required when showTopic=true) - Selected inquiry topic
 - `topic_label` (string) - Human-readable topic name
 - `message` (string, required) - Customer's message
-- `consent_marketing` (boolean, required) - Marketing consent
+- `consent_marketing` (boolean, optional) - Marketing consent
 
 **Topic Options**:
 - `product_question` - "Product Question"
@@ -25,25 +61,46 @@ The ContactForm component on the /contact page captures customer inquiries and r
 
 ## Payload Example
 
+The actual payload sent to Zapier is nested. Here's what you'll see in Zap Task History:
+
 ```json
 {
-  "form_name": "contact_page",
-  "name": "Jane Smith",
-  "email": "jane@example.com",
-  "phone": "(02) 1234 5678",
-  "topic": "order_help",
-  "topic_label": "Order Help",
-  "message": "I haven't received my order yet. It was supposed to arrive yesterday. Can you help?",
-  "consent_marketing": true,
-  "source_page": "https://hairpinns.com.au/contact",
-  "timestamp": "2025-01-15T14:30:00.000Z",
-  "client_id": "550e8400-e29b-41d4-a716-446655440000",
-  "utm_source": "google",
-  "utm_campaign": "support",
-  "gclid": "",
-  "referrer": "https://google.com",
-  "gdpr_region_detected": "AU",
-  "timestamp_consent": "2025-01-15T14:30:00.000Z"
+  "contact": {
+    "name": "Jane Smith",
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane@example.com",
+    "phone": "0468 020 624"
+  },
+  "context": {
+    "form_name": "contact_page",
+    "event_name": "contact_form_submit",
+    "page_url": "https://hairpinns.com.au/contact",
+    "timestamp": "2025-01-15T14:30:00.000Z"
+  },
+  "consent": {
+    "consent_marketing": true,
+    "gdpr_region_detected": "AU",
+    "timestamp_consent": "2025-01-15T14:30:00.000Z"
+  },
+  "session": {
+    "client_id": "550e8400-e29b-41d4-a716-446655440000",
+    "utm_source": "google",
+    "utm_campaign": "support",
+    "gclid": "",
+    "referrer": "https://google.com"
+  },
+  "first_touch": {
+    "first_utm_source": "instagram",
+    "first_landing_page": "https://hairpinns.com.au/",
+    "first_referrer": "https://instagram.com",
+    "first_seen_timestamp": "2025-01-10T10:00:00.000Z"
+  },
+  "free_text": {
+    "message": "I haven't received my order yet. It was supposed to arrive yesterday. Can you help?",
+    "topic": "order_help",
+    "topic_label": "Order Help"
+  }
 }
 ```
 

@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
 import { pixelTracking } from "@/lib/pixelTracking";
+import { z } from "zod";
 interface ContactFormProps {
   formName?: string;
   title?: string;
@@ -16,6 +17,16 @@ interface ContactFormProps {
   showTopic?: boolean;
   className?: string;
 }
+// Validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().optional(),
+  topic: z.string().optional(),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message must be less than 1000 characters"),
+  consent: z.boolean()
+});
+
 const ContactForm = ({
   formName = "contact_page",
   title = "Send Us a Message",
@@ -31,6 +42,7 @@ const ContactForm = ({
     message: "",
     consent: false
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -52,15 +64,29 @@ const ContactForm = ({
   }];
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.consent) {
+    setErrors({});
+
+    // Validate with zod
+    const validation = contactSchema.safeParse(formData);
+    if (!validation.success) {
+      const fieldErrors: Record<string, string> = {};
+      validation.error.issues.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0].toString()] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
       toast({
-        title: "Consent Required",
-        description: "Please agree to receive updates to continue.",
+        title: "Validation Error",
+        description: "Please check the form and fix any errors.",
         variant: "destructive"
       });
       return;
     }
+
+    // Topic required if showTopic is true
     if (showTopic && !formData.topic) {
+      setErrors({ topic: "Please select what you need help with" });
       toast({
         title: "Topic Required",
         description: "Please select what you need help with.",
@@ -68,6 +94,7 @@ const ContactForm = ({
       });
       return;
     }
+
     setIsSubmitting(true);
     try {
       // Find readable topic label
@@ -139,8 +166,8 @@ const ContactForm = ({
           </Button>
           <p className="text-sm text-muted-foreground">
             Or call us at{" "}
-            <a href="tel:+61295550123" className="text-brand-500 hover:underline font-semibold">
-              (02) 9555 0123
+            <a href="tel:+61468020624" className="text-brand-500 hover:underline font-semibold">
+              +61 468 020 624
             </a>
           </p>
         </div>
@@ -171,8 +198,8 @@ const ContactForm = ({
           </Button>
           <p className="text-sm text-muted-foreground">
             Need immediate help? Call us at{" "}
-            <a href="tel:+61295550123" className="text-brand-500 hover:underline">
-              (02) 9555 0123
+            <a href="tel:+61468020624" className="text-brand-500 hover:underline">
+              +61 468 020 624
             </a>
           </p>
         </div>
@@ -187,35 +214,63 @@ const ContactForm = ({
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
           <Label htmlFor="contact_name">Your Name *</Label>
-          <Input id="contact_name" type="text" placeholder="Jane Smith" value={formData.name} onChange={e => setFormData({
-          ...formData,
-          name: e.target.value
-        })} required />
+          <Input 
+            id="contact_name" 
+            type="text" 
+            placeholder="Jane Smith" 
+            value={formData.name} 
+            onChange={e => {
+              setFormData({ ...formData, name: e.target.value });
+              if (errors.name) setErrors({ ...errors, name: "" });
+            }}
+            className={errors.name ? "border-destructive" : ""}
+            required 
+          />
+          {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="contact_email">Email Address *</Label>
-          <Input id="contact_email" type="email" placeholder="jane@example.com" value={formData.email} onChange={e => setFormData({
-          ...formData,
-          email: e.target.value
-        })} required />
+          <Input 
+            id="contact_email" 
+            type="email" 
+            placeholder="jane@example.com" 
+            value={formData.email} 
+            onChange={e => {
+              setFormData({ ...formData, email: e.target.value });
+              if (errors.email) setErrors({ ...errors, email: "" });
+            }}
+            className={errors.email ? "border-destructive" : ""}
+            required 
+          />
+          {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="contact_phone">Phone Number</Label>
-          <Input id="contact_phone" type="tel" placeholder="(02) 1234 5678" value={formData.phone} onChange={e => setFormData({
-          ...formData,
-          phone: e.target.value
-        })} />
+          <Input 
+            id="contact_phone" 
+            type="tel" 
+            placeholder="0468 020 624" 
+            value={formData.phone} 
+            onChange={e => setFormData({ ...formData, phone: e.target.value })} 
+          />
         </div>
 
         {showTopic && <div className="space-y-2">
             <Label htmlFor="contact_topic">What can we help you with? *</Label>
-            <Select value={formData.topic} onValueChange={value => setFormData({
-          ...formData,
-          topic: value
-        })} required>
-              <SelectTrigger id="contact_topic" className="bg-background">
+            <Select 
+              value={formData.topic} 
+              onValueChange={value => {
+                setFormData({ ...formData, topic: value });
+                if (errors.topic) setErrors({ ...errors, topic: "" });
+              }}
+              required
+            >
+              <SelectTrigger 
+                id="contact_topic" 
+                className={`bg-background ${errors.topic ? "border-destructive" : ""}`}
+              >
                 <SelectValue placeholder="Select a topic" />
               </SelectTrigger>
               <SelectContent className="bg-card border border-border z-50">
@@ -224,20 +279,31 @@ const ContactForm = ({
                   </SelectItem>)}
               </SelectContent>
             </Select>
+            {errors.topic && <p className="text-xs text-destructive mt-1">{errors.topic}</p>}
           </div>}
 
         <div className="space-y-2">
           <Label htmlFor="contact_message">Your Message *</Label>
-          <Textarea id="contact_message" placeholder="Tell us what you need help with..." rows={6} value={formData.message} onChange={e => setFormData({
-          ...formData,
-          message: e.target.value
-        })} required className="resize-none" />
+          <Textarea 
+            id="contact_message" 
+            placeholder="Tell us what you need help with..." 
+            rows={6} 
+            value={formData.message} 
+            onChange={e => {
+              setFormData({ ...formData, message: e.target.value });
+              if (errors.message) setErrors({ ...errors, message: "" });
+            }}
+            className={`resize-none ${errors.message ? "border-destructive" : ""}`}
+            required 
+          />
+          {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
         </div>
 
-        <ConsentRow checked={formData.consent} onCheckedChange={checked => setFormData({
-        ...formData,
-        consent: checked
-      })} required id="contact_consent" />
+        <ConsentRow 
+          checked={formData.consent} 
+          onCheckedChange={checked => setFormData({ ...formData, consent: checked })} 
+          id="contact_consent" 
+        />
 
         <Button type="submit" variant="primary" size="lg" className="w-full" disabled={isSubmitting}>
           {isSubmitting ? <>
