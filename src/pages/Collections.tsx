@@ -62,12 +62,60 @@ const Collections = () => {
     return juuceImage; // fallback to juuce image
   };
 
+  // Define the exact order from the live site
+  const collectionOrder = [
+    'aromaganic',
+    'christmas',
+    'clearance',
+    'accessories',
+    'hair-pinns-accessories',
+    'island',
+    'island-vibes',
+    'juuce',
+    'botanical',
+    'poppet',
+    'locks',
+    'pure',
+    'organic',
+    'qiqi',
+    'perfect',
+    'pony',
+    'wet-brush',
+    'detangler'
+  ];
+
+  const sortCollections = (collections: ShopifyCollection[]) => {
+    return [...collections].sort((a, b) => {
+      const aHandle = a.handle.toLowerCase();
+      const bHandle = b.handle.toLowerCase();
+      const aTitle = a.title.toLowerCase();
+      const bTitle = b.title.toLowerCase();
+      
+      // Find position based on handle or title match
+      const aPos = collectionOrder.findIndex(term => 
+        aHandle.includes(term) || aTitle.includes(term)
+      );
+      const bPos = collectionOrder.findIndex(term => 
+        bHandle.includes(term) || bTitle.includes(term)
+      );
+      
+      // If neither found, maintain original order
+      if (aPos === -1 && bPos === -1) return 0;
+      // If only one found, prioritize it
+      if (aPos === -1) return 1;
+      if (bPos === -1) return -1;
+      // Both found, sort by position
+      return aPos - bPos;
+    });
+  };
+
   useEffect(() => {
     const fetchCollections = async () => {
       try {
         setIsLoading(true);
         const data = await getAllCollections(20);
-        setCollections(data);
+        const sortedData = sortCollections(data);
+        setCollections(sortedData);
         setError(null);
       } catch (err) {
         console.error("Error fetching collections:", err);
