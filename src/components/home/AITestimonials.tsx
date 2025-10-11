@@ -39,7 +39,7 @@ const AITestimonials = () => {
               <p className="text-sm mb-3 leading-relaxed text-text">
                 "{testimonial.text}"
               </p>
-              <p className="text-xs font-semibold text-muted">
+              <p className="text-xs font-semibold text-muted-foreground">
                 - {testimonial.author}
               </p>
             </div>
