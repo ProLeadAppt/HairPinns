@@ -114,7 +114,7 @@ const AIAgentsCTA = () => {
       <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/20">
         <div className="text-center">
           <div className="text-xl font-bold text-primary-foreground">
-            &lt;30s
+            &lt;5s
           </div>
           <div className="text-xs text-primary-foreground/70">
             Response Time

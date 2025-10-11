@@ -186,7 +186,7 @@ const FeatureStrip = () => {
               <div className="text-sm text-primary-foreground/90">Always Available</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1 text-primary-foreground">&lt;30s</div>
+              <div className="text-3xl font-bold mb-1 text-primary-foreground">&lt;5s</div>
               <div className="text-sm text-primary-foreground/90">Instant Answers</div>
             </div>
             <div>
