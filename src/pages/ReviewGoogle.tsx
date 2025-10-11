@@ -1,43 +1,101 @@
-import { useLocation, Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { ExternalLink, ArrowLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Heart, Sparkles } from "lucide-react";
-import { googleReviewsUrl } from "@/data/reviews";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import confetti from "canvas-confetti";
+import { soundEffects } from "@/lib/soundEffects";
+import { haptics } from "@/lib/haptics";
 
 const ReviewGoogle = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const rating = location.state?.rating || 5;
+  const [socialProofCount, setSocialProofCount] = useState(847);
+
+  // Parallax effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useTransform(mouseY, [-300, 300], [3, -3]);
+  const rotateY = useTransform(mouseX, [-300, 300], [-3, 3]);
 
   useEffect(() => {
-    // Celebration confetti on mount
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = document.querySelector('.google-card')?.getBoundingClientRect();
+      if (rect) {
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        mouseX.set(e.clientX - centerX);
+        mouseY.set(e.clientY - centerY);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  useEffect(() => {
+    // Celebration confetti and sound on mount
+    soundEffects.playCelebration();
+    haptics.success();
+    
     const duration = 2000;
     const end = Date.now() + duration;
+    const colors = ['#8B4A8B', '#E7D2EE', '#773E77', '#5D2C5D'];
 
-    const frame = () => {
+    (function frame() {
       confetti({
-        particleCount: 2,
+        particleCount: 5,
         angle: 60,
         spread: 55,
         origin: { x: 0 },
-        colors: ['#8B4A8B', '#E7D2EE', '#773E77'],
+        colors: colors,
       });
       confetti({
-        particleCount: 2,
+        particleCount: 5,
         angle: 120,
         spread: 55,
         origin: { x: 1 },
-        colors: ['#8B4A8B', '#E7D2EE', '#773E77'],
+        colors: colors,
       });
 
       if (Date.now() < end) {
         requestAnimationFrame(frame);
       }
+    })();
+
+    // Animate social proof counter
+    const startCount = 840;
+    const endCount = 847;
+    const duration2 = 2000;
+    const startTime = Date.now();
+
+    const animate = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / duration2, 1);
+      const current = Math.floor(startCount + (endCount - startCount) * progress);
+      setSocialProofCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
     };
-    frame();
+
+    animate();
   }, []);
+
+  const handleGoogleReview = () => {
+    soundEffects.playSuccess();
+    haptics.medium();
+    window.open("https://g.page/r/CX-F0vOcpJLhEBM/review", "_blank");
+  };
+
+  const handleGoHome = () => {
+    soundEffects.playClick();
+    haptics.light();
+    navigate("/");
+  };
 
   return (
     <>
@@ -55,8 +113,8 @@ const ReviewGoogle = () => {
               key={i}
               className="absolute"
               initial={{ 
-                x: Math.random() * window.innerWidth, 
-                y: Math.random() * window.innerHeight,
+                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 scale: 0,
                 opacity: 0 
               }}
@@ -77,17 +135,19 @@ const ReviewGoogle = () => {
         </div>
 
         <motion.div 
-          className="w-full max-w-lg relative z-10"
-          initial={{ x: "100%", opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ 
-            type: "spring", 
-            stiffness: 100, 
-            damping: 20,
-            duration: 0.6 
+          className="w-full max-w-2xl relative z-10 google-card"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+          style={{ 
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d"
           }}
         >
-          <div className="bg-surface/80 backdrop-blur-xl rounded-card shadow-[0_8px_40px_rgba(139,74,139,0.15)] p-8 md:p-12 text-center border border-accent/30 relative overflow-hidden">
+          <div className="bg-surface/90 backdrop-blur-xl rounded-card shadow-[0_12px_50px_rgba(139,74,139,0.2)] p-8 md:p-12 text-center border border-accent/40 relative overflow-hidden"
+            style={{ transform: "translateZ(30px)" }}
+          >
             {/* Animated gradient border effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-brand-500/20 via-accent/20 to-brand-500/20 opacity-50 animate-shimmer" 
                  style={{ backgroundSize: '200% 100%' }} />
@@ -128,83 +188,101 @@ const ReviewGoogle = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <h1 className="text-h2-lg md:text-[2rem] font-heading text-heading mb-4">
+                <h1 className="text-h2-lg md:text-[2.5rem] font-heading text-heading mb-4">
                   Awesome! Glad You Loved It
                 </h1>
-                <p className="text-lg text-muted max-w-md mx-auto">
-                  Would you mind sharing your experience on Google?
-                </p>
               </motion.div>
 
-              {/* CTA Button with breathing animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mb-8"
+            >
+              <p className="text-lg text-muted mb-4 max-w-lg mx-auto">
+                Your {rating}-star experience means the world to us! Share it on Google to help other clients discover Hair Pinns.
+              </p>
+              
+              {/* Social Proof */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6, type: "spring" }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 text-sm text-muted"
+              >
+                <motion.span
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  💜
+                </motion.span>
+                <span>
+                  Join <strong className="text-brand-500">{socialProofCount}+</strong> happy clients
+                </span>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <Button
-                  asChild
+                  onClick={handleGoogleReview}
                   size="lg"
-                  className="w-full md:w-auto text-lg px-8 py-6 mb-6 shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group animate-breathing"
+                  className="group relative overflow-hidden bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8 py-6"
                 >
-                  <a
-                    href={googleReviewsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2"
-                  >
-                    {/* Shimmer effect on hover */}
-                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                    
-                    <span className="relative z-10">Leave a Google Review</span>
-                    <ExternalLink className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    animate={{ x: ['-200%', '200%'] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  />
+                  
+                  <span className="relative z-10 flex items-center gap-2">
+                    Leave Google Review
+                    <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </span>
                 </Button>
               </motion.div>
 
-              {/* Thank You Note with floating hearts */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  onClick={handleGoHome}
+                  variant="outline"
+                  size="lg"
+                  className="text-brand-500 border-brand-500/30 hover:bg-brand-500/5 text-lg px-8 py-6"
+                >
+                  <ArrowLeft className="w-5 h-5 mr-2" />
+                  Back to Home
+                </Button>
+              </motion.div>
+            </motion.div>
+
+              {/* Thank You Note */}
               <motion.div 
-                className="bg-accent/20 rounded-btn p-4 mb-6 border border-accent relative overflow-hidden"
+                className="bg-accent/20 rounded-btn p-4 border border-accent relative overflow-hidden"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
+                transition={{ delay: 1.1 }}
               >
-                <div className="absolute inset-0 pointer-events-none">
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute"
-                      initial={{ bottom: -20, left: `${30 + i * 20}%` }}
-                      animate={{ 
-                        bottom: "100%",
-                        y: [-10, 0, -10],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: i * 0.5,
-                      }}
-                    >
-                      <Heart className="w-3 h-3 fill-brand-500/30 text-brand-500/30" />
-                    </motion.div>
-                  ))}
-                </div>
-                
                 <p className="text-sm text-foreground flex items-center justify-center gap-2 relative z-10">
-                  <Heart className="w-4 h-4 fill-brand-500 text-brand-500" />
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    💜
+                  </motion.span>
                   Your support helps us grow – thank you!
                 </p>
-              </motion.div>
-
-              {/* Secondary Action */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-              >
-                <Button variant="outline" asChild className="w-full md:w-auto hover:scale-105 transition-transform">
-                  <Link to="/">Return Home</Link>
-                </Button>
               </motion.div>
             </div>
           </div>
@@ -214,7 +292,7 @@ const ReviewGoogle = () => {
             className="text-center text-xs text-muted-foreground mt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 1.3 }}
           >
             Reviews help local businesses like ours reach more people who need our services
           </motion.p>

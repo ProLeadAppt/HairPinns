@@ -1,27 +1,86 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Helmet } from "react-helmet";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import confetti from "canvas-confetti";
+import { soundEffects } from "@/lib/soundEffects";
+import { haptics } from "@/lib/haptics";
+
+const sentimentLabels = ['Poor', 'Fair', 'Good', 'Great', 'Excellent'];
 
 const Reviews = () => {
   const navigate = useNavigate();
   const [hoveredStar, setHoveredStar] = useState<number | null>(null);
   const [selectedStar, setSelectedStar] = useState<number | null>(null);
+  
+  // Parallax effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
+  const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = document.querySelector('.review-card')?.getBoundingClientRect();
+      if (rect) {
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        mouseX.set(e.clientX - centerX);
+        mouseY.set(e.clientY - centerY);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const handleStarHover = (rating: number) => {
+    setHoveredStar(rating);
+    soundEffects.playHover();
+    haptics.light();
+  };
 
   const handleStarClick = (rating: number) => {
     setSelectedStar(rating);
+    soundEffects.playClick();
+    haptics.medium();
     
-    // Celebration for 4-5 stars
+    // Advanced confetti for 4-5 stars
     if (rating >= 4) {
-      confetti({
-        particleCount: 50,
-        spread: 60,
-        origin: { y: 0.6 },
-        colors: ['#8B4A8B', '#E7D2EE', '#773E77'],
-      });
+      soundEffects.playCelebration();
+      haptics.success();
+      
+      // Multi-burst confetti
+      const duration = 1000;
+      const end = Date.now() + duration;
+
+      const colors = ['#8B4A8B', '#E7D2EE', '#773E77', '#5D2C5D'];
+
+      (function frame() {
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.6 },
+          colors: colors,
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.6 },
+          colors: colors,
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    } else if (rating <= 2) {
+      soundEffects.playSympathy();
+      haptics.error();
     }
     
     // Delay for visual feedback
@@ -64,12 +123,19 @@ const Reviews = () => {
         </div>
 
         <motion.div 
-          className="w-full max-w-2xl relative z-10"
+          className="w-full max-w-2xl relative z-10 review-card"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
+          style={{ 
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d"
+          }}
         >
-          <div className="bg-surface/80 backdrop-blur-xl rounded-card shadow-[0_8px_40px_rgba(139,74,139,0.15)] p-8 md:p-12 text-center border border-accent/30">
+          <div className="bg-surface/80 backdrop-blur-xl rounded-card shadow-[0_8px_40px_rgba(139,74,139,0.15)] p-8 md:p-12 text-center border border-accent/30"
+            style={{ transform: "translateZ(20px)" }}
+          >
             {/* Header with staggered word animation */}
             <motion.div 
               className="mb-12"
@@ -95,19 +161,20 @@ const Reviews = () => {
             </motion.div>
 
             {/* Star Rating with sequential appearance */}
-            <div className="flex justify-center gap-3 md:gap-6 mb-8">
-              <AnimatePresence>
-                {[1, 2, 3, 4, 5].map((star) => {
-                  const isHovered = hoveredStar !== null && star <= hoveredStar;
-                  const isSelected = selectedStar !== null && star <= selectedStar;
-                  const shouldFill = isSelected || isHovered;
+            <div className="flex flex-col items-center gap-6 mb-8">
+              <div className="flex justify-center gap-3 md:gap-6">
+                <AnimatePresence>
+                  {[1, 2, 3, 4, 5].map((star) => {
+                    const isHovered = hoveredStar !== null && star <= hoveredStar;
+                    const isSelected = selectedStar !== null && star <= selectedStar;
+                    const shouldFill = isSelected || isHovered;
 
-                  return (
-                    <motion.button
-                      key={star}
-                      onClick={() => handleStarClick(star)}
-                      onMouseEnter={() => setHoveredStar(star)}
-                      onMouseLeave={() => setHoveredStar(null)}
+                    return (
+                      <motion.button
+                        key={star}
+                        onClick={() => handleStarClick(star)}
+                        onMouseEnter={() => handleStarHover(star)}
+                        onMouseLeave={() => setHoveredStar(null)}
                       className={cn(
                         "transform transition-all duration-200 hover:scale-110 active:scale-95 relative",
                         "focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg p-2",
@@ -146,9 +213,26 @@ const Reviews = () => {
                             : "text-border hover:text-brand-500/50"
                         )}
                       />
-                    </motion.button>
-                  );
-                })}
+                      </motion.button>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+
+              {/* Sentiment Label */}
+              <AnimatePresence mode="wait">
+                {(hoveredStar || selectedStar) && (
+                  <motion.div
+                    key={hoveredStar || selectedStar}
+                    initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-lg font-medium text-brand-500"
+                  >
+                    {sentimentLabels[(hoveredStar || selectedStar)! - 1]}
+                  </motion.div>
+                )}
               </AnimatePresence>
             </div>
 
