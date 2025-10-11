@@ -8,6 +8,15 @@ import pureEnds from "@/assets/blog/pure-precious-ends.png";
 import hairspray from "@/assets/blog/juuce-hairspray-collection.png";
 import wetBrush from "@/assets/blog/wet-brush-collection.png";
 import saunaInterior from "@/assets/blog/infrared-sauna-interior.png";
+import qiqiComparison from "@/assets/blog/qiqi-vega-comparison.png";
+import hydrationBundle from "@/assets/blog/hydration-bundle.png";
+import walnutScrub from "@/assets/blog/walnut-scrub-hero.png";
+import winterHero from "@/assets/blog/winter-hair-care.png";
+import lamellarRange from "@/assets/blog/lamellar-vitality-range.png";
+import heatProtection from "@/assets/blog/heat-protection-products.png";
+import wetBrushGlitter from "@/assets/blog/wet-brush-glitter.png";
+import juuceQuiz from "@/assets/blog/juuce-quiz-hero.png";
+import saunaExperience from "@/assets/blog/infrared-sauna-experience.png";
 
 export interface BlogPost {
   slug: string;
@@ -434,6 +443,440 @@ export const blogPosts: BlogPost[] = [
           }
         ]
       }
+    }
+  },
+  {
+    slug: "qiqi-vega-vs-nanoplasty-whats-the-difference",
+    title: "QIQI Vega vs Nanoplasty: What's the Difference?",
+    excerpt: "If you're looking for smoother, frizz-free hair that lasts, learn the key differences between QIQI Vega and nanoplasty treatments.",
+    category: "Treatments",
+    date: "June 12, 2025",
+    readTime: "7 min read",
+    image: qiqiComparison,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're looking for smoother, frizz-free hair that lasts, you've probably come across both QIQI Vega and nanoplasty treatments. While they may seem similar at first glance, these treatments are very different in how they work, how they affect your hair, and the kind of results you can expect. At Hair Pinns, we offer QIQI Vega treatments because we believe in giving our clients reliable, safe, and long-lasting results without compromising the health of your hair.",
+      sections: [
+        {
+          heading: "✅ What Is QIQI Vega?",
+          content: "QIQI Vega is a next-generation smoothing system that uses acid-based amino technology to realign the hair structure without harsh chemicals. It's formaldehyde-free, safe on coloured and bleached hair, and customisable – so you can choose whether to keep some wave, reduce frizz, or go sleek and straight."
+        },
+        {
+          heading: "✅ What Is Nanoplasty?",
+          content: "Nanoplasty is often promoted as a \"natural straightening\" alternative. It typically contains amino acids, oils, and acidic compounds, which smooth the hair. While some brands are formaldehyde-free, others may contain aldehyde derivatives that can be harsh on the hair and scalp."
+        },
+        {
+          heading: "Side-by-Side Comparison",
+          content: "✨ 1. What's the goal of the treatment?\nQIQI Vega is designed to smooth, de-frizz, and straighten your hair while keeping it strong and healthy. It's fully customisable – you can go sleek and straight or just soften your natural curl.\nNanoplasty aims to straighten and tame frizz but usually leaves a more natural, soft straight result. It's not always predictable and can vary a lot by brand.\n\n✨ 2. Is it safe on coloured or bleached hair?\nQIQI Vega is perfect for blonde, bleached, or coloured hair. It's gentle and helps rebuild your strands while smoothing them.\nNanoplasty can be too harsh on damaged or bleached hair, depending on what's in the formula.\n\n✨ 3. What's in it?\nQIQI Vega is completely formaldehyde-free and uses acid-based amino technology – no fumes, no nasties.\nNanoplasty is often sold as formaldehyde-free, but some brands still contain aldehyde derivatives or strong acids. Always check the ingredients!\n\n✨ 4. How long does it last?\nQIQI results last about 4–6 months, fading gradually with no harsh regrowth.\nNanoplasty lasts around 3–6 months, depending on the brand and how well you care for it at home.\n\n✨ 5. What about styling flexibility?\nAfter QIQI, you can curl, wave, or style your hair however you like. You're not locked into one look.\nNanoplasty can make hair so soft and straight that it's harder to hold curls or volume, especially if the hair was tightly curled beforehand.\n\n✨ 6. Any downtime or rules after?\nWith QIQI, there's no wait time. You can wash, colour, or style your hair the same day.\nMost nanoplasty treatments require you to wait 1 to 3 days before washing, depending on the formula.\n\n✨ 7. Does it smell or produce fumes?\nQIQI has little to no odour during the treatment and is comfortable to sit through.\nNanoplasty can sometimes have strong smells or produce fumes depending on the brand."
+        },
+        {
+          heading: "💡 Why We Love QIQI at Hair Pinns",
+          content: "At Hair Pinns, we've seen amazing transformations using QIQI Vega. The results speak for themselves – silky, manageable, healthy-looking hair with long-lasting frizz control and smoothness. It's perfect for:\n\n• Curly or unruly hair that needs softening\n• Clients wanting a non-toxic alternative to traditional straightening\n• Coloured or lightened hair that needs gentle care\n• People who want low-maintenance, polished hair every day\n\nAnd best of all? There's no downtime – you can wash, style, or colour your hair straight after the treatment."
+        },
+        {
+          heading: "🙌 Trust in Experience",
+          content: "We do a lot of QIQI treatments at Hair Pinns, and we love taking the time to tailor each session to suit your hair type, goals, and lifestyle. With the right aftercare and advice, your hair will stay smooth, healthy, and beautiful for months.\n\nIf you're still wondering which treatment is right for you, book a free consultation with us and we'll guide you every step of the way.\n\n💬 Have More Questions?\nFeel free to DM us or drop your questions in the comments – we love educating our clients and helping you make confident hair choices."
+        }
+      ]
+    }
+  },
+  {
+    slug: "quench-your-hairs-thirst-hydration-bundle",
+    title: "Quench Your Hair's Thirst This Winter with Our Hydration Bundle",
+    excerpt: "Dry, dull, or brittle hair? It might be dehydrated. Transform thirsty strands with our Hydration Bundle featuring Juuce's moisture-rich must-haves.",
+    category: "Products",
+    date: "June 11, 2025",
+    readTime: "4 min read",
+    image: hydrationBundle,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Dry, dull, or brittle hair? It might be dehydrated — and there's a difference between dryness and dehydration. Dry hair lacks oil, while dehydrated hair lacks moisture. This season, it's time to deeply hydrate from root to tip with our Hydration Bundle, featuring some of our favourite moisture-rich must-haves from Juuce.",
+      sections: [
+        {
+          heading: "💧 What's Inside the Hydration Bundle?",
+          content: "1. Juuce Hyaluronic Hydrate Shampoo\nThis shampoo is your first step toward serious hydration. Packed with hyaluronic acid — a moisture magnet that holds 1000x its weight in water — it gently cleanses without stripping your natural oils.\n\n2. Juuce Hyaluronic Hydrate Conditioner\nPair it with the hydrate conditioner to lock in moisture, smooth rough cuticles, and detangle like a dream. Your hair will feel softer, more elastic, and easier to manage.\n\n3. Super Soft Hydrating Mask\nA weekly treat your hair will love. This ultra-nourishing mask delivers deep hydration and softness, perfect for brittle or stressed-out strands. Apply it after shampooing, leave it in for 5–10 minutes, and rinse for buttery smooth results.\n\n4. Juuce Reviva Foam\nThe ultimate leave-in moisture booster. Lightweight yet powerful, this foam hydrates, tames frizz, and gives your hair a silky finish without weighing it down. It also protects against environmental stress and heat."
+        },
+        {
+          heading: "🌬️ Why Hydration Matters (Especially in Winter)",
+          content: "Winter air, indoor heating, and even hot showers can leave your hair parched. Hydrated hair is:\n\n✔️ Softer\n✔️ More manageable\n✔️ Less prone to breakage and frizz\n✔️ Shinier and healthier overall\n\nThink of it as a glass of water for your hair — but better."
+        },
+        {
+          heading: "💙 The Hair Pinns Hydration Routine",
+          content: "Here's how to get the best out of your bundle:\n\n1. Cleanse: Start with the Hydrate Shampoo to remove build-up and prep the hair. Repeat as necessary.\n2. Condition: Apply the Hydrate Conditioner mid-lengths to ends and leave for 2–3 minutes.\n3. Treat: Once a week, swap out your conditioner for the Super Soft Mask for a deeper drink.\n4. Protect + Finish: Work the Reviva Foam through towel-dried hair before styling or air-drying."
+        },
+        {
+          heading: "✨ Shop the Bundle & Save",
+          content: "Individually, these products are heroes. Together, they're a hydration powerhouse. When you buy them as a bundle, you also save compared to buying each item separately.\n\n🛍️ Grab the Hydration Bundle here and give your hair the drink it's been craving."
+        }
+      ],
+      productModule: {
+        title: "Shop Juuce Hydration Products",
+        products: [
+          {
+            name: "Hydration Bundle",
+            link: "/collections/juuce",
+            description: "Complete moisture system"
+          },
+          {
+            name: "Browse Juuce Range",
+            link: "/collections/juuce",
+            description: "Salon-quality hair care"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "pure-walnut-scrub-scalp-detox",
+    title: "Pure Walnut Scrub – The Scalp Detox You Didn't Know You Needed",
+    excerpt: "When was the last time you gave your scalp a proper detox? Meet the Pure Walnut Scrub Hair & Scalp Pre-Wash Treatment.",
+    category: "Products",
+    date: "June 11, 2025",
+    readTime: "3 min read",
+    image: walnutScrub,
+    author: "Jena Pinn",
+    content: {
+      introduction: "When was the last time you gave your scalp a proper detox? If your answer is \"never\" or \"I don't remember,\" it's time to meet the Pure Walnut Scrub Hair & Scalp Pre-Wash Treatment.",
+      sections: [
+        {
+          heading: "What Is It?",
+          content: "This gentle, natural scrub is designed to be used before shampooing. Made with crushed walnut shells, it exfoliates the scalp to remove product build-up, oil, dry skin, and other impurities that your regular shampoo can't always tackle."
+        },
+        {
+          heading: "Why You'll Love It:",
+          content: "• Deep-cleansing action clears blocked follicles and refreshes the scalp\n• Boosts circulation, encouraging healthy hair growth\n• Improves product absorption—your treatments and shampoos work better after a clean sweep\n• Reduces itchiness and flaking\n• Vegan, cruelty-free, and free from sulfates and parabens"
+        },
+        {
+          heading: "Why You Need It:",
+          content: "Your scalp is skin too—and just like your face, it needs exfoliating. If you're using dry shampoo, styling products, or treatments regularly, this scrub helps reset everything so your scalp can breathe and your hair can thrive."
+        },
+        {
+          heading: "How to Use:",
+          content: "Apply before shampooing on damp hair. Massage gently into the scalp, then rinse and follow with your usual Pure shampoo and conditioner. Use once a week for best results.\n\n🛍 Ready to refresh your scalp?\n\nGrab the Pure Walnut Scrub now and feel the difference from your roots up.\n\nhttps://hairpinns.com/collections/pure-certified-organic-hair-care/products/walnut-scrub-hair-scalp-pre-wash-treatment"
+        }
+      ],
+      productModule: {
+        title: "Shop Pure Scalp Care",
+        products: [
+          {
+            name: "Pure Walnut Scrub",
+            link: "/collections/pure-organic",
+            description: "Pre-wash scalp treatment"
+          },
+          {
+            name: "Browse Pure Collection",
+            link: "/collections/pure-organic",
+            description: "Organic hair care range"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "truth-about-shampoo-after-straight-up-treatment",
+    title: "The Truth About Shampoo After Straight Up Treatment",
+    excerpt: "As a stylist, I want my clients to get the best results from their QIQI Straight Up Treatment. Here's what you really need to know about aftercare.",
+    category: "Treatments",
+    date: "May 25, 2025",
+    readTime: "5 min read",
+    image: qiqiComparison,
+    author: "Jena Pinn",
+    content: {
+      introduction: "I genuinely want my clients to get the best, longest-lasting results from their QIQI Straight Up Treatment. As a stylist, I never want to overwhelm my clients with product rules—but when it comes to QIQI Vega (Straight Up Treatment), aftercare really does matter. I recommend this treatment because it transforms your hair—soft, smooth, frizz-free—and I want you to enjoy those results for as long as possible. But here's the thing: the wrong shampoo can undo it—fast. And I've seen it happen more than once.",
+      sections: [
+        {
+          heading: "Why Can One Wash Make a Difference?",
+          content: "If you've just had your QIQI treatment and your hair suddenly feels frizzy again after one wash, chances are the shampoo you used wasn't compatible—even if it claimed to be \"natural\" or \"hydrating.\"\n\nWhat I always look out for are two ingredients that can affect results:\n\nSulphates – harsh cleansing agents that strip the hair\nSodium chloride (salt) – often used as a thickener in shampoos, but it can break down smoothing treatments\n\nEven one use of a shampoo with salt or sulphates can cause your hair to feel rougher, puffier, or less sleek; or worse- strip it out completely."
+        },
+        {
+          heading: "It's Not About Selling You Stuff—It's About Protecting Your Results",
+          content: "I only recommend salt- and sulphate-free products because I've tested them on my own clients and seen the difference. I want your QIQI Straight Up treatment to last as long as possible—not fade after a few washes."
+        },
+        {
+          heading: "My Go-To Aftercare Recommendations:",
+          content: "QIQI - The Shampoo, Conditioner & definitely the super soaker masque– made to extend and protect the treatment with longer lasting results.\nPure Haircare Goddess or Miracle Renew – gentle, clean, and smoothing.\nJuuce Heat Shield or Solar Enz – protects your hair from heat styling without buildup.\nJuuce Botanic Oil Serum - to keep that frizz away & add extra shine ✨\n\nThese aren't just \"nice to have\" products—they're the key to keeping your hair feeling the way it did when you left the salon."
+        },
+        {
+          heading: "Not Sure What's Safe? Just Ask Me!",
+          content: "If you're unsure whether a shampoo is 'Straight Up Treatment' safe, send me a photo of the ingredients or bring it to your next appointment. I'm more than happy to check—it's not about pushing products, it's about making sure you get the full value out of what you've already invested in.\n\nLet's keep your hair smooth, shiny, and manageable for as long as possible. You deserve it.\n\nHave a Happy Hair Day\n\nJena at Hair Pinns 💜"
+        }
+      ],
+      productModule: {
+        title: "Recommended Aftercare Products",
+        products: [
+          {
+            name: "QIQI Aftercare Range",
+            link: "/collections/qiqi",
+            description: "Treatment-safe shampoo & conditioner"
+          },
+          {
+            name: "Pure Goddess Range",
+            link: "/collections/pure-organic",
+            description: "Gentle, sulphate-free care"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "winter-weather-hair-care-sydney",
+    title: "Winter Weather Hair Care in Sydney – Why It Matters & How to Protect Your Hair",
+    excerpt: "As chilly winds and heavy rains roll into Sydney, learn how to keep your hair healthy, hydrated, and fabulous all season long.",
+    category: "Seasonal",
+    date: "May 22, 2025",
+    readTime: "6 min read",
+    image: winterHero,
+    author: "Jena Pinn",
+    content: {
+      introduction: "As the chilly winds and heavy rains roll into Sydney, our hair often bears the brunt of the season. Winter can leave strands dry, frizzy, and lacking shine—but with the right care (and products), your hair can stay healthy, hydrated, and looking fabulous all season long.",
+      sections: [
+        {
+          heading: "Why Does The Winter Weather Affect Your Hair?",
+          content: "• Cold air = Dry hair. The cold, dry air outside combined with heated indoor environments can strip moisture from your strands.\n• Rain = Frizz. Humidity spikes during heavy rain, which lifts the hair cuticle and causes unwanted frizz.\n• Lack of sun = Dullness. With less sunshine and vitamin D, your scalp can become sluggish, leading to a lackluster look.\n• Hot showers = More damage. Long, hot showers in winter feel great, but they can weaken the hair and scalp barrier, making it prone to dryness and breakage."
+        },
+        {
+          heading: "How to Care for Your Hair in Winter (Step-by-Step Guide)",
+          content: "1. Hydrate from the start\nSwitch to a nourishing shampoo and conditioner that locks in moisture and prevents frizz.\n\nTry:\n• Aromaganic Smooth Shampoo & Conditioner – Great for de-frizzing and smoothing out unruly winter strands.\n• Juuce Hyaluronic Hydrate or Softly Nourish Shampoo & Conditioner – Ideal if your hair is dry, coloured, or chemically treated.\n\n2. Use a weekly hair treatment\nGive your hair a deep moisture boost once a week to restore softness and strength.\n\nTry:\n• Juuce Super Soft Hydrating Treatment – Rich in proteins and moisture to rebuild dry, brittle hair.\n• Pure Sacred Mask- this thick formula will combat strands lacking moisture\n\n3. Protect from heat (and weather!)\nIf you're blow-drying or styling during winter, don't skip heat protection. It also helps to create a barrier against moisture in the air.\n\nTry:\n• Juuce Heat Shield – A thermal protector that also defends against frizz.\n• Pure Guardian Angel – Lightweight but powerful, perfect for daily use.\n• Juuce Dry Heat Guard – Great for use with dry tools like curling irons or straighteners.\n\n4. Embrace air-drying when possible\nGive your hair a break from styling tools when you can. Let it air-dry partially, then finish with a low heat setting.\n\n5. Avoid over-washing\nWashing too often can dry out your scalp. Stick to 2–3 times a week and always follow with conditioner.\n\n6. Combat static with leave-in products\nWinter static is real! Use leave-in conditioners or anti-frizz sprays to keep hair smooth.\n\nTry:\n• Juuce Solar Enz – Not just for summer! This leave-in protects from environmental stress and keeps hair soft.\n• Pure Precious Ends- lightweight moisture for all hair types"
+        },
+        {
+          heading: "Bonus Tips for Rainy Sydney Days",
+          content: "• Carry a hair-friendly umbrella – Keeps your style intact and protects from sudden downpours.\n• Use satin or silk-lined beanies – Cotton or wool hats can rough up your hair; satin linings reduce frizz and breakage.\n• Don't tie up wet hair – Especially when it's raining, avoid putting your hair in tight buns or ponytails if it's damp. This can cause breakage and scalp stress."
+        },
+        {
+          heading: "Wrap-Up",
+          content: "Winter hair care isn't just about fighting the cold—it's about locking in hydration, protecting your strands, and using the right products to keep your hair thriving. All the products mentioned are available now at HairPinns.com and are salon-trusted for real results.\n\nStay cozy, stay dry, and show your hair some extra love this winter ❄️"
+        }
+      ],
+      productModule: {
+        title: "Winter Hair Care Essentials",
+        products: [
+          {
+            name: "Juuce Hydrate Range",
+            link: "/collections/juuce",
+            description: "Deep moisture for winter"
+          },
+          {
+            name: "Heat Protection",
+            link: "/collections/treatments",
+            description: "Shield from styling damage"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "what-is-lamellar-vitality-technology",
+    title: "What is Lamellar Vitality Technology?",
+    excerpt: "Discover the cutting-edge lamellar technology that's changing hair care with ultra-lightweight, targeted repair and instant shine.",
+    category: "Education",
+    date: "May 20, 2025",
+    readTime: "5 min read",
+    image: lamellarRange,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you've been hearing about lamellar technology and wondering what it actually does for your hair, you're not alone. This cutting-edge innovation is changing the way we treat dry, damaged, or stressed-out hair—offering instant results without the heavy feeling some treatments leave behind.",
+      sections: [
+        {
+          heading: "What Is Lamellar Technology in Hair Care?",
+          content: "Lamellar technology refers to a liquid hair treatment made up of ultra-lightweight, microscopic layers (or \"lamellae\") that carry active ingredients. These layers are smart—they target specific areas along the hair strand that need the most care, such as dry or damaged zones. Think of them as tiny repair patches that deliver moisture, proteins, and nutrients exactly where they're needed."
+        },
+        {
+          heading: "Why is it different from traditional treatments?",
+          content: "Unlike heavier masks and conditioners that coat the entire strand, lamellar treatments absorb quickly and don't weigh the hair down. That means you get smoother, shinier, healthier-looking hair in just minutes—without losing volume or bounce.\n\nPerfect for:\n• Dry or over-processed hair\n• Clients who colour, bleach, or heat-style regularly\n• Anyone looking for fast, lightweight hydration and repair"
+        },
+        {
+          heading: "🌟 Pure Lamellar Vitality Range",
+          content: "The Pure Lamellar Vitality range is a luxurious haircare collection that utilizes advanced Lamellar Bioscience technology to deliver targeted hydration and nourishment. Enriched with organic Jojoba and Sunflower oils, this range is designed to enhance hair vitality, providing immediate shine, softness, and manageability. All products are vegan, cruelty-free, and free from sulphates, parabens, and gluten.\n\nLamellar Vitality Shampoo\nA gentle cleansing shampoo that revitalizes hair with every wash, enhancing softness and bounce. It strengthens hair from within, reducing breakage and enhancing overall hair vitality.\n\nLamellar Vitality Conditioner\nA silky, creamy conditioner that enhances manageability and maintains bounce, leaving hair looking vibrant and healthy.\n\nLamellar Vitality Butter Mask Treatment\nA luxurious butter mask that provides softness and instant shine with anti-frizz control. It revitalizes and restores strength while leaving hair smooth and soft.\n\nLamellar Vitality Glass Hair Treatment\nA fast-acting, weightless hydration conditioning elixir that provides silky softness, reflective shine, and an instant illuminating effect for a glass-like finish.\n\nLuminous Vitality Leave-In Silky Foam\nA weightless leave-in silky foam that enhances body, movement, and shine while protecting hair from heat styling. Formulated with vegan BioBond, it strengthens and repairs hair, leaving it soft, luminous, and full of life."
+        },
+        {
+          heading: "Shop the Range",
+          content: "We now stock the full Pure Lamellar Range online—packed with certified organic, high-performance formulas designed to deliver instant results. If you're after salon-quality shine, smoothness, and strength at home, this range is your must-have.\n\nShop the Lamellar Range here"
+        }
+      ],
+      productModule: {
+        title: "Shop Pure Lamellar Range",
+        products: [
+          {
+            name: "Lamellar Vitality Collection",
+            link: "/collections/pure-organic",
+            description: "Complete lamellar system"
+          },
+          {
+            name: "Glass Hair Treatment",
+            link: "/collections/pure-organic",
+            description: "Instant shine & smoothness"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "why-heat-protection-is-essential",
+    title: "🔥 Why Heat Protection Is Essential for Healthy Hair",
+    excerpt: "If you love your hair tools, then heat protectant needs to be your hair's best friend. Learn how to shield your strands from damage.",
+    category: "Education",
+    date: "May 18, 2025",
+    readTime: "5 min read",
+    image: heatProtection,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you love your hair tools—whether it's your trusty blow dryer, straightener, or curling wand—then a heat protectant needs to be your hair's best friend. High heat can cause irreversible damage to the hair shaft, leading to dryness, split ends, and breakage. The good news? Using the right heat protection products can make all the difference.",
+      sections: [
+        {
+          heading: "What Does Heat Really Do to Your Hair?",
+          content: "When you apply heat to your hair without protection, it strips moisture from your strands, weakens your hair's protein structure (keratin), and can even alter your natural texture over time. Think of it like sunbaking without sunscreen—your hair needs that same layer of defense."
+        },
+        {
+          heading: "Why Heat Protection Is a Must",
+          content: "• Shields Hair From Extreme Temperatures\n• Prevents Split Ends and Breakage\n• Locks in Moisture\n• Smooths Frizz and Adds Shine\n• Protects Hair Colour and Integrity"
+        },
+        {
+          heading: "How to Use a Heat Protectant Properly",
+          content: "1. Start with clean, towel-dried hair.\n2. Spray or apply your chosen heat protectant evenly from roots to ends.\n3. Comb through to ensure full coverage.\n4. Style with your heat tools as usual.\n\nNow let's look at some of the top heat protectants you can grab from Hair Pinns that will keep your hair healthy, smooth, and damage-free."
+        },
+        {
+          heading: "Our Go-To Heat Protection Heroes",
+          content: "Juuce Heat Shield 🛡️\nA weightless thermal shield that protects your hair from heat styling up to 230°C. It smooths and strengthens, helping to eliminate frizz and improve manageability.\nBest for: All hair types, especially fine to medium hair that needs lightweight protection.\n\nJuuce Solar Enz ☀️\nMore than just a heat protectant—this is your UV and environmental stress defense serum. Designed to protect hair from sun, saltwater, chlorine, and thermal heat, it's perfect for summer styling and outdoor lifestyles.\nBest for: Holiday hair care and anyone spending time in the sun or swimming.\n\nJuuce Dry Heat Guard 💂\nA thermal protector designed for dry styling. This lightweight spray forms a shield over your hair to reduce heat damage while adding softness and shine.\nBest for: Use on dry hair before straightening, curling, or re-styling between washes.\n\nPure Guardian Angel 👼🏻\nThis leave-in mist is a multitasker—it detangles, hydrates, and protects against heat while boosting shine and smoothing flyaways. It's made with certified organic ingredients and is sulphate- and paraben-free.\nBest for: Those who want a natural, nourishing approach to heat protection."
+        },
+        {
+          heading: "Final Thoughts",
+          content: "If you're styling with heat and not using a protectant, you're risking long-term damage. The products above are designed to work with your styling routine—not against it—so your hair stays healthy, shiny, and strong, no matter how hot things get.\n\nReady to shield your strands?\n\nShop heat protection now at Hair Pinns"
+        }
+      ],
+      productModule: {
+        title: "Shop Heat Protection",
+        products: [
+          {
+            name: "Juuce Heat Shield",
+            link: "/collections/juuce",
+            description: "Thermal protection up to 230°C"
+          },
+          {
+            name: "Pure Guardian Angel",
+            link: "/collections/pure-organic",
+            description: "Natural heat & UV protection"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "your-hair-deserves-the-best-wet-brush",
+    title: "Your Hair Deserves the BEST!",
+    excerpt: "Why you need the right hair brush and why we love Wet Brush Detanglers. Your choice of brush can completely change your hair health.",
+    category: "Products",
+    date: "May 09, 2025",
+    readTime: "3 min read",
+    image: wetBrushGlitter,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Did you know your choice of hair brush can completely change the health and look of your hair? Many people spend money on good shampoos, conditioners, and treatments — but forget the daily tool that touches their hair the most: the brush.",
+      sections: [
+        {
+          heading: "Using the wrong brush can cause:",
+          content: "• Breakage and split ends\n• Painful tugging, especially on wet hair\n• Frizz and rough texture\n• More shedding than necessary\n\nThat's why we always recommend investing in the right brush — and at Hair Pinns, we love and stand behind the Wet Brush Detangler range."
+        },
+        {
+          heading: "Why Wet Brush?",
+          content: "• Gentle on all hair types — straight, curly, thick, thin, fine, or coarse\n• Perfect for all ages — from little kids to adults (yes, even those with super tangly hair!)\n• Flexible, soft bristles that glide through wet or dry hair without pulling\n• Reduces breakage and pain when detangling\n• Comes in a variety of colours, shapes, and sizes so you can match your personal style"
+        },
+        {
+          heading: "Make the Switch Today",
+          content: "If you're trying to grow longer, healthier hair or just want to keep your strands strong and smooth, using the right brush is essential — and a Wet Brush is one of the simplest, most affordable changes you can make to your routine.\n\nWe carry a selection of Wet Brush Detanglers right here on HairPinns.com — treat yourself (or your kids, or your partner!) to one and feel the difference every time you brush.\n\nWet Brush Detanglers – Hair Pinns Home Hair Care"
+        }
+      ],
+      productModule: {
+        title: "Shop Wet Brush Range",
+        products: [
+          {
+            name: "Wet Brush Detanglers",
+            link: "/collections/wet-brush-detanglers",
+            description: "Gentle detangling for all ages"
+          },
+          {
+            name: "Browse Accessories",
+            link: "/collections/accessories",
+            description: "Hair care essentials"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "which-juuce-range-is-best-for-you-quiz",
+    title: "Which range is best for you?",
+    excerpt: "QUIZ: Which Juuce Shampoo & Conditioner Duo is Right for You? Your dream hair is one quiz away. Answer 7 quick questions to find your perfect match.",
+    category: "Education",
+    date: "April 20, 2025",
+    readTime: "5 min read",
+    image: juuceQuiz,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Your dream hair is one quiz away. Answer these 7 quick questions and discover your perfect Juuce match—made to suit your hair type, vibe, and lifestyle.",
+      sections: [
+        {
+          heading: "QUIZ: Which Juuce Shampoo & Conditioner Duo is Right for You?",
+          content: "1. What's your biggest hair struggle right now?\nA. Frizz and flyaways\nB. Colour fading fast\nC. Dry, rough texture\nD. Flat, lifeless hair\nE. Oily scalp or build-up\nF. Breakage and damage\nG. No major issues—just want soft, healthy hair\n\n2. What's your hair texture like?\nA. Thick, curly or unruly\nB. Colour-treated or chemically processed\nC. Coarse and dry\nD. Fine and limp\nE. Normal-to-oily\nF. Damaged from bleach, heat, or styling\nG. Balanced, normal hair\n\n3. What are your hair goals right now?\nA. Smooth, sleek hair that behaves\nB. Long-lasting colour and shine\nC. Softness and hydration\nD. Lifted roots and bounce\nE. A fresh-feeling scalp\nF. Stronger hair with less breakage\nG. Healthy, easy-to-manage hair\n\n4. How does your hair usually feel after washing?\nA. Frizzy or puffy\nB. Dull or faded\nC. Still dry or tangled\nD. Flat and heavy\nE. Greasy again within a day\nF. Fragile, stretchy, or splitting\nG. Okay, but could feel softer\n\n5. How often do you heat style your hair?\nA. Most days—it needs taming\nB. Weekly, especially after colouring\nC. Rarely—my hair's already dry\nD. Occasionally, to boost volume\nE. Almost never\nF. Constantly—I live with my straightener or curler\nG. Only for special occasions\n\n6. What's your hair care style?\nA. I need low-fuss smoothing\nB. I'll do anything to protect my colour\nC. I'm all about moisture and repair\nD. I want more volume, fast\nE. I love a clean, tingly scalp\nF. I need to undo the damage I've done\nG. I just want something gentle and effective\n\n7. What's your ideal hair vibe?\nA. Sleek, frizz-free and glossy\nB. Bright, fresh colour that lasts\nC. Hydrated, soft and manageable\nD. Big, airy volume with movement\nE. Clean scalp, clean hair\nF. Strong, healthy hair that grows\nG. Smooth and natural with minimal effort"
+        },
+        {
+          heading: "Your Results Are In…",
+          content: "Mostly A's: Juuce Miracle Smooth Duo\nFrizz? Gone. This duo smooths, softens and adds sleekness to unruly hair.\nShop Now\n\nMostly B's: Juuce Radiant Colour Duo\nSay goodbye to dull colour. Lock in shine and vibrancy with this colour-loving pair.\nShop Now\n\nMostly C's: Juuce Hyaluronic Hydrate Duo\nDry strands don't stand a chance. This duo drenches your hair in light, deep hydration.\nShop Now\n\nMostly D's: Juuce Full Volume Duo\nGet bouncy, boosted hair with this lightweight volume-enhancing duo.\nShop Now\n\nMostly E's: Juuce Peppermint Duo\nYour scalp will thank you. Clarify, refresh, and reset with this peppermint-powered duo.\nShop Now\n\nMostly F's: Juuce Bond Repair Duo\nBreakage? Split ends? This strengthening shampoo + conditioner duo rebuilds and protects.\nShop Now\n\nMostly G's: Juuce Softly Nourish Duo\nGentle, everyday hydration and balance for soft, healthy hair with zero fuss.\nShop Now\n\nNot sure or got a tie?\nMessage us on Instagram @HairPinns or pop into the salon—your perfect match might be a custom mix!\n\nBrowse all Juuce products now at HairPinns.com"
+        }
+      ],
+      productModule: {
+        title: "Shop All Juuce Ranges",
+        products: [
+          {
+            name: "Juuce Complete Collection",
+            link: "/collections/juuce",
+            description: "Find your perfect duo"
+          },
+          {
+            name: "Take the Quiz",
+            link: "/blog/which-juuce-range-is-best-for-you-quiz",
+            description: "Discover your match"
+          }
+        ]
+      }
+    }
+  },
+  {
+    slug: "infrared-sauna-for-hair-scalp-health",
+    title: "Infrared Sauna for Hair & Scalp Health—Yes, It's a Thing!",
+    excerpt: "At Hair Pinns, we combine luxury with wellness. Discover how infrared sauna sessions can work wonders for your hair and scalp health.",
+    category: "Wellness",
+    date: "April 20, 2025",
+    readTime: "4 min read",
+    image: saunaExperience,
+    author: "Jena Pinn",
+    content: {
+      introduction: "At Hair Pinns, we're all about combining luxury with wellness—and that's exactly why we've introduced infrared sauna sessions to our salon experience. You've probably heard about infrared for detox and relaxation, but did you know it can also work wonders for your hair and scalp health?",
+      sections: [
+        {
+          heading: "1. Boosts Scalp Circulation",
+          content: "Infrared heat increases blood flow to the scalp, delivering more oxygen and nutrients to your hair follicles. Translation? Healthier, stronger hair growth over time."
+        },
+        {
+          heading: "2. Supports Detox & Reduces Build-Up",
+          content: "Our scalps collect a surprising amount of product, oil, and pollution. Infrared heat helps open pores and flush out toxins, leaving your scalp cleaner and more balanced."
+        },
+        {
+          heading: "3. Strengthens Damaged Hair",
+          content: "Infrared heat is gentler and more penetrative than traditional saunas. It helps strengthen weak or chemically treated hair from the inside out—especially when paired with restorative products like our Aromaganic Q-Plex Reconstructing range."
+        },
+        {
+          heading: "4. Reduces Stress (Which Means Less Hair Loss)",
+          content: "Hair loss is often linked to stress. One of the best things you can do for your hair? Chill out. Infrared sessions calm your nervous system, helping to balance cortisol and reduce stress-induced shedding."
+        },
+        {
+          heading: "5. Pairs Perfectly With Hair Treatments",
+          content: "Want to take your salon treatment to the next level? Use one of our hair mask sachets before you get into the sauna so your deep-conditioning treatment can penetrate even better."
+        },
+        {
+          heading: "Ready to try it?",
+          content: "Ask us about adding a 45 minute infrared sauna session to your next salon visit—or book it solo for a little self-care break that your scalp will thank you for.\n\nHealthy hair starts at the root—and we're here to help you glow from the inside out."
+        }
+      ]
     }
   }
 ];
