@@ -311,12 +311,15 @@ const ProductDetail = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Left: Gallery */}
               <div className="space-y-4">
-                {/* Main Image */}
-                <div className="relative aspect-square bg-muted rounded-card overflow-hidden group">
+                {/* Main Image - Clickable */}
+                <div 
+                  className="relative aspect-square bg-muted rounded-card overflow-hidden group cursor-pointer"
+                  onClick={() => window.open(currentImg?.url, '_blank')}
+                >
                   <img
                     src={currentImg?.url || "/placeholder.svg"}
                     alt={currentImg?.altText || product.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     width="800"
                     height="800"
                   />
@@ -455,26 +458,30 @@ const ProductDetail = () => {
                   </Button>
                 </div>
 
-                {/* Description */}
-                <Tabs defaultValue="description" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="description">Description</TabsTrigger>
-                    <TabsTrigger value="details">Details</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="description" className="space-y-4">
-                    <div 
-                      className="prose prose-sm max-w-none text-foreground"
-                      dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-                    />
-                  </TabsContent>
-                  <TabsContent value="details" className="space-y-4">
-                    <div className="space-y-2 text-sm">
-                      <p><strong>Product ID:</strong> {product.id}</p>
-                      <p><strong>Availability:</strong> {product.availableForSale ? "In Stock" : "Out of Stock"}</p>
-                      <p><strong>Price Range:</strong> ${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(2)} - ${parseFloat(product.priceRange.maxVariantPrice.amount).toFixed(2)}</p>
-                    </div>
-                  </TabsContent>
-                </Tabs>
+                {/* Description - Simplified */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-heading">Product Description</h3>
+                  <div className="prose prose-sm max-w-none text-foreground">
+                    {(() => {
+                      // Extract key features and simplify
+                      const description = product.description || "";
+                      const sentences = description.split(/[.!?]+/).filter(s => s.trim().length > 10);
+                      const keyPoints = sentences.slice(0, 3).map(s => s.trim()).filter(Boolean);
+                      
+                      if (keyPoints.length === 0) {
+                        return <p>Professional hair care product designed for salon-quality results at home.</p>;
+                      }
+                      
+                      return (
+                        <div className="space-y-2">
+                          {keyPoints.map((point, index) => (
+                            <p key={index} className="text-sm leading-relaxed">{point}.</p>
+                          ))}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
