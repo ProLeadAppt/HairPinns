@@ -1,4 +1,5 @@
 import { Star, CheckCircle, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import { averageRating, totalReviews, googleReviewsUrl } from "@/data/reviews";
 
 interface GoogleReviewBadgeProps {
@@ -9,15 +10,10 @@ interface GoogleReviewBadgeProps {
 const GoogleReviewBadge = ({ variant = "default", showCTA = false }: GoogleReviewBadgeProps) => {
   if (variant === "micro") {
     return (
-      <div className="bg-background border-b border-border">
+      <Link to="/reviews" className="block bg-background border-b border-border hover:bg-accent/5 transition-colors cursor-pointer">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-2">
-            <a 
-              href={googleReviewsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
-            >
+            <div className="flex items-center gap-2 text-sm">
               <div className="flex items-center gap-1">
                 <Star className="w-4 h-4 text-[hsl(var(--star-color))] fill-current" />
                 <span className="font-semibold text-foreground">{averageRating}</span>
@@ -25,22 +21,17 @@ const GoogleReviewBadge = ({ variant = "default", showCTA = false }: GoogleRevie
               <span className="text-muted-foreground">on Google</span>
               <CheckCircle className="w-4 h-4 text-brand-500" />
               <span className="text-xs text-muted-foreground">({totalReviews} reviews)</span>
-            </a>
+            </div>
             
             {showCTA && (
-              <a
-                href={googleReviewsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-brand-500 hover:text-brand-600 font-medium inline-flex items-center gap-1"
-              >
+              <span className="text-sm text-brand-500 hover:text-brand-600 font-medium inline-flex items-center gap-1">
                 Share your result
                 <ExternalLink className="w-3 h-3" />
-              </a>
+              </span>
             )}
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 
