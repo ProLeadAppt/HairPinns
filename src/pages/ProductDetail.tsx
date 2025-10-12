@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Star, ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
-import { addToBag, getCartId } from "@/lib/cartManagement";
+import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout } from "@/lib/ecommerceTracking";
 import { toast } from "sonner";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
@@ -102,14 +102,35 @@ const ProductDetail = () => {
     }
   };
 
-  // Handle add to bag
+  // Handle add to bag - use server-side Edge Function
   const handleAddToBag = async () => {
     if (!activeVariantId || !product) return;
     
     setAddingToCart(true);
     
     try {
-      const updatedCart = await addToBag(activeVariantId, 1);
+      const existingCartId = getCartId();
+      
+      // Call Edge Function to add to cart
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
+          ...(existingCartId && { cartId: existingCartId }),
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to add to cart');
+      }
+      
+      const { checkoutUrl, cartId } = await response.json();
+      
+      // Store cart ID for future additions
+      if (cartId) {
+        localStorage.setItem('hp_cart_id', cartId);
+      }
       
       // Track add_to_cart to Zapier
       const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
@@ -128,13 +149,7 @@ const ProductDetail = () => {
       setMiniCartOpen(true);
     } catch (error: any) {
       console.error("Add to bag failed:", error);
-      const errorMessage = error?.message || "We couldn't add this to your bag. Please try again or contact us.";
-      toast.error(errorMessage);
-      
-      // Fallback to product page after 2s
-      setTimeout(() => {
-        window.location.href = getProductUrl(handle || "");
-      }, 2000);
+      toast.error("We couldn't add this to your bag. Please try again or contact us.");
     } finally {
       setAddingToCart(false);
     }

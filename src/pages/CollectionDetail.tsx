@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Star, Check, ShoppingBag, ExternalLink } from "lucide-react";
 import { getCollectionByHandle, getProductUrl, getCollectionUrl } from "@/lib/shopify";
-import { addToBag, getCartId } from "@/lib/cartManagement";
+import { getCartId } from "@/lib/cartManagement";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
@@ -133,7 +133,7 @@ const CollectionDetail = () => {
     };
   }, [handle]);
 
-  // Handle add to bag
+  // Handle add to bag - use server-side Edge Function
   const handleAddToBag = async (productHandle: string, variantId: string) => {
     if (!variantId) {
       toast.error("Product variant unavailable. Please try again.");
@@ -143,13 +143,31 @@ const CollectionDetail = () => {
     setAddingToCart(productHandle);
     
     try {
-      await addToBag(variantId, 1);
+      const existingCartId = localStorage.getItem('hp_cart_id');
+      
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lines: [{ merchandiseId: variantId, quantity: 1 }],
+          ...(existingCartId && { cartId: existingCartId }),
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to add to cart');
+      }
+      
+      const { cartId } = await response.json();
+      if (cartId) {
+        localStorage.setItem('hp_cart_id', cartId);
+      }
+      
       setMiniCartOpen(true);
       toast.success("Added to bag!");
     } catch (error: any) {
       console.error("Add to bag failed:", error);
-      const errorMessage = error?.message || "We couldn't add this to your bag. Please try again or contact us.";
-      toast.error(errorMessage);
+      toast.error("We couldn't add this to your bag. Please try again or contact us.");
       
       // Fallback: redirect to product page on hairpinns.com after 2s
       setTimeout(() => {

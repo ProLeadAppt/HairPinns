@@ -17,6 +17,8 @@ const endpoint = `https://${domain}/api/${apiVersion}/graphql.json`;
 
 /**
  * Fetch data from Shopify Storefront API
+ * Note: Only used for public read-only operations (products, collections)
+ * Cart operations are handled server-side via /api/checkout Edge Function
  */
 export async function fetchShopify<T>(
   query: string,
