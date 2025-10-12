@@ -27,12 +27,14 @@ export const projectConfig = {
   /**
    * Shopify Storefront API Configuration
    * These are PUBLIC credentials safe for client-side use
+   * Loaded from environment variables for easier configuration
    */
   shopify: {
-    domain: 'femtat-zu.myshopify.com',
-    storefrontToken: 'c4e78c2d75c37a6a3ae370dfc1e71bf4',
-    apiVersion: '2024-07',
-    storeUrl: 'https://hairpinns.com', // User-facing store URL
+    domain: import.meta.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com',
+    storefrontToken: import.meta.env.VITE_SF_STOREFRONT_TOKEN || '',
+    apiVersion: import.meta.env.VITE_SF_API_VERSION || '2025-01',
+    storeUrl: `https://${import.meta.env.VITE_SHOP_DOMAIN || 'hairpinns.com'}`,
+    shopDomain: import.meta.env.VITE_SHOP_DOMAIN || 'hairpinns.com',
   },
 } as const;
 

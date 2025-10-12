@@ -2,8 +2,15 @@ import { projectConfig } from "@/config/projectConfig";
 
 const { domain, storefrontToken, apiVersion, storeUrl } = projectConfig.shopify;
 
-if (!domain || !storefrontToken) {
-  throw new Error("Shopify configuration missing");
+// Validate required configuration
+if (!domain) {
+  throw new Error("VITE_SHOPIFY_MYSHOPIFY_DOMAIN environment variable is missing");
+}
+if (!storefrontToken) {
+  throw new Error("VITE_SF_STOREFRONT_TOKEN environment variable is missing");
+}
+if (!apiVersion) {
+  throw new Error("VITE_SF_API_VERSION environment variable is missing");
 }
 
 const endpoint = `https://${domain}/api/${apiVersion}/graphql.json`;
