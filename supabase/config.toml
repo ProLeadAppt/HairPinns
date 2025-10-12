@@ -1,1 +1,7 @@
 project_id = "qcjdpuspmkggpipgxwtx"
+
+[functions.health]
+verify_jwt = false
+
+[functions.checkout]
+verify_jwt = false

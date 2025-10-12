@@ -16,9 +16,8 @@ import {
 } from "@/components/ui/select";
 import { Star, ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
-import { addToBag, getCheckoutUrl, getCartId } from "@/lib/cartManagement";
+import { addToBag, getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout } from "@/lib/ecommerceTracking";
-import { gotoCheckout } from "@/lib/checkout";
 import { toast } from "sonner";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import TrustStrip from "@/components/conversion/TrustStrip";
@@ -141,15 +140,13 @@ const ProductDetail = () => {
     }
   };
 
-  // Handle buy now
+  // Handle buy now - server-side checkout
   const handleBuyNow = async () => {
     if (!activeVariantId || !product) return;
     
     setBuyingNow(true);
     
     try {
-      const updatedCart = await addToBag(activeVariantId, 1);
-      
       // Track add_to_cart
       const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.priceV2.amount) : 0;
@@ -164,29 +161,44 @@ const ProductDetail = () => {
       });
       
       // Track begin_checkout
-      const cartTotal = parseFloat(updatedCart.cost.totalAmount.amount);
-      const itemCount = updatedCart.lines.length;
-      
       trackBeginCheckout({
-        cart_total: cartTotal,
-        item_count: itemCount,
+        cart_total: price,
+        item_count: 1,
         currency: "AUD",
       });
       
-      // Use the checkout URL directly from the cart
-      const checkoutUrl = updatedCart.checkoutUrl;
-      if (checkoutUrl) {
-        console.log("🛒 Redirecting to Shopify checkout:", checkoutUrl);
-        gotoCheckout(checkoutUrl);
-      } else {
-        throw new Error("No checkout URL available");
+      // Call server-side checkout endpoint with redirect=true
+      // The server will create/update cart and redirect to Shopify checkout
+      const existingCartId = getCartId();
+      const body = {
+        lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
+        ...(existingCartId && { cartId: existingCartId }),
+      };
+      
+      // Use the Edge Function which will handle the redirect
+      const response = await fetch('/api/checkout?redirect=true', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      
+      // If redirect fails, follow the redirect manually
+      if (response.redirected) {
+        window.location.href = response.url;
+      } else if (response.status === 303) {
+        const location = response.headers.get('Location');
+        if (location) {
+          window.location.href = location;
+        }
+      } else if (!response.ok) {
+        throw new Error('Checkout failed');
       }
     } catch (error) {
       console.error("Buy now failed:", error);
       toast.error("Unable to proceed to checkout. Please try again.");
-    } finally {
       setBuyingNow(false);
     }
+    // Don't reset setBuyingNow(false) if redirect succeeds - page will navigate away
   };
 
   // Navigate images
