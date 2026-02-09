@@ -33,7 +33,7 @@ serve(async (req) => {
           ok: false,
           error: "Missing required environment variables",
           missing: missingVars,
-          message: `Please configure the following secrets in Lovable Cloud: ${missingVars.join(", ")}`,
+          message: `Please configure the following environment variables: ${missingVars.join(", ")}`,
         }),
         { 
           status: 500, 

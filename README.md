@@ -1,73 +1,116 @@
-# Welcome to your Lovable project
+# HairPinns - E-commerce Website
 
-## Project info
+E-commerce website for HairPinns boutique salon, featuring product sales, blog content, and booking integration.
 
-**URL**: https://lovable.dev/projects/2be75dab-321f-48c8-9be5-01945dd6f893
+## Technologies
 
-## How can I edit this code?
+- **Frontend**: React 18, TypeScript, Vite 7
+- **UI Framework**: shadcn/ui, Tailwind CSS
+- **E-commerce**: Shopify Storefront API
+- **Deployment**: Netlify
+- **Routing**: React Router v6
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2be75dab-321f-48c8-9be5-01945dd6f893) and start prompting.
+- Node.js 18+ and npm
+- Shopify store with Storefront API access
 
-Changes made via Lovable will be committed automatically to this repo.
+### Installation
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
+cd HairPinns
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. Set up environment variables:
+```bash
+cp .env.example .env
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Edit `.env` and configure:
+- `VITE_SHOPIFY_MYSHOPIFY_DOMAIN` - Your Shopify store domain (e.g., `your-store.myshopify.com`)
+- `VITE_SF_STOREFRONT_TOKEN` - Shopify Storefront API access token (public, safe for client-side)
+- `VITE_SF_API_VERSION` - Shopify API version (e.g., `2025-01`)
+- `VITE_SHOP_DOMAIN` - Your store URL (e.g., `hairpinns.com`)
+- `VITE_GHL_INBOUND_WEBHOOK_URL` - GoHighLevel webhook URL (optional, for form submissions)
+
+4. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Shopify Integration
 
-**Use GitHub Codespaces**
+This site uses Shopify's Storefront API for product data and checkout. The integration follows this flow:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. **Product Display**: Products are fetched from Shopify Storefront API via `src/lib/shopify.ts`
+2. **Add to Cart**: Cart operations are handled server-side via `/api/checkout` Netlify function
+3. **Checkout**: Users are redirected to Shopify's hosted checkout for payment
+4. **Order Confirmation**: After payment, users can view order confirmation
 
-## What technologies are used for this project?
+### Environment Variables for Netlify
 
-This project is built with:
+Set these in Netlify Dashboard → Site Settings → Environment Variables:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `SHOPIFY_MYSHOPIFY_DOMAIN` - Shopify store domain
+- `SF_STOREFRONT_TOKEN` - Storefront API token
+- `SF_API_VERSION` - API version (e.g., `2025-01`)
 
-## How can I deploy this project?
+## Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/2be75dab-321f-48c8-9be5-01945dd6f893) and click on Share -> Publish.
+```
+src/
+├── components/     # React components
+│   ├── cart/      # Cart-related components
+│   ├── conversion/# Conversion optimization components
+│   ├── home/      # Homepage components
+│   └── product/   # Product-related components
+├── lib/           # Utility libraries
+│   ├── shopify.ts # Shopify API client
+│   └── ...
+├── pages/         # Page components
+└── config/        # Configuration files
 
-## Can I connect a custom domain to my Lovable project?
+netlify/
+└── functions/     # Netlify serverless functions
+    └── checkout.js # Shopify checkout handler
+```
 
-Yes, you can!
+## Available Scripts
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Deployment
+
+This project is configured for deployment on Netlify:
+
+1. Connect your repository to Netlify
+2. Set environment variables in Netlify dashboard
+3. Deploy automatically on push to main branch
+
+The `netlify.toml` file contains build configuration and redirect rules.
+
+## Features
+
+- **E-commerce**: Full Shopify integration for products and checkout
+- **Blog**: SEO-optimized blog with AI SEO support
+- **Local SEO**: Suburb-specific pages for local search optimization
+- **Conversion Optimization**: Trust badges, urgency bars, product recommendations
+- **Analytics**: Custom tracking via hpCapture library
+
+## License
+
+Private project for HairPinns salon.
