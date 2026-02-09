@@ -9,6 +9,7 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import TrackingInitializer from "./components/tracking/TrackingInitializer";
 import TrackingScripts from "./components/tracking/TrackingScripts";
 import GoogleTagManager from "./components/tracking/GoogleTagManager";
+import ScrollTracker from "./components/analytics/ScrollTracker";
 import { initCartAbandonmentMonitoring } from "@/lib/cartAbandonment";
 import Index from "./pages/Index";
 import Collections from "./pages/Collections";
@@ -38,6 +39,7 @@ import DevShopify from "./pages/DevShopify";
 import Reviews from "./pages/Reviews";
 import ReviewFeedback from "./pages/ReviewFeedback";
 import ReviewGoogle from "./pages/ReviewGoogle";
+import SearchResults from "./pages/SearchResults";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +71,7 @@ const AppContent = () => {
         <ScrollToTop />
         <ScrollToTopButton />
         <TrackingInitializer />
+        <ScrollTracker />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/collections" element={<Collections />} />
@@ -80,6 +83,7 @@ const AppContent = () => {
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/search" element={<SearchResults />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/confirm" element={<Confirm />} />

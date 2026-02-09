@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Plus, Star } from "lucide-react";
+import { ShoppingBag, Plus, Star, Eye } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import QuickViewModal from "@/components/product/QuickViewModal";
 
 /**
  * AboveFoldProducts Component
@@ -22,6 +23,7 @@ const AboveFoldProducts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
+  const [quickViewProduct, setQuickViewProduct] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -201,9 +203,18 @@ const AboveFoldProducts = () => {
 
                 {/* Hover Overlay - Quick View */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <span className="text-white font-semibold text-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="gap-2"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setQuickViewProduct(product.slug);
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
                     Quick View
-                  </span>
+                  </Button>
                 </div>
               </Link>
 
@@ -323,6 +334,15 @@ const AboveFoldProducts = () => {
           );
         })}
       </div>
+
+      {/* Quick View Modal */}
+      {quickViewProduct && (
+        <QuickViewModal
+          productHandle={quickViewProduct}
+          open={!!quickViewProduct}
+          onClose={() => setQuickViewProduct(null)}
+        />
+      )}
     </Section>
   );
 };

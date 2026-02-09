@@ -12,12 +12,16 @@ import BlogCTA from "@/components/blog/BlogCTA";
 import ProgressBar from "@/components/blog/ProgressBar";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import SocialShareBar from "@/components/blog/SocialShareBar";
+import QuickAnswer from "@/components/blog/QuickAnswer";
+import KeyTakeaways from "@/components/blog/KeyTakeaways";
 import { blogPosts } from "@/data/blogPosts";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
   generateBreadcrumbSchema,
   generateFAQPageSchema,
+  generateArticleSchema,
+  generateQAPageSchema,
 } from "@/lib/schema";
 
 const BlogPost = () => {
@@ -44,6 +48,30 @@ const BlogPost = () => {
     url: `https://hairpinns.com/blog/${post.slug}`,
     wordCount: wordCount,
   });
+
+  // Enhanced Article schema with speakable for AI SEO
+  const articleSchema = generateArticleSchema({
+    title: post.title,
+    description: post.excerpt,
+    author: post.author,
+    datePublished: new Date(post.date).toISOString(),
+    image: post.image,
+    url: `https://hairpinns.com/blog/${post.slug}`,
+    wordCount: wordCount,
+    speakable: {
+      cssSelector: [".quick-answer", "h2", "h3"],
+    },
+  });
+
+  // QAPage schema if quickAnswer exists
+  const qaSchema = post.content.quickAnswer
+    ? generateQAPageSchema({
+        question: post.content.quickAnswer.question,
+        answer: post.content.quickAnswer.answer,
+        author: post.author,
+        datePublished: new Date(post.date).toISOString(),
+      })
+    : null;
 
   const blogFaqs = [
     {
@@ -96,6 +124,14 @@ const BlogPost = () => {
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify(articleSchema)}
+        </script>
+        {qaSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(qaSchema)}
+          </script>
+        )}
       </Helmet>
 
       <ProgressBar />
@@ -152,6 +188,16 @@ const BlogPost = () => {
 
         {/* Article Content */}
         <article className="max-w-[720px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Quick Answer Box - AI SEO Optimization */}
+          {post.content.quickAnswer && (
+            <div className="quick-answer">
+              <QuickAnswer
+                question={post.content.quickAnswer.question}
+                answer={post.content.quickAnswer.answer}
+              />
+            </div>
+          )}
+
           {/* Introduction with drop cap effect */}
           <p className="text-xl leading-relaxed text-text mb-8 first-letter:text-5xl first-letter:font-heading first-letter:font-bold first-letter:text-brand-500 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
             {post.content.introduction}
@@ -191,6 +237,11 @@ const BlogPost = () => {
               )}
             </div>
           ))}
+
+          {/* Key Takeaways - AI SEO Optimization */}
+          {post.content.keyTakeaways && post.content.keyTakeaways.length > 0 && (
+            <KeyTakeaways items={post.content.keyTakeaways} />
+          )}
 
           {/* Final CTA before FAQ */}
           {post.cta && (

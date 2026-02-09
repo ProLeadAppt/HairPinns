@@ -8,6 +8,9 @@ import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import UrgencyBar from "@/components/conversion/UrgencyBar";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
+import RecentPurchases from "@/components/conversion/RecentPurchases";
+import ProductCountBadge from "@/components/conversion/ProductCountBadge";
+import TrustBadges from "@/components/conversion/TrustBadges";
 
 // ✅ SAFE: Lazy-load components (doesn't block initial render)
 // Above-fold (loaded immediately for LCP)
@@ -112,7 +115,16 @@ const Index = () => {
         {/* 1. Hero Section (100% product-focused) */}
         <HeroHome />
         
-        {/* 2. Above Fold Products (6 products visible without scrolling) */}
+        {/* 2. Product Count Badge */}
+        <section className="py-4 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-center">
+              <ProductCountBadge />
+            </div>
+          </div>
+        </section>
+        
+        {/* 3. Above Fold Products (6 products visible without scrolling) */}
         {/* ✅ SAFE: Lazy-loaded with Suspense boundary and error handling */}
         <Suspense fallback={
           <section className="py-12 bg-background">
@@ -165,6 +177,20 @@ const Index = () => {
         
         {/* 5. Trust Strip (conversion-focused) */}
         <TrustStrip />
+        
+        {/* 5.5 Recent Purchases (social proof) */}
+        <section className="py-6 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <RecentPurchases />
+          </div>
+        </section>
+        
+        {/* 5.6 Trust Badges Section */}
+        <section className="py-8 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <TrustBadges />
+          </div>
+        </section>
         
         {/* 6. Featured Collections (with product count) */}
         <section className="py-12 bg-muted/30">

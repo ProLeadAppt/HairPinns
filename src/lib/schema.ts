@@ -42,6 +42,46 @@ interface BlogPostData {
   wordCount?: number;
 }
 
+interface QAPageData {
+  question: string;
+  answer: string;
+  author?: string;
+  datePublished?: string;
+}
+
+interface HowToData {
+  name: string;
+  description: string;
+  step: Array<{
+    name: string;
+    text: string;
+    image?: string;
+  }>;
+  totalTime?: string;
+  tool?: Array<{ name: string }>;
+  supply?: Array<{ name: string }>;
+}
+
+interface QAPageData {
+  question: string;
+  answer: string;
+  author?: string;
+  datePublished?: string;
+}
+
+interface HowToData {
+  name: string;
+  description: string;
+  step: Array<{
+    name: string;
+    text: string;
+    image?: string;
+  }>;
+  totalTime?: string;
+  tool?: Array<{ name: string }>;
+  supply?: Array<{ name: string }>;
+}
+
 const BASE_URL = 'https://hairpinns.com';
 const LOGO_URL = `${BASE_URL}/logo.png`;
 const SALON_ADDRESS = {
@@ -394,6 +434,126 @@ export const generateBlogPostSchema = (post: BlogPostData) => {
 
   if (post.wordCount) {
     schema.wordCount = post.wordCount;
+  }
+
+  return schema;
+};
+
+/**
+ * Generate QAPage schema for Answer Engine Optimization
+ * Used for question-answer content optimized for AI search engines
+ */
+export const generateQAPageSchema = (qa: QAPageData) => ({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  mainEntity: {
+    '@type': 'Question',
+    name: qa.question,
+    text: qa.question,
+    dateCreated: qa.datePublished || new Date().toISOString(),
+    author: {
+      '@type': 'Person',
+      name: qa.author || 'Jena Pinn',
+    },
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: qa.answer,
+      dateCreated: qa.datePublished || new Date().toISOString(),
+      author: {
+        '@type': 'Person',
+        name: qa.author || 'Jena Pinn',
+      },
+    },
+  },
+});
+
+/**
+ * Generate HowTo schema for step-by-step tutorials
+ * Optimized for AI search engines and featured snippets
+ */
+export const generateHowToSchema = (howTo: HowToData) => {
+  const schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: howTo.name,
+    description: howTo.description,
+    step: howTo.step.map((stepItem, index) => {
+      const step: any = {
+        '@type': 'HowToStep',
+        position: index + 1,
+        name: stepItem.name,
+        text: stepItem.text,
+      };
+      if (stepItem.image) {
+        step.image = stepItem.image;
+      }
+      return step;
+    }),
+  };
+
+  if (howTo.totalTime) {
+    schema.totalTime = howTo.totalTime;
+  }
+
+  if (howTo.tool && howTo.tool.length > 0) {
+    schema.tool = howTo.tool.map((tool) => ({
+      '@type': 'HowToTool',
+      name: tool.name,
+    }));
+  }
+
+  if (howTo.supply && howTo.supply.length > 0) {
+    schema.supply = howTo.supply.map((supply) => ({
+      '@type': 'HowToSupply',
+      name: supply.name,
+    }));
+  }
+
+  return schema;
+};
+
+/**
+ * Generate enhanced Article schema with speakable property
+ * Optimized for voice search and AI assistants
+ */
+export const generateArticleSchema = (post: BlogPostData & { speakable?: { cssSelector?: string[]; xPath?: string[] } }) => {
+  const schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Hair Pinns',
+      logo: {
+        '@type': 'ImageObject',
+        url: LOGO_URL,
+      },
+    },
+    datePublished: post.datePublished,
+    dateModified: post.dateModified || post.datePublished,
+    image: post.image,
+    url: post.url,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': post.url,
+    },
+  };
+
+  if (post.wordCount) {
+    schema.wordCount = post.wordCount;
+  }
+
+  // Add speakable property for voice search optimization
+  if (post.speakable) {
+    schema.speakable = {
+      '@type': 'SpeakableSpecification',
+      ...post.speakable,
+    };
   }
 
   return schema;

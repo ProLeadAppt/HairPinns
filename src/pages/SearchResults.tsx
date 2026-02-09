@@ -1,0 +1,178 @@
+import { useState, useEffect } from "react";
+import { useSearchParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { ShoppingBag } from "lucide-react";
+import { searchProducts } from "@/lib/shopify";
+import { formatPrice } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const SearchResults = () => {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("q") || "";
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState<string>("relevance");
+
+  useEffect(() => {
+    if (!query) {
+      setLoading(false);
+      return;
+    }
+
+    const fetchResults = async () => {
+      setLoading(true);
+      try {
+        const result = await searchProducts(query, 50);
+        if (result?.products) {
+          const mappedProducts = result.products
+            .filter((p: any) => p.availableForSale)
+            .map((product: any) => {
+              const firstImage = product.images?.edges?.[0]?.node;
+              const price = parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
+              return {
+                id: product.id,
+                slug: product.handle,
+                title: product.title,
+                price: price,
+                currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
+                image: firstImage?.url || "/placeholder.svg",
+                availableForSale: product.availableForSale,
+              };
+            });
+
+          // Sort products
+          const sorted = [...mappedProducts].sort((a, b) => {
+            if (sortBy === "price-low") return a.price - b.price;
+            if (sortBy === "price-high") return b.price - a.price;
+            if (sortBy === "name-asc") return a.title.localeCompare(b.title);
+            return 0; // Default: relevance
+          });
+
+          setProducts(sorted);
+        }
+      } catch (error) {
+        console.error("Search failed:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResults();
+  }, [query, sortBy]);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Search Results{query ? ` for "${query}"` : ""} | Hair Pinns</title>
+        <meta name="description" content={`Search results for ${query || "products"}`} />
+      </Helmet>
+
+      <Header />
+
+      <main className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-heading font-bold text-heading mb-4">
+              {query ? `Search Results for "${query}"` : "Search Products"}
+            </h1>
+            {products.length > 0 && (
+              <p className="text-muted-foreground">
+                Found {products.length} product{products.length !== 1 ? "s" : ""}
+              </p>
+            )}
+          </div>
+
+          {/* Sort */}
+          {products.length > 0 && (
+            <div className="mb-6 flex justify-end">
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-[200px]">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="relevance">Relevance</SelectItem>
+                  <SelectItem value="price-low">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high">Price: High to Low</SelectItem>
+                  <SelectItem value="name-asc">Name: A-Z</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Results */}
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Searching...</p>
+            </div>
+          ) : !query ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground mb-4">Please enter a search query</p>
+            </div>
+          ) : products.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground mb-4">
+                No products found for "{query}"
+              </p>
+              <Button asChild variant="outline">
+                <Link to="/collections">Browse All Collections</Link>
+              </Button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((product) => (
+                <div
+                  key={product.id}
+                  className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+                >
+                  <Link to={`/products/${product.slug}`}>
+                    <div className="aspect-square bg-muted relative overflow-hidden">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform"
+                      />
+                      {!product.availableForSale && (
+                        <Badge variant="destructive" className="absolute top-3 left-3">
+                          Out of Stock
+                        </Badge>
+                      )}
+                    </div>
+                  </Link>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-heading mb-2 line-clamp-2">
+                      {product.title}
+                    </h3>
+                    <p className="text-xl font-bold text-brand-500 mb-4">
+                      {formatPrice(product.price, product.currency)}
+                    </p>
+                    <Button variant="outline" size="sm" className="w-full" asChild>
+                      <Link to={`/products/${product.slug}`}>
+                        <ShoppingBag className="w-4 h-4 mr-2" />
+                        View Product
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default SearchResults;

@@ -51,6 +51,11 @@ export interface BlogPost {
         description: string;
       }[];
     };
+    quickAnswer?: {
+      question: string;
+      answer: string;
+    };
+    keyTakeaways?: string[];
   };
   cta?: {
     type: "call-sam" | "chat-isabella" | "service" | "product" | "booking";

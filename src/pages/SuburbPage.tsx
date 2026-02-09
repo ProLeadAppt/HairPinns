@@ -25,6 +25,7 @@ import {
 import { getSuburbData } from "@/data/suburbPages";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import LocationProducts from "@/components/local/LocationProducts";
 
 const SuburbPage = () => {
   const { suburb } = useParams<{ suburb: string }>();
@@ -342,6 +343,18 @@ const SuburbPage = () => {
                   ))}
                 </Accordion>
               </div>
+            </div>
+          </section>
+
+          {/* Location-Specific Products */}
+          <section className="section-padding">
+            <div className="container-custom">
+              <LocationProducts 
+                suburb={suburbData.name}
+                climate={suburbData.localNote.toLowerCase().includes('humidity') ? 'humidity' : 
+                        suburbData.localNote.toLowerCase().includes('coastal') ? 'coastal' :
+                        suburbData.localNote.toLowerCase().includes('water') ? 'hard-water' : undefined}
+              />
             </div>
           </section>
 

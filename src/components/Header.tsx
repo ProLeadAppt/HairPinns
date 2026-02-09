@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import ProductSearch from "@/components/product/ProductSearch";
+import ShopDropdown from "@/components/navigation/ShopDropdown";
 import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
@@ -36,9 +37,7 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6" aria-label="Main navigation">
-              <Link to="/collections" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
-                Shop
-              </Link>
+              <ShopDropdown />
               <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Services
               </Link>

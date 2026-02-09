@@ -17,7 +17,7 @@ import {
 import { Star, ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
 import { getCartId } from "@/lib/cartManagement";
-import { trackAddToCart, trackBeginCheckout } from "@/lib/ecommerceTracking";
+import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { toast } from "sonner";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import TrustStrip from "@/components/conversion/TrustStrip";
@@ -53,6 +53,13 @@ const ProductDetail = () => {
         
         if (productData) {
           setProduct(productData);
+          
+          // Track product view for conversion funnel
+          trackProductView(productData.id, productData.title);
+          trackFunnelStep("view", {
+            product_id: productData.id,
+            product_title: productData.title,
+          });
           
           // Set first available variant as default
           const variants = productData.variants.edges;
@@ -142,6 +149,13 @@ const ProductDetail = () => {
       // Track add_to_cart to GHL and cart abandonment
       const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.priceV2.amount) : 0;
+      
+      // Track funnel step: intent
+      trackFunnelStep("intent", {
+        product_id: product.id,
+        product_title: product.title,
+        price,
+      });
       
       // Track cart creation for abandonment recovery
       if (cartId && checkoutUrl) {
@@ -522,20 +536,36 @@ const ProductDetail = () => {
                     {addingToCart ? "Adding..." : "Add to Bag"}
                   </Button>
                   
-                  <Button
-                    variant="default"
-                    size="lg"
-                    className="w-full"
-                    onClick={handleBuyNow}
-                    disabled={!isAvailable || buyingNow}
-                  >
-                    <Zap className="w-5 h-5 mr-2" />
-                    {buyingNow ? "Processing..." : "Buy Now"}
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="flex-1"
+                      onClick={handleAddToBag}
+                      disabled={!isAvailable || addingToCart}
+                    >
+                      Add & Continue Shopping
+                    </Button>
+                    <Button
+                      variant="default"
+                      size="lg"
+                      className="flex-1"
+                      onClick={handleBuyNow}
+                      disabled={!isAvailable || buyingNow}
+                    >
+                      <Zap className="w-5 h-5 mr-2" />
+                      {buyingNow ? "Processing..." : "Buy Now"}
+                    </Button>
+                  </div>
 
                   {/* Shipping Calculator */}
                   <div className="pt-2">
                     <ShippingCalculator cartTotal={price} />
+                  </div>
+
+                  {/* Estimated Delivery */}
+                  <div className="pt-2">
+                    <EstimatedDelivery cartTotal={price} />
                   </div>
 
                   {/* Payment Options */}
@@ -573,6 +603,22 @@ const ProductDetail = () => {
             </div>
           </div>
         </section>
+
+        {/* Frequently Bought Together Section */}
+        {product && (
+          <FrequentlyBoughtTogether
+            currentProductId={product.id}
+            currentProductHandle={product.handle}
+          />
+        )}
+
+        {/* Product Recommendations */}
+        {product && (
+          <ProductRecommendations
+            currentProductId={product.id}
+            currentCollectionHandle={product.collections?.edges?.[0]?.node?.handle}
+          />
+        )}
       </main>
       
       <Footer />

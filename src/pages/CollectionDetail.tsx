@@ -37,7 +37,7 @@ const CollectionDetail = () => {
   const handle = slug; // But we'll use "handle" internally for clarity
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<string>("all");
-  const [sortBy, setSortBy] = useState<string>("best-sellers");
+  const [sortBy, setSortBy] = useState<string>("default");
   const [collection, setCollection] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -192,6 +192,13 @@ const CollectionDetail = () => {
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortBy === "price-low") return a.price - b.price;
     if (sortBy === "price-high") return b.price - a.price;
+    if (sortBy === "name-asc") return a.title.localeCompare(b.title);
+    if (sortBy === "name-desc") return b.title.localeCompare(a.title);
+    if (sortBy === "newest") {
+      // In production, sort by created date from Shopify
+      return 0; // Default order for now
+    }
+    // Default: maintain original order
     return 0;
   });
 
@@ -332,12 +339,53 @@ const CollectionDetail = () => {
         {/* Collection Header */}
         <section className="bg-accent py-12 md:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
-              {collectionTitle}
-            </h1>
-            <p className="text-lg text-foreground max-w-3xl leading-relaxed">
-              {collectionDescription}
-            </p>
+            <div className="flex items-start justify-between gap-6 mb-6">
+              <div className="flex-1">
+                <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
+                  {collectionTitle}
+                </h1>
+                <p className="text-lg text-foreground max-w-3xl leading-relaxed">
+                  {collectionDescription}
+                </p>
+              </div>
+              {sortedProducts.length > 0 && (
+                <div className="text-right">
+                  <p className="text-sm text-muted-foreground mb-1">Products</p>
+                  <p className="text-3xl font-bold text-heading">{sortedProducts.length}</p>
+                </div>
+              )}
+            </div>
+            
+            {/* Collection Benefits */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+              <div className="bg-card/50 rounded-lg p-4 border border-border">
+                <div className="flex items-center gap-2 mb-2">
+                  <Check className="w-5 h-5 text-brand-500" />
+                  <h3 className="font-semibold text-heading">Salon Quality</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Professional-grade products curated by Jena with 15+ years of experience
+                </p>
+              </div>
+              <div className="bg-card/50 rounded-lg p-4 border border-border">
+                <div className="flex items-center gap-2 mb-2">
+                  <Star className="w-5 h-5 text-[hsl(var(--star-color))]" />
+                  <h3 className="font-semibold text-heading">Expert Curation</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Every product handpicked and tested for quality and results
+                </p>
+              </div>
+              <div className="bg-card/50 rounded-lg p-4 border border-border">
+                <div className="flex items-center gap-2 mb-2">
+                  <ShoppingBag className="w-5 h-5 text-brand-500" />
+                  <h3 className="font-semibold text-heading">Free Shipping</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Free shipping Australia-wide on orders over $100
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -364,9 +412,12 @@ const CollectionDetail = () => {
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="best-sellers">Best Sellers</SelectItem>
+                    <SelectItem value="default">Default</SelectItem>
                     <SelectItem value="price-low">Price: Low to High</SelectItem>
                     <SelectItem value="price-high">Price: High to Low</SelectItem>
+                    <SelectItem value="name-asc">Name: A-Z</SelectItem>
+                    <SelectItem value="name-desc">Name: Z-A</SelectItem>
+                    <SelectItem value="newest">Newest First</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

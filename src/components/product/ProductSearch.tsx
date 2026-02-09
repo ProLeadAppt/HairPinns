@@ -3,7 +3,7 @@ import { Search, X, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { searchProducts } from "@/lib/shopify";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { formatPrice } from "@/lib/utils";
@@ -50,6 +50,7 @@ export default function ProductSearch({
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const navigate = useNavigate();
 
   const performSearch = useCallback(async (searchQuery: string) => {
     if (!searchQuery.trim()) {
@@ -186,10 +187,37 @@ export default function ProductSearch({
                 })}
               </ul>
             ) : hasSearched ? (
-              <div className="p-8 text-center text-sm text-muted-foreground">
-                No products found for "{query}"
+              <div className="p-8 text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  No products found for "{query}"
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    navigate(`/search?q=${encodeURIComponent(query)}`);
+                    setShowResults(false);
+                  }}
+                >
+                  View All Results
+                </Button>
               </div>
             ) : null}
+            {results.length > 0 && (
+              <div className="p-2 border-t border-border">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => {
+                    navigate(`/search?q=${encodeURIComponent(query)}`);
+                    setShowResults(false);
+                  }}
+                >
+                  View All Results ({results.length}+)
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
       )}
