@@ -11,7 +11,7 @@ import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
 import ReviewStrip from "@/components/reviews/ReviewStrip";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
-import { generateOrganizationSchema, generateLocalBusinessSchema, generateServiceSchema, generateFAQPageSchema } from "@/lib/schema";
+import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, generateEnhancedServiceSchema, generateFAQPageSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
@@ -478,7 +478,7 @@ const Services = () => {
 
   // Generate schemas
   const organizationSchema = generateOrganizationSchema();
-  const localBusinessSchema = generateLocalBusinessSchema('https://hairpinns.com/services');
+  const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com/services');
   const faqSchema = generateFAQPageSchema(comprehensiveFAQs.map(faq => ({
     question: faq.question,
     answer: faq.answer

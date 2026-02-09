@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
-import jenaHeadshot from "@/assets/jena-headshot.jpg";
+import jenaHeadshot from "@/assets/jena-headshot.webp";
 
 const About = () => {
   const testimonials = [

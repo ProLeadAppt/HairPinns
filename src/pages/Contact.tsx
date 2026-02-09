@@ -57,7 +57,7 @@ const Contact = () => {
     "@context": "https://schema.org",
     "@type": "HairSalon",
     "name": businessInfo.name,
-    "image": "https://hairpinns.com.au/logo.png",
+    "image": "https://hairpinns.com/logo.png",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "60 Goorgool Rd",
@@ -100,7 +100,7 @@ const Contact = () => {
       "closes": "14:00"
     }],
     "priceRange": "$$",
-    "url": "https://hairpinns.com.au",
+    "url": "https://hairpinns.com",
     "sameAs": ["https://www.facebook.com/Hair.Pinns", "https://www.instagram.com/hair.pinns/"]
   };
   const handleSmsSubmit = async (e: React.FormEvent) => {
@@ -113,9 +113,8 @@ const Contact = () => {
       });
       return;
     }
-    const {
-      hpCapture
-    } = await import("@/lib/hpCapture");
+    const hpCaptureModule = await import("@/lib/hpCapture");
+    const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
     const success = await hpCapture.postToZapier({
       form_name: "sms_optin",
       phone: smsPhone,

@@ -2,18 +2,22 @@ import { projectConfig } from "@/config/projectConfig";
 
 const { domain, storefrontToken, apiVersion, storeUrl } = projectConfig.shopify;
 
-// Validate required configuration
-if (!domain) {
-  throw new Error("VITE_SHOPIFY_MYSHOPIFY_DOMAIN environment variable is missing");
+// Get endpoint lazily - only validate when actually needed
+function getEndpoint(): string {
+  if (!domain) {
+    console.warn("[Shopify] VITE_SHOPIFY_MYSHOPIFY_DOMAIN environment variable is missing");
+    throw new Error("Shopify configuration is missing. Please set VITE_SHOPIFY_MYSHOPIFY_DOMAIN environment variable.");
+  }
+  if (!storefrontToken) {
+    console.warn("[Shopify] VITE_SF_STOREFRONT_TOKEN environment variable is missing");
+    throw new Error("Shopify configuration is missing. Please set VITE_SF_STOREFRONT_TOKEN environment variable.");
+  }
+  if (!apiVersion) {
+    console.warn("[Shopify] VITE_SF_API_VERSION environment variable is missing");
+    throw new Error("Shopify configuration is missing. Please set VITE_SF_API_VERSION environment variable.");
+  }
+  return `https://${domain}/api/${apiVersion}/graphql.json`;
 }
-if (!storefrontToken) {
-  throw new Error("VITE_SF_STOREFRONT_TOKEN environment variable is missing");
-}
-if (!apiVersion) {
-  throw new Error("VITE_SF_API_VERSION environment variable is missing");
-}
-
-const endpoint = `https://${domain}/api/${apiVersion}/graphql.json`;
 
 /**
  * Fetch data from Shopify Storefront API
@@ -24,11 +28,14 @@ export async function fetchShopify<T>(
   query: string,
   variables: Record<string, any> = {}
 ): Promise<T> {
+  const endpoint = getEndpoint();
+  const token = storefrontToken || '';
+  
   const res = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": storefrontToken,
+      "X-Shopify-Storefront-Access-Token": token,
     },
     body: JSON.stringify({ query, variables }),
   });
@@ -187,6 +194,108 @@ export async function getCollectionByHandle(handle: string) {
     return null;
   }
 }
+
+/**
+ * Search products by query string
+ */
+export async function searchProducts(query: string, first: number = 20) {
+  const searchQuery = `
+    query searchProducts($query: String!, $first: Int!) {
+      products(first: $first, query: $query) {
+        edges {
+          node {
+            id
+            title
+            handle
+            description
+            availableForSale
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+              maxVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            compareAtPriceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            images(first: 1) {
+              edges {
+                node {
+                  id
+                  url
+                  altText
+                  width
+                  height
+                }
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  title
+                  availableForSale
+                  priceV2 {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+      }
+    }
+  `;
+
+  try {
+    // Build Shopify search query
+    // Shopify supports: title:query, product_type:query, vendor:query, tag:query
+    // Special case: "*" means get all products (empty query)
+    let shopifyQuery: string;
+    if (query === "*" || query.trim() === "") {
+      // Get all available products
+      shopifyQuery = "available_for_sale:true";
+    } else {
+      shopifyQuery = `title:*${query}* OR description:*${query}* OR tag:*${query}*`;
+    }
+    
+    const data = await fetchShopify<{ products: any }>(searchQuery, { 
+      query: shopifyQuery,
+      first 
+    });
+    
+    return {
+      products: data.products.edges.map((edge: any) => edge.node),
+      pageInfo: data.products.pageInfo,
+    };
+  } catch (error) {
+    console.error(`Failed to search products for "${query}":`, error);
+    return {
+      products: [],
+      pageInfo: {
+        hasNextPage: false,
+        hasPreviousPage: false,
+        startCursor: null,
+        endCursor: null,
+      },
+    };
+  }
+}
+
 
 /**
  * Create a new cart with AU country code
@@ -370,6 +479,19 @@ export async function getAllCollections(first: number = 20) {
             id
             handle
             title
+            description
+            image {
+              id
+              url
+              altText
+            }
+            products(first: 1) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
           }
         }
       }

@@ -79,7 +79,8 @@ export const LeadMagnetBanner = ({
     setIsSubmitting(true);
 
     try {
-      const { hpCapture } = await import("@/lib/hpCapture");
+      const hpCaptureModule = await import("@/lib/hpCapture");
+      const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
 
       const success = await hpCapture.postToZapier(
         {

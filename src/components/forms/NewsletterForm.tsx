@@ -50,7 +50,8 @@ const NewsletterForm = ({
     setIsSubmitting(true);
 
     try {
-      const { hpCapture } = await import("@/lib/hpCapture");
+      const hpCaptureModule = await import("@/lib/hpCapture");
+      const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
       
       // Get session data for UTMs and click IDs
       const session = hpCapture.getSession();

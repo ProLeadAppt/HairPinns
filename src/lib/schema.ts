@@ -100,7 +100,7 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   name: 'Hair Pinns',
   image: LOGO_URL,
   description:
-    'Boutique hair salon in Bangor specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Over 20 years of expertise serving the Sutherland Shire.',
+    'Boutique hair salon in Bangor specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. 15+ years of expertise since 2009 serving the Sutherland Shire. Premium salon-quality products available Australia-wide.',
   address: {
     '@type': 'PostalAddress',
     ...SALON_ADDRESS,
@@ -113,6 +113,50 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   url: pageUrl || BASE_URL,
   telephone: SALON_PHONE,
   priceRange: '$$',
+  // AggregateRating for Google Reviews
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '53',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  // Additional review sources
+  review: [
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '4.9',
+        bestRating: '5',
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'Google Reviews',
+      },
+      reviewBody: 'Hair Pinns has 53+ Google reviews with an average rating of 4.9 stars.',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5.0',
+        bestRating: '5',
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'Fresha',
+      },
+      reviewBody: 'Hair Pinns has 762+ five-star reviews on Fresha.',
+    },
+  ],
+  foundingDate: '2009',
+  foundingLocation: {
+    '@type': 'City',
+    name: 'Bangor',
+    addressRegion: 'NSW',
+    addressCountry: 'AU',
+  },
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -148,6 +192,8 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   areaServed: AREA_SERVED.map((area) => ({
     '@type': 'City',
     name: area,
+    addressRegion: 'NSW',
+    addressCountry: 'AU',
   })),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -359,4 +405,425 @@ export const combineSchemas = (...schemas: any[]) => {
     // Each schema should be a complete, independent block
     return schema;
   });
+};
+
+/**
+ * Knowledge Graph Schema for AEO (Answer Engine Optimization)
+ * Optimizes for AI/LLM search results (ChatGPT, Google AI Overview, voice assistants)
+ */
+export const generateKnowledgeGraphSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${BASE_URL}/#organization`,
+  name: 'Hair Pinns',
+  alternateName: 'Hair Pinns Hair Salon',
+  description:
+    'Hair Pinns is a boutique hair salon in Bangor, NSW, Australia, specializing in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling. Founded in 2009 by Jena Pinn, the salon has 15+ years of expertise serving the Sutherland Shire area. Expert curation of salon-quality hair care products available Australia-wide with free shipping over $100.',
+  url: BASE_URL,
+  logo: {
+    '@type': 'ImageObject',
+    url: LOGO_URL,
+  },
+  image: LOGO_URL,
+  foundingDate: '2009',
+  founder: {
+    '@type': 'Person',
+    name: 'Jena Pinn',
+    jobTitle: 'Hair Stylist & Colorist',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    ...SALON_ADDRESS,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SALON_GEO.latitude,
+    longitude: SALON_GEO.longitude,
+  },
+  telephone: SALON_PHONE,
+  priceRange: '$$',
+  sameAs: [
+    'https://www.facebook.com/Hair.Pinns',
+    'https://www.instagram.com/hair.pinns/',
+    'https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer',
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '53',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  // Key services for AI understanding
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Hair Services & Products',
+    itemListElement: [
+      {
+        '@type': 'OfferCatalog',
+        name: 'Hair Services',
+        description: 'Professional hair salon services including colour, treatments, cuts, and styling',
+      },
+      {
+        '@type': 'OfferCatalog',
+        name: 'Hair Care Products',
+        description: 'Salon-quality hair care products curated by expert stylists, available Australia-wide',
+      },
+    ],
+  },
+  // Area served for location-based queries
+  areaServed: AREA_SERVED.map((area) => ({
+    '@type': 'City',
+    name: area,
+    addressRegion: 'NSW',
+    addressCountry: 'AU',
+  })),
+  // Expertise and specialization
+  knowsAbout: [
+    'Hair Coloring',
+    'Hair Blonding',
+    'Balayage',
+    'Hair Smoothing Treatments',
+    'Keratin Treatments',
+    'Hair Cutting',
+    'Hair Styling',
+    'Hair Care Products',
+  ],
+});
+
+/**
+ * Enhanced Product Schema for AEO
+ * Complete product information optimized for AI understanding
+ */
+export interface EnhancedProductData extends ProductData {
+  category?: string;
+  productID?: string;
+  mpn?: string;
+  gtin?: string;
+  color?: string;
+  size?: string;
+  weight?: string;
+  manufacturer?: string;
+  inProductGroupWithID?: string;
+  additionalProperty?: Array<{
+    name: string;
+    value: string;
+  }>;
+}
+
+export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
+  const schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${BASE_URL}/products/${product.sku || product.productID || ''}`,
+    name: product.name,
+    description: product.description,
+    image: Array.isArray(product.image) ? product.image : [product.image],
+    brand: {
+      '@type': 'Brand',
+      name: product.brand || 'Hair Pinns',
+      url: BASE_URL,
+    },
+    category: product.category || 'Hair Care',
+    offers: {
+      '@type': 'Offer',
+      url: `${BASE_URL}/products/${product.sku || product.productID || ''}`,
+      priceCurrency: product.currency || 'AUD',
+      price: product.price,
+      availability: product.availability
+        ? `https://schema.org/${product.availability}`
+        : 'https://schema.org/InStock',
+      priceValidUntil: new Date(
+        new Date().setFullYear(new Date().getFullYear() + 1)
+      )
+        .toISOString()
+        .split('T')[0],
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '0',
+          currency: 'AUD',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'AU',
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 1,
+            maxValue: 3,
+            unitCode: 'DAY',
+          },
+          transitTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 3,
+            maxValue: 7,
+            unitCode: 'DAY',
+          },
+        },
+      },
+      seller: {
+        '@type': 'Organization',
+        name: 'Hair Pinns',
+        url: BASE_URL,
+      },
+    },
+  };
+
+  if (product.sku) {
+    schema.sku = product.sku;
+  }
+
+  if (product.productID) {
+    schema.productID = product.productID;
+  }
+
+  if (product.mpn) {
+    schema.mpn = product.mpn;
+  }
+
+  if (product.gtin) {
+    schema.gtin = product.gtin;
+  }
+
+  if (product.color) {
+    schema.color = product.color;
+  }
+
+  if (product.size) {
+    schema.size = product.size;
+  }
+
+  if (product.weight) {
+    schema.weight = product.weight;
+  }
+
+  if (product.manufacturer) {
+    schema.manufacturer = {
+      '@type': 'Organization',
+      name: product.manufacturer,
+    };
+  }
+
+  if (product.rating) {
+    schema.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: product.rating.ratingValue.toString(),
+      reviewCount: product.rating.reviewCount.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    };
+  }
+
+  if (product.additionalProperty && product.additionalProperty.length > 0) {
+    schema.additionalProperty = product.additionalProperty.map((prop) => ({
+      '@type': 'PropertyValue',
+      name: prop.name,
+      value: prop.value,
+    }));
+  }
+
+  return schema;
+};
+
+/**
+ * Enhanced Service Schema for AEO
+ * Complete service information with provider details, pricing, and availability
+ */
+export interface EnhancedServiceData extends ServiceData {
+  price?: string;
+  priceCurrency?: string;
+  duration?: string;
+  audience?: {
+    audienceType?: string;
+    geographicArea?: string;
+  };
+  hoursAvailable?: Array<{
+    dayOfWeek: string;
+    opens: string;
+    closes: string;
+  }>;
+}
+
+export const generateEnhancedServiceSchema = (service: EnhancedServiceData) => {
+  const schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${service.url}#service`,
+    serviceType: service.name,
+    name: service.name,
+    description: service.description,
+    provider: {
+      '@type': 'HairSalon',
+      '@id': `${BASE_URL}/#hairsalon`,
+      name: 'Hair Pinns',
+      image: LOGO_URL,
+      address: {
+        '@type': 'PostalAddress',
+        ...SALON_ADDRESS,
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: SALON_GEO.latitude,
+        longitude: SALON_GEO.longitude,
+      },
+      telephone: SALON_PHONE,
+      priceRange: '$$',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '815',
+        bestRating: '5',
+        worstRating: '1',
+      },
+    },
+    areaServed: AREA_SERVED.map((area) => ({
+      '@type': 'City',
+      name: area,
+      addressRegion: 'NSW',
+      addressCountry: 'AU',
+    })),
+    url: service.url,
+  };
+
+  if (service.price) {
+    schema.offers = {
+      '@type': 'Offer',
+      price: service.price,
+      priceCurrency: service.priceCurrency || 'AUD',
+      availability: 'https://schema.org/InStock',
+      url: service.url,
+    };
+  }
+
+  if (service.duration) {
+    schema.duration = `PT${service.duration.replace(/[^\d]/g, '')}M`;
+  }
+
+  if (service.audience) {
+    schema.audience = {
+      '@type': 'Audience',
+      audienceType: service.audience.audienceType || 'General Public',
+      geographicArea: service.audience.geographicArea || {
+        '@type': 'City',
+        name: 'Sutherland Shire',
+        addressRegion: 'NSW',
+        addressCountry: 'AU',
+      },
+    };
+  }
+
+  if (service.hoursAvailable && service.hoursAvailable.length > 0) {
+    schema.hoursAvailable = service.hoursAvailable.map((hours) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: hours.dayOfWeek,
+      opens: hours.opens,
+      closes: hours.closes,
+    }));
+  }
+
+  return schema;
+};
+
+/**
+ * CollectionPage Schema for AEO
+ * Optimizes collection pages for AI understanding
+ */
+export interface CollectionPageData {
+  name: string;
+  description: string;
+  url: string;
+  image?: string;
+  numberOfItems?: number;
+  items?: Array<{
+    name: string;
+    description: string;
+    url: string;
+    image?: string;
+    price?: string;
+    currency?: string;
+  }>;
+}
+
+export const generateCollectionPageSchema = (collection: CollectionPageData) => {
+  const schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${collection.url}#collection`,
+    name: collection.name,
+    description: collection.description,
+    url: collection.url,
+    mainEntity: {
+      '@type': 'ItemList',
+      name: collection.name,
+      description: collection.description,
+      numberOfItems: collection.numberOfItems || (collection.items ? collection.items.length : 0),
+    },
+  };
+
+  if (collection.image) {
+    schema.image = collection.image;
+  }
+
+  if (collection.items && collection.items.length > 0) {
+    schema.mainEntity.itemListElement = collection.items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: item.name,
+        description: item.description,
+        url: item.url,
+        image: item.image,
+        ...(item.price && {
+          offers: {
+            '@type': 'Offer',
+            price: item.price,
+            priceCurrency: item.currency || 'AUD',
+            availability: 'https://schema.org/InStock',
+            url: item.url,
+          },
+        }),
+      },
+    }));
+  }
+
+  return schema;
+};
+
+/**
+ * Enhanced LocalBusiness Schema for AEO
+ * Adds serviceArea and geo radius for better location-based queries
+ */
+export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
+  const baseSchema = generateLocalBusinessSchema(pageUrl);
+  
+  // Add serviceArea with radius (25km covers Sutherland Shire)
+  return {
+    ...baseSchema,
+    serviceArea: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: SALON_GEO.latitude,
+        longitude: SALON_GEO.longitude,
+      },
+      geoRadius: {
+        '@type': 'Distance',
+        value: '25',
+        unitCode: 'KM',
+      },
+    },
+    // Enhanced aggregateRating with all review sources
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.95',
+      reviewCount: '815',
+      bestRating: '5',
+      worstRating: '1',
+    },
+  };
 };

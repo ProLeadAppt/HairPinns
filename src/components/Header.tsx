@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import ProductSearch from "@/components/product/ProductSearch";
 import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
@@ -25,7 +26,7 @@ const Header = () => {
         </Link>}
 
       {/* Main Header */}
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border h-16">
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border h-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full gap-4">
             {/* Logo */}
@@ -55,6 +56,11 @@ const Header = () => {
               </Link>
             </nav>
 
+            {/* Desktop Search */}
+            <div className="hidden lg:block flex-1 max-w-md mx-8">
+              <ProductSearch placeholder="Search products..." maxResults={6} />
+            </div>
+
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
               <Link to="/collections/christmas-gift-packs">
@@ -81,6 +87,11 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
                 <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
+                  {/* Mobile Search */}
+                  <div className="mb-4">
+                    <ProductSearch placeholder="Search products..." maxResults={5} />
+                  </div>
+                  
                   <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     Shop
                   </Link>

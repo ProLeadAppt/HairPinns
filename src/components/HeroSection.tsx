@@ -1,6 +1,6 @@
 import { Calendar, ShoppingBag, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-salon.jpg";
+import heroImage from "@/assets/hero-salon-1920w.webp";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const HeroSection = () => {

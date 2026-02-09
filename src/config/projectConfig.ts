@@ -10,9 +10,9 @@ export const projectConfig = {
    * 
    * Workflow:
    * 1. User submits form → Contact created with tag "pending_confirm"
-   * 2. Zapier sends confirmation email/SMS with unique confirmation link
+   * 2. GHL sends confirmation email/SMS with unique confirmation link
    * 3. User clicks confirmation link → "Confirm" event fires
-   * 4. Zapier receives "Confirm" event → Applies tag "subscribed" and starts nurture
+   * 4. GHL receives "Confirm" event → Applies tag "subscribed" and starts nurture
    * 
    * Set to false to immediately subscribe contacts upon form submission.
    */
@@ -23,6 +23,15 @@ export const projectConfig = {
    * Set the detected region for GDPR compliance
    */
   gdpr_region: 'AU',
+  
+  /**
+   * GoHighLevel Inbound Webhook URL
+   * Used for all form submissions and event tracking
+   * Loaded from environment variable for security
+   */
+  ghl: {
+    inboundWebhookUrl: import.meta.env.VITE_GHL_INBOUND_WEBHOOK_URL || '',
+  },
   
   /**
    * Shopify Storefront API Configuration

@@ -99,7 +99,7 @@ const ProductCard = ({
 
   return (
     <div className={cn(
-      "group relative bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-base",
+      "group relative bg-card border border-border rounded-lg overflow-hidden hover:shadow-xl transition-all duration-base",
       !inStock && "opacity-75",
       className
     )}>
@@ -107,11 +107,18 @@ const ProductCard = ({
       <div 
         className="relative aspect-square overflow-hidden bg-muted cursor-pointer"
         onClick={handleViewProduct}
+        onMouseEnter={() => {
+          // Track hover for analytics
+          if (handle && typeof window !== 'undefined') {
+            const { hpCapture } = require("@/lib/hpCapture");
+            hpCapture.trackProductHover(handle, name).catch(() => {});
+          }
+        }}
       >
         <img 
           src={image} 
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         
         {/* Badges */}
@@ -172,16 +179,16 @@ const ProductCard = ({
             className="flex-1"
           >
             <ShoppingCart className="w-4 h-4" />
-            {isAddingToCart ? "Adding..." : "Add to Cart"}
+            {isAddingToCart ? "Adding..." : "Add to Bag"}
           </Button>
           {(onViewProduct || handle) && (
             <Button
               onClick={handleViewProduct}
               variant="outline"
               size="sm"
-              className="flex-1"
+              className="flex-1 hidden md:flex group-hover:flex transition-opacity"
             >
-              View
+              Quick View
             </Button>
           )}
         </div>

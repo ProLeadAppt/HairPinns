@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,7 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import TrackingInitializer from "./components/tracking/TrackingInitializer";
 import TrackingScripts from "./components/tracking/TrackingScripts";
 import GoogleTagManager from "./components/tracking/GoogleTagManager";
+import { initCartAbandonmentMonitoring } from "@/lib/cartAbandonment";
 import Index from "./pages/Index";
 import Collections from "./pages/Collections";
 import CollectionDetail from "./pages/CollectionDetail";
@@ -39,9 +41,18 @@ import ReviewGoogle from "./pages/ReviewGoogle";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+const AppContent = () => {
+  useEffect(() => {
+    // Initialize cart abandonment monitoring (non-blocking)
+    try {
+      initCartAbandonmentMonitoring();
+    } catch (error) {
+      console.warn('[App] Failed to initialize cart abandonment monitoring:', error);
+    }
+  }, []);
+
+  return (
+    <>
       <GoogleTagManager />
       <TrackingScripts />
       <noscript>
@@ -90,6 +101,14 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+    </>
+  );
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <AppContent />
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -16,38 +16,11 @@ const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
     setIsSubmitting(true);
     
     try {
-      // Track with hpCapture for internal analytics
+      // Track with hpCapture (sends to GHL inbound webhook)
       await hpCapture.trackEvent('faq_feedback', {
         faq_id: faqId || 'unknown',
         faq_question: question,
         helpful: helpful,
-      });
-
-      // Also send to Zapier webhook
-      const zapierWebhook = 'https://hooks.zapier.com/hooks/catch/20827033/22xp8z8/';
-      
-      const session = hpCapture.getSession();
-      const payload = {
-        event_name: 'faq_feedback',
-        faq_id: faqId || 'unknown',
-        faq_question: question,
-        helpful: helpful,
-        source_page: window.location.pathname,
-        client_id: session.client_id,
-        timestamp: new Date().toISOString(),
-        // UTM parameters from session or URL
-        utm_source: session.utm_source || new URLSearchParams(window.location.search).get('utm_source'),
-        utm_medium: session.utm_medium || new URLSearchParams(window.location.search).get('utm_medium'),
-        utm_campaign: session.utm_campaign || new URLSearchParams(window.location.search).get('utm_campaign'),
-      };
-
-      await fetch(zapierWebhook, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
       });
       
       setFeedback(helpful ? 'yes' : 'no');

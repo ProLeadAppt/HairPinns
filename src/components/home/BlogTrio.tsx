@@ -3,31 +3,27 @@ import { ArrowRight } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Badge from "@/components/design-system/Badge";
+import { blogPosts } from "@/data/blogPosts";
 
 const BlogTrio = () => {
-  const posts = [
-    {
-      slug: "how-to-maintain-color-at-home",
-      title: "How to Maintain Color at Home",
-      hook: "Keep your salon color vibrant longer with these pro tips and product picks",
-      image: "/placeholder.svg",
-      category: "Hair Care"
-    },
-    {
-      slug: "choosing-right-treatment",
-      title: "Choosing the Right Treatment",
-      hook: "Match your hair concerns to the perfect professional treatment for visible results",
-      image: "/placeholder.svg",
-      category: "Guides"
-    },
-    {
-      slug: "holiday-hair-gifting-guide",
-      title: "Holiday Hair Gifting Guide",
-      hook: "Gift bundles that suit every hair type — from fine to curly to color-treated",
-      image: "/placeholder.svg",
-      category: "Gift Ideas"
-    }
+  // Select 3 featured blog posts that are most relevant for homepage
+  // Priority: Product-focused, educational, and popular topics
+  const featuredSlugs = [
+    "salon-vs-supermarket-hair-products", // Products - very relevant for sales
+    "prevent-heat-damage-on-your-hair", // Hair Care - practical guide
+    "whats-the-best-hairspray-to-use", // Products - helpful buying guide
   ];
+
+  const posts = blogPosts
+    .filter((post) => featuredSlugs.includes(post.slug))
+    .slice(0, 3)
+    .map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      hook: post.excerpt,
+      image: post.image,
+      category: post.category,
+    }));
 
   return (
     <Section className="content-visibility-auto">

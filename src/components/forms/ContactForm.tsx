@@ -116,9 +116,8 @@ const ContactForm = ({
         payload.topic = formData.topic;
         payload.topic_label = topicLabel;
       }
-      const {
-        hpCapture
-      } = await import("@/lib/hpCapture");
+      const hpCaptureModule = await import("@/lib/hpCapture");
+      const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
       const success = await hpCapture.postToZapier(payload, {
         event: "contact_form_submit"
       });

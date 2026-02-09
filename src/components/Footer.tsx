@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
+import { hpCapture } from "@/lib/hpCapture";
 import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 
 const Footer = () => {
@@ -28,26 +29,23 @@ const Footer = () => {
     console.log("Newsletter signup:", email);
 
     try {
-      const webhookUrl = "https://hooks.zapier.com/hooks/catch/23975177/u539h9a/";
-      
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors",
-        body: JSON.stringify({
-          email,
-          source: "website_footer",
-          timestamp: new Date().toISOString(),
-        }),
+      const success = await hpCapture.postToGHL({
+        form_name: 'newsletter_footer',
+        email,
+        consent_marketing: true,
+      }, {
+        event: 'newsletter_subscription'
       });
 
-      toast({
-        title: "Success!",
-        description: "You've been added to our mailing list. Check your inbox for a welcome message.",
-      });
-      setEmail("");
+      if (success) {
+        toast({
+          title: "Success!",
+          description: "You've been added to our mailing list. Check your inbox for a welcome message.",
+        });
+        setEmail("");
+      } else {
+        throw new Error('Submission failed');
+      }
     } catch (error) {
       console.error("Newsletter signup error:", error);
       toast({

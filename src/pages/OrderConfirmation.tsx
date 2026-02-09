@@ -111,7 +111,8 @@ const OrderConfirmation = () => {
       // Fire client-side purchase event (non-blocking)
       const trackPurchase = async () => {
         try {
-          const { hpCapture } = await import("@/lib/hpCapture");
+          const hpCaptureModule = await import("@/lib/hpCapture");
+          const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
           
           await hpCapture.trackEvent("purchase_client", {
             order_id: order.order_id,

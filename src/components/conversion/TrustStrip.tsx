@@ -1,40 +1,40 @@
-import { Truck, Award, Lock } from "lucide-react";
+import { Truck, Shield, Star, Lock } from "lucide-react";
 
-const TrustStrip = () => {
-  const trustSignals = [
-    {
-      icon: Award,
-      text: "Salon-approved",
-    },
-    {
-      icon: Truck,
-      text: "Easy returns",
-    },
-    {
-      icon: Truck,
-      text: "Fast AU shipping",
-    },
-  ];
-
+export default function TrustStrip() {
   return (
-    <div className="bg-muted border-y border-border py-4">
+    <div className="bg-muted/50 border-y border-border py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
-          {trustSignals.map((signal, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <signal.icon className="w-5 h-5 text-brand-500" />
-              <span className="text-sm font-medium text-foreground">
-                {signal.text}
-              </span>
-              {index < trustSignals.length - 1 && (
-                <span className="hidden md:inline text-border mx-4">•</span>
-              )}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="flex flex-col items-center gap-2">
+            <Truck className="w-5 h-5 text-brand-500" />
+            <div className="text-sm">
+              <p className="font-semibold text-heading">Free Shipping</p>
+              <p className="text-xs text-muted-foreground">Over $100</p>
             </div>
-          ))}
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Shield className="w-5 h-5 text-brand-500" />
+            <div className="text-sm">
+              <p className="font-semibold text-heading">14-Day Returns</p>
+              <p className="text-xs text-muted-foreground">Hassle-free</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Lock className="w-5 h-5 text-brand-500" />
+            <div className="text-sm">
+              <p className="font-semibold text-heading">Secure Checkout</p>
+              <p className="text-xs text-muted-foreground">Protected</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Star className="w-5 h-5 text-brand-500 fill-current" />
+            <div className="text-sm">
+              <p className="font-semibold text-heading">762+ Reviews</p>
+              <p className="text-xs text-muted-foreground">Five-star rated</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default TrustStrip;
+}

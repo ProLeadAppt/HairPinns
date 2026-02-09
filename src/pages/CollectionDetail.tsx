@@ -28,7 +28,9 @@ import {
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
+import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
+import { generateCollectionPageSchema } from "@/lib/schema";
 
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
@@ -282,6 +284,23 @@ const CollectionDetail = () => {
         <meta property="og:image" content={getOGImage('collection')} />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/collections/${handle}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(generateCollectionPageSchema({
+            name: collectionTitle,
+            description: collectionDescription,
+            url: `https://hairpinns.com/collections/${handle}`,
+            image: collection?.image?.url || getOGImage('collection'),
+            numberOfItems: filteredProducts.length,
+            items: filteredProducts.slice(0, 20).map((product) => ({
+              name: product.title,
+              description: product.description || `${product.title} - Salon-quality hair care product`,
+              url: `https://hairpinns.com/products/${product.handle}`,
+              image: product.image,
+              price: product.price.toString(),
+              currency: product.currency || "AUD",
+            })),
+          }))}
+        </script>
       </Helmet>
       <Header />
       
@@ -399,7 +418,7 @@ const CollectionDetail = () => {
                       </h3>
 
                       <p className="text-2xl font-bold text-brand-500 mb-4">
-                        ${product.price.toFixed(2)}
+                        {formatPrice(product.price, "AUD")}
                       </p>
 
                       {/* Actions */}

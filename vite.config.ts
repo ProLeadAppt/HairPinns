@@ -7,7 +7,8 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8080,
+    port: 5173, // Standard Vite port - Netlify Dev expects this
+    strictPort: false, // Allow fallback to another port if 5173 is busy
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

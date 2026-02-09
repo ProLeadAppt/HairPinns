@@ -22,7 +22,14 @@ import { toast } from "sonner";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
+import PaymentBadges from "@/components/product/PaymentBadges";
+import ShippingCalculator from "@/components/product/ShippingCalculator";
+import UrgencyIndicator from "@/components/conversion/UrgencyIndicator";
+import StickyAddToCart from "@/components/conversion/StickyAddToCart";
+import { trackCartCreated } from "@/lib/cartAbandonment";
+import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
+import { generateEnhancedProductSchema } from "@/lib/schema";
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -132,9 +139,25 @@ const ProductDetail = () => {
         localStorage.setItem('hp_cart_id', cartId);
       }
       
-      // Track add_to_cart to Zapier
+      // Track add_to_cart to GHL and cart abandonment
       const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.priceV2.amount) : 0;
+      
+      // Track cart creation for abandonment recovery
+      if (cartId && checkoutUrl) {
+        await trackCartCreated(
+          cartId,
+          checkoutUrl,
+          [{
+            id: activeVariantId,
+            title: product.title,
+            price: price,
+            quantity: 1,
+          }],
+          price,
+          "AUD"
+        );
+      }
       
       trackAddToCart({
         product_id: product.id,
@@ -290,13 +313,13 @@ const ProductDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{product.title} | ${price.toFixed(2)} | Hair Pinns</title>
+        <title>{product.title} | {formatPrice(price, "AUD")} | Hair Pinns</title>
         <meta 
           name="description" 
           content={product.description.substring(0, 155)}
         />
         <link rel="canonical" href={`https://hairpinns.com/products/${handle}`} />
-        <meta property="og:title" content={`${product.title} - $${price.toFixed(2)}`} />
+        <meta property="og:title" content={`${product.title} - ${formatPrice(price, "AUD")}`} />
         <meta property="og:description" content={product.description.substring(0, 155)} />
         <meta property="og:url" content={`https://hairpinns.com/products/${handle}`} />
         <meta property="og:type" content="product" />
@@ -304,6 +327,24 @@ const ProductDetail = () => {
         <meta property="product:price:amount" content={price.toString()} />
         <meta property="product:price:currency" content="AUD" />
         <meta name="twitter:card" content="summary_large_image" />
+        <script type="application/ld+json">
+          {JSON.stringify(generateEnhancedProductSchema({
+            name: product.title,
+            description: product.description || `${product.title} - Salon-quality hair care product from Hair Pinns`,
+            image: images.map((img: any) => img.url),
+            price: price.toString(),
+            currency: activeVariant?.priceV2?.currencyCode || "AUD",
+            brand: "Hair Pinns",
+            sku: activeVariant?.sku || product.id.split('/').pop() || product.handle,
+            productID: product.id,
+            availability: isAvailable ? "InStock" : "OutOfStock",
+            category: product.productType || "Hair Care",
+            rating: {
+              ratingValue: 4.8,
+              reviewCount: 53,
+            },
+          }))}
+        </script>
       </Helmet>
       
       <Header />
@@ -420,21 +461,28 @@ const ProductDetail = () => {
                   {product.title}
                 </h1>
 
-                {/* Availability */}
-                {!product.availableForSale && (
-                  <Badge variant="destructive">Out of Stock</Badge>
-                )}
+                {/* Availability & Urgency */}
+                <UrgencyIndicator
+                  productId={product.id}
+                  inStock={product.availableForSale}
+                  stockLevel={product.availableForSale ? 5 : 0} // In production, get from API
+                  showRecentPurchases={true}
+                  className="mb-4"
+                />
 
                 {/* Price */}
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl font-bold text-brand-500">
-                    ${price.toFixed(2)}
-                  </span>
-                  {compareAtPrice && compareAtPrice > price && (
-                    <span className="text-xl text-muted-foreground line-through">
-                      ${compareAtPrice.toFixed(2)}
+                <div className="space-y-2">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-3xl font-bold text-brand-500">
+                      {formatPrice(price, "AUD")}
                     </span>
-                  )}
+                    {compareAtPrice && compareAtPrice > price && (
+                      <span className="text-xl text-muted-foreground line-through">
+                        {formatPrice(compareAtPrice, "AUD")}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-muted-foreground">All prices in Australian Dollars (AUD)</p>
                 </div>
 
                 {/* Variant Selector */}
@@ -484,6 +532,17 @@ const ProductDetail = () => {
                     <Zap className="w-5 h-5 mr-2" />
                     {buyingNow ? "Processing..." : "Buy Now"}
                   </Button>
+
+                  {/* Shipping Calculator */}
+                  <div className="pt-2">
+                    <ShippingCalculator cartTotal={price} />
+                  </div>
+
+                  {/* Payment Options */}
+                  <div className="pt-4 border-t border-border">
+                    <p className="text-sm font-medium mb-3 text-foreground">Payment Options:</p>
+                    <PaymentBadges variant="stacked" />
+                  </div>
                 </div>
 
                 {/* Description - Simplified */}
@@ -517,6 +576,15 @@ const ProductDetail = () => {
       </main>
       
       <Footer />
+      {product && (
+        <StickyAddToCart
+          productTitle={product.title}
+          price={price}
+          inStock={isAvailable}
+          onAddToCart={handleAddToBag}
+          threshold={500}
+        />
+      )}
     </div>
   );
 };

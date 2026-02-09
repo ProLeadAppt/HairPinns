@@ -16,7 +16,10 @@ export async function runShopifySanityCheck() {
   }
 }
 
-// Auto-run in development
+// Auto-run in development (non-blocking)
 if (import.meta.env.DEV) {
-  runShopifySanityCheck();
+  runShopifySanityCheck().catch((error) => {
+    // Silently fail - don't break the app if Shopify config is missing
+    console.warn("[Shopify] Sanity check skipped:", error.message);
+  });
 }

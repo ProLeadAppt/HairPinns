@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -7,19 +7,22 @@ import { ArrowRight } from "lucide-react";
 import { getAllCollections } from "@/lib/shopify";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_URL } from "@/config/bookingConfig";
-import aromaganicImage from "@/assets/collections/aromaganic-collection.jpg";
-import christmasImage from "@/assets/collections/christmas-collection.jpg";
-import clearanceImage from "@/assets/collections/clearance-collection.jpg";
-import accessoriesImage from "@/assets/collections/accessories-collection.jpg";
-import islandVibesImage from "@/assets/collections/island-vibes-collection.jpg";
-import juuceImage from "@/assets/collections/juuce-collection.jpg";
-import poppetLocksImage from "@/assets/collections/poppet-locks-collection.jpg";
-import pureOrganicImage from "@/assets/collections/pure-organic-collection.jpg";
-import qiqiImage from "@/assets/collections/qiqi-collection.jpg";
-import perfectPonyImage from "@/assets/collections/perfect-pony-collection.jpg";
-import wetBrushImage from "@/assets/collections/wet-brush-collection.jpg";
+import aromaganicImage from "@/assets/collections/aromaganic-collection.webp";
+import christmasImage from "@/assets/collections/christmas-collection.webp";
+import clearanceImage from "@/assets/collections/clearance-collection.webp";
+import accessoriesImage from "@/assets/collections/accessories-collection.webp";
+import islandVibesImage from "@/assets/collections/island-vibes-collection.webp";
+import juuceImage from "@/assets/collections/juuce-collection.webp";
+import poppetLocksImage from "@/assets/collections/poppet-locks-collection.webp";
+import pureOrganicImage from "@/assets/collections/pure-organic-collection.webp";
+import qiqiImage from "@/assets/collections/qiqi-collection.webp";
+import perfectPonyImage from "@/assets/collections/perfect-pony-collection.webp";
+import wetBrushImage from "@/assets/collections/wet-brush-collection.webp";
 
 interface ShopifyCollection {
   id: string;
@@ -39,6 +42,8 @@ const Collections = () => {
   const [collections, setCollections] = useState<ShopifyCollection[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState<string>("default");
 
   const getCollectionImage = (handle: string, title: string, shopifyImage?: string) => {
     // Prefer Shopify image if available
@@ -128,6 +133,45 @@ const Collections = () => {
     fetchCollections();
   }, []);
 
+  // Filter and sort collections
+  const filteredAndSortedCollections = useMemo(() => {
+    let filtered = collections;
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (collection) =>
+          collection.title.toLowerCase().includes(query) ||
+          collection.handle.toLowerCase().includes(query) ||
+          (collection.description && collection.description.toLowerCase().includes(query))
+      );
+    }
+
+    // Sort collections
+    const sorted = [...filtered];
+    switch (sortBy) {
+      case "name-asc":
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "name-desc":
+        sorted.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case "product-count":
+        sorted.sort((a, b) => {
+          const aCount = a.products?.edges?.length || 0;
+          const bCount = b.products?.edges?.length || 0;
+          return bCount - aCount;
+        });
+        break;
+      default:
+        // Keep default order (already sorted by collectionOrder)
+        break;
+    }
+
+    return sorted;
+  }, [collections, searchQuery, sortBy]);
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -168,6 +212,38 @@ const Collections = () => {
           </div>
         </section>
 
+        {/* Search & Filter */}
+        <section className="border-b border-border bg-card sticky top-16 z-30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+              {/* Search */}
+              <div className="relative flex-1 max-w-md w-full">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search collections..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+
+              {/* Sort */}
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-[200px]">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">Default Order</SelectItem>
+                  <SelectItem value="name-asc">Name: A-Z</SelectItem>
+                  <SelectItem value="name-desc">Name: Z-A</SelectItem>
+                  <SelectItem value="product-count">Most Products</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </section>
+
         {/* Collections Grid */}
         <section className="py-20 md:py-32">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -198,9 +274,18 @@ const Collections = () => {
                   <Link to="/contact">Contact Us</Link>
                 </Button>
               </div>
+            ) : filteredAndSortedCollections.length === 0 ? (
+              <div className="text-center py-16 max-w-2xl mx-auto">
+                <p className="text-muted text-lg mb-6">
+                  No collections found matching "{searchQuery}".
+                </p>
+                <Button variant="outline" onClick={() => setSearchQuery("")}>
+                  Clear Search
+                </Button>
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {collections.map((collection, index) => (
+                {filteredAndSortedCollections.map((collection, index) => (
                   <Link
                     key={collection.id}
                     to={`/collections/${collection.handle}`}

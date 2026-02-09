@@ -38,7 +38,8 @@ const SuburbPage = () => {
       
       if (!hasViewed && suburb) {
         try {
-          const { hpCapture } = await import("@/lib/hpCapture");
+          const hpCaptureModule = await import("@/lib/hpCapture");
+          const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
           await hpCapture.trackEvent("suburb_page_view", {
             suburb: suburb,
             suburb_name: suburbData?.name || suburb,

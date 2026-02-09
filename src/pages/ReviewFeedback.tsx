@@ -10,6 +10,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-mo
 import { soundEffects } from "@/lib/soundEffects";
 import { haptics } from "@/lib/haptics";
 import { analyzeSentiment } from "@/lib/sentimentAnalysis";
+import { hpCapture } from "@/lib/hpCapture";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -150,17 +151,16 @@ const ReviewFeedback = () => {
     };
 
     try {
-      await fetch(
-        "https://hooks.zapier.com/hooks/catch/23975177/u59txby/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "no-cors",
-          body: JSON.stringify(feedbackData),
-        }
-      );
+      await hpCapture.postToGHL({
+        form_name: 'review_feedback',
+        name: formData.name,
+        email: formData.email,
+        message: formData.feedback,
+        rating: rating,
+        sentiment: sentiment?.label || 'unknown',
+      }, {
+        event: 'review_feedback'
+      });
       
       console.log("Feedback submitted:", feedbackData);
       soundEffects.playSuccess();

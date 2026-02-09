@@ -38,7 +38,8 @@ const LocationPage = () => {
       
       if (!hasViewed && slug && locationData) {
         try {
-          const { hpCapture } = await import("@/lib/hpCapture");
+          const hpCaptureModule = await import("@/lib/hpCapture");
+          const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
           await hpCapture.trackEvent("location_page_view", {
             location: slug,
             location_name: locationData.name,

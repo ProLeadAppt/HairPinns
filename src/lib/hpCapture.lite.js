@@ -1,10 +1,13 @@
 /**
  * hpCapture Lite - Lightweight JavaScript version
- * Minimal form tracking with Zapier integration
+ * Minimal form tracking with GHL inbound webhook integration
+ * NOTE: This is a legacy file. Use the full TypeScript version from hpCapture.ts instead.
  */
 
 export const hpCapture = (() => {
-  const HOOK = "https://hooks.zapier.com/hooks/catch/23975177/u9frxmo/";
+  // GHL inbound webhook URL - should be set via environment variable
+  // This lite version doesn't support env vars - use the full version instead
+  const HOOK = process.env.VITE_GHL_INBOUND_WEBHOOK_URL || "";
   
   const get = (k) => new URLSearchParams(location.search).get(k) || "";
   const store = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
@@ -51,7 +54,7 @@ export const hpCapture = (() => {
     };
   };
   
-  const postToZapier = async (payload, { event }) => {
+  const postToGHL = async (payload, { event }) => {
     const sess = getSession();
     const emailOrPhone = (payload?.email || payload?.phone || "").toLowerCase().trim();
     const key = `${sess.client_id}|${event}|${emailOrPhone}|${new Date().toISOString().slice(0, 10)}`;
@@ -103,5 +106,8 @@ export const hpCapture = (() => {
     return false;
   };
   
-  return { getSession, postToZapier };
+  // Legacy alias for backward compatibility
+  const postToZapier = postToGHL;
+  
+  return { getSession, postToGHL, postToZapier };
 })();

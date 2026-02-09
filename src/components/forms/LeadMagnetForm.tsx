@@ -54,7 +54,8 @@ const LeadMagnetForm = ({
     setIsSubmitting(true);
 
     try {
-      const { hpCapture } = await import("@/lib/hpCapture");
+      const hpCaptureModule = await import("@/lib/hpCapture");
+      const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
       
       // Build payload with exact structure requested
       const payload = {

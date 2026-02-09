@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Check } from "lucide-react";
+import { ShoppingBag, Check, Truck, Shield, Star } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { getCollectionByHandle } from "@/lib/shopify";
 import { Badge } from "@/components/ui/badge";
+import { formatPrice } from "@/lib/utils";
 
 const ProductSpotlight = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -30,17 +31,19 @@ const ProductSpotlight = () => {
             const product = edge.node;
             const firstImage = product.images.edges[0]?.node;
             const price = parseFloat(product.priceRange.minVariantPrice.amount);
+            const currency = product.priceRange.minVariantPrice.currencyCode || "AUD";
             
             return {
               slug: product.handle,
               title: product.title,
-              price: `$${price.toFixed(2)}`,
+              price: price,
+              currency: currency,
               image: firstImage?.url || "/placeholder.svg",
               availableForSale: product.availableForSale,
               bullets: [
                 product.description?.substring(0, 40) || "Premium hair care",
-                "Professional salon formula",
-                `Starting at $${price.toFixed(2)}`
+                "Salon-quality formula",
+                "15+ years expert curation"
               ]
             };
           });
@@ -73,7 +76,7 @@ const ProductSpotlight = () => {
       <Section className="content-visibility-auto">
         <SectionHeader 
           title="Christmas Gift Packs"
-          subtitle="Curated hair care bundles — perfect for gifting or treating yourself"
+          subtitle="Curated hair care bundles — perfect for gifting or treating yourself. Limited stock available."
         />
         <div className="flex justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
@@ -120,9 +123,21 @@ const ProductSpotlight = () => {
               <h3 className="text-xl font-heading font-semibold text-heading mb-2">
                 {product.title}
               </h3>
-              <p className="text-2xl font-bold text-brand-500 mb-4">
-                {product.price}
+              <p className="text-2xl font-bold text-brand-500 mb-2">
+                {formatPrice(product.price, product.currency)}
               </p>
+              
+              {/* Trust Badges */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Truck className="w-3 h-3 text-brand-500" />
+                  <span>Free shipping over $100</span>
+                </div>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Shield className="w-3 h-3 text-brand-500" />
+                  <span>14-day returns</span>
+                </div>
+              </div>
               
               <ul className="space-y-2 mb-6">
                 {product.bullets.map((bullet, index) => (
@@ -136,7 +151,7 @@ const ProductSpotlight = () => {
               <div className="flex gap-2">
                 <Link to={`/products/${product.slug}`} className="flex-1">
                   <Button variant="outline" size="sm" className="w-full">
-                    View Details
+                    Quick View
                   </Button>
                 </Link>
                 <Link to={`/products/${product.slug}`} className="flex-1">
@@ -147,7 +162,7 @@ const ProductSpotlight = () => {
                     disabled={!product.availableForSale}
                   >
                     <ShoppingBag className="w-4 h-4 mr-1" />
-                    Shop Now
+                    Add to Bag
                   </Button>
                 </Link>
               </div>

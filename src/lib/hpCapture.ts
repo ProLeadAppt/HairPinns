@@ -2,7 +2,8 @@
 
 import { projectConfig } from '@/config/projectConfig';
 
-const ZAPIER_CATCH_HOOK_URL = "https://hooks.zapier.com/hooks/catch/23975177/u9frxmo/";
+// GHL Inbound Webhook URL - loaded from projectConfig (environment variable)
+const GHL_INBOUND_WEBHOOK_URL = projectConfig.ghl.inboundWebhookUrl || '';
 
 interface SessionData {
   client_id: string;
@@ -274,12 +275,18 @@ async function generateDedupeKey(
 // Sleep utility for retry backoff
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-// POST to Zapier with retry logic
-async function postToZapier(
+// POST to GHL inbound webhook with retry logic
+async function postToGHL(
   payload: Partial<CapturePayload>,
   options: CaptureOptions = {}
 ): Promise<boolean> {
   const { event, retryAttempts = 3 } = options;
+  
+  // Validate GHL webhook URL is configured
+  if (!GHL_INBOUND_WEBHOOK_URL) {
+    console.warn('[hpCapture] GHL inbound webhook URL not configured. Set VITE_GHL_INBOUND_WEBHOOK_URL environment variable.');
+    return false;
+  }
   
   // Check honeypot field - if filled, reject silently
   if (payload.company && payload.company !== '') {
@@ -419,7 +426,7 @@ async function postToZapier(
   
   for (let attempt = 0; attempt < retryAttempts; attempt++) {
     try {
-      const response = await fetch(ZAPIER_CATCH_HOOK_URL, {
+      const response = await fetch(GHL_INBOUND_WEBHOOK_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -430,7 +437,7 @@ async function postToZapier(
       
       // With no-cors, response is opaque (status 0). Treat as success.
       if (response.ok || response.type === 'opaque' || response.status === 0) {
-        console.log('[hpCapture] Request sent to Zapier (opaque allowed):', fullPayload);
+        console.log('[hpCapture] Request sent to GHL (opaque allowed):', fullPayload);
         return true;
       }
       
@@ -492,6 +499,19 @@ async function postToZapier(
 }
 
 // Exported utility object
+/**
+ * Enhanced conversion tracking events
+ */
+export const trackConversionEvent = async (
+  eventName: string,
+  data: Record<string, any> = {}
+): Promise<boolean> => {
+  return postToGHL(
+    { ...data, timestamp: new Date().toISOString() },
+    { event: eventName }
+  );
+};
+
 export const hpCapture = {
   /**
    * Get current session data including UTMs, click IDs, referrer, and client_id (last-touch)
@@ -515,16 +535,27 @@ export const hpCapture = {
   },
   
   /**
-   * Post data to Zapier with automatic session enrichment and retry logic
+   * Post data to GHL inbound webhook with automatic session enrichment and retry logic
    * @param payload - Data to send (form fields, custom data)
    * @param options - Configuration options (event name, retry attempts)
    * @returns Promise<boolean> - true if successful, false if all retries failed
+   */
+  postToGHL: async (
+    payload: Partial<CapturePayload>,
+    options: CaptureOptions = {}
+  ): Promise<boolean> => {
+    return postToGHL(payload, options);
+  },
+  
+  /**
+   * Legacy alias for postToGHL (for backward compatibility)
+   * @deprecated Use postToGHL instead
    */
   postToZapier: async (
     payload: Partial<CapturePayload>,
     options: CaptureOptions = {}
   ): Promise<boolean> => {
-    return postToZapier(payload, options);
+    return postToGHL(payload, options);
   },
   
   /**
@@ -533,10 +564,76 @@ export const hpCapture = {
    * @param data - Additional data to include
    */
   trackEvent: async (eventName: string, data: Record<string, any> = {}): Promise<boolean> => {
-    return postToZapier(
+    return postToGHL(
       { ...data },
       { event: eventName }
     );
+  },
+  /**
+   * Track hero CTA click
+   */
+  trackHeroCTA: async (ctaType: string, placement: string = "hero_home"): Promise<boolean> => {
+    return postToGHL({ cta_type: ctaType, placement }, { event: "hero_cta_click" });
+  },
+  /**
+   * Track product card hover
+   */
+  trackProductHover: async (productId: string, productTitle: string): Promise<boolean> => {
+    return postToGHL({ product_id: productId, product_title: productTitle }, { event: "product_card_hover" });
+  },
+  /**
+   * Track quick view open
+   */
+  trackQuickView: async (productId: string): Promise<boolean> => {
+    return postToGHL({ product_id: productId }, { event: "quick_view_open" });
+  },
+  /**
+   * Track urgency indicator seen
+   */
+  trackUrgencySeen: async (productId: string, urgencyType: string): Promise<boolean> => {
+    return postToGHL({ product_id: productId, urgency_type: urgencyType }, { event: "urgency_indicator_seen" });
+  },
+  /**
+   * Track social proof click
+   */
+  trackSocialProof: async (proofType: string, source: string): Promise<boolean> => {
+    return postToGHL({ proof_type: proofType, source }, { event: "social_proof_click" });
+  },
+  /**
+   * Track hero video played
+   */
+  trackHeroVideoPlayed: async (videoUrl?: string): Promise<boolean> => {
+    return postToGHL({ video_url: videoUrl }, { event: "hero_video_played" });
+  },
+  /**
+   * Track hero CTA visibility
+   */
+  trackHeroCTAVisible: async (ctaType: string, placement: string = "hero_home"): Promise<boolean> => {
+    return postToGHL({ cta_type: ctaType, placement }, { event: "hero_cta_visible" });
+  },
+  /**
+   * Track quick add clicked
+   */
+  trackQuickAddClicked: async (productId: string, productTitle: string, placement: string = "hero"): Promise<boolean> => {
+    return postToGHL({ product_id: productId, product_title: productTitle, placement }, { event: "quick_add_clicked" });
+  },
+  /**
+   * Track location detected
+   */
+  trackLocationDetected: async (city?: string, region?: string, country?: string): Promise<boolean> => {
+    return postToGHL({ location_city: city, location_region: region, location_country: country }, { event: "location_detected" });
+  },
+  /**
+   * Track scroll depth
+   */
+  trackScrollDepth: async (depth: 25 | 50 | 75 | 100, pageUrl?: string): Promise<boolean> => {
+    return postToGHL({ scroll_depth: depth, page_url: pageUrl || (typeof window !== 'undefined' ? window.location.href : '') }, { event: `scroll_depth_${depth}` });
+  },
+  /**
+   * Track hero engagement (scroll, hover, click)
+   */
+  trackHeroEngagement: async (action: 'scroll' | 'hover' | 'click', element?: string): Promise<boolean> => {
+    return postToGHL({ action, element }, { event: "hero_engagement" });
   },
 };
 
@@ -559,14 +656,14 @@ if (typeof window !== 'undefined') {
     console.log('[hpCapture] Test payload (before transformation):', testPayload);
     
     try {
-      const success = await hpCapture.postToZapier(
+      const success = await hpCapture.postToGHL(
         testPayload,
         { event: 'test_submission' }
       );
       
       if (success) {
         console.log('✅ [hpCapture] Test submission successful!');
-        console.log('Check Zapier Task History to verify webhook received');
+        console.log('Check GHL to verify webhook received');
         console.log('Payload should be nested as: contact, context, consent, session, first_touch');
       } else {
         console.error('❌ [hpCapture] Test submission failed');
