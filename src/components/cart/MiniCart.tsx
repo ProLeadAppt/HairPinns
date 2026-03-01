@@ -8,24 +8,7 @@ import { searchProducts, getCart } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import EstimatedDelivery from "@/components/product/EstimatedDelivery";
 import { clearCartId } from "@/lib/cartManagement";
-import { projectConfig } from "@/config/projectConfig";
 import { toast } from "sonner";
-
-/** Rewrite checkout URL from custom domain to Shopify - prevents 404 on our SPA */
-function ensureShopifyCheckoutUrl(url: string): string {
-  try {
-    const parsed = new URL(url);
-    const customDomains = ["hairpinns.com", "www.hairpinns.com"];
-    const shopifyDomain = projectConfig.shopify.domain;
-    if (customDomains.some((d) => parsed.hostname === d) && shopifyDomain) {
-      parsed.hostname = shopifyDomain;
-      return parsed.toString();
-    }
-  } catch {
-    /* ignore */
-  }
-  return url;
-}
 
 export interface MiniCartProps {
   open: boolean;
@@ -153,31 +136,27 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
         currency: cart?.cost?.totalAmount?.currencyCode || "AUD",
       });
 
-      const response = await fetchCheckoutApi({ cartId, lines: [] });
+      // Use form POST with redirect - server returns 303, browser follows natively.
+      // This avoids JS redirect issues, extensions, or URL corruption.
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = `${window.location.origin}/.netlify/functions/checkout?redirect=true`;
+      form.style.display = "none";
 
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.message || "Checkout failed");
-      }
+      const cartIdInput = document.createElement("input");
+      cartIdInput.type = "hidden";
+      cartIdInput.name = "cartId";
+      cartIdInput.value = cartId;
+      form.appendChild(cartIdInput);
 
-      const { checkoutUrl } = await response.json();
-      if (checkoutUrl) {
-        // Always rewrite custom domain to Shopify (client-side safety net)
-        const finalUrl = ensureShopifyCheckoutUrl(checkoutUrl);
-        const url = new URL(finalUrl);
-        const isShopifyDomain =
-          url.hostname.endsWith(".myshopify.com") ||
-          url.hostname.includes("shopify.com") ||
-          url.hostname === "shop.app";
-        const isCartPath = url.pathname === "/cart" || url.pathname.startsWith("/cart/");
-        if (isShopifyDomain && isCartPath) {
-          window.location.href = finalUrl;
-        } else {
-          throw new Error("Invalid checkout URL received");
-        }
-      } else {
-        throw new Error("No checkout URL received");
-      }
+      const linesInput = document.createElement("input");
+      linesInput.type = "hidden";
+      linesInput.name = "lines";
+      linesInput.value = "[]";
+      form.appendChild(linesInput);
+
+      document.body.appendChild(form);
+      form.submit();
     } catch (error) {
       console.error("Checkout error:", error);
       toast.error("Unable to proceed to checkout. Please try again.");

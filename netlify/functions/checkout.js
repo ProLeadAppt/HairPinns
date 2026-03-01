@@ -364,8 +364,20 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Parse request body
-    const body = event.body ? JSON.parse(event.body) : {};
+    // Parse request body - support both JSON and form-urlencoded (for form POST redirect)
+    let body = {};
+    const contentType = (event.headers && (event.headers['content-type'] || event.headers['Content-Type'])) || '';
+    if (contentType.includes('application/json')) {
+      body = event.body ? JSON.parse(event.body) : {};
+    } else if (contentType.includes('application/x-www-form-urlencoded') || (event.body && event.body.includes('='))) {
+      const params = new URLSearchParams(event.body || '');
+      body = {
+        cartId: params.get('cartId') || null,
+        lines: (() => { try { return JSON.parse(params.get('lines') || '[]'); } catch { return []; } })(),
+      };
+    } else {
+      body = event.body ? JSON.parse(event.body) : {};
+    }
     const lines = Array.isArray(body.lines) ? body.lines : [];
     const removeLineIds = Array.isArray(body.removeLineIds) ? body.removeLineIds : [];
     const cartId = normalizeCartId(body.cartId) || body.cartId || null;
