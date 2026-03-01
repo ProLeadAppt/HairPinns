@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, ShoppingBag, ArrowRight, Shield, Lock } from "lucide-react";
+import { X, ShoppingBag, ArrowRight, Shield, Lock, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
 import FreeShippingBar from "@/components/conversion/FreeShippingBar";
@@ -23,6 +23,7 @@ export interface MiniCartProps {
  */
 export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal = 0 }: MiniCartProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [removingLineId, setRemovingLineId] = useState<string | null>(null);
   const [upsellProducts, setUpsellProducts] = useState<any[]>([]);
   const [cart, setCart] = useState<any>(null);
   const [cartLoading, setCartLoading] = useState(false);
@@ -86,6 +87,26 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
       fetchUpsells();
     }
   }, [open]);
+
+  const handleRemoveLine = async (lineId: string) => {
+    if (!cartId) return;
+    setRemovingLineId(lineId);
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cartId, removeLineIds: [lineId] }),
+      });
+      if (!response.ok) throw new Error("Failed to remove");
+      const { cart: updatedCart } = await response.json();
+      setCart(updatedCart);
+      toast.success("Item removed");
+    } catch {
+      toast.error("Could not remove item");
+    } finally {
+      setRemovingLineId(null);
+    }
+  };
 
   const handleCheckout = async () => {
     if (!cartId) {
@@ -200,7 +221,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
                 return (
                   <div
                     key={node.id}
-                    className="flex gap-3 p-3 rounded-lg border border-border"
+                    className="flex gap-3 p-3 rounded-lg border border-border group"
                   >
                     <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0">
                       <img
@@ -224,6 +245,20 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
                         {formatPrice(price * node.quantity, currency)}
                       </p>
                     </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="flex-shrink-0 h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                      onClick={() => handleRemoveLine(node.id)}
+                      disabled={removingLineId === node.id}
+                      aria-label="Remove item"
+                    >
+                      {removingLineId === node.id ? (
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current" />
+                      ) : (
+                        <Trash2 className="w-4 h-4" />
+                      )}
+                    </Button>
                   </div>
                 );
               })}

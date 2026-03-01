@@ -194,6 +194,89 @@ async function cartLinesAdd(cartId, lines) {
 }
 
 /**
+ * Remove lines from cart
+ */
+async function cartLinesRemove(cartId, lineIds) {
+  const query = `
+    mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+      cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+        cart {
+          id
+          checkoutUrl
+          lines(first: 100) {
+            edges {
+              node {
+                id
+                quantity
+                merchandise {
+                  ... on ProductVariant {
+                    id
+                    title
+                    priceV2 {
+                      amount
+                      currencyCode
+                    }
+                    product {
+                      id
+                      title
+                      handle
+                    }
+                    image {
+                      url
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+          cost {
+            totalAmount {
+              amount
+              currencyCode
+            }
+            subtotalAmount {
+              amount
+              currencyCode
+            }
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+  const data = await fetchShopify(query, { cartId, lineIds });
+  if (data.cartLinesRemove.userErrors?.length > 0) {
+    console.error('Cart lines remove user errors:', data.cartLinesRemove.userErrors);
+    throw new Error(data.cartLinesRemove.userErrors[0].message);
+  }
+  return data.cartLinesRemove.cart;
+}
+
+/**
+ * Ensure checkout URL uses Shopify domain (not custom domain) to avoid SPA 404
+ * Custom domain URLs hit our SPA and show 404; myshopify.com goes to Shopify checkout
+ */
+function ensureShopifyCheckoutUrl(url) {
+  if (!url || typeof url !== 'string') return url;
+  try {
+    const parsed = new URL(url);
+    // If checkout URL points to our custom domain, rewrite to Shopify
+    const customDomains = ['hairpinns.com', 'www.hairpinns.com'];
+    if (customDomains.some(d => parsed.hostname === d) && SHOPIFY_DOMAIN) {
+      parsed.hostname = SHOPIFY_DOMAIN;
+      return parsed.toString();
+    }
+    return url;
+  } catch {
+    return url;
+  }
+}
+
+/**
  * Get existing cart by ID (for "Proceed to Checkout" when cart already has items)
  */
 async function cartGet(cartId) {
@@ -256,9 +339,28 @@ exports.handler = async (event, context) => {
     // Parse request body
     const body = event.body ? JSON.parse(event.body) : {};
     const lines = Array.isArray(body.lines) ? body.lines : [];
+    const removeLineIds = Array.isArray(body.removeLineIds) ? body.removeLineIds : [];
     const cartId = body.cartId || null;
 
     let cart;
+
+    // Remove lines from cart
+    if (removeLineIds.length > 0 && cartId) {
+      console.log('Removing lines from cart:', cartId, removeLineIds);
+      cart = await cartLinesRemove(cartId, removeLineIds);
+      if (!cart) {
+        return {
+          statusCode: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ error: 'Failed to remove items' }),
+        };
+      }
+      return {
+        statusCode: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cart }),
+      };
+    }
 
     // "Proceed to Checkout" with existing cart (mini cart sends cartId + empty lines)
     if (lines.length === 0 && cartId) {
@@ -306,7 +408,10 @@ exports.handler = async (event, context) => {
       };
     }
 
-    console.log('✅ Cart ready:', { cartId: cart.id, checkoutUrl: cart.checkoutUrl });
+    // Ensure checkout URL uses Shopify domain (fixes 404 when custom domain hits our SPA)
+    const checkoutUrl = ensureShopifyCheckoutUrl(cart.checkoutUrl);
+
+    console.log('✅ Cart ready:', { cartId: cart.id, checkoutUrl });
 
     // Check for redirect query param
     const queryParams = event.queryStringParameters || {};
@@ -318,7 +423,7 @@ exports.handler = async (event, context) => {
         statusCode: 303,
         headers: {
           ...corsHeaders,
-          'Location': cart.checkoutUrl,
+          'Location': checkoutUrl,
         },
         body: '',
       };
@@ -329,7 +434,7 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        checkoutUrl: cart.checkoutUrl,
+        checkoutUrl,
         cartId: cart.id,
       }),
     };
