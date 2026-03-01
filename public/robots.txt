@@ -1,9 +1,10 @@
-# Allow all bots
+# Allow all bots - optimised for local SEO, organic traffic, and map pack
 User-agent: *
 Allow: /
 
-# Disallow cart and checkout pages
+# Disallow cart and checkout pages (handled by Shopify)
 Disallow: /cart
+Disallow: /cart/
 Disallow: /checkout
 Disallow: /account
 
@@ -14,5 +15,5 @@ Disallow: /*?*gclid=*
 Disallow: /*?*sort=*
 Disallow: /*?*filter=*
 
-# Sitemap
+# Sitemap - required for discovery by Google, Bing, and other search engines
 Sitemap: https://hairpinns.com/sitemap.xml

@@ -23,7 +23,10 @@ const Sitemap = () => {
       icon: ShoppingBag,
       links: [
         { title: "All Collections", url: "/collections" },
-        { title: "Hair Care", url: "/collections/hair-care" },
+        { title: "Juuce", url: "/collections/juuce" },
+        { title: "QIQI", url: "/collections/qiqi" },
+        { title: "Pure Organic", url: "/collections/pure" },
+        { title: "Wet Brush", url: "/collections/wet-brush" },
         { title: "Treatments & Masks", url: "/collections/treatments" },
         { title: "Styling Products", url: "/collections/styling" },
       ]
@@ -68,7 +71,6 @@ const Sitemap = () => {
           content="Browse all pages on Hair Pinns website - services, products, blog articles, service areas, and policies." 
         />
         <link rel="canonical" href="https://hairpinns.com/sitemap" />
-        <meta name="robots" content="noindex,follow" />
       </Helmet>
 
       <Header />

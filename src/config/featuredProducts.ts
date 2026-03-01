@@ -5,6 +5,18 @@
  */
 
 /**
+ * Above-the-fold hero products (4 products in the hero grid).
+ * When set, HeroHome fetches these specific products. Update when Jena provides her list.
+ * Leave empty to fall back to searchProducts (may show duplicates).
+ */
+export const ABOVE_FOLD_HERO_PRODUCT_HANDLES: string[] = [
+  "aromaganic-curly-curl-hair-shampoo-conditioner-duo",
+  "solar-enz",
+  "heat-shield",
+  "walnut-scrub-hair-scalp-pre-wash-treatment",
+];
+
+/**
  * Best Sellers collection handle (optional).
  * When set, the Best Sellers section fetches products from this Shopify collection.
  * Jena can create this collection in Shopify admin and add products (e.g. "best-sellers-nov" for November).

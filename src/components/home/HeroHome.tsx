@@ -34,30 +34,57 @@ const HeroHome = () => {
 
     const fetchFeaturedProducts = async () => {
       try {
-        // Fetch top products for hero showcase
-        const result = await searchProducts("", 6);
-        if (result?.products) {
-          const products = result.products
-            .filter((p: any) => p.availableForSale)
-            .slice(0, 4) // Show 4 products in showcase (2x2 grid)
-            .map((product: any) => {
-              const firstImage = product.images?.edges?.[0]?.node;
-              const firstVariant = product.variants?.edges?.[0]?.node;
-              const price = parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
-              return {
-                id: product.id,
-                slug: product.handle,
-                title: product.title,
-                price: price,
-                currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
-                image: firstImage?.url || "/placeholder.svg",
-                variantId: firstVariant?.id || "",
-                availableForSale: product.availableForSale,
-              };
-            });
+        const { getProductByHandle } = await import("@/lib/shopify");
+        const { ABOVE_FOLD_HERO_PRODUCT_HANDLES } = await import("@/config/featuredProducts");
+
+        let products: any[] = [];
+        const seen = new Set<string>();
+
+        // 1. If handles configured, fetch those first (up to 4)
+        if (ABOVE_FOLD_HERO_PRODUCT_HANDLES?.length > 0) {
+          const results = await Promise.all(
+            ABOVE_FOLD_HERO_PRODUCT_HANDLES.slice(0, 4).map((handle) => getProductByHandle(handle))
+          );
+          for (const p of results) {
+            if (p?.handle && p?.availableForSale && !seen.has(p.handle)) {
+              seen.add(p.handle);
+              products.push(p);
+            }
+          }
+        }
+
+        // 2. Always fill to 4 with search results (deduped)
+        if (products.length < 4) {
+          const result = await searchProducts("", 25);
+          if (result?.products) {
+            for (const p of result.products) {
+              if (products.length >= 4) break;
+              if (!p?.availableForSale || !p?.handle || seen.has(p.handle)) continue;
+              seen.add(p.handle);
+              products.push(p);
+            }
+          }
+        }
+
+        if (products.length > 0) {
+          const mappedProducts = products.map((product: any) => {
+            const firstImage = product.images?.edges?.[0]?.node;
+            const firstVariant = product.variants?.edges?.[0]?.node;
+            const price = parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
+            return {
+              id: product.id,
+              slug: product.handle,
+              title: product.title,
+              price: price,
+              currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
+              image: firstImage?.url || "/placeholder.svg",
+              variantId: firstVariant?.id || "",
+              availableForSale: product.availableForSale,
+            };
+          });
 
           if (isMounted) {
-            setFeaturedProducts(products);
+            setFeaturedProducts(mappedProducts);
           }
         }
       } catch (error) {

@@ -89,12 +89,13 @@ const SuburbPage = () => {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "HairSalon",
+    "@id": "https://hairpinns.com/#hairsalon",
     "name": "Hair Pinns",
     "image": "https://hairpinns.com/logo.png",
     "description": `Boutique hair salon serving ${suburbData.name} with expert Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling.`,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Shop 1, 123 Main Street",
+      "streetAddress": "60 Goorgool Rd",
       "addressLocality": "Bangor",
       "addressRegion": "NSW",
       "postalCode": "2234",
@@ -116,7 +117,7 @@ const SuburbPage = () => {
       "longitude": "151.0333"
     },
     "url": `https://hairpinns.com/near/${suburbData.slug}`,
-    "telephone": "+61-2-9555-0123",
+    "telephone": "+61-468-093-991",
     "priceRange": "$$",
     "openingHoursSpecification": [
       {

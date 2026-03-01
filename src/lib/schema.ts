@@ -113,6 +113,25 @@ const AREA_SERVED = [
   'Heathcote',
 ];
 
+/**
+ * WebSite schema with SearchAction - enables sitelinks search box in Google
+ */
+export const generateWebSiteSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${BASE_URL}/#website`,
+  name: 'Hair Pinns',
+  url: BASE_URL,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
+});
+
 export const generateOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -392,6 +411,34 @@ export const generateFAQPageSchema = (faqs: FAQItem[]) => ({
     },
   })),
 });
+
+/**
+ * WebPage schema for generic pages - helps search engines understand page context
+ */
+export const generateWebPageSchema = (data: {
+  name: string;
+  description: string;
+  url: string;
+  breadcrumb?: BreadcrumbItem[];
+}) => {
+  const schema: any = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: data.name,
+    description: data.description,
+    url: data.url,
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${BASE_URL}/#website`,
+      name: 'Hair Pinns',
+      url: BASE_URL,
+    },
+  };
+  if (data.breadcrumb && data.breadcrumb.length > 0) {
+    schema.breadcrumb = generateBreadcrumbSchema(data.breadcrumb);
+  }
+  return schema;
+};
 
 export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
   '@context': 'https://schema.org',
@@ -961,6 +1008,37 @@ export const generateCollectionPageSchema = (collection: CollectionPageData) => 
  * Enhanced LocalBusiness Schema for AEO
  * Adds serviceArea and geo radius for better location-based queries
  */
+/**
+ * Place schema for local/geo pages - optimizes for "near me" and map pack
+ */
+export const generatePlaceSchema = (data: {
+  name: string;
+  description: string;
+  url: string;
+  addressLocality: string;
+  addressRegion?: string;
+  postalCode?: string;
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  name: data.name,
+  description: data.description,
+  url: data.url,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: data.addressLocality,
+    addressRegion: data.addressRegion || 'NSW',
+    postalCode: data.postalCode || '',
+    addressCountry: 'AU',
+  },
+  containedInPlace: {
+    '@type': 'City',
+    name: 'Sutherland Shire',
+    addressRegion: 'NSW',
+    addressCountry: 'AU',
+  },
+});
+
 export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
   const baseSchema = generateLocalBusinessSchema(pageUrl);
   

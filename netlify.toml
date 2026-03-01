@@ -33,6 +33,13 @@
   status = 200
   force = true
 
+# Sitemap - ensure XML is served (static file takes precedence; this is a fallback)
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
 # SPA routing - redirect all other routes to index.html
 [[redirects]]
   from = "/*"
