@@ -27,7 +27,9 @@ const ExitIntentModal = ({ enabled = true }: ExitIntentModalProps) => {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (!enabled || hasShown) return;
+    // Skip on touch devices - exit intent is desktop-only and can block mobile clicks
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!enabled || hasShown || isTouch) return;
 
     const handleMouseLeave = (e: MouseEvent) => {
       // Trigger only when mouse leaves from top of viewport

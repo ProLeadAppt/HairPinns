@@ -11,14 +11,14 @@ import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   
+  const visiblePosts = blogPosts.filter((post: any) => !post.archived);
   const categories = [
     "all",
-    ...Array.from(new Set(blogPosts.map(post => post.category)))
+    ...Array.from(new Set(visiblePosts.map(post => post.category)))
   ];
-
   const filteredPosts = activeCategory === "all" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeCategory);
+    ? visiblePosts 
+    : visiblePosts.filter(post => post.category === activeCategory);
 
   const featuredPost = filteredPosts[0];
   const firstRowPosts = filteredPosts.slice(1, 3);

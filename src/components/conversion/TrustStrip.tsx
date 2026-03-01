@@ -9,7 +9,7 @@ export default function TrustStrip() {
             <Truck className="w-5 h-5 text-brand-500" />
             <div className="text-sm">
               <p className="font-semibold text-heading">Free Shipping</p>
-              <p className="text-xs text-muted-foreground">Over $100</p>
+              <p className="text-xs text-muted-foreground">Over $150</p>
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">

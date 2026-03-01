@@ -30,20 +30,28 @@ const AboveFoldProducts = () => {
 
     const fetchProducts = async () => {
       try {
-        // ✅ SAFE: Dynamic import for Shopify (doesn't block render)
         const shopifyModule = await import("@/lib/shopify");
-        const { searchProducts } = shopifyModule;
-        
-        // Fetch top products for above-fold showcase
-        // Use empty string to get all available products
-        const result = await searchProducts("", 20);
-        
+        const { searchProducts, getProductByHandle } = shopifyModule;
+        const { FEATURED_PRODUCT_HANDLES } = await import("@/config/featuredProducts");
+
+        let productList: any[] = [];
+
+        // Prefer featured product handles when configured
+        if (FEATURED_PRODUCT_HANDLES.length > 0) {
+          const results = await Promise.all(
+            FEATURED_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
+          );
+          productList = results.filter(Boolean);
+        }
+
+        // Fallback: search all products
+        if (productList.length === 0) {
+          const result = await searchProducts("", 20);
+          productList = result?.products || [];
+        }
+
         if (!isMounted) return;
 
-        // searchProducts returns { products: [...], pageInfo: {...} }
-        // products is already an array of nodes (not edges)
-        const productList = result?.products || [];
-        
         console.log("[AboveFoldProducts] Fetched products:", productList.length);
 
         if (productList.length > 0) {

@@ -12,7 +12,7 @@ export default function UrgencyBar() {
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm font-medium">
         <div className="flex items-center gap-1.5">
           <Truck className="w-4 h-4" />
-          <span>Free Shipping Over $100</span>
+          <span>Free Shipping Over $150</span>
         </div>
         <span className="hidden sm:inline text-brand-300">•</span>
         <div className="flex items-center gap-1.5">

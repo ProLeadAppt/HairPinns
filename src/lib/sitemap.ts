@@ -38,8 +38,10 @@ export const getSitemapUrls = (): SitemapUrl[] => {
     { loc: `${baseUrl}/blog`, changefreq: 'weekly', priority: 0.8, lastmod: today },
     
     // Collection pages
-    { loc: `${baseUrl}/collections/gift-packs`, changefreq: 'weekly', priority: 0.8 },
-    { loc: `${baseUrl}/collections/hair-care`, changefreq: 'weekly', priority: 0.8 },
+    { loc: `${baseUrl}/collections/juuce`, changefreq: 'weekly', priority: 0.8 },
+    { loc: `${baseUrl}/collections/qiqi`, changefreq: 'weekly', priority: 0.8 },
+    { loc: `${baseUrl}/collections/pure`, changefreq: 'weekly', priority: 0.8 },
+    { loc: `${baseUrl}/collections/wet-brush`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/treatments`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/styling`, changefreq: 'weekly', priority: 0.8 },
     

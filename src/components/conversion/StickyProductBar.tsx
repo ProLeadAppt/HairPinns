@@ -100,7 +100,7 @@ const StickyProductBar = ({ threshold = 300 }: StickyProductBarProps) => {
 
   if (!isVisible || recentProducts.length === 0) return null;
 
-  const freeShippingThreshold = 100;
+  const freeShippingThreshold = 150;
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - cartTotal);
   const progress = Math.min(100, (cartTotal / freeShippingThreshold) * 100);
 

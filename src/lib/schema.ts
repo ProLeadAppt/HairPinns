@@ -578,7 +578,7 @@ export const generateKnowledgeGraphSchema = () => ({
   name: 'Hair Pinns',
   alternateName: 'Hair Pinns Hair Salon',
   description:
-    'Hair Pinns is a boutique hair salon in Bangor, NSW, Australia, specializing in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling. Founded in 2009 by Jena Pinn, the salon has 15+ years of expertise serving the Sutherland Shire area. Expert curation of salon-quality hair care products available Australia-wide with free shipping over $100.',
+    'Hair Pinns is a boutique hair salon in Bangor, NSW, Australia, specializing in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling. Founded in 2009 by Jena Pinn, the salon has 15+ years of expertise serving the Sutherland Shire area. Expert curation of salon-quality hair care products available Australia-wide with free shipping over $150.',
   url: BASE_URL,
   logo: {
     '@type': 'ImageObject',

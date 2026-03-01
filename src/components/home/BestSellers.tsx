@@ -18,27 +18,51 @@ const BestSellers = () => {
     
     const fetchBestSellers = async () => {
       try {
-        // Try to get products from a "best sellers" collection first
-        // If that doesn't exist, fetch products and show first 6
-        const collections = await getAllCollections(20);
-        let bestSellerCollection = collections.find((c: any) => 
-          c.handle?.toLowerCase().includes('best') || 
-          c.handle?.toLowerCase().includes('featured') ||
-          c.handle?.toLowerCase().includes('popular')
-        );
+        const shopifyModule = await import("@/lib/shopify");
+        const { getCollectionByHandle, getProductByHandle, searchProducts } = shopifyModule;
+        const { FEATURED_PRODUCT_HANDLES, BEST_SELLERS_COLLECTION_HANDLE } = await import("@/config/featuredProducts");
 
         let productList: any[] = [];
-        
-        if (bestSellerCollection) {
-          // Import getCollectionByHandle dynamically
-          const shopifyModule = await import("@/lib/shopify");
-          const { getCollectionByHandle } = shopifyModule;
-          const collection = await getCollectionByHandle(bestSellerCollection.handle);
-          if (collection?.products?.edges) {
-            productList = collection.products.edges
-              .map((edge: any) => edge.node)
-              .filter((p: any) => p.availableForSale)
-              .slice(0, 6);
+
+        // 1. Prefer dedicated best-sellers collection (e.g. "best-sellers-nov") when configured
+        if (BEST_SELLERS_COLLECTION_HANDLE) {
+          try {
+            const collection = await getCollectionByHandle(BEST_SELLERS_COLLECTION_HANDLE);
+            if (collection?.products?.edges?.length) {
+              productList = collection.products.edges
+                .map((edge: any) => edge.node)
+                .filter((p: any) => p.availableForSale)
+                .slice(0, 6);
+            }
+          } catch {
+            // Collection may not exist yet, fall through
+          }
+        }
+
+        // 2. Fallback: featured product handles when configured
+        if (productList.length === 0 && FEATURED_PRODUCT_HANDLES.length > 0) {
+          const results = await Promise.all(
+            FEATURED_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
+          );
+          productList = results.filter(Boolean);
+        }
+
+        // Fallback: Try "best sellers" or "featured" collection
+        if (productList.length === 0) {
+          const collections = await getAllCollections(20);
+          const bestSellerCollection = collections.find((c: any) =>
+            c.handle?.toLowerCase().includes('best') ||
+            c.handle?.toLowerCase().includes('featured') ||
+            c.handle?.toLowerCase().includes('popular')
+          );
+          if (bestSellerCollection) {
+            const collection = await getCollectionByHandle(bestSellerCollection.handle);
+            if (collection?.products?.edges) {
+              productList = collection.products.edges
+                .map((edge: any) => edge.node)
+                .filter((p: any) => p.availableForSale)
+                .slice(0, 6);
+            }
           }
         }
 

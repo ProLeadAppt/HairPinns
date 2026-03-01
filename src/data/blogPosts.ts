@@ -33,6 +33,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   category: string;
+  archived?: boolean; // Hidden from blog listing when true
   date: string;
   readTime: string;
   image: string;
@@ -239,6 +240,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "christmas-gift-packs-at-hair-pinns",
     title: "🎁 Gift Packs at Hair Pinns 🎁",
+    archived: true, // Jena doesn't currently offer gift packs
     excerpt: "Spoil someone special with our Juuce and Pure gift packs loaded with hair-loving products.",
     category: "Products",
     date: "September 20, 2025",
@@ -279,8 +281,8 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/gift-packs",
-      customText: "Shop gift packs now"
+      productPath: "https://hairpinns.com/collections",
+      customText: "Shop collections"
     }
   },
   {

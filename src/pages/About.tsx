@@ -79,9 +79,8 @@ const About = () => {
                   Meet Jena
                 </h1>
                 <p className="text-lg text-foreground leading-relaxed mb-6">
-                  Hi, I'm Jena Pinn—founder and lead stylist at Hair Pinns. After over 12 years in the industry, 
-                  I opened my own boutique salon in 2018 with one goal: to create a space where honest care, 
-                  expert technique, and genuine connection come together.
+                  I started sweeping floors and assisting in salons from 13 years old. Qualified at 17, 
+                  then opened my own home salon at the end of 2009.
                 </p>
                 <p className="text-foreground leading-relaxed mb-6">
                   I believe beautiful hair starts with listening. Whether you're looking for a subtle refresh 
@@ -95,19 +94,19 @@ const About = () => {
                   <div className="flex items-start gap-3">
                     <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                     <span className="text-foreground">
-                      <strong>Advanced Colorist Certificate</strong> — Toni&Guy Academy
+                      <strong>Vidal Sassoon Advanced Cutting ABC</strong>
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                     <span className="text-foreground">
-                      <strong>Olaplex Certified Specialist</strong> — Bond-building treatments
+                      <strong>Specialist in QIQI smoothing treatments</strong>
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                     <span className="text-foreground">
-                      <strong>12+ years experience</strong> — Specializing in color, balayage & keratin
+                      <strong>Foiling Master</strong>
                     </span>
                   </div>
                 </div>
@@ -154,15 +153,14 @@ const About = () => {
                 <p className="text-foreground leading-relaxed mb-6">
                   After years of trying every brand on the market, I got tired of recommending products 
                   that didn't live up to their promises. So I partnered with premium brands I actually trust—
-                  like Olaplex, Kevin Murphy, and Moroccan Oil—to create a curated retail line that delivers real results.
+                  like Juuce, QIQI, Pure & Wet Brush Pure—to create a curated retail line that delivers real results.
                 </p>
                 <p className="text-foreground leading-relaxed mb-6">
                   Every product in our collection is salon-tested and client-approved. I use these same formulas 
                   in my own hair and in the salon every day. If it doesn't pass my standards, it doesn't make the cut.
                 </p>
                 <p className="text-foreground leading-relaxed">
-                  Our Gift Packs make it easy to try complete routines at a great price. 
-                  Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant recommendations.
+                  Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call us</a> or chat with Isabella for instant recommendations.
                 </p>
               </div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden">
@@ -194,7 +192,7 @@ const About = () => {
               beyond just hair appointments.
             </p>
             <p className="text-foreground leading-relaxed max-w-2xl mx-auto">
-              Located on River Road with free parking out front, we're easy to find and accessible 
+              Located just off Menai Road with free parking out front, we're easy to find and accessible 
               for the whole Shire. Whether you're a local or visiting from nearby suburbs, 
               you'll always feel welcome here.
             </p>
@@ -267,10 +265,10 @@ const About = () => {
               Book your appointment or explore our curated product collection.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/collections/gift-packs">
+              <Link to="/collections">
                 <Button variant="secondary" size="xl" className="bg-white text-brand-500 hover:bg-white/90 w-full sm:w-auto">
                   <ShoppingBag className="w-5 h-5" />
-                  Shop Featured Packs
+                  Shop Collections
                 </Button>
               </Link>
               <a

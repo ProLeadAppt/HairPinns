@@ -28,16 +28,16 @@ const ShopDropdown = () => {
           <Link to="/collections">All Collections</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/gift-packs">Gift Packs</Link>
+          <Link to="/collections/juuce">Juuce</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/hair-care">Hair Care</Link>
+          <Link to="/collections/qiqi">QIQI</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/treatments">Treatments</Link>
+          <Link to="/collections/pure">Pure Organic</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/styling">Styling Products</Link>
+          <Link to="/collections/wet-brush">Wet Brush</Link>
         </DropdownMenuItem>
         <div className="h-px bg-border my-1" />
         <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">

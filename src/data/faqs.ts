@@ -130,7 +130,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'click-collect',
     question: "Can I click-and-collect in Bangor?",
-    answer: "Yes—choose 'Pick up in-salon' at checkout if enabled, or message us via the contact page to arrange pickup. We'll notify you when your order is ready (usually within 24 hours). Pick up during salon hours at 123 River Road, Bangor.",
+    answer: "Yes—choose 'Pick up in-salon' at checkout if enabled, or message us via the contact page to arrange pickup. We'll notify you when your order is ready (usually within 24 hours). Pick up during salon hours at 60 Goorgool Rd, Bangor (just off Menai Road).",
     category: 'booking',
     relatedLinks: [
       { text: 'Contact Us', url: '/contact' },

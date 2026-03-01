@@ -23,7 +23,6 @@ const Sitemap = () => {
       icon: ShoppingBag,
       links: [
         { title: "All Collections", url: "/collections" },
-        { title: "Gift Packs", url: "/collections/gift-packs" },
         { title: "Hair Care", url: "/collections/hair-care" },
         { title: "Treatments & Masks", url: "/collections/treatments" },
         { title: "Styling Products", url: "/collections/styling" },

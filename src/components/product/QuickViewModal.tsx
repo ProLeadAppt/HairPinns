@@ -135,7 +135,7 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
               <div className="flex flex-wrap gap-2 py-4 border-y border-border">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Truck className="w-4 h-4 text-brand-500" />
-                  <span>Free shipping over $100</span>
+                  <span>Free shipping over $150</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Shield className="w-4 h-4 text-brand-500" />

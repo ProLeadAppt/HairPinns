@@ -58,8 +58,8 @@ const Returns = () => {
                 hello@hairpinns.com
               </a>{" "}
               or{" "}
-              <a href="tel:+61295550123" className="text-brand-500 hover:text-brand-600">
-                (02) 9555 0123
+              <a href="tel:+61468020624" className="text-brand-500 hover:text-brand-600">
+                0468 020 624
               </a>
               .
             </p>

@@ -286,7 +286,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
           {/* Free Shipping Bar */}
           {subtotal > 0 && (
             <>
-              <FreeShippingBar subtotal={subtotal} threshold={100} />
+              <FreeShippingBar subtotal={subtotal} threshold={150} />
               <EstimatedDelivery cartTotal={subtotal} />
             </>
           )}

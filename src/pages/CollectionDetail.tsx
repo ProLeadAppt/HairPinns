@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Star, Check, ShoppingBag, ExternalLink } from "lucide-react";
-import { getCollectionByHandle, getProductUrl, getCollectionUrl } from "@/lib/shopify";
+import { getCollectionByHandle, getProductUrl, storeUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -251,8 +251,11 @@ const CollectionDetail = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild variant="primary" size="lg">
+                <Link to="/collections">Browse All Collections</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
                 <a 
-                  href={getCollectionUrl(handle || "")}
+                  href={`${storeUrl}/collections`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2"
@@ -260,9 +263,6 @@ const CollectionDetail = () => {
                   View on Shopify
                   <ExternalLink className="w-4 h-4" />
                 </a>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/collections">Browse All Collections</Link>
               </Button>
             </div>
           </div>
@@ -372,7 +372,7 @@ const CollectionDetail = () => {
                   <h3 className="font-semibold text-heading">Free Shipping</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Free shipping Australia-wide on orders over $100
+                  Free shipping Australia-wide on orders over $150
                 </p>
               </div>
             </div>
@@ -431,8 +431,11 @@ const CollectionDetail = () => {
                     key={product.id} 
                     className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-all duration-base group"
                   >
-                    {/* Image */}
-                    <div className="aspect-square bg-muted relative overflow-hidden">
+                    {/* Image - clickable to product page */}
+                    <Link
+                      to={`/products/${product.handle}`}
+                      className="block aspect-square bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset"
+                    >
                       <img
                         src={product.image}
                         alt={product.title}
@@ -450,12 +453,17 @@ const CollectionDetail = () => {
                           Out of Stock
                         </Badge>
                       )}
-                    </div>
+                    </Link>
 
                     {/* Content */}
                     <div className="p-6">
                       <h3 className="text-lg font-heading font-semibold text-heading mb-2 line-clamp-2">
-                        {product.title}
+                        <Link
+                          to={`/products/${product.handle}`}
+                          className="hover:text-brand-500 transition-colors"
+                        >
+                          {product.title}
+                        </Link>
                       </h3>
 
                       <p className="text-2xl font-bold text-brand-500 mb-4">

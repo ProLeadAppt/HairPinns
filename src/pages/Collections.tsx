@@ -178,11 +178,11 @@ const Collections = () => {
         <title>Shop Hair Care Collections | Professional Products | Hair Pinns</title>
         <meta 
           name="description" 
-          content="Shop professional hair care: Gift Packs, Daily Care, Treatments & Styling. Olaplex, Kevin Murphy & more. Curated by experts." 
+          content="Shop professional hair care: Juuce, QIQI, Pure & Wet Brush. Daily Care, Treatments & Styling. Curated by Jena." 
         />
         <link rel="canonical" href="https://hairpinns.com/collections" />
         <meta property="og:title" content="Professional Hair Care Collections | Hair Pinns" />
-        <meta property="og:description" content="Salon-quality products curated by Jena. Gift packs, daily care, treatments & styling essentials." />
+        <meta property="og:description" content="Salon-quality products curated by Jena. Juuce, QIQI, Pure, Wet Brush. Daily care, treatments & styling essentials." />
         <meta property="og:url" content="https://hairpinns.com/collections" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('collection')} />

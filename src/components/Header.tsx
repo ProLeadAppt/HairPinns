@@ -14,8 +14,8 @@ const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
   return <>
       {/* Top Promo Strip */}
-      {showPromo && <Link to="/collections/gift-packs" className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
-          <p className="font-medium">✨ Free shipping on orders over $100 • Gift Packs now available</p>
+      {showPromo && <Link to="/collections" className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
+          <p className="font-medium">✨ Free shipping on orders over $150</p>
           <button 
             onClick={(e) => {
               e.preventDefault();
@@ -69,10 +69,10 @@ const Header = () => {
                 <ShoppingCart className="w-4 h-4" />
                 Cart
               </Button>
-              <Link to="/collections/gift-packs">
+              <Link to="/collections">
                 <Button variant="ghost" size="sm">
                   <ShoppingBag className="w-4 h-4" />
-                  Shop Featured
+                  Shop
                 </Button>
               </Link>
               <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_desktop", window.location.pathname)}>
@@ -122,10 +122,10 @@ const Header = () => {
                       <ShoppingCart className="w-5 h-5" />
                       Cart
                     </Button>
-                    <Link to="/collections/gift-packs" className="block">
+                    <Link to="/collections" className="block">
                       <Button variant="ghost" size="lg" className="w-full justify-start">
                         <ShoppingBag className="w-5 h-5" />
-                        Shop Featured
+                        Shop
                       </Button>
                     </Link>
                     <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" className="block" onClick={() => trackBookingClick("header_mobile", window.location.pathname)}>

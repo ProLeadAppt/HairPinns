@@ -17,7 +17,6 @@ const AboveFoldProducts = lazy(() => import("@/components/home/AboveFoldProducts
 
 // Below-fold (lazy-loaded for better initial load performance)
 const BestSellers = lazy(() => import("@/components/home/BestSellers"));
-const ProductSpotlight = lazy(() => import("@/components/home/ProductSpotlight"));
 const WhyShopHairPinns = lazy(() => import("@/components/home/WhyShopHairPinns"));
 const ReviewsShowcase = lazy(() => import("@/components/home/ReviewsShowcase"));
 const ProductCategories = lazy(() => import("@/components/home/ProductCategories"));
@@ -43,7 +42,7 @@ const Index = () => {
   const faqSchema = generateFAQPageSchema([
     {
       question: "Do you ship products Australia-wide?",
-      answer: "Yes! We ship premium hair care products Australia-wide with free shipping on orders over $100. All products are salon-quality, curated by Jena with 15+ years of experience.",
+      answer: "Yes! We ship premium hair care products Australia-wide with free shipping on orders over $150. All products are salon-quality, curated by Jena with 15+ years of experience.",
     },
     {
       question: "What makes Hair Pinns products different?",
@@ -69,11 +68,11 @@ const Index = () => {
         <title>Premium Hair Care Products | 762+ Five-Star Reviews | Hair Pinns | Australia-Wide Shipping</title>
         <meta 
           name="description" 
-          content="Premium salon-quality hair care products shipped Australia-wide. 15+ years experience since 2009. 762+ Fresha reviews, 53+ Google reviews. Expert curation from Bangor, NSW. Free shipping over $100. Serving Sutherland Shire." 
+          content="Premium salon-quality hair care products shipped Australia-wide. 15+ years experience since 2009. 762+ Fresha reviews, 53+ Google reviews. Expert curation from Bangor, NSW. Free shipping over $150. Serving Sutherland Shire." 
         />
         <link rel="canonical" href="https://hairpinns.com" />
         <meta property="og:title" content="Premium Hair Care Products | Hair Pinns | Australia-Wide Shipping" />
-        <meta property="og:description" content="Salon-quality products curated by Jena since 2009. 762+ five-star Fresha reviews. 53+ Google reviews. Free shipping over $100. Serving Sutherland Shire & Australia-wide." />
+        <meta property="og:description" content="Salon-quality products curated by Jena since 2009. 762+ five-star Fresha reviews. 53+ Google reviews. Free shipping over $150. Serving Sutherland Shire & Australia-wide." />
         <meta property="og:url" content="https://hairpinns.com" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('default')} />
@@ -186,13 +185,13 @@ const Index = () => {
                 Starting at $24.99 — Discover our most popular product collections, handpicked for you
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <Link 
                 to="/collections/juuce" 
                 className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all text-center"
               >
                 <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Juuce Collection
+                  Juuce
                 </h3>
                 <p className="text-sm text-muted-foreground mb-2">
                   Premium hair care essentials
@@ -203,14 +202,14 @@ const Index = () => {
               </Link>
               
               <Link 
-                to="/collections/gift-packs" 
+                to="/collections/qiqi" 
                 className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all text-center"
               >
                 <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
-                  Gift Packs
+                  QIQI
                 </h3>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Curated bundles perfect for gifting
+                  Smoothing & treatment specialists
                 </p>
                 <p className="text-xs text-brand-500 font-semibold">
                   Shop Now →
@@ -231,6 +230,21 @@ const Index = () => {
                   Shop Now →
                 </p>
               </Link>
+              
+              <Link 
+                to="/collections/wet-brush" 
+                className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all text-center"
+              >
+                <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                  Wet Brush
+                </h3>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Detangling brushes & tools
+                </p>
+                <p className="text-xs text-brand-500 font-semibold">
+                  Shop Now →
+                </p>
+              </Link>
             </div>
           </div>
         </section>
@@ -240,12 +254,7 @@ const Index = () => {
           <WhyShopHairPinns />
         </Suspense>
         
-        {/* 7. Product Spotlight (gift packs with urgency) */}
-        <Suspense fallback={null}>
-          <ProductSpotlight />
-        </Suspense>
-        
-        {/* 8. Social Proof Showcase (reviews + testimonials) */}
+        {/* 7. Social Proof Showcase (reviews + testimonials) */}
         <Suspense fallback={null}>
           <ReviewsShowcase />
         </Suspense>
@@ -273,7 +282,7 @@ const Index = () => {
                   Do you ship products Australia-wide?
                 </summary>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
-                  Yes! We ship premium hair care products Australia-wide with free shipping on orders over $100. All products are salon-quality, curated by Jena with 15+ years of experience.
+                  Yes! We ship premium hair care products Australia-wide with free shipping on orders over $150. All products are salon-quality, curated by Jena with 15+ years of experience.
                 </p>
               </details>
               
@@ -300,7 +309,7 @@ const Index = () => {
                   How quickly will my order ship?
                 </summary>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
-                  Orders are typically processed within 1-2 business days. We offer free shipping on orders over $100 Australia-wide. Express shipping options are available at checkout.
+                  Orders are typically processed within 1-2 business days. We offer free shipping on orders over $150 Australia-wide. Express shipping options are available at checkout.
                 </p>
               </details>
               

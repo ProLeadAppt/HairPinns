@@ -3,7 +3,7 @@ import { useMemo } from "react";
 
 interface FreeShippingBarProps {
   cartTotal: number; // Current cart subtotal in dollars
-  threshold?: number; // Free shipping threshold (default: 99)
+  threshold?: number; // Free shipping threshold (default: 150)
   className?: string;
   variant?: "default" | "compact";
 }
@@ -15,7 +15,7 @@ interface FreeShippingBarProps {
  * Shows remaining amount needed for free shipping
  * 
  * @example
- * <FreeShippingBar cartTotal={65} threshold={99} />
+ * <FreeShippingBar cartTotal={65} threshold={150} />
  * <FreeShippingBar cartTotal={105} variant="compact" />
  */
 export const FreeShippingBar = ({

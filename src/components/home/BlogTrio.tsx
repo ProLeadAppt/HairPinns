@@ -15,6 +15,7 @@ const BlogTrio = () => {
   ];
 
   const posts = blogPosts
+    .filter((p: any) => !p.archived)
     .filter((post) => featuredSlugs.includes(post.slug))
     .slice(0, 3)
     .map((post) => ({
