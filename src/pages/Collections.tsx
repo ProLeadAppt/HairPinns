@@ -262,7 +262,7 @@ const Collections = () => {
               </div>
             ) : error ? (
               <div className="text-center py-16 max-w-2xl mx-auto">
-                <p className="text-muted text-lg mb-6">{error}</p>
+                <p className="text-muted-foreground text-lg mb-6">{error}</p>
                 <Button variant="default" asChild>
                   <a href="https://hairpinns.com/collections" target="_blank" rel="noopener noreferrer">
                     Visit Our Store
@@ -271,14 +271,14 @@ const Collections = () => {
               </div>
             ) : collections.length === 0 ? (
               <div className="text-center py-16 max-w-2xl mx-auto">
-                <p className="text-muted text-lg mb-6">No collections available at the moment.</p>
+                <p className="text-muted-foreground text-lg mb-6">No collections available at the moment.</p>
                 <Button variant="default" asChild>
                   <Link to="/contact">Contact Us</Link>
                 </Button>
               </div>
             ) : filteredAndSortedCollections.length === 0 ? (
               <div className="text-center py-16 max-w-2xl mx-auto">
-                <p className="text-muted text-lg mb-6">
+                <p className="text-muted-foreground text-lg mb-6">
                   No collections found matching "{searchQuery}".
                 </p>
                 <Button variant="outline" onClick={() => setSearchQuery("")}>
@@ -322,7 +322,7 @@ const Collections = () => {
                       </h2>
                       
                       {collection.description && (
-                        <p className="text-muted leading-relaxed line-clamp-2">
+                        <p className="text-muted-foreground leading-relaxed line-clamp-2">
                           {collection.description}
                         </p>
                       )}

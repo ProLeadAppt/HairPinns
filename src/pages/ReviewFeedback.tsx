@@ -292,7 +292,7 @@ const ReviewFeedback = () => {
               transition={{ delay: 0.7 }}
               className="mt-8 pt-6 border-t border-accent/30"
             >
-              <p className="text-xs text-muted text-center">
+              <p className="text-xs text-muted-foreground text-center">
                 <a 
                   href="https://g.page/r/CX-F0vOcpJLhEBM/review" 
                   target="_blank" 

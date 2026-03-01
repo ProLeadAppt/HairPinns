@@ -769,7 +769,7 @@ const Services = () => {
 
         {/* Footer Note */}
         <div className="py-6 text-center bg-white">
-          <p className="text-sm text-muted">
+          <p className="text-sm text-muted-foreground">
             All services, durations and prices shown exactly as listed in our booking system.
           </p>
         </div>

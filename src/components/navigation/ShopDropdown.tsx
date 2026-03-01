@@ -40,7 +40,7 @@ const ShopDropdown = () => {
           <Link to="/collections/wet-brush">Wet Brush</Link>
         </DropdownMenuItem>
         <div className="h-px bg-border my-1" />
-        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">
+        <div className="px-2 py-1.5 text-xs font-semibold text-foreground">
           Shop by Concern
         </div>
         {concerns.map((concern) => (
