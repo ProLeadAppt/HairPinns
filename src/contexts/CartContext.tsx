@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getCartId } from "@/lib/cartManagement";
+import { getCartId, normalizeCartId } from "@/lib/cartManagement";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 
 interface CartContextValue {
@@ -33,7 +33,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       <MiniCartDrawer
         open={open}
         onClose={closeCart}
-        cartId={getCartId() || ""}
+        cartId={normalizeCartId(getCartId()) || getCartId() || ""}
       />
     </CartContext.Provider>
   );

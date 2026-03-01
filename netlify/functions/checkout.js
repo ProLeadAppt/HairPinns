@@ -257,23 +257,51 @@ async function cartLinesRemove(cartId, lineIds) {
 }
 
 /**
- * Ensure checkout URL uses Shopify domain (not custom domain) to avoid SPA 404
- * Custom domain URLs hit our SPA and show 404; myshopify.com goes to Shopify checkout
+ * Ensure checkout URL uses Shopify domain and valid path
+ * - Custom domain URLs hit our SPA and show 404
+ * - Wrong paths (e.g. /api/checkout) mean Shopify config is misconfigured
  */
 function ensureShopifyCheckoutUrl(url) {
-  if (!url || typeof url !== 'string') return url;
+  if (!url || typeof url !== 'string') return null;
   try {
     const parsed = new URL(url);
-    // If checkout URL points to our custom domain, rewrite to Shopify
     const customDomains = ['hairpinns.com', 'www.hairpinns.com'];
+
+    // Reject URLs that point to our API - Shopify config is wrong
+    if (parsed.pathname.includes('/api/') || parsed.pathname === '/api/checkout') {
+      console.error('Invalid checkout URL from Shopify (points to our API):', url);
+      return null;
+    }
+
+    // Rewrite custom domain to Shopify domain so checkout loads on Shopify
     if (customDomains.some(d => parsed.hostname === d) && SHOPIFY_DOMAIN) {
       parsed.hostname = SHOPIFY_DOMAIN;
       return parsed.toString();
     }
+
+    // Ensure we're on Shopify domain for checkout
+    if (!parsed.hostname.endsWith('.myshopify.com') && !parsed.hostname.includes('shopify.com')) {
+      if (SHOPIFY_DOMAIN) {
+        parsed.hostname = SHOPIFY_DOMAIN;
+        return parsed.toString();
+      }
+    }
+
     return url;
   } catch {
-    return url;
+    return null;
   }
+}
+
+/**
+ * Normalize cart ID to Shopify GID format
+ */
+function normalizeCartId(cartId) {
+  if (!cartId || typeof cartId !== 'string') return null;
+  const trimmed = cartId.trim();
+  if (trimmed.startsWith('gid://shopify/Cart/')) return trimmed;
+  // Token-only format: add GID prefix
+  return `gid://shopify/Cart/${trimmed}`;
 }
 
 /**
@@ -340,7 +368,7 @@ exports.handler = async (event, context) => {
     const body = event.body ? JSON.parse(event.body) : {};
     const lines = Array.isArray(body.lines) ? body.lines : [];
     const removeLineIds = Array.isArray(body.removeLineIds) ? body.removeLineIds : [];
-    const cartId = body.cartId || null;
+    const cartId = normalizeCartId(body.cartId) || body.cartId || null;
 
     let cart;
 
@@ -410,6 +438,18 @@ exports.handler = async (event, context) => {
 
     // Ensure checkout URL uses Shopify domain (fixes 404 when custom domain hits our SPA)
     const checkoutUrl = ensureShopifyCheckoutUrl(cart.checkoutUrl);
+
+    if (!checkoutUrl) {
+      console.error('Invalid or misconfigured checkout URL from Shopify:', cart.checkoutUrl);
+      return {
+        statusCode: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          error: 'Checkout configuration error',
+          message: 'Unable to get checkout URL. Please check your Shopify store settings.',
+        }),
+      };
+    }
 
     console.log('✅ Cart ready:', { cartId: cart.id, checkoutUrl });
 

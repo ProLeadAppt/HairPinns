@@ -31,6 +31,16 @@ const CART_STORAGE_KEY = "hp_cart_id";
 const CHECKOUT_URL_KEY = "hp_checkout_url";
 
 /**
+ * Normalize cart ID to Shopify GID format (required by Storefront API)
+ */
+export function normalizeCartId(cartId: string | null): string | null {
+  if (!cartId || typeof cartId !== "string") return null;
+  const trimmed = cartId.trim();
+  if (trimmed.startsWith("gid://shopify/Cart/")) return trimmed;
+  return `gid://shopify/Cart/${trimmed}`;
+}
+
+/**
  * Get cart ID from localStorage
  */
 export function getCartId(): string | null {

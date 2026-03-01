@@ -1,0 +1,2 @@
+# API routes - must come before SPA catch-all
+/api/checkout  /.netlify/functions/checkout  200

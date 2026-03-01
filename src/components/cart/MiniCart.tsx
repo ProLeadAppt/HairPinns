@@ -88,15 +88,24 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
     }
   }, [open]);
 
+  const fetchCheckoutApi = async (body: object) => {
+    const opts = {
+      method: "POST" as const,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    };
+    let res = await fetch(new URL("/api/checkout", window.location.origin).href, opts);
+    if (!res.ok && res.status === 404) {
+      res = await fetch(new URL("/.netlify/functions/checkout", window.location.origin).href, opts);
+    }
+    return res;
+  };
+
   const handleRemoveLine = async (lineId: string) => {
     if (!cartId) return;
     setRemovingLineId(lineId);
     try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cartId, removeLineIds: [lineId] }),
-      });
+      const response = await fetchCheckoutApi({ cartId, removeLineIds: [lineId] });
       if (!response.ok) throw new Error("Failed to remove");
       const { cart: updatedCart } = await response.json();
       setCart(updatedCart);
@@ -127,12 +136,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
         currency: cart?.cost?.totalAmount?.currencyCode || "AUD",
       });
 
-      // Get checkout URL (do NOT use redirect=true - fetch doesn't navigate the page)
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cartId, lines: [] }),
-      });
+      const response = await fetchCheckoutApi({ cartId, lines: [] });
 
       if (!response.ok) {
         const errData = await response.json().catch(() => ({}));
@@ -141,7 +145,16 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
 
       const { checkoutUrl } = await response.json();
       if (checkoutUrl) {
-        window.location.href = checkoutUrl;
+        // Only redirect if URL looks like valid Shopify checkout
+        const url = new URL(checkoutUrl);
+        const isValidCheckout =
+          (url.hostname.endsWith(".myshopify.com") || url.hostname.includes("shopify.com")) &&
+          url.pathname.includes("/cart/");
+        if (isValidCheckout) {
+          window.location.href = checkoutUrl;
+        } else {
+          throw new Error("Invalid checkout URL received");
+        }
       } else {
         throw new Error("No checkout URL received");
       }
