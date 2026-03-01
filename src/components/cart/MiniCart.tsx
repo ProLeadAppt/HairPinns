@@ -8,7 +8,24 @@ import { searchProducts, getCart } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import EstimatedDelivery from "@/components/product/EstimatedDelivery";
 import { clearCartId } from "@/lib/cartManagement";
+import { projectConfig } from "@/config/projectConfig";
 import { toast } from "sonner";
+
+/** Rewrite checkout URL from custom domain to Shopify - prevents 404 on our SPA */
+function ensureShopifyCheckoutUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    const customDomains = ["hairpinns.com", "www.hairpinns.com"];
+    const shopifyDomain = projectConfig.shopify.domain;
+    if (customDomains.some((d) => parsed.hostname === d) && shopifyDomain) {
+      parsed.hostname = shopifyDomain;
+      return parsed.toString();
+    }
+  } catch {
+    /* ignore */
+  }
+  return url;
+}
 
 export interface MiniCartProps {
   open: boolean;
@@ -145,13 +162,16 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
 
       const { checkoutUrl } = await response.json();
       if (checkoutUrl) {
-        // Only redirect if URL looks like valid Shopify checkout
-        const url = new URL(checkoutUrl);
-        const isValidCheckout =
-          (url.hostname.endsWith(".myshopify.com") || url.hostname.includes("shopify.com")) &&
-          url.pathname.includes("/cart/");
-        if (isValidCheckout) {
-          window.location.href = checkoutUrl;
+        // Always rewrite custom domain to Shopify (client-side safety net)
+        const finalUrl = ensureShopifyCheckoutUrl(checkoutUrl);
+        const url = new URL(finalUrl);
+        const isShopifyDomain =
+          url.hostname.endsWith(".myshopify.com") ||
+          url.hostname.includes("shopify.com") ||
+          url.hostname === "shop.app";
+        const isCartPath = url.pathname === "/cart" || url.pathname.startsWith("/cart/");
+        if (isShopifyDomain && isCartPath) {
+          window.location.href = finalUrl;
         } else {
           throw new Error("Invalid checkout URL received");
         }
