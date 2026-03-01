@@ -17,8 +17,8 @@ const ProductSpotlight = () => {
     
     const fetchProducts = async () => {
       try {
-        console.log("🔍 Fetching christmas-gift-packs collection...");
-        const collection = await getCollectionByHandle("christmas-gift-packs");
+        console.log("🔍 Fetching gift-packs collection...");
+        const collection = await getCollectionByHandle("gift-packs");
         console.log("✅ Collection fetched:", collection);
         
         if (!isMounted) {
@@ -75,7 +75,7 @@ const ProductSpotlight = () => {
     return (
       <Section className="content-visibility-auto">
         <SectionHeader 
-          title="Christmas Gift Packs"
+          title="Gift Packs"
           subtitle="Curated hair care bundles — perfect for gifting or treating yourself. Limited stock available."
         />
         <div className="flex justify-center py-12">
@@ -92,7 +92,7 @@ const ProductSpotlight = () => {
   return (
     <Section className="content-visibility-auto">
       <SectionHeader 
-        title="Christmas Gift Packs"
+        title="Gift Packs"
         subtitle="Curated hair care bundles — perfect for gifting or treating yourself"
       />
       
@@ -172,7 +172,7 @@ const ProductSpotlight = () => {
       </div>
 
       <div className="text-center mt-12">
-        <Link to="/collections/christmas-gift-packs">
+        <Link to="/collections/gift-packs">
           <Button variant="accent" size="lg">
             View All Gift Packs
           </Button>

@@ -161,7 +161,7 @@ const About = () => {
                   in my own hair and in the salon every day. If it doesn't pass my standards, it doesn't make the cut.
                 </p>
                 <p className="text-foreground leading-relaxed">
-                  Our Christmas Gift Packs make it easy to try complete routines at a great price. 
+                  Our Gift Packs make it easy to try complete routines at a great price. 
                   Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant recommendations.
                 </p>
               </div>
@@ -267,7 +267,7 @@ const About = () => {
               Book your appointment or explore our curated product collection.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/collections/christmas-gift-packs">
+              <Link to="/collections/gift-packs">
                 <Button variant="secondary" size="xl" className="bg-white text-brand-500 hover:bg-white/90 w-full sm:w-auto">
                   <ShoppingBag className="w-5 h-5" />
                   Shop Featured Packs

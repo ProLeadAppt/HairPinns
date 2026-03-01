@@ -13,7 +13,7 @@ import { Search } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_URL } from "@/config/bookingConfig";
 import aromaganicImage from "@/assets/collections/aromaganic-collection.webp";
-import christmasImage from "@/assets/collections/christmas-collection.webp";
+import giftPacksImage from "@/assets/collections/christmas-collection.webp";
 import clearanceImage from "@/assets/collections/clearance-collection.webp";
 import accessoriesImage from "@/assets/collections/accessories-collection.webp";
 import islandVibesImage from "@/assets/collections/island-vibes-collection.webp";
@@ -61,7 +61,7 @@ const Collections = () => {
     if (searchText.includes('poppet') || searchText.includes('locks') || searchText.includes('ponytail') || searchText.includes('extension')) return poppetLocksImage;
     if (searchText.includes('qiqi')) return qiqiImage;
     if (searchText.includes('perfect pony') || searchText.includes('perfect-pony')) return perfectPonyImage;
-    if (searchText.includes('christmas') || searchText.includes('gift')) return christmasImage;
+    if (searchText.includes('gift')) return giftPacksImage;
     if (searchText.includes('clearance') || searchText.includes('sale') || searchText.includes('aisle')) return clearanceImage;
     
     return juuceImage; // fallback to juuce image
@@ -70,7 +70,7 @@ const Collections = () => {
   // Define the exact order from the live site
   const collectionOrder = [
     'aromaganic',
-    'christmas',
+    'gift',
     'clearance',
     'accessories',
     'hair-pinns-accessories',
@@ -178,7 +178,7 @@ const Collections = () => {
         <title>Shop Hair Care Collections | Professional Products | Hair Pinns</title>
         <meta 
           name="description" 
-          content="Shop professional hair care: Christmas Gift Packs, Daily Care, Treatments & Styling. Olaplex, Kevin Murphy & more. Curated by experts." 
+          content="Shop professional hair care: Gift Packs, Daily Care, Treatments & Styling. Olaplex, Kevin Murphy & more. Curated by experts." 
         />
         <link rel="canonical" href="https://hairpinns.com/collections" />
         <meta property="og:title" content="Professional Hair Care Collections | Hair Pinns" />

@@ -28,7 +28,7 @@ const ShopDropdown = () => {
           <Link to="/collections">All Collections</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/christmas-gift-packs">Gift Packs</Link>
+          <Link to="/collections/gift-packs">Gift Packs</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link to="/collections/hair-care">Hair Care</Link>

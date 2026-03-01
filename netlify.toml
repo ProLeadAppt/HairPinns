@@ -13,7 +13,14 @@
 [functions]
   directory = "netlify/functions"
 
-# SPA routing - redirect all routes to index.html
+# API route first so /api/checkout always hits the function (not the SPA)
+[[redirects]]
+  from = "/api/checkout"
+  to = "/.netlify/functions/checkout"
+  status = 200
+  force = true
+
+# SPA routing - redirect all other routes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -82,16 +89,6 @@
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Headers = "Content-Type"
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
-
-# API route proxy for checkout function
-# Maps /api/checkout to Netlify Function
-# Note: Netlify Dev automatically serves functions at /.netlify/functions/*
-# This redirect makes /api/checkout work in both dev and production
-[[redirects]]
-  from = "/api/checkout"
-  to = "/.netlify/functions/checkout"
-  status = 200
-  force = true
 
 # Environment Variables Documentation
 # Set these in Netlify Dashboard → Site Settings → Environment Variables

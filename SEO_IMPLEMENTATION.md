@@ -41,7 +41,7 @@ Comprehensive SEO implementation for Hair Pinns website with unique titles, meta
 
 #### Collections (/collections)
 - **Title:** "Shop Hair Care Collections | Professional Products | Hair Pinns" (64 chars)
-- **Description:** "Shop professional hair care: Christmas Gift Packs, Daily Care, Treatments & Styling. Olaplex, Kevin Murphy & more. Curated by experts." (137 chars)
+- **Description:** "Shop professional hair care: Gift Packs, Daily Care, Treatments & Styling. Olaplex, Kevin Murphy & more. Curated by experts." (137 chars)
 - **OG Image:** `og-collection.jpg`
 - **Canonical:** `https://hairpinns.com/collections`
 

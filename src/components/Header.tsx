@@ -11,8 +11,8 @@ const Header = () => {
   const [showPromo, setShowPromo] = useState(true);
   return <>
       {/* Top Promo Strip */}
-      {showPromo && <Link to="/collections/christmas-gift-packs" className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
-          <p className="font-medium">✨ Free shipping on orders over $100 • Christmas Gift Packs now available</p>
+      {showPromo && <Link to="/collections/gift-packs" className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
+          <p className="font-medium">✨ Free shipping on orders over $100 • Gift Packs now available</p>
           <button 
             onClick={(e) => {
               e.preventDefault();
@@ -62,7 +62,7 @@ const Header = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-              <Link to="/collections/christmas-gift-packs">
+              <Link to="/collections/gift-packs">
                 <Button variant="ghost" size="sm">
                   <ShoppingBag className="w-4 h-4" />
                   Shop Featured
@@ -111,7 +111,7 @@ const Header = () => {
                   </Link>
 
                   <div className="pt-6 border-t border-border space-y-3">
-                    <Link to="/collections/christmas-gift-packs" className="block">
+                    <Link to="/collections/gift-packs" className="block">
                       <Button variant="ghost" size="lg" className="w-full justify-start">
                         <ShoppingBag className="w-5 h-5" />
                         Shop Featured

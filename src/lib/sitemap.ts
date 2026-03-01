@@ -38,7 +38,7 @@ export const getSitemapUrls = (): SitemapUrl[] => {
     { loc: `${baseUrl}/blog`, changefreq: 'weekly', priority: 0.8, lastmod: today },
     
     // Collection pages
-    { loc: `${baseUrl}/collections/christmas-gift-packs`, changefreq: 'weekly', priority: 0.8 },
+    { loc: `${baseUrl}/collections/gift-packs`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/hair-care`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/treatments`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/styling`, changefreq: 'weekly', priority: 0.8 },

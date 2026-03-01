@@ -238,39 +238,39 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "christmas-gift-packs-at-hair-pinns",
-    title: "🎁 Christmas Gift Packs at Hair Pinns 🎁",
-    excerpt: "The season of giving has arrived! Spoil someone special with our Juuce and Pure Christmas gift packs loaded with hair-loving products.",
-    category: "Seasonal",
+    title: "🎁 Gift Packs at Hair Pinns 🎁",
+    excerpt: "Spoil someone special with our Juuce and Pure gift packs loaded with hair-loving products.",
+    category: "Products",
     date: "September 20, 2025",
     readTime: "5 min read",
     image: lamellarPack,
     author: "Jena Pinn",
     content: {
-      introduction: "The season of giving has arrived, and at Hair Pinns we've made it simple to spoil someone special (or yourself!) with our Juuce and Pure Christmas gift packs. Each one is loaded with hair-loving products that suit different needs and comes with a little bonus gift to make it even better value.",
+      introduction: "At Hair Pinns we've made it simple to spoil someone special (or yourself!) with our Juuce and Pure gift packs. Each one is loaded with hair-loving products that suit different needs and comes with a little bonus gift to make it even better value.",
       sections: [
         {
-          heading: "✨ Juuce Christmas Packs",
-          content: "Juuce is loved for its salon-quality formulas that combine natural extracts with targeted results. This year's Christmas packs cover a variety of hair goals, so there's something for everyone:\n\nFrizz control & smoothing – Tame unruly hair and create silky, polished finishes.\nColour care – Keep coloured and blonde hair vibrant, shiny and protected.\nRepair & nourishment – Strengthen damaged strands and restore softness.\nVolume & body – Add lift, bounce and fullness to fine hair.\n\nAnd as a festive bonus, every Juuce pack includes a free leave-in treatment. This hero product works behind the scenes all day to detangle, protect against heat and UV, and keep hair silky between washes. It's an everyday essential that makes these packs even more irresistible."
+          heading: "✨ Juuce Gift Packs",
+          content: "Juuce is loved for its salon-quality formulas that combine natural extracts with targeted results. Our gift packs cover a variety of hair goals, so there's something for everyone:\n\nFrizz control & smoothing – Tame unruly hair and create silky, polished finishes.\nColour care – Keep coloured and blonde hair vibrant, shiny and protected.\nRepair & nourishment – Strengthen damaged strands and restore softness.\nVolume & body – Add lift, bounce and fullness to fine hair.\n\nAs a bonus, every Juuce pack includes a free leave-in treatment. This hero product works behind the scenes all day to detangle, protect against heat and UV, and keep hair silky between washes. It's an everyday essential that makes these packs even more irresistible."
         },
         {
-          heading: "🌿 Pure Christmas Packs",
-          content: "Pure is Hair Pinns' go-to brand for certified organic, eco-friendly hair care that doesn't compromise on performance. Each pack is carefully matched to hair concerns like:\n\nDeep hydration – Perfect for dry or thirsty hair that needs moisture.\nRepair & strength – Ideal for restoring damaged or chemically treated hair.\nCurl care & definition – Designed to nourish natural curls while enhancing bounce.\nShine & smoothness – Great for anyone wanting naturally glossy, frizz-free locks.\n\nEvery Pure pack also comes with a free mask — a rich, intensive treatment designed to be used weekly for a big dose of nourishment. It's the kind of self-care product that makes hair feel instantly healthier and stronger, which is why it's such a special addition to these festive bundles."
+          heading: "🌿 Pure Gift Packs",
+          content: "Pure is Hair Pinns' go-to brand for certified organic, eco-friendly hair care that doesn't compromise on performance. Each pack is carefully matched to hair concerns like:\n\nDeep hydration – Perfect for dry or thirsty hair that needs moisture.\nRepair & strength – Ideal for restoring damaged or chemically treated hair.\nCurl care & definition – Designed to nourish natural curls while enhancing bounce.\nShine & smoothness – Great for anyone wanting naturally glossy, frizz-free locks.\n\nEvery Pure pack also comes with a free mask — a rich, intensive treatment designed to be used weekly for a big dose of nourishment. It's the kind of self-care product that makes hair feel instantly healthier and stronger, which is why it's such a special addition to these bundles."
         },
         {
           heading: "💜 The Perfect Gift",
-          content: "Whether you go for Juuce with its everyday must-have leave-in treatment, or Pure with its luxurious free mask, these Christmas packs are the perfect way to give the gift of healthy, beautiful hair. They're great for family, friends, teachers, or even as a little holiday treat for yourself.\n\n👉 Browse them all here: Hair Pinns Christmas Gift Packs"
+          content: "Whether you go for Juuce with its everyday must-have leave-in treatment, or Pure with its luxurious free mask, these gift packs are the perfect way to give the gift of healthy, beautiful hair. They're great for family, friends, teachers, or even as a little treat for yourself.\n\n👉 Browse them all here: Hair Pinns Gift Packs"
         }
       ],
       productModule: {
-        title: "Shop Christmas Gift Packs",
+        title: "Shop Gift Packs",
         products: [
           {
-            name: "Juuce Christmas Packs",
+            name: "Juuce Gift Packs",
             link: "/collections/juuce",
             description: "Salon-quality formulas with free leave-in treatment"
           },
           {
-            name: "Pure Christmas Packs",
+            name: "Pure Gift Packs",
             link: "/collections/pure-organic",
             description: "Certified organic care with free mask"
           }
@@ -279,8 +279,8 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/christmas",
-      customText: "Shop Christmas gift packs now"
+      productPath: "https://hairpinns.com/collections/gift-packs",
+      customText: "Shop gift packs now"
     }
   },
   {

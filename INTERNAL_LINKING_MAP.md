@@ -84,7 +84,7 @@ Home > Areas We Serve > [Suburb Name]
 
 ### From Home Page
 1. **Service Anchors**: Links to `/services#colour`, `/services#smoothing`, `/services#cuts`
-2. **Featured Collection**: Link to `/collections/christmas-gift-packs`
+2. **Featured Collection**: Link to `/collections/gift-packs`
 3. **Latest Blog Posts**: Links to 3 most recent blog posts
 
 ### From Services Page

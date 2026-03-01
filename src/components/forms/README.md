@@ -72,7 +72,7 @@ Both forms send the following payload structure to Zapier:
   "client_id": "550e8400-e29b-41d4-a716-446655440000",
   "utm_source": "instagram",
   "utm_medium": "bio",
-  "utm_campaign": "xmas",
+  "utm_campaign": "gift-packs",
   "gclid": "",
   "fbclid": "abc123",
   "ttclid": "",

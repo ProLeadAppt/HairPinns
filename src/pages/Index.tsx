@@ -220,7 +220,7 @@ const Index = () => {
               </Link>
               
               <Link 
-                to="/collections/christmas-gift-packs" 
+                to="/collections/gift-packs" 
                 className="group p-6 bg-card border border-border rounded-card hover:shadow-lg transition-all text-center"
               >
                 <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">

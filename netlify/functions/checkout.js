@@ -194,6 +194,31 @@ async function cartLinesAdd(cartId, lines) {
 }
 
 /**
+ * Get existing cart by ID (for "Proceed to Checkout" when cart already has items)
+ */
+async function cartGet(cartId) {
+  const query = `
+    query getCart($cartId: ID!) {
+      cart(id: $cartId) {
+        id
+        checkoutUrl
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  `;
+  const data = await fetchShopify(query, { cartId });
+  if (!data.cart) {
+    throw new Error('Cart not found or expired');
+  }
+  return data.cart;
+}
+
+/**
  * Netlify Function Handler (v1 format - no package required)
  */
 exports.handler = async (event, context) => {
@@ -230,37 +255,45 @@ exports.handler = async (event, context) => {
 
     // Parse request body
     const body = event.body ? JSON.parse(event.body) : {};
-    const { lines, cartId } = body;
+    const lines = Array.isArray(body.lines) ? body.lines : [];
+    const cartId = body.cartId || null;
 
-    if (!lines || !Array.isArray(lines) || lines.length === 0) {
+    let cart;
+
+    // "Proceed to Checkout" with existing cart (mini cart sends cartId + empty lines)
+    if (lines.length === 0 && cartId) {
+      console.log('Fetching existing cart for checkout:', cartId);
+      cart = await cartGet(cartId);
+    }
+    // Add to cart (one or more line items)
+    else if (lines.length > 0) {
+      // Validate line items
+      for (const line of lines) {
+        if (!line.merchandiseId || typeof line.quantity !== 'number') {
+          return {
+            statusCode: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              error: 'Invalid line item: merchandiseId and quantity required',
+            }),
+          };
+        }
+      }
+      if (cartId) {
+        console.log('Adding to existing cart:', cartId);
+        cart = await cartLinesAdd(cartId, lines);
+      } else {
+        console.log('Creating new cart');
+        cart = await cartCreate(lines);
+      }
+    } else {
       return {
         statusCode: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ error: 'Invalid request: lines array required' }),
+        body: JSON.stringify({
+          error: 'Invalid request: send lines (add to cart) or cartId with empty lines (proceed to checkout)',
+        }),
       };
-    }
-
-    // Validate line items
-    for (const line of lines) {
-      if (!line.merchandiseId || typeof line.quantity !== 'number') {
-        return {
-          statusCode: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            error: 'Invalid line item: merchandiseId and quantity required',
-          }),
-        };
-      }
-    }
-
-    // Create or update cart
-    let cart;
-    if (cartId) {
-      console.log('Adding to existing cart:', cartId);
-      cart = await cartLinesAdd(cartId, lines);
-    } else {
-      console.log('Creating new cart');
-      cart = await cartCreate(lines);
     }
 
     // Validate checkoutUrl exists
