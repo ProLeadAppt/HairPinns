@@ -40,7 +40,7 @@ const Returns = () => {
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">How to Return</h2>
             <ol className="space-y-2 text-foreground mb-6">
-              <li>1. Contact us at hello@hairpinns.com with your order number</li>
+              <li>1. Contact us at hairpinns1@gmail.com with your order number</li>
               <li>2. Wait for return authorization and instructions</li>
               <li>3. Ship the item back using the provided label</li>
               <li>4. Receive your refund once we process the return</li>
@@ -54,12 +54,12 @@ const Returns = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Questions?</h2>
             <p className="text-foreground leading-relaxed">
               Contact us at{" "}
-              <a href="mailto:hello@hairpinns.com" className="text-brand-500 hover:text-brand-600">
-                hello@hairpinns.com
+              <a href="mailto:hairpinns1@gmail.com" className="text-brand-500 hover:text-brand-600">
+                hairpinns1@gmail.com
               </a>{" "}
               or{" "}
-              <a href="tel:+61468020624" className="text-brand-500 hover:text-brand-600">
-                0468 020 624
+              <a href="tel:+61468093991" className="text-brand-500 hover:text-brand-600">
+                0468 093 991
               </a>
               .
             </p>

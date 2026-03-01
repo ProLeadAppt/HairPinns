@@ -31,23 +31,38 @@ const AboveFoldProducts = () => {
     const fetchProducts = async () => {
       try {
         const shopifyModule = await import("@/lib/shopify");
-        const { searchProducts, getProductByHandle } = shopifyModule;
-        const { FEATURED_PRODUCT_HANDLES } = await import("@/config/featuredProducts");
+        const { getCollectionByHandle, searchProducts, getProductByHandle } = shopifyModule;
+        const { FEATURED_PRODUCT_HANDLES, BEST_SELLERS_COLLECTION_HANDLE } = await import("@/config/featuredProducts");
 
         let productList: any[] = [];
 
-        // Prefer featured product handles when configured
-        if (FEATURED_PRODUCT_HANDLES.length > 0) {
+        // 1. Prefer best-sellers collection (same source as BestSellers section)
+        if (BEST_SELLERS_COLLECTION_HANDLE) {
+          try {
+            const collection = await getCollectionByHandle(BEST_SELLERS_COLLECTION_HANDLE);
+            if (collection?.products?.edges?.length) {
+              productList = collection.products.edges
+                .map((edge: any) => edge.node)
+                .filter((p: any) => p.availableForSale && p.handle)
+                .slice(0, 6);
+            }
+          } catch {
+            // Collection may not exist, fall through
+          }
+        }
+
+        // 2. Fallback: featured product handles when configured
+        if (productList.length === 0 && FEATURED_PRODUCT_HANDLES.length > 0) {
           const results = await Promise.all(
             FEATURED_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
           );
-          productList = results.filter(Boolean);
+          productList = results.filter(Boolean).filter((p: any) => p.handle);
         }
 
-        // Fallback: search all products
+        // 3. Fallback: search all products
         if (productList.length === 0) {
           const result = await searchProducts("", 20);
-          productList = result?.products || [];
+          productList = (result?.products || []).filter((p: any) => p.handle);
         }
 
         if (!isMounted) return;
@@ -56,7 +71,7 @@ const AboveFoldProducts = () => {
 
         if (productList.length > 0) {
           const mappedProducts = productList
-            .filter((p: any) => p.availableForSale)
+            .filter((p: any) => p.availableForSale && p.handle && typeof p.handle === "string")
             .slice(0, 6) // Show 6 products (3x2 desktop, 2x3 mobile)
             .map((product: any) => {
               const firstImage = product.images?.edges?.[0]?.node || product.images?.[0];
@@ -169,7 +184,9 @@ const AboveFoldProducts = () => {
       />
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => {
+        {products
+          .filter((product) => product.slug && typeof product.slug === "string")
+          .map((product) => {
           const hasDiscount = product.compareAtPrice && product.compareAtPrice > product.price;
           const discountPercent = hasDiscount
             ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)

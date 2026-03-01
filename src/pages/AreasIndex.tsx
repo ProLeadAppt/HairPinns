@@ -155,11 +155,11 @@ const AreasIndex = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="tel:+61468020624"
+                  href="tel:+61468093991"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors font-semibold"
                 >
                   <MapPin className="w-5 h-5" />
-                  Call +61 468 020 624
+                  Call +61 468 093 991
                 </a>
                 <Link 
                   to="/contact"

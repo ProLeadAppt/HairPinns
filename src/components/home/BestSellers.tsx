@@ -134,7 +134,9 @@ const BestSellers = () => {
       />
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 2000px" }}>
-        {products.map((product) => (
+        {products
+          .filter((product) => product.slug && typeof product.slug === "string")
+          .map((product) => (
           <div 
             key={product.id}
             className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base group"

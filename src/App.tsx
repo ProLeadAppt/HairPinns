@@ -41,6 +41,7 @@ import Reviews from "./pages/Reviews";
 import ReviewFeedback from "./pages/ReviewFeedback";
 import ReviewGoogle from "./pages/ReviewGoogle";
 import SearchResults from "./pages/SearchResults";
+import ErrorBoundary, { ProductDetailErrorBoundary } from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
@@ -77,8 +78,8 @@ const AppContent = () => {
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/collections" element={<Collections />} />
-          <Route path="/collections/:slug" element={<CollectionDetail />} />
-          <Route path="/products/:handle" element={<ProductDetail />} />
+          <Route path="/collections/:slug" element={<ErrorBoundary><CollectionDetail /></ErrorBoundary>} />
+          <Route path="/products/:handle" element={<ProductDetailErrorBoundary><ProductDetail /></ProductDetailErrorBoundary>} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:categorySlug/:serviceSlug" element={<ServiceDetail />} />
           <Route path="/booking" element={<Booking />} />

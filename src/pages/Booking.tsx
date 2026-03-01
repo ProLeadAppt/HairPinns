@@ -38,7 +38,7 @@ const Booking = () => {
               pick your time, and get instant confirmation. It's fast, secure, and hassle-free.
             </p>
             <p className="text-foreground mb-8">
-              Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
+              Need help choosing? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
             </p>
             
             <a
@@ -80,7 +80,7 @@ const Booking = () => {
                   </Button>
                 </a>
                 <p className="text-sm text-muted-foreground mt-6">
-                  Prefer to call? <a href="tel:+61295550123" className="text-brand-500 font-semibold hover:text-brand-600">(02) 9555 0123</a>
+                  Prefer to call? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600">0468 093 991</a>
                 </p>
               </div>
             </div>
@@ -170,9 +170,9 @@ const Booking = () => {
               We're here to help! Call or text us, or visit our FAQ page.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+61295550123">
+              <a href="tel:+61468093991">
                 <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
-                  Call: (02) 9555 0123
+                  Call: 0468 093 991
                 </Button>
               </a>
               <Link to="/services#faqs">

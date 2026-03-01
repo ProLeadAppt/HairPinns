@@ -107,7 +107,7 @@ const LocationPage = () => {
       "longitude": "151.0333"
     },
     "url": `https://hairpinns.com/areas/${locationData.slug}`,
-    "telephone": "+61468020624",
+    "telephone": "+61468093991",
     "priceRange": "$$",
     "openingHoursSpecification": [
       {
@@ -164,7 +164,7 @@ const LocationPage = () => {
         <title>Hairdresser {locationData.name} | Hair Salon near {locationData.name} – Hair Pinns</title>
         <meta 
           name="description" 
-          content={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call +61 468 020 624.`}
+          content={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call +61 468 093 991.`}
         />
         <link rel="canonical" href={`https://hairpinns.com/areas/${locationData.slug}`} />
         <meta property="og:title" content={`Hairdresser ${locationData.name} | Hair Pinns`} />
@@ -254,9 +254,9 @@ const LocationPage = () => {
                   className="font-semibold"
                   asChild
                 >
-                  <a href="tel:+61468020624" className="flex items-center gap-2">
+                  <a href="tel:+61468093991" className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
-                    Call +61 468 020 624
+                    Call +61 468 093 991
                   </a>
                 </Button>
               </div>
@@ -481,9 +481,9 @@ const LocationPage = () => {
                   className="font-semibold"
                   asChild
                 >
-                  <a href="tel:+61468020624" className="flex items-center gap-2">
+                  <a href="tel:+61468093991" className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
-                    Call +61 468 020 624
+                    Call +61 468 093 991
                   </a>
                 </Button>
               </div>

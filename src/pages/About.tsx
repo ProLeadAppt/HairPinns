@@ -160,7 +160,7 @@ const About = () => {
                   in my own hair and in the salon every day. If it doesn't pass my standards, it doesn't make the cut.
                 </p>
                 <p className="text-foreground leading-relaxed">
-                  Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call us</a> or chat with Isabella for instant recommendations.
+                  Need help choosing? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call us</a> or chat with Isabella for instant recommendations.
                 </p>
               </div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden">

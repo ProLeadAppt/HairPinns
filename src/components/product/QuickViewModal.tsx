@@ -80,10 +80,9 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
   if (!open) return null;
 
   const firstImage = product?.images?.edges?.[0]?.node;
-  const price = product?.variants?.edges?.[0]?.node?.price?.amount
-    ? parseFloat(product.variants.edges[0].node.price.amount)
-    : 0;
-  const currency = product?.variants?.edges?.[0]?.node?.price?.currencyCode || "AUD";
+  const firstVariant = product?.variants?.edges?.[0]?.node;
+  const price = firstVariant ? parseFloat(firstVariant.price?.amount || firstVariant.priceV2?.amount || "0") : 0;
+  const currency = firstVariant?.price?.currencyCode || firstVariant?.priceV2?.currencyCode || "AUD";
 
   return (
     <Dialog open={open} onOpenChange={onClose}>

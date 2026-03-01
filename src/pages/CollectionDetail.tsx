@@ -177,14 +177,16 @@ const CollectionDetail = () => {
     }
   };
 
-  // Filter and sort logic
-  const filteredProducts = products.filter((p) => {
-    if (priceRange === "all") return true;
-    if (priceRange === "under-80") return p.price < 80;
-    if (priceRange === "80-90") return p.price >= 80 && p.price <= 90;
-    if (priceRange === "over-90") return p.price > 90;
-    return true;
-  });
+  // Filter and sort logic (exclude products with invalid handles to prevent broken links)
+  const filteredProducts = products
+    .filter((p) => p?.handle && typeof p.handle === "string" && p.handle.length > 0)
+    .filter((p) => {
+      if (priceRange === "all") return true;
+      if (priceRange === "under-80") return p.price < 80;
+      if (priceRange === "80-90") return p.price >= 80 && p.price <= 90;
+      if (priceRange === "over-90") return p.price > 90;
+      return true;
+    });
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortBy === "price-low") return a.price - b.price;
@@ -523,7 +525,7 @@ const CollectionDetail = () => {
                   How do I know if I need volume or smoothing products?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground leading-relaxed">
-                  If your hair is fine, flat, or lacks body, choose the <strong>Volume Boost Pack</strong> with lightweight formulas that lift at the roots. For thick, frizzy, or coarse hair that needs control, the <strong>Smooth & Sleek Set</strong> uses smoothing serums and anti-humidity technology. Need help choosing? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant recommendations.
+                  If your hair is fine, flat, or lacks body, choose the <strong>Volume Boost Pack</strong> with lightweight formulas that lift at the roots. For thick, frizzy, or coarse hair that needs control, the <strong>Smooth & Sleek Set</strong> uses smoothing serums and anti-humidity technology. Need help choosing? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant recommendations.
                 </AccordionContent>
               </AccordionItem>
 

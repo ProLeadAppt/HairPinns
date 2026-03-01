@@ -50,7 +50,7 @@ const ProductRecommendations = ({
           if (collection?.products?.edges) {
             products = collection.products.edges
               .map((edge: any) => edge.node)
-              .filter((p: any) => p.id !== currentProductId && p.availableForSale)
+              .filter((p: any) => p.id !== currentProductId && p.availableForSale && p.handle)
               .slice(0, 3)
               .map((product: any) => {
                 const firstImage = product.images?.edges?.[0]?.node;
@@ -73,7 +73,7 @@ const ProductRecommendations = ({
           const result = await searchProducts("*", 3);
           if (result?.products) {
             products = result.products
-              .filter((p: any) => p.id !== currentProductId && p.availableForSale)
+              .filter((p: any) => p.id !== currentProductId && p.availableForSale && p.handle)
               .slice(0, 3)
               .map((product: any) => {
                 const firstImage = product.images?.edges?.[0]?.node;

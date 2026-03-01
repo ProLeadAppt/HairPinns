@@ -33,13 +33,13 @@ const FrequentlyBoughtTogether = ({
         if (productData) {
           const firstImage = productData.images?.edges?.[0]?.node;
           const firstVariant = productData.variants?.edges?.[0]?.node;
-          const price = parseFloat(firstVariant?.priceV2?.amount || "0");
+          const price = parseFloat(firstVariant?.price?.amount || firstVariant?.priceV2?.amount || "0");
           setCurrentProduct({
             id: productData.id,
             slug: productData.handle,
             title: productData.title,
             price: price,
-            currency: firstVariant?.priceV2?.currencyCode || "AUD",
+            currency: firstVariant?.price?.currencyCode || firstVariant?.priceV2?.currencyCode || "AUD",
             image: firstImage?.url || "/placeholder.svg",
           });
         }
@@ -48,7 +48,7 @@ const FrequentlyBoughtTogether = ({
         const result = await searchProducts("", 20);
         if (result?.products) {
           const products = result.products
-            .filter((p: any) => p.id !== currentProductId && p.availableForSale)
+            .filter((p: any) => p.id !== currentProductId && p.availableForSale && p.handle)
             .slice(0, 3)
             .map((product: any) => {
               const firstImage = product.images?.edges?.[0]?.node;

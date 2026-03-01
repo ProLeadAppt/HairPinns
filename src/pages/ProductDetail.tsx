@@ -23,8 +23,12 @@ import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import PaymentBadges from "@/components/product/PaymentBadges";
 import ShippingCalculator from "@/components/product/ShippingCalculator";
+import EstimatedDelivery from "@/components/product/EstimatedDelivery";
 import UrgencyIndicator from "@/components/conversion/UrgencyIndicator";
 import StickyAddToCart from "@/components/conversion/StickyAddToCart";
+import FrequentlyBoughtTogether from "@/components/product/FrequentlyBoughtTogether";
+import ProductRecommendations from "@/components/product/ProductRecommendations";
+import { SilentErrorBoundary } from "@/components/ErrorBoundary";
 import { trackCartCreated } from "@/lib/cartAbandonment";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
@@ -40,70 +44,100 @@ const ProductDetail = () => {
   const [addingToCart, setAddingToCart] = useState(false);
   const [buyingNow, setBuyingNow] = useState(false);
 
-  // Fetch product from Shopify
+  // Fetch product from Shopify (with 8s timeout to avoid perpetual loading)
   useEffect(() => {
+    let isMounted = true;
+    let timeoutId: NodeJS.Timeout;
+
     const fetchProduct = async () => {
       if (!handle) return;
-      
+
       setLoading(true);
       try {
-        const productData = await getProductByHandle(handle);
-        
+        const fetchPromise = getProductByHandle(handle);
+        const timeoutPromise = new Promise<null>((_, reject) => {
+          timeoutId = setTimeout(() => reject(new Error("Request timeout")), 8000);
+        });
+
+        const productData = await Promise.race([fetchPromise, timeoutPromise]);
+        clearTimeout(timeoutId);
+
+        if (!isMounted) return;
+
         if (productData) {
+          // Validate product has required structure - treat malformed data as not found
+          const hasImages = productData.images?.edges?.length > 0;
+          const hasVariants = productData.variants?.edges?.length > 0;
+          if (!hasImages || !hasVariants) {
+            console.warn("Product data malformed (missing images or variants):", productData.handle);
+            setProduct(null);
+            setLoading(false);
+            return;
+          }
+
           setProduct(productData);
-          
+
           // Track product view for conversion funnel
           trackProductView(productData.id, productData.title);
           trackFunnelStep("view", {
             product_id: productData.id,
             product_title: productData.title,
           });
-          
+
           // Set first available variant as default
           const variants = productData.variants.edges;
           const firstAvailableVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
-          
+
           if (firstAvailableVariant) {
             setActiveVariantId(firstAvailableVariant.id);
-            
+
             // Set default selected options
             const defaultOptions: Record<string, string> = {};
-            firstAvailableVariant.selectedOptions.forEach((opt: any) => {
+            (firstAvailableVariant.selectedOptions || []).forEach((opt: any) => {
               defaultOptions[opt.name] = opt.value;
             });
             setSelectedOptions(defaultOptions);
           }
         }
       } catch (error) {
+        if (!isMounted) return;
         console.error("Failed to fetch product:", error);
         toast.error("Failed to load product");
+        setProduct(null);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchProduct();
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+    };
   }, [handle]);
 
   // Handle option selection
   const handleOptionChange = (optionName: string, value: string) => {
+    if (!product?.variants?.edges) return;
     const newOptions = { ...selectedOptions, [optionName]: value };
     setSelectedOptions(newOptions);
-    
+
     // Find matching variant
     const matchingVariant = product.variants.edges.find((edge: any) => {
       const variant = edge.node;
-      return variant.selectedOptions.every((opt: any) => 
+      return (variant.selectedOptions || []).every((opt: any) =>
         newOptions[opt.name] === opt.value
       );
     });
-    
+
     if (matchingVariant) {
       setActiveVariantId(matchingVariant.node.id);
-      
+
       // Update image to match variant if available
       const variantImage = matchingVariant.node.image;
-      if (variantImage) {
+      if (variantImage && product.images?.edges) {
         const imageIndex = product.images.edges.findIndex(
           (edge: any) => edge.node.url === variantImage.url
         );
@@ -145,8 +179,8 @@ const ProductDetail = () => {
       }
       
       // Track add_to_cart to GHL and cart abandonment
-      const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
-      const price = activeVariant ? parseFloat(activeVariant.priceV2.amount) : 0;
+      const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
+      const price = activeVariant ? parseFloat(activeVariant.price?.amount || activeVariant.priceV2?.amount || "0") : 0;
       
       // Track funnel step: intent
       trackFunnelStep("intent", {
@@ -198,8 +232,8 @@ const ProductDetail = () => {
     
     try {
       // Track add_to_cart
-      const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
-      const price = activeVariant ? parseFloat(activeVariant.priceV2.amount) : 0;
+      const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
+      const price = activeVariant ? parseFloat(activeVariant.price?.amount || activeVariant.priceV2?.amount || "0") : 0;
       
       trackAddToCart({
         product_id: product.id,
@@ -253,13 +287,15 @@ const ProductDetail = () => {
 
   // Navigate images
   const nextImage = () => {
-    if (!product) return;
-    setCurrentImage((prev) => (prev + 1) % product.images.edges.length);
+    const edges = product?.images?.edges;
+    if (!edges?.length) return;
+    setCurrentImage((prev) => (prev + 1) % edges.length);
   };
 
   const prevImage = () => {
-    if (!product) return;
-    setCurrentImage((prev) => (prev - 1 + product.images.edges.length) % product.images.edges.length);
+    const edges = product?.images?.edges;
+    if (!edges?.length) return;
+    setCurrentImage((prev) => (prev - 1 + edges.length) % edges.length);
   };
 
   if (loading) {
@@ -305,19 +341,25 @@ const ProductDetail = () => {
     );
   }
 
-  // Get active variant details
-  const activeVariant = product.variants.edges.find((e: any) => e.node.id === activeVariantId)?.node;
-  const price = activeVariant ? parseFloat(activeVariant.priceV2.amount) : 0;
-  const compareAtPrice = activeVariant?.compareAtPriceV2 ? parseFloat(activeVariant.compareAtPriceV2.amount) : null;
+  // Get active variant details (null-safe) - fallback to first variant if activeVariantId doesn't match
+  const variantEdges = product.variants?.edges ?? [];
+  let activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
+  if (!activeVariant && variantEdges.length > 0) {
+    activeVariant = variantEdges[0]?.node;
+  }
+  const price = activeVariant ? parseFloat(activeVariant.price?.amount || activeVariant.priceV2?.amount || "0") : parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
+  const compareAtPrice = activeVariant?.compareAtPrice?.amount || activeVariant?.compareAtPriceV2?.amount
+    ? parseFloat(activeVariant.compareAtPrice?.amount || activeVariant.compareAtPriceV2?.amount || "0")
+    : null;
   const isAvailable = activeVariant?.availableForSale ?? false;
 
-  const images = product.images.edges.map((edge: any) => edge.node);
+  const images = (product.images?.edges ?? []).map((e: any) => e?.node).filter(Boolean);
   const currentImg = images[currentImage];
 
   // Get unique option names
   const uniqueOptionNames = new Set<string>();
-  product.variants.edges.forEach((edge: any) => {
-    edge.node.selectedOptions.forEach((opt: any) => {
+  variantEdges.forEach((edge: any) => {
+    (edge.node.selectedOptions || []).forEach((opt: any) => {
       uniqueOptionNames.add(opt.name);
     });
   });
@@ -325,8 +367,8 @@ const ProductDetail = () => {
   // Get unique values for each option
   const getOptionValues = (optionName: string) => {
     const values = new Set<string>();
-    product.variants.edges.forEach((edge: any) => {
-      const option = edge.node.selectedOptions.find((opt: any) => opt.name === optionName);
+    variantEdges.forEach((edge: any) => {
+      const option = (edge.node.selectedOptions || []).find((opt: any) => opt.name === optionName);
       if (option) values.add(option.value);
     });
     return Array.from(values);
@@ -335,37 +377,45 @@ const ProductDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{product.title} | {formatPrice(price, "AUD")} | Hair Pinns</title>
+        <title>{product.title} | {formatPrice(Number.isFinite(price) ? price : 0, "AUD")} | Hair Pinns</title>
         <meta 
           name="description" 
-          content={product.description.substring(0, 155)}
+          content={String(product.description ?? "").substring(0, 155)}
         />
         <link rel="canonical" href={`https://hairpinns.com/products/${handle}`} />
-        <meta property="og:title" content={`${product.title} - ${formatPrice(price, "AUD")}`} />
-        <meta property="og:description" content={product.description.substring(0, 155)} />
+        <meta property="og:title" content={`${product.title} - ${formatPrice(Number.isFinite(price) ? price : 0, "AUD")}`} />
+        <meta property="og:description" content={String(product.description ?? "").substring(0, 155)} />
         <meta property="og:url" content={`https://hairpinns.com/products/${handle}`} />
         <meta property="og:type" content="product" />
         <meta property="og:image" content={images[0]?.url || getOGImage('product')} />
-        <meta property="product:price:amount" content={price.toString()} />
+        <meta property="product:price:amount" content={(Number.isFinite(price) ? price : 0).toString()} />
         <meta property="product:price:currency" content="AUD" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">
-          {JSON.stringify(generateEnhancedProductSchema({
-            name: product.title,
-            description: product.description || `${product.title} - Salon-quality hair care product from Hair Pinns`,
-            image: images.map((img: any) => img.url),
-            price: price.toString(),
-            currency: activeVariant?.priceV2?.currencyCode || "AUD",
-            brand: "Hair Pinns",
-            sku: activeVariant?.sku || product.id.split('/').pop() || product.handle,
-            productID: product.id,
-            availability: isAvailable ? "InStock" : "OutOfStock",
-            category: product.productType || "Hair Care",
-            rating: {
-              ratingValue: 4.8,
-              reviewCount: 53,
-            },
-          }))}
+          {(() => {
+            try {
+              const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
+              return JSON.stringify(generateEnhancedProductSchema({
+                name: product.title,
+                description: product.description || `${product.title} - Salon-quality hair care product from Hair Pinns`,
+                image: imageUrls.length > 0 ? imageUrls : [getOGImage('product')],
+                price: (Number.isFinite(price) ? price : 0).toString(),
+                currency: activeVariant?.price?.currencyCode || activeVariant?.priceV2?.currencyCode || "AUD",
+                brand: "Hair Pinns",
+                sku: activeVariant?.sku || product.id?.split("/")?.pop() || product.handle || "",
+                productID: product.id,
+                availability: isAvailable ? "InStock" : "OutOfStock",
+                category: product.productType || "Hair Care",
+                rating: {
+                  ratingValue: 4.8,
+                  reviewCount: 53,
+                },
+              }));
+            } catch (e) {
+              console.warn("Product schema generation failed:", e);
+              return "{}";
+            }
+          })()}
         </script>
       </Helmet>
       
@@ -457,8 +507,8 @@ const ProductDetail = () => {
                         }`}
                       >
                         <img
-                          src={image.url}
-                          alt={image.altText || `${product.title} ${index + 1}`}
+                          src={image?.url || "/placeholder.svg"}
+                          alt={image?.altText || `${product.title} ${index + 1}`}
                           className="w-full h-full object-cover"
                           width="200"
                           height="200"
@@ -477,19 +527,21 @@ const ProductDetail = () => {
                 </h1>
 
                 {/* Availability & Urgency */}
-                <UrgencyIndicator
-                  productId={product.id}
-                  inStock={product.availableForSale}
-                  stockLevel={product.availableForSale ? 5 : 0} // In production, get from API
-                  showRecentPurchases={true}
-                  className="mb-4"
-                />
+                <SilentErrorBoundary>
+                  <UrgencyIndicator
+                    productId={product.id}
+                    inStock={product.availableForSale}
+                    stockLevel={product.availableForSale ? 5 : 0} // In production, get from API
+                    showRecentPurchases={true}
+                    className="mb-4"
+                  />
+                </SilentErrorBoundary>
 
                 {/* Price */}
                 <div className="space-y-2">
                   <div className="flex items-baseline gap-3">
                     <span className="text-3xl font-bold text-brand-500">
-                      {formatPrice(price, "AUD")}
+                      {formatPrice(Number.isFinite(price) ? price : 0, "AUD")}
                     </span>
                     {compareAtPrice && compareAtPrice > price && (
                       <span className="text-xl text-muted-foreground line-through">
@@ -561,18 +613,24 @@ const ProductDetail = () => {
 
                   {/* Shipping Calculator */}
                   <div className="pt-2">
-                    <ShippingCalculator cartTotal={price} />
+                    <SilentErrorBoundary>
+                      <ShippingCalculator cartTotal={price} />
+                    </SilentErrorBoundary>
                   </div>
 
                   {/* Estimated Delivery */}
                   <div className="pt-2">
-                    <EstimatedDelivery cartTotal={price} />
+                    <SilentErrorBoundary>
+                      <EstimatedDelivery cartTotal={price} />
+                    </SilentErrorBoundary>
                   </div>
 
                   {/* Payment Options */}
                   <div className="pt-4 border-t border-border">
                     <p className="text-sm font-medium mb-3 text-foreground">Payment Options:</p>
-                    <PaymentBadges variant="stacked" />
+                    <SilentErrorBoundary>
+                      <PaymentBadges variant="stacked" />
+                    </SilentErrorBoundary>
                   </div>
                 </div>
 
@@ -581,22 +639,27 @@ const ProductDetail = () => {
                   <h3 className="text-lg font-semibold text-heading">Product Description</h3>
                   <div className="prose prose-sm max-w-none text-foreground">
                     {(() => {
-                      // Extract key features and simplify
-                      const description = product.description || "";
-                      const sentences = description.split(/[.!?]+/).filter(s => s.trim().length > 10);
-                      const keyPoints = sentences.slice(0, 3).map(s => s.trim()).filter(Boolean);
-                      
-                      if (keyPoints.length === 0) {
+                      try {
+                        // Extract key features - ensure description is string (Shopify may return HTML/rich text)
+                        const rawDesc = product.description ?? product.descriptionHtml ?? "";
+                        const description = typeof rawDesc === "string" ? rawDesc : String(rawDesc);
+                        const sentences = description.split(/[.!?]+/).filter((s: string) => s.trim().length > 10);
+                        const keyPoints = sentences.slice(0, 3).map((s: string) => s.trim()).filter(Boolean);
+                        
+                        if (keyPoints.length === 0) {
+                          return <p>Professional hair care product designed for salon-quality results at home.</p>;
+                        }
+                        
+                        return (
+                          <div className="space-y-2">
+                            {keyPoints.map((point, index) => (
+                              <p key={index} className="text-sm leading-relaxed">{point}.</p>
+                            ))}
+                          </div>
+                        );
+                      } catch {
                         return <p>Professional hair care product designed for salon-quality results at home.</p>;
                       }
-                      
-                      return (
-                        <div className="space-y-2">
-                          {keyPoints.map((point, index) => (
-                            <p key={index} className="text-sm leading-relaxed">{point}.</p>
-                          ))}
-                        </div>
-                      );
                     })()}
                   </div>
                 </div>
@@ -605,32 +668,38 @@ const ProductDetail = () => {
           </div>
         </section>
 
-        {/* Frequently Bought Together Section */}
+        {/* Frequently Bought Together Section - wrapped so failures don't break product page */}
         {product && (
-          <FrequentlyBoughtTogether
-            currentProductId={product.id}
-            currentProductHandle={product.handle}
-          />
+          <SilentErrorBoundary>
+            <FrequentlyBoughtTogether
+              currentProductId={product.id}
+              currentProductHandle={product.handle}
+            />
+          </SilentErrorBoundary>
         )}
 
-        {/* Product Recommendations */}
+        {/* Product Recommendations - wrapped so failures don't break product page */}
         {product && (
-          <ProductRecommendations
-            currentProductId={product.id}
-            currentCollectionHandle={product.collections?.edges?.[0]?.node?.handle}
-          />
+          <SilentErrorBoundary>
+            <ProductRecommendations
+              currentProductId={product.id}
+              currentCollectionHandle={product.collections?.edges?.[0]?.node?.handle}
+            />
+          </SilentErrorBoundary>
         )}
       </main>
       
       <Footer />
       {product && (
-        <StickyAddToCart
-          productTitle={product.title}
-          price={price}
-          inStock={isAvailable}
-          onAddToCart={handleAddToBag}
-          threshold={500}
-        />
+        <SilentErrorBoundary>
+          <StickyAddToCart
+            productTitle={product.title}
+            price={price}
+            inStock={isAvailable}
+            onAddToCart={handleAddToBag}
+            threshold={500}
+          />
+        </SilentErrorBoundary>
       )}
     </div>
   );

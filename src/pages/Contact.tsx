@@ -20,9 +20,9 @@ const Contact = () => {
   const businessInfo = {
     name: "Hair Pinns",
     address: "60 Goorgool Rd, Bangor NSW 2234",
-    phone: "0468 020 624",
-    phoneRaw: "+61468020624",
-    email: "hello@hairpinns.com",
+    phone: "0468 093 991",
+    phoneRaw: "+61468093991",
+    email: "hairpinns1@gmail.com",
     hours: [{
       day: "Monday",
       hours: "Closed",
@@ -138,11 +138,11 @@ const Contact = () => {
   };
   return <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Contact Hair Pinns Bangor | Call 0468 020 624</title>
-        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire. Call 0468 020 624. Free parking, easy access. Open Tue-Sat." />
+        <title>Contact Hair Pinns Bangor | Call 0468 093 991</title>
+        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire. Call 0468 093 991. Free parking, easy access. Open Tue-Sat." />
         <link rel="canonical" href="https://hairpinns.com/contact" />
         <meta property="og:title" content="Contact Hair Pinns Bangor | Visit Our Salon" />
-        <meta property="og:description" content="60 Goorgool Rd, Bangor NSW 2234. Call 0468 020 624. Free parking, open Tue-Sat." />
+        <meta property="og:description" content="60 Goorgool Rd, Bangor NSW 2234. Call 0468 093 991. Free parking, open Tue-Sat." />
         <meta property="og:url" content="https://hairpinns.com/contact" />
         <meta property="og:type" content="website" />
         <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/contact" />
@@ -293,9 +293,9 @@ const Contact = () => {
                   variant="primary"
                   className="w-full bg-brand-500 hover:bg-brand-600"
                 >
-                  <a href="tel:+61468020624" className="no-link-color">
+                  <a href="tel:+61468093991" className="no-link-color">
                     <Phone className="w-5 h-5" />
-                    Call: 0468 020 624
+                    Call: 0468 093 991
                   </a>
                 </Button>
               </div>

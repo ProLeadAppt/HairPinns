@@ -39,12 +39,12 @@ const Shipping = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Questions?</h2>
             <p className="text-foreground leading-relaxed">
               For any shipping inquiries, please contact us at{" "}
-              <a href="mailto:hello@hairpinns.com" className="text-brand-500 hover:text-brand-600">
-                hello@hairpinns.com
+              <a href="mailto:hairpinns1@gmail.com" className="text-brand-500 hover:text-brand-600">
+                hairpinns1@gmail.com
               </a>{" "}
               or call{" "}
-              <a href="tel:+61295550123" className="text-brand-500 hover:text-brand-600">
-                (02) 9555 0123
+              <a href="tel:+61468093991" className="text-brand-500 hover:text-brand-600">
+                0468 093 991
               </a>
               .
             </p>

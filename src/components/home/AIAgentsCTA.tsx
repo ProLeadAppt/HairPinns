@@ -85,7 +85,7 @@ const AIAgentsCTA = () => {
           className="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-primary-foreground font-semibold rounded-full shadow-md px-6 py-3 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-foreground/50"
         >
           <a 
-            href="tel:+61468020624"
+            href="tel:+61468093991"
             onClick={trackPhoneClick}
             className="flex items-center gap-2"
           >

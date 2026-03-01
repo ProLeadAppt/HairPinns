@@ -270,8 +270,8 @@ const OrderConfirmation = () => {
                 Contact us
               </a>{" "}
               or call{" "}
-              <a href="tel:+61295550123" className="text-brand-500 hover:underline">
-                (02) 9555 0123
+              <a href="tel:+61468093991" className="text-brand-500 hover:underline">
+                0468 093 991
               </a>
             </p>
           </div>

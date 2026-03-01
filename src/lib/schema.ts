@@ -95,7 +95,7 @@ const SALON_GEO = {
   latitude: '-34.0186',
   longitude: '151.0333',
 };
-const SALON_PHONE = '+61-468-020-624';
+const SALON_PHONE = '+61-468-093-991';
 
 const AREA_SERVED = [
   'Bangor',
@@ -672,13 +672,16 @@ export interface EnhancedProductData extends ProductData {
 }
 
 export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
+  const rawImages = Array.isArray(product.image) ? product.image : (product.image ? [product.image] : []);
+  const imageUrls = rawImages.filter((url): url is string => typeof url === "string" && url.length > 0);
+
   const schema: any = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     '@id': `${BASE_URL}/products/${product.sku || product.productID || ''}`,
     name: product.name,
     description: product.description,
-    image: Array.isArray(product.image) ? product.image : [product.image],
+    image: imageUrls.length > 0 ? imageUrls : [`${BASE_URL}/og-product.jpg`],
     brand: {
       '@type': 'Brand',
       name: product.brand || 'Hair Pinns',

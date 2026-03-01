@@ -13,8 +13,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: ["0468 020 624"],
-    link: "tel:+61468020624",
+    details: ["0468 093 991"],
+    link: "tel:+61468093991",
   },
   {
     icon: Clock,
@@ -24,8 +24,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: ["hello@hairpinns.com.au"],
-    link: "mailto:hello@hairpinns.com.au",
+    details: ["hairpinns1@gmail.com"],
+    link: "mailto:hairpinns1@gmail.com",
   },
 ];
 
@@ -39,7 +39,7 @@ const ContactSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Located in Bangor NSW, we're easily accessible throughout the Sutherland Shire. 
-            Need help? <a href="tel:+61468020624" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam on 0468 020 624</a> or chat with Isabella (look for the chat bubble) for instant answers.
+            Need help? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam on 0468 093 991</a> or chat with Isabella (look for the chat bubble) for instant answers.
           </p>
         </div>
         
@@ -106,7 +106,7 @@ const ContactSection = () => {
             "name": "Hair Pinns",
             "description": "Boutique hair salon in Bangor NSW serving Sutherland Shire",
             "url": "https://hairpinns.com/",
-            "telephone": "+61468020624",
+            "telephone": "+61468093991",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "60 Goorgool Rd",

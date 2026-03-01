@@ -152,8 +152,10 @@ export default function ProductSearch({
               </div>
             ) : results.length > 0 ? (
               <ul className="divide-y divide-border">
-                {results.map((product) => {
-                  const image = product.images.edges[0]?.node;
+                {results
+                  .filter((product) => product.handle && typeof product.handle === "string")
+                  .map((product) => {
+                  const image = product.images?.edges?.[0]?.node;
                   return (
                     <li key={product.id}>
                       <Link

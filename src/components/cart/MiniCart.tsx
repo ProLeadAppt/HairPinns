@@ -228,8 +228,8 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
               {cart.lines.edges.map((edge: any) => {
                 const node = edge.node;
                 const merch = node.merchandise;
-                const price = parseFloat(merch?.priceV2?.amount || "0");
-                const currency = merch?.priceV2?.currencyCode || "AUD";
+                const price = parseFloat(merch?.price?.amount || merch?.priceV2?.amount || "0");
+                const currency = merch?.price?.currencyCode || merch?.priceV2?.currencyCode || "AUD";
                 return (
                   <div
                     key={node.id}

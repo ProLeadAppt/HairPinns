@@ -133,9 +133,11 @@ const Collections = () => {
     fetchCollections();
   }, []);
 
-  // Filter and sort collections
+  // Filter and sort collections (exclude collections with invalid handles)
   const filteredAndSortedCollections = useMemo(() => {
-    let filtered = collections;
+    let filtered = collections.filter(
+      (c) => c.handle && typeof c.handle === "string" && c.handle.length > 0
+    );
 
     // Filter by search query
     if (searchQuery.trim()) {
@@ -373,7 +375,7 @@ const Collections = () => {
                   asChild
                   className="w-full sm:w-auto text-lg px-8 py-6"
                 >
-                  <a href="tel:+61468020624">Call Sam Now</a>
+                  <a href="tel:+61468093991">Call Sam Now</a>
                 </Button>
                 <a 
                   href={BOOK_URL}

@@ -96,11 +96,11 @@ export async function getProductByHandle(handle: string) {
               id
               title
               availableForSale
-              priceV2 {
+              price {
                 amount
                 currencyCode
               }
-              compareAtPriceV2 {
+              compareAtPrice {
                 amount
                 currencyCode
               }
@@ -242,7 +242,7 @@ export async function searchProducts(query: string, first: number = 20) {
                   id
                   title
                   availableForSale
-                  priceV2 {
+                  price {
                     amount
                     currencyCode
                   }
@@ -316,7 +316,7 @@ export async function cartCreate(lines: Array<{ merchandiseId: string; quantity:
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
+                    price {
                       amount
                       currencyCode
                     }
@@ -392,7 +392,7 @@ export async function cartLinesAdd(
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
+                    price {
                       amount
                       currencyCode
                     }
@@ -460,7 +460,7 @@ export async function getCart(cartId: string) {
                 ... on ProductVariant {
                   id
                   title
-                  priceV2 {
+                  price {
                     amount
                     currencyCode
                   }
