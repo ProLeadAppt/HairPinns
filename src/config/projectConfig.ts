@@ -39,7 +39,7 @@ export const projectConfig = {
    * Loaded from environment variables for easier configuration
    */
   shopify: {
-    domain: import.meta.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'fentat-zu.myshopify.com',
+    domain: import.meta.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com',
     storefrontToken: import.meta.env.VITE_SF_STOREFRONT_TOKEN || '',
     apiVersion: import.meta.env.VITE_SF_API_VERSION || '2025-01',
     storeUrl: `https://${import.meta.env.VITE_SHOP_DOMAIN || 'hairpinns.com'}`,

@@ -23,13 +23,13 @@
 # Cart/checkout - proxy to Shopify (must be before SPA catch-all)
 [[redirects]]
   from = "/cart/c/*"
-  to = "https://fentat-zu.myshopify.com/cart/c/:splat"
+  to = "https://femtat-zu.myshopify.com/cart/c/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/cart"
-  to = "https://fentat-zu.myshopify.com/cart"
+  to = "https://femtat-zu.myshopify.com/cart"
   status = 200
   force = true
 

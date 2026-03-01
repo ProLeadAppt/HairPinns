@@ -1,4 +1,4 @@
 # API routes - must come before SPA catch-all
 /api/checkout  /.netlify/functions/checkout  200
-/cart/c/*  https://fentat-zu.myshopify.com/cart/c/:splat  200
-/cart      https://fentat-zu.myshopify.com/cart            200
+/cart/c/*  https://femtat-zu.myshopify.com/cart/c/:splat  200
+/cart      https://femtat-zu.myshopify.com/cart            200
