@@ -6,7 +6,7 @@ Set these in **Netlify → Site configuration → Environment variables**:
 
 | Variable | Value | Required |
 |----------|-------|----------|
-| `SHOPIFY_MYSHOPIFY_DOMAIN` | `zemtat.zurmy.myshopify.com` | Yes |
+| `SHOPIFY_MYSHOPIFY_DOMAIN` | `fentat-zu.myshopify.com` | Yes |
 | `SF_STOREFRONT_TOKEN` | Your Storefront API token from Hair Pinns - Headless app | Yes |
 | `SF_API_VERSION` | `2025-01` | No (defaults to 2025-01) |
 
