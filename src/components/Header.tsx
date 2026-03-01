@@ -1,4 +1,4 @@
-import { Menu, Calendar, ShoppingBag, X } from "lucide-react";
+import { Menu, Calendar, ShoppingBag, ShoppingCart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
@@ -6,8 +6,11 @@ import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import ProductSearch from "@/components/product/ProductSearch";
 import ShopDropdown from "@/components/navigation/ShopDropdown";
+import { useCart } from "@/contexts/CartContext";
 import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
+
 const Header = () => {
+  const { openCart } = useCart();
   const [showPromo, setShowPromo] = useState(true);
   return <>
       {/* Top Promo Strip */}
@@ -62,6 +65,10 @@ const Header = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+              <Button variant="ghost" size="sm" onClick={openCart} aria-label="View cart">
+                <ShoppingCart className="w-4 h-4" />
+                Cart
+              </Button>
               <Link to="/collections/gift-packs">
                 <Button variant="ghost" size="sm">
                   <ShoppingBag className="w-4 h-4" />
@@ -111,6 +118,10 @@ const Header = () => {
                   </Link>
 
                   <div className="pt-6 border-t border-border space-y-3">
+                    <Button variant="ghost" size="lg" className="w-full justify-start" onClick={openCart}>
+                      <ShoppingCart className="w-5 h-5" />
+                      Cart
+                    </Button>
                     <Link to="/collections/gift-packs" className="block">
                       <Button variant="ghost" size="lg" className="w-full justify-start">
                         <ShoppingBag className="w-5 h-5" />

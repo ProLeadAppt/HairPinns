@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
 import FreeShippingBar from "@/components/conversion/FreeShippingBar";
 import { Link } from "react-router-dom";
-import { searchProducts } from "@/lib/shopify";
+import { searchProducts, getCart } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import EstimatedDelivery from "@/components/product/EstimatedDelivery";
+import { clearCartId } from "@/lib/cartManagement";
+import { toast } from "sonner";
 
 export interface MiniCartProps {
   open: boolean;
@@ -16,16 +18,46 @@ export interface MiniCartProps {
 }
 
 /**
- * Simplified MiniCart for headless Shopify checkout
- * Cart details are shown on Shopify's checkout page
+ * MiniCart for headless Shopify checkout
+ * Fetches and displays actual cart contents, redirects to Shopify checkout
  */
-export default function MiniCart({ open, onClose, cartId, subtotal = 0 }: MiniCartProps) {
+export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal = 0 }: MiniCartProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [upsellProducts, setUpsellProducts] = useState<any[]>([]);
+  const [cart, setCart] = useState<any>(null);
+  const [cartLoading, setCartLoading] = useState(false);
+  const [cartError, setCartError] = useState<string | null>(null);
 
+  // Fetch cart when drawer opens and we have a cartId
+  useEffect(() => {
+    if (open && cartId) {
+      setCartLoading(true);
+      setCartError(null);
+      getCart(cartId)
+        .then((data) => {
+          if (data) {
+            setCart(data);
+          } else {
+            setCartError("Your cart has expired");
+            setCart(null);
+            clearCartId();
+          }
+        })
+        .catch((err) => {
+          console.error("Failed to fetch cart:", err);
+          setCartError("Could not load cart");
+          setCart(null);
+        })
+        .finally(() => setCartLoading(false));
+    } else {
+      setCart(null);
+      setCartError(null);
+    }
+  }, [open, cartId]);
+
+  // Fetch upsell products when drawer opens
   useEffect(() => {
     if (open) {
-      // Fetch upsell products
       const fetchUpsells = async () => {
         try {
           const result = await searchProducts("", 3);
@@ -56,36 +88,52 @@ export default function MiniCart({ open, onClose, cartId, subtotal = 0 }: MiniCa
   }, [open]);
 
   const handleCheckout = async () => {
+    if (!cartId) {
+      toast.error("Your bag is empty");
+      return;
+    }
     setIsCheckingOut(true);
-    
+
     try {
-      // Track begin_checkout
+      const cartTotal = cart?.cost?.totalAmount?.amount
+        ? parseFloat(cart.cost.totalAmount.amount)
+        : 0;
+      const itemCount = cart?.lines?.edges?.reduce((sum: number, e: any) => sum + e.node.quantity, 0) ?? 0;
+
       await trackBeginCheckout({
-        cart_total: 0, // Will be calculated on Shopify checkout
-        item_count: 0,
-        currency: "AUD",
+        cart_total: cartTotal,
+        item_count: itemCount,
+        currency: cart?.cost?.totalAmount?.currencyCode || "AUD",
       });
-      
-      // Redirect to checkout via Edge Function
-      const response = await fetch(`/api/checkout?redirect=true`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          cartId,
-          lines: [], // Cart already exists with items
-        }),
+
+      // Get checkout URL (do NOT use redirect=true - fetch doesn't navigate the page)
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cartId, lines: [] }),
       });
-      
-      // Browser should follow redirect automatically
-      if (!response.redirected && response.status !== 303) {
-        console.error("Checkout redirect failed");
-        setIsCheckingOut(false);
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.message || "Checkout failed");
+      }
+
+      const { checkoutUrl } = await response.json();
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        throw new Error("No checkout URL received");
       }
     } catch (error) {
       console.error("Checkout error:", error);
+      toast.error("Unable to proceed to checkout. Please try again.");
       setIsCheckingOut(false);
     }
   };
+
+  const subtotal = cart?.cost?.subtotalAmount?.amount
+    ? parseFloat(cart.cost.subtotalAmount.amount)
+    : propSubtotal;
 
   if (!open) return null;
 
@@ -123,18 +171,70 @@ export default function MiniCart({ open, onClose, cartId, subtotal = 0 }: MiniCa
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          {/* Success Message */}
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
-              <ShoppingBag className="w-8 h-8 text-brand-500" />
+          {/* Cart Items */}
+          {cartLoading ? (
+            <div className="space-y-3">
+              {[1, 2].map((i) => (
+                <div key={i} className="flex gap-3 p-3 rounded-lg border border-border animate-pulse">
+                  <div className="w-16 h-16 rounded-lg bg-muted" />
+                  <div className="flex-1 space-y-2">
+                    <div className="h-4 bg-muted rounded w-3/4" />
+                    <div className="h-4 bg-muted rounded w-1/2" />
+                  </div>
+                </div>
+              ))}
             </div>
-            <h3 className="text-xl font-heading font-bold text-heading mb-2">
-              Item added to your bag!
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Ready to checkout? You'll see your cart details on the next page.
-            </p>
-          </div>
+          ) : cartError ? (
+            <div className="text-center py-6">
+              <p className="text-muted-foreground">{cartError}</p>
+              <p className="text-sm text-muted-foreground mt-2">Add items to get started.</p>
+            </div>
+          ) : cart?.lines?.edges?.length > 0 ? (
+            <div className="space-y-3">
+              <h3 className="text-sm font-semibold text-heading">Your bag</h3>
+              {cart.lines.edges.map((edge: any) => {
+                const node = edge.node;
+                const merch = node.merchandise;
+                const price = parseFloat(merch?.priceV2?.amount || "0");
+                const currency = merch?.priceV2?.currencyCode || "AUD";
+                return (
+                  <div
+                    key={node.id}
+                    className="flex gap-3 p-3 rounded-lg border border-border"
+                  >
+                    <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0">
+                      <img
+                        src={merch?.image?.url || "/placeholder.svg"}
+                        alt={merch?.product?.title || ""}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <Link
+                        to={`/products/${merch?.product?.handle || ""}`}
+                        onClick={onClose}
+                        className="text-sm font-semibold text-heading line-clamp-2 hover:underline"
+                      >
+                        {merch?.product?.title || "Product"}
+                      </Link>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        Qty: {node.quantity}
+                      </p>
+                      <p className="text-sm font-bold text-brand-500 mt-1">
+                        {formatPrice(price * node.quantity, currency)}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : !cartId ? (
+            <div className="text-center py-6">
+              <ShoppingBag className="w-12 h-12 text-muted-foreground mx-auto mb-2" />
+              <p className="text-muted-foreground">Your bag is empty</p>
+              <p className="text-sm text-muted-foreground mt-2">Add items to get started.</p>
+            </div>
+          ) : null}
 
           {/* Free Shipping Bar */}
           {subtotal > 0 && (
@@ -201,7 +301,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal = 0 }: MiniCa
             size="lg"
             className="w-full"
             onClick={handleCheckout}
-            disabled={isCheckingOut}
+            disabled={isCheckingOut || !cartId}
           >
             {isCheckingOut ? (
               <>

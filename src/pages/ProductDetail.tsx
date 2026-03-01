@@ -19,7 +19,6 @@ import { getProductByHandle, getProductUrl } from "@/lib/shopify";
 import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { toast } from "sonner";
-import MiniCartDrawer from "@/components/MiniCartDrawer";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import PaymentBadges from "@/components/product/PaymentBadges";
@@ -38,7 +37,6 @@ const ProductDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [activeVariantId, setActiveVariantId] = useState<string | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
-  const [miniCartOpen, setMiniCartOpen] = useState(false);
   const [addingToCart, setAddingToCart] = useState(false);
   const [buyingNow, setBuyingNow] = useState(false);
 
@@ -183,7 +181,7 @@ const ProductDetail = () => {
       });
       
       toast.success("Added to bag!");
-      setMiniCartOpen(true);
+      window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
     } catch (error: any) {
       console.error("Add to bag failed:", error);
       toast.error("We couldn't add this to your bag. Please try again or contact us.");
@@ -362,13 +360,6 @@ const ProductDetail = () => {
       </Helmet>
       
       <Header />
-      
-      {/* Mini Cart Drawer */}
-      <MiniCartDrawer
-        open={miniCartOpen}
-        onClose={() => setMiniCartOpen(false)}
-        cartId={getCartId() || ""}
-      />
       
       {/* Trust Strip */}
       <TrustStrip />

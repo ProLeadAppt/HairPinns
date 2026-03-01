@@ -443,6 +443,59 @@ export async function cartLinesAdd(
 }
 
 /**
+ * Get cart by ID (for displaying cart contents in mini cart)
+ */
+export async function getCart(cartId: string) {
+  const query = `
+    query getCart($cartId: ID!) {
+      cart(id: $cartId) {
+        id
+        checkoutUrl
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  priceV2 {
+                    amount
+                    currencyCode
+                  }
+                  product {
+                    id
+                    title
+                    handle
+                  }
+                  image {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  `;
+  const data = await fetchShopify<{ cart: any }>(query, { cartId });
+  return data.cart;
+}
+
+/**
  * Get shop info (sanity check)
  */
 export async function getShopInfo() {

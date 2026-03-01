@@ -200,12 +200,12 @@ const Footer = () => {
               <p>
                 This website was built by{" "}
                 <a 
-                  href="https://proleadappt.com.au/" 
+                  href="https://www.munyal.com.au" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors underline"
                 >
-                  Pro Lead Appointment
+                  Munyal
                 </a>
               </p>
             </div>

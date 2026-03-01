@@ -7,8 +7,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Star, Check, ShoppingBag, ExternalLink } from "lucide-react";
 import { getCollectionByHandle, getProductUrl, getCollectionUrl } from "@/lib/shopify";
-import { getCartId } from "@/lib/cartManagement";
-import MiniCartDrawer from "@/components/MiniCartDrawer";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -41,7 +39,6 @@ const CollectionDetail = () => {
   const [collection, setCollection] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [miniCartOpen, setMiniCartOpen] = useState(false);
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
 
   // Fetch collection from Shopify with timeout
@@ -165,7 +162,7 @@ const CollectionDetail = () => {
         localStorage.setItem('hp_cart_id', cartId);
       }
       
-      setMiniCartOpen(true);
+      window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
       toast.success("Added to bag!");
     } catch (error: any) {
       console.error("Add to bag failed:", error);
@@ -310,13 +307,6 @@ const CollectionDetail = () => {
         </script>
       </Helmet>
       <Header />
-      
-      {/* Mini Cart Drawer */}
-      <MiniCartDrawer
-        open={miniCartOpen}
-        onClose={() => setMiniCartOpen(false)}
-        cartId={getCartId() || ""}
-      />
       
       {/* Trust Strip */}
       <TrustStrip />

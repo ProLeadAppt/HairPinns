@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import TrackingInitializer from "./components/tracking/TrackingInitializer";
@@ -68,11 +69,12 @@ const AppContent = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
-        <ScrollToTopButton />
-        <TrackingInitializer />
-        <ScrollTracker />
-        <Routes>
+        <CartProvider>
+          <ScrollToTop />
+          <ScrollToTopButton />
+          <TrackingInitializer />
+          <ScrollTracker />
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/collections/:slug" element={<CollectionDetail />} />
@@ -104,6 +106,7 @@ const AppContent = () => {
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </CartProvider>
       </BrowserRouter>
     </>
   );

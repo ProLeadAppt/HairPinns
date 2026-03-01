@@ -1,13 +1,12 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import UrgencyBar from "@/components/conversion/UrgencyBar";
 import TrustStrip from "@/components/conversion/TrustStrip";
-import MiniCartDrawer from "@/components/MiniCartDrawer";
 import RecentPurchases from "@/components/conversion/RecentPurchases";
 import ProductCountBadge from "@/components/conversion/ProductCountBadge";
 import TrustBadges from "@/components/conversion/TrustBadges";
@@ -27,7 +26,6 @@ const FooterCTA = lazy(() => import("@/components/home/FooterCTA"));
 const BookingBanner = lazy(() => import("@/components/home/BookingBanner"));
 const StickyProductBar = lazy(() => import("@/components/conversion/StickyProductBar"));
 import { MapPin } from "lucide-react";
-import { getCartId } from "@/lib/cartManagement";
 import {
   generateOrganizationSchema,
   generateEnhancedLocalBusinessSchema,
@@ -37,21 +35,6 @@ import {
 import { getOGImage } from "@/lib/sitemap";
 
 const Index = () => {
-  const [miniCartOpen, setMiniCartOpen] = useState(false);
-
-  // Listen for custom event to open mini cart from hero quick-add
-  useEffect(() => {
-    const handleOpenMiniCart = (event: CustomEvent) => {
-      setMiniCartOpen(true);
-    };
-
-    window.addEventListener('hp:openMiniCart', handleOpenMiniCart as EventListener);
-
-    return () => {
-      window.removeEventListener('hp:openMiniCart', handleOpenMiniCart as EventListener);
-    };
-  }, []);
-
   const organizationSchema = generateOrganizationSchema();
   const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com');
   const knowledgeGraphSchema = generateKnowledgeGraphSchema();
@@ -405,13 +388,6 @@ const Index = () => {
       <Suspense fallback={null}>
         <StickyProductBar threshold={300} />
       </Suspense>
-      
-      {/* Mini Cart Drawer */}
-      <MiniCartDrawer
-        open={miniCartOpen}
-        onClose={() => setMiniCartOpen(false)}
-        cartId={getCartId() || ""}
-      />
     </div>
   );
 };
