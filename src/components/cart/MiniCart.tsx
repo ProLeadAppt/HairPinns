@@ -235,21 +235,41 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
                     key={node.id}
                     className="flex gap-3 p-3 rounded-lg border border-border group"
                   >
-                    <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0">
-                      <img
-                        src={merch?.image?.url || "/placeholder.svg"}
-                        alt={merch?.product?.title || ""}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
+                    {merch?.product?.handle ? (
                       <Link
-                        to={`/products/${merch?.product?.handle || ""}`}
+                        to={`/products/${merch.product.handle}`}
                         onClick={onClose}
-                        className="text-sm font-semibold text-heading line-clamp-2 hover:underline"
+                        className="block w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0"
                       >
-                        {merch?.product?.title || "Product"}
+                        <img
+                          src={merch?.image?.url || "/placeholder.svg"}
+                          alt={merch?.product?.title || ""}
+                          className="w-full h-full object-cover"
+                        />
                       </Link>
+                    ) : (
+                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0">
+                        <img
+                          src={merch?.image?.url || "/placeholder.svg"}
+                          alt={merch?.product?.title || ""}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      {merch?.product?.handle ? (
+                        <Link
+                          to={`/products/${merch.product.handle}`}
+                          onClick={onClose}
+                          className="text-sm font-semibold text-heading line-clamp-2 hover:underline"
+                        >
+                          {merch.product.title || "Product"}
+                        </Link>
+                      ) : (
+                        <span className="text-sm font-semibold text-heading line-clamp-2">
+                          {merch?.product?.title || "Product"}
+                        </span>
+                      )}
                       <p className="text-xs text-muted-foreground mt-0.5">
                         Qty: {node.quantity}
                       </p>

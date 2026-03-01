@@ -76,18 +76,18 @@ const LocationProducts = ({ suburb, climate }: LocationProductsProps) => {
               key={product.id}
               className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <Link to={`/products/${product.slug}`}>
-                <div className="aspect-square bg-muted relative overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform"
-                  />
-                </div>
+              <Link to={`/products/${product.slug}`} className="block aspect-square bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform"
+                />
               </Link>
               <div className="p-4">
                 <h4 className="font-semibold text-heading mb-2 line-clamp-2">
-                  {product.title}
+                  <Link to={`/products/${product.slug}`} className="hover:text-brand-500 transition-colors">
+                    {product.title}
+                  </Link>
                 </h4>
                 <p className="text-xl font-bold text-brand-500 mb-4">
                   {formatPrice(product.price, product.currency)}

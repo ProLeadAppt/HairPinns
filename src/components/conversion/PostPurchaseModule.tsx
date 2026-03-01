@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, BookOpen } from "lucide-react";
 
@@ -54,10 +55,10 @@ const PostPurchaseModule = ({ pairsWith = [] }: PostPurchaseModuleProps) => {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {products.map((product, index) => (
-            <a
+            <Link
               key={index}
-              href={`/products/${product.handle}`}
-              className="bg-card border border-border rounded-card p-4 hover:shadow-lg transition-all duration-base group"
+              to={`/products/${product.handle}`}
+              className="bg-card border border-border rounded-card p-4 hover:shadow-lg transition-all duration-base group block"
             >
               {product.image && (
                 <div className="aspect-square bg-muted rounded-card mb-3 overflow-hidden">
@@ -77,7 +78,7 @@ const PostPurchaseModule = ({ pairsWith = [] }: PostPurchaseModuleProps) => {
               <Button variant="outline" size="sm" className="w-full">
                 View Product
               </Button>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

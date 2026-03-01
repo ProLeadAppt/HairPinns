@@ -281,15 +281,25 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
+        <main className="flex items-center justify-center min-h-[60vh] px-4">
+          <div className="text-center max-w-md">
             <h2 className="text-2xl font-bold text-heading mb-2">Product not found</h2>
-            <p className="text-muted-foreground mb-6">This product doesn't exist or has been removed.</p>
-            <Button asChild variant="primary">
-              <Link to="/collections">Browse Collections</Link>
-            </Button>
+            <p className="text-muted-foreground mb-6">
+              This product doesn&apos;t exist or may have been removed from our store.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button asChild variant="primary">
+                <Link to="/collections">Browse Collections</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/search">Search Products</Link>
+              </Button>
+              <Button asChild variant="ghost">
+                <Link to="/">Back to Home</Link>
+              </Button>
+            </div>
           </div>
-        </div>
+        </main>
         <Footer />
       </div>
     );

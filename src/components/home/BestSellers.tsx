@@ -139,7 +139,10 @@ const BestSellers = () => {
             key={product.id}
             className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base group"
           >
-            <div className="aspect-square bg-muted relative overflow-hidden">
+            <Link
+              to={`/products/${product.slug}`}
+              className="block aspect-square bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset"
+            >
               <img 
                 src={product.image} 
                 alt={product.title}
@@ -154,7 +157,7 @@ const BestSellers = () => {
                   Out of Stock
                 </Badge>
               )}
-            </div>
+            </Link>
             
             <div className="p-6">
               {/* Social Proof */}
@@ -170,7 +173,9 @@ const BestSellers = () => {
               </div>
 
               <h3 className="text-xl font-heading font-semibold text-heading mb-2">
-                {product.title}
+                <Link to={`/products/${product.slug}`} className="hover:text-brand-500 transition-colors">
+                  {product.title}
+                </Link>
               </h3>
               
               {/* Urgency Indicator */}
