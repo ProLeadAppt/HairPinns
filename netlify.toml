@@ -33,6 +33,13 @@
   status = 200
   force = true
 
+# Discount links - redirect to Shopify so discount cookie gets set (must be before SPA catch-all)
+[[redirects]]
+  from = "/discount/*"
+  to = "https://femtat-zu.myshopify.com/discount/:splat"
+  status = 302
+  force = true
+
 # Sitemap - ensure XML is served (static file takes precedence; this is a fallback)
 [[headers]]
   for = "/sitemap.xml"
