@@ -4,18 +4,34 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import {
+  isStocktakeActive,
+  QIQI_DISCOUNT_ACTIVE,
+  STOCKTAKE_HEADER_MESSAGE,
+  DEFAULT_HEADER_MESSAGE,
+  PROMO_COLLECTIONS,
+} from "@/config/promotions";
 import ProductSearch from "@/components/product/ProductSearch";
 import ShopDropdown from "@/components/navigation/ShopDropdown";
 import { useCart } from "@/contexts/CartContext";
 import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 
+function getPromoMessage(): string {
+  if (isStocktakeActive()) return STOCKTAKE_HEADER_MESSAGE;
+  if (QIQI_DISCOUNT_ACTIVE) return "20% off QIQI range — shop now";
+  return DEFAULT_HEADER_MESSAGE;
+}
+
 const Header = () => {
   const { openCart } = useCart();
   const [showPromo, setShowPromo] = useState(true);
+  const promoMessage = getPromoMessage();
+  const promoLink = isStocktakeActive() ? "/collections" : QIQI_DISCOUNT_ACTIVE ? `/collections/${PROMO_COLLECTIONS.qiqi}` : "/collections";
+
   return <>
       {/* Top Promo Strip */}
-      {showPromo && <Link to="/collections" className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
-          <p className="font-medium">✨ Free shipping on orders over $150</p>
+      {showPromo && <Link to={promoLink} className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
+          <p className="font-medium">{isStocktakeActive() ? "✨ " : ""}{promoMessage}</p>
           <button 
             onClick={(e) => {
               e.preventDefault();

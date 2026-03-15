@@ -5,15 +5,20 @@
  */
 
 /**
+ * Frizz-Free Must-Haves collection — products from this collection appear in the hero grid.
+ * @see https://hairpinns.com/collections/frizz-free-must-haves
+ */
+export const FRIZZ_FREE_COLLECTION_HANDLE: string | null = "frizz-free-must-haves";
+
+/**
  * Above-the-fold hero products (4 products in the hero grid).
- * When set, HeroHome fetches these specific products. Update when Jena provides her list.
- * Leave empty to fall back to searchProducts (may show duplicates).
+ * Best seller = first in list. Frizz-Free products are merged in from FRIZZ_FREE_COLLECTION_HANDLE.
  */
 export const ABOVE_FOLD_HERO_PRODUCT_HANDLES: string[] = [
+  "walnut-scrub-hair-scalp-pre-wash-treatment", // Best Seller (first)
   "aromaganic-curly-curl-hair-shampoo-conditioner-duo",
   "solar-enz",
   "heat-shield",
-  "walnut-scrub-hair-scalp-pre-wash-treatment",
 ];
 
 /**

@@ -34,26 +34,58 @@ const HeroHome = () => {
 
     const fetchFeaturedProducts = async () => {
       try {
-        const { getProductByHandle } = await import("@/lib/shopify");
-        const { ABOVE_FOLD_HERO_PRODUCT_HANDLES } = await import("@/config/featuredProducts");
+        const { getProductByHandle, getCollectionByHandle } = await import("@/lib/shopify");
+        const { ABOVE_FOLD_HERO_PRODUCT_HANDLES, FRIZZ_FREE_COLLECTION_HANDLE } = await import("@/config/featuredProducts");
 
-        let products: any[] = [];
-        const seen = new Set<string>();
+        let frizzFreeProducts: any[] = [];
+        let handleProducts: any[] = [];
 
-        // 1. If handles configured, fetch those first (up to 4)
-        if (ABOVE_FOLD_HERO_PRODUCT_HANDLES?.length > 0) {
-          const results = await Promise.all(
-            ABOVE_FOLD_HERO_PRODUCT_HANDLES.slice(0, 4).map((handle) => getProductByHandle(handle))
-          );
-          for (const p of results) {
-            if (p?.handle && p?.availableForSale && !seen.has(p.handle)) {
-              seen.add(p.handle);
-              products.push(p);
-            }
+        // 1. Fetch 1–2 products from Frizz-Free Must-Haves collection
+        if (FRIZZ_FREE_COLLECTION_HANDLE) {
+          try {
+            const collection = await getCollectionByHandle(FRIZZ_FREE_COLLECTION_HANDLE);
+            const edges = collection?.products?.edges || [];
+            frizzFreeProducts = edges
+              .slice(0, 2)
+              .map((e: any) => e.node)
+              .filter((p: any) => p?.handle && p?.availableForSale);
+          } catch {
+            // Collection may not exist, fall through
           }
         }
 
-        // 2. Always fill to 4 with search results (deduped)
+        // 2. Fetch products from ABOVE_FOLD_HERO_PRODUCT_HANDLES (best seller = first)
+        if (ABOVE_FOLD_HERO_PRODUCT_HANDLES?.length > 0) {
+          const results = await Promise.all(
+            ABOVE_FOLD_HERO_PRODUCT_HANDLES.map((handle) => getProductByHandle(handle))
+          );
+          handleProducts = results.filter((p) => p?.handle && p?.availableForSale);
+        }
+
+        // 3. Merge: best seller first, then Frizz-Free (1–2), then rest from handles
+        const seen = new Set<string>();
+        let products: any[] = [];
+        const bestSeller = handleProducts[0];
+        if (bestSeller) {
+          seen.add(bestSeller.handle);
+          products.push(bestSeller);
+        }
+        for (const p of frizzFreeProducts) {
+          if (products.length >= 4) break;
+          if (!seen.has(p.handle)) {
+            seen.add(p.handle);
+            products.push(p);
+          }
+        }
+        for (const p of handleProducts.slice(1)) {
+          if (products.length >= 4) break;
+          if (!seen.has(p.handle)) {
+            seen.add(p.handle);
+            products.push(p);
+          }
+        }
+
+        // 4. Fill to 4 with search results (deduped)
         if (products.length < 4) {
           const result = await searchProducts("", 25);
           if (result?.products) {

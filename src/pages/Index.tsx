@@ -32,6 +32,7 @@ import {
   generateFAQPageSchema
 } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
+import { isStocktakeActive, PROMO_COLLECTIONS } from "@/config/promotions";
 
 const Index = () => {
   const organizationSchema = generateOrganizationSchema();
@@ -96,6 +97,25 @@ const Index = () => {
       <main>
         {/* 1. Hero Section (100% product-focused) */}
         <HeroHome />
+
+        {/* Stocktake Promo Banner */}
+        {isStocktakeActive() && (
+          <section className="bg-brand-500 text-primary-foreground py-3">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <p className="text-sm font-medium">
+                Stocktake Sale:{" "}
+                <Link to={`/collections/${PROMO_COLLECTIONS.pureLamellar}`} className="underline hover:no-underline font-semibold">
+                  20% off Pure Lamellar
+                </Link>
+                {" • "}
+                <Link to={`/collections/${PROMO_COLLECTIONS.wetBrush}`} className="underline hover:no-underline font-semibold">
+                  15% off Wet Brush
+                </Link>
+                {" • Mystery gift with every order • Ends 31 March"}
+              </p>
+            </div>
+          </section>
+        )}
         
         {/* 2. Product Count Badge */}
         <section className="py-4 bg-background">
