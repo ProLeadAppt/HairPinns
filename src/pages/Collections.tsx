@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
+import { generateStoreSchema } from "@/lib/schema";
 import { BOOK_URL } from "@/config/bookingConfig";
 import aromaganicImage from "@/assets/collections/aromaganic-collection.webp";
 import giftPacksImage from "@/assets/collections/christmas-collection.webp";
@@ -23,6 +24,12 @@ import pureOrganicImage from "@/assets/collections/pure-organic-collection.webp"
 import qiqiImage from "@/assets/collections/qiqi-collection.webp";
 import perfectPonyImage from "@/assets/collections/perfect-pony-collection.webp";
 import wetBrushImage from "@/assets/collections/wet-brush-collection.webp";
+import heatProtectionImage from "@/assets/collections/heat-protection-collection.webp";
+import blondeBombshellsImage from "@/assets/collections/blonde-bombshells-collection.webp";
+import curlyGirlysImage from "@/assets/collections/curly-girlys-collection.webp";
+import volumeImage from "@/assets/collections/volume-collection.webp";
+import frizzFreeImage from "@/assets/collections/frizz-free-collection.webp";
+import bestSellersImage from "@/assets/collections/best-sellers-collection.webp";
 
 interface ShopifyCollection {
   id: string;
@@ -46,10 +53,7 @@ const Collections = () => {
   const [sortBy, setSortBy] = useState<string>("default");
 
   const getCollectionImage = (handle: string, title: string, shopifyImage?: string) => {
-    // Prefer Shopify image if available
-    if (shopifyImage) return shopifyImage;
-    
-    // Fuzzy match on handle and title
+    // Prefer local mapping when we have one - ensures unique images per collection (avoids Shopify duplicates)
     const searchText = `${handle} ${title}`.toLowerCase();
     
     if (searchText.includes('juuce') || searchText.includes('botanical')) return juuceImage;
@@ -63,8 +67,17 @@ const Collections = () => {
     if (searchText.includes('perfect pony') || searchText.includes('perfect-pony')) return perfectPonyImage;
     if (searchText.includes('gift')) return giftPacksImage;
     if (searchText.includes('clearance') || searchText.includes('sale') || searchText.includes('aisle')) return clearanceImage;
+    // Theme/concern-based collections - tailored images for each product type
+    if (searchText.includes('heat') || searchText.includes('protection')) return heatProtectionImage;
+    if (searchText.includes('blonde') || searchText.includes('bombshell')) return blondeBombshellsImage;
+    if (searchText.includes('curly') || searchText.includes('girly')) return curlyGirlysImage;
+    if (searchText.includes('volume') || searchText.includes('pump up')) return volumeImage;
+    if (searchText.includes('frizz') || searchText.includes('frizz-free')) return frizzFreeImage;
+    if (searchText.includes('best seller') || searchText.includes('bestseller')) return bestSellersImage;
     
-    return juuceImage; // fallback to juuce image
+    // Use Shopify image if available, otherwise fallback
+    if (shopifyImage) return shopifyImage;
+    return accessoriesImage; // fallback - use accessories to avoid repeating juuce
   };
 
   // Define the exact order from the live site
@@ -177,19 +190,22 @@ const Collections = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Shop Hair Care Collections | Professional Products | Hair Pinns</title>
+        <title>Professional Hair Care Collections | Hair Pinns Australia</title>
         <meta 
           name="description" 
-          content="Shop professional hair care: Juuce, QIQI, Pure & Wet Brush. Daily Care, Treatments & Styling. Curated by Jena." 
+          content="Shop salon-quality hair care Australia-wide: Juuce, QIQI, Pure & Wet Brush. Daily Care, Treatments & Styling. Curated by Jena. Free shipping over $150." 
         />
         <link rel="canonical" href="https://hairpinns.com/collections" />
-        <meta property="og:title" content="Professional Hair Care Collections | Hair Pinns" />
-        <meta property="og:description" content="Salon-quality products curated by Jena. Juuce, QIQI, Pure, Wet Brush. Daily care, treatments & styling essentials." />
+        <meta property="og:title" content="Professional Hair Care Collections | Hair Pinns Australia" />
+        <meta property="og:description" content="Salon-quality hair care products curated by Jena. Shipped Australia-wide. Juuce, QIQI, Pure, Wet Brush. Free shipping over $150." />
         <meta property="og:url" content="https://hairpinns.com/collections" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('collection')} />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/collections" />
+        <script type="application/ld+json">
+          {JSON.stringify(generateStoreSchema())}
+        </script>
       </Helmet>
 
       <Header />
@@ -204,10 +220,11 @@ const Collections = () => {
                 Shop Collections
               </h1>
               <div className="inline-block bg-background/80 backdrop-blur-sm px-8 py-6 rounded-2xl shadow-lg">
-                <p className="text-xl md:text-2xl text-heading font-semibold max-w-2xl leading-relaxed">
-                  Explore our curated collections of premium hair care products.
-                  From daily essentials to special treatments, find everything you
-                  need for healthy, beautiful hair.
+                <p className="text-xl md:text-2xl text-heading font-semibold max-w-2xl leading-relaxed mb-4">
+                  Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150.
+                </p>
+                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                  Explore our curated collections: Juuce, QIQI, Pure, Wet Brush. From daily essentials to special treatments, find everything you need for healthy, beautiful hair.
                 </p>
               </div>
             </div>
