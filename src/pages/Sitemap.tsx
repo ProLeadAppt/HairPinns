@@ -48,6 +48,8 @@ const Sitemap = () => {
         { title: "Near Miranda", url: "/near/miranda" },
         { title: "Near Engadine", url: "/near/engadine" },
         { title: "Near Heathcote", url: "/near/heathcote" },
+        { title: "Near Cronulla", url: "/near/cronulla" },
+        { title: "Near Sydney", url: "/near/sydney" },
       ]
     },
     {

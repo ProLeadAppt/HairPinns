@@ -26,7 +26,7 @@ const Booking = () => {
         <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/booking" />
       </Helmet>
       <Header />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="bg-accent py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

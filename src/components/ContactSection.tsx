@@ -2,19 +2,20 @@ import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
-const contactInfo = [
+const getContactInfo = () => [
   {
     icon: MapPin,
     title: "Location",
-    details: ["60 Goorgool Rd", "Bangor NSW 2234"],
-    link: "https://maps.google.com/?q=60+Goorgool+Rd+Bangor+NSW+2234",
+    details: [BUSINESS_NAP.address.street, `${BUSINESS_NAP.address.locality} ${BUSINESS_NAP.address.region} ${BUSINESS_NAP.address.postcode}`],
+    link: `https://maps.google.com/?q=${encodeURIComponent(BUSINESS_NAP.address.full)}`,
   },
   {
     icon: Phone,
     title: "Phone",
-    details: ["0468 093 991"],
-    link: "tel:+61468093991",
+    details: [BUSINESS_NAP.phone.display],
+    link: BUSINESS_NAP.phone.tel,
   },
   {
     icon: Clock,
@@ -24,8 +25,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: ["hairpinns1@gmail.com"],
-    link: "mailto:hairpinns1@gmail.com",
+    details: [BUSINESS_NAP.email],
+    link: `mailto:${BUSINESS_NAP.email}`,
   },
 ];
 
@@ -39,12 +40,12 @@ const ContactSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Located in Bangor NSW, we're easily accessible throughout the Sutherland Shire. 
-            Need help? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam on 0468 093 991</a> or chat with Isabella (look for the chat bubble) for instant answers.
+            Need help? <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 font-semibold hover:text-brand-600 underline">Call {BUSINESS_NAP.phone.display}</a> or chat with Isabella (look for the chat bubble) for instant answers.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {contactInfo.map((info, index) => (
+          {getContactInfo().map((info, index) => (
             <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth border-border">
               <CardContent className="p-6 text-center">
                 <div className="w-12 h-12 rounded-full bg-accent-color/10 flex items-center justify-center mx-auto mb-4">
@@ -103,17 +104,17 @@ const ContactSection = () => {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Hair Pinns",
+            "name": BUSINESS_NAP.name,
             "description": "Boutique hair salon in Bangor NSW serving Sutherland Shire",
             "url": "https://hairpinns.com/",
-            "telephone": "+61468093991",
+            "telephone": BUSINESS_NAP.phone.raw,
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "60 Goorgool Rd",
-              "addressLocality": "Bangor",
-              "addressRegion": "NSW",
-              "postalCode": "2234",
-              "addressCountry": "AU"
+              "streetAddress": BUSINESS_NAP.address.street,
+              "addressLocality": BUSINESS_NAP.address.locality,
+              "addressRegion": BUSINESS_NAP.address.region,
+              "postalCode": BUSINESS_NAP.address.postcode,
+              "addressCountry": BUSINESS_NAP.address.country
             },
             "geo": {
               "@type": "GeoCoordinates",

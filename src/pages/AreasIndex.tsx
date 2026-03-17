@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { getOGImage } from "@/lib/sitemap";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -47,6 +48,7 @@ const AreasIndex = () => {
         <meta property="og:description" content="Boutique hair salon serving Sutherland Shire and surrounding areas with expert care." />
         <meta property="og:url" content="https://hairpinns.com/areas" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('suburb')} />
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>

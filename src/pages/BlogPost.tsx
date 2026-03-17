@@ -137,7 +137,7 @@ const BlogPost = () => {
       <ProgressBar />
       <Header />
       
-      <main>
+      <main id="main-content">
         {/* Hero Section - Overlay Style */}
         <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden">
           <img 

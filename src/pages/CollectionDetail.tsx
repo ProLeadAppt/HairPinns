@@ -28,7 +28,8 @@ import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
-import { generateCollectionPageSchema } from "@/lib/schema";
+import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
+import { getCollectionFAQs } from "@/data/collectionFAQs";
 
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
@@ -277,19 +278,26 @@ const CollectionDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{collectionTitle} | Hair Care Products | Hair Pinns</title>
+        <title>{collectionTitle} | Hair Care Australia | Hair Pinns</title>
         <meta 
           name="description" 
-          content={collectionDescription.substring(0, 155)}
+          content={`${collectionDescription.substring(0, 130)} Shipped Australia-wide. Free shipping over $150.`}
         />
         <link rel="canonical" href={`https://hairpinns.com/collections/${handle}`} />
-        <meta property="og:title" content={`${collectionTitle} | Hair Pinns`} />
-        <meta property="og:description" content={collectionDescription.substring(0, 155)} />
+        <meta property="og:title" content={`${collectionTitle} | Salon Hair Products Australia | Hair Pinns`} />
+        <meta property="og:description" content={`${collectionDescription.substring(0, 130)} Shipped Australia-wide.`} />
         <meta property="og:url" content={`https://hairpinns.com/collections/${handle}`} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('collection')} />
+        <meta property="og:image" content={collection?.image?.url || getOGImage('collection')} />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/collections/${handle}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(generateBreadcrumbSchema([
+            { name: "Home", url: "https://hairpinns.com/" },
+            { name: "Collections", url: "https://hairpinns.com/collections" },
+            { name: collectionTitle, url: `https://hairpinns.com/collections/${handle}` },
+          ]))}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify(generateCollectionPageSchema({
             name: collectionTitle,
@@ -307,6 +315,17 @@ const CollectionDetail = () => {
             })),
           }))}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateFAQPageSchema(getCollectionFAQs(handle)))}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateWebPageSchema({
+            name: collectionTitle,
+            description: collectionDescription,
+            url: `https://hairpinns.com/collections/${handle}`,
+            speakable: { cssSelector: [".speakable-collection-intro"] },
+          }))}
+        </script>
       </Helmet>
       <Header />
       
@@ -316,7 +335,7 @@ const CollectionDetail = () => {
       {/* Exit Intent Modal */}
       <ExitIntentModal enabled={true} />
       
-      <main>
+      <main id="main-content">
         {/* Breadcrumbs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
             <Breadcrumbs 
@@ -336,7 +355,7 @@ const CollectionDetail = () => {
                 <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
                   {collectionTitle}
                 </h1>
-                <p className="text-lg text-foreground max-w-3xl leading-relaxed">
+                <p className="speakable-collection-intro text-lg text-foreground max-w-3xl leading-relaxed">
                   {collectionDescription}
                 </p>
               </div>
@@ -543,6 +562,30 @@ const CollectionDetail = () => {
               <p className="text-foreground mb-6">
                 Need help choosing? <Link to="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</Link>
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Related Collections */}
+        <section className="py-12 border-t border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2 font-heading text-heading mb-6 text-center">Browse More Hair Care Australia</h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/collections" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+                All Collections
+              </Link>
+              <Link to="/collections/juuce" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+                Juuce
+              </Link>
+              <Link to="/collections/qiqi" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+                QIQI
+              </Link>
+              <Link to="/collections/pure" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+                Pure
+              </Link>
+              <Link to="/collections/wet-brush" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+                Wet Brush
+              </Link>
             </div>
           </div>
         </section>

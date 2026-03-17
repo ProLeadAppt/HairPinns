@@ -58,6 +58,13 @@ This generates:
 - **WebP**: Quality 75-85
 - **JPG**: Quality 80-85, progressive
 
+### Collection Image Compression
+Large collection WebP images (>200KB) can be recompressed with:
+```bash
+npm run compress-collections
+```
+Targets: volume, heat-protection, frizz-free, blonde-bombshells, curly-girlys, best-sellers. Reduces ~7MB to ~330KB (95%+ savings).
+
 ---
 
 ## 3. Responsive Images (srcset + sizes)

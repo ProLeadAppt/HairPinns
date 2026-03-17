@@ -20,12 +20,20 @@ const BestSellers = () => {
       try {
         const shopifyModule = await import("@/lib/shopify");
         const { getCollectionByHandle, getProductByHandle, searchProducts } = shopifyModule;
-        const { FEATURED_PRODUCT_HANDLES, BEST_SELLERS_COLLECTION_HANDLE } = await import("@/config/featuredProducts");
+        const { FEATURED_PRODUCT_HANDLES, BEST_SELLERS_COLLECTION_HANDLE, BEST_SELLERS_PRODUCT_HANDLES } = await import("@/config/featuredProducts");
 
         let productList: any[] = [];
 
-        // 1. Prefer dedicated best-sellers collection (e.g. "best-sellers-nov") when configured
-        if (BEST_SELLERS_COLLECTION_HANDLE) {
+        // 1. Prefer BEST_SELLERS_PRODUCT_HANDLES when Jena provides the list (from analytics)
+        if (BEST_SELLERS_PRODUCT_HANDLES?.length > 0) {
+          const results = await Promise.all(
+            BEST_SELLERS_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
+          );
+          productList = results.filter((p) => p?.handle && p?.availableForSale);
+        }
+
+        // 2. Fallback: dedicated best-sellers collection when configured
+        if (productList.length === 0 && BEST_SELLERS_COLLECTION_HANDLE) {
           try {
             const collection = await getCollectionByHandle(BEST_SELLERS_COLLECTION_HANDLE);
             if (collection?.products?.edges?.length) {
@@ -39,7 +47,7 @@ const BestSellers = () => {
           }
         }
 
-        // 2. Fallback: featured product handles when configured
+        // 3. Fallback: featured product handles when configured
         if (productList.length === 0 && FEATURED_PRODUCT_HANDLES.length > 0) {
           const results = await Promise.all(
             FEATURED_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
@@ -47,7 +55,7 @@ const BestSellers = () => {
           productList = results.filter(Boolean);
         }
 
-        // Fallback: Try "best sellers" or "featured" collection
+        // 4. Fallback: Try "best sellers" or "featured" collection
         if (productList.length === 0) {
           const collections = await getAllCollections(20);
           const bestSellerCollection = collections.find((c: any) =>
@@ -66,7 +74,7 @@ const BestSellers = () => {
           }
         }
 
-        // Fallback: Get any available products
+        // 5. Fallback: Get any available products
         if (productList.length === 0) {
           const result = await searchProducts("", 20);
           productList = result.products

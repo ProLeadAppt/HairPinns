@@ -29,21 +29,55 @@ import {
   generateOrganizationSchema,
   generateEnhancedLocalBusinessSchema,
   generateKnowledgeGraphSchema,
-  generateFAQPageSchema
+  generateFAQPageSchema,
+  generateStoreSchema,
+  generateWebPageSchema,
+  generateHowToSchema
 } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { isStocktakeActive, PROMO_COLLECTIONS } from "@/config/promotions";
+import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 
 const Index = () => {
   const organizationSchema = generateOrganizationSchema();
   const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com');
   const knowledgeGraphSchema = generateKnowledgeGraphSchema();
+  const storeSchema = generateStoreSchema();
+
+  // WebPage schema with speakable for AEO/voice search
+  const webPageSchema = generateWebPageSchema({
+    name: "Hair Pinns - Salon Hair Care Australia",
+    description: "Australia's expert-curated hair care. Salon-quality products shipped to every state and territory. Free shipping over $150. Also visit our Bangor salon in Sutherland Shire.",
+    url: "https://hairpinns.com",
+    speakable: { cssSelector: [".speakable-hero-intro"] },
+  });
+
+  // HowTo schema for booking - AEO optimization
+  const howToBookSchema = generateHowToSchema({
+    name: "How to Book an Appointment at Hair Pinns",
+    description: "Book your hair appointment at Hair Pinns Bangor salon in 4 simple steps. Available 24/7 via Fresha.",
+    step: [
+      { name: "Visit booking page", text: "Go to hairpinns.com/booking or our Fresha page to start your booking" },
+      { name: "Select service", text: "Choose your preferred service: Colour & Blonding, Smoothing Treatment, or Cuts & Styling" },
+      { name: "Choose date and time", text: "Pick an available date and time that suits you" },
+      { name: "Confirm booking", text: "Enter your details and confirm your appointment. You'll receive a confirmation" },
+    ],
+    totalTime: "PT2M",
+  });
 
   // FAQ schema for homepage
   const faqSchema = generateFAQPageSchema([
     {
       question: "Do you ship products Australia-wide?",
       answer: "Yes! We ship premium hair care products Australia-wide with free shipping on orders over $150. All products are salon-quality, curated by Jena with 15+ years of experience.",
+    },
+    {
+      question: "Where can I buy salon hair products in Australia?",
+      answer: "Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more.",
+    },
+    {
+      question: "Do you ship internationally?",
+      answer: "No, we ship to Australia only. Every state and territory — from Darwin to Hobart. We deliver to NSW, VIC, QLD, WA, SA, TAS, NT, and ACT.",
     },
     {
       question: "What makes Hair Pinns products different?",
@@ -66,14 +100,14 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background font-sans">
       <Helmet>
-        <title>Premium Hair Care Products | 762+ Five-Star Reviews | Hair Pinns | Australia-Wide Shipping</title>
+        <title>Australia's Expert-Curated Hair Care | Hair Pinns | Free Shipping Over $150</title>
         <meta 
           name="description" 
-          content="Premium salon-quality hair care products shipped Australia-wide. 15+ years experience since 2009. 762+ Fresha reviews, 53+ Google reviews. Expert curation from Bangor, NSW. Free shipping over $150. Serving Sutherland Shire." 
+          content="Australia's expert-curated hair care. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire." 
         />
         <link rel="canonical" href="https://hairpinns.com" />
         <meta property="og:title" content="Premium Hair Care Products | Hair Pinns | Australia-Wide Shipping" />
-        <meta property="og:description" content="Salon-quality products curated by Jena since 2009. 762+ five-star Fresha reviews. 53+ Google reviews. Free shipping over $150. Serving Sutherland Shire & Australia-wide." />
+        <meta property="og:description" content="Australia's expert-curated hair care. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire." />
         <meta property="og:url" content="https://hairpinns.com" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('default')} />
@@ -89,12 +123,21 @@ const Index = () => {
           {JSON.stringify(knowledgeGraphSchema)}
         </script>
         <script type="application/ld+json">
+          {JSON.stringify(storeSchema)}
+        </script>
+        <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(webPageSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(howToBookSchema)}
         </script>
       </Helmet>
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
-      <main>
+      <main id="main-content">
         {/* 1. Hero Section (100% product-focused) */}
         <HeroHome />
 
@@ -308,6 +351,24 @@ const Index = () => {
               
               <details className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-shadow">
                 <summary className="font-semibold text-heading cursor-pointer text-lg mb-2">
+                  Where can I buy salon hair products in Australia?
+                </summary>
+                <p className="text-muted-foreground mt-3 leading-relaxed">
+                  Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more.
+                </p>
+              </details>
+
+              <details className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-shadow">
+                <summary className="font-semibold text-heading cursor-pointer text-lg mb-2">
+                  Do you ship internationally?
+                </summary>
+                <p className="text-muted-foreground mt-3 leading-relaxed">
+                  No, we ship to Australia only. Every state and territory — from Darwin to Hobart. We deliver to NSW, VIC, QLD, WA, SA, TAS, NT, and ACT.
+                </p>
+              </details>
+
+              <details className="bg-card border border-border rounded-card p-6 hover:shadow-lg transition-shadow">
+                <summary className="font-semibold text-heading cursor-pointer text-lg mb-2">
                   What makes Hair Pinns products different?
                 </summary>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
@@ -345,12 +406,27 @@ const Index = () => {
           </div>
         </section>
         
-        {/* 11. Local SEO Content Section (moved lower) */}
+        {/* 11. Shop Australia-Wide (retail-first) */}
+        <section className="py-12 bg-muted/30 border-y border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-h2 font-heading font-bold text-heading mb-2">
+              We Ship to Every Australian State and Territory
+            </h2>
+            <p className="text-muted-foreground mb-4 max-w-2xl mx-auto">
+              From Darwin to Hobart, Melbourne to Perth — salon-quality hair care delivered Australia-wide. Free shipping over {FREE_SHIPPING_THRESHOLD_DISPLAY}.
+            </p>
+            <Link to="/collections" className="inline-block text-brand-500 font-semibold hover:text-brand-600 transition-colors">
+              Shop Hair Products Australia-Wide →
+            </Link>
+          </div>
+        </section>
+
+        {/* 12. Visit Our Salon (local / in-person) */}
         <section className="py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-h2-lg font-heading font-bold text-heading mb-4">
-                Serving All Sutherland Shire Suburbs
+                Visit Our Salon in Sutherland Shire
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
                 Hair Pinns serves clients from across Sutherland Shire with expert hair services and premium products. 
@@ -368,16 +444,38 @@ const Index = () => {
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 text-center">
                 {[
-                  'Bangor', 'Menai', 'Illawong', 'Alfords Point', 'Woronora', 
-                  'Sutherland', 'Kirrawee', 'Kareela', 'Como', 'Gymea', 
-                  'Miranda', 'Engadine', 'Heathcote'
-                ].map((suburb) => (
-                  <div key={suburb} className="text-muted-foreground hover:text-brand-500 transition-colors">
-                    {suburb}
-                  </div>
+                  { name: 'Bangor', slug: 'bangor' },
+                  { name: 'Menai', slug: 'menai' },
+                  { name: 'Illawong', slug: 'illawong' },
+                  { name: 'Alfords Point', slug: 'alfords-point' },
+                  { name: 'Woronora', slug: 'woronora' },
+                  { name: 'Sutherland', slug: 'sutherland' },
+                  { name: 'Kirrawee', slug: 'kirrawee' },
+                  { name: 'Kareela', slug: 'kareela' },
+                  { name: 'Como', slug: 'como' },
+                  { name: 'Gymea', slug: 'gymea' },
+                  { name: 'Miranda', slug: 'miranda' },
+                  { name: 'Engadine', slug: 'engadine' },
+                  { name: 'Heathcote', slug: 'heathcote' }
+                ].map(({ name, slug }) => (
+                  <Link
+                    key={slug}
+                    to={`/near/${slug}`}
+                    className="text-muted-foreground hover:text-brand-500 transition-colors"
+                  >
+                    {name}
+                  </Link>
                 ))}
               </div>
               <div className="mt-8 text-center">
+                <p className="text-muted-foreground mb-4">
+                  Salon services:{" "}
+                  <Link to="/services#smoothing" className="text-brand-500 hover:text-brand-600 font-medium">Smoothing</Link>
+                  {" · "}
+                  <Link to="/services#foil-packages" className="text-brand-500 hover:text-brand-600 font-medium">Colour</Link>
+                  {" · "}
+                  <Link to="/services#cut-packages" className="text-brand-500 hover:text-brand-600 font-medium">Cuts</Link>
+                </p>
                 <p className="text-muted-foreground mb-4">
                   Visit our salon at <strong className="text-heading">60 Goorgool Road, Bangor NSW 2234</strong>
                 </p>
@@ -394,19 +492,19 @@ const Index = () => {
           </div>
         </section>
         
-        {/* 11. Blog Highlights (reduced prominence) */}
+        {/* 13. Blog Highlights (reduced prominence) */}
         <div className="py-12 bg-muted/30">
           <Suspense fallback={null}>
             <BlogTrio />
           </Suspense>
         </div>
         
-        {/* 12. Local Service CTA (moved to bottom) */}
+        {/* 14. Local Service CTA (moved to bottom) */}
         <Suspense fallback={null}>
           <BookingBanner />
         </Suspense>
         
-        {/* 13. Footer CTA */}
+        {/* 15. Footer CTA */}
         <Suspense fallback={null}>
           <FooterCTA />
         </Suspense>

@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { generateSearchResultsItemListSchema, generateBreadcrumbSchema, generateFAQPageSchema } from "@/lib/schema";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -70,21 +71,65 @@ const SearchResults = () => {
     fetchResults();
   }, [query, sortBy]);
 
+  const canonicalUrl = query
+    ? `https://hairpinns.com/search?q=${encodeURIComponent(query)}`
+    : "https://hairpinns.com/search";
+  const itemListSchema =
+    products.length > 0
+      ? generateSearchResultsItemListSchema({
+          query,
+          url: canonicalUrl,
+          items: products.slice(0, 20).map((p) => ({
+            name: p.title,
+            url: `/products/${p.slug}`,
+            image: p.image,
+            price: p.price,
+            currency: p.currency,
+          })),
+        })
+      : null;
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Search Results{query ? ` for "${query}"` : ""} | Hair Pinns</title>
-        <meta name="description" content={`Search results for ${query || "products"}`} />
+        <title>{query ? `${query} | Hair Products Australia | Hair Pinns` : "Search Products | Hair Pinns Australia"}</title>
+        <meta
+          name="description"
+          content={
+            query
+              ? `Find ${query} and more salon-quality hair care products. Shipped Australia-wide. Free shipping over $150.`
+              : "Search salon-quality hair care products. Shipped Australia-wide. Free shipping over $150."
+          }
+        />
+        <link rel="canonical" href={canonicalUrl} />
+        <script type="application/ld+json">
+          {JSON.stringify(generateBreadcrumbSchema([
+            { name: "Home", url: "https://hairpinns.com/" },
+            { name: "Search", url: "https://hairpinns.com/search" },
+            ...(query ? [{ name: query, url: canonicalUrl }] : []),
+          ]))}
+        </script>
+        {products.length > 0 && query ? (
+          <script type="application/ld+json">
+            {JSON.stringify(generateFAQPageSchema([
+              { question: `Where can I buy ${query} in Australia?`, answer: `Hair Pinns stocks ${query} and ships Australia-wide. Free shipping over $150. Shop salon-quality hair care at hairpinns.com.` },
+              { question: `Does Hair Pinns ship ${query} Australia-wide?`, answer: `Yes. Hair Pinns ships ${query} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping on orders over $150.` },
+            ]))}
+          </script>
+        ) : null}
+        {itemListSchema ? (
+          <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
+        ) : null}
       </Helmet>
 
       <Header />
 
-      <main className="py-12">
+      <main id="main-content" className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-heading font-bold text-heading mb-4">
-              {query ? `Search Results for "${query}"` : "Search Products"}
+              {query ? `Search Results for "${query}" — Hair Products Australia` : "Search Products — Hair Pinns Australia"}
             </h1>
             {products.length > 0 && (
               <p className="text-muted-foreground">

@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
+import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import { hpCapture } from "@/lib/hpCapture";
 import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 
@@ -72,8 +74,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-foreground mb-4 text-sm leading-relaxed">
-              Boutique salon in Bangor NSW. Expert cuts, colour & treatments. 
-              Salon-quality products for home care.
+              Australia's expert-curated hair care. Salon-quality products shipped nationwide. Free shipping over {FREE_SHIPPING_THRESHOLD_DISPLAY}. Also visit our Bangor salon in Sutherland Shire.
             </p>
             <div className="flex space-x-3">
               <a 
@@ -104,8 +105,8 @@ const Footer = () => {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
                 <address className="not-italic text-foreground">
-                  60 Goorgool Rd<br />
-                  Bangor NSW 2234
+                  {BUSINESS_NAP.address.street}<br />
+                  {BUSINESS_NAP.address.locality} {BUSINESS_NAP.address.region} {BUSINESS_NAP.address.postcode}
                 </address>
               </div>
               
@@ -120,13 +121,21 @@ const Footer = () => {
                 <p className="text-muted-foreground">Sun: Closed</p>
               </div>
               
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-brand-500" />
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-brand-500" />
+                  <a 
+                    href={BUSINESS_NAP.phone.tel} 
+                    className="text-foreground hover:text-brand-500 transition-colors font-medium"
+                  >
+                    {BUSINESS_NAP.phone.display}
+                  </a>
+                </div>
                 <a 
-                  href="tel:+61468093991" 
-                  className="text-foreground hover:text-brand-500 transition-colors font-medium"
+                  href={`sms:${BUSINESS_NAP.phone.raw}?body=Hi%20Hair%20Pinns%2C%20I'd%20like%20to%20enquire%20about%20`}
+                  className="text-sm text-brand-500 hover:text-brand-600 transition-colors"
                 >
-                  0468 093 991
+                  Text us
                 </a>
               </div>
             </div>
@@ -143,7 +152,7 @@ const Footer = () => {
                 Areas We Serve
               </Link>
               <Link to="/collections" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
-                Shop Products
+                Shop Hair Products Australia-Wide
               </Link>
               <Link to="/about" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
                 About Us

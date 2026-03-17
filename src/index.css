@@ -134,6 +134,33 @@ All colors MUST be HSL.
   }
 }
 
+/* Skip link for accessibility - visible on focus */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 0.75rem 1.5rem;
+  background: hsl(var(--brand-500));
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: left 0.2s ease;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Enhanced focus states for accessibility (keyboard users) */
+button:focus-visible,
+a:focus-visible:not(.skip-link) {
+  outline: 2px solid hsl(var(--brand-500));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 @layer base {
   * {
     @apply border-border;

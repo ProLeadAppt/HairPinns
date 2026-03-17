@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { getOGImage } from "@/lib/sitemap";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -139,12 +140,13 @@ const Contact = () => {
   return <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Contact Hair Pinns Bangor | Call 0468 093 991</title>
-        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire. Call 0468 093 991. Free parking, easy access. Open Tue-Sat." />
+        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire NSW. Call 0468 093 991. Free parking, easy access. Open Tue-Sat. Shop hair products Australia-wide online." />
         <link rel="canonical" href="https://hairpinns.com/contact" />
         <meta property="og:title" content="Contact Hair Pinns Bangor | Visit Our Salon" />
         <meta property="og:description" content="60 Goorgool Rd, Bangor NSW 2234. Call 0468 093 991. Free parking, open Tue-Sat." />
         <meta property="og:url" content="https://hairpinns.com/contact" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('default')} />
         <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/contact" />
         <script type="application/ld+json">
           {JSON.stringify(localBusinessSchema)}
@@ -153,7 +155,7 @@ const Contact = () => {
 
       <Header />
       
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {/* Hero Section */}
         <Section className="pt-xl pb-lg">
           <SectionHeader title="Visit Hair Pinns Bangor" subtitle="Your Sutherland Shire hair specialists—easy parking, warm welcome, honest care." />

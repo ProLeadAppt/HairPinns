@@ -23,6 +23,8 @@ import {
   Scissors
 } from "lucide-react";
 import { getSuburbData } from "@/data/suburbPages";
+import { generateFAQPageSchema, generateWebPageSchema, generatePlaceSchema, generateQAPageSchema } from "@/lib/schema";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import LocationProducts from "@/components/local/LocationProducts";
@@ -95,11 +97,11 @@ const SuburbPage = () => {
     "description": `Boutique hair salon serving ${suburbData.name} with expert Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling.`,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "60 Goorgool Rd",
-      "addressLocality": "Bangor",
-      "addressRegion": "NSW",
-      "postalCode": "2234",
-      "addressCountry": "AU"
+      "streetAddress": BUSINESS_NAP.address.street,
+      "addressLocality": BUSINESS_NAP.address.locality,
+      "addressRegion": BUSINESS_NAP.address.region,
+      "postalCode": BUSINESS_NAP.address.postcode,
+      "addressCountry": BUSINESS_NAP.address.country
     },
     "areaServed": [
       {
@@ -117,7 +119,7 @@ const SuburbPage = () => {
       "longitude": "151.0333"
     },
     "url": `https://hairpinns.com/near/${suburbData.slug}`,
-    "telephone": "+61-468-093-991",
+    "telephone": BUSINESS_NAP.phone.raw,
     "priceRange": "$$",
     "openingHoursSpecification": [
       {
@@ -140,19 +142,22 @@ const SuburbPage = () => {
       icon: Palette,
       title: "Colour & Blonding",
       description: "From balayage to full colour transformations, we specialize in creating dimensional, natural-looking colour that suits Sydney's climate.",
-      link: "/services#colour"
+      link: "/services#foil-packages",
+      detailLink: "/services/foil-packages/full-head-foils-package"
     },
     {
       icon: Sparkles,
       title: "Smoothing & Treatments",
       description: "Professional keratin smoothing and deep conditioning treatments designed to combat frizz and restore shine in humid conditions.",
-      link: "/services#treatments"
+      link: "/services#smoothing",
+      detailLink: "/services/smoothing/mid-length-straight-up-smoothing"
     },
     {
       icon: Scissors,
       title: "Cuts & Styling",
       description: "Precision cuts and expert styling tailored to your face shape, hair texture, and lifestyle for easy maintenance at home.",
-      link: "/services#cuts"
+      link: "/services#cut-packages",
+      detailLink: "/services/cut-packages/mid-length-wash-cut-blowdry"
     }
   ];
 
@@ -178,12 +183,43 @@ const SuburbPage = () => {
         <script type="application/ld+json">
           {JSON.stringify(localBusinessSchema)}
         </script>
+        {suburbData.faqs?.length ? (
+          <script type="application/ld+json">
+            {JSON.stringify(generateFAQPageSchema(suburbData.faqs))}
+          </script>
+        ) : null}
+        <script type="application/ld+json">
+          {JSON.stringify(generateWebPageSchema({
+            name: `Hair Salon Near ${suburbData.name}`,
+            description: suburbData.intro,
+            url: `https://hairpinns.com/near/${suburbData.slug}`,
+            speakable: suburbData.quickAnswer ? { cssSelector: [".speakable-quick-answer"] } : undefined,
+          }))}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generatePlaceSchema({
+            name: `Hair Pinns - ${suburbData.name}`,
+            description: suburbData.quickAnswer || suburbData.intro,
+            url: `https://hairpinns.com/near/${suburbData.slug}`,
+            addressLocality: suburbData.name,
+            addressRegion: "NSW",
+            postalCode: "2234",
+          }))}
+        </script>
+        {suburbData.quickAnswer ? (
+          <script type="application/ld+json">
+            {JSON.stringify(generateQAPageSchema({
+              question: `What is Hair Pinns near ${suburbData.name}?`,
+              answer: suburbData.quickAnswer,
+            }))}
+          </script>
+        ) : null}
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
         <Header />
         
-        <main className="flex-grow">
+        <main id="main-content" className="flex-grow">
           {/* Breadcrumbs */}
           <div className="bg-background border-b border-border">
             <div className="container-custom py-4">
@@ -204,6 +240,11 @@ const SuburbPage = () => {
                 <h1 className="text-h1 font-heading text-heading mb-6">
                   Hair Salon Near {suburbData.name} — Hair Pinns
                 </h1>
+                {suburbData.quickAnswer && (
+                  <p className="speakable-quick-answer text-lg md:text-xl text-foreground font-medium leading-relaxed mb-6 max-w-3xl">
+                    {suburbData.quickAnswer}
+                  </p>
+                )}
                 <p className="text-xl text-foreground leading-relaxed mb-8">
                   {suburbData.intro}
                 </p>
@@ -243,16 +284,49 @@ const SuburbPage = () => {
               <div className="flex items-start gap-4 max-w-3xl">
                 <MapPin className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-heading text-lg text-heading mb-2">
+                  <h2 className="font-heading text-lg text-heading mb-2">
                     Why {suburbData.name} clients choose us
-                  </h3>
+                  </h2>
                   <p className="text-foreground">
                     {suburbData.localNote}
                   </p>
+                  {suburbData.seasonalNote && (
+                    <p className="text-foreground mt-3 text-sm italic">
+                      {suburbData.seasonalNote}
+                    </p>
+                  )}
+                  {suburbData.landmarks && suburbData.landmarks.length > 0 && (
+                    <p className="text-muted-foreground mt-3 text-sm">
+                      Serving clients near {suburbData.landmarks.join(", ")}.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
           </section>
+
+          {/* Customer Stories / Recent Work — Caleb Ulku authority marker (Jena adds with permission) */}
+          {(suburbData.customerStory || suburbData.projectExample) && (
+            <section className="section-padding bg-muted/30">
+              <div className="container-custom">
+                <div className="max-w-3xl mx-auto">
+                  <h2 className="text-h2 font-heading text-heading mb-6 text-center">
+                    What Clients Say About {suburbData.name}
+                  </h2>
+                  {suburbData.customerStory && (
+                    <blockquote className="border-l-4 border-brand-500 pl-6 py-4 mb-6 text-foreground italic">
+                      "{suburbData.customerStory}"
+                    </blockquote>
+                  )}
+                  {suburbData.projectExample && (
+                    <p className="text-foreground leading-relaxed">
+                      {suburbData.projectExample}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Services Cards */}
           <section className="section-padding">
@@ -276,7 +350,7 @@ const SuburbPage = () => {
                       {service.description}
                     </p>
                     <Link 
-                      to={service.link}
+                      to={service.detailLink || service.link}
                       className="text-brand-500 hover:text-brand-600 font-semibold inline-flex items-center gap-2"
                     >
                       Learn More →
@@ -307,7 +381,7 @@ const SuburbPage = () => {
                 </div>
                 <div className="mt-6 pt-6 border-t border-border">
                   <p className="text-sm text-muted-foreground mb-4">
-                    <strong>Address:</strong> Shop 1, 123 Main Street, Bangor NSW 2234
+                    <strong>Address:</strong> {BUSINESS_NAP.address.full}
                   </p>
                   <p className="text-sm text-muted-foreground">
                     <strong>Hours:</strong> Tue–Fri 9am–5pm | Sat 8am–3pm | Sun–Mon Closed
@@ -392,7 +466,7 @@ const SuburbPage = () => {
                 >
                   <Link to="/collections">
                     <ShoppingBag className="w-5 h-5 mr-2" />
-                    Shop Featured Products
+                    Shop Hair Products Australia-Wide
                   </Link>
                 </Button>
               </div>

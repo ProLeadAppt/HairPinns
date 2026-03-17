@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { quickAddToCart, QuickAddProduct } from "@/lib/quickAdd";
 import { getCartId } from "@/lib/cartManagement";
 import { getUserLocation, getShippingMessage, isInSutherlandShire } from "@/lib/locationDetection";
+import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import { hpCapture } from "@/lib/hpCapture";
 
 const HeroHome = () => {
@@ -26,7 +27,7 @@ const HeroHome = () => {
   const valueProps = [
     { icon: Award, text: "15+ Years Expert Curation", color: "text-brand-300" },
     { icon: Star, text: "762+ Five-Star Reviews", color: "text-[hsl(var(--star-color))]" },
-    { icon: Truck, text: "Free Shipping Over $100", color: "text-brand-300" },
+    { icon: Truck, text: `Free Shipping Over ${FREE_SHIPPING_THRESHOLD_DISPLAY}`, color: "text-brand-300" },
   ];
 
   useEffect(() => {
@@ -199,6 +200,7 @@ const HeroHome = () => {
           className="w-full h-full object-cover object-[65%_center] brightness-[0.92]"
           loading="eager"
           fetchPriority="high"
+          decoding="async"
           width="1920"
           height="1080"
           sizes="100vw"
@@ -231,6 +233,7 @@ const HeroHome = () => {
                         alt={product.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         loading={index < 2 ? "eager" : "lazy"}
+                        fetchPriority={index === 0 ? "high" : undefined}
                         width="300"
                         height="300"
                       />
@@ -293,7 +296,7 @@ const HeroHome = () => {
               Popular This Week
             </Badge>
 
-            <h1 className="font-heading font-bold text-white mb-3 leading-[1.05]" style={{
+            <h1 className="speakable-hero-intro font-heading font-bold text-white mb-3 leading-[1.05]" style={{
               fontSize: 'clamp(28px, 6vw, 36px)',
               textShadow: '0 2px 24px rgba(0, 0, 0, 0.6)'
             }}>
@@ -397,7 +400,7 @@ const HeroHome = () => {
 
               {/* Ultra-Bold Headline with Gradient Text */}
               <h1
-                className="font-heading font-bold text-white mb-5 leading-[1.05]"
+                className="speakable-hero-intro font-heading font-bold text-white mb-5 leading-[1.05]"
                 style={{
                   fontSize: 'clamp(40px, 4.5vw, 64px)',
                   textShadow: '0 2px 32px rgba(0, 0, 0, 0.6)',

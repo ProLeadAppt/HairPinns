@@ -22,10 +22,19 @@ export const ABOVE_FOLD_HERO_PRODUCT_HANDLES: string[] = [
 ];
 
 /**
+ * Best Sellers product handles — when set, overrides BEST_SELLERS_COLLECTION_HANDLE.
+ * Jena updates this list from analytics (add-to-cart, views, time on page).
+ * Order = popularity (first = most popular). Leave empty to use the collection.
+ * Product handle = URL slug, e.g. from /products/walnut-scrub-hair-scalp-pre-wash-treatment use "walnut-scrub-hair-scalp-pre-wash-treatment"
+ */
+export const BEST_SELLERS_PRODUCT_HANDLES: string[] = [
+  // Jena to add: e.g. "walnut-scrub-hair-scalp-pre-wash-treatment", "juuce-heat-shield", ...
+];
+
+/**
  * Best Sellers collection handle (optional).
- * When set, the Best Sellers section fetches products from this Shopify collection.
+ * Used when BEST_SELLERS_PRODUCT_HANDLES is empty.
  * Jena can create this collection in Shopify admin and add products (e.g. "best-sellers-nov" for November).
- * Leave null to use FEATURED_PRODUCT_HANDLES or auto-detect a "best"/"featured"/"popular" collection.
  */
 export const BEST_SELLERS_COLLECTION_HANDLE: string | null = "best-sellers-nov";
 

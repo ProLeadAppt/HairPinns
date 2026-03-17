@@ -11,7 +11,7 @@ import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ReviewStrip from "@/components/reviews/ReviewStrip";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
-import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateServiceSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateHowToSchema, generateWebPageSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { serviceDetailData } from "@/data/serviceDetails";
@@ -46,6 +46,38 @@ const ServiceDetail = () => {
     url: `https://hairpinns.com/services/${categorySlug}/${serviceSlug}`
   });
 
+  const faqSchema = serviceData.faqs?.length
+    ? generateFAQPageSchema(serviceData.faqs)
+    : null;
+
+  const parseDurationToISO = (dur: string | undefined): string | undefined => {
+    if (!dur) return undefined;
+    const hMatch = dur.match(/(\d+)h/);
+    const mMatch = dur.match(/(\d+)min/);
+    const h = hMatch ? parseInt(hMatch[1], 10) : 0;
+    const m = mMatch ? parseInt(mMatch[1], 10) : 0;
+    const parts = [];
+    if (h) parts.push(`${h}H`);
+    if (m) parts.push(`${m}M`);
+    return parts.length ? `PT${parts.join("")}` : undefined;
+  };
+
+  const howToSchema = serviceData.process?.length
+    ? generateHowToSchema({
+        name: `${serviceData.title} - What to Expect`,
+        description: serviceData.description,
+        step: serviceData.process.map((p) => ({ name: p.step, text: p.description })),
+        totalTime: parseDurationToISO(serviceData.duration),
+      })
+    : null;
+
+  const webPageSchema = generateWebPageSchema({
+    name: serviceData.title,
+    description: serviceData.metaDescription,
+    url: `https://hairpinns.com/services/${categorySlug}/${serviceSlug}`,
+    speakable: serviceData.quickAnswer ? { cssSelector: [".speakable-quick-answer"] } : undefined,
+  });
+
   return (
     <div className="min-h-screen bg-bg">
       <Helmet>
@@ -63,6 +95,19 @@ const ServiceDetail = () => {
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>
+        {faqSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(faqSchema)}
+          </script>
+        )}
+        {howToSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(howToSchema)}
+          </script>
+        )}
+        <script type="application/ld+json">
+          {JSON.stringify(webPageSchema)}
+        </script>
       </Helmet>
 
       <Header />
@@ -70,7 +115,7 @@ const ServiceDetail = () => {
       <TrustStrip />
       <StickyBooking />
 
-      <main>
+      <main id="main-content">
         {/* Breadcrumbs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
           <Breadcrumbs items={breadcrumbItems} />
@@ -87,6 +132,11 @@ const ServiceDetail = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6" style={{ color: 'hsl(var(--heading))', letterSpacing: '-0.5px', lineHeight: '1.1' }}>
                 {serviceData.title}
               </h1>
+              {serviceData.quickAnswer && (
+                <p className="speakable-quick-answer text-lg md:text-xl mb-6 max-w-3xl mx-auto font-medium" style={{ color: 'hsl(var(--text))', lineHeight: '1.6', opacity: 0.95 }}>
+                  {serviceData.quickAnswer}
+                </p>
+              )}
               <p className="text-xl md:text-2xl mb-8" style={{ color: 'hsl(var(--text))', lineHeight: '1.6', opacity: 0.9 }}>
                 {serviceData.tagline}
               </p>

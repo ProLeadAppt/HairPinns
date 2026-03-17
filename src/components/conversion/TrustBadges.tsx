@@ -1,4 +1,5 @@
 import { Shield, Lock, Award, Truck } from "lucide-react";
+import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 
 const TrustBadges = () => {
   const badges = [
@@ -20,7 +21,7 @@ const TrustBadges = () => {
     {
       icon: Truck,
       text: "Free Shipping",
-      description: "Over $100 Australia-wide",
+      description: `Over ${FREE_SHIPPING_THRESHOLD_DISPLAY} Australia-wide`,
     },
   ];
 

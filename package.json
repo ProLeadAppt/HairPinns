@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-sitemap.js && vite build",
+    "build": "node scripts/inject-nap.js && node scripts/generate-sitemap.js && vite build && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
     "generate-sitemap": "node scripts/generate-sitemap.js",
+    "submit-indexnow": "node scripts/submit-indexnow.js",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "convert-images": "node scripts/convert-images-to-webp.js"
+    "convert-images": "node scripts/convert-images-to-webp.js",
+    "compress-collections": "node scripts/compress-collection-images.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

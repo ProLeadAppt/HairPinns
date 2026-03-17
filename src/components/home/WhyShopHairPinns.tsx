@@ -1,5 +1,6 @@
 import { Award, Truck, Shield, Star, Sparkles } from "lucide-react";
 import Section from "@/components/design-system/Section";
+import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 
 const WhyShopHairPinns = () => {
   const benefits = [
@@ -16,7 +17,7 @@ const WhyShopHairPinns = () => {
     {
       icon: Truck,
       title: "Nationwide Shipping",
-      description: "Free shipping on orders over $100 Australia-wide. Fast, secure delivery to your door, no matter where you are in Australia.",
+      description: `Free shipping on orders over ${FREE_SHIPPING_THRESHOLD_DISPLAY} Australia-wide. Fast, secure delivery to your door, no matter where you are in Australia.`,
     },
     {
       icon: Shield,

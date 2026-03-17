@@ -41,6 +41,7 @@ import Reviews from "./pages/Reviews";
 import ReviewFeedback from "./pages/ReviewFeedback";
 import ReviewGoogle from "./pages/ReviewGoogle";
 import SearchResults from "./pages/SearchResults";
+import ServerError from "./pages/ServerError";
 import ErrorBoundary, { ProductDetailErrorBoundary } from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
@@ -105,6 +106,7 @@ const AppContent = () => {
           <Route path="/dev/collections" element={<DevCollections />} />
           <Route path="/dev/shopify" element={<DevShopify />} />
           <Route path="/404" element={<NotFound />} />
+          <Route path="/500" element={<ServerError />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </CartProvider>

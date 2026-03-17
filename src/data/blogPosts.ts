@@ -68,9 +68,170 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "best-hair-products-australia-2025",
+    title: "Best Hair Products Australia 2025: Expert Picks from Jena",
+    excerpt: "Jena's top salon-quality hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia—shipped nationwide.",
+    category: "Products",
+    date: "February 25, 2025",
+    readTime: "6 min read",
+    image: jenaProducts,
+    author: "Jena Pinn",
+    content: {
+      introduction: "After 15+ years in the industry, I've seen what works—and what doesn't. Here are my top hair product picks for 2025: the best salon-quality formulas available in Australia, chosen for real results, not hype.",
+      sections: [
+        {
+          heading: "Best for Bond Repair & Damage",
+          content: "Juuce Bond Repair Duo tops my list for damaged, colour-treated, or heat-styled hair. The shampoo and conditioner work together to rebuild broken bonds and restore strength. If you've had bleach, keratin, or regular heat styling, this is your go-to. Pure Sacred Mask is another favourite for an intense weekly treatment—thick, nourishing, and perfect for winter dryness."
+        },
+        {
+          heading: "Best for Blonde & Colour Care",
+          content: "Aromaganic's colour care range keeps blonde bright and brass-free. Pair with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, a quality violet shampoo used 1–2 times weekly makes a huge difference. My clients in Sydney's sun and humidity swear by this combo."
+        },
+        {
+          heading: "Best for Frizz & Humidity",
+          content: "Juuce Heat Shield doubles as heat protection and anti-humidity defence. Pure Guardian Angel is another hero for frizz-prone hair. For a full smoothing routine, the Straight Up Smoothing treatment from the salon plus at-home maintenance with these products gives 3–4 months of smooth, manageable hair—even in Sydney's humid summers."
+        },
+        {
+          heading: "Best for Volume & Fine Hair",
+          content: "Lightweight formulas that don't weigh hair down are key. Juuce's volume range and Pure's certified organic options work beautifully on fine hair. Avoid heavy oils at the roots; focus on mid-lengths to ends. A good root lift spray or mousse applied before blow-drying makes a noticeable difference."
+        },
+        {
+          heading: "Best Detangler & Brush",
+          content: "Wet Brush is my go-to for gentle detangling—wet or dry. It reduces breakage and makes combing through knots effortless. Pair with a leave-in conditioner for extra slip. The glitter and fun designs make it a hit with clients of all ages."
+        },
+        {
+          heading: "Where to Buy These in Australia",
+          content: "All of these products are available at Hair Pinns—curated by me, shipped Australia-wide. Free shipping on orders over $150. Every product is one I use in the salon or recommend to clients. Not sure what's right for you? Take the Juuce Hair Quiz or call Sam for personalised advice."
+        }
+      ],
+      productModule: {
+        title: "Shop Jena's 2025 Picks",
+        products: [
+          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Best for damaged and colour-treated hair" },
+          { name: "Aromaganic Colour Care", link: "https://hairpinns.com/collections/aromaganic", description: "Best for blonde and colour maintenance" },
+          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Best for sensitive scalps and eco-conscious" },
+          { name: "Wet Brush", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Best detangler for all hair types" }
+        ]
+      },
+      quickAnswer: {
+        question: "What are the best hair products in Australia 2025?",
+        answer: "The best hair products in Australia for 2025 include Juuce Bond Repair for damage, Aromaganic for blonde care, Juuce Heat Shield for frizz, and Wet Brush for detangling. All available from Hair Pinns, shipped Australia-wide with free shipping over $150."
+      }
+    },
+    cta: { type: "product", productPath: "https://hairpinns.com/collections", customText: "Shop best hair products Australia-wide" }
+  },
+  {
+    slug: "where-to-buy-salon-hair-products-australia",
+    title: "Where to Buy Salon Hair Products in Australia",
+    excerpt: "Looking for professional hair care you can trust? Here's your guide to buying salon-quality hair products in Australia—from expert curation to Australia-wide shipping.",
+    category: "Products",
+    date: "February 25, 2025",
+    readTime: "4 min read",
+    image: jenaProducts,
+    author: "Jena Pinn",
+    content: {
+      introduction: "You've had that salon-fresh feeling and want to keep it at home. But where do you actually buy professional hair products in Australia? Supermarkets don't cut it—you need salon-grade formulas. Here's your guide to finding the best hair care Australia-wide.",
+      sections: [
+        {
+          heading: "Why Salon Products Beat Supermarket Options",
+          content: "Salon hair products use higher concentrations of active ingredients, fewer fillers, and formulas designed for professional results. They're pH-balanced, often sulphate-free, and built to protect colour and treatments. When you buy from a trusted salon retailer, you're getting the real deal—not watered-down versions."
+        },
+        {
+          heading: "What to Look for When Buying Online",
+          content: "Choose retailers that: (1) Stock genuine professional brands like Juuce, QIQI, Pure, and Wet Brush. (2) Offer expert curation—someone who actually tests products. (3) Ship Australia-wide with clear delivery times. (4) Provide free shipping thresholds so you're not paying extra for postage. (5) Have a hassle-free returns policy."
+        },
+        {
+          heading: "Hair Pinns: Expert-Curated, Australia-Wide",
+          content: "At Hair Pinns, we've been curating salon hair care since 2009. Every product is handpicked by Jena with 15+ years of experience. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Free shipping on orders over $150. No international markup, no guesswork—just salon-quality products delivered to your door."
+        },
+        {
+          heading: "Popular Brands You Can Trust",
+          content: "Juuce offers bond repair, colour protection, and hydration. QIQI delivers professional treatments and oils. Pure brings certified organic options. Wet Brush is the go-to for gentle detangling. All available Australia-wide from Hair Pinns with expert advice when you need it."
+        },
+        {
+          heading: "Ready to Shop?",
+          content: "Browse our collections, take the Juuce Hair Quiz if you're unsure, or call Sam for personalised recommendations. Your best hair days start with the right products—and the right place to buy them."
+        }
+      ],
+      productModule: {
+        title: "Shop Hair Care Australia-Wide",
+        products: [
+          {
+            name: "All Collections",
+            link: "https://hairpinns.com/collections",
+            description: "Browse salon-quality hair care—shipped Australia-wide"
+          },
+          {
+            name: "Juuce Hair Care",
+            link: "https://hairpinns.com/collections/juuce-hair-care",
+            description: "Professional formulas for all hair types"
+          },
+          {
+            name: "Pure Organic",
+            link: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+            description: "Certified organic, Australia-wide delivery"
+          }
+        ]
+      },
+      quickAnswer: {
+        question: "Where can I buy salon hair products in Australia?",
+        answer: "Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more at hairpinns.com."
+      }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections",
+      customText: "Shop hair products Australia-wide"
+    }
+  },
+  {
+    slug: "hair-products-melbourne-brisbane-perth-australia",
+    title: "Hair Products Melbourne, Brisbane & Perth: Salon Hair Care Australia-Wide",
+    excerpt: "Where to buy salon-quality hair products in Melbourne, Brisbane, Perth and across Australia. Hair Pinns ships expert-curated hair care to every state and territory—free shipping over $150.",
+    category: "Products",
+    date: "February 25, 2025",
+    readTime: "4 min read",
+    image: jenaProducts,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Whether you're in Melbourne, Brisbane, Perth, Sydney or anywhere in Australia, you deserve access to salon-quality hair care. Hair Pinns has been curating professional hair products since 2009—and we ship to every state and territory. Here's your guide to buying the best hair products Australia-wide.",
+      sections: [
+        {
+          heading: "Hair Products Melbourne: Same Quality, Delivered",
+          content: "Melbourne's humidity and hard water can be tough on hair. We ship Juuce, QIQI, Pure and Wet Brush to Melbourne with free shipping on orders over $150. Expert curation by Jena means every product is tested for results—no guesswork. Standard delivery 3–5 business days; express 1–2 days."
+        },
+        {
+          heading: "Hair Products Brisbane: Queensland-Wide Delivery",
+          content: "Brisbane's subtropical climate demands products that protect against humidity and UV. We ship salon-quality hair care to Brisbane and all of Queensland. Bond repair, colour protection, smoothing treatments—all available with free shipping over $150. Gold Coast and Sunshine Coast included."
+        },
+        {
+          heading: "Hair Products Perth: Western Australia Covered",
+          content: "Perth and Western Australia are fully covered. We ship professional hair care Australia-wide—no exceptions. Whether you're in Perth CBD, Fremantle or regional WA, your order arrives in 3–5 business days standard, 1–2 days express. Free shipping over $150."
+        },
+        {
+          heading: "Why Hair Pinns for Australia-Wide Hair Care",
+          content: "15+ years of expert curation. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Your best hair is a click away."
+        }
+      ],
+      productModule: {
+        title: "Shop Hair Care Australia-Wide",
+        products: [
+          { name: "All Collections", link: "https://hairpinns.com/collections", description: "Browse salon hair care—shipped Australia-wide" },
+          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Professional formulas for all hair types" },
+          { name: "Pure Organic", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, Australia-wide delivery" }
+        ]
+      },
+      quickAnswer: {
+        question: "Where can I buy hair products in Melbourne, Brisbane or Perth?",
+        answer: "Hair Pinns ships salon-quality hair care to Melbourne, Brisbane, Perth and all of Australia. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush at hairpinns.com."
+      }
+    },
+    cta: { type: "product", productPath: "https://hairpinns.com/collections", customText: "Shop hair products Australia-wide" }
+  },
+  {
     slug: "salon-vs-supermarket-hair-products",
     title: "Supermarket VS Salon Hair Products",
-    excerpt: "We've all grabbed a $6 shampoo thinking we scored a bargain. But what if that 'cheap' product might be costing you more in the long run?",
+    excerpt: "We've all grabbed a $6 shampoo thinking we scored a bargain. But what if that 'cheap' product might be costing you more in the long run? Here's why salon hair products in Australia are the smarter choice.",
     category: "Products",
     date: "April 20, 2025",
     readTime: "5 min read",
@@ -105,17 +266,17 @@ export const blogPosts: BlogPost[] = [
         }
       ],
       productModule: {
-        title: "Shop Premium Hair Care",
+        title: "Shop Premium Hair Care Australia-Wide",
         products: [
           {
             name: "Juuce Hair Care Range",
             link: "https://hairpinns.com/collections/juuce-hair-care",
-            description: "Salon-quality formulas for all hair types"
+            description: "Salon-quality formulas for all hair types — shipped Australia-wide"
           },
           {
             name: "Pure Certified Organic Range",
             link: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
-            description: "Clean, eco-friendly hair care"
+            description: "Clean, eco-friendly hair care — Australia-wide delivery"
           }
         ]
       }
@@ -123,7 +284,7 @@ export const blogPosts: BlogPost[] = [
     cta: {
       type: "product",
       productPath: "https://hairpinns.com/collections/all",
-      customText: "Ready to upgrade your hair care?"
+      customText: "Shop hair care Australia-wide"
     }
   },
   {
@@ -282,7 +443,7 @@ export const blogPosts: BlogPost[] = [
     cta: {
       type: "product",
       productPath: "https://hairpinns.com/collections",
-      customText: "Shop collections"
+      customText: "Shop hair care Australia-wide"
     }
   },
   {
@@ -373,7 +534,7 @@ export const blogPosts: BlogPost[] = [
     cta: {
       type: "chat-isabella",
       productPath: "https://hairpinns.com/collections/all",
-      customText: "Need help choosing the right shampoo?"
+      customText: "Shop shampoo Australia-wide"
     }
   },
   {
@@ -1138,6 +1299,50 @@ export const blogPosts: BlogPost[] = [
     cta: {
       type: "call-sam",
       customText: "Book your infrared sauna session"
+    }
+  },
+  {
+    slug: "best-hair-products-australia-2025",
+    title: "Best Hair Products Australia 2025 — Expert Picks from Jena",
+    excerpt: "Discover the best salon-quality hair products available in Australia. Expert picks from Jena at Hair Pinns — Juuce, Pure, QIQI and more. Shipped Australia-wide with free shipping over $150.",
+    category: "Products",
+    date: "February 25, 2025",
+    readTime: "6 min read",
+    image: jenaProducts,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Looking for the best hair products in Australia? As a salon owner with 15+ years of experience, I've handpicked the products that deliver real results — no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
+      quickAnswer: {
+        question: "What are the best hair products in Australia?",
+        answer: "The best hair products in Australia include Juuce (smoothing, colour care, hydration), Pure certified organic (eco-friendly, high-performance), and QIQI (professional treatments). Hair Pinns stocks these and ships Australia-wide with free shipping over $150."
+      },
+      sections: [
+        {
+          heading: "Why Salon Quality Matters",
+          content: "Supermarket hair products often rely on cheap fillers and harsh sulfates. Salon-quality products from brands like Juuce and Pure use concentrated, high-performance ingredients that actually nourish your hair — and a little goes a long way. When you shop with Hair Pinns, you're getting expert curation: every product is tested and trusted."
+        },
+        {
+          heading: "Top Picks for 2025",
+          content: "Juuce Miracle Smooth Duo — Best for frizz and unruly hair. The Juuce Radiant Colour Duo keeps colour vibrant. Pure certified organic range is perfect for anyone wanting clean, eco-friendly formulas. QIQI Bare Repair Oil is a game-changer for damaged hair. And Wet Brush detanglers make every wash day easier. All available at hairpinns.com with free shipping over $150."
+        },
+        {
+          heading: "Shop Hair Care Australia-Wide",
+          content: "Hair Pinns ships to every state and territory — Melbourne, Brisbane, Perth, Sydney, Darwin, Hobart, Adelaide, Canberra. No international shipping; we focus on serving Australia with the best salon products. Free shipping on orders over $150. Your best hair days start here."
+        }
+      ],
+      productModule: {
+        title: "Shop Hair Care Australia-Wide",
+        products: [
+          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Salon-quality formulas for all hair types" },
+          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, eco-friendly hair care" },
+          { name: "QIQI Professional", link: "https://hairpinns.com/collections/qiqi", description: "Professional treatments and oils" }
+        ]
+      }
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections",
+      customText: "Shop hair care Australia-wide"
     }
   }
 ];

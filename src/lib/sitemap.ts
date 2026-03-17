@@ -70,16 +70,15 @@ export const getSitemapUrls = (): SitemapUrl[] => {
 
 export const getOGImage = (type: 'default' | 'product' | 'collection' | 'blog' | 'suburb' | 'service'): string => {
   const baseUrl = 'https://hairpinns.com';
-  
-  // Map different page types to OG images
-  const ogImages = {
-    default: `${baseUrl}/og-default.jpg`,
-    product: `${baseUrl}/og-product.jpg`,
-    collection: `${baseUrl}/og-collection.jpg`,
-    blog: `${baseUrl}/og-blog.jpg`,
-    suburb: `${baseUrl}/og-suburb.jpg`,
-    service: `${baseUrl}/og-service.jpg`,
+  // Use og-default.jpg for all types until dedicated images exist - prevents 404s on social shares
+  const fallback = `${baseUrl}/og-default.jpg`;
+  const ogImages: Record<string, string> = {
+    default: fallback,
+    product: fallback,
+    collection: fallback,
+    blog: fallback,
+    suburb: fallback,
+    service: fallback,
   };
-  
-  return ogImages[type];
+  return ogImages[type] || fallback;
 };

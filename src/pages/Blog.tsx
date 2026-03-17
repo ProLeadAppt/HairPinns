@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { getOGImage } from "@/lib/sitemap";
+import { generateWebPageSchema, generateBreadcrumbSchema, generateBlogItemListSchema } from "@/lib/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeaturedPost from "@/components/blog/FeaturedPost";
@@ -27,17 +29,42 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Hair Wisdom from Jena | Hair Pinns Blog - Expert Hair Care Tips</title>
+        <title>Hair Care Tips & Product Advice | Hair Pinns Blog Australia</title>
         <meta 
           name="description" 
-          content="Expert hair care advice from Jena at Hair Pinns Bangor. Learn about colour, treatments, styling, and wellness for healthy, beautiful hair." 
+          content="Expert hair care tips and product advice from Jena at Hair Pinns. Salon-quality recommendations for Australian hair. Shipped Australia-wide." 
         />
         <link rel="canonical" href="https://hairpinns.com/blog" />
+        <meta property="og:title" content="Hair Care Tips & Product Advice | Hair Pinns Blog Australia" />
+        <meta property="og:description" content="Expert hair care tips and product advice from Jena at Hair Pinns. Salon-quality recommendations for Australian hair. Shipped Australia-wide." />
+        <meta property="og:url" content="https://hairpinns.com/blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={getOGImage('blog')} />
+        <script type="application/ld+json">
+          {JSON.stringify(generateWebPageSchema({
+            name: "Hair Care Tips & Product Advice | Hair Pinns Blog",
+            description: "Expert hair care tips and product advice from Jena at Hair Pinns. Salon-quality recommendations for Australian hair. Shipped Australia-wide.",
+            url: "https://hairpinns.com/blog",
+          }))}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateBreadcrumbSchema([
+            { name: "Home", url: "https://hairpinns.com/" },
+            { name: "Blog", url: "https://hairpinns.com/blog" },
+          ]))}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateBlogItemListSchema(visiblePosts.map((p) => ({
+            name: p.title,
+            url: `https://hairpinns.com/blog/${p.slug}`,
+            datePublished: p.date,
+          }))))}
+        </script>
       </Helmet>
 
       <Header />
       
-      <main>
+      <main id="main-content">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-brand-500 via-[#773E77] to-[#5D2C5D] py-20 lg:py-28">
           <div className="absolute inset-0 opacity-10">
@@ -60,7 +87,7 @@ const Blog = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Expert tips, real advice, and honest product recommendations from Bangor's boutique salon
+              Expert tips, real advice, and honest product recommendations. Product advice for Australian hair. Shop hair care Australia-wide.
             </p>
           </div>
         </section>

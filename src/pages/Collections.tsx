@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
-import { generateStoreSchema } from "@/lib/schema";
+import { generateStoreSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { BOOK_URL } from "@/config/bookingConfig";
 import aromaganicImage from "@/assets/collections/aromaganic-collection.webp";
 import giftPacksImage from "@/assets/collections/christmas-collection.webp";
@@ -190,13 +190,13 @@ const Collections = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Professional Hair Care Collections | Hair Pinns Australia</title>
+        <title>Hair Products Australia | Hair Pinns Collections | Free Shipping Over $150</title>
         <meta 
           name="description" 
           content="Shop salon-quality hair care Australia-wide: Juuce, QIQI, Pure & Wet Brush. Daily Care, Treatments & Styling. Curated by Jena. Free shipping over $150." 
         />
         <link rel="canonical" href="https://hairpinns.com/collections" />
-        <meta property="og:title" content="Professional Hair Care Collections | Hair Pinns Australia" />
+        <meta property="og:title" content="Hair Products Australia | Hair Pinns Collections | Free Shipping" />
         <meta property="og:description" content="Salon-quality hair care products curated by Jena. Shipped Australia-wide. Juuce, QIQI, Pure, Wet Brush. Free shipping over $150." />
         <meta property="og:url" content="https://hairpinns.com/collections" />
         <meta property="og:type" content="website" />
@@ -206,11 +206,17 @@ const Collections = () => {
         <script type="application/ld+json">
           {JSON.stringify(generateStoreSchema())}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify(generateBreadcrumbSchema([
+            { name: "Home", url: "https://hairpinns.com/" },
+            { name: "Collections", url: "https://hairpinns.com/collections" },
+          ]))}
+        </script>
       </Helmet>
 
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-accent/40 via-background to-accent/30 py-20 md:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.15),transparent_50%)]" />

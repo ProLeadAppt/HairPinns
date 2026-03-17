@@ -82,20 +82,22 @@ interface HowToData {
   supply?: Array<{ name: string }>;
 }
 
+import { BUSINESS_NAP } from '@/config/businessConfig';
+
 const BASE_URL = 'https://hairpinns.com';
 const LOGO_URL = `${BASE_URL}/logo.png`;
 const SALON_ADDRESS = {
-  streetAddress: '60 Goorgool Rd',
-  addressLocality: 'Bangor',
-  addressRegion: 'NSW',
-  postalCode: '2234',
-  addressCountry: 'AU',
+  streetAddress: BUSINESS_NAP.address.street,
+  addressLocality: BUSINESS_NAP.address.locality,
+  addressRegion: BUSINESS_NAP.address.region,
+  postalCode: BUSINESS_NAP.address.postcode,
+  addressCountry: BUSINESS_NAP.address.country,
 };
 const SALON_GEO = {
   latitude: '-34.0186',
   longitude: '151.0333',
 };
-const SALON_PHONE = '+61-468-093-991';
+const SALON_PHONE = BUSINESS_NAP.phone.raw;
 
 const AREA_SERVED = [
   'Bangor',
@@ -216,6 +218,12 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
     addressRegion: 'NSW',
     addressCountry: 'AU',
   },
+  areaServed: AREA_SERVED.map((locality) => ({
+    '@type': 'City',
+    name: locality,
+    addressRegion: 'NSW',
+    addressCountry: 'AU',
+  })),
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -248,12 +256,6 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
       closes: '14:00',
     },
   ],
-  areaServed: AREA_SERVED.map((area) => ({
-    '@type': 'City',
-    name: area,
-    addressRegion: 'NSW',
-    addressCountry: 'AU',
-  })),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Hair Services',
@@ -420,6 +422,7 @@ export const generateWebPageSchema = (data: {
   description: string;
   url: string;
   breadcrumb?: BreadcrumbItem[];
+  speakable?: { cssSelector?: string[]; xPath?: string[] };
 }) => {
   const schema: any = {
     '@context': 'https://schema.org',
@@ -436,6 +439,12 @@ export const generateWebPageSchema = (data: {
   };
   if (data.breadcrumb && data.breadcrumb.length > 0) {
     schema.breadcrumb = generateBreadcrumbSchema(data.breadcrumb);
+  }
+  if (data.speakable) {
+    schema.speakable = {
+      '@type': 'SpeakableSpecification',
+      ...data.speakable,
+    };
   }
   return schema;
 };
@@ -696,6 +705,44 @@ export const generateKnowledgeGraphSchema = () => ({
     'Hair Styling',
     'Hair Care Products',
   ],
+});
+
+/**
+ * Store schema for Australia-wide online retail presence
+ * Signals national hair product retailer to search engines
+ */
+export const generateStoreSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Store',
+  '@id': `${BASE_URL}/#store`,
+  name: 'Hair Pinns',
+  description:
+    'Australia-only shipping. Australia-wide retailer of salon-quality hair care products. We ship to every state and territory. Expert curation by Jena since 2009. Free shipping over $150. Juuce, QIQI, Pure, Wet Brush and more.',
+  url: BASE_URL,
+  image: LOGO_URL,
+  areaServed: {
+    '@type': 'Country',
+    name: 'Australia',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Hair Care Products Australia',
+    itemListElement: [
+      {
+        '@type': 'OfferCatalog',
+        name: 'Hair Care Products',
+        description: 'Salon-quality hair care products curated by expert stylists, shipped Australia-wide',
+      },
+    ],
+  },
+  priceRange: '$$',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '53',
+    bestRating: '5',
+    worstRating: '1',
+  },
 });
 
 /**
@@ -974,6 +1021,11 @@ export const generateCollectionPageSchema = (collection: CollectionPageData) => 
     },
   };
 
+  schema.areaServed = {
+    '@type': 'Country',
+    name: 'Australia',
+  };
+
   if (collection.image) {
     schema.image = collection.image;
   }
@@ -1003,6 +1055,74 @@ export const generateCollectionPageSchema = (collection: CollectionPageData) => 
 
   return schema;
 };
+
+/**
+ * ItemList schema for search results page
+ * Helps search engines understand product listings
+ */
+export const generateSearchResultsItemListSchema = (data: {
+  query: string;
+  url: string;
+  items: Array<{
+    name: string;
+    url: string;
+    image?: string;
+    price?: number;
+    currency?: string;
+  }>;
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `Search results for "${data.query}"`,
+  description: `Salon-quality hair care products. Shipped Australia-wide. Free shipping over $150.`,
+  url: data.url,
+  numberOfItems: data.items.length,
+  itemListElement: data.items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Product',
+      name: item.name,
+      url: `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
+      image: item.image,
+      ...(item.price !== undefined && {
+        offers: {
+          '@type': 'Offer',
+          price: item.price,
+          priceCurrency: item.currency || 'AUD',
+          availability: 'https://schema.org/InStock',
+        },
+      }),
+    },
+  })),
+});
+
+/**
+ * ItemList schema for blog index
+ * Helps search engines understand blog post listings
+ */
+export const generateBlogItemListSchema = (items: Array<{
+  name: string;
+  url: string;
+  datePublished?: string;
+}>) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Hair Care Tips & Product Advice | Hair Pinns Blog',
+  description: 'Expert hair care tips and product advice from Jena at Hair Pinns. Salon-quality recommendations for Australian hair. Shipped Australia-wide.',
+  url: `${BASE_URL}/blog`,
+  numberOfItems: items.length,
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Article',
+      name: item.name,
+      url: item.url.startsWith('http') ? item.url : `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
+      ...(item.datePublished && { datePublished: item.datePublished }),
+    },
+  })),
+});
 
 /**
  * Enhanced LocalBusiness Schema for AEO
@@ -1042,9 +1162,10 @@ export const generatePlaceSchema = (data: {
 export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
   const baseSchema = generateLocalBusinessSchema(pageUrl);
   
-  // Add serviceArea with radius (25km covers Sutherland Shire)
+  // Add serviceArea with radius (25km covers Sutherland Shire), hasMap for GEO
   return {
     ...baseSchema,
+    hasMap: 'https://www.google.com/maps/place/Hair+Pinns+Bangor',
     serviceArea: {
       '@type': 'GeoCircle',
       geoMidpoint: {

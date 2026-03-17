@@ -32,12 +32,20 @@ const AboveFoldProducts = () => {
       try {
         const shopifyModule = await import("@/lib/shopify");
         const { getCollectionByHandle, searchProducts, getProductByHandle } = shopifyModule;
-        const { FEATURED_PRODUCT_HANDLES, BEST_SELLERS_COLLECTION_HANDLE } = await import("@/config/featuredProducts");
+        const { FEATURED_PRODUCT_HANDLES, BEST_SELLERS_COLLECTION_HANDLE, BEST_SELLERS_PRODUCT_HANDLES } = await import("@/config/featuredProducts");
 
         let productList: any[] = [];
 
-        // 1. Prefer best-sellers collection (same source as BestSellers section)
-        if (BEST_SELLERS_COLLECTION_HANDLE) {
+        // 1. Prefer BEST_SELLERS_PRODUCT_HANDLES when Jena provides the list (from analytics)
+        if (BEST_SELLERS_PRODUCT_HANDLES?.length > 0) {
+          const results = await Promise.all(
+            BEST_SELLERS_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
+          );
+          productList = results.filter((p) => p?.handle && p?.availableForSale);
+        }
+
+        // 2. Fallback: best-sellers collection (same source as BestSellers section)
+        if (productList.length === 0 && BEST_SELLERS_COLLECTION_HANDLE) {
           try {
             const collection = await getCollectionByHandle(BEST_SELLERS_COLLECTION_HANDLE);
             if (collection?.products?.edges?.length) {
@@ -51,7 +59,7 @@ const AboveFoldProducts = () => {
           }
         }
 
-        // 2. Fallback: featured product handles when configured
+        // 3. Fallback: featured product handles when configured
         if (productList.length === 0 && FEATURED_PRODUCT_HANDLES.length > 0) {
           const results = await Promise.all(
             FEATURED_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
@@ -59,7 +67,7 @@ const AboveFoldProducts = () => {
           productList = results.filter(Boolean).filter((p: any) => p.handle);
         }
 
-        // 3. Fallback: search all products
+        // 4. Fallback: search all products
         if (productList.length === 0) {
           const result = await searchProducts("", 20);
           productList = (result?.products || []).filter((p: any) => p.handle);

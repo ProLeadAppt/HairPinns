@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { MapPin, Home, Calendar } from "lucide-react";
+import { MapPin, Home, Calendar, ShoppingBag } from "lucide-react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 /**
@@ -16,9 +16,9 @@ const InvalidSuburb = () => {
   const popularSuburbs = [
     { name: "Bangor", slug: "bangor" },
     { name: "Menai", slug: "menai" },
-    { name: "Illawong", slug: "illawong" },
     { name: "Sutherland", slug: "sutherland" },
-    { name: "Engadine", slug: "engadine" },
+    { name: "Cronulla", slug: "cronulla" },
+    { name: "Sydney", slug: "sydney" },
     { name: "Miranda", slug: "miranda" },
   ];
 
@@ -68,6 +68,13 @@ const InvalidSuburb = () => {
                 <Link to="/">
                   <Home className="w-5 h-5 mr-2" />
                   Back to Home
+                </Link>
+              </Button>
+              
+              <Button size="lg" variant="accent" asChild>
+                <Link to="/collections">
+                  <ShoppingBag className="w-5 h-5 mr-2" />
+                  Shop Hair Products
                 </Link>
               </Button>
               
