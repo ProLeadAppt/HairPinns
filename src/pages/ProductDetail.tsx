@@ -66,11 +66,10 @@ const ProductDetail = () => {
         if (!isMounted) return;
 
         if (productData) {
-          // Validate product has required structure - treat malformed data as not found
-          const hasImages = productData.images?.edges?.length > 0;
+          // Products must have at least one variant to be purchasable
           const hasVariants = productData.variants?.edges?.length > 0;
-          if (!hasImages || !hasVariants) {
-            console.warn("Product data malformed (missing images or variants):", productData.handle);
+          if (!hasVariants) {
+            console.warn("Product has no variants (not purchasable):", productData.handle);
             setProduct(null);
             setLoading(false);
             return;
@@ -157,21 +156,31 @@ const ProductDetail = () => {
     
     try {
       const existingCartId = getCartId();
-      
-      // Call Edge Function to add to cart
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
-          ...(existingCartId && { cartId: existingCartId }),
-        }),
-      });
-      
-      if (!response.ok) {
+
+      // Call Edge Function to add to cart (retry once without cart ID if stale)
+      let response: Response | null = null;
+      let useCartId = existingCartId;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        response = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
+            ...(useCartId && { cartId: useCartId }),
+          }),
+        });
+        if (response.ok) break;
+        // If cart ID is stale, retry with a fresh cart
+        if (attempt === 0 && existingCartId) {
+          useCartId = null;
+          localStorage.removeItem('hp_cart_id');
+        }
+      }
+
+      if (!response || !response.ok) {
         throw new Error('Failed to add to cart');
       }
-      
+
       const { checkoutUrl, cartId } = await response.json();
       
       // Store cart ID for future additions
@@ -181,8 +190,8 @@ const ProductDetail = () => {
       
       // Track add_to_cart to GHL and cart abandonment
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
-      const price = activeVariant ? parseFloat(activeVariant.price?.amount || activeVariant.priceV2?.amount || "0") : 0;
-      
+      const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
+
       // Track funnel step: intent
       trackFunnelStep("intent", {
         product_id: product.id,
@@ -234,8 +243,8 @@ const ProductDetail = () => {
     try {
       // Track add_to_cart
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
-      const price = activeVariant ? parseFloat(activeVariant.price?.amount || activeVariant.priceV2?.amount || "0") : 0;
-      
+      const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
+
       trackAddToCart({
         product_id: product.id,
         title: product.title,
@@ -255,18 +264,30 @@ const ProductDetail = () => {
       // Call server-side checkout endpoint with redirect=true
       // The server will create/update cart and redirect to Shopify checkout
       const existingCartId = getCartId();
-      const body = {
-        lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
-        ...(existingCartId && { cartId: existingCartId }),
-      };
-      
-      // Use the Edge Function which will handle the redirect
-      const response = await fetch('/api/checkout?redirect=true', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      
+      let useCartId = existingCartId;
+
+      // Retry once without cart ID if stale
+      let response: Response | null = null;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        response = await fetch('/api/checkout?redirect=true', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
+            ...(useCartId && { cartId: useCartId }),
+          }),
+        });
+        if (response.ok || response.redirected || response.status === 303) break;
+        if (attempt === 0 && existingCartId) {
+          useCartId = null;
+          localStorage.removeItem('hp_cart_id');
+        }
+      }
+
+      if (!response) {
+        throw new Error('Checkout failed');
+      }
+
       // If redirect fails, follow the redirect manually
       if (response.redirected) {
         window.location.href = response.url;
@@ -346,11 +367,13 @@ const ProductDetail = () => {
   const variantEdges = product.variants?.edges ?? [];
   let activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
   if (!activeVariant && variantEdges.length > 0) {
-    activeVariant = variantEdges[0]?.node;
+    // Selected variant no longer exists - prefer first available variant
+    const firstAvailable = variantEdges.find((e: any) => e.node.availableForSale)?.node || variantEdges[0]?.node;
+    activeVariant = firstAvailable;
   }
-  const price = activeVariant ? parseFloat(activeVariant.price?.amount || activeVariant.priceV2?.amount || "0") : parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
-  const compareAtPrice = activeVariant?.compareAtPrice?.amount || activeVariant?.compareAtPriceV2?.amount
-    ? parseFloat(activeVariant.compareAtPrice?.amount || activeVariant.compareAtPriceV2?.amount || "0")
+  const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
+  const compareAtPrice = activeVariant?.compareAtPrice?.amount
+    ? parseFloat(activeVariant.compareAtPrice.amount)
     : null;
   const isAvailable = activeVariant?.availableForSale ?? false;
 
@@ -408,7 +431,7 @@ const ProductDetail = () => {
                 description: product.description || `${product.title} - Salon-quality hair care product from Hair Pinns`,
                 image: imageUrls.length > 0 ? imageUrls : [getOGImage('product')],
                 price: (Number.isFinite(price) ? price : 0).toString(),
-                currency: activeVariant?.price?.currencyCode || activeVariant?.priceV2?.currencyCode || "AUD",
+                currency: activeVariant?.price?.currencyCode || "AUD",
                 brand: "Hair Pinns",
                 sku: activeVariant?.sku || product.id?.split("/")?.pop() || product.handle || "",
                 productID: product.id,

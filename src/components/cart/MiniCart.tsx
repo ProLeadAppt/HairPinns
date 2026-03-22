@@ -34,22 +34,32 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
     if (open && cartId) {
       setCartLoading(true);
       setCartError(null);
-      getCart(cartId)
-        .then((data) => {
+
+      const fetchCart = async () => {
+        try {
+          let data = await getCart(cartId);
+          if (!data) {
+            // Retry once - Shopify carts can be temporarily unavailable
+            await new Promise(r => setTimeout(r, 1000));
+            data = await getCart(cartId);
+          }
           if (data) {
             setCart(data);
           } else {
-            setCartError("Your cart has expired");
+            setCartError("Your cart has expired. Please add items again.");
             setCart(null);
             clearCartId();
           }
-        })
-        .catch((err) => {
+        } catch (err) {
           console.error("Failed to fetch cart:", err);
-          setCartError("Could not load cart");
+          setCartError("Could not load cart. Please try again.");
           setCart(null);
-        })
-        .finally(() => setCartLoading(false));
+        } finally {
+          setCartLoading(false);
+        }
+      };
+
+      fetchCart();
     } else {
       setCart(null);
       setCartError(null);
@@ -228,8 +238,8 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
               {cart.lines.edges.map((edge: any) => {
                 const node = edge.node;
                 const merch = node.merchandise;
-                const price = parseFloat(merch?.price?.amount || merch?.priceV2?.amount || "0");
-                const currency = merch?.price?.currencyCode || merch?.priceV2?.currencyCode || "AUD";
+                const price = parseFloat(merch?.price?.amount || "0");
+                const currency = merch?.price?.currencyCode || "AUD";
                 return (
                   <div
                     key={node.id}

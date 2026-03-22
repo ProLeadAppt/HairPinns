@@ -77,7 +77,7 @@ async function cartCreate(lines) {
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
+                    price {
                       amount
                       currencyCode
                     }
@@ -148,7 +148,7 @@ async function cartLinesAdd(cartId, lines) {
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
+                    price {
                       amount
                       currencyCode
                     }
@@ -212,7 +212,7 @@ async function cartLinesRemove(cartId, lineIds) {
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
+                    price {
                       amount
                       currencyCode
                     }

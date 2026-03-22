@@ -33,13 +33,13 @@ const FrequentlyBoughtTogether = ({
         if (productData) {
           const firstImage = productData.images?.edges?.[0]?.node;
           const firstVariant = productData.variants?.edges?.[0]?.node;
-          const price = parseFloat(firstVariant?.price?.amount || firstVariant?.priceV2?.amount || "0");
+          const price = parseFloat(firstVariant?.price?.amount || "0");
           setCurrentProduct({
             id: productData.id,
             slug: productData.handle,
             title: productData.title,
             price: price,
-            currency: firstVariant?.price?.currencyCode || firstVariant?.priceV2?.currencyCode || "AUD",
+            currency: firstVariant?.price?.currencyCode || "AUD",
             image: firstImage?.url || "/placeholder.svg",
           });
         }

@@ -64,7 +64,7 @@ async function cartCreate(lines: Array<{ merchandiseId: string; quantity: number
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
+                    price {
                       amount
                       currencyCode
                     }
@@ -135,7 +135,7 @@ async function cartLinesAdd(cartId: string, lines: Array<{ merchandiseId: string
                   ... on ProductVariant {
                     id
                     title
-                    priceV2 {
+                    price {
                       amount
                       currencyCode
                     }
