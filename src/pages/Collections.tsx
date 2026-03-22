@@ -13,18 +13,7 @@ import { Search } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { generateStoreSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { BOOK_URL } from "@/config/bookingConfig";
-import aromaganicImage from "@/assets/collections/aromaganic-collection.webp";
-import giftPacksImage from "@/assets/collections/christmas-collection.webp";
-import clearanceImage from "@/assets/collections/clearance-collection.webp";
-import accessoriesImage from "@/assets/collections/accessories-collection.webp";
-import islandVibesImage from "@/assets/collections/island-vibes-collection.webp";
-import juuceImage from "@/assets/collections/juuce-collection.webp";
-import poppetLocksImage from "@/assets/collections/poppet-locks-collection.webp";
-import pureOrganicImage from "@/assets/collections/pure-organic-collection.webp";
-import qiqiImage from "@/assets/collections/qiqi-collection.webp";
-import perfectPonyImage from "@/assets/collections/perfect-pony-collection.webp";
-import wetBrushImage from "@/assets/collections/wet-brush-collection.webp";
-// AI blog hero images removed — these collections now use Shopify's own images via fallback
+// All local collection images removed — using Shopify's own collection images and first product images
 
 interface ShopifyCollection {
   id: string;
@@ -36,7 +25,7 @@ interface ShopifyCollection {
     altText?: string;
   };
   products: {
-    edges: Array<{ node: { id: string } }>;
+    edges: Array<{ node: { id: string; images?: { edges: Array<{ node: { url: string; altText?: string } }> } } }>;
   };
 }
 
@@ -47,26 +36,15 @@ const Collections = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("default");
 
-  const getCollectionImage = (handle: string, title: string, shopifyImage?: string) => {
-    // Prefer local mapping when we have one - ensures unique images per collection (avoids Shopify duplicates)
-    const searchText = `${handle} ${title}`.toLowerCase();
-    
-    if (searchText.includes('juuce') || searchText.includes('botanical')) return juuceImage;
-    if (searchText.includes('aromaganic') || searchText.includes('colour')) return aromaganicImage;
-    if (searchText.includes('pure') || searchText.includes('certified') || searchText.includes('organic')) return pureOrganicImage;
-    if (searchText.includes('island') || searchText.includes('vibes') || searchText.includes('tan')) return islandVibesImage;
-    if (searchText.includes('accessories') || searchText.includes('hair pinns accessories')) return accessoriesImage;
-    if (searchText.includes('wet brush') || searchText.includes('detangler')) return wetBrushImage;
-    if (searchText.includes('poppet') || searchText.includes('locks') || searchText.includes('ponytail') || searchText.includes('extension')) return poppetLocksImage;
-    if (searchText.includes('qiqi')) return qiqiImage;
-    if (searchText.includes('perfect pony') || searchText.includes('perfect-pony')) return perfectPonyImage;
-    if (searchText.includes('gift')) return giftPacksImage;
-    if (searchText.includes('clearance') || searchText.includes('sale') || searchText.includes('aisle')) return clearanceImage;
-
-    // Theme collections (blonde, curly, frizz, volume, heat, best sellers) use Shopify images
-    // Use Shopify image if available, otherwise fallback
-    if (shopifyImage) return shopifyImage;
-    return accessoriesImage; // fallback - use accessories to avoid repeating juuce
+  const getCollectionImage = (collection: ShopifyCollection) => {
+    // Use Shopify collection image if available
+    if (collection.image?.url) return collection.image.url;
+    // Fall back to first product's image
+    const firstProduct = collection.products?.edges?.[0]?.node;
+    const firstProductImage = firstProduct?.images?.edges?.[0]?.node?.url;
+    if (firstProductImage) return firstProductImage;
+    // Final fallback
+    return "/placeholder.svg";
   };
 
   // Define the exact order from the live site
@@ -309,7 +287,7 @@ const Collections = () => {
                     {/* Image Container */}
                     <div className="aspect-[4/3] relative overflow-hidden bg-muted">
                       <img
-                        src={getCollectionImage(collection.handle, collection.title, collection.image?.url)}
+                        src={getCollectionImage(collection)}
                         alt={collection.image?.altText || collection.title}
                         className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-slow"
                         loading="lazy"

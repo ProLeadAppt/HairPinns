@@ -542,6 +542,14 @@ export async function getAllCollections(first: number = 20) {
               edges {
                 node {
                   id
+                  images(first: 1) {
+                    edges {
+                      node {
+                        url
+                        altText
+                      }
+                    }
+                  }
                 }
               }
             }
