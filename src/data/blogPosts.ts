@@ -1,16 +1,17 @@
-import juuce037 from "@/assets/Juuce-037.webp";
-import juuce038 from "@/assets/Juuce-038.webp";
-import juuce050 from "@/assets/Juuce-050.webp";
-import juuce064 from "@/assets/Juuce-064.webp";
-import juuce091 from "@/assets/Juuce-091.webp";
-import juuce118 from "@/assets/Juuce-118.webp";
-import juuce119 from "@/assets/Juuce-119.webp";
-import juuce120 from "@/assets/Juuce-120.webp";
-import accessories016 from "@/assets/Accessories-016.webp";
-import aromaganicShampoo from "@/assets/Aromaganic_Organic_Shampoo_Conditoner.webp";
-import img0133 from "@/assets/IMG_0133.webp";
-import img0136 from "@/assets/IMG_0136.webp";
-import bamchaTowel from "@/assets/bamcha-soft-towel_334e8501-1c00-4ca2-baac-6150ea3aeaa2.webp";
+// All blog hero images now use Shopify CDN URLs — same real product photos as the store
+const juuce037 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-037.jpg?v=1744178272";
+const juuce038 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-038.jpg?v=1744178300";
+const juuce050 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-050.jpg?v=1744178399";
+const juuce064 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-064.jpg?v=1744178553";
+const juuce091 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587";
+const juuce118 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560";
+const juuce119 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697";
+const juuce120 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-120.jpg?v=1747030506";
+const accessories016 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998";
+const aromaganicShampoo = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807";
+const img0133 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-042.jpg?v=1744250283";
+const img0136 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-043.jpg?v=1744250210";
+const bamchaTowel = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/1FB984E5-CDC3-4326-A645-C1F8B79F57FE.jpg?v=1746873506";
 
 export interface BlogPost {
   slug: string;
