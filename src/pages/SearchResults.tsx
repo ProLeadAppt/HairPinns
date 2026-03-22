@@ -97,8 +97,8 @@ const SearchResults = () => {
           name="description"
           content={
             query
-              ? `Find ${query} and more salon-quality hair care products. Shipped Australia-wide. Free shipping over $150.`
-              : "Search salon-quality hair care products. Shipped Australia-wide. Free shipping over $150."
+              ? `Find ${query} and more hair care products. Shipped Australia-wide. Free shipping over $150.`
+              : "Search hair care products. Shipped Australia-wide. Free shipping over $150."
           }
         />
         <link rel="canonical" href={canonicalUrl} />

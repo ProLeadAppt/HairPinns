@@ -77,7 +77,7 @@ const Blog = () => {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white font-semibold text-sm mb-6">
               <Sparkles className="w-4 h-4" />
-              Hair Wisdom from Jena
+              Tips from Jena
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight">
@@ -162,7 +162,7 @@ const Blog = () => {
               Want Expert Hair Advice in Person?
             </h2>
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Book a personalised consultation with Jena at Hair Pinns Bangor
+              Book a consultation with Jena at Hair Pinns Bangor
             </p>
             <a 
               href={BOOK_URL}

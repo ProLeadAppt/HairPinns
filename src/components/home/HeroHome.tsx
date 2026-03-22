@@ -196,7 +196,7 @@ const HeroHome = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="Hair Pinns - Premium hair care products from Jena's boutique salon in Bangor, shipped Australia-wide"
+          alt="Hair Pinns - Salon hair care from Jena in Bangor, shipped Australia-wide"
           className="w-full h-full object-cover object-[65%_center] brightness-[0.92]"
           loading="eager"
           fetchPriority="high"

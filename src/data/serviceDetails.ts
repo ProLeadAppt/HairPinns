@@ -34,11 +34,11 @@ export const serviceDetailData: ServiceCategoryData[] = [
         slug: "mid-length-straight-up-smoothing",
         title: "Mid-Length Straight Up Smoothing Treatment",
         tagline: "Natural hair smoothing that lasts for months",
-        quickAnswer: "The Mid-Length Straight Up Smoothing treatment is a natural, eco-friendly hair smoothing service that transforms frizzy hair into sleek, manageable results lasting 3–5 months. It includes deep cleansing, treatment application, heat activation, and professional blow-dry.",
+        quickAnswer: "The Mid-Length Straight Up Smoothing treatment is a natural, eco-friendly hair smoothing service that turns frizzy hair into sleek, manageable results lasting 3–5 months. It includes deep cleansing, treatment application, heat activation, and professional blow-dry.",
         duration: "2h 20min",
         price: "A$ 324",
-        description: "Transform frizzy, unmanageable hair into sleek, smooth perfection with our mid-length Straight Up Smoothing treatment. This natural, eco-friendly treatment delivers salon-smooth results that last for months.",
-        metaDescription: "Mid-length Straight Up Smoothing treatment in Bangor. Natural hair smoothing, 2h 20min, $324. Book your transformation with Jena at Hair Pinns.",
+        description: "Turn frizzy, unmanageable hair into sleek, smooth hair with our mid-length Straight Up Smoothing treatment. This natural, eco-friendly treatment delivers salon-smooth results that last for months.",
+        metaDescription: "Mid-length Straight Up Smoothing treatment in Bangor. Natural hair smoothing, 2h 20min, $324. Book your appointment with Jena at Hair Pinns.",
         whatsIncluded: [
           "Deep cleansing hair wash",
           "Natural smoothing treatment application",
@@ -105,7 +105,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         quickAnswer: "The Long/Thick Straight Up Smoothing treatment is designed for hair past shoulders or dense texture, delivering exceptional frizz reduction and lasting smoothness for 3–5 months. It uses extended application time and professional heat sealing for complete coverage.",
         duration: "2h 20min",
         price: "A$ 349",
-        description: "Specially designed for long or thick hair, this premium Straight Up Smoothing treatment delivers exceptional smoothing results that transform your hair from unruly to beautifully manageable.",
+        description: "Specially designed for long or thick hair, this Straight Up Smoothing treatment delivers exceptional smoothing results that transform your hair from unruly to beautifully manageable.",
         metaDescription: "Long/thick hair Straight Up Smoothing in Bangor. Natural smoothing for thick or long hair, 2h 20min, $349. Book at Hair Pinns NSW.",
         whatsIncluded: [
           "Extended treatment time for thorough coverage",
@@ -132,7 +132,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           },
           {
             step: "Heat Sealing & Styling",
-            description: "Professional straightening seals in the treatment, followed by a beautiful blow-dry to showcase your transformation."
+            description: "Professional straightening seals in the treatment, followed by a beautiful blow-dry to show off the results."
           }
         ],
         benefits: [

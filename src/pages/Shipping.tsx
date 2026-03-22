@@ -41,7 +41,7 @@ const Shipping = () => {
           <SectionHeader title="Shipping Policy" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-foreground leading-relaxed mb-6">
-              At Hair Pinns, we strive to get your professional hair care products to you 
+              At Hair Pinns, we get your hair care products to you 
               as quickly and safely as possible.
             </p>
 

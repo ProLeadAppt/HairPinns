@@ -94,7 +94,7 @@ const SuburbPage = () => {
     "@id": "https://hairpinns.com/#hairsalon",
     "name": "Hair Pinns",
     "image": "https://hairpinns.com/logo.png",
-    "description": `Boutique hair salon serving ${suburbData.name} with expert Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling.`,
+    "description": `Boutique hair salon serving ${suburbData.name} with Colour & Blonding, Smoothing Treatments, and Cuts & Styling.`,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": BUSINESS_NAP.address.street,
@@ -141,21 +141,21 @@ const SuburbPage = () => {
     {
       icon: Palette,
       title: "Colour & Blonding",
-      description: "From balayage to full colour transformations, we specialize in creating dimensional, natural-looking colour that suits Sydney's climate.",
+      description: "From balayage to full colour transformations, we create dimensional, natural-looking colour that suits Sydney's climate.",
       link: "/services#foil-packages",
       detailLink: "/services/foil-packages/full-head-foils-package"
     },
     {
       icon: Sparkles,
       title: "Smoothing & Treatments",
-      description: "Professional keratin smoothing and deep conditioning treatments designed to combat frizz and restore shine in humid conditions.",
+      description: "Keratin smoothing and deep conditioning to tackle frizz and restore shine in humid conditions.",
       link: "/services#smoothing",
       detailLink: "/services/smoothing/mid-length-straight-up-smoothing"
     },
     {
       icon: Scissors,
       title: "Cuts & Styling",
-      description: "Precision cuts and expert styling tailored to your face shape, hair texture, and lifestyle for easy maintenance at home.",
+      description: "Cuts and styling tailored to your face shape, hair texture, and lifestyle for easy maintenance at home.",
       link: "/services#cut-packages",
       detailLink: "/services/cut-packages/mid-length-wash-cut-blowdry"
     }
@@ -336,7 +336,7 @@ const SuburbPage = () => {
                   Our Expert Services
                 </h2>
                 <p className="text-lg text-foreground max-w-2xl mx-auto">
-                  Specializing in services designed for Sydney's unique climate and your lifestyle
+                  Services designed for Sydney's unique climate and your lifestyle
                 </p>
               </div>
               <div className="grid md:grid-cols-3 gap-8">
@@ -437,7 +437,7 @@ const SuburbPage = () => {
           <section className="bg-gradient-to-br from-brand-500 via-brand-600 to-accent text-white py-16 md:py-20">
             <div className="container-custom text-center">
               <h2 className="text-h2-lg font-heading mb-6">
-                Ready to transform your hair?
+                Ready to book in?
               </h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
                 Book your appointment now or explore our featured products for at-home care

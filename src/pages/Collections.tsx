@@ -182,7 +182,7 @@ const Collections = () => {
         <title>Hair Products Australia | Hair Pinns Collections | Free Shipping Over $150</title>
         <meta 
           name="description" 
-          content="Shop salon-quality hair care Australia-wide: Juuce, QIQI, Pure & Wet Brush. Daily Care, Treatments & Styling. Curated by Jena. Free shipping over $150." 
+          content="Shop salon-quality hair care Australia-wide: Juuce, QIQI, Pure & Wet Brush. Daily Care, Treatments & Styling. From Jena's salon. Free shipping over $150." 
         />
         <link rel="canonical" href="https://hairpinns.com/collections" />
         <meta property="og:title" content="Hair Products Australia | Hair Pinns Collections | Free Shipping" />
@@ -219,7 +219,7 @@ const Collections = () => {
                   Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150.
                 </p>
                 <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                  Explore our curated collections: Juuce, QIQI, Pure, Wet Brush. From daily essentials to special treatments, find everything you need for healthy, beautiful hair.
+                  Explore our curated collections: Juuce, QIQI, Pure, Wet Brush. From daily essentials to special treatments, everything you need for healthy, beautiful hair.
                 </p>
               </div>
             </div>

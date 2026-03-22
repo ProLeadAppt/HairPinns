@@ -158,7 +158,7 @@ const Contact = () => {
       <main id="main-content" className="flex-grow">
         {/* Hero Section */}
         <Section className="pt-xl pb-lg">
-          <SectionHeader title="Visit Hair Pinns Bangor" subtitle="Your Sutherland Shire hair specialists—easy parking, warm welcome, honest care." />
+          <SectionHeader title="Visit Hair Pinns Bangor" subtitle="Easy parking, friendly welcome, honest service." />
         </Section>
 
         {/* NAP Block & Map */}

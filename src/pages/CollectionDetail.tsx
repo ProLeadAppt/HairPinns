@@ -375,7 +375,7 @@ const CollectionDetail = () => {
                   <h3 className="font-semibold text-heading">Salon Quality</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Professional-grade products curated by Jena with 15+ years of experience
+                  Products I use in my salon and recommend to clients
                 </p>
               </div>
               <div className="bg-card/50 rounded-lg p-4 border border-border">
@@ -384,7 +384,7 @@ const CollectionDetail = () => {
                   <h3 className="font-semibold text-heading">Expert Curation</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Every product handpicked and tested for quality and results
+                  Products I use myself and test in the salon
                 </p>
               </div>
               <div className="bg-card/50 rounded-lg p-4 border border-border">

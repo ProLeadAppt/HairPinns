@@ -488,7 +488,7 @@ const Services = () => {
     <div className="min-h-screen bg-bg">
       <Helmet>
         <title>Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns</title>
-        <meta name="description" content="Expert salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Exact pricing and timings as listed in our booking system." />
+        <meta name="description" content="Expert salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Prices and times are exactly what you'll see when you book." />
         <link rel="canonical" href="https://hairpinns.com/services" />
         <meta property="og:title" content="Hair Services Bangor | Colour, Smoothing & Cuts" />
         <meta property="og:description" content="Expert salon services with transparent pricing. Book online now via Fresha." />
@@ -528,7 +528,7 @@ const Services = () => {
               Services & Packages
             </h1>
             <p className="text-lg text-foreground leading-relaxed" style={{ lineHeight: '1.5' }}>
-              Exact pricing and timings as listed in our booking system.
+              Prices and times are exactly what you'll see when you book.
             </p>
           </div>
         </section>

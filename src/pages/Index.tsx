@@ -69,11 +69,11 @@ const Index = () => {
   const faqSchema = generateFAQPageSchema([
     {
       question: "Do you ship products Australia-wide?",
-      answer: "Yes! We ship premium hair care products Australia-wide with free shipping on orders over $150. All products are salon-quality, curated by Jena with 15+ years of experience.",
+      answer: "Yes! We ship hair care products Australia-wide with free shipping on orders over $150. Everything is handpicked by Jena from her 15+ years in the salon.",
     },
     {
       question: "Where can I buy salon hair products in Australia?",
-      answer: "Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more.",
+      answer: "Hair Pinns ships salon hair care Australia-wide. Free shipping over $150. Handpicked by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more.",
     },
     {
       question: "Do you ship internationally?",
@@ -81,7 +81,7 @@ const Index = () => {
     },
     {
       question: "What makes Hair Pinns products different?",
-      answer: "Every product is handpicked by Jena, a salon owner with 15+ years of experience since 2009. We only stock salon-quality, professional-grade products that deliver real results - no supermarket quality items.",
+      answer: "Every product is handpicked by Jena, who's been running her salon since 2009. She only stocks products that actually work — nothing from the supermarket aisle.",
     },
     {
       question: "Do you offer returns?",
@@ -89,24 +89,24 @@ const Index = () => {
     },
     {
       question: "Where is Hair Pinns salon located?",
-      answer: "Our boutique salon is located at 60 Goorgool Road, Bangor NSW 2234. We serve clients from across Sutherland Shire including Menai, Illawong, Sutherland, Kirrawee, and surrounding suburbs.",
+      answer: "We're at 60 Goorgool Road, Bangor NSW 2234. We see clients from across the Shire — Menai, Illawong, Sutherland, Kirrawee, and surrounding suburbs.",
     },
     {
       question: "Can I book an appointment online?",
-      answer: "Yes! You can book your appointment 24/7 via Fresha. We offer expert colour, smoothing treatments, precision cuts, and styling services. With 762+ five-star reviews, we're trusted by thousands.",
+      answer: "Yes! Book any time via Fresha. We do colour, smoothing treatments, cuts, and styling. With 762+ five-star reviews, people keep coming back.",
     },
   ]);
 
   return (
     <div className="min-h-screen bg-background font-sans">
       <Helmet>
-        <title>Australia's Expert-Curated Hair Care | Hair Pinns | Free Shipping Over $150</title>
+        <title>Hair Pinns | Salon Hair Care | Free Shipping Over $150</title>
         <meta 
           name="description" 
           content="Hair care handpicked by Jena. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire."
         />
         <link rel="canonical" href="https://hairpinns.com" />
-        <meta property="og:title" content="Premium Hair Care Products | Hair Pinns | Australia-Wide Shipping" />
+        <meta property="og:title" content="Hair Pinns | Salon Hair Care | Australia-Wide Shipping" />
         <meta property="og:description" content="Hair care handpicked by Jena. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire." />
         <meta property="og:url" content="https://hairpinns.com" />
         <meta property="og:type" content="website" />
@@ -328,7 +328,7 @@ const Index = () => {
                 Frequently Asked Questions
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Everything you need to know about shopping with Hair Pinns
+                Common questions we get asked
               </p>
             </div>
             
@@ -338,7 +338,7 @@ const Index = () => {
                   Do you ship products Australia-wide?
                 </summary>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
-                  Yes! We ship premium hair care products Australia-wide with free shipping on orders over $150. All products are salon-quality, curated by Jena with 15+ years of experience.
+                  Yes! We ship hair care products Australia-wide with free shipping on orders over $150. Everything is handpicked by Jena from her 15+ years in the salon.
                 </p>
               </details>
               
@@ -347,7 +347,7 @@ const Index = () => {
                   Where can I buy salon hair products in Australia?
                 </summary>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
-                  Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more.
+                  Hair Pinns ships salon hair care Australia-wide. Free shipping over $150. Handpicked by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more.
                 </p>
               </details>
 
@@ -365,7 +365,7 @@ const Index = () => {
                   What makes Hair Pinns products different?
                 </summary>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
-                  Every product is handpicked by Jena, a salon owner with 15+ years of experience since 2009. We only stock salon-quality, professional-grade products that deliver real results - no supermarket quality items.
+                  Every product is handpicked by Jena, who's been running her salon since 2009. She only stocks products that actually work — nothing from the supermarket aisle.
                 </p>
               </details>
               
@@ -392,7 +392,7 @@ const Index = () => {
                   Are your products salon-quality?
                 </summary>
                 <p className="text-muted-foreground mt-3 leading-relaxed">
-                  Absolutely! Every product in our collection is professional-grade, the same quality you'd find in top salons. Jena personally tests and approves every product before it's added to our store.
+                  Yep! Everything we stock is salon-quality — the same stuff Jena uses on her clients. She tests every product herself before adding it to the store.
                 </p>
               </details>
             </div>

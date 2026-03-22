@@ -1,32 +1,16 @@
-import straightUpHero from "@/assets/blog/straight-up-smoothing-hero-1920w.webp";
-import lamellarPack from "@/assets/blog/lamellar-vitality-pack.webp";
-import shampooHero from "@/assets/blog/shampoo-replacement-hero-1920w.webp";
-import saunaRoom from "@/assets/blog/infrared-sauna-room.webp";
-import hotTowel from "@/assets/blog/hot-towel-treatment.webp";
-import qiqiOil from "@/assets/blog/qiqi-bare-repair-oil.webp";
-import pureEnds from "@/assets/blog/pure-precious-ends.webp";
-import hairspray from "@/assets/blog/juuce-hairspray-collection.webp";
-import wetBrush from "@/assets/blog/wet-brush-collection.webp";
-import saunaInterior from "@/assets/blog/infrared-sauna-interior.webp";
-import qiqiComparison from "@/assets/blog/qiqi-vega-comparison.webp";
-import hydrationBundle from "@/assets/blog/hydration-bundle.webp";
-import walnutScrub from "@/assets/blog/walnut-scrub-hero-1920w.webp";
-import winterHero from "@/assets/blog/winter-hair-care.webp";
-import lamellarRange from "@/assets/blog/lamellar-vitality-range.webp";
-import heatProtection from "@/assets/blog/heat-protection-products.webp";
-import wetBrushGlitter from "@/assets/blog/wet-brush-glitter.webp";
-import juuceQuiz from "@/assets/blog/juuce-quiz-hero-1920w.webp";
-import saunaExperience from "@/assets/blog/infrared-sauna-experience.webp";
-import salonVsSupermarket from "@/assets/blog/salon-vs-supermarket.webp";
-import saunaExterior from "@/assets/blog/infrared-sauna-exterior.webp";
-import heatProtectionLifestyle from "@/assets/blog/heat-protection-lifestyle.webp";
-import jenaProducts from "@/assets/blog/jena-products.webp";
-import frizzFreeHero from "@/assets/blog/frizz-free-hero-1920w.webp";
-import jenaWorking from "@/assets/blog/jena-working.webp";
-import juuceTreatments from "@/assets/blog/juuce-treatments.webp";
-import leaveInProducts from "@/assets/blog/leave-in-products.webp";
-import welcomeHero from "@/assets/blog/welcome-hero-1920w.webp";
-import qiqiExplorationSet from "@/assets/blog/qiqi-exploration-set.webp";
+import juuce037 from "@/assets/Juuce-037.webp";
+import juuce038 from "@/assets/Juuce-038.webp";
+import juuce050 from "@/assets/Juuce-050.webp";
+import juuce064 from "@/assets/Juuce-064.webp";
+import juuce091 from "@/assets/Juuce-091.webp";
+import juuce118 from "@/assets/Juuce-118.webp";
+import juuce119 from "@/assets/Juuce-119.webp";
+import juuce120 from "@/assets/Juuce-120.webp";
+import accessories016 from "@/assets/Accessories-016.webp";
+import aromaganicShampoo from "@/assets/Aromaganic_Organic_Shampoo_Conditoner.webp";
+import img0133 from "@/assets/IMG_0133.webp";
+import img0136 from "@/assets/IMG_0136.webp";
+import bamchaTowel from "@/assets/bamcha-soft-towel_334e8501-1c00-4ca2-baac-6150ea3aeaa2.webp";
 
 export interface BlogPost {
   slug: string;
@@ -69,15 +53,15 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "best-hair-products-australia-2025",
-    title: "Best Hair Products Australia 2025: Expert Picks from Jena",
-    excerpt: "Jena's top salon-quality hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia—shipped nationwide.",
+    title: "Best Hair Products Australia 2025: Jena's Top Picks",
+    excerpt: "Jena's top hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia—shipped nationwide.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "6 min read",
-    image: jenaProducts,
+    image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "After 15+ years in the industry, I've seen what works—and what doesn't. Here are my top hair product picks for 2025: the best salon-quality formulas available in Australia, chosen for real results, not hype.",
+      introduction: "After 15+ years in the salon, I've seen what works—and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
       sections: [
         {
           heading: "Best for Bond Repair & Damage",
@@ -101,7 +85,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Where to Buy These in Australia",
-          content: "All of these products are available at Hair Pinns—curated by me, shipped Australia-wide. Free shipping on orders over $150. Every product is one I use in the salon or recommend to clients. Not sure what's right for you? Take the Juuce Hair Quiz or call Sam for personalised advice."
+          content: "All of these products are available at Hair Pinns—I use them in the salon and recommend them to clients, shipped Australia-wide. Free shipping on orders over $150. Not sure what's right for you? Take the Juuce Hair Quiz or call Sam for personalised advice."
         }
       ],
       productModule: {
@@ -123,11 +107,11 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "where-to-buy-salon-hair-products-australia",
     title: "Where to Buy Salon Hair Products in Australia",
-    excerpt: "Looking for professional hair care you can trust? Here's your guide to buying salon-quality hair products in Australia—from expert curation to Australia-wide shipping.",
+    excerpt: "Looking for professional hair care you can trust? Here's your guide to buying salon-quality hair products in Australia—handpicked and shipped Australia-wide.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "4 min read",
-    image: jenaProducts,
+    image: juuce118,
     author: "Jena Pinn",
     content: {
       introduction: "You've had that salon-fresh feeling and want to keep it at home. But where do you actually buy professional hair products in Australia? Supermarkets don't cut it—you need salon-grade formulas. Here's your guide to finding the best hair care Australia-wide.",
@@ -138,11 +122,11 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "What to Look for When Buying Online",
-          content: "Choose retailers that: (1) Stock genuine professional brands like Juuce, QIQI, Pure, and Wet Brush. (2) Offer expert curation—someone who actually tests products. (3) Ship Australia-wide with clear delivery times. (4) Provide free shipping thresholds so you're not paying extra for postage. (5) Have a hassle-free returns policy."
+          content: "Choose retailers that: (1) Stock genuine professional brands like Juuce, QIQI, Pure, and Wet Brush. (2) Are run by someone who actually uses and tests the products. (3) Ship Australia-wide with clear delivery times. (4) Provide free shipping thresholds so you're not paying extra for postage. (5) Have a hassle-free returns policy."
         },
         {
-          heading: "Hair Pinns: Expert-Curated, Australia-Wide",
-          content: "At Hair Pinns, we've been curating salon hair care since 2009. Every product is handpicked by Jena with 15+ years of experience. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Free shipping on orders over $150. No international markup, no guesswork—just salon-quality products delivered to your door."
+          heading: "Hair Pinns: Handpicked by Jena, Australia-Wide",
+          content: "At Hair Pinns, we've been looking after hair since 2009. Every product is handpicked by Jena with 15+ years in the salon. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Free shipping on orders over $150. No guesswork—just salon-quality products delivered to your door."
         },
         {
           heading: "Popular Brands You Can Trust",
@@ -187,11 +171,11 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "hair-products-melbourne-brisbane-perth-australia",
     title: "Hair Products Melbourne, Brisbane & Perth: Salon Hair Care Australia-Wide",
-    excerpt: "Where to buy salon-quality hair products in Melbourne, Brisbane, Perth and across Australia. Hair Pinns ships expert-curated hair care to every state and territory—free shipping over $150.",
+    excerpt: "Where to buy salon-quality hair products in Melbourne, Brisbane, Perth and across Australia. Hair Pinns ships hair care to every state and territory—free shipping over $150.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "4 min read",
-    image: jenaProducts,
+    image: juuce119,
     author: "Jena Pinn",
     content: {
       introduction: "Whether you're in Melbourne, Brisbane, Perth, Sydney or anywhere in Australia, you deserve access to salon-quality hair care. Hair Pinns has been curating professional hair products since 2009—and we ship to every state and territory. Here's your guide to buying the best hair products Australia-wide.",
@@ -210,7 +194,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Why Hair Pinns for Australia-Wide Hair Care",
-          content: "15+ years of expert curation. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Your best hair is a click away."
+          content: "15+ years in the salon. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Your best hair is a click away."
         }
       ],
       productModule: {
@@ -235,7 +219,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "April 20, 2025",
     readTime: "5 min read",
-    image: salonVsSupermarket,
+    image: juuce064,
     author: "Jena Pinn",
     content: {
       introduction: "Let's be honest— we've all grabbed a $6 shampoo bottle from the supermarket thinking we scored a bargain. But what if we told you that \"cheap\" product might be costing you more in the long run? Here's the lowdown on why salon products from Hair Pinns (like Juuce and Pure) are a smarter, healthier choice for your hair.",
@@ -294,7 +278,7 @@ export const blogPosts: BlogPost[] = [
     category: "Wellness",
     date: "April 11, 2025",
     readTime: "4 min read",
-    image: saunaExterior,
+    image: img0133,
     author: "Jena Pinn",
     content: {
       introduction: "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out. This isn't your average sauna session—it's a full-body, soul-soothing recharge that will leave you glowing from the inside out.",
@@ -325,7 +309,7 @@ export const blogPosts: BlogPost[] = [
     category: "Hair Care",
     date: "March 25, 2025",
     readTime: "6 min read",
-    image: heatProtectionLifestyle,
+    image: juuce037,
     author: "Jena Pinn",
     content: {
       introduction: "We all love a good styling session—whether it's a sleek blowout, bouncy curls, or just taming frizz before heading out the door. But if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
@@ -377,7 +361,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "March 21, 2025",
     readTime: "4 min read",
-    image: frizzFreeHero,
+    image: juuce038,
     author: "Jena Pinn",
     content: {
       introduction: "An all-natural, permanent hair straightening treatment designed to give you sleek, smooth locks without compromising hair health. Unlike traditional methods that often rely on harsh chemicals, Straight Up utilizes organic compounds, including citric acid, to achieve long lasting straightness safely.",
@@ -406,7 +390,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "September 20, 2025",
     readTime: "5 min read",
-    image: lamellarPack,
+    image: juuce120,
     author: "Jena Pinn",
     content: {
       introduction: "At Hair Pinns we've made it simple to spoil someone special (or yourself!) with our Juuce and Pure gift packs. Each one is loaded with hair-loving products that suit different needs and comes with a little bonus gift to make it even better value.",
@@ -453,7 +437,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "September 02, 2025",
     readTime: "5 min read",
-    image: straightUpHero,
+    image: juuce037,
     author: "Jena Pinn",
     content: {
       introduction: "If you've ever wished your hair would just behave — no frizz, no puff, no morning wrestling match — then our Straight Up Smoothing Treatment might be the answer you've been dreaming of. And here's the secret: we use QIQI Vega, one of the most advanced and hair-friendly smoothing systems in the world.",
@@ -493,7 +477,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "September 01, 2025",
     readTime: "3 min read",
-    image: shampooHero,
+    image: aromaganicShampoo,
     author: "Jena Pinn",
     content: {
       introduction: "Shampoo isn't a \"forever\" product. Using the right amount keeps your hair clean and healthy without wasting product (or money). Plus, knowing when to replace it helps you plan ahead so you're never caught with an empty bottle in the shower!",
@@ -544,7 +528,7 @@ export const blogPosts: BlogPost[] = [
     category: "Wellness",
     date: "August 12, 2025",
     readTime: "5 min read",
-    image: saunaRoom,
+    image: img0136,
     author: "Jena Pinn",
     content: {
       introduction: "When was the last time you gave your hair and skin the deep care they truly deserve? In today's fast paced world, stress, pollution, and product buildup can leave your strands dull and your skin feeling tired. At Hairpinns, our infrared sauna experience is more than just a way to relax it's a beauty and wellness treatment that works from the inside out. Whether you're looking for smoother hair, clearer skin, or an all over glow, here's how regular sauna sessions can transform your self care routine.",
@@ -587,7 +571,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "August 04, 2025",
     readTime: "4 min read",
-    image: hotTowel,
+    image: bamchaTowel,
     author: "Jena Pinn",
     content: {
       introduction: "If you've ever had a hot towel wrapped around your hair or neck during a salon treatment, you'll know it's heavenly. That moment when the warmth hits? Instant exhale. But beyond the spa-like feels, there's real hair and scalp science happening under that steamy towel. So let's break it down — why is everyone loving hot towel treatments, and should you be saying yes please at your next appointment?",
@@ -626,7 +610,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 27, 2025",
     readTime: "3 min read",
-    image: qiqiOil,
+    image: juuce050,
     author: "Jena Pinn",
     content: {
       introduction: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel QIQI Bare Repair Oil is the answer. This luxe, dry-touch oil is designed to repair, smooth, and strengthen all hair types (yes, even fine or chemically treated strands). It's powered by performance-driven plant oils that hydrate and restore, while keeping your hair light, bouncy, and full of shine.",
@@ -673,7 +657,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 26, 2025",
     readTime: "3 min read",
-    image: pureEnds,
+    image: juuce118,
     author: "Jena Pinn",
     content: {
       introduction: "If your hair feels dry at the ends, breaks easily, or looks a bit frazzled no matter how much you trim—Pure Precious Ends is your new secret weapon. Designed to rescue and protect your ends, this lightweight leave-in is a must-have in your routine (especially if you style with heat or colour your hair).",
@@ -724,7 +708,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 13, 2025",
     readTime: "5 min read",
-    image: hairspray,
+    image: juuce064,
     author: "Jena Pinn",
     content: {
       introduction: "When it comes to styling, hairspray is a must-have — but not all sprays are created equal. At Hair Pinns, we only recommend styling products that deliver results without compromising hair health. Today, we're breaking down the three go-to hairsprays we use behind the chair and sell in our salon — so you can choose the right one for your hair goals!",
@@ -775,7 +759,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 13, 2025",
     readTime: "3 min read",
-    image: wetBrush,
+    image: accessories016,
     author: "Jena Pinn",
     content: {
       introduction: "Did you know your hair is at its most fragile when it's wet? That's why tugging a regular brush through wet hair can lead to unnecessary breakage, split ends, and hair fall — especially if your hair is fine, coloured, curly, or damaged.",
@@ -826,7 +810,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "June 12, 2025",
     readTime: "7 min read",
-    image: qiqiComparison,
+    image: juuce038,
     author: "Jena Pinn",
     content: {
       introduction: "If you're looking for smoother, frizz-free hair that lasts, you've probably come across both QIQI Vega and nanoplasty treatments. While they may seem similar at first glance, these treatments are very different in how they work, how they affect your hair, and the kind of results you can expect. At Hair Pinns, we offer QIQI Vega treatments because we believe in giving our clients reliable, safe, and long-lasting results without compromising the health of your hair.",
@@ -866,7 +850,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "June 11, 2025",
     readTime: "4 min read",
-    image: hydrationBundle,
+    image: juuce120,
     author: "Jena Pinn",
     content: {
       introduction: "Dry, dull, or brittle hair? It might be dehydrated — and there's a difference between dryness and dehydration. Dry hair lacks oil, while dehydrated hair lacks moisture. This season, it's time to deeply hydrate from root to tip with our Hydration Bundle, featuring some of our favourite moisture-rich must-haves from Juuce.",
@@ -917,7 +901,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "June 11, 2025",
     readTime: "3 min read",
-    image: walnutScrub,
+    image: juuce050,
     author: "Jena Pinn",
     content: {
       introduction: "When was the last time you gave your scalp a proper detox? If your answer is \"never\" or \"I don't remember,\" it's time to meet the Pure Walnut Scrub Hair & Scalp Pre-Wash Treatment.",
@@ -968,7 +952,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "May 25, 2025",
     readTime: "5 min read",
-    image: qiqiComparison,
+    image: aromaganicShampoo,
     author: "Jena Pinn",
     content: {
       introduction: "I genuinely want my clients to get the best, longest-lasting results from their QIQI Straight Up Treatment. As a stylist, I never want to overwhelm my clients with product rules—but when it comes to QIQI Vega (Straight Up Treatment), aftercare really does matter. I recommend this treatment because it transforms your hair—soft, smooth, frizz-free—and I want you to enjoy those results for as long as possible. But here's the thing: the wrong shampoo can undo it—fast. And I've seen it happen more than once.",
@@ -1019,7 +1003,7 @@ export const blogPosts: BlogPost[] = [
     category: "Seasonal",
     date: "May 22, 2025",
     readTime: "6 min read",
-    image: winterHero,
+    image: juuce119,
     author: "Jena Pinn",
     content: {
       introduction: "As the chilly winds and heavy rains roll into Sydney, our hair often bears the brunt of the season. Winter can leave strands dry, frizzy, and lacking shine—but with the right care (and products), your hair can stay healthy, hydrated, and looking fabulous all season long.",
@@ -1070,7 +1054,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "May 20, 2025",
     readTime: "5 min read",
-    image: lamellarRange,
+    image: juuce118,
     author: "Jena Pinn",
     content: {
       introduction: "If you've been hearing about lamellar technology and wondering what it actually does for your hair, you're not alone. This cutting-edge innovation is changing the way we treat dry, damaged, or stressed-out hair—offering instant results without the heavy feeling some treatments leave behind.",
@@ -1121,7 +1105,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "May 18, 2025",
     readTime: "5 min read",
-    image: heatProtection,
+    image: juuce037,
     author: "Jena Pinn",
     content: {
       introduction: "If you love your hair tools—whether it's your trusty blow dryer, straightener, or curling wand—then a heat protectant needs to be your hair's best friend. High heat can cause irreversible damage to the hair shaft, leading to dryness, split ends, and breakage. The good news? Using the right heat protection products can make all the difference.",
@@ -1176,7 +1160,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "May 09, 2025",
     readTime: "3 min read",
-    image: wetBrushGlitter,
+    image: accessories016,
     author: "Jena Pinn",
     content: {
       introduction: "Did you know your choice of hair brush can completely change the health and look of your hair? Many people spend money on good shampoos, conditioners, and treatments — but forget the daily tool that touches their hair the most: the brush.",
@@ -1223,7 +1207,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "April 20, 2025",
     readTime: "5 min read",
-    image: juuceQuiz,
+    image: juuce091,
     author: "Jena Pinn",
     content: {
       introduction: "Your dream hair is one quiz away. Answer these 7 quick questions and discover your perfect Juuce match—made to suit your hair type, vibe, and lifestyle.",
@@ -1265,7 +1249,7 @@ export const blogPosts: BlogPost[] = [
     category: "Wellness",
     date: "April 20, 2025",
     readTime: "4 min read",
-    image: saunaExperience,
+    image: img0133,
     author: "Jena Pinn",
     content: {
       introduction: "At Hair Pinns, we're all about combining luxury with wellness—and that's exactly why we've introduced infrared sauna sessions to our salon experience. You've probably heard about infrared for detox and relaxation, but did you know it can also work wonders for your hair and scalp health?",
@@ -1303,15 +1287,15 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "best-hair-products-australia-2025",
-    title: "Best Hair Products Australia 2025 — Expert Picks from Jena",
-    excerpt: "Discover the best salon-quality hair products available in Australia. Expert picks from Jena at Hair Pinns — Juuce, Pure, QIQI and more. Shipped Australia-wide with free shipping over $150.",
+    title: "Best Hair Products Australia 2025 — Jena's Top Picks",
+    excerpt: "Discover the best hair products available in Australia. Jena's top picks from Hair Pinns — Juuce, Pure, QIQI and more. Shipped Australia-wide with free shipping over $150.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "6 min read",
-    image: jenaProducts,
+    image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "Looking for the best hair products in Australia? As a salon owner with 15+ years of experience, I've handpicked the products that deliver real results — no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
+      introduction: "Looking for the best hair products in Australia? With 15+ years in the salon, I've handpicked the products that deliver real results — no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
       quickAnswer: {
         question: "What are the best hair products in Australia?",
         answer: "The best hair products in Australia include Juuce (smoothing, colour care, hydration), Pure certified organic (eco-friendly, high-performance), and QIQI (professional treatments). Hair Pinns stocks these and ships Australia-wide with free shipping over $150."
@@ -1319,7 +1303,7 @@ export const blogPosts: BlogPost[] = [
       sections: [
         {
           heading: "Why Salon Quality Matters",
-          content: "Supermarket hair products often rely on cheap fillers and harsh sulfates. Salon-quality products from brands like Juuce and Pure use concentrated, high-performance ingredients that actually nourish your hair — and a little goes a long way. When you shop with Hair Pinns, you're getting expert curation: every product is tested and trusted."
+          content: "Supermarket hair products often rely on cheap fillers and harsh sulfates. Salon-quality products from brands like Juuce and Pure use concentrated, high-performance ingredients that actually nourish your hair — and a little goes a long way. When you shop with Hair Pinns, every product is one I use in the salon and trust."
         },
         {
           heading: "Top Picks for 2025",
