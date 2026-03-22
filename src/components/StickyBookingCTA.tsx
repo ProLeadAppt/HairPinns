@@ -1,4 +1,5 @@
 import { Calendar, ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
@@ -23,14 +24,11 @@ const StickyBookingCTA = () => {
             {BOOK_CTA_LABEL}
           </a>
         </Button>
-        <Button 
-          variant="accent" 
-          size="lg" 
-          className="flex-1 max-w-xs"
-          onClick={() => window.open('https://shopify.com', '_blank')}
-        >
-          <ShoppingBag className="w-5 h-5" />
-          Shop Featured
+        <Button asChild variant="accent" size="lg" className="flex-1 max-w-xs">
+          <Link to="/collections">
+            <ShoppingBag className="w-5 h-5" />
+            Shop Featured
+          </Link>
         </Button>
       </div>
     </div>

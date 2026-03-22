@@ -1,4 +1,5 @@
 import { Calendar, ShoppingBag, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-salon-1920w.webp";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
@@ -59,10 +60,10 @@ const HeroSection = () => {
                 size="xl"
                 className="w-full sm:w-auto"
               >
-                <a href="https://shopify.com" target="_blank" rel="noopener noreferrer">
+                <Link to="/collections">
                   <ShoppingBag className="w-5 h-5" />
                   Shop Our Products
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
