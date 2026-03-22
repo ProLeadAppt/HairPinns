@@ -17,7 +17,7 @@ export default function UrgencyBar() {
         <span className="hidden sm:inline text-brand-300">•</span>
         <div className="flex items-center gap-1.5">
           <TrendingUp className="w-4 h-4" />
-          <span>Limited Stock on Best Sellers</span>
+          <span>Popular This Week</span>
         </div>
         <span className="hidden sm:inline text-brand-300">•</span>
         <div className="flex items-center gap-1.5">

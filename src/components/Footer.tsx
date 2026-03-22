@@ -74,7 +74,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-foreground mb-4 text-sm leading-relaxed">
-              Australia's expert-curated hair care. Salon-quality products shipped nationwide. Free shipping over {FREE_SHIPPING_THRESHOLD_DISPLAY}. Also visit our Bangor salon in Sutherland Shire.
+              Hair care handpicked by Jena. Shipped around Australia. Free over {FREE_SHIPPING_THRESHOLD_DISPLAY}. Also visit our Bangor salon in Sutherland Shire.
             </p>
             <div className="flex space-x-3">
               <a 
@@ -100,7 +100,7 @@ const Footer = () => {
           
           {/* Contact & Hours */}
           <div>
-            <h4 className="text-sm font-semibold text-heading mb-3 uppercase tracking-wide">Visit Us</h4>
+            <h4 className="text-sm font-semibold text-heading mb-3 uppercase tracking-wide">Pop In & See Us</h4>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />

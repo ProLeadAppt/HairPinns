@@ -24,12 +24,7 @@ import pureOrganicImage from "@/assets/collections/pure-organic-collection.webp"
 import qiqiImage from "@/assets/collections/qiqi-collection.webp";
 import perfectPonyImage from "@/assets/collections/perfect-pony-collection.webp";
 import wetBrushImage from "@/assets/collections/wet-brush-collection.webp";
-import heatProtectionImage from "@/assets/blog/heat-protection-products.webp";
-import blondeBombshellsImage from "@/assets/blog/blonde-care-hero-1920w.webp";
-import curlyGirlysImage from "@/assets/blog/humidity-hero-1920w.webp";
-import volumeImage from "@/assets/blog/shampoo-replacement-hero-1920w.webp";
-import frizzFreeImage from "@/assets/blog/frizz-free-hero-1920w.webp";
-import bestSellersImage from "@/assets/Juuce-091.webp";
+// AI blog hero images removed — these collections now use Shopify's own images via fallback
 
 interface ShopifyCollection {
   id: string;
@@ -67,14 +62,8 @@ const Collections = () => {
     if (searchText.includes('perfect pony') || searchText.includes('perfect-pony')) return perfectPonyImage;
     if (searchText.includes('gift')) return giftPacksImage;
     if (searchText.includes('clearance') || searchText.includes('sale') || searchText.includes('aisle')) return clearanceImage;
-    // Theme/concern-based collections - tailored images for each product type
-    if (searchText.includes('heat') || searchText.includes('protection')) return heatProtectionImage;
-    if (searchText.includes('blonde') || searchText.includes('bombshell')) return blondeBombshellsImage;
-    if (searchText.includes('curly') || searchText.includes('girly')) return curlyGirlysImage;
-    if (searchText.includes('volume') || searchText.includes('pump up')) return volumeImage;
-    if (searchText.includes('frizz') || searchText.includes('frizz-free')) return frizzFreeImage;
-    if (searchText.includes('best seller') || searchText.includes('bestseller')) return bestSellersImage;
-    
+
+    // Theme collections (blonde, curly, frizz, volume, heat, best sellers) use Shopify images
     // Use Shopify image if available, otherwise fallback
     if (shopifyImage) return shopifyImage;
     return accessoriesImage; // fallback - use accessories to avoid repeating juuce

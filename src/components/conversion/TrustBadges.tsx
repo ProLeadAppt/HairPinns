@@ -11,12 +11,12 @@ const TrustBadges = () => {
     {
       icon: Lock,
       text: "Secure Checkout",
-      description: "256-bit SSL encryption",
+      description: "Your info is safe with us",
     },
     {
       icon: Award,
-      text: "Salon Quality",
-      description: "Expert curated products",
+      text: "Handpicked by Jena",
+      description: "Products she actually uses",
     },
     {
       icon: Truck,

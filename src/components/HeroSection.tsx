@@ -31,8 +31,7 @@ const HeroSection = () => {
         </h1>
           
           <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 max-w-lg">
-            Expert styling, premium treatments, and personalized care. 
-            Your boutique salon experience in the heart of Sutherland Shire.
+            Expert cuts, colour & smoothing. Real care from your local salon in the Shire.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">

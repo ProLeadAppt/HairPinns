@@ -25,7 +25,7 @@ const HeroHome = () => {
   const valuePropsRef = useRef<NodeJS.Timeout | null>(null);
 
   const valueProps = [
-    { icon: Award, text: "15+ Years Expert Curation", color: "text-brand-300" },
+    { icon: Award, text: "15+ Years of Knowing What Works", color: "text-brand-300" },
     { icon: Star, text: "762+ Five-Star Reviews", color: "text-[hsl(var(--star-color))]" },
     { icon: Truck, text: `Free Shipping Over ${FREE_SHIPPING_THRESHOLD_DISPLAY}`, color: "text-brand-300" },
   ];
@@ -300,7 +300,7 @@ const HeroHome = () => {
               fontSize: 'clamp(28px, 6vw, 36px)',
               textShadow: '0 2px 24px rgba(0, 0, 0, 0.6)'
             }}>
-              Salon-Quality Hair Care, Shipped Australia-Wide
+              Salon Hair Care. Delivered to Your Door.
             </h1>
 
             {/* Animated Value Prop */}
@@ -313,7 +313,7 @@ const HeroHome = () => {
               color: 'rgba(255, 255, 255, 0.9)',
               fontSize: 'clamp(15px, 3.5vw, 18px)',
             }}>
-              Handpicked by Jena with 15+ Years Experience
+              Picked by Jena. 15 years behind the chair.
             </p>
 
             {/* Trust Metrics - Compact */}
@@ -410,7 +410,7 @@ const HeroHome = () => {
                   backgroundClip: 'text',
                 }}
               >
-                Salon-Quality Hair Care, Shipped Australia-Wide
+                Salon Hair Care. Delivered to Your Door.
               </h1>
 
               {/* Animated Value Props */}
@@ -426,7 +426,7 @@ const HeroHome = () => {
                 fontSize: 'clamp(18px, 2vw, 22px)',
                 fontWeight: 500
               }}>
-                Handpicked by Jena with 15+ Years Experience — Shipped Australia-Wide
+                Picked by Jena. 15 years behind the chair.
               </p>
 
               {/* Animated Customer Count */}
@@ -511,7 +511,7 @@ const HeroHome = () => {
               {/* Value Props */}
               <p className="text-xs md:text-sm" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
                 <Award className="w-3 h-3 inline mr-1.5 text-brand-300" />
-                <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>15+ Years Expert Curation Since 2009</strong> • Trusted by thousands Australia-wide
+                <strong style={{ color: 'rgba(255, 255, 255, 0.95)' }}>15+ Years of Knowing What Works Since 2009</strong> • Trusted by thousands Australia-wide
               </p>
             </div>
           </div>

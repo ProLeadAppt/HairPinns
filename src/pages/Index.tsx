@@ -47,7 +47,7 @@ const Index = () => {
   // WebPage schema with speakable for AEO/voice search
   const webPageSchema = generateWebPageSchema({
     name: "Hair Pinns - Salon Hair Care Australia",
-    description: "Australia's expert-curated hair care. Salon-quality products shipped to every state and territory. Free shipping over $150. Also visit our Bangor salon in Sutherland Shire.",
+    description: "Hair care handpicked by Jena. Salon-quality products shipped to every state and territory. Free shipping over $150. Also visit our Bangor salon in Sutherland Shire.",
     url: "https://hairpinns.com",
     speakable: { cssSelector: [".speakable-hero-intro"] },
   });
@@ -103,11 +103,11 @@ const Index = () => {
         <title>Australia's Expert-Curated Hair Care | Hair Pinns | Free Shipping Over $150</title>
         <meta 
           name="description" 
-          content="Australia's expert-curated hair care. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire." 
+          content="Hair care handpicked by Jena. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire."
         />
         <link rel="canonical" href="https://hairpinns.com" />
         <meta property="og:title" content="Premium Hair Care Products | Hair Pinns | Australia-Wide Shipping" />
-        <meta property="og:description" content="Australia's expert-curated hair care. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire." />
+        <meta property="og:description" content="Hair care handpicked by Jena. Salon-quality products shipped to every state and territory. Free shipping over $150. 15+ years experience. Also visit our Bangor salon in Sutherland Shire." />
         <meta property="og:url" content="https://hairpinns.com" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('default')} />
@@ -238,7 +238,7 @@ const Index = () => {
                 Shop by Category
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Starting at $24.99 — Discover our most popular product collections, handpicked for you
+                Starting at $24.99 — Browse the brands we love
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

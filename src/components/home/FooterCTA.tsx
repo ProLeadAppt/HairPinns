@@ -7,11 +7,10 @@ const FooterCTA = () => {
     <section className="bg-accent py-12 md:py-16" style={{ contentVisibility: "auto", containIntrinsicSize: "0 400px" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-h2 font-heading font-bold mb-4" style={{ color: '#241327' }}>
-          Questions?
+          Need a hand?
         </h2>
         <p className="text-lg mb-8" style={{ color: '#2A2230' }}>
-          We're here to help! Get in touch for product advice, booking assistance, 
-          or anything else hair-related.
+          Chat with Isabella or give Sam a ring — happy to help with product advice or bookings.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

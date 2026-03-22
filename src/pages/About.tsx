@@ -188,7 +188,7 @@ const About = () => {
                 </h2>
                 <p className="text-foreground leading-relaxed mb-6">
                   After years of trying every brand on the market, I got tired of recommending products 
-                  that didn't live up to their promises. So I partnered with premium brands I actually trust—
+                  that didn't live up to their promises. So I partnered with brands I actually trust—
                   like Juuce, QIQI, Pure & Wet Brush Pure—to create a curated retail line that delivers real results.
                 </p>
                 <p className="text-foreground leading-relaxed mb-6">
@@ -242,8 +242,8 @@ const About = () => {
               Client Results
             </h2>
             <p className="text-center text-foreground max-w-2xl mx-auto mb-8">
-              Real transformations from real clients. From colour corrections to smoothing treatments and precision cuts, 
-              Jena delivers results that speak for themselves. Case studies and before/after photos available—ask during your consultation.
+              Real transformations from real clients. From colour corrections to smoothing treatments and precision cuts,
+              Jena delivers results that speak for themselves. Want to see before-and-afters? Just ask when you come in.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-card border border-border rounded-card p-6 text-center">

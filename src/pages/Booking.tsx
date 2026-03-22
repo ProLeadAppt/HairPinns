@@ -34,8 +34,8 @@ const Booking = () => {
               Book Your Appointment
             </h1>
             <p className="text-lg text-foreground mb-8 leading-relaxed">
-              Ready to transform your hair? Book online 24/7 through Fresha—choose your service, 
-              pick your time, and get instant confirmation. It's fast, secure, and hassle-free.
+              Book whenever suits you. Pick your service, pick your time, and you're sorted.
+              Takes about 2 minutes.
             </p>
             <p className="text-foreground mb-8">
               Need help choosing? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
@@ -62,22 +62,38 @@ const Booking = () => {
               Book Online Now
             </h2>
 
-            <div className="bg-card border border-border rounded-card overflow-hidden">
-              <iframe
-                src="https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb"
-                width="100%"
-                height="700"
-                style={{ border: 0, minHeight: "700px" }}
-                title="Book an appointment at Hair Pinns via Fresha"
-                loading="lazy"
-                allow="payment"
-              ></iframe>
-            </div>
+            <div className="bg-card border border-border rounded-card p-8 md:p-12 text-center">
+              <p className="text-lg text-foreground mb-6">
+                Pick your service, choose a time that works, and you're sorted. Takes about 2 minutes.
+              </p>
+              <a
+                href={BOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBookingClick("booking_widget", "/booking")}
+                className="inline-block"
+              >
+                <Button variant="primary" size="xl" aria-label="Book an appointment via Fresha">
+                  <Calendar className="w-5 h-5" />
+                  {BOOK_CTA_LABEL}
+                </Button>
+              </a>
 
-            <p className="text-sm text-muted-foreground mt-6 text-center">
-              Having trouble booking online? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600">Call 0468 093 991</a> or{" "}
-              <a href="https://wa.me/61468093991?text=Hi%20Jena%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener noreferrer" className="text-brand-500 font-semibold hover:text-brand-600">WhatsApp us</a>
-            </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm">
+                <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 transition-colors">
+                  Call 0468 093 991
+                </a>
+                <span className="hidden sm:inline text-muted-foreground">or</span>
+                <a
+                  href="https://wa.me/61468093991?text=Hi%20Jena%2C%20I%27d%20like%20to%20book%20an%20appointment"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-500 font-semibold hover:text-brand-600 transition-colors"
+                >
+                  WhatsApp us
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -85,7 +101,7 @@ const Booking = () => {
         <section className="py-16 bg-muted">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
-              Before You Book
+              Heads Up Before You Book
             </h2>
             
             <div className="bg-card border border-border rounded-card p-8 mb-8">
@@ -97,14 +113,14 @@ const Booking = () => {
                   <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">
                     <strong>Cancellation Policy:</strong> Please give us 24 hours notice if you need to reschedule. 
-                    Late cancellations may incur a 50% fee.
+                    Late cancellations will need to be charged a 50% fee.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">
-                    <strong>Late Arrivals:</strong> Arriving more than 15 minutes late may result in a shortened 
-                    service or rescheduling to accommodate other clients.
+                    <strong>Late Arrivals:</strong> If you're more than 15 minutes late, you might need to reschedule
+                    so we can look after everyone properly.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">

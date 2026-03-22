@@ -6,13 +6,13 @@ const WhyShopHairPinns = () => {
   const benefits = [
     {
       icon: Award,
-      title: "15+ Years Expert Curation",
+      title: "15+ Years of Knowing What Works",
       description: "Since 2009, Jena has handpicked only the finest salon-quality products for her clients. Every item in our collection is tried, tested, and loved.",
     },
     {
       icon: Sparkles,
       title: "Salon-Quality Products",
-      description: "Professional-grade formulas you'd find in top salons. No compromises, no supermarket quality — just products that deliver real results.",
+      description: "Salon-quality products. Nothing from the supermarket aisle — stuff that actually works.",
     },
     {
       icon: Truck,
@@ -38,7 +38,7 @@ const WhyShopHairPinns = () => {
           Why Thousands Trust Hair Pinns
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Experience the difference of salon-quality hair care, curated by an expert with over 15 years of experience
+          Why thousands of people trust Jena and Hair Pinns
         </p>
       </div>
 
