@@ -17,10 +17,14 @@ const BlogCard = ({ post, size = "regular" }: BlogCardProps) => {
     >
       <article className="h-full flex flex-col bg-surface rounded-card overflow-hidden shadow-card hover:shadow-xl transition-all duration-500 border border-accent/20 hover:-translate-y-1">
         <div className="relative aspect-[16/9] overflow-hidden">
-          <img 
-            src={post.image} 
+          <img
+            src={post.image}
             alt={post.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+            decoding="async"
+            width="640"
+            height="360"
           />
           <div className="absolute top-4 left-4">
             <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-brand-500 text-white font-semibold text-xs shadow-lg">

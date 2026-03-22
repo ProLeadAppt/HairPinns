@@ -62,6 +62,8 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://widget.reputationhub.com.au https://www.fresha.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://cdn.shopify.com https://*.googleusercontent.com https://maps.googleapis.com https://maps.gstatic.com https://www.google.com https://widget.reputationhub.com.au; frame-src https://www.fresha.com https://www.google.com https://maps.google.com https://widget.reputationhub.com.au; connect-src 'self' https://*.myshopify.com https://www.google-analytics.com https://www.googletagmanager.com https://widget.reputationhub.com.au https://hooks.zapier.com; media-src 'self'"
 
 # Cache static assets
 [[headers]]

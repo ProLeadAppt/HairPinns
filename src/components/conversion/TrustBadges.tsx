@@ -5,8 +5,8 @@ const TrustBadges = () => {
   const badges = [
     {
       icon: Shield,
-      text: "14-Day Returns",
-      description: "Hassle-free returns",
+      text: "Money-Back Guarantee",
+      description: "14-day hassle-free returns",
     },
     {
       icon: Lock,

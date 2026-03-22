@@ -7,7 +7,7 @@ import HeroHome from "@/components/home/HeroHome";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import UrgencyBar from "@/components/conversion/UrgencyBar";
 import TrustStrip from "@/components/conversion/TrustStrip";
-import RecentPurchases from "@/components/conversion/RecentPurchases";
+// RecentPurchases removed — was using simulated/fake purchase data
 import ProductCountBadge from "@/components/conversion/ProductCountBadge";
 import TrustBadges from "@/components/conversion/TrustBadges";
 
@@ -223,14 +223,7 @@ const Index = () => {
         {/* 5. Trust Strip (conversion-focused) */}
         <TrustStrip />
         
-        {/* 5.5 Recent Purchases (social proof) */}
-        <section className="py-6 bg-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <RecentPurchases />
-          </div>
-        </section>
-        
-        {/* 5.6 Trust Badges Section */}
+        {/* Trust Badges Section */}
         <section className="py-8 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <TrustBadges />

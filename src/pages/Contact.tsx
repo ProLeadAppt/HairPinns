@@ -262,12 +262,7 @@ const Contact = () => {
           </div>
         </Section>
 
-        {/* SMS Opt-in */}
-        <Section padding="lg">
-          <div className="max-w-2xl mx-auto">
-            
-          </div>
-        </Section>
+        {/* SMS Opt-in — removed until form is implemented */}
 
         {/* AI Agents CTA Section */}
         <Section variant="muted" padding="lg">

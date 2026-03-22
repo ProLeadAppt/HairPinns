@@ -131,11 +131,19 @@ const Footer = () => {
                     {BUSINESS_NAP.phone.display}
                   </a>
                 </div>
-                <a 
+                <a
                   href={`sms:${BUSINESS_NAP.phone.raw}?body=Hi%20Hair%20Pinns%2C%20I'd%20like%20to%20enquire%20about%20`}
                   className="text-sm text-brand-500 hover:text-brand-600 transition-colors"
                 >
                   Text us
+                </a>
+                <a
+                  href="https://wa.me/61468093991?text=Hi%20Jena%2C%20I%27d%20like%20to%20enquire%20about%20"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-brand-500 hover:text-brand-600 transition-colors"
+                >
+                  WhatsApp us
                 </a>
               </div>
             </div>

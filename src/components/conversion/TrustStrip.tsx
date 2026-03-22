@@ -15,8 +15,8 @@ export default function TrustStrip() {
           <div className="flex flex-col items-center gap-2">
             <Shield className="w-5 h-5 text-brand-500" />
             <div className="text-sm">
-              <p className="font-semibold text-heading">14-Day Returns</p>
-              <p className="text-xs text-muted-foreground">Hassle-free</p>
+              <p className="font-semibold text-heading">Money-Back Guarantee</p>
+              <p className="text-xs text-muted-foreground">14-day hassle-free</p>
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">

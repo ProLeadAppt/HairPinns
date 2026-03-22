@@ -61,39 +61,23 @@ const Booking = () => {
             <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
               Book Online Now
             </h2>
-            
-            {/* Fresha iframe embed (replace with actual embed code) */}
-            <div className="bg-card border border-border rounded-card overflow-hidden" style={{ minHeight: "600px" }}>
-              <div className="p-12 text-center">
-                <p className="text-foreground mb-6">
-                  Click below to secure your appointment.
-                </p>
-                <a
-                  href={BOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackBookingClick("booking_widget", "/booking")}
-                >
-                  <Button variant="primary" size="xl" aria-label="Book an appointment">
-                    <Calendar className="w-5 h-5" />
-                    {BOOK_CTA_LABEL}
-                  </Button>
-                </a>
-                <p className="text-sm text-muted-foreground mt-6">
-                  Prefer to call? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600">0468 093 991</a>
-                </p>
-              </div>
+
+            <div className="bg-card border border-border rounded-card overflow-hidden">
+              <iframe
+                src="https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb"
+                width="100%"
+                height="700"
+                style={{ border: 0, minHeight: "700px" }}
+                title="Book an appointment at Hair Pinns via Fresha"
+                loading="lazy"
+                allow="payment"
+              ></iframe>
             </div>
 
-            {/* Integration note: Replace the div above with actual Fresha embed code */}
-            {/* Example: 
-            <iframe 
-              src="https://www.fresha.com/embed/YOUR_SALON_ID" 
-              width="100%" 
-              height="600" 
-              frameBorder="0"
-            ></iframe>
-            */}
+            <p className="text-sm text-muted-foreground mt-6 text-center">
+              Having trouble booking online? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600">Call 0468 093 991</a> or{" "}
+              <a href="https://wa.me/61468093991?text=Hi%20Jena%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener noreferrer" className="text-brand-500 font-semibold hover:text-brand-600">WhatsApp us</a>
+            </p>
           </div>
         </section>
 

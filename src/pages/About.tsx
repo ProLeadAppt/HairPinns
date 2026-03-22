@@ -49,12 +49,14 @@ const About = () => {
     }
   ];
 
-  const galleryImages = [
-    { src: "/placeholder.svg", alt: "Hair Pinns salon interior with styling stations" },
-    { src: "/placeholder.svg", alt: "Jena styling a client" },
-    { src: "/placeholder.svg", alt: "Product display with premium hair care" },
-    { src: "/placeholder.svg", alt: "Welcome area and reception" }
-  ];
+  // Gallery images hidden until Jena provides real salon photos
+  // To restore: add real image paths and uncomment the gallery section below
+  // const galleryImages = [
+  //   { src: "...", alt: "Hair Pinns salon interior with styling stations" },
+  //   { src: "...", alt: "Jena styling a client" },
+  //   { src: "...", alt: "Product display with premium hair care" },
+  //   { src: "...", alt: "Welcome area and reception" }
+  // ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -199,8 +201,8 @@ const About = () => {
               </div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden">
                 <img
-                  src="/placeholder.svg"
-                  alt="Hair Pinns curated product collection display"
+                  src={jenaHeadshot}
+                  alt="Jena from Hair Pinns with her curated product collection"
                   className="w-full h-full object-cover"
                   width="600"
                   height="600"
@@ -299,7 +301,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Gallery */}
+        {/* Gallery — hidden until Jena provides real salon photos
         <section className="py-16 bg-muted">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-h2-lg font-heading font-bold text-heading mb-12 text-center">
@@ -307,23 +309,14 @@ const About = () => {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {galleryImages.map((image, index) => (
-                <div
-                  key={index}
-                  className="aspect-square bg-muted rounded-card overflow-hidden"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-slow"
-                    loading="lazy"
-                    width="400"
-                    height="400"
-                  />
+                <div key={index} className="aspect-square bg-muted rounded-card overflow-hidden">
+                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-slow" loading="lazy" width="400" height="400" />
                 </div>
               ))}
             </div>
           </div>
         </section>
+        */}
 
         {/* CTA Row */}
         <section className="py-16 bg-brand-500 text-white">
