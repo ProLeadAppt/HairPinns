@@ -24,12 +24,12 @@ import pureOrganicImage from "@/assets/collections/pure-organic-collection.webp"
 import qiqiImage from "@/assets/collections/qiqi-collection.webp";
 import perfectPonyImage from "@/assets/collections/perfect-pony-collection.webp";
 import wetBrushImage from "@/assets/collections/wet-brush-collection.webp";
-import heatProtectionImage from "@/assets/collections/heat-protection-collection.webp";
-import blondeBombshellsImage from "@/assets/collections/blonde-bombshells-collection.webp";
-import curlyGirlysImage from "@/assets/collections/curly-girlys-collection.webp";
-import volumeImage from "@/assets/collections/volume-collection.webp";
-import frizzFreeImage from "@/assets/collections/frizz-free-collection.webp";
-import bestSellersImage from "@/assets/collections/best-sellers-collection.webp";
+import heatProtectionImage from "@/assets/blog/heat-protection-products.webp";
+import blondeBombshellsImage from "@/assets/blog/blonde-care-hero-1920w.webp";
+import curlyGirlysImage from "@/assets/blog/humidity-hero-1920w.webp";
+import volumeImage from "@/assets/blog/shampoo-replacement-hero-1920w.webp";
+import frizzFreeImage from "@/assets/blog/frizz-free-hero-1920w.webp";
+import bestSellersImage from "@/assets/Juuce-091.webp";
 
 interface ShopifyCollection {
   id: string;
