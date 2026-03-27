@@ -125,6 +125,11 @@ const ContactForm = ({
         throw new Error("Zapier submission failed");
       }
 
+      // Track GA4 generate_lead event
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', { method: 'contact_form' });
+      }
+
       // Track lead generation in pixels
       await pixelTracking.trackFormSubmission({
         email: formData.email,

@@ -407,6 +407,7 @@ const ProductDetail = () => {
           content={`${String(product.description ?? "").substring(0, 120)} Shipped Australia-wide. Free shipping over $150.`}
         />
         <link rel="canonical" href={`https://hairpinns.com/products/${handle}`} />
+        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/products/${handle}`} />
         <meta property="og:title" content={`${product.title} | Hair Care Australia | Hair Pinns`} />
         <meta property="og:description" content={`${String(product.description ?? "").substring(0, 120)} Shipped Australia-wide. Free shipping over $150.`} />
         <meta property="og:url" content={`https://hairpinns.com/products/${handle}`} />

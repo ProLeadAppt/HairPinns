@@ -103,6 +103,7 @@ const BlogPost = () => {
         <title>{post.title} | Hair Pinns Blog</title>
         <meta name="description" content={post.excerpt} />
         <link rel="canonical" href={currentUrl} />
+        <link rel="alternate" hrefLang="en-AU" href={currentUrl} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.image} />

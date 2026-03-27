@@ -42,6 +42,13 @@ const CollectionDetail = () => {
   const [loading, setLoading] = useState(true);
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
 
+  // Track GA4 view_item_list when collection loads
+  useEffect(() => {
+    if (collectionTitle && collectionTitle !== "Collection" && typeof window.gtag === 'function') {
+      window.gtag('event', 'view_item_list', { item_list_name: collectionTitle });
+    }
+  }, [collectionTitle]);
+
   // Fetch collection from Shopify with timeout
   useEffect(() => {
     let isMounted = true;

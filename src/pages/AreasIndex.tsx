@@ -44,6 +44,7 @@ const AreasIndex = () => {
           content="Hair Pinns serves the Sutherland Shire with colour, blonding, keratin smoothing, braids & cuts. Find your local area and book online today."
         />
         <link rel="canonical" href="https://hairpinns.com/areas" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/areas" />
         <meta property="og:title" content="Areas We Serve | Hair Pinns" />
         <meta property="og:description" content="Boutique hair salon serving Sutherland Shire and surrounding areas." />
         <meta property="og:url" content="https://hairpinns.com/areas" />

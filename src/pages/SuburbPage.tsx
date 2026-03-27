@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { getSuburbData } from "@/data/suburbPages";
 import { generateFAQPageSchema, generateWebPageSchema, generatePlaceSchema, generateQAPageSchema } from "@/lib/schema";
-import { BUSINESS_NAP } from "@/config/businessConfig";
+import { BUSINESS_NAP, BUSINESS_HOURS, BUSINESS_HOURS_DISPLAY } from "@/config/businessConfig";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import LocationProducts from "@/components/local/LocationProducts";
@@ -121,20 +121,12 @@ const SuburbPage = () => {
     "url": `https://hairpinns.com/near/${suburbData.slug}`,
     "telephone": BUSINESS_NAP.phone.raw,
     "priceRange": "$$",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "17:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "08:00",
-        "closes": "15:00"
-      }
-    ]
+    "openingHoursSpecification": BUSINESS_HOURS.map(h => ({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": h.day,
+      "opens": h.opens,
+      "closes": h.closes,
+    }))
   };
 
   const services = [
@@ -384,7 +376,7 @@ const SuburbPage = () => {
                     <strong>Address:</strong> {BUSINESS_NAP.address.full}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    <strong>Hours:</strong> Tue–Fri 9am–5pm | Sat 8am–3pm | Sun–Mon Closed
+                    <strong>Hours:</strong> {BUSINESS_HOURS_DISPLAY.join(" | ")}
                   </p>
                 </div>
               </div>

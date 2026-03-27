@@ -25,6 +25,7 @@ import { getLocationData } from "@/data/locationPages";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { serviceDetailData } from "@/data/serviceDetails";
+import { BUSINESS_HOURS } from "@/config/businessConfig";
 
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -109,25 +110,17 @@ const LocationPage = () => {
     "url": `https://hairpinns.com/areas/${locationData.slug}`,
     "telephone": "+61468093991",
     "priceRange": "$$",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "17:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "08:00",
-        "closes": "15:00"
-      }
-    ],
+    "openingHoursSpecification": BUSINESS_HOURS.map(h => ({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": h.day,
+      "opens": h.opens,
+      "closes": h.closes,
+    })),
     "hasMap": `https://www.google.com/maps/dir/${encodeURIComponent(locationData.fullName)}/Hair+Pinns,+60+Goorgool+Road,+Bangor+NSW+2234`,
     "sameAs": [
       "https://www.facebook.com/hairpinns",
       "https://www.instagram.com/hairpinns",
-      "https://g.page/r/YOUR_GOOGLE_BUSINESS_ID"
+      "https://g.page/r/CX-F0vOcpJLhEBM"
     ]
   };
 
@@ -167,6 +160,7 @@ const LocationPage = () => {
           content={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call +61 468 093 991.`}
         />
         <link rel="canonical" href={`https://hairpinns.com/areas/${locationData.slug}`} />
+        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/areas/${locationData.slug}`} />
         <meta property="og:title" content={`Hairdresser ${locationData.name} | Hair Pinns`} />
         <meta property="og:description" content={`${locationData.driveTime} from Bangor salon • easy parking • one-on-one care with Jena`} />
         <meta property="og:url" content={`https://hairpinns.com/areas/${locationData.slug}`} />

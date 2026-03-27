@@ -35,6 +35,7 @@ const Blog = () => {
           content="Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide." 
         />
         <link rel="canonical" href="https://hairpinns.com/blog" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/blog" />
         <meta property="og:title" content="Hair Tips & Product Advice | Hair Pinns Blog Australia" />
         <meta property="og:description" content="Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide." />
         <meta property="og:url" content="https://hairpinns.com/blog" />

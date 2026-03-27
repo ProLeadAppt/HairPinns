@@ -40,6 +40,11 @@ const Footer = () => {
       });
 
       if (success) {
+        // Track GA4 generate_lead event
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', { method: 'newsletter' });
+        }
+
         toast({
           title: "Success!",
           description: "You've been added to our mailing list. Check your inbox for a welcome message.",

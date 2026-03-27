@@ -24,6 +24,13 @@ const SearchResults = () => {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<string>("relevance");
 
+  // Track GA4 search event when query changes
+  useEffect(() => {
+    if (query && typeof window.gtag === 'function') {
+      window.gtag('event', 'search', { search_term: query });
+    }
+  }, [query]);
+
   useEffect(() => {
     if (!query) {
       setLoading(false);
@@ -102,6 +109,7 @@ const SearchResults = () => {
           }
         />
         <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-AU" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify(generateBreadcrumbSchema([
             { name: "Home", url: "https://hairpinns.com/" },

@@ -82,7 +82,7 @@ interface HowToData {
   supply?: Array<{ name: string }>;
 }
 
-import { BUSINESS_NAP } from '@/config/businessConfig';
+import { BUSINESS_NAP, BUSINESS_HOURS } from '@/config/businessConfig';
 
 const BASE_URL = 'https://hairpinns.com';
 const LOGO_URL = `${BASE_URL}/logo.png`;
@@ -224,38 +224,7 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
     addressRegion: 'NSW',
     addressCountry: 'AU',
   })),
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Tuesday',
-      opens: '10:00',
-      closes: '17:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Wednesday',
-      opens: '18:00',
-      closes: '21:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Thursday',
-      opens: '09:00',
-      closes: '21:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Friday',
-      opens: '09:00',
-      closes: '17:30',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
-      opens: '08:00',
-      closes: '14:00',
-    },
-  ],
+  openingHoursSpecification: getOpeningHoursSpecification(),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Hair Services',
@@ -1189,3 +1158,48 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
     },
   };
 };
+
+/**
+ * Author Schema for Jena Pinn (E-E-A-T)
+ * Establishes expertise and authority for Google rankings
+ */
+export const generateAuthorSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${BASE_URL}/#jena-pinn`,
+  name: 'Jena Pinn',
+  jobTitle: 'Salon Owner and Hair Care Specialist',
+  worksFor: {
+    '@type': 'HairSalon',
+    '@id': `${BASE_URL}/#hairsalon`,
+    name: 'Hair Pinns',
+  },
+  knowsAbout: [
+    'Hair Colouring',
+    'Balayage',
+    'Keratin Smoothing Treatments',
+    'Hair Care Products',
+    'Foiling and Highlights',
+    'Precision Hair Cutting',
+  ],
+  description: 'Jena has been doing hair since 2009. She runs Hair Pinns salon in Bangor, Sutherland Shire, and stocks only products she uses on her own clients.',
+  address: {
+    '@type': 'PostalAddress',
+    ...SALON_ADDRESS,
+  },
+  sameAs: [
+    'https://www.instagram.com/hair.pinns/',
+    'https://www.facebook.com/Hair.Pinns',
+  ],
+});
+
+/**
+ * Opening hours from centralised config for schema use
+ */
+export const getOpeningHoursSpecification = () =>
+  BUSINESS_HOURS.map(h => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.day,
+    opens: h.opens,
+    closes: h.closes,
+  }));

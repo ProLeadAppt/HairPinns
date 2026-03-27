@@ -84,6 +84,7 @@ const ServiceDetail = () => {
         <title>{serviceData.title} | Hair Pinns Bangor NSW</title>
         <meta name="description" content={serviceData.metaDescription} />
         <link rel="canonical" href={`https://hairpinns.com/services/${categorySlug}/${serviceSlug}`} />
+        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/services/${categorySlug}/${serviceSlug}`} />
         <meta property="og:title" content={`${serviceData.title} | Hair Pinns`} />
         <meta property="og:description" content={serviceData.metaDescription} />
         <meta property="og:url" content={`https://hairpinns.com/services/${categorySlug}/${serviceSlug}`} />

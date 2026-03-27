@@ -490,6 +490,7 @@ const Services = () => {
         <title>Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns</title>
         <meta name="description" content="Salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Prices and times are exactly what you'll see when you book." />
         <link rel="canonical" href="https://hairpinns.com/services" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/services" />
         <meta property="og:title" content="Hair Services Bangor | Colour, Smoothing & Cuts" />
         <meta property="og:description" content="Salon services with transparent pricing. Book online now via Fresha." />
         <meta property="og:url" content="https://hairpinns.com/services" />

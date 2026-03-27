@@ -20,7 +20,8 @@ import {
   generateFAQPageSchema,
   generateStoreSchema,
   generateWebPageSchema,
-  generateHowToSchema
+  generateHowToSchema,
+  generateAuthorSchema
 } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 
@@ -29,6 +30,7 @@ const Index = () => {
   const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com');
   const knowledgeGraphSchema = generateKnowledgeGraphSchema();
   const storeSchema = generateStoreSchema();
+  const authorSchema = generateAuthorSchema();
 
   const webPageSchema = generateWebPageSchema({
     name: "Hair Pinns - Hair Care by Jena",
@@ -103,6 +105,7 @@ const Index = () => {
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(howToBookSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(authorSchema)}</script>
       </Helmet>
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
