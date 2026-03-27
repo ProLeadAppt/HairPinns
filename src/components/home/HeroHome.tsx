@@ -5,23 +5,24 @@ import heroImage from "@/assets/images/hero-home-new.webp";
 const HeroHome = () => {
   return (
     <section className="relative min-h-[85vh] md:min-h-[80vh] flex items-end overflow-hidden">
-      {/* Background image — full bleed, no glass morphism */}
+      {/* Background video — full bleed, muted autoplay loop */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Hair Pinns salon"
-          className="w-full h-full object-cover object-[65%_center]"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          width="1920"
-          height="1080"
-          sizes="100vw"
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={heroImage}
+          className="w-full h-full object-cover object-top"
+          preload="auto"
+        >
+          <source src="/hero-reel.mp4" type="video/mp4" />
+        </video>
+        {/* Dark gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(24,0,30,0.9)] via-[rgba(24,0,30,0.3)] to-transparent" />
       </div>
 
-      {/* Content — left-aligned, no glass box, no product grid */}
+      {/* Content — left-aligned */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-16 md:pb-24">
         <div className="max-w-2xl hero-stagger">
           <h1

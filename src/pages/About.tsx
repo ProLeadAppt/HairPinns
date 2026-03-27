@@ -5,6 +5,18 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
+import ImageGallery from "@/components/gallery/ImageGallery";
+
+// Salon & results gallery images
+import salonInterior from "@/assets/images/hair.pinns_1773312619_3851143514822403759_2244281067.avif";
+import meetJena from "@/assets/images/hair.pinns_1773475216_3852511796603497709_2244281067.avif";
+import stylingResult from "@/assets/images/hair.pinns_1772611255_3845264367588032981_2244281067.avif";
+import beforeAfter from "@/assets/images/hair.pinns_1773039624_3848857785505671354_2244281067.avif";
+import blondeResult from "@/assets/images/hair.pinns_1765910087_3789049150835962518_2244281067.avif";
+import curlsResult from "@/assets/images/hair.pinns_1762034298_3756538425064543892_2244281067.avif";
+import bobResult from "@/assets/images/hair.pinns_1765870058_3788713832378613694_2244281067.avif";
+import highlightResult from "@/assets/images/hair.pinns_1766442955_3793520917994535355_2244281067.avif";
+import pureProducts from "@/assets/images/hair.pinns_1773699035_3854389326693067947_2244281067.avif";
 
 const jenaPersonSchema = {
   "@context": "https://schema.org",
@@ -174,6 +186,32 @@ const About = () => {
                 You'll get honest advice, transparent pricing, and a plan that actually makes sense for your hair, your budget, and your life.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Our Work Gallery */}
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-3 text-center">
+              Our Work
+            </h2>
+            <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
+              Real results from real clients. No filters, no stock photos.
+            </p>
+            <ImageGallery
+              columns={3}
+              images={[
+                { src: meetJena, alt: "Jena — owner of Hair Pinns salon" },
+                { src: salonInterior, alt: "Hair Pinns salon interior, Bangor" },
+                { src: beforeAfter, alt: "Before and after smoothing treatment" },
+                { src: stylingResult, alt: "Formal styling — curls and braids" },
+                { src: blondeResult, alt: "Blonde balayage result" },
+                { src: curlsResult, alt: "Bouncy curls styling" },
+                { src: bobResult, alt: "Layered bob blowout" },
+                { src: highlightResult, alt: "Dimensional highlights" },
+                { src: pureProducts, alt: "Pure organic hair care products" },
+              ]}
+            />
           </div>
         </section>
 

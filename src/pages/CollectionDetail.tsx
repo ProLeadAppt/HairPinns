@@ -495,6 +495,32 @@ const CollectionDetail = () => {
         </section>
 
 
+        {/* Recently Viewed */}
+        {(() => {
+          try {
+            const stored = JSON.parse(localStorage.getItem("hp_recent_products") || "[]");
+            const recent = stored.filter((p: any) => p.slug && p.image).slice(0, 4);
+            if (recent.length < 2) return null;
+            return (
+              <section className="py-12 border-t border-border">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <h3 className="text-lg font-heading font-semibold text-heading mb-6">Recently viewed</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {recent.map((p: any) => (
+                      <Link key={p.slug} to={`/products/${p.slug}`} className="group">
+                        <div className="aspect-square bg-muted rounded-card overflow-hidden mb-2">
+                          <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                        </div>
+                        <p className="text-sm font-medium text-heading line-clamp-1 group-hover:text-brand-500 transition-colors">{p.title}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            );
+          } catch { return null; }
+        })()}
+
       </main>
       <Footer />
 

@@ -192,6 +192,7 @@ a:focus-visible:not(.skip-link) {
   /* Hair Pinns Typography - Exact Match */
   html {
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
   }
 
   body {
@@ -201,6 +202,7 @@ a:focus-visible:not(.skip-link) {
     line-height: 1.6;
     color: hsl(var(--text));
     background-color: hsl(var(--bg));
+    overflow-x: hidden;
   }
 
   /* Headings use serif font like Hair Pinns */

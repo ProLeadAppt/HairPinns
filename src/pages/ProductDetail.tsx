@@ -85,6 +85,16 @@ const ProductDetail = () => {
             product_title: productData.title,
           });
 
+          // Save to recently viewed (for collection pages)
+          try {
+            const firstImg = productData.images?.edges?.[0]?.node?.url || "";
+            const recentItem = { slug: productData.handle, title: productData.title, image: firstImg, price: parseFloat(productData.priceRange?.minVariantPrice?.amount || "0") };
+            const stored = JSON.parse(localStorage.getItem("hp_recent_products") || "[]");
+            const filtered = stored.filter((p: any) => p.slug !== productData.handle);
+            filtered.unshift(recentItem);
+            localStorage.setItem("hp_recent_products", JSON.stringify(filtered.slice(0, 8)));
+          } catch {}
+
           // Set first available variant as default
           const variants = productData.variants.edges;
           const firstAvailableVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
@@ -563,6 +573,7 @@ const ProductDetail = () => {
                       <button
                         key={index}
                         onClick={() => setCurrentImage(index)}
+                        aria-label={`View thumbnail ${index + 1}`}
                         className={`aspect-square rounded-card overflow-hidden border-2 transition-all ${
                           index === currentImage ? "border-brand-500" : "border-transparent hover:border-border"
                         }`}

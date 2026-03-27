@@ -1,0 +1,25 @@
+{
+  "name": "Hair Pinns",
+  "short_name": "Hair Pinns",
+  "description": "Hair care by Jena. Shipped anywhere in Australia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCFAFE",
+  "theme_color": "#8B4A8B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/og-default.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["shopping", "beauty"],
+  "lang": "en-AU"
+}
