@@ -44,6 +44,7 @@ const ProductDetail = () => {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
   const [addingToCart, setAddingToCart] = useState(false);
   const [buyingNow, setBuyingNow] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Fetch product from Shopify (with 8s timeout to avoid perpetual loading)
   useEffect(() => {
@@ -505,9 +506,9 @@ const ProductDetail = () => {
               {/* Left: Gallery */}
               <div className="space-y-4">
                 {/* Main Image - Clickable */}
-                <div 
-                  className="relative aspect-square bg-muted rounded-card overflow-hidden group cursor-pointer"
-                  onClick={() => window.open(currentImg?.url, '_blank')}
+                <div
+                  className="relative aspect-square bg-muted rounded-card overflow-hidden group cursor-zoom-in"
+                  onClick={() => setLightboxOpen(true)}
                 >
                   <img
                     src={currentImg?.url || "/placeholder.svg"}
@@ -709,39 +710,103 @@ const ProductDetail = () => {
                   </div>
                 </div>
 
-                {/* Description - Simplified */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-heading">Product Description</h3>
-                  <div className="prose prose-sm max-w-none text-foreground">
+                {/* Product Tabs */}
+                <Tabs defaultValue="description" className="w-full">
+                  <TabsList className="w-full justify-start border-b rounded-none bg-transparent h-auto p-0 gap-6">
+                    <TabsTrigger value="description" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brand-500 data-[state=active]:bg-transparent px-0 pb-2 text-sm font-medium">
+                      Description
+                    </TabsTrigger>
                     {(() => {
-                      try {
-                        // Extract key features - ensure description is string (Shopify may return HTML/rich text)
-                        const rawDesc = product.description ?? product.descriptionHtml ?? "";
-                        const description = typeof rawDesc === "string" ? rawDesc : String(rawDesc);
-                        const sentences = description.split(/[.!?]+/).filter((s: string) => s.trim().length > 10);
-                        const keyPoints = sentences.slice(0, 3).map((s: string) => s.trim()).filter(Boolean);
-                        
-                        if (keyPoints.length === 0) {
-                          return <p className="speakable-product-intro">Professional hair care product designed for professional results at home.</p>;
-                        }
-                        
-                        return (
-                          <div className="space-y-2">
-                            {keyPoints.map((point, index) => (
-                              <p key={index} className={index === 0 ? "speakable-product-intro text-sm leading-relaxed" : "text-sm leading-relaxed"}>{point}.</p>
-                            ))}
-                          </div>
-                        );
-                      } catch {
-                        return <p>Professional hair care product designed for professional results at home.</p>;
-                      }
+                      const howTo = getProductHowTo(handle, product.title);
+                      return howTo ? (
+                        <TabsTrigger value="how-to-use" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brand-500 data-[state=active]:bg-transparent px-0 pb-2 text-sm font-medium">
+                          How to Use
+                        </TabsTrigger>
+                      ) : null;
                     })()}
-                  </div>
-                </div>
+                  </TabsList>
+
+                  <TabsContent value="description" className="mt-4">
+                    <div className="prose prose-sm max-w-none text-foreground">
+                      {(() => {
+                        try {
+                          const rawDesc = product.description ?? product.descriptionHtml ?? "";
+                          const description = typeof rawDesc === "string" ? rawDesc : String(rawDesc);
+                          const sentences = description.split(/[.!?]+/).filter((s: string) => s.trim().length > 10);
+                          const keyPoints = sentences.slice(0, 5).map((s: string) => s.trim()).filter(Boolean);
+
+                          if (keyPoints.length === 0) {
+                            return <p className="speakable-product-intro">Professional hair care product designed for great results at home.</p>;
+                          }
+
+                          return (
+                            <div className="space-y-2">
+                              {keyPoints.map((point, index) => (
+                                <p key={index} className={index === 0 ? "speakable-product-intro text-sm leading-relaxed" : "text-sm leading-relaxed"}>{point}.</p>
+                              ))}
+                            </div>
+                          );
+                        } catch {
+                          return <p>Professional hair care product designed for great results at home.</p>;
+                        }
+                      })()}
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="how-to-use" className="mt-4">
+                    {(() => {
+                      const howTo = getProductHowTo(handle, product.title);
+                      if (!howTo) return null;
+                      return (
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground">{howTo.description}</p>
+                          <ol className="space-y-3">
+                            {howTo.step.map((step, i) => (
+                              <li key={i} className="flex gap-3">
+                                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-500 text-white text-xs flex items-center justify-center font-semibold">{i + 1}</span>
+                                <div>
+                                  <p className="text-sm font-medium text-heading">{step.name}</p>
+                                  <p className="text-sm text-muted-foreground">{step.text}</p>
+                                </div>
+                              </li>
+                            ))}
+                          </ol>
+                          {howTo.supply && howTo.supply.length > 0 && (
+                            <div className="pt-3 border-t border-border">
+                              <p className="text-xs font-medium text-muted-foreground mb-1">You'll need:</p>
+                              <p className="text-sm text-foreground">{howTo.supply.join(", ")}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
+                  </TabsContent>
+                </Tabs>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Image Lightbox */}
+        {lightboxOpen && currentImg?.url && (
+          <div
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center cursor-zoom-out"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light z-10"
+              onClick={() => setLightboxOpen(false)}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <img
+              src={currentImg.url}
+              alt={currentImg.altText || product.title}
+              className="max-w-[90vw] max-h-[90vh] object-contain"
+            />
+          </div>
+        )}
 
         {/* Frequently Bought Together Section - wrapped so failures don't break product page */}
         {product && (

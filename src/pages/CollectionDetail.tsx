@@ -26,6 +26,7 @@ import {
 import ExitIntentModal from "@/components/conversion/ExitIntentModal";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
+import QuickViewModal from "@/components/product/QuickViewModal";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
@@ -41,6 +42,7 @@ const CollectionDetail = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
+  const [quickViewHandle, setQuickViewHandle] = useState<string | null>(null);
 
   // Track GA4 view_item_list when collection loads
   useEffect(() => {
@@ -505,11 +507,9 @@ const CollectionDetail = () => {
                           variant="outline"
                           size="sm"
                           className="flex-1"
-                          asChild
+                          onClick={() => setQuickViewHandle(product.handle)}
                         >
-                          <Link to={`/products/${product.handle}`}>
-                            View Product
-                          </Link>
+                          Quick View
                         </Button>
                         <Button
                           variant="primary"
@@ -599,6 +599,15 @@ const CollectionDetail = () => {
         </section>
       </main>
       <Footer />
+
+      {/* Quick View Modal */}
+      {quickViewHandle && (
+        <QuickViewModal
+          productHandle={quickViewHandle}
+          open={!!quickViewHandle}
+          onClose={() => setQuickViewHandle(null)}
+        />
+      )}
     </div>
   );
 };
