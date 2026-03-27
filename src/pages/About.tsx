@@ -281,7 +281,7 @@ const About = () => {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-card p-6"
+                  className="bg-card border border-border border-l-4 border-l-brand-500 rounded-card p-6"
                 >
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -291,6 +291,7 @@ const About = () => {
                       />
                     ))}
                   </div>
+                  <span className="text-4xl text-brand-500/20 font-serif leading-none">&ldquo;</span>
                   <p className="text-foreground leading-relaxed mb-4 italic">
                     "{testimonial.text}"
                   </p>

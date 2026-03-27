@@ -196,7 +196,7 @@ const HeroHome = () => {
             </div>
           )}
 
-          <div className="rounded-xl p-5" style={{ background: 'rgba(24, 0, 30, 0.5)', backdropFilter: 'blur(8px)' }}>
+          <div className="hero-stagger rounded-xl p-5" style={{ background: 'rgba(24, 0, 30, 0.5)', backdropFilter: 'blur(8px)' }}>
             <h1 className="speakable-hero-intro font-heading font-bold text-white mb-3 leading-tight" style={{ fontSize: 'clamp(26px, 6vw, 34px)' }}>
               Hey, I'm Jena. These are the products I use on my clients.
             </h1>
@@ -221,7 +221,7 @@ const HeroHome = () => {
         {/* Desktop: Split layout */}
         <div className="hidden md:grid md:grid-cols-[40%_60%] gap-8 lg:gap-12 items-center">
           <div className="max-w-[32rem]">
-            <div className="rounded-xl p-6 lg:p-8" style={{ background: 'rgba(24, 0, 30, 0.5)', backdropFilter: 'blur(10px)' }}>
+            <div className="hero-stagger rounded-xl p-6 lg:p-8" style={{ background: 'rgba(24, 0, 30, 0.5)', backdropFilter: 'blur(10px)' }}>
               <h1 className="speakable-hero-intro font-heading font-bold text-white mb-5 leading-tight" style={{ fontSize: 'clamp(36px, 4vw, 56px)' }}>
                 Hey, I'm Jena. These are the products I use on my clients.
               </h1>
@@ -252,6 +252,12 @@ const HeroHome = () => {
             </div>
           )}
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-1 text-white/60 scroll-indicator">
+        <span className="text-xs">Scroll to shop</span>
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </div>
     </section>
   );

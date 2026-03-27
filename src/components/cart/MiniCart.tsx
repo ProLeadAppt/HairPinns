@@ -45,10 +45,14 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
           }
           if (data) {
             setCart(data);
+            // Dispatch cart count for header badge
+            const count = data?.lines?.edges?.reduce((sum: number, e: any) => sum + e.node.quantity, 0) ?? 0;
+            window.dispatchEvent(new CustomEvent("hp:cartCountUpdate", { detail: { count } }));
           } else {
             setCartError("Your cart has expired. Please add items again.");
             setCart(null);
             clearCartId();
+            window.dispatchEvent(new CustomEvent("hp:cartCountUpdate", { detail: { count: 0 } }));
           }
         } catch (err) {
           console.error("Failed to fetch cart:", err);
@@ -119,6 +123,9 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
       if (!response.ok) throw new Error("Failed to remove");
       const { cart: updatedCart } = await response.json();
       setCart(updatedCart);
+      // Update header badge count
+      const newCount = updatedCart?.lines?.edges?.reduce((sum: number, e: any) => sum + e.node.quantity, 0) ?? 0;
+      window.dispatchEvent(new CustomEvent("hp:cartCountUpdate", { detail: { count: newCount } }));
       toast.success("Item removed");
     } catch {
       toast.error("Could not remove item");
@@ -280,9 +287,9 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
                           {merch?.product?.title || "Product"}
                         </span>
                       )}
-                      <p className="text-xs text-muted-foreground mt-0.5">
+                      <span className="inline-flex items-center gap-1.5 mt-0.5 text-xs text-muted-foreground bg-muted/50 rounded-full px-2 py-0.5">
                         Qty: {node.quantity}
-                      </p>
+                      </span>
                       <p className="text-sm font-bold text-brand-500 mt-1">
                         {formatPrice(price * node.quantity, currency)}
                       </p>

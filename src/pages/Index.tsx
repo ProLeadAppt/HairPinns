@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 // Below-fold sections (lazy-loaded for performance)
 const BestSellers = lazy(() => import("@/components/home/BestSellers"));
@@ -26,6 +27,7 @@ import {
 import { getOGImage } from "@/lib/sitemap";
 
 const Index = () => {
+  const mainRef = useScrollReveal();
   const organizationSchema = generateOrganizationSchema();
   const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com');
   const knowledgeGraphSchema = generateKnowledgeGraphSchema();
@@ -109,41 +111,49 @@ const Index = () => {
       </Helmet>
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
-      <main id="main-content">
+      <main id="main-content" ref={mainRef as any}>
         {/* 1. Hero */}
         <HeroHome />
 
         {/* 2. Best Sellers */}
-        <Suspense fallback={
-          <section className="py-12 bg-background">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-10">
-                <h2 className="text-h2-lg font-heading font-bold text-heading mb-4">Best Sellers</h2>
-                <p className="text-lg text-muted-foreground">Loading the good stuff...</p>
+        <div className="reveal">
+          <Suspense fallback={
+            <section className="py-12 bg-background">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-10">
+                  <h2 className="text-h2-lg font-heading font-bold text-heading mb-4">Best Sellers</h2>
+                  <p className="text-lg text-muted-foreground">Loading the good stuff...</p>
+                </div>
               </div>
-            </div>
-          </section>
-        }>
-          <BestSellers />
-        </Suspense>
+            </section>
+          }>
+            <BestSellers />
+          </Suspense>
+        </div>
 
         {/* 3. Shop by Brand */}
-        <Suspense fallback={null}>
-          <ProductCategories />
-        </Suspense>
+        <div className="reveal">
+          <Suspense fallback={null}>
+            <ProductCategories />
+          </Suspense>
+        </div>
 
         {/* 4. Why Shop with Me */}
-        <Suspense fallback={null}>
-          <WhyShopHairPinns />
-        </Suspense>
+        <div className="reveal">
+          <Suspense fallback={null}>
+            <WhyShopHairPinns />
+          </Suspense>
+        </div>
 
         {/* 5. Reviews */}
-        <Suspense fallback={null}>
-          <ReviewsShowcase />
-        </Suspense>
+        <div className="reveal">
+          <Suspense fallback={null}>
+            <ReviewsShowcase />
+          </Suspense>
+        </div>
 
         {/* 6. From the Blog */}
-        <div className="py-12 bg-muted/30">
+        <div className="reveal py-12 bg-muted/30">
           <Suspense fallback={null}>
             <BlogTrio />
           </Suspense>

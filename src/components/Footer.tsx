@@ -186,10 +186,10 @@ const Footer = () => {
           </div>
           
           {/* Newsletter */}
-          <div>
+          <div className="bg-accent/20 rounded-xl p-4">
             <h4 className="text-sm font-semibold text-heading mb-3 uppercase tracking-wide">Stay Connected</h4>
             <p className="text-sm text-foreground mb-4">
-              Hair tips, new products and the occasional discount. No spam.
+              Get 10% off your first order
             </p>
             <form onSubmit={handleNewsletterSubmit} className="space-y-2">
               <Input
@@ -201,10 +201,10 @@ const Footer = () => {
                 className="h-10 text-sm"
                 aria-label="Email address for newsletter"
               />
-              <Button 
-                type="submit" 
-                variant="primary" 
-                size="sm" 
+              <Button
+                type="submit"
+                variant="primary"
+                size="sm"
                 className="w-full"
                 disabled={isSubmitting}
               >
@@ -248,6 +248,9 @@ const Footer = () => {
                 Terms
               </Link>
             </nav>
+          </div>
+          <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground/60 mt-4">
+            <span>Visa</span><span>Mastercard</span><span>Afterpay</span><span>Zip</span>
           </div>
         </div>
       </div>

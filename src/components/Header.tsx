@@ -23,7 +23,7 @@ function getPromoMessage(): string {
 }
 
 const Header = () => {
-  const { openCart } = useCart();
+  const { openCart, itemCount } = useCart();
   const [showPromo, setShowPromo] = useState(true);
   const promoMessage = getPromoMessage();
   const promoLink = isStocktakeActive() ? "/collections" : QIQI_DISCOUNT_ACTIVE ? `/collections/${PROMO_COLLECTIONS.qiqi}` : "/collections";
@@ -57,19 +57,19 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6" aria-label="Main navigation">
               <ShopDropdown />
-              <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link to="/services" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Services
               </Link>
-              <Link to="/areas" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link to="/areas" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Areas We Serve
               </Link>
-              <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link to="/about" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 About
               </Link>
-              <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link to="/blog" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Blog
               </Link>
-              <Link to="/contact" className="text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+              <Link to="/contact" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Contact
               </Link>
             </nav>
@@ -81,9 +81,14 @@ const Header = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-              <Button variant="ghost" size="sm" onClick={openCart} aria-label="View cart">
+              <Button variant="ghost" size="sm" onClick={openCart} aria-label="View cart" className="relative">
                 <ShoppingCart className="w-4 h-4" />
                 Cart
+                {itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-brand-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                    {itemCount}
+                  </span>
+                )}
               </Button>
               <Link to="/collections">
                 <Button variant="ghost" size="sm">

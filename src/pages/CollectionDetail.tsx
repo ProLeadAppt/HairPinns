@@ -44,6 +44,9 @@ const CollectionDetail = () => {
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
   const [quickViewHandle, setQuickViewHandle] = useState<string | null>(null);
 
+  const collectionTitle = collection?.title || "Collection";
+  const collectionDescription = collection?.description || "Browse this hair care collection";
+
   // Track GA4 view_item_list when collection loads
   useEffect(() => {
     if (collectionTitle && collectionTitle !== "Collection" && typeof window.gtag === 'function') {
@@ -210,9 +213,6 @@ const CollectionDetail = () => {
     // Default: maintain original order
     return 0;
   });
-
-  const collectionTitle = collection?.title || "Collection";
-  const collectionDescription = collection?.description || "Browse this hair care collection";
 
   if (loading) {
     return (
@@ -459,7 +459,7 @@ const CollectionDetail = () => {
                 {sortedProducts.map((product) => (
                   <article 
                     key={product.id} 
-                    className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-all duration-base group"
+                    className="bg-card border border-border rounded-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
                   >
                     {/* Image - clickable to product page */}
                     <Link
