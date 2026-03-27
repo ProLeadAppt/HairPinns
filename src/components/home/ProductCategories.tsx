@@ -4,17 +4,27 @@ import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { getAllCollections } from "@/lib/shopify";
 
+// Real Shopify product photos — no AI/logo collection images
+const categoryImageOverrides: Record<string, string> = {
+  "juuce-botanicals": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
+  "pure-certified-organic-hair-care": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-034.jpg?v=1744176510",
+  "wet-brush-detanglers": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998",
+  "qiqi": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029",
+  "aromaganic": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-14.jpg?v=1746832701",
+  "island-vibes-tanning": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningDeepBangingBronzeDIYFoam.webp?v=1742170894",
+};
+
 const ProductCategories = () => {
   const [collections, setCollections] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
-    
+
     const fetchCollections = async () => {
       try {
         const allCollections = await getAllCollections(20);
-        
+
         // Filter for main product categories
         const mainCategories = [
           'juuce',
@@ -26,16 +36,24 @@ const ProductCategories = () => {
         ];
 
         const filtered = allCollections
-          .filter((c: any) => mainCategories.includes(c.handle?.toLowerCase()))
+          .filter((c: any) => {
+            const h = c.handle?.toLowerCase() || "";
+            return mainCategories.some(cat => h.includes(cat));
+          })
           .slice(0, 6)
-          .map((c: any) => ({
-            id: c.id,
-            handle: c.handle,
-            title: c.title,
-            description: c.description,
-            image: c.image?.url || "/placeholder.svg",
-            productCount: c.products?.edges?.length || 0,
-          }));
+          .map((c: any) => {
+            const handle = c.handle?.toLowerCase() || "";
+            const override = categoryImageOverrides[handle];
+            const firstProductImg = c.products?.edges?.[0]?.node?.images?.edges?.[0]?.node?.url;
+            return {
+              id: c.id,
+              handle: c.handle,
+              title: c.title,
+              description: c.description,
+              image: override || firstProductImg || "/placeholder.svg",
+              productCount: c.products?.edges?.length || 0,
+            };
+          });
 
         if (!isMounted) return;
         setCollections(filtered);

@@ -36,10 +36,28 @@ const Collections = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("default");
 
+  // Real Shopify product photos for each collection — no AI/stock/logo images
+  const collectionImageOverrides: Record<string, string> = {
+    "juuce-botanicals": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
+    "pure-certified-organic-hair-care": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-034.jpg?v=1744176510",
+    "wet-brush-detanglers": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998",
+    "hair-pinns-accessories": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/98599680-F876-44FB-8AF2-687C0FC9176F.jpg?v=1746739385",
+    "aromaganic": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-14.jpg?v=1746832701",
+    "island-vibes-tanning": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningDeepBangingBronzeDIYFoam.webp?v=1742170894",
+    "qiqi": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029",
+    "the-perfect-pony-hair": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A96B9D56-5A54-458F-9D5C-DAF26AF03C8C.jpg?v=1753072697",
+    "best-sellers-march": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-057.jpg?v=1744178135",
+    "heat-protection": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-042.jpg?v=1744250283",
+    "blonde-bombshells": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-057.jpg?v=1744178135",
+    "curly-girlys": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-011.jpg?v=1744178942",
+    "pump-up-the-volume": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-067.jpg?v=1744178179",
+    "frizz-free-must-haves": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029",
+  };
+
   const getCollectionImage = (collection: ShopifyCollection) => {
-    // Use Shopify collection image if available
-    if (collection.image?.url) return collection.image.url;
-    // Fall back to first product's image
+    // Always use real product photos — overrides bypass AI/logo collection images
+    if (collectionImageOverrides[collection.handle]) return collectionImageOverrides[collection.handle];
+    // Fall back to first product's image (always real)
     const firstProduct = collection.products?.edges?.[0]?.node;
     const firstProductImage = firstProduct?.images?.edges?.[0]?.node?.url;
     if (firstProductImage) return firstProductImage;
