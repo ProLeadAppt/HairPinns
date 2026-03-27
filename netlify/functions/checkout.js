@@ -39,23 +39,42 @@ async function fetchShopify(query, variables) {
     throw new Error('Shopify configuration not available');
   }
 
-  const response = await fetch(SHOPIFY_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': SF_STOREFRONT_TOKEN,
-    },
-    body: JSON.stringify({ query, variables }),
-  });
+  // 10-second timeout to prevent hanging on slow Shopify responses
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
 
-  const json = await response.json();
+  try {
+    const response = await fetch(SHOPIFY_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': SF_STOREFRONT_TOKEN,
+      },
+      body: JSON.stringify({ query, variables }),
+      signal: controller.signal,
+    });
 
-  if (json.errors) {
-    console.error('Shopify API errors:', json.errors);
-    throw new Error('Shopify API error');
+    const json = await response.json();
+
+    if (json.errors) {
+      console.error('Shopify API errors:', json.errors);
+      // Check for stale/expired cart errors
+      const isCartError = json.errors.some(e =>
+        (e.message || '').toLowerCase().includes('cart') ||
+        (e.extensions?.code || '') === 'CART_DOES_NOT_EXIST'
+      );
+      if (isCartError) {
+        const err = new Error('Cart not found or expired');
+        err.code = 'STALE_CART';
+        throw err;
+      }
+      throw new Error('Shopify API error');
+    }
+
+    return json.data;
+  } finally {
+    clearTimeout(timeout);
   }
-
-  return json.data;
 }
 
 /**
@@ -492,6 +511,32 @@ exports.handler = async (event, context) => {
     };
   } catch (error) {
     console.error('Checkout error:', error);
+
+    // Return specific error code for stale carts so client can recover
+    if (error.code === 'STALE_CART') {
+      return {
+        statusCode: 410,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          error: 'Cart expired',
+          code: 'STALE_CART',
+          message: 'Your cart has expired. Please add your items again.',
+        }),
+      };
+    }
+
+    // Timeout-specific error
+    if (error.name === 'AbortError') {
+      return {
+        statusCode: 504,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          error: 'Checkout timeout',
+          message: 'Checkout is taking longer than usual. Please try again.',
+        }),
+      };
+    }
+
     return {
       statusCode: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

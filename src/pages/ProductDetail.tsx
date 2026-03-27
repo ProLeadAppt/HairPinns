@@ -437,10 +437,7 @@ const ProductDetail = () => {
                 productID: product.id,
                 availability: isAvailable ? "InStock" : "OutOfStock",
                 category: product.productType || "Hair Care",
-                rating: {
-                  ratingValue: 4.8,
-                  reviewCount: 53,
-                },
+                // No aggregateRating — no real product review system exists yet
               }));
             } catch (e) {
               console.warn("Product schema generation failed:", e);
@@ -517,6 +514,7 @@ const ProductDetail = () => {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     width="800"
                     height="800"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   
                   {/* Navigation Arrows */}
@@ -592,7 +590,6 @@ const ProductDetail = () => {
                   <UrgencyIndicator
                     productId={product.id}
                     inStock={product.availableForSale}
-                    stockLevel={product.availableForSale ? 5 : 0} // In production, get from API
                     showRecentPurchases={true}
                     className="mb-4"
                   />
@@ -674,14 +671,14 @@ const ProductDetail = () => {
 
                   {/* Shipping Calculator */}
                   <div className="pt-2">
-                    <SilentErrorBoundary>
+                    <SilentErrorBoundary fallback={<p className="text-sm text-muted-foreground">Free shipping on orders over $150 Australia-wide</p>}>
                       <ShippingCalculator cartTotal={price} />
                     </SilentErrorBoundary>
                   </div>
 
                   {/* Estimated Delivery */}
                   <div className="pt-2">
-                    <SilentErrorBoundary>
+                    <SilentErrorBoundary fallback={<p className="text-sm text-muted-foreground">Ships in 1-2 business days &middot; 3-7 day delivery</p>}>
                       <EstimatedDelivery cartTotal={price} />
                     </SilentErrorBoundary>
                   </div>
@@ -692,6 +689,22 @@ const ProductDetail = () => {
                     <SilentErrorBoundary>
                       <PaymentBadges variant="stacked" />
                     </SilentErrorBoundary>
+                  </div>
+
+                  {/* Trust Strip */}
+                  <div className="pt-4 border-t border-border flex flex-wrap gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1.5">
+                      <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      <span>14-day hassle-free returns</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                      <span>Ships Australia-wide</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                      <span>Secure checkout</span>
+                    </div>
                   </div>
                 </div>
 

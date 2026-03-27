@@ -190,10 +190,9 @@ const BestSellers = () => {
               
               {/* Urgency Indicator */}
               <div className="mb-3">
-                <UrgencyIndicator 
+                <UrgencyIndicator
                   productId={product.id}
                   inStock={product.availableForSale}
-                  stockLevel={product.availableForSale ? Math.floor(Math.random() * 15) + 1 : 0}
                   showRecentPurchases={true}
                 />
               </div>

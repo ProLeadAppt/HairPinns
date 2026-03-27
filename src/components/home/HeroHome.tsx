@@ -324,7 +324,7 @@ const HeroHome = () => {
               </div>
               <div className="flex items-center gap-1" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 <Truck className="w-3 h-3 text-brand-300" />
-                <span>Free Ship $100+</span>
+                <span>Free Ship $150+</span>
               </div>
               <div className="flex items-center gap-1" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 <Shield className="w-3 h-3 text-brand-300" />

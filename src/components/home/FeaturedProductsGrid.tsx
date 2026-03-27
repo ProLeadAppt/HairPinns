@@ -117,10 +117,9 @@ const FeaturedProductsGrid = () => {
                 {product.title}
               </h3>
               
-              <UrgencyIndicator 
+              <UrgencyIndicator
                 productId={product.id}
                 inStock={product.availableForSale}
-                stockLevel={product.availableForSale ? Math.floor(Math.random() * 15) + 1 : 0}
                 showRecentPurchases={false}
                 className="mb-2"
               />

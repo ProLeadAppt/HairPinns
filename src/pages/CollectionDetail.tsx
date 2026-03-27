@@ -487,9 +487,10 @@ const CollectionDetail = () => {
                         </Link>
                       </h3>
 
-                      <p className="text-2xl font-bold text-brand-500 mb-4">
+                      <p className="text-2xl font-bold text-brand-500 mb-1">
                         {formatPrice(product.price, "AUD")}
                       </p>
+                      <p className="text-xs text-muted-foreground mb-3">Afterpay &middot; Zip available</p>
 
                       {/* Actions */}
                       <div className="flex gap-2">

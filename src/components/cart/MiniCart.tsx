@@ -310,6 +310,9 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
               <ShoppingBag className="w-12 h-12 text-muted-foreground mx-auto mb-2" />
               <p className="text-muted-foreground">Your bag is empty</p>
               <p className="text-sm text-muted-foreground mt-2">Add items to get started.</p>
+              <Button asChild variant="primary" size="sm" className="mt-4">
+                <Link to="/collections" onClick={onClose}>Browse Collections</Link>
+              </Button>
             </div>
           ) : null}
 
