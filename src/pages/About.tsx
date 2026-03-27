@@ -35,17 +35,17 @@ const About = () => {
   const testimonials = [
     {
       name: "Sarah M.",
-      text: "Jena transformed my damaged hair into something I'm actually proud of. She took the time to understand what I needed and recommended a treatment plan that really worked. Best salon experience I've ever had!",
+      text: "I went to Jena after a box dye went wrong. She didn't try to fix it all in one go. Took three sessions, was upfront about the cost, and now my blonde actually looks like I wanted it to. Won't go anywhere else.",
       rating: 5
     },
     {
       name: "Emma L.",
-      text: "I've been coming to Hair Pinns for 3 years now. Jena's balayage is flawless, and I love that she's honest about what will and won't work for my hair. No upselling, just genuine care.",
+      text: "Been going to Jena for three years. She told me not to get a smoothing treatment once because my hair wasn't damaged enough to need one. That's when I knew she was genuine.",
       rating: 5
     },
     {
       name: "Michelle T.",
-      text: "As someone with curly hair, I've struggled to find a stylist who gets it. Jena is amazing! She understands texture and gave me a cut that actually works with my curls. Plus, her product recommendations are spot-on.",
+      text: "Finally found someone who knows how to cut curly hair without straightening it first. Jena cuts it dry, knows how curls sit, and the shape actually holds between washes. Game changer.",
       rating: 5
     }
   ];
@@ -157,25 +157,23 @@ const About = () => {
           </div>
         </section>
 
-        {/* Salon Philosophy */}
+        {/* How I work */}
         <section className="py-16 bg-accent">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-16 h-16 bg-brand-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
-              <Heart className="w-8 h-8" />
-            </div>
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-h2-lg font-heading font-bold text-heading mb-6">
-              Our Philosophy: Honest Care
+              How I work
             </h2>
-            <p className="text-lg text-foreground leading-relaxed mb-6">
-              At Hair Pinns, "honest care" isn't just a tagline. It's how I work every day.
-              I'll never recommend a service you don't need or push products that won't work for your hair.
-              I focus on what will actually help, within your budget and lifestyle.
-            </p>
-            <p className="text-foreground leading-relaxed max-w-2xl mx-auto">
-              Whether you're maintaining healthy color, repairing damage, or trying something new, 
-              you'll always get my honest opinion, transparent pricing, and a plan that makes sense for you. 
-              That's the Hair Pinns difference.
-            </p>
+            <div className="space-y-4 text-foreground leading-relaxed">
+              <p>
+                I've had clients come in wanting a $400 full colour when a $95 toner would've done the job. I told them. That's the kind of salon I run.
+              </p>
+              <p>
+                I won't upsell you. I won't recommend a treatment your hair doesn't need. If I think you should wait another month before your next appointment, I'll say so.
+              </p>
+              <p>
+                You'll get honest advice, transparent pricing, and a plan that actually makes sense for your hair, your budget, and your life.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -236,38 +234,22 @@ const About = () => {
           </div>
         </section>
 
-        {/* Client Results — placeholder for before/after with permission */}
+        {/* What I specialise in */}
         <section className="py-16 bg-accent/10">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-6 text-center">
-              Client Results
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
+              What I specialise in
             </h2>
-            <p className="text-center text-foreground max-w-2xl mx-auto mb-8">
-              Real transformations from real clients. From colour corrections to smoothing treatments and precision cuts,
-              Jena delivers results that speak for themselves. Want to see before-and-afters? Just ask when you come in.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-card border border-border rounded-card p-6 text-center">
-                <div className="w-16 h-16 bg-brand-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-brand-500" />
-                </div>
-                <h3 className="font-heading font-semibold text-heading mb-2">Colour & Blonding</h3>
-                <p className="text-sm text-muted-foreground">Dimensional highlights, balayage, and colour corrections tailored to your hair and lifestyle.</p>
-              </div>
-              <div className="bg-card border border-border rounded-card p-6 text-center">
-                <div className="w-16 h-16 bg-brand-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-brand-500" />
-                </div>
-                <h3 className="font-heading font-semibold text-heading mb-2">Smoothing Treatments</h3>
-                <p className="text-sm text-muted-foreground">Frizz-taming results that last 3–5 months. Natural formulas for Sydney's humid climate.</p>
-              </div>
-              <div className="bg-card border border-border rounded-card p-6 text-center">
-                <div className="w-16 h-16 bg-brand-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-brand-500" />
-                </div>
-                <h3 className="font-heading font-semibold text-heading mb-2">Precision Cuts</h3>
-                <p className="text-sm text-muted-foreground">Cuts that work with your texture, face shape, and daily routine for easy maintenance.</p>
-              </div>
+            <div className="space-y-6 text-foreground leading-relaxed">
+              <p>
+                <strong className="text-heading">Colour correction.</strong> If you've had a box dye disaster or your blonde has gone brassy, this is what I do best. I won't rush it. Sometimes it takes two or three sessions to get right, and I'll be upfront about that from the start.
+              </p>
+              <p>
+                <strong className="text-heading">Smoothing treatments.</strong> Sydney's humidity is relentless. I use QIQI Vega and Juuce formulas that actually hold up in our climate. Most clients get 3 to 5 months between treatments.
+              </p>
+              <p>
+                <strong className="text-heading">Cuts that work with your hair.</strong> I don't do one-size-fits-all. If you've got curls, I cut for curls. If your hair is fine, I cut for volume. The goal is hair you can manage yourself between visits.
+              </p>
             </div>
           </div>
         </section>
@@ -324,7 +306,7 @@ const About = () => {
         <section className="py-16 bg-brand-500 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-h2-lg font-heading font-bold mb-4">
-              Ready to Experience Hair Pinns?
+              Ready to sort your hair out?
             </h2>
             <p className="text-lg mb-8 opacity-90">
               Book your appointment or browse the products I stock.

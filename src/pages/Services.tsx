@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Clock, Layers } from "lucide-react";
+import { Calendar, Clock, Layers } from "lucide-react";
 import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
@@ -526,10 +526,10 @@ const Services = () => {
               Our Services
             </p>
             <h1 className="text-h1-lg font-heading font-bold text-heading mb-4" style={{ letterSpacing: '-0.2px' }}>
-              Services & Packages
+              Colour, Smoothing & Cuts
             </h1>
             <p className="text-lg text-foreground leading-relaxed" style={{ lineHeight: '1.5' }}>
-              Prices and times are exactly what you'll see when you book.
+              Prices shown are what you'll pay. No hidden fees. Book online or call.
             </p>
           </div>
         </section>
@@ -656,7 +656,7 @@ const Services = () => {
                         <Button 
                           variant="primary" 
                           size="sm" 
-                          className="w-full transition-all duration-150 hover:scale-[1.02]"
+                          className="w-full transition-all duration-300 hover:scale-[1.02]"
                           style={{ borderRadius: 'var(--radius-btn)' }}
                         >
                           <Calendar className="w-4 h-4 group-hover:animate-pulse" />
@@ -719,54 +719,12 @@ const Services = () => {
         />
 
         {/* Areas We Serve */}
-        <section className="py-12 bg-muted" id="areas">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-2 mb-6">
-              <MapPin className="w-5 h-5 text-brand-500" />
-              <h2 className="text-h2 font-heading font-semibold text-heading">
-                Areas We Serve
-              </h2>
-            </div>
-            <p className="text-heading mb-8 max-w-3xl text-base leading-relaxed">
-              Hair Pinns proudly serves clients throughout Sydney and the Sutherland Shire from our Bangor salon.
+        <section className="py-12 bg-muted/30 border-t border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-muted-foreground">
+              Based in Bangor, serving all of Sutherland Shire.{" "}
+              <Link to="/areas" className="text-brand-500 hover:text-brand-600 font-medium">See all areas</Link>
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {[
-                { name: "Sydney", slug: "sydney" },
-                { name: "Como", slug: "como-2226" },
-                { name: "Gymea", slug: "gymea-2227" },
-                { name: "Menai", slug: "menai-2234" },
-                { name: "Bangor", slug: "bangor-2234" },
-                { name: "Jannali", slug: "jannali-2226" },
-                { name: "Kareela", slug: "kareela-2232" },
-                { name: "Miranda", slug: "miranda-2228" },
-                { name: "Padstow", slug: "padstow-2211" },
-                { name: "Cronulla", slug: "cronulla-2230" },
-                { name: "Illawong", slug: "illawong-2234" },
-                { name: "Kirrawee", slug: "kirrawee-2232" },
-                { name: "Sylvania", slug: "sylvania-2224" },
-                { name: "Caringbah", slug: "caringbah-2229" },
-                { name: "Oyster Bay", slug: "oyster-bay-2225" },
-                { name: "Sutherland", slug: "sutherland-2232" },
-                { name: "Barden Ridge", slug: "barden-ridge-2234" },
-                { name: "Alfords Point", slug: "alfords-point-2234" }
-              ].map(area => (
-                <Link
-                  key={area.slug}
-                  to={`/areas/${area.slug}`}
-                  className="group p-5 bg-card border border-[rgba(139,74,139,0.10)] rounded-card hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-300"
-                  style={{ 
-                    boxShadow: 'var(--shadow)',
-                    borderRadius: 'var(--radius-card)'
-                  }}
-                >
-                  <h3 className="font-semibold text-heading text-base mb-1 group-hover:text-brand-500 transition-colors">
-                    {area.name}
-                  </h3>
-                  <p className="text-sm text-foreground/70">View local info →</p>
-                </Link>
-              ))}
-            </div>
           </div>
         </section>
 
