@@ -114,7 +114,7 @@ const About = () => {
                 <p className="text-foreground leading-relaxed mb-6">
                   I believe beautiful hair starts with listening. Whether you're looking for a subtle refresh 
                   or a complete transformation, I'll take the time to understand your hair goals, lifestyle, 
-                  and concerns—then create a plan that actually works for you. No gimmicks, no upsells, 
+                  and concerns, then create a plan that actually works for you. No gimmicks, no upsells, 
                   just real results you can feel good about.
                 </p>
 
@@ -136,13 +136,13 @@ const About = () => {
                   <div className="flex items-start gap-3">
                     <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                     <span className="text-foreground">
-                      <strong>Foiling Master</strong> — expert in dimensional colour and highlights
+                      <strong>Foiling Master</strong>, dimensional colour and highlights
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <Award className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                     <span className="text-foreground">
-                      <strong>Sutherland Shire local</strong> — understands local climate and hair care needs
+                      <strong>Sutherland Shire local</strong>, understands local climate and hair care needs
                     </span>
                   </div>
                 </div>
@@ -166,9 +166,9 @@ const About = () => {
               Our Philosophy: Honest Care
             </h2>
             <p className="text-lg text-foreground leading-relaxed mb-6">
-              At Hair Pinns, "honest care" isn't just a tagline—it's how we operate every day. 
-              I'll never recommend a service you don't need or push products that won't work for your hair. 
-              Instead, I focus on what will genuinely help you achieve your goals, within your budget and lifestyle.
+              At Hair Pinns, "honest care" isn't just a tagline. It's how I work every day.
+              I'll never recommend a service you don't need or push products that won't work for your hair.
+              I focus on what will actually help, within your budget and lifestyle.
             </p>
             <p className="text-foreground leading-relaxed max-w-2xl mx-auto">
               Whether you're maintaining healthy color, repairing damage, or trying something new, 
@@ -184,12 +184,12 @@ const About = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-h2-lg font-heading font-bold text-heading mb-6">
-                  Why We Curate Our Own Product Line
+                  Why I Pick My Own Products
                 </h2>
                 <p className="text-foreground leading-relaxed mb-6">
                   After years of trying every brand on the market, I got tired of recommending products 
-                  that didn't live up to their promises. So I partnered with brands I actually trust—
-                  like Juuce, QIQI, Pure & Wet Brush Pure—to create a curated retail line that delivers real results.
+                  that didn't live up to their promises. So I partnered with brands I actually trust,
+                  like Juuce, QIQI, Pure and Wet Brush, to build a product range that delivers real results.
                 </p>
                 <p className="text-foreground leading-relaxed mb-6">
                   Every product in our collection is salon-tested and client-approved. I use these same formulas 
@@ -202,7 +202,7 @@ const About = () => {
               <div className="aspect-square bg-muted rounded-card overflow-hidden">
                 <img
                   src={jenaHeadshot}
-                  alt="Jena from Hair Pinns with her curated product collection"
+                  alt="Jena from Hair Pinns with her product range"
                   className="w-full h-full object-cover"
                   width="600"
                   height="600"
@@ -222,7 +222,7 @@ const About = () => {
               Proud to Call Bangor Home
             </h2>
             <p className="text-lg text-foreground leading-relaxed mb-6">
-              Hair Pinns is more than a salon—it's part of the Bangor community. We're proud to serve 
+              Hair Pinns is more than a salon. It's part of the Bangor community. We're proud to serve 
               clients from across the Sutherland Shire, from Menai to Woronora, Engadine to Illawong. 
               Many of our clients have been with us since day one, and we've built relationships that go 
               beyond just hair appointments.
@@ -325,7 +325,7 @@ const About = () => {
               Ready to Experience Hair Pinns?
             </h2>
             <p className="text-lg mb-8 opacity-90">
-              Book your appointment or explore our curated product collection.
+              Book your appointment or browse the products I stock.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/collections">

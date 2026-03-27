@@ -45,7 +45,7 @@ export const googleReviews: Review[] = [
     author: "Rachel K.",
     rating: 5,
     date: "2024-12-28",
-    text: "Best toner I've ever had! My blonde stays bright for weeks. Jena knows exactly how to keep brass away. She's honest about what will and won't work—no upselling, just great advice.",
+    text: "Best toner I've ever had! My blonde stays bright for weeks. Jena knows exactly how to keep brass away. She's honest about what will and won't work, no upselling, just great advice.",
     verified: true,
     location: "Menai",
     service: "Toner & Gloss"
@@ -99,7 +99,7 @@ export const productReviews: Record<string, Review[]> = {
       author: "Sophie R.",
       rating: 5,
       date: "2025-01-12",
-      text: "This pack completely transformed my dry, damaged hair in one week. The deep treatment is incredible—my hair feels like silk. Worth every dollar!",
+      text: "This pack completely transformed my dry, damaged hair in one week. The deep treatment is incredible, my hair feels like silk. Worth every dollar!",
       verified: true
     },
     {

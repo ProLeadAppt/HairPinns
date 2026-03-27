@@ -76,9 +76,9 @@ const ProductCategories = () => {
   if (loading) {
     return (
       <Section className="content-visibility-auto">
-        <SectionHeader 
-          title="Shop by Category"
-          subtitle="Explore our curated collections"
+        <SectionHeader
+          title="Shop by Brand"
+          subtitle="Loading..."
         />
         <div className="flex justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
@@ -94,8 +94,8 @@ const ProductCategories = () => {
   return (
     <Section className="content-visibility-auto">
       <SectionHeader 
-        title="Shop by Category"
-        subtitle="Explore our curated collections"
+        title="Shop by Brand"
+        subtitle="I stock these because they actually work"
       />
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style={{ containIntrinsicSize: "0 2000px" }}>

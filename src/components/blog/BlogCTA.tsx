@@ -93,7 +93,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
           {customText || "Want instant answers?"}
         </h3>
         <p className="text-lg mb-6 text-text">
-          Chat with Isabella, our AI assistant, available 24/7 to help with product recommendations and booking.
+          Chat with Isabella, available 24/7 to help with product recommendations and booking.
         </p>
         <Button
           onClick={guideToBubble}
@@ -150,7 +150,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
           {customText || "Shop these products"}
         </h3>
         <p className="text-lg mb-6 text-text">
-          Get salon-quality products delivered to your door.
+          Get professional products delivered to your door.
         </p>
         <Button asChild size="lg" variant="primary" className="bg-brand-500 hover:bg-brand-600">
           <a

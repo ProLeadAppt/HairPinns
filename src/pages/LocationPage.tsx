@@ -174,7 +174,7 @@ const LocationPage = () => {
         <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`Hairdresser ${locationData.name} | Hair Pinns`} />
-        <meta name="twitter:description" content={`${locationData.driveTime} from Bangor • easy parking • expert colour, smoothing & cuts`} />
+        <meta name="twitter:description" content={`${locationData.driveTime} from Bangor • easy parking • colour, smoothing & cuts`} />
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>
@@ -455,7 +455,7 @@ const LocationPage = () => {
               <h2 className="text-h1 font-heading mb-4" style={{
                 textShadow: '0 2px 20px rgba(0, 0, 0, 0.3)'
               }}>
-                Ready for salon-quality hair?
+                Ready for great hair?
               </h2>
               <p className="text-xl text-white/95 mb-8 max-w-2xl mx-auto">
                 Book your appointment near {locationData.name} today

@@ -333,7 +333,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           },
           {
             step: "Highlight Application",
-            description: "Foils are placed where they'll have maximum impact—usually around the face, crown, and top sections."
+            description: "Foils are placed where they'll have maximum impact, usually around the face, crown, and top sections."
           },
           {
             step: "Cut & Finish",
@@ -390,7 +390,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         process: [
           {
             step: "Precision Placement",
-            description: "We carefully select the most impactful areas for foils—typically around the face and parting."
+            description: "We carefully select the most impactful areas for foils, typically around the face and parting."
           },
           {
             step: "Colour Development",
@@ -740,7 +740,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         slug: "short-wash-cut-blowdry",
         title: "Short Wash, Cut & Blow-dry",
         tagline: "Keep your short style sharp and fresh",
-        quickAnswer: "Short Wash, Cut & Blow-dry includes thorough wash, precision short haircut, and styled finish. Ideal for pixie cuts, bobs, and short styles—about 1 hour.",
+        quickAnswer: "Short Wash, Cut & Blow-dry includes thorough wash, precision short haircut, and styled finish. Ideal for pixie cuts, bobs, and short styles. About 1 hour.",
         duration: "1h",
         price: "A$ 79",
         description: "Maintain your short hairstyle with a professional wash, precision cut, and styled finish.",
@@ -862,7 +862,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         slug: "primary-formal-hairstyle",
         title: "Primary Formal Hairstyle",
         tagline: "Make their special day unforgettable",
-        quickAnswer: "Primary Formal Hairstyle is professional styling for primary school formals—curls, braids, or upstyles with strong-hold finish. Age-appropriate looks that last through the event, about 45 minutes.",
+        quickAnswer: "Primary Formal Hairstyle is professional styling for primary school formals. Curls, braids, or upstyles with strong-hold finish. Age-appropriate looks that last through the event, about 45 minutes.",
         duration: "45min",
         price: "A$ 59",
         description: "Beautiful formal styling for primary school events. We create age-appropriate, long-lasting styles that make kids feel special.",
@@ -926,7 +926,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         slug: "high-school-formal-hairstyle",
         title: "High School Formal Hairstyle",
         tagline: "Stunning formal hair for your special night",
-        quickAnswer: "High School Formal Hairstyle includes consultation, professional prep, advanced styling (upstyle, curls, braids), and long-lasting hold. Stunning results that photograph beautifully—about 1 hour. Trial recommended.",
+        quickAnswer: "High School Formal Hairstyle includes consultation, professional prep, advanced styling (upstyle, curls, braids), and long-lasting hold. Stunning results that photograph beautifully. About 1 hour. Trial recommended.",
         duration: "1h",
         price: "A$ 69",
         description: "Sophisticated formal styling for high school formals and special events. We create stunning, long-lasting looks that photograph beautifully.",

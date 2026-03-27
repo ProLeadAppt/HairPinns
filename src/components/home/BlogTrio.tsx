@@ -30,7 +30,7 @@ const BlogTrio = () => {
     <Section className="content-visibility-auto">
       <SectionHeader 
         title="Hair Care Guides"
-        subtitle="Expert tips to get the most from your products and services"
+        subtitle="What I tell my clients about looking after their hair"
       />
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 1500px" }}>

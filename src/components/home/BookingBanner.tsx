@@ -10,7 +10,7 @@ const BookingBanner = () => {
           Ready to get your hair done?
         </h2>
         <p className="text-lg mb-8 text-white/95 max-w-2xl mx-auto">
-          Book whenever suits you. Pick your service, pick your time — takes 2 minutes.
+          Book whenever suits you. Pick your service, pick your time. Takes 2 minutes.
         </p>
         <Button asChild 
           variant="secondary" 

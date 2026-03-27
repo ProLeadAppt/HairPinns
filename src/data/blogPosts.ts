@@ -1,4 +1,4 @@
-// All blog hero images now use Shopify CDN URLs — same real product photos as the store
+// All blog hero images now use Shopify CDN URLs, same real product photos as the store
 const juuce037 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-037.jpg?v=1744178272";
 const juuce038 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-038.jpg?v=1744178300";
 const juuce050 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-050.jpg?v=1744178399";
@@ -55,18 +55,18 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "best-hair-products-australia-2025",
     title: "Best Hair Products Australia 2025: Jena's Top Picks",
-    excerpt: "Jena's top hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia—shipped nationwide.",
+    excerpt: "Jena's top hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia, shipped nationwide.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "6 min read",
     image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "After 15+ years in the salon, I've seen what works—and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
+      introduction: "After 15+ years in the salon, I've seen what works and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
       sections: [
         {
           heading: "Best for Bond Repair & Damage",
-          content: "Juuce Bond Repair Duo tops my list for damaged, colour-treated, or heat-styled hair. The shampoo and conditioner work together to rebuild broken bonds and restore strength. If you've had bleach, keratin, or regular heat styling, this is your go-to. Pure Sacred Mask is another favourite for an intense weekly treatment—thick, nourishing, and perfect for winter dryness."
+          content: "Juuce Bond Repair Duo tops my list for damaged, colour-treated, or heat-styled hair. The shampoo and conditioner work together to rebuild broken bonds and restore strength. If you've had bleach, keratin, or regular heat styling, this is your go-to. Pure Sacred Mask is another favourite for an intense weekly treatment. Thick, nourishing, and perfect for winter dryness."
         },
         {
           heading: "Best for Blonde & Colour Care",
@@ -74,7 +74,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Best for Frizz & Humidity",
-          content: "Juuce Heat Shield doubles as heat protection and anti-humidity defence. Pure Guardian Angel is another hero for frizz-prone hair. For a full smoothing routine, the Straight Up Smoothing treatment from the salon plus at-home maintenance with these products gives 3–4 months of smooth, manageable hair—even in Sydney's humid summers."
+          content: "Juuce Heat Shield doubles as heat protection and anti-humidity defence. Pure Guardian Angel is another hero for frizz-prone hair. For a full smoothing routine, the Straight Up Smoothing treatment from the salon plus at-home maintenance with these products gives 3–4 months of smooth, manageable hair, even in Sydney's humid summers."
         },
         {
           heading: "Best for Volume & Fine Hair",
@@ -82,11 +82,11 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Best Detangler & Brush",
-          content: "Wet Brush is my go-to for gentle detangling—wet or dry. It reduces breakage and makes combing through knots effortless. Pair with a leave-in conditioner for extra slip. The glitter and fun designs make it a hit with clients of all ages."
+          content: "Wet Brush is my go-to for gentle detangling, wet or dry. It reduces breakage and makes combing through knots effortless. Pair with a leave-in conditioner for extra slip. The glitter and fun designs make it a hit with clients of all ages."
         },
         {
           heading: "Where to Buy These in Australia",
-          content: "All of these products are available at Hair Pinns—I use them in the salon and recommend them to clients, shipped Australia-wide. Free shipping on orders over $150. Not sure what's right for you? Take the Juuce Hair Quiz or call Sam for personalised advice."
+          content: "All of these products are available at Hair Pinns. I use them in the salon and recommend them to clients, shipped Australia-wide. Free shipping on orders over $150. Need help choosing? Take the Juuce Hair Quiz or call Sam for personalised advice."
         }
       ],
       productModule: {
@@ -108,34 +108,34 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "where-to-buy-salon-hair-products-australia",
     title: "Where to Buy Salon Hair Products in Australia",
-    excerpt: "Looking for professional hair care you can trust? Here's your guide to buying salon-quality hair products in Australia—handpicked and shipped Australia-wide.",
+    excerpt: "Looking for professional hair care you can trust? Here's your guide to buying professional hair products in Australia, shipped Australia-wide.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "4 min read",
     image: juuce118,
     author: "Jena Pinn",
     content: {
-      introduction: "You've had that salon-fresh feeling and want to keep it at home. But where do you actually buy professional hair products in Australia? Supermarkets don't cut it—you need salon-grade formulas. Here's your guide to finding the best hair care Australia-wide.",
+      introduction: "You've had that salon-fresh feeling and want to keep it at home. But where do you actually buy professional hair products in Australia? Supermarkets don't cut it. You need salon-grade formulas. Here's your guide to finding the best hair care Australia-wide.",
       sections: [
         {
           heading: "Why Salon Products Beat Supermarket Options",
-          content: "Salon hair products use higher concentrations of active ingredients, fewer fillers, and formulas designed for professional results. They're pH-balanced, often sulphate-free, and built to protect colour and treatments. When you buy from a trusted salon retailer, you're getting the real deal—not watered-down versions."
+          content: "Salon hair products use higher concentrations of active ingredients, fewer fillers, and formulas designed for professional results. They're pH-balanced, often sulphate-free, and built to protect colour and treatments. When you buy from a trusted salon retailer, you're getting the real deal, not watered-down versions."
         },
         {
           heading: "What to Look for When Buying Online",
           content: "Choose retailers that: (1) Stock genuine professional brands like Juuce, QIQI, Pure, and Wet Brush. (2) Are run by someone who actually uses and tests the products. (3) Ship Australia-wide with clear delivery times. (4) Provide free shipping thresholds so you're not paying extra for postage. (5) Have a hassle-free returns policy."
         },
         {
-          heading: "Hair Pinns: Handpicked by Jena, Australia-Wide",
-          content: "At Hair Pinns, we've been looking after hair since 2009. Every product is handpicked by Jena with 15+ years in the salon. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Free shipping on orders over $150. No guesswork—just salon-quality products delivered to your door."
+          heading: "Hair Pinns: Chosen by Jena, Australia-Wide",
+          content: "At Hair Pinns, we've been looking after hair since 2009. Every product is chosen by Jena with 15+ years in the salon. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Free shipping on orders over $150. No guesswork, just professional products delivered to your door."
         },
         {
           heading: "Popular Brands You Can Trust",
-          content: "Juuce offers bond repair, colour protection, and hydration. QIQI delivers professional treatments and oils. Pure brings certified organic options. Wet Brush is the go-to for gentle detangling. All available Australia-wide from Hair Pinns with expert advice when you need it."
+          content: "Juuce offers bond repair, colour protection, and hydration. QIQI delivers professional treatments and oils. Pure brings certified organic options. Wet Brush is the go-to for gentle detangling. All available Australia-wide from Hair Pinns with advice when you need it."
         },
         {
           heading: "Ready to Shop?",
-          content: "Browse our collections, take the Juuce Hair Quiz if you're unsure, or call Sam for personalised recommendations. Your best hair days start with the right products—and the right place to buy them."
+          content: "Browse our collections, take the Juuce Hair Quiz if you're unsure, or call Sam for personalised recommendations. Your best hair days start with the right products, and the right place to buy them."
         }
       ],
       productModule: {
@@ -144,7 +144,7 @@ export const blogPosts: BlogPost[] = [
           {
             name: "All Collections",
             link: "https://hairpinns.com/collections",
-            description: "Browse salon-quality hair care—shipped Australia-wide"
+            description: "Browse professional hair care, shipped Australia-wide"
           },
           {
             name: "Juuce Hair Care",
@@ -160,7 +160,7 @@ export const blogPosts: BlogPost[] = [
       },
       quickAnswer: {
         question: "Where can I buy salon hair products in Australia?",
-        answer: "Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more at hairpinns.com."
+        answer: "Hair Pinns ships professional hair care Australia-wide. Free shipping over $150. Personally chosen by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more at hairpinns.com."
       }
     },
     cta: {
@@ -172,43 +172,43 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "hair-products-melbourne-brisbane-perth-australia",
     title: "Hair Products Melbourne, Brisbane & Perth: Salon Hair Care Australia-Wide",
-    excerpt: "Where to buy salon-quality hair products in Melbourne, Brisbane, Perth and across Australia. Hair Pinns ships hair care to every state and territory—free shipping over $150.",
+    excerpt: "Where to buy professional hair products in Melbourne, Brisbane, Perth and across Australia. Hair Pinns ships hair care to every state and territory. Free shipping over $150.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "4 min read",
     image: juuce119,
     author: "Jena Pinn",
     content: {
-      introduction: "Whether you're in Melbourne, Brisbane, Perth, Sydney or anywhere in Australia, you deserve access to salon-quality hair care. Hair Pinns has been curating professional hair products since 2009—and we ship to every state and territory. Here's your guide to buying the best hair products Australia-wide.",
+      introduction: "Whether you're in Melbourne, Brisbane, Perth, Sydney or anywhere in Australia, you deserve access to professional hair care. Hair Pinns has been stocking professional hair products since 2009, and we ship to every state and territory. Here's your guide to buying the best hair products Australia-wide.",
       sections: [
         {
           heading: "Hair Products Melbourne: Same Quality, Delivered",
-          content: "Melbourne's humidity and hard water can be tough on hair. We ship Juuce, QIQI, Pure and Wet Brush to Melbourne with free shipping on orders over $150. Expert curation by Jena means every product is tested for results—no guesswork. Standard delivery 3–5 business days; express 1–2 days."
+          content: "Melbourne's humidity and hard water can be tough on hair. We ship Juuce, QIQI, Pure and Wet Brush to Melbourne with free shipping on orders over $150. Jena picks every product and tests it for results. No guesswork. Standard delivery 3–5 business days; express 1–2 days."
         },
         {
           heading: "Hair Products Brisbane: Queensland-Wide Delivery",
-          content: "Brisbane's subtropical climate demands products that protect against humidity and UV. We ship salon-quality hair care to Brisbane and all of Queensland. Bond repair, colour protection, smoothing treatments—all available with free shipping over $150. Gold Coast and Sunshine Coast included."
+          content: "Brisbane's subtropical climate demands products that protect against humidity and UV. We ship professional hair care to Brisbane and all of Queensland. Bond repair, colour protection, smoothing treatments, all available with free shipping over $150. Gold Coast and Sunshine Coast included."
         },
         {
           heading: "Hair Products Perth: Western Australia Covered",
-          content: "Perth and Western Australia are fully covered. We ship professional hair care Australia-wide—no exceptions. Whether you're in Perth CBD, Fremantle or regional WA, your order arrives in 3–5 business days standard, 1–2 days express. Free shipping over $150."
+          content: "Perth and Western Australia are fully covered. We ship professional hair care Australia-wide, no exceptions. Whether you're in Perth CBD, Fremantle or regional WA, your order arrives in 3–5 business days standard, 1–2 days express. Free shipping over $150."
         },
         {
           heading: "Why Hair Pinns for Australia-Wide Hair Care",
-          content: "15+ years in the salon. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra—every state and territory. Your best hair is a click away."
+          content: "15+ years in the salon. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Your best hair is a click away."
         }
       ],
       productModule: {
         title: "Shop Hair Care Australia-Wide",
         products: [
-          { name: "All Collections", link: "https://hairpinns.com/collections", description: "Browse salon hair care—shipped Australia-wide" },
+          { name: "All Collections", link: "https://hairpinns.com/collections", description: "Browse salon hair care, shipped Australia-wide" },
           { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Professional formulas for all hair types" },
           { name: "Pure Organic", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, Australia-wide delivery" }
         ]
       },
       quickAnswer: {
         question: "Where can I buy hair products in Melbourne, Brisbane or Perth?",
-        answer: "Hair Pinns ships salon-quality hair care to Melbourne, Brisbane, Perth and all of Australia. Free shipping over $150. Expert curation by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush at hairpinns.com."
+        answer: "Hair Pinns ships professional hair care to Melbourne, Brisbane, Perth and all of Australia. Free shipping over $150. Personally chosen by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush at hairpinns.com."
       }
     },
     cta: { type: "product", productPath: "https://hairpinns.com/collections", customText: "Shop hair products Australia-wide" }
@@ -223,11 +223,11 @@ export const blogPosts: BlogPost[] = [
     image: juuce064,
     author: "Jena Pinn",
     content: {
-      introduction: "Let's be honest— we've all grabbed a $6 shampoo bottle from the supermarket thinking we scored a bargain. But what if we told you that \"cheap\" product might be costing you more in the long run? Here's the lowdown on why salon products from Hair Pinns (like Juuce and Pure) are a smarter, healthier choice for your hair.",
+      introduction: "Let's be honest, we've all grabbed a $6 shampoo bottle from the supermarket thinking we scored a bargain. But what if we told you that \"cheap\" product might be costing you more in the long run? Here's the lowdown on why salon products from Hair Pinns (like Juuce and Pure) are a smarter, healthier choice for your hair.",
       sections: [
         {
           heading: "1. Quality Ingredients That Actually Work",
-          content: "Salon products are loaded with high-performance ingredients like hyaluronic acid, plant extracts, proteins, and bond-builders. These nourish your hair from the inside out—rather than coating it in silicones to fake the look of shine (like many supermarket formulas do).\n\nExample: Juuce Bond Repair Duo works to actually rebuild hair strength—not just mask damage."
+          content: "Salon products are loaded with high-performance ingredients like hyaluronic acid, plant extracts, proteins, and bond-builders. These nourish your hair from the inside out, rather than coating it in silicones to fake the look of shine (like many supermarket formulas do).\n\nExample: Juuce Bond Repair Duo works to actually rebuild hair strength, not just mask damage."
         },
         {
           heading: "2. No Nasties That Strip Your Hair",
@@ -235,7 +235,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "3. Less Is More",
-          content: "Salon-quality shampoos are highly concentrated, so you only need a small amount each wash. That means your bottle lasts longer—and your hair reaps the benefits.\n\nThink of it like skincare: you wouldn't use body soap on your face, right? Same goes for your hair."
+          content: "Professional shampoos are highly concentrated, so you only need a small amount each wash. That means your bottle lasts longer, and your hair reaps the benefits.\n\nThink of it like skincare: you wouldn't use body soap on your face, right? Same goes for your hair."
         },
         {
           heading: "4. They're Tailored to YOUR Hair",
@@ -243,11 +243,11 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "5. Support Local, Not Big Corporates",
-          content: "When you shop with Hair Pinns, you're supporting a local salon that cares—not a massive corporation. Every order means the world to us, and we're here to make sure your hair feels amazing, always."
+          content: "When you shop with Hair Pinns, you're supporting a local salon that cares, not a massive corporation. Every order means the world to us, and we're here to make sure your hair feels amazing, always."
         },
         {
           heading: "Your Hair Deserves Better",
-          content: "Salon haircare isn't just a splurge—it's an investment in the health, shine, and future of your hair. Ready to make the switch?\n\nShop all our premium Juuce and Pure products now at HairPinns.com\n\nYour best hair days are just a bottle away."
+          content: "Salon haircare isn't just a splurge. It's an investment in the health, shine, and future of your hair. Ready to make the switch?\n\nShop all our premium Juuce and Pure products now at HairPinns.com\n\nYour best hair days are just a bottle away."
         }
       ],
       productModule: {
@@ -256,12 +256,12 @@ export const blogPosts: BlogPost[] = [
           {
             name: "Juuce Hair Care Range",
             link: "https://hairpinns.com/collections/juuce-hair-care",
-            description: "Salon-quality formulas for all hair types — shipped Australia-wide"
+            description: "Professional formulas for all hair types, shipped Australia-wide"
           },
           {
             name: "Pure Certified Organic Range",
             link: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
-            description: "Clean, eco-friendly hair care — Australia-wide delivery"
+            description: "Clean, eco-friendly hair care, Australia-wide delivery"
           }
         ]
       }
@@ -282,11 +282,11 @@ export const blogPosts: BlogPost[] = [
     image: img0133,
     author: "Jena Pinn",
     content: {
-      introduction: "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out. This isn't your average sauna session—it's a full-body, soul-soothing recharge that will leave you glowing from the inside out.",
+      introduction: "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out. This isn't your average sauna session. It's a full-body, soul-soothing recharge that will leave you glowing from the inside out.",
       sections: [
         {
           heading: "What Makes It Different?",
-          content: "Our infrared sauna uses gentle, deeply penetrating heat to melt away tension, relieve muscle aches, and support natural detoxification—without the overwhelming heat of traditional saunas. You'll sweat smarter, not harder.\n\nNow add in chromotherapy, or colour light therapy—a stunning, therapeutic experience that uses different hues to rebalance your mood and energy. Think: calming blues for stress, energizing reds when you're feeling flat, and soothing greens when you need to reset."
+          content: "Our infrared sauna uses gentle, deeply penetrating heat to melt away tension, relieve muscle aches, and support natural detoxification, without the overwhelming heat of traditional saunas. You'll sweat smarter, not harder.\n\nNow add in chromotherapy, or colour light therapy. It's a stunning, therapeutic experience that uses different hues to rebalance your mood and energy. Think: calming blues for stress, energizing reds when you're feeling flat, and soothing greens when you need to reset."
         },
         {
           heading: "The Benefits",
@@ -294,7 +294,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Your Experience Awaits",
-          content: "You'll walk out of the sauna feeling like you just hit reset on your whole day—mind, body, and mood.\n\nReady to feel the difference? Book your session now and come experience the glow!\n\nP.S. Feel free to come in for a shampoo, head massage and blowdry straight after your Sauna Sesh for that extra pep in your step 😉"
+          content: "You'll walk out of the sauna feeling like you just hit reset on your whole day. Mind, body, and mood.\n\nReady to feel the difference? Book your session now and come experience the glow!\n\nP.S. Feel free to come in for a shampoo, head massage and blowdry straight after your Sauna Sesh for that extra pep in your step 😉"
         }
       ]
     },
@@ -313,7 +313,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce037,
     author: "Jena Pinn",
     content: {
-      introduction: "We all love a good styling session—whether it's a sleek blowout, bouncy curls, or just taming frizz before heading out the door. But if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
+      introduction: "We all love a good styling session, whether it's a sleek blowout, bouncy curls, or just taming frizz before heading out the door. But if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
       sections: [
         {
           heading: "Why Heat Protection is Essential",
@@ -325,7 +325,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Make Heat Protection a Habit",
-          content: "Think of heat protection like sunscreen for your hair—it's not an option; it's a necessity! Apply it every time you style and before heading into the sun. By incorporating these Juuce products into your routine, you'll keep your hair healthy, vibrant, and damage-free all year round.\n\nLooking to grab these must-haves? You can shop them now at HairPinns.com. Your hair will thank you!"
+          content: "Think of heat protection like sunscreen for your hair. It's not an option; it's a necessity! Apply it every time you style and before heading into the sun. By incorporating these Juuce products into your routine, you'll keep your hair healthy, vibrant, and damage-free all year round.\n\nLooking to grab these must-haves? You can shop them now at HairPinns.com. Your hair will thank you!"
         }
       ],
       productModule: {
@@ -398,11 +398,11 @@ export const blogPosts: BlogPost[] = [
       sections: [
         {
           heading: "✨ Juuce Gift Packs",
-          content: "Juuce is loved for its salon-quality formulas that combine natural extracts with targeted results. Our gift packs cover a variety of hair goals, so there's something for everyone:\n\nFrizz control & smoothing – Tame unruly hair and create silky, polished finishes.\nColour care – Keep coloured and blonde hair vibrant, shiny and protected.\nRepair & nourishment – Strengthen damaged strands and restore softness.\nVolume & body – Add lift, bounce and fullness to fine hair.\n\nAs a bonus, every Juuce pack includes a free leave-in treatment. This hero product works behind the scenes all day to detangle, protect against heat and UV, and keep hair silky between washes. It's an everyday essential that makes these packs even more irresistible."
+          content: "Juuce is loved for its professional formulas that combine natural extracts with targeted results. Our gift packs cover a variety of hair goals, so there's something for everyone:\n\nFrizz control & smoothing – Tame unruly hair and create silky, polished finishes.\nColour care – Keep coloured and blonde hair vibrant, shiny and protected.\nRepair & nourishment – Strengthen damaged strands and restore softness.\nVolume & body – Add lift, bounce and fullness to fine hair.\n\nAs a bonus, every Juuce pack includes a free leave-in treatment. This hero product works behind the scenes all day to detangle, protect against heat and UV, and keep hair silky between washes. It's an everyday essential that makes these packs even more irresistible."
         },
         {
           heading: "🌿 Pure Gift Packs",
-          content: "Pure is Hair Pinns' go-to brand for certified organic, eco-friendly hair care that doesn't compromise on performance. Each pack is carefully matched to hair concerns like:\n\nDeep hydration – Perfect for dry or thirsty hair that needs moisture.\nRepair & strength – Ideal for restoring damaged or chemically treated hair.\nCurl care & definition – Designed to nourish natural curls while enhancing bounce.\nShine & smoothness – Great for anyone wanting naturally glossy, frizz-free locks.\n\nEvery Pure pack also comes with a free mask — a rich, intensive treatment designed to be used weekly for a big dose of nourishment. It's the kind of self-care product that makes hair feel instantly healthier and stronger, which is why it's such a special addition to these bundles."
+          content: "Pure is Hair Pinns' go-to brand for certified organic, eco-friendly hair care that doesn't compromise on performance. Each pack is carefully matched to hair concerns like:\n\nDeep hydration – Perfect for dry or thirsty hair that needs moisture.\nRepair & strength – Ideal for restoring damaged or chemically treated hair.\nCurl care & definition – Designed to nourish natural curls while enhancing bounce.\nShine & smoothness – Great for anyone wanting naturally glossy, frizz-free locks.\n\nEvery Pure pack also comes with a free mask, a rich, intensive treatment designed to be used weekly for a big dose of nourishment. It's the kind of self-care product that makes hair feel instantly healthier and stronger, which is why it's such a special addition to these bundles."
         },
         {
           heading: "💜 The Perfect Gift",
@@ -415,7 +415,7 @@ export const blogPosts: BlogPost[] = [
           {
             name: "Juuce Gift Packs",
             link: "/collections/juuce",
-            description: "Salon-quality formulas with free leave-in treatment"
+            description: "Professional formulas with free leave-in treatment"
           },
           {
             name: "Pure Gift Packs",
@@ -441,7 +441,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce037,
     author: "Jena Pinn",
     content: {
-      introduction: "If you've ever wished your hair would just behave — no frizz, no puff, no morning wrestling match — then our Straight Up Smoothing Treatment might be the answer you've been dreaming of. And here's the secret: we use QIQI Vega, one of the most advanced and hair-friendly smoothing systems in the world.",
+      introduction: "If you've ever wished your hair would just behave, no frizz, no puff, no morning wrestling match. Our Straight Up Smoothing Treatment might be the answer you've been dreaming of. And here's the secret: we use QIQI Vega, one of the most advanced and hair-friendly smoothing systems in the world.",
       sections: [
         {
           heading: "This Isn't Your Typical Keratin Treatment",
@@ -449,7 +449,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Why Clients Love QIQI Vega 💗",
-          content: "Frizz? Gone. Humidity has nothing on you. Your hair will stay sleek and smooth, even on the muggiest days.\n\nTime-saving magic. Blow-drying is faster and easier, and some clients don't even need to touch the straightener afterward.\n\nKeeps your hair's natural body. It smooths without making hair poker straight — unless that's the look you want.\n\nShiny, healthy finish. Your hair will feel silky and soft, not coated or heavy.\n\nLasts for months. Enjoy your smooth, low-maintenance hair for up to 6 months, depending on your hair type and routine.\n\nNo downtime. Wash, style, and enjoy your hair the same day."
+          content: "Frizz? Gone. Humidity has nothing on you. Your hair will stay sleek and smooth, even on the muggiest days.\n\nTime-saving magic. Blow-drying is faster and easier, and some clients don't even need to touch the straightener afterward.\n\nKeeps your hair's natural body. It smooths without making hair poker straight, unless that's the look you want.\n\nShiny, healthy finish. Your hair will feel silky and soft, not coated or heavy.\n\nLasts for months. Enjoy your smooth, low-maintenance hair for up to 6 months, depending on your hair type and routine.\n\nNo downtime. Wash, style, and enjoy your hair the same day."
         },
         {
           heading: "Perfect For:",
@@ -457,7 +457,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "The QIQI Vega Difference",
-          content: "Most straightening systems rely on formaldehyde or harsh chemicals that can leave hair brittle or flat. QIQI Vega is formaldehyde-free and works on all hair types — even bleached or colour-treated hair — without compromising condition. In fact, many clients find their hair feels healthier after the treatment because it locks in moisture and seals the cuticle."
+          content: "Most straightening systems rely on formaldehyde or harsh chemicals that can leave hair brittle or flat. QIQI Vega is formaldehyde-free and works on all hair types, even bleached or colour-treated hair, without compromising condition. In fact, many clients find their hair feels healthier after the treatment because it locks in moisture and seals the cuticle."
         },
         {
           heading: "Your Hair Will Thank You 🙏🏼",
@@ -489,7 +489,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Signs It's Time to Restock",
-          content: "• Your bottle feels lighter and you're squeezing the last drops.\n• Your hair isn't feeling as fresh—sometimes product loses its effectiveness if it's been open too long (12–18 months shelf life is standard).\n• You're tempted to use way more than you need because it's not lathering well anymore."
+          content: "• Your bottle feels lighter and you're squeezing the last drops.\n• Your hair isn't feeling as fresh. Sometimes product loses its effectiveness if it's been open too long (12–18 months shelf life is standard).\n• You're tempted to use way more than you need because it's not lathering well anymore."
         },
         {
           heading: "Pro Tip: Don't Overdo It",
@@ -506,7 +506,7 @@ export const blogPosts: BlogPost[] = [
           {
             name: "Juuce Shampoos",
             link: "/collections/juuce",
-            description: "Premium salon-quality shampoos"
+            description: "Premium professional shampoos"
           },
           {
             name: "Pure Organic Shampoos",
@@ -575,7 +575,7 @@ export const blogPosts: BlogPost[] = [
     image: bamchaTowel,
     author: "Jena Pinn",
     content: {
-      introduction: "If you've ever had a hot towel wrapped around your hair or neck during a salon treatment, you'll know it's heavenly. That moment when the warmth hits? Instant exhale. But beyond the spa-like feels, there's real hair and scalp science happening under that steamy towel. So let's break it down — why is everyone loving hot towel treatments, and should you be saying yes please at your next appointment?",
+      introduction: "If you've ever had a hot towel wrapped around your hair or neck during a salon treatment, you'll know it's heavenly. That moment when the warmth hits? Instant exhale. But beyond the spa-like feels, there's real hair and scalp science happening under that steamy towel. So let's break it down. Why is everyone loving hot towel treatments, and should you be saying yes please at your next appointment?",
       sections: [
         {
           heading: "🌿 1. It Opens the Hair Cuticle for Deeper Treatment",
@@ -595,7 +595,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "💜 So, Is It Worth It?",
-          content: "Absolutely. Hot towel treatments may feel indulgent, but they're actually functional self-care for your hair and your headspace.\n\nNext time you visit Hair Pinns, ask for a hot towel wrap with your treatment or blowdry. Your hair will feel it — and so will your soul.\n\nWant a mini spa moment during your next salon visit? We've got the towels ready. You just sit back and enjoy 🖤"
+          content: "Absolutely. Hot towel treatments may feel indulgent, but they're actually functional self-care for your hair and your headspace.\n\nNext time you visit Hair Pinns, ask for a hot towel wrap with your treatment or blowdry. Your hair will feel it, and so will your soul.\n\nWant a mini spa moment during your next salon visit? We've got the towels ready. You just sit back and enjoy 🖤"
         }
       ]
     },
@@ -607,7 +607,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "qiqi-bare-repair-oil-shine-strength-smoothness",
     title: "QIQI Bare Repair Oil – Shine, Strength & Smoothness in a Bottle",
-    excerpt: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel — QIQI Bare Repair Oil is the answer.",
+    excerpt: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel, QIQI Bare Repair Oil is the answer.",
     category: "Products",
     date: "July 27, 2025",
     readTime: "3 min read",
@@ -618,7 +618,7 @@ export const blogPosts: BlogPost[] = [
       sections: [
         {
           heading: "🌿 What Makes It So Good?",
-          content: "Lightweight, Dry Oil Finish – absorbs instantly with no residue\nPlant-Based Repair Blend – hydrates, protects and strengthens without buildup\nFrizz Control & Smooth Texture – say goodbye to flyaways and rough ends\nBoosts Shine & Softness – leaves hair silky, glossy and touchable\nSafe for All Hair Types – including coloured, dry, or damaged hair\n\nThis is not your average hair oil — it delivers deep nourishment and long-lasting results without ever feeling greasy or heavy."
+          content: "Lightweight, Dry Oil Finish – absorbs instantly with no residue\nPlant-Based Repair Blend – hydrates, protects and strengthens without buildup\nFrizz Control & Smooth Texture – say goodbye to flyaways and rough ends\nBoosts Shine & Softness – leaves hair silky, glossy and touchable\nSafe for All Hair Types – including coloured, dry, or damaged hair\n\nThis is not your average hair oil. It delivers deep nourishment and long-lasting results without ever feeling greasy or heavy."
         },
         {
           heading: "🧴 How to Use It",
@@ -626,7 +626,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "✨ The Result…",
-          content: "Stronger, shinier, smoother hair with every use — without any heaviness. Whether you're blowdrying, letting it air dry, or just refreshing in-between washes, QIQI Bare Repair Oil is your new go-to.\n\nTreat your hair to the repair oil it's been begging for.\n\nGET IT HERE"
+          content: "Stronger, shinier, smoother hair with every use, without any heaviness. Whether you're blowdrying, letting it air dry, or just refreshing in-between washes, QIQI Bare Repair Oil is your new go-to.\n\nTreat your hair to the repair oil it's been begging for.\n\nGET IT HERE"
         }
       ],
       productModule: {
@@ -654,14 +654,14 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "smooth-seal-strengthen-pure-precious-ends",
     title: "💧Smooth, Seal & Strengthen: Why Your Ends Need Pure Precious Ends",
-    excerpt: "If your hair feels dry at the ends, breaks easily, or looks frazzled — Pure Precious Ends is your new secret weapon.",
+    excerpt: "If your hair feels dry at the ends, breaks easily, or looks frazzled, Pure Precious Ends is your new secret weapon.",
     category: "Products",
     date: "July 26, 2025",
     readTime: "3 min read",
     image: juuce118,
     author: "Jena Pinn",
     content: {
-      introduction: "If your hair feels dry at the ends, breaks easily, or looks a bit frazzled no matter how much you trim—Pure Precious Ends is your new secret weapon. Designed to rescue and protect your ends, this lightweight leave-in is a must-have in your routine (especially if you style with heat or colour your hair).",
+      introduction: "If your hair feels dry at the ends, breaks easily, or looks a bit frazzled no matter how much you trim. Pure Precious Ends is your new secret weapon. Designed to rescue and protect your ends, this lightweight leave-in is a must-have in your routine (especially if you style with heat or colour your hair).",
       sections: [
         {
           heading: "✨ Key Benefits:",
@@ -712,15 +712,15 @@ export const blogPosts: BlogPost[] = [
     image: juuce064,
     author: "Jena Pinn",
     content: {
-      introduction: "When it comes to styling, hairspray is a must-have — but not all sprays are created equal. At Hair Pinns, we only recommend styling products that deliver results without compromising hair health. Today, we're breaking down the three go-to hairsprays we use behind the chair and sell in our salon — so you can choose the right one for your hair goals!",
+      introduction: "When it comes to styling, hairspray is a must-have, but not all sprays are created equal. At Hair Pinns, we only recommend styling products that deliver results without compromising hair health. Today, we're breaking down the three go-to hairsprays we use behind the chair and sell in our salon, so you can choose the right one for your hair goals!",
       sections: [
         {
           heading: "1. Juuce Stuck Up – Maximum Hold Hairspray",
-          content: "If you're after serious staying power, Juuce Stuck Up is your styling soulmate. This is our favourite strong-hold hairspray for securing updos, taming frizz, or locking in curls that last all day (and night). It adds high shine, resists humidity, and is completely brush-out friendly — which means no sticky build-up and no drama when it's time to restyle or refresh.\n\n🖤 Best for: Upstyles, curls, frizz control\n💨 Hold level: Strong\n🪮 Formula: Brush-out formula with zero build-up\n🌿 Bonus: Vegan, paraben-free, and cruelty-free"
+          content: "If you're after serious staying power, Juuce Stuck Up is your styling soulmate. This is our favourite strong-hold hairspray for securing updos, taming frizz, or locking in curls that last all day (and night). It adds high shine, resists humidity, and is completely brush-out friendly, which means no sticky build-up and no drama when it's time to restyle or refresh.\n\n🖤 Best for: Upstyles, curls, frizz control\n💨 Hold level: Strong\n🪮 Formula: Brush-out formula with zero build-up\n🌿 Bonus: Vegan, paraben-free, and cruelty-free"
         },
         {
           heading: "2. Pure Halo Spray – Flexible Everyday Hold",
-          content: "Think of Pure Halo Spray as your everyday go-to for soft, touchable hold. It keeps your style in place while allowing movement — so your hair never feels stiff or crunchy. Plus, it's enriched with organic extracts to nourish and protect your hair while you style.\n\n💛 Best for: Daily styling, soft waves, natural movement\n💨 Hold level: Flexible to medium\n🌿 Bonus: Sulphate- and paraben-free, with organic ingredients"
+          content: "Think of Pure Halo Spray as your everyday go-to for soft, touchable hold. It keeps your style in place while allowing movement, so your hair never feels stiff or crunchy. Plus, it's enriched with organic extracts to nourish and protect your hair while you style.\n\n💛 Best for: Daily styling, soft waves, natural movement\n💨 Hold level: Flexible to medium\n🌿 Bonus: Sulphate- and paraben-free, with organic ingredients"
         },
         {
           heading: "3. Pure Plumping Clay Spray – Texture + Volume",
@@ -728,7 +728,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Which One Should You Choose?",
-          content: "It depends on your style goals!\n\n✔️ For volume and texture: Go with Pure Plumping Clay Spray\n✔️ For soft, flexible hold: Try Pure Halo Spray\n✔️ For strong, long-lasting styles: You'll love Juuce Stuck Up\n\nAll three are available now at HairPinns.com or in-salon. Need help choosing the best one? Pop in and chat with one of our stylists — we're always happy to help!"
+          content: "It depends on your style goals!\n\n✔️ For volume and texture: Go with Pure Plumping Clay Spray\n✔️ For soft, flexible hold: Try Pure Halo Spray\n✔️ For strong, long-lasting styles: You'll love Juuce Stuck Up\n\nAll three are available now at HairPinns.com or in-salon. Need help choosing the best one? Pop in and chat with one of our stylists. We're always happy to help!"
         }
       ],
       productModule: {
@@ -763,19 +763,19 @@ export const blogPosts: BlogPost[] = [
     image: accessories016,
     author: "Jena Pinn",
     content: {
-      introduction: "Did you know your hair is at its most fragile when it's wet? That's why tugging a regular brush through wet hair can lead to unnecessary breakage, split ends, and hair fall — especially if your hair is fine, coloured, curly, or damaged.",
+      introduction: "Did you know your hair is at its most fragile when it's wet? That's why tugging a regular brush through wet hair can lead to unnecessary breakage, split ends, and hair fall, especially if your hair is fine, coloured, curly, or damaged.",
       sections: [
         {
           heading: "So… what makes the Wet Brush different?",
-          content: "Wet Brushes are specifically designed to detangle gently without causing damage — even on soaking wet, delicate strands."
+          content: "Wet Brushes are specifically designed to detangle gently without causing damage, even on soaking wet, delicate strands."
         },
         {
           heading: "✅ Here's why we love them at Hair Pinns:",
-          content: "Ultra-soft, flexible bristles\nThe IntelliFlex® bristles bend as needed to gently loosen knots without pulling or snapping your hair.\n\nSafe for all hair types\nWhether your hair is curly, straight, thick, fine, or somewhere in between — Wet Brushes work with your hair, not against it.\n\nKid & curl friendly\nNo more tears or tantrums! Great for sensitive scalps, kids, and anyone with curls that tangle easily.\n\nPerfect for treatments\nUse your Wet Brush to evenly distribute leave-ins, masks, or oils through damp hair without overworking it.\n\nSalon-approved + original quality\nWe only stock the original Wet Brush — no knock-offs. You'll notice the difference with every stroke."
+          content: "Ultra-soft, flexible bristles\nThe IntelliFlex® bristles bend as needed to gently loosen knots without pulling or snapping your hair.\n\nSafe for all hair types\nWhether your hair is curly, straight, thick, fine, or somewhere in between, Wet Brushes work with your hair, not against it.\n\nKid & curl friendly\nNo more tears or tantrums! Great for sensitive scalps, kids, and anyone with curls that tangle easily.\n\nPerfect for treatments\nUse your Wet Brush to evenly distribute leave-ins, masks, or oils through damp hair without overworking it.\n\nSalon-approved + original quality\nWe only stock the original Wet Brush, no knock-offs. You'll notice the difference with every stroke."
         },
         {
           heading: "💡 Hair Tip:",
-          content: "Always start brushing from the ends and gently work your way up — especially when hair is wet."
+          content: "Always start brushing from the ends and gently work your way up, especially when hair is wet."
         },
         {
           heading: "🛍️ Shop Our Range",
@@ -854,15 +854,15 @@ export const blogPosts: BlogPost[] = [
     image: juuce120,
     author: "Jena Pinn",
     content: {
-      introduction: "Dry, dull, or brittle hair? It might be dehydrated — and there's a difference between dryness and dehydration. Dry hair lacks oil, while dehydrated hair lacks moisture. This season, it's time to deeply hydrate from root to tip with our Hydration Bundle, featuring some of our favourite moisture-rich must-haves from Juuce.",
+      introduction: "Dry, dull, or brittle hair? It might be dehydrated, and there's a difference between dryness and dehydration. Dry hair lacks oil, while dehydrated hair lacks moisture. This season, it's time to deeply hydrate from root to tip with our Hydration Bundle, featuring some of our favourite moisture-rich must-haves from Juuce.",
       sections: [
         {
           heading: "💧 What's Inside the Hydration Bundle?",
-          content: "1. Juuce Hyaluronic Hydrate Shampoo\nThis shampoo is your first step toward serious hydration. Packed with hyaluronic acid — a moisture magnet that holds 1000x its weight in water — it gently cleanses without stripping your natural oils.\n\n2. Juuce Hyaluronic Hydrate Conditioner\nPair it with the hydrate conditioner to lock in moisture, smooth rough cuticles, and detangle like a dream. Your hair will feel softer, more elastic, and easier to manage.\n\n3. Super Soft Hydrating Mask\nA weekly treat your hair will love. This ultra-nourishing mask delivers deep hydration and softness, perfect for brittle or stressed-out strands. Apply it after shampooing, leave it in for 5–10 minutes, and rinse for buttery smooth results.\n\n4. Juuce Reviva Foam\nThe ultimate leave-in moisture booster. Lightweight yet powerful, this foam hydrates, tames frizz, and gives your hair a silky finish without weighing it down. It also protects against environmental stress and heat."
+          content: "1. Juuce Hyaluronic Hydrate Shampoo\nThis shampoo is your first step toward serious hydration. Packed with hyaluronic acid, a moisture magnet that holds 1000x its weight in water. It gently cleanses without stripping your natural oils.\n\n2. Juuce Hyaluronic Hydrate Conditioner\nPair it with the hydrate conditioner to lock in moisture, smooth rough cuticles, and detangle like a dream. Your hair will feel softer, more elastic, and easier to manage.\n\n3. Super Soft Hydrating Mask\nA weekly treat your hair will love. This ultra-nourishing mask delivers deep hydration and softness, perfect for brittle or stressed-out strands. Apply it after shampooing, leave it in for 5–10 minutes, and rinse for buttery smooth results.\n\n4. Juuce Reviva Foam\nThe ultimate leave-in moisture booster. Lightweight yet powerful, this foam hydrates, tames frizz, and gives your hair a silky finish without weighing it down. It also protects against environmental stress and heat."
         },
         {
           heading: "🌬️ Why Hydration Matters (Especially in Winter)",
-          content: "Winter air, indoor heating, and even hot showers can leave your hair parched. Hydrated hair is:\n\n✔️ Softer\n✔️ More manageable\n✔️ Less prone to breakage and frizz\n✔️ Shinier and healthier overall\n\nThink of it as a glass of water for your hair — but better."
+          content: "Winter air, indoor heating, and even hot showers can leave your hair parched. Hydrated hair is:\n\n✔️ Softer\n✔️ More manageable\n✔️ Less prone to breakage and frizz\n✔️ Shinier and healthier overall\n\nThink of it as a glass of water for your hair, but better."
         },
         {
           heading: "💙 The Hair Pinns Hydration Routine",
@@ -884,7 +884,7 @@ export const blogPosts: BlogPost[] = [
           {
             name: "Browse Juuce Range",
             link: "/collections/juuce",
-            description: "Salon-quality hair care"
+            description: "Professional hair care"
           }
         ]
       }
@@ -913,11 +913,11 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Why You'll Love It:",
-          content: "• Deep-cleansing action clears blocked follicles and refreshes the scalp\n• Boosts circulation, encouraging healthy hair growth\n• Improves product absorption—your treatments and shampoos work better after a clean sweep\n• Reduces itchiness and flaking\n• Vegan, cruelty-free, and free from sulfates and parabens"
+          content: "• Deep-cleansing action clears blocked follicles and refreshes the scalp\n• Boosts circulation, encouraging healthy hair growth\n• Improves product absorption. Your treatments and shampoos work better after a clean sweep\n• Reduces itchiness and flaking\n• Vegan, cruelty-free, and free from sulfates and parabens"
         },
         {
           heading: "Why You Need It:",
-          content: "Your scalp is skin too—and just like your face, it needs exfoliating. If you're using dry shampoo, styling products, or treatments regularly, this scrub helps reset everything so your scalp can breathe and your hair can thrive."
+          content: "Your scalp is skin too, and just like your face, it needs exfoliating. If you're using dry shampoo, styling products, or treatments regularly, this scrub helps reset everything so your scalp can breathe and your hair can thrive."
         },
         {
           heading: "How to Use:",
@@ -956,23 +956,23 @@ export const blogPosts: BlogPost[] = [
     image: aromaganicShampoo,
     author: "Jena Pinn",
     content: {
-      introduction: "I genuinely want my clients to get the best, longest-lasting results from their QIQI Straight Up Treatment. As a stylist, I never want to overwhelm my clients with product rules—but when it comes to QIQI Vega (Straight Up Treatment), aftercare really does matter. I recommend this treatment because it transforms your hair—soft, smooth, frizz-free—and I want you to enjoy those results for as long as possible. But here's the thing: the wrong shampoo can undo it—fast. And I've seen it happen more than once.",
+      introduction: "I genuinely want my clients to get the best, longest-lasting results from their QIQI Straight Up Treatment. As a stylist, I never want to overwhelm my clients with product rules, but when it comes to QIQI Vega (Straight Up Treatment), aftercare really does matter. I recommend this treatment because it transforms your hair. Soft, smooth, frizz-free, and I want you to enjoy those results for as long as possible. But here's the thing: the wrong shampoo can undo it fast. And I've seen it happen more than once.",
       sections: [
         {
           heading: "Why Can One Wash Make a Difference?",
-          content: "If you've just had your QIQI treatment and your hair suddenly feels frizzy again after one wash, chances are the shampoo you used wasn't compatible—even if it claimed to be \"natural\" or \"hydrating.\"\n\nWhat I always look out for are two ingredients that can affect results:\n\nSulphates – harsh cleansing agents that strip the hair\nSodium chloride (salt) – often used as a thickener in shampoos, but it can break down smoothing treatments\n\nEven one use of a shampoo with salt or sulphates can cause your hair to feel rougher, puffier, or less sleek; or worse- strip it out completely."
+          content: "If you've just had your QIQI treatment and your hair suddenly feels frizzy again after one wash, chances are the shampoo you used wasn't compatible, even if it claimed to be \"natural\" or \"hydrating.\"\n\nWhat I always look out for are two ingredients that can affect results:\n\nSulphates – harsh cleansing agents that strip the hair\nSodium chloride (salt) – often used as a thickener in shampoos, but it can break down smoothing treatments\n\nEven one use of a shampoo with salt or sulphates can cause your hair to feel rougher, puffier, or less sleek; or worse- strip it out completely."
         },
         {
-          heading: "It's Not About Selling You Stuff—It's About Protecting Your Results",
-          content: "I only recommend salt- and sulphate-free products because I've tested them on my own clients and seen the difference. I want your QIQI Straight Up treatment to last as long as possible—not fade after a few washes."
+          heading: "It's Not About Selling You Stuff. It's About Protecting Your Results",
+          content: "I only recommend salt- and sulphate-free products because I've tested them on my own clients and seen the difference. I want your QIQI Straight Up treatment to last as long as possible, not fade after a few washes."
         },
         {
           heading: "My Go-To Aftercare Recommendations:",
-          content: "QIQI - The Shampoo, Conditioner & definitely the super soaker masque– made to extend and protect the treatment with longer lasting results.\nPure Haircare Goddess or Miracle Renew – gentle, clean, and smoothing.\nJuuce Heat Shield or Solar Enz – protects your hair from heat styling without buildup.\nJuuce Botanic Oil Serum - to keep that frizz away & add extra shine ✨\n\nThese aren't just \"nice to have\" products—they're the key to keeping your hair feeling the way it did when you left the salon."
+          content: "QIQI - The Shampoo, Conditioner & definitely the super soaker masque– made to extend and protect the treatment with longer lasting results.\nPure Haircare Goddess or Miracle Renew – gentle, clean, and smoothing.\nJuuce Heat Shield or Solar Enz – protects your hair from heat styling without buildup.\nJuuce Botanic Oil Serum - to keep that frizz away & add extra shine ✨\n\nThese aren't just \"nice to have\" products. They're the key to keeping your hair feeling the way it did when you left the salon."
         },
         {
           heading: "Not Sure What's Safe? Just Ask Me!",
-          content: "If you're unsure whether a shampoo is 'Straight Up Treatment' safe, send me a photo of the ingredients or bring it to your next appointment. I'm more than happy to check—it's not about pushing products, it's about making sure you get the full value out of what you've already invested in.\n\nLet's keep your hair smooth, shiny, and manageable for as long as possible. You deserve it.\n\nHave a Happy Hair Day\n\nJena at Hair Pinns 💜"
+          content: "If you're unsure whether a shampoo is 'Straight Up Treatment' safe, send me a photo of the ingredients or bring it to your next appointment. I'm more than happy to check. It's not about pushing products, it's about making sure you get the full value out of what you've already invested in.\n\nLet's keep your hair smooth, shiny, and manageable for as long as possible. You deserve it.\n\nHave a Happy Hair Day\n\nJena at Hair Pinns 💜"
         }
       ],
       productModule: {
@@ -1007,7 +1007,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce119,
     author: "Jena Pinn",
     content: {
-      introduction: "As the chilly winds and heavy rains roll into Sydney, our hair often bears the brunt of the season. Winter can leave strands dry, frizzy, and lacking shine—but with the right care (and products), your hair can stay healthy, hydrated, and looking fabulous all season long.",
+      introduction: "As the chilly winds and heavy rains roll into Sydney, our hair often bears the brunt of the season. Winter can leave strands dry, frizzy, and lacking shine, but with the right care (and products), your hair can stay healthy, hydrated, and looking fabulous all season long.",
       sections: [
         {
           heading: "Why Does The Winter Weather Affect Your Hair?",
@@ -1023,7 +1023,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Wrap-Up",
-          content: "Winter hair care isn't just about fighting the cold—it's about locking in hydration, protecting your strands, and using the right products to keep your hair thriving. All the products mentioned are available now at HairPinns.com and are salon-trusted for real results.\n\nStay cozy, stay dry, and show your hair some extra love this winter ❄️"
+          content: "Winter hair care isn't just about fighting the cold. It's about locking in hydration, protecting your strands, and using the right products to keep your hair thriving. All the products mentioned are available now at HairPinns.com and are salon-trusted for real results.\n\nStay cozy, stay dry, and show your hair some extra love this winter ❄️"
         }
       ],
       productModule: {
@@ -1051,22 +1051,22 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "what-is-lamellar-vitality-technology",
     title: "What is Lamellar Vitality Technology?",
-    excerpt: "Discover the cutting-edge lamellar technology that's changing hair care with ultra-lightweight, targeted repair and instant shine.",
+    excerpt: "See how cutting-edge lamellar technology that's changing hair care with ultra-lightweight, targeted repair and instant shine.",
     category: "Education",
     date: "May 20, 2025",
     readTime: "5 min read",
     image: juuce118,
     author: "Jena Pinn",
     content: {
-      introduction: "If you've been hearing about lamellar technology and wondering what it actually does for your hair, you're not alone. This cutting-edge innovation is changing the way we treat dry, damaged, or stressed-out hair—offering instant results without the heavy feeling some treatments leave behind.",
+      introduction: "If you've been hearing about lamellar technology and wondering what it actually does for your hair, you're not alone. This cutting-edge innovation is changing the way we treat dry, damaged, or stressed-out hair, offering instant results without the heavy feeling some treatments leave behind.",
       sections: [
         {
           heading: "What Is Lamellar Technology in Hair Care?",
-          content: "Lamellar technology refers to a liquid hair treatment made up of ultra-lightweight, microscopic layers (or \"lamellae\") that carry active ingredients. These layers are smart—they target specific areas along the hair strand that need the most care, such as dry or damaged zones. Think of them as tiny repair patches that deliver moisture, proteins, and nutrients exactly where they're needed."
+          content: "Lamellar technology refers to a liquid hair treatment made up of ultra-lightweight, microscopic layers (or \"lamellae\") that carry active ingredients. These layers are smart. They target specific areas along the hair strand that need the most care, such as dry or damaged zones. Think of them as tiny repair patches that deliver moisture, proteins, and nutrients exactly where they're needed."
         },
         {
           heading: "Why is it different from traditional treatments?",
-          content: "Unlike heavier masks and conditioners that coat the entire strand, lamellar treatments absorb quickly and don't weigh the hair down. That means you get smoother, shinier, healthier-looking hair in just minutes—without losing volume or bounce.\n\nPerfect for:\n• Dry or over-processed hair\n• Clients who colour, bleach, or heat-style regularly\n• Anyone looking for fast, lightweight hydration and repair"
+          content: "Unlike heavier masks and conditioners that coat the entire strand, lamellar treatments absorb quickly and don't weigh the hair down. That means you get smoother, shinier, healthier-looking hair in just minutes, without losing volume or bounce.\n\nPerfect for:\n• Dry or over-processed hair\n• Clients who colour, bleach, or heat-style regularly\n• Anyone looking for fast, lightweight hydration and repair"
         },
         {
           heading: "🌟 Pure Lamellar Vitality Range",
@@ -1074,7 +1074,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Shop the Range",
-          content: "We now stock the full Pure Lamellar Range online—packed with certified organic, high-performance formulas designed to deliver instant results. If you're after salon-quality shine, smoothness, and strength at home, this range is your must-have.\n\nShop the Lamellar Range here"
+          content: "We now stock the full Pure Lamellar Range online, packed with certified organic, high-performance formulas designed to deliver instant results. If you're after professional-grade shine, smoothness, and strength at home, this range is your must-have.\n\nShop the Lamellar Range here"
         }
       ],
       productModule: {
@@ -1109,11 +1109,11 @@ export const blogPosts: BlogPost[] = [
     image: juuce037,
     author: "Jena Pinn",
     content: {
-      introduction: "If you love your hair tools—whether it's your trusty blow dryer, straightener, or curling wand—then a heat protectant needs to be your hair's best friend. High heat can cause irreversible damage to the hair shaft, leading to dryness, split ends, and breakage. The good news? Using the right heat protection products can make all the difference.",
+      introduction: "If you love your hair tools, whether it's your trusty blow dryer, straightener, or curling wand, then a heat protectant needs to be your hair's best friend. High heat can cause irreversible damage to the hair shaft, leading to dryness, split ends, and breakage. The good news? Using the right heat protection products can make all the difference.",
       sections: [
         {
           heading: "What Does Heat Really Do to Your Hair?",
-          content: "When you apply heat to your hair without protection, it strips moisture from your strands, weakens your hair's protein structure (keratin), and can even alter your natural texture over time. Think of it like sunbaking without sunscreen—your hair needs that same layer of defense."
+          content: "When you apply heat to your hair without protection, it strips moisture from your strands, weakens your hair's protein structure (keratin), and can even alter your natural texture over time. Think of it like sunbaking without sunscreen. Your hair needs that same layer of defense."
         },
         {
           heading: "Why Heat Protection Is a Must",
@@ -1125,11 +1125,11 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Our Go-To Heat Protection Heroes",
-          content: "Juuce Heat Shield 🛡️\nA weightless thermal shield that protects your hair from heat styling up to 230°C. It smooths and strengthens, helping to eliminate frizz and improve manageability.\nBest for: All hair types, especially fine to medium hair that needs lightweight protection.\n\nJuuce Solar Enz ☀️\nMore than just a heat protectant—this is your UV and environmental stress defense serum. Designed to protect hair from sun, saltwater, chlorine, and thermal heat, it's perfect for summer styling and outdoor lifestyles.\nBest for: Holiday hair care and anyone spending time in the sun or swimming.\n\nJuuce Dry Heat Guard 💂\nA thermal protector designed for dry styling. This lightweight spray forms a shield over your hair to reduce heat damage while adding softness and shine.\nBest for: Use on dry hair before straightening, curling, or re-styling between washes.\n\nPure Guardian Angel 👼🏻\nThis leave-in mist is a multitasker—it detangles, hydrates, and protects against heat while boosting shine and smoothing flyaways. It's made with certified organic ingredients and is sulphate- and paraben-free.\nBest for: Those who want a natural, nourishing approach to heat protection."
+          content: "Juuce Heat Shield 🛡️\nA weightless thermal shield that protects your hair from heat styling up to 230°C. It smooths and strengthens, helping to eliminate frizz and improve manageability.\nBest for: All hair types, especially fine to medium hair that needs lightweight protection.\n\nJuuce Solar Enz ☀️\nMore than just a heat protectant. This is your UV and environmental stress defense serum. Designed to protect hair from sun, saltwater, chlorine, and thermal heat, it's perfect for summer styling and outdoor lifestyles.\nBest for: Holiday hair care and anyone spending time in the sun or swimming.\n\nJuuce Dry Heat Guard 💂\nA thermal protector designed for dry styling. This lightweight spray forms a shield over your hair to reduce heat damage while adding softness and shine.\nBest for: Use on dry hair before straightening, curling, or re-styling between washes.\n\nPure Guardian Angel 👼🏻\nThis leave-in mist is a multitasker. It detangles, hydrates, and protects against heat while boosting shine and smoothing flyaways. It's made with certified organic ingredients and is sulphate- and paraben-free.\nBest for: Those who want a natural, nourishing approach to heat protection."
         },
         {
           heading: "Final Thoughts",
-          content: "If you're styling with heat and not using a protectant, you're risking long-term damage. The products above are designed to work with your styling routine—not against it—so your hair stays healthy, shiny, and strong, no matter how hot things get.\n\nReady to shield your strands?\n\nShop heat protection now at Hair Pinns"
+          content: "If you're styling with heat and not using a protectant, you're risking long-term damage. The products above are designed to work with your styling routine, not against it, so your hair stays healthy, shiny, and strong, no matter how hot things get.\n\nReady to shield your strands?\n\nShop heat protection now at Hair Pinns"
         }
       ],
       productModule: {
@@ -1164,19 +1164,19 @@ export const blogPosts: BlogPost[] = [
     image: accessories016,
     author: "Jena Pinn",
     content: {
-      introduction: "Did you know your choice of hair brush can completely change the health and look of your hair? Many people spend money on good shampoos, conditioners, and treatments — but forget the daily tool that touches their hair the most: the brush.",
+      introduction: "Did you know your choice of hair brush can completely change the health and look of your hair? Many people spend money on good shampoos, conditioners, and treatments, but forget the daily tool that touches their hair the most: the brush.",
       sections: [
         {
           heading: "Using the wrong brush can cause:",
-          content: "• Breakage and split ends\n• Painful tugging, especially on wet hair\n• Frizz and rough texture\n• More shedding than necessary\n\nThat's why we always recommend investing in the right brush — and at Hair Pinns, we love and stand behind the Wet Brush Detangler range."
+          content: "• Breakage and split ends\n• Painful tugging, especially on wet hair\n• Frizz and rough texture\n• More shedding than necessary\n\nThat's why we always recommend investing in the right brush, and at Hair Pinns, we love and stand behind the Wet Brush Detangler range."
         },
         {
           heading: "Why Wet Brush?",
-          content: "• Gentle on all hair types — straight, curly, thick, thin, fine, or coarse\n• Perfect for all ages — from little kids to adults (yes, even those with super tangly hair!)\n• Flexible, soft bristles that glide through wet or dry hair without pulling\n• Reduces breakage and pain when detangling\n• Comes in a variety of colours, shapes, and sizes so you can match your personal style"
+          content: "• Gentle on all hair types, straight, curly, thick, thin, fine, or coarse\n• Perfect for all ages, from little kids to adults (yes, even those with super tangly hair!)\n• Flexible, soft bristles that glide through wet or dry hair without pulling\n• Reduces breakage and pain when detangling\n• Comes in a variety of colours, shapes, and sizes so you can match your personal style"
         },
         {
           heading: "Make the Switch Today",
-          content: "If you're trying to grow longer, healthier hair or just want to keep your strands strong and smooth, using the right brush is essential — and a Wet Brush is one of the simplest, most affordable changes you can make to your routine.\n\nWe carry a selection of Wet Brush Detanglers right here on HairPinns.com — treat yourself (or your kids, or your partner!) to one and feel the difference every time you brush.\n\nWet Brush Detanglers – Hair Pinns Home Hair Care"
+          content: "If you're trying to grow longer, healthier hair or just want to keep your strands strong and smooth, using the right brush is essential, and a Wet Brush is one of the simplest, most affordable changes you can make to your routine.\n\nWe carry a selection of Wet Brush Detanglers right here on HairPinns.com. Treat yourself (or your kids, or your partner!) to one and feel the difference every time you brush.\n\nWet Brush Detanglers – Hair Pinns Home Hair Care"
         }
       ],
       productModule: {
@@ -1211,15 +1211,15 @@ export const blogPosts: BlogPost[] = [
     image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "Your dream hair is one quiz away. Answer these 7 quick questions and discover your perfect Juuce match—made to suit your hair type, vibe, and lifestyle.",
+      introduction: "Your dream hair is one quiz away. Answer these 7 quick questions and find your perfect Juuce match, made to suit your hair type, vibe, and lifestyle.",
       sections: [
         {
           heading: "QUIZ: Which Juuce Shampoo & Conditioner Duo is Right for You?",
-          content: "1. What's your biggest hair struggle right now?\nA. Frizz and flyaways\nB. Colour fading fast\nC. Dry, rough texture\nD. Flat, lifeless hair\nE. Oily scalp or build-up\nF. Breakage and damage\nG. No major issues—just want soft, healthy hair\n\n2. What's your hair texture like?\nA. Thick, curly or unruly\nB. Colour-treated or chemically processed\nC. Coarse and dry\nD. Fine and limp\nE. Normal-to-oily\nF. Damaged from bleach, heat, or styling\nG. Balanced, normal hair\n\n3. What are your hair goals right now?\nA. Smooth, sleek hair that behaves\nB. Long-lasting colour and shine\nC. Softness and hydration\nD. Lifted roots and bounce\nE. A fresh-feeling scalp\nF. Stronger hair with less breakage\nG. Healthy, easy-to-manage hair\n\n4. How does your hair usually feel after washing?\nA. Frizzy or puffy\nB. Dull or faded\nC. Still dry or tangled\nD. Flat and heavy\nE. Greasy again within a day\nF. Fragile, stretchy, or splitting\nG. Okay, but could feel softer\n\n5. How often do you heat style your hair?\nA. Most days—it needs taming\nB. Weekly, especially after colouring\nC. Rarely—my hair's already dry\nD. Occasionally, to boost volume\nE. Almost never\nF. Constantly—I live with my straightener or curler\nG. Only for special occasions\n\n6. What's your hair care style?\nA. I need low-fuss smoothing\nB. I'll do anything to protect my colour\nC. I'm all about moisture and repair\nD. I want more volume, fast\nE. I love a clean, tingly scalp\nF. I need to undo the damage I've done\nG. I just want something gentle and effective\n\n7. What's your ideal hair vibe?\nA. Sleek, frizz-free and glossy\nB. Bright, fresh colour that lasts\nC. Hydrated, soft and manageable\nD. Big, airy volume with movement\nE. Clean scalp, clean hair\nF. Strong, healthy hair that grows\nG. Smooth and natural with minimal effort"
+          content: "1. What's your biggest hair struggle right now?\nA. Frizz and flyaways\nB. Colour fading fast\nC. Dry, rough texture\nD. Flat, lifeless hair\nE. Oily scalp or build-up\nF. Breakage and damage\nG. No major issues, just want soft, healthy hair\n\n2. What's your hair texture like?\nA. Thick, curly or unruly\nB. Colour-treated or chemically processed\nC. Coarse and dry\nD. Fine and limp\nE. Normal-to-oily\nF. Damaged from bleach, heat, or styling\nG. Balanced, normal hair\n\n3. What are your hair goals right now?\nA. Smooth, sleek hair that behaves\nB. Long-lasting colour and shine\nC. Softness and hydration\nD. Lifted roots and bounce\nE. A fresh-feeling scalp\nF. Stronger hair with less breakage\nG. Healthy, easy-to-manage hair\n\n4. How does your hair usually feel after washing?\nA. Frizzy or puffy\nB. Dull or faded\nC. Still dry or tangled\nD. Flat and heavy\nE. Greasy again within a day\nF. Fragile, stretchy, or splitting\nG. Okay, but could feel softer\n\n5. How often do you heat style your hair?\nA. Most days, it needs taming\nB. Weekly, especially after colouring\nC. Rarely, my hair's already dry\nD. Occasionally, to boost volume\nE. Almost never\nF. Constantly, I live with my straightener or curler\nG. Only for special occasions\n\n6. What's your hair care style?\nA. I need low-fuss smoothing\nB. I'll do anything to protect my colour\nC. I'm all about moisture and repair\nD. I want more volume, fast\nE. I love a clean, tingly scalp\nF. I need to undo the damage I've done\nG. I just want something gentle and effective\n\n7. What's your ideal hair vibe?\nA. Sleek, frizz-free and glossy\nB. Bright, fresh colour that lasts\nC. Hydrated, soft and manageable\nD. Big, airy volume with movement\nE. Clean scalp, clean hair\nF. Strong, healthy hair that grows\nG. Smooth and natural with minimal effort"
         },
         {
           heading: "Your Results Are In…",
-          content: "Mostly A's: Juuce Miracle Smooth Duo\nFrizz? Gone. This duo smooths, softens and adds sleekness to unruly hair.\nShop Now\n\nMostly B's: Juuce Radiant Colour Duo\nSay goodbye to dull colour. Lock in shine and vibrancy with this colour-loving pair.\nShop Now\n\nMostly C's: Juuce Hyaluronic Hydrate Duo\nDry strands don't stand a chance. This duo drenches your hair in light, deep hydration.\nShop Now\n\nMostly D's: Juuce Full Volume Duo\nGet bouncy, boosted hair with this lightweight volume-enhancing duo.\nShop Now\n\nMostly E's: Juuce Peppermint Duo\nYour scalp will thank you. Clarify, refresh, and reset with this peppermint-powered duo.\nShop Now\n\nMostly F's: Juuce Bond Repair Duo\nBreakage? Split ends? This strengthening shampoo + conditioner duo rebuilds and protects.\nShop Now\n\nMostly G's: Juuce Softly Nourish Duo\nGentle, everyday hydration and balance for soft, healthy hair with zero fuss.\nShop Now\n\nNot sure or got a tie?\nMessage us on Instagram @HairPinns or pop into the salon—your perfect match might be a custom mix!\n\nBrowse all Juuce products now at HairPinns.com"
+          content: "Mostly A's: Juuce Miracle Smooth Duo\nFrizz? Gone. This duo smooths, softens and adds sleekness to unruly hair.\nShop Now\n\nMostly B's: Juuce Radiant Colour Duo\nSay goodbye to dull colour. Lock in shine and vibrancy with this colour-loving pair.\nShop Now\n\nMostly C's: Juuce Hyaluronic Hydrate Duo\nDry strands don't stand a chance. This duo drenches your hair in light, deep hydration.\nShop Now\n\nMostly D's: Juuce Full Volume Duo\nGet bouncy, boosted hair with this lightweight volume-enhancing duo.\nShop Now\n\nMostly E's: Juuce Peppermint Duo\nYour scalp will thank you. Clarify, refresh, and reset with this peppermint-powered duo.\nShop Now\n\nMostly F's: Juuce Bond Repair Duo\nBreakage? Split ends? This strengthening shampoo + conditioner duo rebuilds and protects.\nShop Now\n\nMostly G's: Juuce Softly Nourish Duo\nGentle, everyday hydration and balance for soft, healthy hair with zero fuss.\nShop Now\n\nNot sure or got a tie?\nMessage us on Instagram @HairPinns or pop into the salon. Your perfect match might be a custom mix!\n\nBrowse all Juuce products now at HairPinns.com"
         }
       ],
       productModule: {
@@ -1233,7 +1233,7 @@ export const blogPosts: BlogPost[] = [
           {
             name: "Take the Quiz",
             link: "/blog/which-juuce-range-is-best-for-you-quiz",
-            description: "Discover your match"
+            description: "Find your match"
           }
         ]
       }
@@ -1245,15 +1245,15 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "infrared-sauna-for-hair-scalp-health",
-    title: "Infrared Sauna for Hair & Scalp Health—Yes, It's a Thing!",
-    excerpt: "At Hair Pinns, we combine luxury with wellness. Discover how infrared sauna sessions can work wonders for your hair and scalp health.",
+    title: "Infrared Sauna for Hair & Scalp Health. Yes, It's a Thing!",
+    excerpt: "At Hair Pinns, we combine luxury with wellness. See how infrared sauna sessions can work wonders for your hair and scalp health.",
     category: "Wellness",
     date: "April 20, 2025",
     readTime: "4 min read",
     image: img0133,
     author: "Jena Pinn",
     content: {
-      introduction: "At Hair Pinns, we're all about combining luxury with wellness—and that's exactly why we've introduced infrared sauna sessions to our salon experience. You've probably heard about infrared for detox and relaxation, but did you know it can also work wonders for your hair and scalp health?",
+      introduction: "At Hair Pinns, we're all about combining luxury with wellness, and that's exactly why we've introduced infrared sauna sessions to our salon experience. You've probably heard about infrared for detox and relaxation, but did you know it can also work wonders for your hair and scalp health?",
       sections: [
         {
           heading: "1. Boosts Scalp Circulation",
@@ -1265,7 +1265,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "3. Strengthens Damaged Hair",
-          content: "Infrared heat is gentler and more penetrative than traditional saunas. It helps strengthen weak or chemically treated hair from the inside out—especially when paired with restorative products like our Aromaganic Q-Plex Reconstructing range."
+          content: "Infrared heat is gentler and more penetrative than traditional saunas. It helps strengthen weak or chemically treated hair from the inside out, especially when paired with restorative products like our Aromaganic Q-Plex Reconstructing range."
         },
         {
           heading: "4. Reduces Stress (Which Means Less Hair Loss)",
@@ -1277,7 +1277,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Ready to try it?",
-          content: "Ask us about adding a 45 minute infrared sauna session to your next salon visit—or book it solo for a little self-care break that your scalp will thank you for.\n\nHealthy hair starts at the root—and we're here to help you glow from the inside out."
+          content: "Ask us about adding a 45 minute infrared sauna session to your next salon visit, or book it solo for a little self-care break that your scalp will thank you for.\n\nHealthy hair starts at the root, and we're here to help you glow from the inside out."
         }
       ]
     },
@@ -1288,15 +1288,15 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "best-hair-products-australia-2025",
-    title: "Best Hair Products Australia 2025 — Jena's Top Picks",
-    excerpt: "Discover the best hair products available in Australia. Jena's top picks from Hair Pinns — Juuce, Pure, QIQI and more. Shipped Australia-wide with free shipping over $150.",
+    title: "Best Hair Products Australia 2025: Jena's Top Picks",
+    excerpt: "Check out the best hair products available in Australia. Jena's top picks from Hair Pinns. Juuce, Pure, QIQI and more. Shipped Australia-wide with free shipping over $150.",
     category: "Products",
     date: "February 25, 2025",
     readTime: "6 min read",
     image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "Looking for the best hair products in Australia? With 15+ years in the salon, I've handpicked the products that deliver real results — no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
+      introduction: "Looking for the best hair products in Australia? With 15+ years in the salon, I've picked the products that deliver real results, no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
       quickAnswer: {
         question: "What are the best hair products in Australia?",
         answer: "The best hair products in Australia include Juuce (smoothing, colour care, hydration), Pure certified organic (eco-friendly, high-performance), and QIQI (professional treatments). Hair Pinns stocks these and ships Australia-wide with free shipping over $150."
@@ -1304,21 +1304,21 @@ export const blogPosts: BlogPost[] = [
       sections: [
         {
           heading: "Why Salon Quality Matters",
-          content: "Supermarket hair products often rely on cheap fillers and harsh sulfates. Salon-quality products from brands like Juuce and Pure use concentrated, high-performance ingredients that actually nourish your hair — and a little goes a long way. When you shop with Hair Pinns, every product is one I use in the salon and trust."
+          content: "Supermarket hair products often rely on cheap fillers and harsh sulfates. Professional products from brands like Juuce and Pure use concentrated, high-performance ingredients that actually nourish your hair, and a little goes a long way. When you shop with Hair Pinns, every product is one I use in the salon and trust."
         },
         {
           heading: "Top Picks for 2025",
-          content: "Juuce Miracle Smooth Duo — Best for frizz and unruly hair. The Juuce Radiant Colour Duo keeps colour vibrant. Pure certified organic range is perfect for anyone wanting clean, eco-friendly formulas. QIQI Bare Repair Oil is a game-changer for damaged hair. And Wet Brush detanglers make every wash day easier. All available at hairpinns.com with free shipping over $150."
+          content: "Juuce Miracle Smooth Duo: Best for frizz and unruly hair. The Juuce Radiant Colour Duo keeps colour vibrant. Pure certified organic range is perfect for anyone wanting clean, eco-friendly formulas. QIQI Bare Repair Oil is a game-changer for damaged hair. And Wet Brush detanglers make every wash day easier. All available at hairpinns.com with free shipping over $150."
         },
         {
           heading: "Shop Hair Care Australia-Wide",
-          content: "Hair Pinns ships to every state and territory — Melbourne, Brisbane, Perth, Sydney, Darwin, Hobart, Adelaide, Canberra. No international shipping; we focus on serving Australia with the best salon products. Free shipping on orders over $150. Your best hair days start here."
+          content: "Hair Pinns ships to every state and territory: Melbourne, Brisbane, Perth, Sydney, Darwin, Hobart, Adelaide, Canberra. No international shipping; we focus on serving Australia with the best salon products. Free shipping on orders over $150. Your best hair days start here."
         }
       ],
       productModule: {
         title: "Shop Hair Care Australia-Wide",
         products: [
-          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Salon-quality formulas for all hair types" },
+          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Professional formulas for all hair types" },
           { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, eco-friendly hair care" },
           { name: "QIQI Professional", link: "https://hairpinns.com/collections/qiqi", description: "Professional treatments and oils" }
         ]

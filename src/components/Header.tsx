@@ -18,7 +18,7 @@ import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
 
 function getPromoMessage(): string {
   if (isStocktakeActive()) return STOCKTAKE_HEADER_MESSAGE;
-  if (QIQI_DISCOUNT_ACTIVE) return "20% off QIQI range — shop now";
+  if (QIQI_DISCOUNT_ACTIVE) return "20% off QIQI range, shop now";
   return DEFAULT_HEADER_MESSAGE;
 }
 

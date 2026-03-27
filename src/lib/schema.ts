@@ -161,7 +161,7 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   name: 'Hair Pinns',
   image: LOGO_URL,
   description:
-    'Boutique hair salon in Bangor specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. 15+ years of expertise since 2009 serving the Sutherland Shire. Premium salon-quality products available Australia-wide.',
+    'Boutique hair salon in Bangor specializing in Colour and Blonding, Smoothing Treatments, and Cuts and Styling. Run by Jena since 2009, serving Sutherland Shire. Professional hair care products shipped Australia-wide.',
   address: {
     '@type': 'PostalAddress',
     ...SALON_ADDRESS,
@@ -634,7 +634,7 @@ export const generateKnowledgeGraphSchema = () => ({
   name: 'Hair Pinns',
   alternateName: 'Hair Pinns Hair Salon',
   description:
-    'Hair Pinns is a boutique hair salon in Bangor, NSW, Australia, specializing in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling. Founded in 2009 by Jena Pinn, the salon has 15+ years of expertise serving the Sutherland Shire area. Expert curation of salon-quality hair care products available Australia-wide with free shipping over $150.',
+    'Hair Pinns is a boutique hair salon in Bangor, NSW, Australia. Colour, Smoothing Treatments, and Cuts and Styling. Founded in 2009 by Jena Pinn, serving the Sutherland Shire. Professional hair care products shipped Australia-wide with free shipping over $150.',
   url: BASE_URL,
   logo: {
     '@type': 'ImageObject',
@@ -683,7 +683,7 @@ export const generateKnowledgeGraphSchema = () => ({
       {
         '@type': 'OfferCatalog',
         name: 'Hair Care Products',
-        description: 'Salon-quality hair care products curated by expert stylists, available Australia-wide',
+        description: 'Professional hair care products picked by Jena, available Australia-wide',
       },
     ],
   },
@@ -717,7 +717,7 @@ export const generateStoreSchema = () => ({
   '@id': `${BASE_URL}/#store`,
   name: 'Hair Pinns',
   description:
-    'Australia-only shipping. Australia-wide retailer of salon-quality hair care products. We ship to every state and territory. Expert curation by Jena since 2009. Free shipping over $150. Juuce, QIQI, Pure, Wet Brush and more.',
+    'Australia-wide hair care retailer. Picked by Jena since 2009. Free shipping over $150. Juuce, QIQI, Pure, Wet Brush and more. Ships to every state and territory.',
   url: BASE_URL,
   image: LOGO_URL,
   areaServed: {
@@ -731,7 +731,7 @@ export const generateStoreSchema = () => ({
       {
         '@type': 'OfferCatalog',
         name: 'Hair Care Products',
-        description: 'Salon-quality hair care products curated by expert stylists, shipped Australia-wide',
+        description: 'Professional hair care products picked by Jena, shipped Australia-wide',
       },
     ],
   },

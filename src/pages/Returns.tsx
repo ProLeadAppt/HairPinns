@@ -18,7 +18,7 @@ const Returns = () => {
         <title>Hair Product Returns Australia | 14-Day Returns | Hair Pinns</title>
         <meta
           name="description"
-          content="Hassle-free 14-day returns on hair care products. Hair Pinns ships Australia-wide. Your satisfaction is our priority. Contact us for returns and exchanges."
+          content="Hassle-free 14-day returns on hair care products. Hair Pinns ships Australia-wide. Contact us for returns and exchanges."
         />
         <link rel="canonical" href="https://hairpinns.com/policies/returns" />
         <script type="application/ld+json">
@@ -39,8 +39,7 @@ const Returns = () => {
           <SectionHeader title="Returns & Exchanges" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-foreground leading-relaxed mb-6">
-              Your satisfaction is our priority. If you're not completely happy with your 
-              purchase, we're here to help.
+              Not happy with your purchase? We'll sort it out. Here's how returns work.
             </p>
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Return Policy</h2>

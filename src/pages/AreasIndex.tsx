@@ -41,11 +41,11 @@ const AreasIndex = () => {
         <title>Areas We Serve – Hair Salon in Sutherland Shire | Hair Pinns</title>
         <meta 
           name="description" 
-          content="Hair Pinns serves the Sutherland Shire with expert colour, blonding, keratin smoothing, braids & cuts. Find your local area and book online today."
+          content="Hair Pinns serves the Sutherland Shire with colour, blonding, keratin smoothing, braids & cuts. Find your local area and book online today."
         />
         <link rel="canonical" href="https://hairpinns.com/areas" />
         <meta property="og:title" content="Areas We Serve | Hair Pinns" />
-        <meta property="og:description" content="Boutique hair salon serving Sutherland Shire and surrounding areas with expert care." />
+        <meta property="og:description" content="Boutique hair salon serving Sutherland Shire and surrounding areas." />
         <meta property="og:url" content="https://hairpinns.com/areas" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('suburb')} />
@@ -72,7 +72,7 @@ const AreasIndex = () => {
                 Areas We Serve
               </h1>
               <p className="text-xl text-foreground leading-relaxed mb-8 max-w-3xl mx-auto">
-                Hair Pinns proudly serves the Sutherland Shire and surrounding areas with boutique hair care. From Bangor to Cronulla, Menai to Miranda—we're your local hair experts.
+                Hair Pinns proudly serves the Sutherland Shire and surrounding areas with boutique hair care. From Bangor to Cronulla, Menai to Miranda, we're your local salon.
               </p>
               <div className="flex items-center justify-center gap-6 text-muted-foreground">
                 <div className="flex items-center gap-2">

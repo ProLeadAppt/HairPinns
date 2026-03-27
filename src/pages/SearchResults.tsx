@@ -112,7 +112,7 @@ const SearchResults = () => {
         {products.length > 0 && query ? (
           <script type="application/ld+json">
             {JSON.stringify(generateFAQPageSchema([
-              { question: `Where can I buy ${query} in Australia?`, answer: `Hair Pinns stocks ${query} and ships Australia-wide. Free shipping over $150. Shop salon-quality hair care at hairpinns.com.` },
+              { question: `Where can I buy ${query} in Australia?`, answer: `Hair Pinns stocks ${query} and ships Australia-wide. Free shipping over $150. Shop professional hair care at hairpinns.com.` },
               { question: `Does Hair Pinns ship ${query} Australia-wide?`, answer: `Yes. Hair Pinns ships ${query} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping on orders over $150.` },
             ]))}
           </script>
@@ -129,7 +129,7 @@ const SearchResults = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-heading font-bold text-heading mb-4">
-              {query ? `Search Results for "${query}" — Hair Products Australia` : "Search Products — Hair Pinns Australia"}
+              {query ? `Search Results for "${query}" | Hair Products Australia` : "Search Products | Hair Pinns Australia"}
             </h1>
             {products.length > 0 && (
               <p className="text-muted-foreground">

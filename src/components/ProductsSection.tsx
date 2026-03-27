@@ -45,7 +45,7 @@ const ProductsSection = () => {
             Our Products
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Check out our range of salon-quality hair care.
+            Check out our range of professional hair care.
           </p>
           <Button asChild variant="accent" size="lg">
             <Link to="/collections">

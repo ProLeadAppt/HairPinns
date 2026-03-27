@@ -42,8 +42,8 @@ const ProductSpotlight = () => {
               availableForSale: product.availableForSale,
               bullets: [
                 product.description?.substring(0, 40) || "Premium hair care",
-                "Salon-quality formula",
-                "15+ years expert curation"
+                "Professional formula",
+                "Picked by Jena, 15+ years experience"
               ]
             };
           });
@@ -76,7 +76,7 @@ const ProductSpotlight = () => {
       <Section className="content-visibility-auto">
         <SectionHeader 
           title="Gift Packs"
-          subtitle="Curated hair care bundles — perfect for gifting or treating yourself. Limited stock available."
+          subtitle="Hair care bundles picked by Jena. Perfect for gifting or treating yourself. Limited stock available."
         />
         <div className="flex justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
@@ -93,7 +93,7 @@ const ProductSpotlight = () => {
     <Section className="content-visibility-auto">
       <SectionHeader 
         title="Gift Packs"
-        subtitle="Curated hair care bundles — perfect for gifting or treating yourself"
+        subtitle="Hair care bundles picked by Jena. Perfect for gifting or treating yourself"
       />
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 2000px" }}>

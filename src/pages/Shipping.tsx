@@ -7,10 +7,10 @@ import SectionHeader from "@/components/design-system/SectionHeader";
 import { generateBreadcrumbSchema, generateFAQPageSchema } from "@/lib/schema";
 
 const SHIPPING_FAQS = [
-  { question: "Do you ship to Melbourne?", answer: "Yes. Hair Pinns ships salon-quality hair care to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra and all of Australia. Free shipping on orders over $150." },
+  { question: "Do you ship to Melbourne?", answer: "Yes. Hair Pinns ships professional hair care to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra and all of Australia. Free shipping on orders over $150." },
   { question: "Is shipping free to Brisbane?", answer: "Yes. Free standard shipping on orders over $150. Brisbane, Queensland and all Australian states and territories are covered." },
   { question: "How long does delivery take to Perth?", answer: "Standard shipping: 3-5 business days. Express: 1-2 business days. Perth and Western Australia are fully covered." },
-  { question: "Do you ship to Australia only?", answer: "Yes. We ship to Australia only. Every state and territory — NSW, VIC, QLD, WA, SA, TAS, NT, and ACT. No international shipping." },
+  { question: "Do you ship to Australia only?", answer: "Yes. We ship to Australia only. Every state and territory: NSW, VIC, QLD, WA, SA, TAS, NT, and ACT. No international shipping." },
 ];
 
 const Shipping = () => {
@@ -20,7 +20,7 @@ const Shipping = () => {
         <title>Free Shipping Australia-Wide | Hair Pinns Hair Care</title>
         <meta
           name="description"
-          content="Hair Pinns ships salon-quality hair care products Australia-wide. Free shipping over $150. Standard and express options. Hair products delivered across Australia."
+          content="Hair Pinns ships professional hair care products Australia-wide. Free shipping over $150. Standard and express options. Hair products delivered across Australia."
         />
         <link rel="canonical" href="https://hairpinns.com/policies/shipping" />
         <script type="application/ld+json">

@@ -100,7 +100,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'blowout-technique',
     question: "What brush/heat setting for blow-outs?",
-    answer: "Use a medium round brush for tension and volume. Start with airflow to dry 80%, then apply brief heat for smoothing. Avoid maximum heat on fine or colour-treated hair—medium heat (150-180°C) is sufficient. Always use heat protectant before blow-drying.",
+    answer: "Use a medium round brush for tension and volume. Start with airflow to dry 80%, then apply brief heat for smoothing. Avoid maximum heat on fine or colour-treated hair. Medium heat (150-180°C) is sufficient. Always use heat protectant before blow-drying.",
     category: 'care',
     relatedLinks: [
       { text: 'Book Blow Dry', url: '/services#cuts' },
@@ -120,7 +120,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'cruelty-free',
     question: "Do you offer cruelty-free options?",
-    answer: "Yes—we stock several cruelty-free and vegan product lines. Look for 'cruelty-free certified' badges on product pages, or filter by 'cruelty-free' when shopping collections. Need help choosing? Message us on the contact page.",
+    answer: "Yes, we stock several cruelty-free and vegan product lines. Look for 'cruelty-free certified' badges on product pages, or filter by 'cruelty-free' when shopping collections. Need help choosing? Message us on the contact page.",
     category: 'products',
     relatedLinks: [
       { text: 'Shop All Products', url: '/collections' },
@@ -130,7 +130,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'click-collect',
     question: "Can I click-and-collect in Bangor?",
-    answer: "Yes—choose 'Pick up in-salon' at checkout if enabled, or message us via the contact page to arrange pickup. We'll notify you when your order is ready (usually within 24 hours). Pick up during salon hours at 60 Goorgool Rd, Bangor (just off Menai Road).",
+    answer: "Yes, choose 'Pick up in-salon' at checkout if enabled, or message us via the contact page to arrange pickup. We'll notify you when your order is ready (usually within 24 hours). Pick up during salon hours at 60 Goorgool Rd, Bangor (just off Menai Road).",
     category: 'booking',
     relatedLinks: [
       { text: 'Contact Us', url: '/contact' },

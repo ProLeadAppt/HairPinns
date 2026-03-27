@@ -9,10 +9,10 @@ const ReviewsShowcase = () => {
     <Section className="bg-muted/30">
       <div className="text-center mb-12">
         <h2 className="text-h2-lg font-heading font-bold text-heading mb-4">
-          Trusted by Thousands
+          What my clients say
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          See why our clients love Hair Pinns — from in-salon services to premium products
+          Real reviews from real people
         </p>
       </div>
 
@@ -80,13 +80,7 @@ const ReviewsShowcase = () => {
         </div>
       </div>
 
-      {/* Trust Statement */}
-      <div className="mt-12 text-center">
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          <strong className="text-heading">15+ years of expertise</strong> since 2009. 
-          Join thousands of satisfied clients across Sutherland Shire and Australia.
-        </p>
-      </div>
+      {/* Reviews speak for themselves - no trust statement needed */}
     </Section>
   );
 };

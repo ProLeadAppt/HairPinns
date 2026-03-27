@@ -83,7 +83,7 @@ const BlogPost = () => {
       answer: "Every 1–2 weeks for maintenance, using a pH-balanced violet or blue-violet treatment, depending on your undertone. Keep dwell time short (3–5 mins) to avoid over-ash. Follow with a hydrating mask because toners can be slightly drying."
     },
     {
-      question: "Keratin vs. smoothing — which lasts longer?",
+      question: "Keratin vs. smoothing: which lasts longer?",
       answer: "Keratin treatments (formaldehyde-free) generally outlast quick smoothing services, giving 2–4 months of frizz reduction with proper care. Smoothing services are gentler and great for first-timers or colour-treated hair, lasting 4–8 weeks."
     },
   ];

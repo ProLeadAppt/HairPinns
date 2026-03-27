@@ -61,7 +61,7 @@ export const FreeShippingBar = ({
             </span>
           ) : (
             <span className="text-foreground">
-              Spend <strong className="text-brand-500">${threshold}</strong> for free AU shipping — you're <strong className="text-brand-500">${remaining.toFixed(2)}</strong> away
+              Spend <strong className="text-brand-500">${threshold}</strong> for free AU shipping, you're <strong className="text-brand-500">${remaining.toFixed(2)}</strong> away
             </span>
           )}
         </div>

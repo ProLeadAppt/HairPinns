@@ -270,7 +270,7 @@ const Contact = () => {
             <div className="text-center mb-12">
               <h2 className="text-h2 font-heading text-heading mb-4">Need Help? We're Here 24/7</h2>
               <p className="text-lg text-foreground mb-8">
-                Sam and Isabella are available around the clock to answer your questions, help with bookings, and provide product recommendations. For detailed inquiries that need Jena's expertise, you can leave a message and she'll call you back within 24 hours.
+                Sam and Isabella are available 24/7 to answer your questions, help with bookings, and provide product recommendations. For detailed inquiries that need Jena's expertise, you can leave a message and she'll call you back within 24 hours.
               </p>
             </div>
 
@@ -303,7 +303,7 @@ const Contact = () => {
                 </div>
                 <h3 className="text-xl font-heading font-bold text-heading mb-3">Chat with Isabella</h3>
                 <p className="text-foreground mb-6">
-                  Get instant help from Isabella, our AI assistant, available 24/7 for product advice and booking.
+                  Get instant help from Isabella, available 24/7 for product advice and booking.
                 </p>
                 <Button 
                   onClick={() => {

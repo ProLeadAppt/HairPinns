@@ -178,11 +178,11 @@ const Collections = () => {
         <title>Hair Products Australia | Hair Pinns Collections | Free Shipping Over $150</title>
         <meta 
           name="description" 
-          content="Shop salon-quality hair care Australia-wide: Juuce, QIQI, Pure & Wet Brush. Daily Care, Treatments & Styling. From Jena's salon. Free shipping over $150." 
+          content="Shop hair care from Jena's salon. Juuce, QIQI, Pure, Wet Brush and more. Shipped anywhere in Australia. Free shipping over $150." 
         />
         <link rel="canonical" href="https://hairpinns.com/collections" />
         <meta property="og:title" content="Hair Products Australia | Hair Pinns Collections | Free Shipping" />
-        <meta property="og:description" content="Salon-quality hair care products curated by Jena. Shipped Australia-wide. Juuce, QIQI, Pure, Wet Brush. Free shipping over $150." />
+        <meta property="og:description" content="Hair care products picked by Jena. Shipped anywhere in Australia. Juuce, QIQI, Pure, Wet Brush. Free shipping over $150." />
         <meta property="og:url" content="https://hairpinns.com/collections" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('collection')} />
@@ -212,10 +212,10 @@ const Collections = () => {
               </h1>
               <div className="inline-block bg-background/80 backdrop-blur-sm px-8 py-6 rounded-2xl shadow-lg">
                 <p className="text-xl md:text-2xl text-heading font-semibold max-w-2xl leading-relaxed mb-4">
-                  Hair Pinns ships salon-quality hair care Australia-wide. Free shipping over $150.
+                  I ship hair care anywhere in Australia. Free shipping over $150.
                 </p>
                 <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                  Explore our curated collections: Juuce, QIQI, Pure, Wet Brush. From daily essentials to special treatments, everything you need for healthy, beautiful hair.
+                  Browse by brand: Juuce, QIQI, Pure, Wet Brush and more. From daily essentials to treatments, everything your hair needs.
                 </p>
               </div>
             </div>

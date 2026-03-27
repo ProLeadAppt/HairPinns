@@ -121,7 +121,7 @@ const BestSellers = () => {
       <Section className="content-visibility-auto">
         <SectionHeader 
           title="Best Sellers"
-          subtitle="Our most popular products, handpicked by Jena"
+          subtitle="Loading the good stuff..."
         />
         <div className="flex justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
@@ -137,8 +137,8 @@ const BestSellers = () => {
   return (
     <Section className="content-visibility-auto">
       <SectionHeader 
-        title="Our Most Loved Products (762+ Five-Star Reviews)"
-        subtitle="Handpicked by Jena — trusted by thousands Australia-wide"
+        title="Best Sellers"
+        subtitle="The stuff my clients keep coming back for"
       />
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 2000px" }}>
@@ -170,41 +170,14 @@ const BestSellers = () => {
             </Link>
             
             <div className="p-6">
-              {/* Social Proof */}
-              <div className="flex items-center gap-2 mb-2">
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-[hsl(var(--star-color))] fill-current" />
-                  ))}
-                </div>
-                <span className="text-xs text-muted-foreground">4.9/5</span>
-                <span className="text-xs text-muted-foreground">•</span>
-                <span className="text-xs text-muted-foreground">762+ reviews</span>
-              </div>
-
               <h3 className="text-xl font-heading font-semibold text-heading mb-2">
                 <Link to={`/products/${product.slug}`} className="hover:text-brand-500 transition-colors">
                   {product.title}
                 </Link>
               </h3>
-              
-              {/* Urgency Indicator */}
-              <div className="mb-3">
-                <UrgencyIndicator
-                  productId={product.id}
-                  inStock={product.availableForSale}
-                  showRecentPurchases={true}
-                />
-              </div>
 
-              <p className="text-2xl font-bold text-brand-500 mb-2">
+              <p className="text-2xl font-bold text-brand-500 mb-4">
                 {formatPrice(product.price, product.currency)}
-              </p>
-
-              {/* Customer Count */}
-              <p className="text-xs text-muted-foreground mb-4 flex items-center gap-1">
-                <Users className="w-3 h-3" />
-                <span>{Math.floor(Math.random() * 50) + 50} people bought this week</span>
               </p>
               
               <Link 

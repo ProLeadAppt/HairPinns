@@ -203,7 +203,7 @@ const CollectionDetail = () => {
   });
 
   const collectionTitle = collection?.title || "Collection";
-  const collectionDescription = collection?.description || "Shop our curated hair care collection";
+  const collectionDescription = collection?.description || "Browse this hair care collection";
 
   if (loading) {
     return (

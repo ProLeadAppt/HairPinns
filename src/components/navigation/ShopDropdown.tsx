@@ -10,11 +10,11 @@ import {
 
 const ShopDropdown = () => {
   const concerns = [
-    { name: "Frizz Control", link: "/collections?filter=frizz" },
-    { name: "Color-Treated Hair", link: "/collections?filter=color" },
-    { name: "Dry & Damaged", link: "/collections?filter=repair" },
-    { name: "Fine Hair", link: "/collections?filter=volume" },
-    { name: "Curly Hair", link: "/collections?filter=curl" },
+    { name: "Frizz Control", link: "/collections/frizz-control" },
+    { name: "Color-Treated Hair", link: "/collections/color-treated-hair" },
+    { name: "Dry & Damaged", link: "/collections/dry-damaged" },
+    { name: "Fine Hair", link: "/collections/fine-hair" },
+    { name: "Curly Hair", link: "/collections/curly-hair" },
   ];
 
   return (

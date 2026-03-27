@@ -29,21 +29,21 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Hair Care Tips & Product Advice | Hair Pinns Blog Australia</title>
+        <title>Hair Tips & Product Advice | Hair Pinns Blog Australia</title>
         <meta 
           name="description" 
-          content="Expert hair care tips and product advice from Jena at Hair Pinns. Salon-quality recommendations for Australian hair. Shipped Australia-wide." 
+          content="Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide." 
         />
         <link rel="canonical" href="https://hairpinns.com/blog" />
-        <meta property="og:title" content="Hair Care Tips & Product Advice | Hair Pinns Blog Australia" />
-        <meta property="og:description" content="Expert hair care tips and product advice from Jena at Hair Pinns. Salon-quality recommendations for Australian hair. Shipped Australia-wide." />
+        <meta property="og:title" content="Hair Tips & Product Advice | Hair Pinns Blog Australia" />
+        <meta property="og:description" content="Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide." />
         <meta property="og:url" content="https://hairpinns.com/blog" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('blog')} />
         <script type="application/ld+json">
           {JSON.stringify(generateWebPageSchema({
-            name: "Hair Care Tips & Product Advice | Hair Pinns Blog",
-            description: "Expert hair care tips and product advice from Jena at Hair Pinns. Salon-quality recommendations for Australian hair. Shipped Australia-wide.",
+            name: "Hair Tips & Product Advice | Hair Pinns Blog",
+            description: "Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide.",
             url: "https://hairpinns.com/blog",
           }))}
         </script>
@@ -81,13 +81,13 @@ const Blog = () => {
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-              Healthy, Glossy Hair—
+              Healthy, Glossy Hair.
               <br />
               <span className="text-accent">Made Easy</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Expert tips, real advice, and honest product recommendations. Product advice for Australian hair. Shop hair care Australia-wide.
+              Real advice and honest product recommendations. What I tell my clients, written down. Shop hair care Australia-wide.
             </p>
           </div>
         </section>
@@ -159,7 +159,7 @@ const Blog = () => {
           
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
-              Want Expert Hair Advice in Person?
+              Want Hair Advice in Person?
             </h2>
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Book a consultation with Jena at Hair Pinns Bangor

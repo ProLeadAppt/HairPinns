@@ -238,7 +238,7 @@ const SuburbPage = () => {
             <div className="container-custom">
               <div className="max-w-3xl">
                 <h1 className="text-h1 font-heading text-heading mb-6">
-                  Hair Salon Near {suburbData.name} — Hair Pinns
+                  Hair Salon Near {suburbData.name} | Hair Pinns
                 </h1>
                 {suburbData.quickAnswer && (
                   <p className="speakable-quick-answer text-lg md:text-xl text-foreground font-medium leading-relaxed mb-6 max-w-3xl">
@@ -333,7 +333,7 @@ const SuburbPage = () => {
             <div className="container-custom">
               <div className="text-center mb-12">
                 <h2 className="text-h2 font-heading text-heading mb-4">
-                  Our Expert Services
+                  Our Services
                 </h2>
                 <p className="text-lg text-foreground max-w-2xl mx-auto">
                   Services designed for Sydney's unique climate and your lifestyle

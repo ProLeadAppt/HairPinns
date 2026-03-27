@@ -210,7 +210,7 @@ const Services = () => {
         {
           title: "Infrared Sauna",
           subtitle: "Enjoy flexible wellness options with our casual, 5, or 10 visit passes. Choose the package that suits your lifestyle and experience soothing infrared sauna sessions whenever you need a relaxing escape.",
-          description: "Express Sauna Seah — 30min — A$ 25\n1 hour Seesion — 1h — A$ 35",
+          description: "Express Sauna Seah, 30min, A$ 25\n1 hour Session, 1h, A$ 35",
           price: "from A$ 25"
         },
         {
@@ -240,7 +240,7 @@ const Services = () => {
         },
         {
           title: "Haircut",
-          description: "Mens — 20min — A$ 39\n\nWomens — 30min — A$ 54",
+          description: "Mens, 20min, A$ 39\n\nWomens, 30min, A$ 54",
           price: "from A$ 39"
         },
         {
@@ -256,7 +256,7 @@ const Services = () => {
         },
         {
           title: "Kids Haircuts",
-          description: "Boys/Girls 0-10 years old — 20min — A$ 24\n\nBoys/Girls 11-17 years old — 20min — A$ 32",
+          description: "Boys/Girls 0-10 years old, 20min, A$ 24\n\nBoys/Girls 11-17 years old, 20min, A$ 32",
           price: "from A$ 24"
         }
       ]
@@ -488,10 +488,10 @@ const Services = () => {
     <div className="min-h-screen bg-bg">
       <Helmet>
         <title>Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns</title>
-        <meta name="description" content="Expert salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Prices and times are exactly what you'll see when you book." />
+        <meta name="description" content="Salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Prices and times are exactly what you'll see when you book." />
         <link rel="canonical" href="https://hairpinns.com/services" />
         <meta property="og:title" content="Hair Services Bangor | Colour, Smoothing & Cuts" />
-        <meta property="og:description" content="Expert salon services with transparent pricing. Book online now via Fresha." />
+        <meta property="og:description" content="Salon services with transparent pricing. Book online now via Fresha." />
         <meta property="og:url" content="https://hairpinns.com/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={getOGImage('service')} />
@@ -648,7 +648,7 @@ const Services = () => {
                         target="_blank" 
                         rel="noopener noreferrer"
                         onClick={() => trackBookingClick(`services_${category.id}_card`, "/services")}
-                        aria-label={`Book now — ${service.title}`}
+                        aria-label={`Book now, ${service.title}`}
                       >
                         <Button 
                           variant="primary" 
@@ -711,7 +711,7 @@ const Services = () => {
         <FAQSection 
           faqs={comprehensiveFAQs} 
           title="Frequently Asked Questions" 
-          subtitle="Expert answers to your hair care questions from Jena and the Hair Pinns team." 
+          subtitle="Answers to your hair care questions from Jena and the Hair Pinns team." 
           showFeedback={true} 
         />
 
