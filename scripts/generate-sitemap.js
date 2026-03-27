@@ -85,6 +85,7 @@ async function main() {
   urls.push(url(`${BASE}/areas`, 'monthly', 0.9));
   urls.push(url(`${BASE}/sitemap`, 'monthly', 0.5));
   urls.push(url(`${BASE}/reviews`, 'monthly', 0.7));
+  urls.push(url(`${BASE}/faq`, 'monthly', 0.8));
 
   // Collections - from Shopify or fallback to known
   let collectionHandles = await getShopifyCollections();

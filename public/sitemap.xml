@@ -70,6 +70,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://hairpinns.com/faq</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hairpinns.com/collections/juuce-botanicals</loc>
     <lastmod>2026-03-27</lastmod>
     <changefreq>weekly</changefreq>

@@ -38,6 +38,7 @@ import NotFound from "./pages/NotFound";
 import DevCollections from "./pages/DevCollections";
 import DevShopify from "./pages/DevShopify";
 import Reviews from "./pages/Reviews";
+import FAQ from "./pages/FAQ";
 import ReviewFeedback from "./pages/ReviewFeedback";
 import ReviewGoogle from "./pages/ReviewGoogle";
 import SearchResults from "./pages/SearchResults";
@@ -100,6 +101,7 @@ const AppContent = () => {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/reviews/feedback" element={<ReviewFeedback />} />
           <Route path="/reviews/google" element={<ReviewGoogle />} />

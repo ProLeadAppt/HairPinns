@@ -173,6 +173,9 @@ const Footer = () => {
               <Link to="/blog" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
                 Blog & Tips
               </Link>
+              <Link to="/faq" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
+                FAQ
+              </Link>
               <Link to="/booking" className="block text-foreground hover:text-brand-500 transition-colors text-sm">
                 {BOOK_CTA_LABEL}
               </Link>
