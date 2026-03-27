@@ -24,7 +24,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'treatments',
     relatedLinks: [
       { text: 'Book Keratin Treatment', url: '/services#smoothing' },
-      { text: 'Shop Treatment Products', url: '/collections/treatments' },
+      { text: 'Shop Treatment Products', url: '/collections' },
     ]
   },
   {
@@ -34,7 +34,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'treatments',
     relatedLinks: [
       { text: 'View Smoothing Services', url: '/services#smoothing' },
-      { text: 'Aftercare Products', url: '/collections/hair-care' },
+      { text: 'Aftercare Products', url: '/collections' },
     ]
   },
   {
@@ -44,7 +44,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'colour',
     relatedLinks: [
       { text: 'Book Toning Service', url: '/services#colour' },
-      { text: 'Shop Hair Care', url: '/collections/hair-care' },
+      { text: 'Shop Hair Care', url: '/collections' },
     ]
   },
   {
@@ -54,7 +54,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'care',
     relatedLinks: [
       { text: 'Anti-Frizz Treatments', url: '/services#smoothing' },
-      { text: 'Styling Products', url: '/collections/styling' },
+      { text: 'Styling Products', url: '/collections/heat-protection' },
     ]
   },
   {
@@ -64,7 +64,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'colour',
     relatedLinks: [
       { text: 'Book Colour Service', url: '/services#colour' },
-      { text: 'Treatment Products', url: '/collections/treatments' },
+      { text: 'Treatment Products', url: '/collections' },
     ]
   },
   {
@@ -73,7 +73,7 @@ export const comprehensiveFAQs: FAQ[] = [
     answer: "Violet/blue-violet treatments (purple shampoo or toning masks), UV filter sprays, and chelating washes used sparingly (once every 2–4 weeks). Choose products labelled 'colour-safe' and avoid over-toning, which can lead to ash buildup. Professional glosses every 6–8 weeks provide the best long-term brass protection.",
     category: 'products',
     relatedLinks: [
-      { text: 'Shop Blonde Care', url: '/collections/hair-care' },
+      { text: 'Shop Blonde Care', url: '/collections' },
       { text: 'Toning Services', url: '/services#colour' },
     ]
   },
@@ -84,7 +84,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'colour',
     relatedLinks: [
       { text: 'Colour Services', url: '/services#colour' },
-      { text: 'Aftercare Products', url: '/collections/hair-care' },
+      { text: 'Aftercare Products', url: '/collections' },
     ]
   },
   {
@@ -94,7 +94,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'treatments',
     relatedLinks: [
       { text: 'Repair Treatments', url: '/services#smoothing' },
-      { text: 'Shop Treatments', url: '/collections/treatments' },
+      { text: 'Shop Treatments', url: '/collections' },
     ]
   },
   {
@@ -104,7 +104,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'care',
     relatedLinks: [
       { text: 'Book Blow Dry', url: '/services#cuts' },
-      { text: 'Heat Protection Products', url: '/collections/styling' },
+      { text: 'Heat Protection Products', url: '/collections/heat-protection' },
     ]
   },
   {

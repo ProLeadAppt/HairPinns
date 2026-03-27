@@ -92,7 +92,7 @@ export const blogPosts: BlogPost[] = [
       productModule: {
         title: "Shop Jena's 2025 Picks",
         products: [
-          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Best for damaged and colour-treated hair" },
+          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Best for damaged and colour-treated hair" },
           { name: "Aromaganic Colour Care", link: "https://hairpinns.com/collections/aromaganic", description: "Best for blonde and colour maintenance" },
           { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Best for sensitive scalps and eco-conscious" },
           { name: "Wet Brush", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Best detangler for all hair types" }
@@ -148,7 +148,7 @@ export const blogPosts: BlogPost[] = [
           },
           {
             name: "Juuce Hair Care",
-            link: "https://hairpinns.com/collections/juuce-hair-care",
+            link: "https://hairpinns.com/collections/juuce-botanicals",
             description: "Professional formulas for all hair types"
           },
           {
@@ -202,7 +202,7 @@ export const blogPosts: BlogPost[] = [
         title: "Shop Hair Care Australia-Wide",
         products: [
           { name: "All Collections", link: "https://hairpinns.com/collections", description: "Browse salon hair care, shipped Australia-wide" },
-          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Professional formulas for all hair types" },
+          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Professional formulas for all hair types" },
           { name: "Pure Organic", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, Australia-wide delivery" }
         ]
       },
@@ -255,7 +255,7 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Juuce Hair Care Range",
-            link: "https://hairpinns.com/collections/juuce-hair-care",
+            link: "https://hairpinns.com/collections/juuce-botanicals",
             description: "Professional formulas for all hair types, shipped Australia-wide"
           },
           {
@@ -268,7 +268,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/all",
+      productPath: "https://hairpinns.com/collections",
       customText: "Shop hair care Australia-wide"
     }
   },
@@ -351,7 +351,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
       customText: "Shop heat protection products"
     }
   },
@@ -414,12 +414,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Juuce Gift Packs",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Professional formulas with free leave-in treatment"
           },
           {
             name: "Pure Gift Packs",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Certified organic care with free mask"
           }
         ]
@@ -505,12 +505,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Juuce Shampoos",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Premium professional shampoos"
           },
           {
             name: "Pure Organic Shampoos",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Certified organic hair care"
           }
         ]
@@ -518,7 +518,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "chat-isabella",
-      productPath: "https://hairpinns.com/collections/all",
+      productPath: "https://hairpinns.com/collections",
       customText: "Shop shampoo Australia-wide"
     }
   },
@@ -685,12 +685,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Pure Precious Ends",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Leave-in treatment for split ends"
           },
           {
             name: "Browse Pure Collection",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Certified organic hair care"
           }
         ]
@@ -698,7 +698,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/pure-organic",
+      productPath: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
       customText: "Shop Pure Precious Ends now"
     }
   },
@@ -736,12 +736,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Juuce Stuck Up",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Maximum hold hairspray"
           },
           {
             name: "Pure Halo Spray",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Flexible everyday hold"
           }
         ]
@@ -749,7 +749,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "chat-isabella",
-      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
       customText: "Need help choosing the right hairspray?"
     }
   },
@@ -878,12 +878,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Hydration Bundle",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Complete moisture system"
           },
           {
             name: "Browse Juuce Range",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Professional hair care"
           }
         ]
@@ -891,7 +891,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
       customText: "Shop the Hydration Bundle"
     }
   },
@@ -929,12 +929,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Pure Walnut Scrub",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Pre-wash scalp treatment"
           },
           {
             name: "Browse Pure Collection",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Organic hair care range"
           }
         ]
@@ -942,7 +942,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/pure-organic",
+      productPath: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
       customText: "Try the Pure Walnut Scrub"
     }
   },
@@ -985,7 +985,7 @@ export const blogPosts: BlogPost[] = [
           },
           {
             name: "Pure Goddess Range",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Gentle, sulphate-free care"
           }
         ]
@@ -1031,7 +1031,7 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Juuce Hydrate Range",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Deep moisture for winter"
           },
           {
@@ -1044,7 +1044,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
       customText: "Shop winter hair care essentials"
     }
   },
@@ -1082,12 +1082,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Lamellar Vitality Collection",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Complete lamellar system"
           },
           {
             name: "Glass Hair Treatment",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Instant shine & smoothness"
           }
         ]
@@ -1095,7 +1095,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/pure-organic",
+      productPath: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
       customText: "Shop the Lamellar Vitality Range"
     }
   },
@@ -1137,12 +1137,12 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Juuce Heat Shield",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Thermal protection up to 230°C"
           },
           {
             name: "Pure Guardian Angel",
-            link: "/collections/pure-organic",
+            link: "/collections/pure-certified-organic-hair-care",
             description: "Natural heat & UV protection"
           }
         ]
@@ -1150,7 +1150,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/juuce-hair-care",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
       customText: "Shop heat protection products"
     }
   },
@@ -1227,7 +1227,7 @@ export const blogPosts: BlogPost[] = [
         products: [
           {
             name: "Juuce Complete Collection",
-            link: "/collections/juuce",
+            link: "/collections/juuce-botanicals",
             description: "Find your perfect duo"
           },
           {
@@ -1318,7 +1318,7 @@ export const blogPosts: BlogPost[] = [
       productModule: {
         title: "Shop Hair Care Australia-Wide",
         products: [
-          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-hair-care", description: "Professional formulas for all hair types" },
+          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Professional formulas for all hair types" },
           { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, eco-friendly hair care" },
           { name: "QIQI Professional", link: "https://hairpinns.com/collections/qiqi", description: "Professional treatments and oils" }
         ]

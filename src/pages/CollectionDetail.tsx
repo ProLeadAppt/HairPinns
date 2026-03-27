@@ -23,7 +23,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import ExitIntentModal from "@/components/conversion/ExitIntentModal";
+// ExitIntentModal removed
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
 import QuickViewModal from "@/components/product/QuickViewModal";
@@ -342,7 +342,7 @@ const CollectionDetail = () => {
       <TrustStrip />
       
       {/* Exit Intent Modal */}
-      <ExitIntentModal enabled={true} />
+      {/* ExitIntentModal removed */}
       
       <main id="main-content">
         {/* Breadcrumbs */}
@@ -582,16 +582,16 @@ const CollectionDetail = () => {
               <Link to="/collections" className="text-brand-500 hover:text-brand-600 font-semibold underline">
                 All Collections
               </Link>
-              <Link to="/collections/juuce" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+              <Link to="/collections/juuce-botanicals" className="text-brand-500 hover:text-brand-600 font-semibold underline">
                 Juuce
               </Link>
               <Link to="/collections/qiqi" className="text-brand-500 hover:text-brand-600 font-semibold underline">
                 QIQI
               </Link>
-              <Link to="/collections/pure" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+              <Link to="/collections/pure-certified-organic-hair-care" className="text-brand-500 hover:text-brand-600 font-semibold underline">
                 Pure
               </Link>
-              <Link to="/collections/wet-brush" className="text-brand-500 hover:text-brand-600 font-semibold underline">
+              <Link to="/collections/wet-brush-detanglers" className="text-brand-500 hover:text-brand-600 font-semibold underline">
                 Wet Brush
               </Link>
             </div>

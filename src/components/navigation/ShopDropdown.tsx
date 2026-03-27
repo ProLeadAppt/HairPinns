@@ -10,11 +10,11 @@ import {
 
 const ShopDropdown = () => {
   const concerns = [
-    { name: "Frizz Control", link: "/collections/frizz-control" },
-    { name: "Color-Treated Hair", link: "/collections/color-treated-hair" },
-    { name: "Dry & Damaged", link: "/collections/dry-damaged" },
-    { name: "Fine Hair", link: "/collections/fine-hair" },
-    { name: "Curly Hair", link: "/collections/curly-hair" },
+    { name: "Frizz Control", link: "/collections/frizz-free-must-haves" },
+    { name: "Heat Protection", link: "/collections/heat-protection" },
+    { name: "Blonde Care", link: "/collections/blonde-bombshells" },
+    { name: "Volume & Fine Hair", link: "/collections/pump-up-the-volume" },
+    { name: "Curly Hair", link: "/collections/curly-girlys" },
   ];
 
   return (
@@ -28,16 +28,16 @@ const ShopDropdown = () => {
           <Link to="/collections">All Collections</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/juuce">Juuce</Link>
+          <Link to="/collections/juuce-botanicals">Juuce</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link to="/collections/qiqi">QIQI</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/pure">Pure Organic</Link>
+          <Link to="/collections/pure-certified-organic-hair-care">Pure Organic</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/collections/wet-brush">Wet Brush</Link>
+          <Link to="/collections/wet-brush-detanglers">Wet Brush</Link>
         </DropdownMenuItem>
         <div className="h-px bg-border my-1" />
         <div className="px-2 py-1.5 text-xs font-semibold text-foreground">

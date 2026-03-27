@@ -44,6 +44,26 @@ import ReviewGoogle from "./pages/ReviewGoogle";
 import SearchResults from "./pages/SearchResults";
 import ServerError from "./pages/ServerError";
 import ErrorBoundary, { ProductDetailErrorBoundary } from "./components/ErrorBoundary";
+import { useParams } from "react-router-dom";
+
+// Wrapper components that reset ErrorBoundary on route change
+const CollectionRoute = () => {
+  const { slug } = useParams();
+  return (
+    <ErrorBoundary key={slug}>
+      <CollectionDetail />
+    </ErrorBoundary>
+  );
+};
+
+const ProductRoute = () => {
+  const { handle } = useParams();
+  return (
+    <ProductDetailErrorBoundary key={handle}>
+      <ProductDetail />
+    </ProductDetailErrorBoundary>
+  );
+};
 
 const queryClient = new QueryClient();
 
@@ -80,8 +100,8 @@ const AppContent = () => {
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/collections" element={<Collections />} />
-          <Route path="/collections/:slug" element={<ErrorBoundary><CollectionDetail /></ErrorBoundary>} />
-          <Route path="/products/:handle" element={<ProductDetailErrorBoundary><ProductDetail /></ProductDetailErrorBoundary>} />
+          <Route path="/collections/:slug" element={<CollectionRoute />} />
+          <Route path="/products/:handle" element={<ProductRoute />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:categorySlug/:serviceSlug" element={<ServiceDetail />} />
           <Route path="/booking" element={<Booking />} />

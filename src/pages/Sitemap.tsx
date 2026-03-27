@@ -23,12 +23,12 @@ const Sitemap = () => {
       icon: ShoppingBag,
       links: [
         { title: "All Collections", url: "/collections" },
-        { title: "Juuce", url: "/collections/juuce" },
+        { title: "Juuce", url: "/collections/juuce-botanicals" },
         { title: "QIQI", url: "/collections/qiqi" },
-        { title: "Pure Organic", url: "/collections/pure" },
-        { title: "Wet Brush", url: "/collections/wet-brush" },
-        { title: "Treatments & Masks", url: "/collections/treatments" },
-        { title: "Styling Products", url: "/collections/styling" },
+        { title: "Pure Organic", url: "/collections/pure-certified-organic-hair-care" },
+        { title: "Wet Brush", url: "/collections/wet-brush-detanglers" },
+        { title: "Aromaganic", url: "/collections/aromaganic" },
+        { title: "Island Vibes", url: "/collections/island-vibes-tanning" },
       ]
     },
     {
