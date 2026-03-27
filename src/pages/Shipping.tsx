@@ -33,6 +33,7 @@ const Shipping = () => {
         <script type="application/ld+json">
           {JSON.stringify(generateFAQPageSchema(SHIPPING_FAQS))}
         </script>
+        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
       </Helmet>
       <Header />
       

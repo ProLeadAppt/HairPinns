@@ -31,6 +31,7 @@ const Returns = () => {
         <script type="application/ld+json">
           {JSON.stringify(generateFAQPageSchema(RETURNS_FAQS))}
         </script>
+        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
       </Helmet>
       <Header />
       

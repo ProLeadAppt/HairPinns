@@ -112,14 +112,6 @@ export default {
           "0%": { transform: "translateY(100%)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
-        "float": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(139, 74, 139, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(139, 74, 139, 0.6)" },
-        },
         "shimmer": {
           "0%": { backgroundPosition: "-200% center" },
           "100%": { backgroundPosition: "200% center" },
@@ -138,8 +130,6 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slide-in-bottom": "slide-in-bottom 0.3s ease-out",
-        "float": "float 3s ease-in-out infinite",
-        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
         "shimmer": "shimmer 3s linear infinite",
         "bounce-in": "bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
         "breathing": "breathing 3s ease-in-out infinite",

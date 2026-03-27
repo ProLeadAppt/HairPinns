@@ -13,6 +13,7 @@ const Privacy = () => {
         <link rel="canonical" href="https://hairpinns.com/privacy" />
         <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/privacy" />
         <meta name="robots" content="noindex,follow" />
+        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
       </Helmet>
 
       <Header />

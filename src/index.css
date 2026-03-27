@@ -166,25 +166,10 @@ a:focus-visible:not(.skip-link) {
     @apply border-border;
   }
 
-  /* World-Class Review Funnel Animations */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(139, 74, 139, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(139, 74, 139, 0.6); }
-  }
-
+  /* Animations — only what's actually used */
   @keyframes shimmer {
     0% { background-position: -200% center; }
     100% { background-position: 200% center; }
-  }
-
-  @keyframes confetti-burst {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
   }
 
   @keyframes bounce-in {
@@ -202,16 +187,6 @@ a:focus-visible:not(.skip-link) {
   @keyframes breathing {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.02); }
-  }
-
-  @keyframes word-reveal {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
   }
 
   /* Hair Pinns Typography - Exact Match */

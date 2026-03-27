@@ -153,6 +153,7 @@ const OrderConfirmation = () => {
         <title>Order Confirmed - Hair Pinns</title>
         <meta name="description" content="Your Hair Pinns order has been confirmed. Thank you for your purchase!" />
         <meta name="robots" content="noindex, nofollow" />
+        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
       </Helmet>
 
       <Header />

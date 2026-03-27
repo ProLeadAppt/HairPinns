@@ -128,6 +128,7 @@ const SearchResults = () => {
         {itemListSchema ? (
           <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
         ) : null}
+        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
       </Helmet>
 
       <Header />
