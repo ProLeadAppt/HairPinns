@@ -278,7 +278,7 @@ const BlogPost = () => {
           <div className="mt-12 pt-8 border-t border-border">
             <Link 
               to="/blog" 
-              className="inline-flex items-center gap-2 text-brand-500 hover:text-brand-600 transition-colors font-semibold text-lg group"
+              className="inline-flex items-center gap-2 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors group"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               Back to All Articles

@@ -118,7 +118,7 @@ const AreasIndex = () => {
                             {location.postcode}
                           </p>
                         </div>
-                        <MapPin className="w-5 h-5 text-brand-500" />
+                        <MapPin className="w-5 h-5 text-brand-500 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">

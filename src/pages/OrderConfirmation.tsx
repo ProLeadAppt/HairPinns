@@ -222,20 +222,29 @@ const OrderConfirmation = () => {
                 <Mail className="w-5 h-5 text-accent" />
                 What happens next?
               </h2>
-              <ul className="space-y-3 text-foreground">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span>You'll receive a confirmation email within 5 minutes</span>
+              <ol className="space-y-4 text-foreground">
+                <li className="flex items-start gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent font-bold text-sm flex items-center justify-center">1</span>
+                  <div>
+                    <p className="font-medium text-heading">Confirmation email</p>
+                    <p className="text-sm text-muted-foreground">You'll receive it within 5 minutes</p>
+                  </div>
                 </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span>We'll send tracking information once your order ships</span>
+                <li className="flex items-start gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent font-bold text-sm flex items-center justify-center">2</span>
+                  <div>
+                    <p className="font-medium text-heading">Tracking information</p>
+                    <p className="text-sm text-muted-foreground">We'll send it once your order ships</p>
+                  </div>
                 </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span>Most orders ship within 1-2 business days</span>
+                <li className="flex items-start gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent font-bold text-sm flex items-center justify-center">3</span>
+                  <div>
+                    <p className="font-medium text-heading">Delivery</p>
+                    <p className="text-sm text-muted-foreground">Most orders ship within 1-2 business days</p>
+                  </div>
                 </li>
-              </ul>
+              </ol>
             </div>
 
             {/* Action Buttons */}

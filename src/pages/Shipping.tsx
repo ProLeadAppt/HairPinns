@@ -45,18 +45,47 @@ const Shipping = () => {
               as quickly and safely as possible.
             </p>
 
-            <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Shipping Rates</h2>
-            <ul className="space-y-2 text-foreground mb-6">
-              <li>• Standard Shipping (3-5 business days): $9.95</li>
-              <li>• Express Shipping (1-2 business days): $14.95</li>
-              <li>• <strong>FREE Standard Shipping on orders over {FREE_SHIPPING_THRESHOLD_DISPLAY}</strong></li>
-            </ul>
+            {/* Free shipping callout */}
+            <div className="bg-brand-500/5 border border-brand-500/20 rounded-card p-5 mb-8 text-center">
+              <p className="text-lg font-semibold text-heading">Free shipping on orders over {FREE_SHIPPING_THRESHOLD_DISPLAY}</p>
+              <p className="text-sm text-muted-foreground mt-1">Standard delivery, anywhere in Australia</p>
+            </div>
 
-            <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Processing Time</h2>
-            <p className="text-foreground leading-relaxed mb-6">
-              Orders are typically processed within 1-2 business days. You will receive a 
-              confirmation email with tracking information once your order has shipped.
-            </p>
+            <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Shipping Rates</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+              <div className="bg-card border border-border rounded-card p-4 text-center">
+                <p className="text-sm text-muted-foreground">Standard</p>
+                <p className="text-xl font-bold text-heading">$9.95</p>
+                <p className="text-xs text-muted-foreground">3-5 business days</p>
+              </div>
+              <div className="bg-card border border-border rounded-card p-4 text-center">
+                <p className="text-sm text-muted-foreground">Express</p>
+                <p className="text-xl font-bold text-heading">$14.95</p>
+                <p className="text-xs text-muted-foreground">1-2 business days</p>
+              </div>
+              <div className="bg-brand-500/5 border border-brand-500/20 rounded-card p-4 text-center">
+                <p className="text-sm text-brand-500 font-medium">Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</p>
+                <p className="text-xl font-bold text-brand-500">FREE</p>
+                <p className="text-xs text-muted-foreground">Standard delivery</p>
+              </div>
+            </div>
+
+            {/* Visual timeline */}
+            <h2 className="text-h2 font-heading text-heading mt-8 mb-4">How It Works</h2>
+            <div className="flex items-center justify-between max-w-lg mx-auto mb-8">
+              {[
+                { step: "Order", desc: "Place your order" },
+                { step: "Pack", desc: "1-2 days processing" },
+                { step: "Ship", desc: "3-5 days delivery" },
+                { step: "Enjoy", desc: "At your door" },
+              ].map((s, i) => (
+                <div key={s.step} className="flex flex-col items-center text-center flex-1">
+                  <div className="w-8 h-8 rounded-full bg-brand-500 text-white flex items-center justify-center text-xs font-bold mb-1">{i + 1}</div>
+                  <p className="text-xs font-medium text-heading">{s.step}</p>
+                  <p className="text-[10px] text-muted-foreground">{s.desc}</p>
+                </div>
+              ))}
+            </div>
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Delivery Areas</h2>
             <p className="text-foreground leading-relaxed mb-4">

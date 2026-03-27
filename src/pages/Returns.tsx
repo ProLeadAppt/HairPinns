@@ -42,6 +42,12 @@ const Returns = () => {
               Not happy with your purchase? We'll sort it out. Here's how returns work.
             </p>
 
+            {/* 14-day badge */}
+            <div className="bg-green-50 border border-green-200 rounded-card p-5 mb-8 text-center">
+              <p className="text-2xl font-bold text-green-700">14-Day Returns</p>
+              <p className="text-sm text-green-600 mt-1">Changed your mind? No drama. Send it back.</p>
+            </div>
+
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Return Policy</h2>
             <p className="text-foreground leading-relaxed mb-4">
               Changed your mind? 14-day easy returns on unopened products.
@@ -64,12 +70,19 @@ const Returns = () => {
             </ul>
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">How to Return</h2>
-            <ol className="space-y-2 text-foreground mb-6">
-              <li>1. Contact us at hairpinns1@gmail.com with your order number</li>
-              <li>2. Wait for return authorization and instructions</li>
-              <li>3. Ship the item back using the provided label</li>
-              <li>4. Receive your refund once we process the return</li>
-            </ol>
+            <div className="space-y-3 mb-6">
+              {[
+                { step: 1, text: "Email hairpinns1@gmail.com with your order number" },
+                { step: 2, text: "Wait for return authorisation and instructions" },
+                { step: 3, text: "Ship the item back using the provided label" },
+                { step: 4, text: "Refund processed within 5-7 business days" },
+              ].map((s) => (
+                <div key={s.step} className="flex items-center gap-3">
+                  <div className="w-7 h-7 rounded-full bg-brand-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">{s.step}</div>
+                  <p className="text-foreground text-sm">{s.text}</p>
+                </div>
+              ))}
+            </div>
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Exchanges</h2>
             <p className="text-foreground leading-relaxed mb-6">

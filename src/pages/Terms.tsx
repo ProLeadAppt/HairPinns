@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -6,13 +7,21 @@ import SectionHeader from "@/components/design-system/SectionHeader";
 const Terms = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Terms of Service | Hair Pinns</title>
+        <meta name="description" content="Hair Pinns terms of service for salon services and online purchases." />
+        <link rel="canonical" href="https://hairpinns.com/terms" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/terms" />
+        <meta name="robots" content="noindex,follow" />
+      </Helmet>
+
       <Header />
       
       <main className="flex-grow">
         <Section className="pt-xl">
           <SectionHeader title="Terms of Service" />
           <div className="max-w-3xl mx-auto prose prose-lg">
-            <p className="text-muted-foreground mb-8">Last updated: December 2024</p>
+            <p className="text-muted-foreground mb-8">Last updated: March 2026</p>
 
             <p className="text-foreground leading-relaxed mb-6">
               By accessing and using Hair Pinns' services and website, you agree to be bound 

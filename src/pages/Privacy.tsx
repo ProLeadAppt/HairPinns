@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -6,13 +7,21 @@ import SectionHeader from "@/components/design-system/SectionHeader";
 const Privacy = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Privacy Policy | Hair Pinns</title>
+        <meta name="description" content="Hair Pinns privacy policy. How we collect, use and protect your personal information." />
+        <link rel="canonical" href="https://hairpinns.com/privacy" />
+        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/privacy" />
+        <meta name="robots" content="noindex,follow" />
+      </Helmet>
+
       <Header />
       
       <main className="flex-grow">
         <Section className="pt-xl">
           <SectionHeader title="Privacy Policy" />
           <div className="max-w-3xl mx-auto prose prose-lg">
-            <p className="text-muted-foreground mb-8">Last updated: December 2024</p>
+            <p className="text-muted-foreground mb-8">Last updated: March 2026</p>
 
             <p className="text-foreground leading-relaxed mb-6">
               At Hair Pinns, we are committed to protecting your privacy and ensuring the 

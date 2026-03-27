@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Search } from "lucide-react";
 import { searchProducts } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -139,10 +139,8 @@ const SearchResults = () => {
             <h1 className="text-3xl font-heading font-bold text-heading mb-4">
               {query ? `Search Results for "${query}" | Hair Products Australia` : "Search Products | Hair Pinns Australia"}
             </h1>
-            {products.length > 0 && (
-              <p className="text-muted-foreground">
-                Found {products.length} product{products.length !== 1 ? "s" : ""}
-              </p>
+            {!loading && query && products.length > 0 && (
+              <p className="text-sm text-muted-foreground">{products.length} results for "{query}"</p>
             )}
           </div>
 
@@ -173,13 +171,36 @@ const SearchResults = () => {
               <p className="text-muted-foreground mb-4">Please enter a search query</p>
             </div>
           ) : products.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-lg text-muted-foreground mb-4">
+            <div className="text-center py-16 max-w-md mx-auto">
+              <Search className="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" />
+              <h2 className="text-xl font-heading font-semibold text-heading mb-2">
                 No products found for "{query}"
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Try a different search or browse our collections
               </p>
-              <Button asChild variant="outline">
-                <Link to="/collections">Browse All Collections</Link>
-              </Button>
+              <div className="flex gap-3 justify-center mb-8">
+                <Button asChild variant="outline">
+                  <Link to="/collections">Browse Collections</Link>
+                </Button>
+                <Button asChild variant="primary">
+                  <Link to="/collections/best-sellers">View Best Sellers</Link>
+                </Button>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-3">Popular searches:</p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["Juuce", "Smoothing", "Blonde Care", "Gift Sets", "Shampoo"].map((term) => (
+                    <Link
+                      key={term}
+                      to={`/search?q=${encodeURIComponent(term)}`}
+                      className="px-3 py-1.5 text-sm bg-accent/50 text-foreground rounded-full hover:bg-accent transition-colors"
+                    >
+                      {term}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -188,13 +209,13 @@ const SearchResults = () => {
                 .map((product) => (
                 <div
                   key={product.id}
-                  className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+                  className="group bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
                   <Link to={`/products/${product.slug}`} className="block aspect-square bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset">
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {!product.availableForSale && (
                       <Badge variant="destructive" className="absolute top-3 left-3">
