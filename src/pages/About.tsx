@@ -28,7 +28,8 @@ const jenaPersonSchema = {
   }
 };
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
-import jenaHeadshot from "@/assets/jena-headshot.webp";
+// Use salon hero image until Jena provides a headshot
+import jenaHeadshot from "@/assets/images/hero-salon-1280w.webp";
 
 const About = () => {
   const testimonials = [

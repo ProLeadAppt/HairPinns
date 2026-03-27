@@ -20,7 +20,7 @@ import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { toast } from "sonner";
 import TrustStrip from "@/components/conversion/TrustStrip";
-import ExitIntentModal from "@/components/conversion/ExitIntentModal";
+// ExitIntentModal removed — damages trust, classic AI pattern
 import PaymentBadges from "@/components/product/PaymentBadges";
 import ShippingCalculator from "@/components/product/ShippingCalculator";
 import EstimatedDelivery from "@/components/product/EstimatedDelivery";
@@ -485,7 +485,7 @@ const ProductDetail = () => {
       <TrustStrip />
       
       {/* Exit Intent Modal */}
-      <ExitIntentModal enabled={true} />
+      {/* ExitIntentModal removed */}
       
       <main id="main-content">
         {/* Breadcrumbs */}

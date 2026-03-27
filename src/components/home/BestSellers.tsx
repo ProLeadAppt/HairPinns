@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Star, TrendingUp, Users } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { getAllCollections, searchProducts } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import UrgencyIndicator from "@/components/conversion/UrgencyIndicator";
 
 const BestSellers = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -15,7 +14,7 @@ const BestSellers = () => {
 
   useEffect(() => {
     let isMounted = true;
-    
+
     const fetchBestSellers = async () => {
       try {
         const shopifyModule = await import("@/lib/shopify");
@@ -87,7 +86,7 @@ const BestSellers = () => {
         const mappedProducts = productList.map((product: any) => {
           const firstImage = product.images?.edges?.[0]?.node;
           const price = parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
-          
+
           return {
             id: product.id,
             slug: product.handle,
@@ -101,7 +100,7 @@ const BestSellers = () => {
 
         setProducts(mappedProducts);
       } catch (error) {
-        console.error("❌ Failed to fetch best sellers:", error);
+        console.error("Failed to fetch best sellers:", error);
       } finally {
         if (isMounted) {
           setLoading(false);
@@ -110,17 +109,21 @@ const BestSellers = () => {
     };
 
     fetchBestSellers();
-    
+
     return () => {
       isMounted = false;
     };
   }, []);
 
+  const validProducts = products.filter(
+    (product) => product.slug && typeof product.slug === "string"
+  );
+
   if (loading) {
     return (
       <Section className="content-visibility-auto">
-        <SectionHeader 
-          title="Best Sellers"
+        <SectionHeader
+          title="What's selling right now"
           subtitle="Loading the good stuff..."
         />
         <div className="flex justify-center py-12">
@@ -130,79 +133,47 @@ const BestSellers = () => {
     );
   }
 
-  if (products.length === 0) {
+  if (validProducts.length === 0) {
     return null;
   }
 
+  const leadProduct = validProducts[0];
+  const sideProducts = validProducts.slice(1, 3);
+  const bottomProducts = validProducts.slice(3, 6);
+
   return (
     <Section className="content-visibility-auto">
-      <SectionHeader 
-        title="Best Sellers"
-        subtitle="The stuff my clients keep coming back for"
+      <SectionHeader
+        title="What's selling right now"
+        subtitle="The products my clients keep reordering"
       />
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" style={{ containIntrinsicSize: "0 2000px" }}>
-        {products
-          .filter((product) => product.slug && typeof product.slug === "string")
-          .map((product) => (
-          <div 
-            key={product.id}
-            className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base group"
-          >
-            <Link
-              to={`/products/${product.slug}`}
-              className="block aspect-square bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset"
-            >
-              <img 
-                src={product.image} 
-                alt={product.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
-                loading="lazy"
-                width="600"
-                height="600"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              {!product.availableForSale && (
-                <Badge variant="destructive" className="absolute top-3 left-3">
-                  Out of Stock
-                </Badge>
-              )}
-            </Link>
-            
-            <div className="p-6">
-              <h3 className="text-xl font-heading font-semibold text-heading mb-2">
-                <Link to={`/products/${product.slug}`} className="hover:text-brand-500 transition-colors">
-                  {product.title}
-                </Link>
-              </h3>
 
-              <p className="text-2xl font-bold text-brand-500 mb-4">
-                {formatPrice(product.price, product.currency)}
-              </p>
-              
-              <Link 
-                to={`/products/${product.slug}`} 
-                className="flex-1"
-              >
-                <Button 
-                  variant="primary" 
-                  size="sm" 
-                  className="w-full group-hover:scale-105 transition-transform"
-                  disabled={!product.availableForSale}
-                >
-                  <ShoppingBag className="w-4 h-4 mr-1" />
-                  {product.availableForSale ? "Add to Bag" : "View Details"}
-                </Button>
-              </Link>
-            </div>
-          </div>
-        ))}
+      {/* Editorial asymmetric layout — top row */}
+      <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-6">
+        {/* Lead product — tall card */}
+        <ProductCard product={leadProduct} aspectClass="aspect-[3/4]" />
+
+        {/* Side stack — products 2 & 3 */}
+        <div className="flex flex-col gap-6">
+          {sideProducts.map((product) => (
+            <ProductCard key={product.id} product={product} aspectClass="aspect-square" />
+          ))}
+        </div>
       </div>
+
+      {/* Bottom row — remaining products */}
+      {bottomProducts.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+          {bottomProducts.map((product) => (
+            <ProductCard key={product.id} product={product} aspectClass="aspect-square" />
+          ))}
+        </div>
+      )}
 
       <div className="text-center mt-12">
         <Link to="/collections">
           <Button variant="accent" size="lg">
-            Shop Best Sellers Now
+            Shop All Products
           </Button>
         </Link>
       </div>
@@ -210,5 +181,63 @@ const BestSellers = () => {
   );
 };
 
-export default BestSellers;
+const ProductCard = ({
+  product,
+  aspectClass,
+}: {
+  product: any;
+  aspectClass: string;
+}) => {
+  return (
+    <div className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base group">
+      <Link
+        to={`/products/${product.slug}`}
+        className={`block ${aspectClass} bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset`}
+      >
+        <img
+          src={product.image}
+          alt={product.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+          loading="lazy"
+          width="600"
+          height="600"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 50vw"
+        />
+        {!product.availableForSale && (
+          <Badge variant="destructive" className="absolute top-3 left-3">
+            Out of Stock
+          </Badge>
+        )}
+      </Link>
 
+      <div className="p-6">
+        <h3 className="text-xl font-heading font-semibold text-heading mb-2">
+          <Link
+            to={`/products/${product.slug}`}
+            className="hover:text-brand-500 transition-colors"
+          >
+            {product.title}
+          </Link>
+        </h3>
+
+        <p className="text-2xl font-bold text-brand-500 mb-4">
+          {formatPrice(product.price, product.currency)}
+        </p>
+
+        <Link to={`/products/${product.slug}`} className="flex-1">
+          <Button
+            variant="primary"
+            size="sm"
+            className="w-full"
+            disabled={!product.availableForSale}
+          >
+            <ShoppingBag className="w-4 h-4 mr-1" />
+            {product.availableForSale ? "Add to Bag" : "View Details"}
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default BestSellers;

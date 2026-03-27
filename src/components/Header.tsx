@@ -14,7 +14,7 @@ import {
 import ProductSearch from "@/components/product/ProductSearch";
 import ShopDropdown from "@/components/navigation/ShopDropdown";
 import { useCart } from "@/contexts/CartContext";
-import hairPinnsLogo from "@/assets/hair-pinns-logo-full.webp";
+import hairPinnsLogo from "@/assets/images/hair-pinns-logo-full.webp";
 
 function getPromoMessage(): string {
   if (isStocktakeActive()) return STOCKTAKE_HEADER_MESSAGE;
