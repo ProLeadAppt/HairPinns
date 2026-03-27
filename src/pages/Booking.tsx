@@ -55,6 +55,24 @@ const Booking = () => {
           </div>
         </section>
 
+        {/* How it works */}
+        <section className="py-8 bg-background">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-3 gap-4 text-center">
+              {[
+                { step: "1", label: "Pick your service" },
+                { step: "2", label: "Choose a time" },
+                { step: "3", label: "You're booked" },
+              ].map((s) => (
+                <div key={s.step} className="flex flex-col items-center gap-2">
+                  <div className="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-lg">{s.step}</div>
+                  <p className="text-sm font-medium text-heading">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Fresha Embed */}
         <section className="py-16">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,6 +96,12 @@ const Booking = () => {
                   {BOOK_CTA_LABEL}
                 </Button>
               </a>
+
+              <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1">Instant confirmation</span>
+                <span className="flex items-center gap-1">Free rescheduling</span>
+                <span className="flex items-center gap-1">762+ five-star reviews</span>
+              </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm">
                 <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 transition-colors">
@@ -108,35 +132,35 @@ const Booking = () => {
               <h3 className="text-xl font-heading font-semibold text-heading mb-4">
                 Important Information
               </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
                   <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">
-                    <strong>Cancellation Policy:</strong> Please give us 24 hours notice if you need to reschedule. 
+                    <strong>Cancellation Policy:</strong> Please give us 24 hours notice if you need to reschedule.
                     Late cancellations will need to be charged a 50% fee.
                   </span>
-                </li>
-                <li className="flex items-start gap-3">
+                </div>
+                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
                   <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">
                     <strong>Late Arrivals:</strong> If you're more than 15 minutes late, you might need to reschedule
                     so we can look after everyone properly.
                   </span>
-                </li>
-                <li className="flex items-start gap-3">
+                </div>
+                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
                   <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">
                     <strong>First-Time Clients:</strong> We'll discuss your hair goals and recommend the best service for you during your appointment.
                   </span>
-                </li>
-                <li className="flex items-start gap-3">
+                </div>
+                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
                   <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
                   <span className="text-foreground">
-                    <strong>Payment:</strong> We accept cash, card, and digital payments. 
+                    <strong>Payment:</strong> We accept cash, card, and digital payments.
                     Klarna & Afterpay available for services over $100.
                   </span>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
 
             <div className="text-center">

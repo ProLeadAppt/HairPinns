@@ -150,7 +150,7 @@ const BlogPost = () => {
           
           <div className="absolute inset-0 flex items-end">
             <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 lg:pb-16">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm text-brand-600 font-bold text-sm mb-4">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm shadow-sm text-brand-600 font-bold text-sm mb-4">
                 {post.category}
               </div>
               
@@ -206,7 +206,7 @@ const BlogPost = () => {
 
           {/* Content Sections */}
           {post.content.sections.map((section, index) => (
-            <div key={index} className="mb-12">
+            <div key={index} className="reveal mb-12">
               <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading mb-6 mt-12">
                 {section.heading}
               </h2>
@@ -255,7 +255,7 @@ const BlogPost = () => {
           )}
 
           {/* FAQ Section */}
-          <div className="mt-16 pt-12 border-t border-border">
+          <div className="reveal mt-16 pt-12 border-t border-border">
             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading mb-8">
               Frequently Asked Questions
             </h2>

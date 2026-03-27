@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin, Clock, Layers } from "lucide-react";
 import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
@@ -559,7 +559,7 @@ const Services = () => {
                       window.scrollTo({ top, behavior: 'smooth' });
                     }
                   }}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-150 ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
                     activeSection === nav.id
                       ? 'bg-brand-500 text-white shadow-sm'
                       : 'hover:bg-accent'
@@ -591,7 +591,7 @@ const Services = () => {
                 {category.services.map((service, idx) => (
                   <div
                     key={idx}
-                    className="group bg-white rounded-card p-6 border border-[rgba(139,74,139,0.10)] hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-150"
+                    className="group bg-white rounded-card p-6 border border-[rgba(139,74,139,0.10)] hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-300"
                     style={{ 
                       boxShadow: 'var(--shadow)',
                       borderRadius: 'var(--radius-card)'
@@ -613,12 +613,14 @@ const Services = () => {
                     {(service.duration || service.serviceCount) && (
                       <div className="flex flex-wrap gap-2 mb-3">
                         {service.duration && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
+                            <Clock className="w-3 h-3" />
                             {service.duration}
                           </span>
                         )}
                         {service.serviceCount && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
+                            <Layers className="w-3 h-3" />
                             {service.serviceCount}
                           </span>
                         )}
@@ -752,7 +754,7 @@ const Services = () => {
                 <Link
                   key={area.slug}
                   to={`/areas/${area.slug}`}
-                  className="group p-5 bg-card border border-[rgba(139,74,139,0.10)] rounded-card hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-150"
+                  className="group p-5 bg-card border border-[rgba(139,74,139,0.10)] rounded-card hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-300"
                   style={{ 
                     boxShadow: 'var(--shadow)',
                     borderRadius: 'var(--radius-card)'

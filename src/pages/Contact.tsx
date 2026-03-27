@@ -166,7 +166,7 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <div className="bg-card border border-border rounded-card p-8 mb-8">
+              <div className="bg-card border border-border border-l-4 border-l-brand-500 rounded-card p-8 mb-8">
                 <h2 className="text-h2 font-heading text-heading mb-6">Get In Touch</h2>
                 
                 <div className="space-y-6">
@@ -209,11 +209,29 @@ const Contact = () => {
               </div>
 
               {/* Opening Hours */}
-              <div className="bg-card border border-border rounded-card p-8 mb-8">
+              <div className="bg-card border border-border border-l-4 border-l-green-500 rounded-card p-8 mb-8">
                 <div className="flex items-start gap-4 mb-6">
                   <Clock className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
                   <div className="flex-1">
-                    <h3 className="font-semibold text-heading mb-4">Opening Hours</h3>
+                    <div className="flex items-center gap-3 mb-4">
+                      <h3 className="font-semibold text-heading">Opening Hours</h3>
+                      {(() => {
+                        const now = new Date();
+                        const day = now.getDay();
+                        const hour = now.getHours();
+                        const isOpen = (day === 2 && hour >= 10 && hour < 17) ||
+                          (day === 3 && hour >= 18 && hour < 21) ||
+                          (day === 4 && hour >= 9 && hour < 21) ||
+                          (day === 5 && hour >= 9 && hour < 17) ||
+                          (day === 6 && hour >= 8 && hour < 14);
+                        return (
+                          <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded-full ${isOpen ? 'bg-green-100 text-green-700' : 'bg-muted text-muted-foreground'}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-green-500' : 'bg-muted-foreground'}`} />
+                            {isOpen ? "Open now" : "Currently closed"}
+                          </span>
+                        );
+                      })()}
+                    </div>
                     <div className="space-y-2">
                       {businessInfo.hours.map(item => <div key={item.day} className="flex justify-between items-center py-2 border-b border-border last:border-0">
                           <span className="text-foreground font-medium">{item.day}</span>
@@ -227,7 +245,7 @@ const Contact = () => {
               </div>
 
               {/* Parking Tips */}
-              <div className="bg-accent/10 border border-accent/20 rounded-card p-6">
+              <div className="bg-accent/10 border border-accent/20 border-l-4 border-l-blue-500 rounded-card p-6">
                 <div className="flex items-start gap-4">
                   <Car className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
                   <div>
