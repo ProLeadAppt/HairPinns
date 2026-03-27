@@ -20,7 +20,7 @@ import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { toast } from "sonner";
 import TrustStrip from "@/components/conversion/TrustStrip";
-// ExitIntentModal removed — damages trust, classic AI pattern
+import SocialShareBar from "@/components/blog/SocialShareBar";
 import PaymentBadges from "@/components/product/PaymentBadges";
 import ShippingCalculator from "@/components/product/ShippingCalculator";
 import EstimatedDelivery from "@/components/product/EstimatedDelivery";
@@ -812,8 +812,17 @@ const ProductDetail = () => {
             />
           </SilentErrorBoundary>
         )}
+        {/* Share this product */}
+        {product && (
+          <section className="py-8 border-t border-border">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <p className="text-sm text-muted-foreground mb-3">Share this product</p>
+              <SocialShareBar url={`https://hairpinns.com/products/${handle}`} title={product.title} />
+            </div>
+          </section>
+        )}
       </main>
-      
+
       <Footer />
       {product && (
         <SilentErrorBoundary>

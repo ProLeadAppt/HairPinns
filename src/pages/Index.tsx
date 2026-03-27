@@ -108,6 +108,15 @@ const Index = () => {
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(howToBookSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(authorSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "Hair Pinns — Hair Care by Jena",
+          "description": "Hair care from someone who actually does hair. Jena Pinn, Bangor salon, shipping nationwide.",
+          "thumbnailUrl": "https://hairpinns.com/hero-poster.avif",
+          "uploadDate": "2026-01-01",
+          "contentUrl": "https://hairpinns.com/hero-reel.mp4"
+        })}</script>
       </Helmet>
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />

@@ -10,6 +10,7 @@ import { comprehensiveFAQs, searchFAQs, type FAQ } from "@/data/faqs";
 import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import TrustStrip from "@/components/conversion/TrustStrip";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const categories = [
   { key: "all", label: "All" },
@@ -66,6 +67,15 @@ const FAQPage = () => {
       </Helmet>
 
       <Header />
+
+      <div className="bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "FAQ" }
+          ]} />
+        </div>
+      </div>
 
       <main id="main-content">
         {/* Hero */}

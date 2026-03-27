@@ -40,6 +40,7 @@ const jenaPersonSchema = {
   }
 };
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import Breadcrumbs from "@/components/Breadcrumbs";
 // Use salon hero image until Jena provides a headshot
 import jenaHeadshot from "@/assets/images/hero-salon-1280w.webp";
 
@@ -95,6 +96,16 @@ const About = () => {
         </script>
       </Helmet>
       <Header />
+
+      <div className="bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "About" }
+          ]} />
+        </div>
+      </div>
+
       <main id="main-content">
         {/* Hero with Jena's Photo */}
         <section className="py-16 md:py-20">

@@ -62,26 +62,6 @@ interface HowToData {
   supply?: Array<{ name: string }>;
 }
 
-interface QAPageData {
-  question: string;
-  answer: string;
-  author?: string;
-  datePublished?: string;
-}
-
-interface HowToData {
-  name: string;
-  description: string;
-  step: Array<{
-    name: string;
-    text: string;
-    image?: string;
-  }>;
-  totalTime?: string;
-  tool?: Array<{ name: string }>;
-  supply?: Array<{ name: string }>;
-}
-
 import { BUSINESS_NAP, BUSINESS_HOURS } from '@/config/businessConfig';
 
 const BASE_URL = 'https://hairpinns.com';

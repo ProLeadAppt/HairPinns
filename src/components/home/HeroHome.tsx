@@ -13,7 +13,7 @@ const HeroHome = () => {
           loop
           playsInline
           poster={heroImage}
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover"
           preload="auto"
         >
           <source src="/hero-reel.mp4" type="video/mp4" />

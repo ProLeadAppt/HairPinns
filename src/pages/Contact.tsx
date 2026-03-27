@@ -11,6 +11,7 @@ import { MapPin, Phone, Mail, Clock, MessageSquare, Car, CheckCircle2 } from "lu
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
 import ContactForm from "@/components/forms/ContactForm";
+import Breadcrumbs from "@/components/Breadcrumbs";
 const Contact = () => {
   const {
     toast
@@ -154,7 +155,16 @@ const Contact = () => {
       </Helmet>
 
       <Header />
-      
+
+      <div className="bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Contact" }
+          ]} />
+        </div>
+      </div>
+
       <main id="main-content" className="flex-grow">
         {/* Hero Section */}
         <Section className="pt-xl pb-lg">

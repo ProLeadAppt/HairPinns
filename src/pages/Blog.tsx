@@ -9,6 +9,7 @@ import BlogCard from "@/components/blog/BlogCard";
 import { blogPosts } from "@/data/blogPosts";
 import { Sparkles } from "lucide-react";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -64,7 +65,16 @@ const Blog = () => {
       </Helmet>
 
       <Header />
-      
+
+      <div className="bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Blog" }
+          ]} />
+        </div>
+      </div>
+
       <main id="main-content">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-brand-500 via-[#773E77] to-[#5D2C5D] py-20 lg:py-28">

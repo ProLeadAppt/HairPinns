@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { generateStoreSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { BOOK_URL } from "@/config/bookingConfig";
 // All local collection images removed — using Shopify's own collection images and first product images
 
@@ -200,6 +201,15 @@ const Collections = () => {
       </Helmet>
 
       <Header />
+
+      <div className="bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Collections" }
+          ]} />
+        </div>
+      </div>
 
       <main id="main-content">
         {/* Hero Section */}
