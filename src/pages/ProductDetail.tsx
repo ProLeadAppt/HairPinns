@@ -592,7 +592,7 @@ const ProductDetail = () => {
                   <UrgencyIndicator
                     productId={product.id}
                     inStock={product.availableForSale}
-                    showRecentPurchases={true}
+                    showRecentPurchases={false}
                     className="mb-4"
                   />
                 </SilentErrorBoundary>
@@ -649,27 +649,16 @@ const ProductDetail = () => {
                     {addingToCart ? "Adding..." : "Add to Bag"}
                   </Button>
                   
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="flex-1"
-                      onClick={handleAddToBag}
-                      disabled={!isAvailable || addingToCart}
-                    >
-                      Add & Continue Shopping
-                    </Button>
-                    <Button
-                      variant="default"
-                      size="lg"
-                      className="flex-1"
-                      onClick={handleBuyNow}
-                      disabled={!isAvailable || buyingNow}
-                    >
-                      <Zap className="w-5 h-5 mr-2" />
-                      {buyingNow ? "Processing..." : "Buy Now"}
-                    </Button>
-                  </div>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full"
+                    onClick={handleBuyNow}
+                    disabled={!isAvailable || buyingNow}
+                  >
+                    <Zap className="w-5 h-5 mr-2" />
+                    {buyingNow ? "Processing..." : "Buy Now"}
+                  </Button>
 
                   {/* Shipping Calculator */}
                   <div className="pt-2">
@@ -693,21 +682,6 @@ const ProductDetail = () => {
                     </SilentErrorBoundary>
                   </div>
 
-                  {/* Trust Strip */}
-                  <div className="pt-4 border-t border-border flex flex-wrap gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1.5">
-                      <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                      <span>14-day hassle-free returns</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                      <span>Ships Australia-wide</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                      <span>Secure checkout</span>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Product Tabs */}

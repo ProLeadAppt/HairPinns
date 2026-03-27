@@ -205,7 +205,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
               <ShoppingBag className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-heading font-bold text-heading">Added to Bag!</h2>
+              <h2 className="text-lg font-heading font-bold text-heading">Your Bag</h2>
             </div>
           </div>
           <Button
@@ -335,7 +335,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
           {upsellProducts.length > 0 && (
             <div className="border-t border-border pt-6">
               <h4 className="text-sm font-semibold text-heading mb-4">
-                Recommended for You
+                You might also like
               </h4>
               <div className="space-y-3">
                 {upsellProducts.map((product) => (

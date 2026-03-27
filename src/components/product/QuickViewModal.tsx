@@ -112,17 +112,7 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
                 <h2 className="text-2xl font-heading font-bold text-heading mb-2">
                   {product.title}
                 </h2>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-[hsl(var(--star-color))] fill-current"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-muted-foreground">(4.8)</span>
-                </div>
+                {/* No fake ratings — only show when real review system exists */}
               </div>
 
               {/* Price */}

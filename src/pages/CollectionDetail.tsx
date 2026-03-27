@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Star, Check, ShoppingBag, ExternalLink } from "lucide-react";
+import { ShoppingBag, ExternalLink } from "lucide-react";
 import { getCollectionByHandle, getProductUrl, storeUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
@@ -17,12 +17,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 // ExitIntentModal removed
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
@@ -376,36 +370,6 @@ const CollectionDetail = () => {
               )}
             </div>
             
-            {/* Collection Benefits */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-              <div className="bg-card/50 rounded-lg p-4 border border-border">
-                <div className="flex items-center gap-2 mb-2">
-                  <Check className="w-5 h-5 text-brand-500" />
-                  <h3 className="font-semibold text-heading">Salon Quality</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Products I use in my salon and recommend to clients
-                </p>
-              </div>
-              <div className="bg-card/50 rounded-lg p-4 border border-border">
-                <div className="flex items-center gap-2 mb-2">
-                  <Star className="w-5 h-5 text-[hsl(var(--star-color))]" />
-                  <h3 className="font-semibold text-heading">Expert Curation</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Products I use myself and test in the salon
-                </p>
-              </div>
-              <div className="bg-card/50 rounded-lg p-4 border border-border">
-                <div className="flex items-center gap-2 mb-2">
-                  <ShoppingBag className="w-5 h-5 text-brand-500" />
-                  <h3 className="font-semibold text-heading">Free Shipping</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Free shipping Australia-wide on orders over $150
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -530,73 +494,7 @@ const CollectionDetail = () => {
           </div>
         </section>
 
-        {/* How to Choose FAQ */}
-        <section className="bg-muted py-16 md:py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
-              How to Choose
-            </h2>
-            
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="bg-card border border-border rounded-card px-6">
-                <AccordionTrigger className="text-left font-semibold text-heading hover:text-brand-500">
-                  Which pack is best for damaged or color-treated hair?
-                </AccordionTrigger>
-                <AccordionContent className="text-foreground leading-relaxed">
-                  The <strong>Hydrate & Restore Pack</strong> and <strong>Color Protect Bundle</strong> are specifically formulated for compromised hair. Both include bond-building treatments that repair damage from heat styling, chemical processing, and environmental stress. If you have blonde hair, choose the <strong>Blonde Brilliance Set</strong> for purple-toning benefits plus deep hydration.
-                </AccordionContent>
-              </AccordionItem>
 
-              <AccordionItem value="item-2" className="bg-card border border-border rounded-card px-6">
-                <AccordionTrigger className="text-left font-semibold text-heading hover:text-brand-500">
-                  How do I know if I need volume or smoothing products?
-                </AccordionTrigger>
-                <AccordionContent className="text-foreground leading-relaxed">
-                  If your hair is fine, flat, or lacks body, choose the <strong>Volume Boost Pack</strong> with lightweight formulas that lift at the roots. For thick, frizzy, or coarse hair that needs control, the <strong>Smooth & Sleek Set</strong> uses smoothing serums and anti-humidity technology. Need help choosing? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant recommendations.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3" className="bg-card border border-border rounded-card px-6">
-                <AccordionTrigger className="text-left font-semibold text-heading hover:text-brand-500">
-                  Can I use these products if I don't have color-treated hair?
-                </AccordionTrigger>
-                <AccordionContent className="text-foreground leading-relaxed">
-                  Absolutely! All our packs work beautifully on natural, virgin hair. Color-safe formulas are sulfate-free and gentle, making them ideal for anyone seeking healthier hair. The <strong>Scalp Wellness Set</strong> is particularly great for all hair types as it focuses on scalp health, which is the foundation of strong, beautiful hair.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-
-            <div className="text-center mt-8">
-              <p className="text-foreground mb-6">
-                Need help choosing? <Link to="/contact" className="text-brand-500 font-semibold hover:text-brand-600 underline">Message us on the contact page.</Link>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Related Collections */}
-        <section className="py-12 border-t border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2 font-heading text-heading mb-6 text-center">Browse More Hair Care Australia</h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/collections" className="text-brand-500 hover:text-brand-600 font-semibold underline">
-                All Collections
-              </Link>
-              <Link to="/collections/juuce-botanicals" className="text-brand-500 hover:text-brand-600 font-semibold underline">
-                Juuce
-              </Link>
-              <Link to="/collections/qiqi" className="text-brand-500 hover:text-brand-600 font-semibold underline">
-                QIQI
-              </Link>
-              <Link to="/collections/pure-certified-organic-hair-care" className="text-brand-500 hover:text-brand-600 font-semibold underline">
-                Pure
-              </Link>
-              <Link to="/collections/wet-brush-detanglers" className="text-brand-500 hover:text-brand-600 font-semibold underline">
-                Wet Brush
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
 
