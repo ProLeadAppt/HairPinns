@@ -5,1249 +5,1273 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://hairpinns.com</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/about</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/booking</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/contact</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/search</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/sitemap</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/reviews</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/faq</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/juuce-botanicals</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/pure-certified-organic-hair-care</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/wet-brush-detanglers</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/hair-pinns-accessories</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/aromaganic</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/island-vibes-tanning</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/collections/poppet-locks-reuseable-hair-extension-ponytails</loc>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/qiqi</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/the-perfect-pony-hair</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/best-sellers-march</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/heat-protection</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/blonde-bombshells</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/curly-girlys</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/pump-up-the-volume</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/frizz-free-must-haves</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/untitled-mar4_11-17</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-blondie-hair-strong-anti-yellow-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-blondie-hair-strong-anti-yellow-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-blondie-hair-strong-anti-yellow-shampoo-and-conditioner-duo-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-shampoo-and-conditioner-duo-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-shampoo-and-conditioner-duo-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-shampoo-and-conditioner-duo-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-qplexx-hair-bond-builder-shampoo-and-conditioner-duo-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-shampoo-and-conditioner-duo-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat-guard-shield-duo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat-shield-enz-duo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat-solar-guard-duo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-20-in-one-miracle</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-amp-it-up-volume</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-anti-dandruff-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-blonde-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-blonde-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-repair-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-repair-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-boost-curl-kinky</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-botanic-oil-serum</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-control-sculpt-lotion</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-curls-to-straight</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-deep-cleanse-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-double-up-thicken</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-dry-heat-guard</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-dry-shampoo-volumiser</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-full-volume-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-full-volume-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-heat-shield</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-hyaluronic-hydrate-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-hyaluronic-hydrate-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-knot-knotty-detangler</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-messed-up-texture</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-miracle-smooth-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-miracle-smooth-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-peppermint-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-peppermint-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-protect-solar-enz</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-radiant-colour-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-radiant-colour-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-repair-1-minute-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-repair-smooth-enz</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-silver-blonde-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-silver-blonde-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-softly-nourish-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-softly-nourish-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-stuck-up-lacquer</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-super-soft-hydration-moisture-mask</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-tame-curls-smooth</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-wake-up-wax-spray</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-2-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-3-pack</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-masque</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/soft-towel</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/products/wet-brush-shower-detangler</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-forever-blonde-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-forever-blonde-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-glass-hair-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-luminous-leave-in-silky-foam</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-butter-mask-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/walnut-scrub-hair-scalp-pre-wash-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-goddess-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-goddess-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-precious-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-precious-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-miracle-renew-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-miracle-renew-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-colour-angel-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-colour-angel-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-curly-girly-foam-curl-primer</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-precious-ends-leave-in-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-miracle-renew-hair-treatmentt</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-uplift-volume-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-uplift-volume-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-guardian-angel</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-flourish-leave-in-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/products/pure-styling-primer-anti-humidity-heat-protector</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/hair-pinns-gift-card</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/silicon-travel-bottle-duo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/products/head-massager</loc>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-self-tanning-foam</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-original-detangler</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-flex-dry</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-application-mit</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-back-application-strap</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-kids-detangler</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/purple-wide-tooth-combs</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/products/mini-mermaid-pony</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/products/mini-unicorn-ponytail</loc>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-flex-dry-paddle</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-fusion-complex-bond-repair-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-fusion-complex-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-fusion-complex-conditioner</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-finest-volumizing-powder</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-oomph-wax-spray</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/poppet-locks-piggy-tails</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/poppet-locks-mermaid-pony</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-shine-enhancer</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/products/poppet-locks-little-plaited-piggy-tails</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/products/poppet-locks-unicorn-straight-ponytail</loc>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/toner-masks</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/design-me-puff-me-volumizing-powder</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-clean-hair-colour-organics</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-fade-tan-remover</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-blue-me-blending-brush</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-all-out-blowout-styling-cream</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-porosity-play-spray</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-colour-optimising-treatments</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-mini-detangler</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-bare-repair-oil</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/mini-travel-hair-brush</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/tame-texture-wax-stick</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/flyaway-serum-baby-hair-control-smooth-hair-solution</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/mummy-me-gift-set</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/iv-small-beach-bag</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/glow-go-tote</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/products/design-me-curl-bounce-me-trio</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wetbrush-mini-keyring</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/christmas-reusable-ponytails</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/rose-sunkiss-fix-hands-feet-face-tan-mist</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/travel-size-deep-banging-bronze-self-tan</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/goodbye-frizz-quad</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-volumizing-spray</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/products/the-curl-defining-detangle-brush</loc>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/como-2226</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/gymea-2227</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/menai-2234</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/bangor-2234</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/jannali-2226</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/kareela-2232</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/miranda-2228</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/padstow-2211</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/cronulla-2230</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/illawong-2234</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/kirrawee-2232</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/sylvania-2224</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/caringbah-2229</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/oyster-bay-2225</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/sutherland-2232</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/barden-ridge-2234</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/alfords-point-2234</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/near/alfords-point</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/best-hair-products-australia-2025</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/where-to-buy-salon-hair-products-australia</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/hair-products-melbourne-brisbane-perth-australia</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/salon-vs-supermarket-hair-products</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/what-is-an-infrared-sauna</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/prevent-heat-damage-on-your-hair</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/say-goodbye-to-frizzy-hair-march-2025</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/christmas-gift-packs-at-hair-pinns</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/whats-a-straight-up-smoothing-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/how-often-should-you-replace-your-shampoo</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/5-ways-infrared-sauna-boosts-hair-skin-glow</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/the-secret-behind-that-steamy-towel-moment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/qiqi-bare-repair-oil-shine-strength-smoothness</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/smooth-seal-strengthen-pure-precious-ends</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/whats-the-best-hairspray-to-use</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/why-wet-brush-is-a-must-have</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/qiqi-vega-vs-nanoplasty-whats-the-difference</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/quench-your-hairs-thirst-hydration-bundle</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/pure-walnut-scrub-scalp-detox</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/truth-about-shampoo-after-straight-up-treatment</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/winter-weather-hair-care-sydney</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/what-is-lamellar-vitality-technology</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/why-heat-protection-is-essential</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/your-hair-deserves-the-best-wet-brush</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/which-juuce-range-is-best-for-you-quiz</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/infrared-sauna-for-hair-scalp-health</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/policies/shipping</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/policies/returns</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/privacy</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/terms</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

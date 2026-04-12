@@ -55,11 +55,15 @@ const ProductRecommendations = ({
               .map((product: any) => {
                 const firstImage = product.images?.edges?.[0]?.node;
                 const price = parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
+                const compareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount
+                  ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount)
+                  : undefined;
                 return {
                   id: product.id,
                   slug: product.handle,
                   title: product.title,
                   price: price,
+                  originalPrice: compareAtPrice,
                   currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
                   image: firstImage?.url || "/placeholder.svg",
                   availableForSale: product.availableForSale,
@@ -78,11 +82,15 @@ const ProductRecommendations = ({
               .map((product: any) => {
                 const firstImage = product.images?.edges?.[0]?.node;
                 const price = parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
+                const compareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount
+                  ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount)
+                  : undefined;
                 return {
                   id: product.id,
                   slug: product.handle,
                   title: product.title,
                   price: price,
+                  originalPrice: compareAtPrice,
                   currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
                   image: firstImage?.url || "/placeholder.svg",
                   availableForSale: product.availableForSale,
@@ -150,9 +158,16 @@ const ProductRecommendations = ({
                   {product.title}
                 </Link>
               </h3>
-              <p className="text-2xl font-bold text-brand-500 mb-4">
-                {formatPrice(product.price, product.currency)}
-              </p>
+              <div className="flex items-baseline gap-2 mb-4">
+                <p className="text-2xl font-bold text-brand-500">
+                  {formatPrice(product.price, product.currency)}
+                </p>
+                {product.originalPrice && product.originalPrice > product.price && (
+                  <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
+                    {formatPrice(product.originalPrice, product.currency)}
+                  </p>
+                )}
+              </div>
               
               <Link to={`/products/${product.slug}`}>
                 <Button 

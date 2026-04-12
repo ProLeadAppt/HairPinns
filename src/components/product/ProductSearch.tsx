@@ -23,6 +23,12 @@ interface Product {
       currencyCode: string;
     };
   };
+  compareAtPriceRange?: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
   images: {
     edges: Array<{
       node: {
@@ -176,9 +182,16 @@ export default function ProductSearch({
                         )}
                         <div className="flex-1 min-w-0">
                           <h3 className="font-medium text-sm truncate">{product.title}</h3>
-                          <p className="text-sm font-semibold text-foreground mt-1">
-                            {formatProductPrice(product)}
-                          </p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <p className="text-sm font-semibold text-foreground">
+                              {formatProductPrice(product)}
+                            </p>
+                            {product.compareAtPriceRange && parseFloat(product.compareAtPriceRange.minVariantPrice.amount) > parseFloat(product.priceRange.minVariantPrice.amount) && (
+                              <p className="text-xs font-semibold text-muted-foreground line-through decoration-muted-foreground/50">
+                                {formatPrice(parseFloat(product.compareAtPriceRange.minVariantPrice.amount), product.compareAtPriceRange.minVariantPrice.currencyCode)}
+                              </p>
+                            )}
+                          </div>
                           {!product.availableForSale && (
                             <span className="text-xs text-muted-foreground">Out of stock</span>
                           )}

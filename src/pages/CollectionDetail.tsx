@@ -60,6 +60,20 @@ const CollectionDetail = () => {
       
       try {
         console.log("🔍 Fetching", handle, "collection...");
+        const cacheKey = `hp_col_${handle}`;
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            if (parsed && parsed.collection && parsed.products) {
+              setCollection(parsed.collection);
+              setProducts(parsed.products);
+              setLoading(false);
+            }
+          } catch (e) {
+            console.error("Cache parsing error", e);
+          }
+        }
         
         // 8s timeout wrapper
         const fetchPromise = getCollectionByHandle(handle);
@@ -81,9 +95,12 @@ const CollectionDetail = () => {
         const productEdges = collectionData?.products?.edges || [];
         if (!collectionData || productEdges.length === 0) {
           console.warn("Collection fallback", { handle });
-          setCollection(null);
-          setProducts([]);
-          setLoading(false);
+          // If we have cached data, don't overwrite with null
+          if (!cached) {
+            setCollection(null);
+            setProducts([]);
+            setLoading(false);
+          }
           return;
         }
         
@@ -94,6 +111,9 @@ const CollectionDetail = () => {
           const product = edge.node;
           const firstImage = product.images.edges[0]?.node;
           const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+          const compareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount
+            ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount)
+            : undefined;
           
           // Get first available variant ID
           const variants = product.variants?.edges || [];
@@ -105,6 +125,7 @@ const CollectionDetail = () => {
             handle: product.handle,
             title: product.title,
             price: minPrice,
+            originalPrice: compareAtPrice,
             image: firstImage?.url || "/placeholder.svg",
             availableForSale: product.availableForSale,
             firstVariantId: variantId,
@@ -113,6 +134,15 @@ const CollectionDetail = () => {
         
         console.log("✅ Mapped products:", mappedProducts.length);
         setProducts(mappedProducts);
+        
+        try {
+          sessionStorage.setItem(`hp_col_${handle}`, JSON.stringify({
+            collection: collectionData,
+            products: mappedProducts
+          }));
+        } catch (e) {
+          console.warn("Could not cache collection details", e);
+        }
         
       } catch (error: any) {
         console.warn("Collection fallback", { handle });
@@ -460,9 +490,16 @@ const CollectionDetail = () => {
                         </Link>
                       </h3>
 
-                      <p className="text-2xl font-bold text-brand-500 mb-1">
-                        {formatPrice(product.price, "AUD")}
-                      </p>
+                      <div className="flex items-baseline gap-2 mb-1">
+                        <p className="text-2xl font-bold text-brand-500">
+                          {formatPrice(product.price, "AUD")}
+                        </p>
+                        {product.originalPrice && product.originalPrice > product.price && (
+                          <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
+                            {formatPrice(product.originalPrice, "AUD")}
+                          </p>
+                        )}
+                      </div>
                       <p className="text-xs text-muted-foreground mb-3">Afterpay &middot; Zip available</p>
 
                       {/* Actions */}
