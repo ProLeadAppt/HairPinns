@@ -3,6 +3,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Search } from "lucide-react";
 import { searchProducts } from "@/lib/shopify";
@@ -137,15 +138,27 @@ const SearchResults = () => {
 
       <Header />
 
+      <div className="bg-background border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Breadcrumbs
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Search', href: '/search' },
+              ...(query ? [{ label: `"${query}"` }] : []),
+            ]}
+          />
+        </div>
+      </div>
+
       <main id="main-content" className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-heading font-bold text-heading mb-4">
-              {query ? `Search Results for "${query}" | Hair Products Australia` : "Search Products | Hair Pinns Australia"}
+            <h1 className="text-3xl md:text-4xl font-heading font-bold text-heading mb-2">
+              {query ? `Results for "${query}"` : "Search"}
             </h1>
             {!loading && query && products.length > 0 && (
-              <p className="text-sm text-muted-foreground">{products.length} results for "{query}"</p>
+              <p className="text-sm text-muted-foreground">{products.length} {products.length === 1 ? 'product' : 'products'} found</p>
             )}
           </div>
 
@@ -168,12 +181,41 @@ const SearchResults = () => {
 
           {/* Results */}
           {loading ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">Searching...</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="bg-card border border-border rounded-lg overflow-hidden">
+                  <div className="aspect-square bg-muted animate-pulse" />
+                  <div className="p-4 space-y-3">
+                    <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
+                    <div className="h-4 bg-muted rounded animate-pulse w-1/2" />
+                    <div className="h-9 bg-muted rounded animate-pulse" />
+                  </div>
+                </div>
+              ))}
             </div>
           ) : !query ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground mb-4">Please enter a search query</p>
+            <div className="text-center py-16 max-w-md mx-auto">
+              <Search className="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" />
+              <h2 className="text-xl font-heading font-semibold text-heading mb-2">
+                What are you after?
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Use the search bar above or jump to something popular below.
+              </p>
+              <div>
+                <p className="text-sm text-muted-foreground mb-3">Popular searches:</p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["Juuce", "Smoothing", "Blonde Care", "Gift Sets", "Shampoo"].map((term) => (
+                    <Link
+                      key={term}
+                      to={`/search?q=${encodeURIComponent(term)}`}
+                      className="px-3 py-1.5 text-sm bg-accent/50 text-foreground rounded-full hover:bg-accent transition-colors"
+                    >
+                      {term}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           ) : products.length === 0 ? (
             <div className="text-center py-16 max-w-md mx-auto">

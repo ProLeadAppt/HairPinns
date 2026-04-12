@@ -145,6 +145,7 @@ const NewsletterForm = ({
         <Input
           type="text"
           placeholder="First name"
+          aria-label="First name"
           value={formData.first_name}
           onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
           className="bg-background"
@@ -154,6 +155,7 @@ const NewsletterForm = ({
       <Input
         type="email"
         placeholder="Email address"
+        aria-label="Email address"
         value={formData.email}
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         required
@@ -164,6 +166,7 @@ const NewsletterForm = ({
         <Input
           type="tel"
           placeholder="Phone number (optional)"
+          aria-label="Phone number (optional)"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           className="bg-background"
