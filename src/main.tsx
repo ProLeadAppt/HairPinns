@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 import "./lib/shopifySanityCheck";
@@ -18,7 +19,11 @@ try {
   }
   
   const root = createRoot(rootElement);
-  root.render(<App />);
+  root.render(
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  );
 } catch (error) {
   console.error("Failed to render React app:", error);
   // Display error to user
