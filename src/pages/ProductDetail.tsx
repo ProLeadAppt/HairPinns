@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -409,85 +409,70 @@ const ProductDetail = () => {
     return Array.from(values);
   };
 
+  // Build product schemas
+  const productDescription = String(product.description ?? "").substring(0, 120);
+  const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
+
+  const productSchemas = [
+    generateBreadcrumbSchema([
+      { name: "Home", url: "https://hairpinns.com/" },
+      { name: "Collections", url: "https://hairpinns.com/collections" },
+      { name: product.title, url: `https://hairpinns.com/products/${handle}` },
+    ]),
+    (() => {
+      try {
+        return generateEnhancedProductSchema({
+          name: product.title,
+          description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
+          image: imageUrls.length > 0 ? imageUrls : [getOGImage('product')],
+          price: (Number.isFinite(price) ? price : 0).toString(),
+          currency: activeVariant?.price?.currencyCode || "AUD",
+          brand: "Hair Pinns",
+          sku: activeVariant?.sku || product.id?.split("/")?.pop() || product.handle || "",
+          productID: product.id,
+          availability: isAvailable ? "InStock" : "OutOfStock",
+          category: product.productType || "Hair Care",
+        });
+      } catch (e) {
+        console.warn("Product schema generation failed:", e);
+        return {};
+      }
+    })(),
+    generateFAQPageSchema([
+      { question: `What is ${product.title}?`, answer: `${(product.description || `${product.title} - Professional hair care product from Hair Pinns`).substring(0, 250)} Hair Pinns ships ${product.title} Australia-wide. Free shipping over $150.` },
+      { question: `Where can I buy ${product.title} in Australia?`, answer: `Hair Pinns ships ${product.title} Australia-wide with free shipping on orders over $150. Picked by Jena since 2009. Available now at hairpinns.com.` },
+      { question: `Does ${product.title} ship to Melbourne, Brisbane, Perth or Sydney?`, answer: `Yes. Hair Pinns ships ${product.title} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping over $150. Every state and territory.` },
+      { question: `Is ${product.title} available in Australia?`, answer: `Yes. ${product.title} is available in Australia from Hair Pinns. Shipped Australia-wide with free shipping on orders over $150.` },
+    ]),
+    generateWebPageSchema({
+      name: product.title,
+      description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
+      url: `https://hairpinns.com/products/${handle}`,
+      speakable: { cssSelector: [".speakable-product-intro"] },
+    }),
+    ...(() => {
+      const howTo = getProductHowTo(handle, product.title);
+      if (!howTo) return [];
+      return [generateHowToSchema({
+        name: howTo.name,
+        description: howTo.description,
+        step: howTo.step,
+        supply: howTo.supply?.map((s) => ({ name: s })),
+      })];
+    })(),
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{product.title} | Hair Care Australia | Hair Pinns</title>
-        <meta 
-          name="description" 
-          content={`${String(product.description ?? "").substring(0, 120)} Shipped Australia-wide. Free shipping over $150.`}
-        />
-        <link rel="canonical" href={`https://hairpinns.com/products/${handle}`} />
-        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/products/${handle}`} />
-        <meta property="og:title" content={`${product.title} | Hair Care Australia | Hair Pinns`} />
-        <meta property="og:description" content={`${String(product.description ?? "").substring(0, 120)} Shipped Australia-wide. Free shipping over $150.`} />
-        <meta property="og:url" content={`https://hairpinns.com/products/${handle}`} />
-        <meta property="og:type" content="product" />
-        <meta property="og:image" content={images[0]?.url || getOGImage('product')} />
-        <meta property="product:price:amount" content={(Number.isFinite(price) ? price : 0).toString()} />
-        <meta property="product:price:currency" content="AUD" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <script type="application/ld+json">
-          {JSON.stringify(generateBreadcrumbSchema([
-            { name: "Home", url: "https://hairpinns.com/" },
-            { name: "Collections", url: "https://hairpinns.com/collections" },
-            { name: product.title, url: `https://hairpinns.com/products/${handle}` },
-          ]))}
-        </script>
-        <script type="application/ld+json">
-          {(() => {
-            try {
-              const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
-              return JSON.stringify(generateEnhancedProductSchema({
-                name: product.title,
-                description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
-                image: imageUrls.length > 0 ? imageUrls : [getOGImage('product')],
-                price: (Number.isFinite(price) ? price : 0).toString(),
-                currency: activeVariant?.price?.currencyCode || "AUD",
-                brand: "Hair Pinns",
-                sku: activeVariant?.sku || product.id?.split("/")?.pop() || product.handle || "",
-                productID: product.id,
-                availability: isAvailable ? "InStock" : "OutOfStock",
-                category: product.productType || "Hair Care",
-                // No aggregateRating — no real product review system exists yet
-              }));
-            } catch (e) {
-              console.warn("Product schema generation failed:", e);
-              return "{}";
-            }
-          })()}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateFAQPageSchema([
-            { question: `What is ${product.title}?`, answer: `${(product.description || `${product.title} - Professional hair care product from Hair Pinns`).substring(0, 250)} Hair Pinns ships ${product.title} Australia-wide. Free shipping over $150.` },
-            { question: `Where can I buy ${product.title} in Australia?`, answer: `Hair Pinns ships ${product.title} Australia-wide with free shipping on orders over $150. Picked by Jena since 2009. Available now at hairpinns.com.` },
-            { question: `Does ${product.title} ship to Melbourne, Brisbane, Perth or Sydney?`, answer: `Yes. Hair Pinns ships ${product.title} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping over $150. Every state and territory.` },
-            { question: `Is ${product.title} available in Australia?`, answer: `Yes. ${product.title} is available in Australia from Hair Pinns. Shipped Australia-wide with free shipping on orders over $150.` },
-          ]))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateWebPageSchema({
-            name: product.title,
-            description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
-            url: `https://hairpinns.com/products/${handle}`,
-            speakable: { cssSelector: [".speakable-product-intro"] },
-          }))}
-        </script>
-        {(() => {
-          const howTo = getProductHowTo(handle, product.title);
-          if (!howTo) return null;
-          return (
-            <script type="application/ld+json">
-              {JSON.stringify(generateHowToSchema({
-                name: howTo.name,
-                description: howTo.description,
-                step: howTo.step,
-                supply: howTo.supply?.map((s) => ({ name: s })),
-              }))}
-            </script>
-          );
-        })()}
-      </Helmet>
+      <SEOHead
+        title={`${product.title} | Hair Care Australia | Hair Pinns`}
+        description={`${productDescription} Shipped Australia-wide. Free shipping over $150.`}
+        canonical={`https://hairpinns.com/products/${handle}`}
+        ogImage={images[0]?.url || getOGImage('product')}
+        ogType="product"
+        hrefLang="en-AU"
+        schemaJson={productSchemas}
+      />
       
       <Header />
       

@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, Layers } from "lucide-react";
 import StickyBooking from "@/components/conversion/StickyBooking";
@@ -484,28 +484,19 @@ const Services = () => {
     answer: faq.answer
   })));
 
+  const schemas = [organizationSchema, localBusinessSchema, faqSchema];
+
   return (
     <div className="min-h-screen bg-bg">
-      <Helmet>
-        <title>Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns</title>
-        <meta name="description" content="Salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Prices and times are exactly what you'll see when you book." />
-        <link rel="canonical" href="https://hairpinns.com/services" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/services" />
-        <meta property="og:title" content="Hair Services Bangor | Colour, Smoothing & Cuts" />
-        <meta property="og:description" content="Salon services with transparent pricing. Book online now via Fresha." />
-        <meta property="og:url" content="https://hairpinns.com/services" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('service')} />
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(localBusinessSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns"
+        description="Salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Prices and times are exactly what you'll see when you book."
+        canonical="https://hairpinns.com/services"
+        ogImage={getOGImage('service')}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={schemas}
+      />
 
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />

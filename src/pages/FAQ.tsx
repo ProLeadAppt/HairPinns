@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import SEOHead from "@/components/SEOHead";
 import { comprehensiveFAQs, searchFAQs, type FAQ } from "@/data/faqs";
 import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
@@ -46,25 +46,19 @@ const FAQPage = () => {
     { name: "FAQ", url: "https://hairpinns.com/faq" },
   ]);
 
+  const schemas = [faqSchema, breadcrumbSchema];
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>FAQ | Hair Pinns | Common Questions About Hair Care and Shipping</title>
-        <meta
-          name="description"
-          content="Got questions about hair care, shipping, returns or booking? Here are the answers. If you can't find what you need, just call Jena on 0468 093 991."
-        />
-        <link rel="canonical" href="https://hairpinns.com/faq" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/faq" />
-        <meta property="og:title" content="FAQ | Hair Pinns" />
-        <meta property="og:description" content="Common questions about hair care, shipping, returns and booking at Hair Pinns." />
-        <meta property="og:url" content="https://hairpinns.com/faq" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage("default")} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
-      </Helmet>
+      <SEOHead
+        title="FAQ | Hair Pinns | Common Questions About Hair Care and Shipping"
+        description="Got questions about hair care, shipping, returns or booking? Here are the answers. If you can't find what you need, just call Jena on 0468 093 991."
+        canonical="https://hairpinns.com/faq"
+        ogImage={getOGImage("default")}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={schemas}
+      />
 
       <Header />
 

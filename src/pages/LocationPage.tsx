@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Card from "@/components/design-system/Card";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -14,14 +14,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { 
-  MapPin, 
+import {
+  MapPin,
   Phone,
   Palette,
   Sparkles,
   Scissors
 } from "lucide-react";
 import { getLocationData } from "@/data/locationPages";
+import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { serviceDetailData } from "@/data/serviceDetails";
@@ -91,7 +92,7 @@ const LocationPage = () => {
     "@context": "https://schema.org",
     "@type": "HairSalon",
     "name": "Hair Pinns",
-    "image": "https://hairpinns.com/hair-pinns-logo.png",
+    "image": "https://hairpinns.com/logo.png",
     "description": `Boutique hair salon near ${locationData.name}. Colour, blonding, keratin smoothing, braids & cuts with Jena. Easy parking & quick callbacks.`,
     "address": {
       "@type": "PostalAddress",
@@ -151,34 +152,19 @@ const LocationPage = () => {
     { name: "Blow-Dry & Style", price: "from A$ 65", slug: "cuts#blowdry" },
   ];
 
+  const schemas = [breadcrumbSchema, localBusinessSchema, faqSchema];
+
   return (
     <>
-      <Helmet>
-        <title>Hairdresser {locationData.name} | Hair Salon near {locationData.name} – Hair Pinns</title>
-        <meta 
-          name="description" 
-          content={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call +61 468 093 991.`}
-        />
-        <link rel="canonical" href={`https://hairpinns.com/areas/${locationData.slug}`} />
-        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/areas/${locationData.slug}`} />
-        <meta property="og:title" content={`Hairdresser ${locationData.name} | Hair Pinns`} />
-        <meta property="og:description" content={`${locationData.driveTime} from Bangor salon • easy parking • one-on-one care with Jena`} />
-        <meta property="og:url" content={`https://hairpinns.com/areas/${locationData.slug}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`Hairdresser ${locationData.name} | Hair Pinns`} />
-        <meta name="twitter:description" content={`${locationData.driveTime} from Bangor • easy parking • colour, smoothing & cuts`} />
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(localBusinessSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
+      <SEOHead
+        title={`Hairdresser ${locationData.name} | Hair Salon near ${locationData.name} – Hair Pinns`}
+        description={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call +61 468 093 991.`}
+        canonical={`https://hairpinns.com/areas/${locationData.slug}`}
+        ogImage={getOGImage('default')}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={schemas}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { getOGImage } from "@/lib/sitemap";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Input from "@/components/design-system/Input";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock, MessageSquare, Car, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -139,20 +139,15 @@ const Contact = () => {
     }
   };
   return <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Contact Hair Pinns Bangor | Call 0468 093 991</title>
-        <meta name="description" content="Visit Hair Pinns in Bangor, Sutherland Shire NSW. Call 0468 093 991. Free parking, easy access. Open Tue-Sat. Shop hair products Australia-wide online." />
-        <link rel="canonical" href="https://hairpinns.com/contact" />
-        <meta property="og:title" content="Contact Hair Pinns Bangor | Visit Our Salon" />
-        <meta property="og:description" content="60 Goorgool Rd, Bangor NSW 2234. Call 0468 093 991. Free parking, open Tue-Sat." />
-        <meta property="og:url" content="https://hairpinns.com/contact" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('default')} />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/contact" />
-        <script type="application/ld+json">
-          {JSON.stringify(localBusinessSchema)}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Contact Hair Pinns Bangor | Call 0468 093 991"
+        description="Visit Hair Pinns in Bangor, Sutherland Shire NSW. Call 0468 093 991. Free parking, easy access. Open Tue-Sat. Shop hair products Australia-wide online."
+        canonical="https://hairpinns.com/contact"
+        ogImage={getOGImage('default')}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={[localBusinessSchema]}
+      />
 
       <Header />
 

@@ -1,8 +1,8 @@
 import { useParams, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import ProductModule from "@/components/blog/ProductModule";
@@ -15,6 +15,7 @@ import SocialShareBar from "@/components/blog/SocialShareBar";
 import QuickAnswer from "@/components/blog/QuickAnswer";
 import KeyTakeaways from "@/components/blog/KeyTakeaways";
 import { blogPosts } from "@/data/blogPosts";
+import { getOGImage } from "@/lib/sitemap";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
@@ -97,43 +98,26 @@ const BlogPost = () => {
   const faqSchema = generateFAQPageSchema(blogFaqs);
   const currentUrl = `https://hairpinns.com/blog/${post.slug}`;
 
+  const schemas = [
+    organizationSchema,
+    blogPostSchema,
+    breadcrumbSchema,
+    faqSchema,
+    articleSchema,
+    ...(qaSchema ? [qaSchema] : []),
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{post.title} | Hair Pinns Blog</title>
-        <meta name="description" content={post.excerpt} />
-        <link rel="canonical" href={currentUrl} />
-        <link rel="alternate" hrefLang="en-AU" href={currentUrl} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.image} />
-        <meta property="og:url" content={currentUrl} />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.excerpt} />
-        <meta name="twitter:image" content={post.image} />
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(blogPostSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(articleSchema)}
-        </script>
-        {qaSchema && (
-          <script type="application/ld+json">
-            {JSON.stringify(qaSchema)}
-          </script>
-        )}
-      </Helmet>
+      <SEOHead
+        title={`${post.title} | Hair Pinns Blog`}
+        description={post.excerpt}
+        canonical={currentUrl}
+        ogImage={post.image}
+        ogType="article"
+        hrefLang="en-AU"
+        schemaJson={schemas}
+      />
 
       <ProgressBar />
       <Header />

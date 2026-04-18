@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import InvalidSuburb from "./InvalidSuburb";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -13,10 +13,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { 
-  MapPin, 
-  Clock, 
-  ExternalLink, 
+import {
+  MapPin,
+  Clock,
+  ExternalLink,
   ShoppingBag,
   Palette,
   Sparkles,
@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { getSuburbData } from "@/data/suburbPages";
 import { generateFAQPageSchema, generateWebPageSchema, generatePlaceSchema, generateQAPageSchema } from "@/lib/schema";
+import { getOGImage } from "@/lib/sitemap";
 import { BUSINESS_NAP, BUSINESS_HOURS, BUSINESS_HOURS_DISPLAY } from "@/config/businessConfig";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
@@ -153,60 +154,41 @@ const SuburbPage = () => {
     }
   ];
 
+  const schemas = [
+    breadcrumbSchema,
+    localBusinessSchema,
+    ...(suburbData.faqs?.length ? [generateFAQPageSchema(suburbData.faqs)] : []),
+    generateWebPageSchema({
+      name: `Hair Salon Near ${suburbData.name}`,
+      description: suburbData.intro,
+      url: `https://hairpinns.com/near/${suburbData.slug}`,
+      speakable: suburbData.quickAnswer ? { cssSelector: [".speakable-quick-answer"] } : undefined,
+    }),
+    generatePlaceSchema({
+      name: `Hair Pinns - ${suburbData.name}`,
+      description: suburbData.quickAnswer || suburbData.intro,
+      url: `https://hairpinns.com/near/${suburbData.slug}`,
+      addressLocality: suburbData.name,
+      addressRegion: "NSW",
+      postalCode: "2234",
+    }),
+    ...(suburbData.quickAnswer ? [generateQAPageSchema({
+      question: `What is Hair Pinns near ${suburbData.name}?`,
+      answer: suburbData.quickAnswer,
+    })] : []),
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>Hair Salon {suburbData.name} | Hair Pinns Bangor | Book Online</title>
-        <meta 
-          name="description" 
-          content={`${suburbData.driveTime} from ${suburbData.name}. Colour, smoothing & cuts. Expert care since 2018. Book online 24/7.`}
-        />
-        <meta name="keywords" content={`hair salon ${suburbData.name}, hairdresser ${suburbData.name}, balayage ${suburbData.name}, keratin ${suburbData.name}`} />
-        <link rel="canonical" href={`https://hairpinns.com/near/${suburbData.slug}`} />
-        <meta property="og:title" content={`Hair Salon Near ${suburbData.name} | Hair Pinns`} />
-        <meta property="og:description" content={`${suburbData.driveTime} from ${suburbData.name}. Colour, smoothing, cuts. Book online.`} />
-        <meta property="og:url" content={`https://hairpinns.com/near/${suburbData.slug}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://hairpinns.com/og-suburb.jpg" />
-        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/near/${suburbData.slug}`} />
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(localBusinessSchema)}
-        </script>
-        {suburbData.faqs?.length ? (
-          <script type="application/ld+json">
-            {JSON.stringify(generateFAQPageSchema(suburbData.faqs))}
-          </script>
-        ) : null}
-        <script type="application/ld+json">
-          {JSON.stringify(generateWebPageSchema({
-            name: `Hair Salon Near ${suburbData.name}`,
-            description: suburbData.intro,
-            url: `https://hairpinns.com/near/${suburbData.slug}`,
-            speakable: suburbData.quickAnswer ? { cssSelector: [".speakable-quick-answer"] } : undefined,
-          }))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generatePlaceSchema({
-            name: `Hair Pinns - ${suburbData.name}`,
-            description: suburbData.quickAnswer || suburbData.intro,
-            url: `https://hairpinns.com/near/${suburbData.slug}`,
-            addressLocality: suburbData.name,
-            addressRegion: "NSW",
-            postalCode: "2234",
-          }))}
-        </script>
-        {suburbData.quickAnswer ? (
-          <script type="application/ld+json">
-            {JSON.stringify(generateQAPageSchema({
-              question: `What is Hair Pinns near ${suburbData.name}?`,
-              answer: suburbData.quickAnswer,
-            }))}
-          </script>
-        ) : null}
-      </Helmet>
+      <SEOHead
+        title={`Hair Salon ${suburbData.name} | Hair Pinns Bangor | Book Online`}
+        description={`${suburbData.driveTime} from ${suburbData.name}. Colour, smoothing & cuts. Expert care since 2018. Book online 24/7.`}
+        canonical={`https://hairpinns.com/near/${suburbData.slug}`}
+        ogImage={getOGImage('suburb')}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={schemas}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />

@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, DollarSign, CheckCircle2, Users, ArrowRight, Heart } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -78,38 +78,25 @@ const ServiceDetail = () => {
     speakable: serviceData.quickAnswer ? { cssSelector: [".speakable-quick-answer"] } : undefined,
   });
 
+  const schemas = [
+    serviceSchema,
+    breadcrumbSchema,
+    ...(faqSchema ? [faqSchema] : []),
+    ...(howToSchema ? [howToSchema] : []),
+    webPageSchema,
+  ];
+
   return (
     <div className="min-h-screen bg-bg">
-      <Helmet>
-        <title>{serviceData.title} | Hair Pinns Bangor NSW</title>
-        <meta name="description" content={serviceData.metaDescription} />
-        <link rel="canonical" href={`https://hairpinns.com/services/${categorySlug}/${serviceSlug}`} />
-        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/services/${categorySlug}/${serviceSlug}`} />
-        <meta property="og:title" content={`${serviceData.title} | Hair Pinns`} />
-        <meta property="og:description" content={serviceData.metaDescription} />
-        <meta property="og:url" content={`https://hairpinns.com/services/${categorySlug}/${serviceSlug}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('service')} />
-        <script type="application/ld+json">
-          {JSON.stringify(serviceSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-        {faqSchema && (
-          <script type="application/ld+json">
-            {JSON.stringify(faqSchema)}
-          </script>
-        )}
-        {howToSchema && (
-          <script type="application/ld+json">
-            {JSON.stringify(howToSchema)}
-          </script>
-        )}
-        <script type="application/ld+json">
-          {JSON.stringify(webPageSchema)}
-        </script>
-      </Helmet>
+      <SEOHead
+        title={`${serviceData.title} | Hair Pinns Bangor NSW`}
+        description={serviceData.metaDescription}
+        canonical={`https://hairpinns.com/services/${categorySlug}/${serviceSlug}`}
+        ogImage={getOGImage('service')}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={schemas}
+      />
 
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
