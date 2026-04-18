@@ -59,16 +59,27 @@ export const SEOHead = ({
   // Handle multiple schema objects
   const schemas = Array.isArray(schemaJson) ? schemaJson : schemaJson ? [schemaJson] : [];
 
-  // Signal to prerender that the page is ready. Helmet updates head tags
-  // synchronously in useEffect, so firing on the next microtask means tags
-  // are in the DOM when puppeteer captures.
+  // Signal to prerender that the page is ready by adding a DOM marker once
+  // Helmet has flushed the title. Puppeteer polls for this element, which is
+  // more reliable than event-based signaling (events can fire before the
+  // listener is attached). The marker is removed before the HTML is captured.
   useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.dispatchEvent(new Event('prerender-ready'));
-      });
-    });
-    return () => cancelAnimationFrame(id);
+    let cancelled = false;
+    const setMarker = () => {
+      if (cancelled) return;
+      if (document.title === title) {
+        if (!document.getElementById('prerender-ready-marker')) {
+          const marker = document.createElement('div');
+          marker.id = 'prerender-ready-marker';
+          marker.style.display = 'none';
+          document.body.appendChild(marker);
+        }
+      } else {
+        requestAnimationFrame(setMarker);
+      }
+    };
+    requestAnimationFrame(setMarker);
+    return () => { cancelled = true; };
   }, [title, description, cleanCanonical]);
 
   return (

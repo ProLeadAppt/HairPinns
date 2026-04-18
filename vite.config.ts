@@ -21,17 +21,17 @@ export default defineConfig(async ({ mode }) => {
           routes,
           renderer: '@prerenderer/renderer-puppeteer',
           rendererOptions: {
-            renderAfterDocumentEvent: 'prerender-ready',
-            renderAfterTime: 5000,
+            renderAfterElementExists: '#prerender-ready-marker',
+            renderAfterTime: 15000,
             maxConcurrentRoutes: 4,
             headless: true,
-            skipThirdPartyRequests: true,
           },
           postProcess(renderedRoute: any) {
             // Remove Leadconnector chat widget DOM pollution
             renderedRoute.html = renderedRoute.html
               .replace(/<[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)[^>]*>[\s\S]*?<\/[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)>/gi, '')
-              .replace(/<slot-fb[^>]*>[\s\S]*?<\/slot-fb>/gi, '');
+              .replace(/<slot-fb[^>]*>[\s\S]*?<\/slot-fb>/gi, '')
+              .replace(/<div id="prerender-ready-marker"[^>]*><\/div>/gi, '');
             return renderedRoute;
           },
         })
