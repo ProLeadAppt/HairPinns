@@ -1,5 +1,7 @@
 // Sitemap generation utilities
 
+import { SITE_URL } from '@/config/businessConfig';
+
 interface SitemapUrl {
   loc: string;
   lastmod?: string;
@@ -24,7 +26,7 @@ export const generateXMLSitemap = (urls: SitemapUrl[]): string => {
 };
 
 export const getSitemapUrls = (): SitemapUrl[] => {
-  const baseUrl = 'https://hairpinns.com';
+  const baseUrl = SITE_URL;
   const today = new Date().toISOString().split('T')[0];
   
   return [
@@ -69,16 +71,14 @@ export const getSitemapUrls = (): SitemapUrl[] => {
 };
 
 export const getOGImage = (type: 'default' | 'product' | 'collection' | 'blog' | 'suburb' | 'service'): string => {
-  const baseUrl = 'https://hairpinns.com';
-  // Use og-default.jpg for all types until dedicated images exist - prevents 404s on social shares
-  const fallback = `${baseUrl}/og-default.jpg`;
+  const baseUrl = SITE_URL;
   const ogImages: Record<string, string> = {
-    default: fallback,
-    product: fallback,
-    collection: fallback,
-    blog: fallback,
-    suburb: fallback,
-    service: fallback,
+    default: `${baseUrl}/og-default.jpg`,
+    product: `${baseUrl}/og-product.jpg`,
+    collection: `${baseUrl}/og-collection.jpg`,
+    blog: `${baseUrl}/og-blog.jpg`,
+    suburb: `${baseUrl}/og-suburb.jpg`,
+    service: `${baseUrl}/og-service.jpg`,
   };
-  return ogImages[type] || fallback;
+  return ogImages[type] || `${baseUrl}/og-default.jpg`;
 };

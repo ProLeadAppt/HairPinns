@@ -62,9 +62,9 @@ interface HowToData {
   supply?: Array<{ name: string }>;
 }
 
-import { BUSINESS_NAP, BUSINESS_HOURS } from '@/config/businessConfig';
+import { BUSINESS_NAP, BUSINESS_HOURS, SITE_URL } from '@/config/businessConfig';
 
-const BASE_URL = 'https://hairpinns.com';
+const BASE_URL = SITE_URL;
 const LOGO_URL = `${BASE_URL}/logo.png`;
 const SALON_ADDRESS = {
   streetAddress: BUSINESS_NAP.address.street,
