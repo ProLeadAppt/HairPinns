@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { hpCapture } from "@/lib/hpCapture";
 import { Button } from "@/components/ui/button";
 
@@ -46,12 +46,12 @@ const Confirm = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Confirm Subscription | Hair Pinns</title>
-        <meta name="description" content="Confirm your email subscription to Hair Pinns" />
-        <link rel="canonical" href="https://hairpinns.com/confirm" />
-        <meta name="robots" content="noindex,nofollow" />
-      </Helmet>
+      <SEOHead
+        title="Confirm Subscription | Hair Pinns"
+        description="Confirm your email subscription to Hair Pinns"
+        canonical="https://hairpinns.com/confirm"
+        noIndex={true}
+      />
 
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="max-w-md w-full text-center space-y-6 bg-card p-8 rounded-card border border-border">

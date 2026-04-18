@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -7,14 +7,14 @@ import SectionHeader from "@/components/design-system/SectionHeader";
 const Privacy = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Privacy Policy | Hair Pinns</title>
-        <meta name="description" content="Hair Pinns privacy policy. How we collect, use and protect your personal information." />
-        <link rel="canonical" href="https://hairpinns.com/privacy" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/privacy" />
-        <meta name="robots" content="noindex,follow" />
-        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
-      </Helmet>
+      <SEOHead
+        title="Privacy Policy | Hair Pinns"
+        description="Hair Pinns privacy policy. How we collect, use and protect your personal information."
+        canonical="https://hairpinns.com/privacy"
+        hrefLang="en-AU"
+        noIndex={true}
+        ogImage="https://hairpinns.com/og-default.jpg"
+      />
 
       <Header />
       

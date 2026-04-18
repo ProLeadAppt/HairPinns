@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { getOGImage } from "@/lib/sitemap";
 import Header from "@/components/Header";
@@ -6,6 +5,7 @@ import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Card from "@/components/design-system/Card";
+import SEOHead from "@/components/SEOHead";
 import { MapPin, Clock } from "lucide-react";
 import { getAllLocationSlugs, getLocationData } from "@/data/locationPages";
 
@@ -37,23 +37,15 @@ const AreasIndex = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Areas We Serve – Hair Salon in Sutherland Shire | Hair Pinns</title>
-        <meta 
-          name="description" 
-          content="Hair Pinns serves the Sutherland Shire with colour, blonding, keratin smoothing, braids & cuts. Find your local area and book online today."
-        />
-        <link rel="canonical" href="https://hairpinns.com/areas" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/areas" />
-        <meta property="og:title" content="Areas We Serve | Hair Pinns" />
-        <meta property="og:description" content="Boutique hair salon serving Sutherland Shire and surrounding areas." />
-        <meta property="og:url" content="https://hairpinns.com/areas" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('suburb')} />
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Areas We Serve – Hair Salon in Sutherland Shire | Hair Pinns"
+        description="Hair Pinns serves the Sutherland Shire with colour, blonding, keratin smoothing, braids & cuts. Find your local area and book online today."
+        canonical="https://hairpinns.com/areas"
+        ogImage={getOGImage('suburb')}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={[breadcrumbSchema]}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />

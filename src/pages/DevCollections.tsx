@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
@@ -50,10 +50,12 @@ const DevCollections = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Collections Debug | Dev Tools</title>
-        <meta name="robots" content="noindex" />
-      </Helmet>
+      <SEOHead
+        title="Collections Debug | Dev Tools"
+        description="Dev-only collections debug page."
+        canonical="https://hairpinns.com/dev/collections"
+        noIndex={true}
+      />
       <Header />
       
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

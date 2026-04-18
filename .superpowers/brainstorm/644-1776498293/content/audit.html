@@ -1,0 +1,125 @@
+<h2>SEO Audit — Hair Pinns</h2>
+<p class="subtitle">Full findings across all four areas. Each issue is rated by impact.</p>
+
+<div class="section">
+  <h3>🔴 Critical — Root Cause of Most Problems</h3>
+  <div class="mockup">
+    <div class="mockup-header">Issue #1: SPA with no pre-rendering</div>
+    <div class="mockup-body" style="padding:16px">
+      <p>The site is a <strong>client-side React SPA</strong>. When Google, Facebook, or any crawler fetches a URL, they receive this:</p>
+      <pre style="background:#1a1a2e;color:#e0e0e0;padding:12px;border-radius:6px;font-size:12px;overflow:auto">&lt;body&gt;
+  &lt;div id="root"&gt;&lt;/div&gt;  ← empty
+  &lt;script src="/assets/js/index-abc123.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</pre>
+      <p style="margin-top:8px">No title. No description. No OG tags. No content. Googlebot may eventually execute JS, but <strong>social crawlers (Facebook, LinkedIn, Slack) never do</strong> — so every shared link shows a blank preview. This is the root cause of issues #2 and #3.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🔴 Critical — Social Previews</h3>
+  <div class="mockup">
+    <div class="mockup-header">Issue #2: OG/Twitter tags invisible to social crawlers</div>
+    <div class="mockup-body" style="padding:16px">
+      <p>All OG meta tags (og:title, og:description, og:image, twitter:card) are injected by <code>react-helmet</code> at runtime. Social crawlers don't run JS, so they never see these tags.</p>
+      <ul style="margin-top:8px;padding-left:20px;line-height:2">
+        <li>Facebook share → blank card</li>
+        <li>LinkedIn share → no preview image</li>
+        <li>Slack/Teams unfurl → just the URL</li>
+        <li>iMessage link preview → nothing</li>
+      </ul>
+      <p style="margin-top:8px"><strong>Fix:</strong> Inject static OG tags into <code>index.html</code> at build time, or add a pre-rendering layer (SSG/SSR).</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🟠 High — Google Indexing</h3>
+  <div class="mockup">
+    <div class="mockup-header">Issue #3: Googlebot sees thin/empty content on first crawl</div>
+    <div class="mockup-body" style="padding:16px">
+      <p>Googlebot <em>can</em> execute JS but does so in a second wave, often days after discovery. This means:</p>
+      <ul style="margin-top:8px;padding-left:20px;line-height:2">
+        <li>New pages take longer to be indexed</li>
+        <li>Google may cache empty versions and show "Page title" as the URL in results</li>
+        <li>Core Web Vitals measured on empty shell, not real content</li>
+        <li>Suburb/location pages (your most valuable SEO pages) are especially at risk</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top:12px">
+    <div class="mockup-header">Issue #4: URL inconsistency — hairpinns.com vs hairpinns.com.au</div>
+    <div class="mockup-body" style="padding:16px">
+      <p><code>index.html</code> hardcodes <strong>hairpinns.com</strong> in schema and sitemap. <code>robots.txt</code> also points to <strong>hairpinns.com</strong>. But <code>schema.ts</code>, <code>SEOHead</code>, and the business config all use <strong>hairpinns.com.au</strong>. Google treats these as two different sites — this fragments your authority.</p>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top:12px">
+    <div class="mockup-header">Issue #5: Hardcoded review counts in schema are stale</div>
+    <div class="mockup-body" style="padding:16px">
+      <p>Multiple places hardcode <code>reviewCount: "53"</code> and <code>"815"</code> — these will drift out of sync with reality. <code>generateLocalBusinessSchema</code> has 53; <code>generateEnhancedServiceSchema</code> has 815; <code>index.html</code> also has 53. Inconsistent counts can cause Google to distrust your schema entirely.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🟠 High — AI Crawlers / AEO</h3>
+  <div class="mockup">
+    <div class="mockup-header">Issue #6: robots.txt missing AI crawler rules</div>
+    <div class="mockup-body" style="padding:16px">
+      <p>No explicit rules for AI crawlers. To appear in ChatGPT, Perplexity, and Google AI Overviews you need:</p>
+      <pre style="background:#1a1a2e;color:#e0e0e0;padding:12px;border-radius:6px;font-size:12px">User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /</pre>
+      <p style="margin-top:8px">Without explicit permission, some AI crawlers skip sites to avoid legal risk.</p>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top:12px">
+    <div class="mockup-header">Issue #7: No llms.txt file</div>
+    <div class="mockup-body" style="padding:16px">
+      <p><code>llms.txt</code> is an emerging standard (like robots.txt for AI) that tells LLMs what your site is about, what to index, and what to skip. Not having one means AI crawlers have to guess. Adding a well-structured one can significantly improve how AI systems describe your business.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🟡 Medium — Schema / Structured Data</h3>
+  <div class="mockup">
+    <div class="mockup-header">Issue #8: Duplicate/conflicting schemas on homepage</div>
+    <div class="mockup-body" style="padding:16px">
+      <p>The homepage renders: Organization + LocalBusiness + KnowledgeGraph (another Organization) + Store + WebPage + HowTo + FAQ + Author. That's <strong>8+ schemas</strong>. Having two <code>Organization</code> schemas with different <code>@id</code> values on the same page confuses Google's entity understanding.</p>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top:12px">
+    <div class="mockup-header">Issue #9: ProductDetail page uses react-helmet, not SEOHead</div>
+    <div class="mockup-body" style="padding:16px">
+      <p><code>ProductDetail.tsx</code> imports <code>Helmet</code> directly, bypassing the centralised <code>SEOHead</code> component. This means it might be missing Twitter cards, hreflang, or canonical enforcement that SEOHead provides consistently.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🟢 Already Good</h3>
+  <ul style="padding-left:20px;line-height:2.2">
+    <li>✅ Centralised NAP in <code>businessConfig.ts</code></li>
+    <li>✅ Build-time sitemap with Shopify product/collection hydration</li>
+    <li>✅ IndexNow submission on build</li>
+    <li>✅ Rich schema library (HowTo, FAQ, QAPage, Author, AEO-ready)</li>
+    <li>✅ Suburb landing pages exist</li>
+    <li>✅ <code>robots.txt</code> disallows UTM/fbclid param duplication</li>
+    <li>✅ WebSite SearchAction schema in place</li>
+    <li>✅ E-E-A-T signals (Author schema, Jena's expertise, founding date)</li>
+  </ul>
+</div>
+
+<p class="subtitle" style="margin-top:24px">Take a look and let me know what resonates. Then I'll propose approaches.</p>

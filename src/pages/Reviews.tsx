@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import confetti from "canvas-confetti";
 import { soundEffects } from "@/lib/soundEffects";
@@ -95,11 +95,11 @@ const Reviews = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Share Your Experience | Hair Pinns</title>
-        <meta name="description" content="How was your experience with Hair Pinns? Share your feedback to help us improve." />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SEOHead
+        title="Share Your Experience | Hair Pinns"
+        description="How was your experience with Hair Pinns? Share your feedback to help us improve."
+        noIndex={true}
+      />
 
       <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12 relative overflow-hidden">
         {/* Animated background particles */}

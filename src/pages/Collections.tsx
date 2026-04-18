@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet";
 import { useState, useEffect, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,6 +13,7 @@ import { getOGImage } from "@/lib/sitemap";
 import { generateStoreSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { BOOK_URL } from "@/config/bookingConfig";
+import SEOHead from "@/components/SEOHead";
 // All local collection images removed — using Shopify's own collection images and first product images
 
 interface ShopifyCollection {
@@ -173,32 +173,24 @@ const Collections = () => {
     return sorted;
   }, [collections, searchQuery, sortBy]);
 
+  const schemas = [
+    generateStoreSchema(),
+    generateBreadcrumbSchema([
+      { name: "Home", url: "https://hairpinns.com/" },
+      { name: "Collections", url: "https://hairpinns.com/collections" },
+    ])
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Hair Products Australia | Hair Pinns Collections | Free Shipping Over $150</title>
-        <meta 
-          name="description" 
-          content="Shop hair care from Jena's salon. Juuce, QIQI, Pure, Wet Brush and more. Shipped anywhere in Australia. Free shipping over $150." 
-        />
-        <link rel="canonical" href="https://hairpinns.com/collections" />
-        <meta property="og:title" content="Hair Products Australia | Hair Pinns Collections | Free Shipping" />
-        <meta property="og:description" content="Hair care products picked by Jena. Shipped anywhere in Australia. Juuce, QIQI, Pure, Wet Brush. Free shipping over $150." />
-        <meta property="og:url" content="https://hairpinns.com/collections" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('collection')} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/collections" />
-        <script type="application/ld+json">
-          {JSON.stringify(generateStoreSchema())}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateBreadcrumbSchema([
-            { name: "Home", url: "https://hairpinns.com/" },
-            { name: "Collections", url: "https://hairpinns.com/collections" },
-          ]))}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Hair Products Australia | Hair Pinns Collections | Free Shipping Over $150"
+        description="Shop hair care from Jena's salon. Juuce, QIQI, Pure, Wet Brush and more. Shipped anywhere in Australia. Free shipping over $150."
+        canonical="https://hairpinns.com/collections"
+        ogImage={getOGImage('collection')}
+        ogType="website"
+        schemaJson={schemas}
+      />
 
       <Header />
 

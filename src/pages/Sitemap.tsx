@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -66,14 +66,11 @@ const Sitemap = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Sitemap | Hair Pinns Bangor</title>
-        <meta 
-          name="description" 
-          content="Browse all pages on Hair Pinns website - services, products, blog articles, service areas, and policies." 
-        />
-        <link rel="canonical" href="https://hairpinns.com/sitemap" />
-      </Helmet>
+      <SEOHead
+        title="Sitemap | Hair Pinns Bangor"
+        description="Browse all pages on Hair Pinns website - services, products, blog articles, service areas, and policies."
+        canonical="https://hairpinns.com/sitemap"
+      />
 
       <Header />
       

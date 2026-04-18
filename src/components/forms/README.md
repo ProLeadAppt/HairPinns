@@ -67,7 +67,7 @@ Both forms send the following payload structure to Zapier:
   "email": "ava@email.com",
   "phone": "(02) 1234 5678",
   "consent_marketing": true,
-  "source_page": "https://hairpinns.com.au/",
+  "source_page": "https://hairpinns.com/",
   "timestamp": "2025-01-15T14:30:00.000Z",
   "client_id": "550e8400-e29b-41d4-a716-446655440000",
   "utm_source": "instagram",

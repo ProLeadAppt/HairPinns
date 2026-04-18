@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -24,11 +24,11 @@ const InvalidSuburb = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Area Not Found | Hair Pinns Service Areas</title>
-        <meta name="description" content="The area you're looking for isn't in our current service list. View all areas we serve around Bangor NSW." />
-        <meta name="robots" content="noindex,follow" />
-      </Helmet>
+      <SEOHead
+        title="Area Not Found | Hair Pinns Service Areas"
+        description="The area you're looking for isn't in our current service list. View all areas we serve around Bangor NSW."
+        noIndex={true}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />

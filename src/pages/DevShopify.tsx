@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -147,10 +147,12 @@ const DevShopify = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Dev: Shopify Debug | Hair Pinns</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SEOHead
+        title="Dev: Shopify Debug | Hair Pinns"
+        description="Dev-only Shopify integration test page."
+        canonical="https://hairpinns.com/dev/shopify"
+        noIndex={true}
+      />
       <Header />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

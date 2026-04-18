@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { soundEffects } from "@/lib/soundEffects";
 import { haptics } from "@/lib/haptics";
@@ -223,11 +223,11 @@ const ReviewFeedback = () => {
   if (isSubmitted) {
     return (
       <>
-        <Helmet>
-          <title>Thank You | Hair Pinns</title>
-          <meta name="description" content="Thank you for your feedback. We appreciate your time." />
-          <meta name="robots" content="noindex, nofollow" />
-        </Helmet>
+        <SEOHead
+          title="Thank You | Hair Pinns"
+          description="Thank you for your feedback. We appreciate your time."
+          noIndex={true}
+        />
 
         <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12">
           <motion.div 
@@ -316,11 +316,11 @@ const ReviewFeedback = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Share Your Feedback | Hair Pinns</title>
-        <meta name="description" content="We'd love to hear your feedback to help us improve." />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SEOHead
+        title="Share Your Feedback | Hair Pinns"
+        description="We'd love to hear your feedback to help us improve."
+        noIndex={true}
+      />
 
       <ExitIntentDialog />
 

@@ -1,6 +1,6 @@
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { ShoppingBag, Scissors, Calendar, Phone, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,11 +24,12 @@ const NotFound = () => {
 
   return (
     <>
-      <Helmet>
-        <title>404 Page Not Found | Hair Pinns</title>
-        <meta name="description" content="This page could not be found. Shop hair products Australia-wide, visit our Bangor salon, or contact us." />
-        <meta name="robots" content="noindex,follow" />
-      </Helmet>
+      <SEOHead
+        title="404 Page Not Found | Hair Pinns"
+        description="This page could not be found. Shop hair products Australia-wide, visit our Bangor salon, or contact us."
+        canonical="https://hairpinns.com/404"
+        noIndex={true}
+      />
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-accent/30 to-background">
         <main id="main-content" className="text-center px-4 py-12 max-w-lg">
           <h1 className="mb-2 text-4xl font-heading font-bold text-heading">Hmm, that page doesn't exist</h1>

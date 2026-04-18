@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,20 +11,14 @@ const Booking = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Book Appointment Online | Hair Pinns Bangor | 24/7 Booking</title>
-        <meta 
-          name="description" 
-          content="Book your hair appointment online 24/7 via Fresha. Colour, treatments, cuts & styling. Instant confirmation. Same-day available." 
-        />
-        <link rel="canonical" href="https://hairpinns.com/booking" />
-        <meta property="og:title" content="Book Your Appointment | Hair Pinns Bangor" />
-        <meta property="og:description" content="Book online 24/7 via Fresha. Colour, smoothing, cuts & styling. Instant confirmation." />
-        <meta property="og:url" content="https://hairpinns.com/booking" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('service')} />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/booking" />
-      </Helmet>
+      <SEOHead
+        title="Book Appointment Online | Hair Pinns Bangor | 24/7 Booking"
+        description="Book your hair appointment online 24/7 via Fresha. Colour, treatments, cuts & styling. Instant confirmation. Same-day available."
+        canonical="https://hairpinns.com/booking"
+        ogImage={getOGImage('service')}
+        ogType="website"
+        hrefLang="en-AU"
+      />
       <Header />
       <main id="main-content">
         {/* Hero */}

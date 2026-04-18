@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -101,40 +101,37 @@ const SearchResults = () => {
         })
       : null;
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://hairpinns.com/" },
+    { name: "Search", url: "https://hairpinns.com/search" },
+    ...(query ? [{ name: query, url: canonicalUrl }] : []),
+  ]);
+
+  const faqSchema = products.length > 0 && query ? generateFAQPageSchema([
+    { question: `Where can I buy ${query} in Australia?`, answer: `Hair Pinns stocks ${query} and ships Australia-wide. Free shipping over $150. Shop professional hair care at hairpinns.com.` },
+    { question: `Does Hair Pinns ship ${query} Australia-wide?`, answer: `Yes. Hair Pinns ships ${query} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping on orders over $150.` },
+  ]) : null;
+
+  const schemas = [
+    breadcrumbSchema,
+    ...(faqSchema ? [faqSchema] : []),
+    ...(itemListSchema ? [itemListSchema] : []),
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{query ? `${query} | Hair Products Australia | Hair Pinns` : "Search Products | Hair Pinns Australia"}</title>
-        <meta
-          name="description"
-          content={
-            query
-              ? `Find ${query} and more hair care products. Shipped Australia-wide. Free shipping over $150.`
-              : "Search hair care products. Shipped Australia-wide. Free shipping over $150."
-          }
-        />
-        <link rel="canonical" href={canonicalUrl} />
-        <link rel="alternate" hrefLang="en-AU" href={canonicalUrl} />
-        <script type="application/ld+json">
-          {JSON.stringify(generateBreadcrumbSchema([
-            { name: "Home", url: "https://hairpinns.com/" },
-            { name: "Search", url: "https://hairpinns.com/search" },
-            ...(query ? [{ name: query, url: canonicalUrl }] : []),
-          ]))}
-        </script>
-        {products.length > 0 && query ? (
-          <script type="application/ld+json">
-            {JSON.stringify(generateFAQPageSchema([
-              { question: `Where can I buy ${query} in Australia?`, answer: `Hair Pinns stocks ${query} and ships Australia-wide. Free shipping over $150. Shop professional hair care at hairpinns.com.` },
-              { question: `Does Hair Pinns ship ${query} Australia-wide?`, answer: `Yes. Hair Pinns ships ${query} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping on orders over $150.` },
-            ]))}
-          </script>
-        ) : null}
-        {itemListSchema ? (
-          <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
-        ) : null}
-        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
-      </Helmet>
+      <SEOHead
+        title={query ? `${query} | Hair Products Australia | Hair Pinns` : "Search Products | Hair Pinns Australia"}
+        description={
+          query
+            ? `Find ${query} and more hair care products. Shipped Australia-wide. Free shipping over $150.`
+            : "Search hair care products. Shipped Australia-wide. Free shipping over $150."
+        }
+        canonical={canonicalUrl}
+        hrefLang="en-AU"
+        ogImage="https://hairpinns.com/og-default.jpg"
+        schemaJson={schemas}
+      />
 
       <Header />
 

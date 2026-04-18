@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -7,14 +7,14 @@ import SectionHeader from "@/components/design-system/SectionHeader";
 const Terms = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Terms of Service | Hair Pinns</title>
-        <meta name="description" content="Hair Pinns terms of service for salon services and online purchases." />
-        <link rel="canonical" href="https://hairpinns.com/terms" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/terms" />
-        <meta name="robots" content="noindex,follow" />
-        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
-      </Helmet>
+      <SEOHead
+        title="Terms of Service | Hair Pinns"
+        description="Hair Pinns terms of service for salon services and online purchases."
+        canonical="https://hairpinns.com/terms"
+        hrefLang="en-AU"
+        noIndex={true}
+        ogImage="https://hairpinns.com/og-default.jpg"
+      />
 
       <Header />
       

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import ImageGallery from "@/components/gallery/ImageGallery";
+import SEOHead from "@/components/SEOHead";
 
 // Salon & results gallery images
 import salonInterior from "@/assets/images/hair.pinns_1773312619_3851143514822403759_2244281067.avif";
@@ -74,27 +74,14 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>About Jena & Hair Pinns Bangor | Boutique Hair Salon</title>
-        <meta 
-          name="description" 
-          content="Meet Jena, founder of Hair Pinns boutique salon in Bangor. 15+ years experience in colour, smoothing & cuts. Sutherland Shire expert. Honest care, expert results." 
-        />
-        <link rel="canonical" href="https://hairpinns.com/about" />
-        <meta property="og:title" content="About Jena & Hair Pinns | Boutique Salon Bangor" />
-        <meta property="og:description" content="Meet Jena, your expert stylist with 15+ years experience. Specializing in colour, smoothing & cuts in Bangor and Sutherland Shire, NSW." />
-        <meta property="og:url" content="https://hairpinns.com/about" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('default')} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About Jena & Hair Pinns Bangor" />
-        <meta name="twitter:description" content="15+ years experience in colour, smoothing & cuts. Sutherland Shire expert. Honest care, expert results." />
-        <meta name="twitter:image" content={getOGImage('default')} />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/about" />
-        <script type="application/ld+json">
-          {JSON.stringify(jenaPersonSchema)}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="About Jena & Hair Pinns Bangor | Boutique Hair Salon"
+        description="Meet Jena, founder of Hair Pinns boutique salon in Bangor. 15+ years experience in colour, smoothing & cuts. Sutherland Shire expert. Honest care, expert results."
+        canonical="https://hairpinns.com/about"
+        ogImage={getOGImage('default')}
+        ogType="website"
+        schemaJson={jenaPersonSchema}
+      />
       <Header />
 
       <div className="bg-background border-b border-border">

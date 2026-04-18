@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import Footer from "@/components/Footer";
@@ -16,25 +16,20 @@ const SHIPPING_FAQS = [
 const Shipping = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Free Shipping Australia-Wide | Hair Pinns Hair Care</title>
-        <meta
-          name="description"
-          content="Hair Pinns ships professional hair care products Australia-wide. Free shipping over $150. Standard and express options. Hair products delivered across Australia."
-        />
-        <link rel="canonical" href="https://hairpinns.com/policies/shipping" />
-        <script type="application/ld+json">
-          {JSON.stringify(generateBreadcrumbSchema([
+      <SEOHead
+        title="Free Shipping Australia-Wide | Hair Pinns Hair Care"
+        description="Hair Pinns ships professional hair care products Australia-wide. Free shipping over $150. Standard and express options. Hair products delivered across Australia."
+        canonical="https://hairpinns.com/policies/shipping"
+        ogImage="https://hairpinns.com/og-default.jpg"
+        schemaJson={[
+          generateBreadcrumbSchema([
             { name: "Home", url: "https://hairpinns.com/" },
             { name: "Policies", url: "https://hairpinns.com/policies" },
             { name: "Shipping", url: "https://hairpinns.com/policies/shipping" },
-          ]))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateFAQPageSchema(SHIPPING_FAQS))}
-        </script>
-        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
-      </Helmet>
+          ]),
+          generateFAQPageSchema(SHIPPING_FAQS),
+        ]}
+      />
       <Header />
       
       <main id="main-content" className="flex-grow">

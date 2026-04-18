@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ExternalLink, ArrowLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import confetti from "canvas-confetti";
 import { soundEffects } from "@/lib/soundEffects";
@@ -100,11 +100,11 @@ const ReviewGoogle = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Share Your Review | Hair Pinns</title>
-        <meta name="description" content="Thank you for your positive experience! Share it on Google." />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SEOHead
+        title="Share Your Review | Hair Pinns"
+        description="Thank you for your positive experience! Share it on Google."
+        noIndex={true}
+      />
 
       <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12 relative overflow-hidden">
         {/* Animated sparkles background */}

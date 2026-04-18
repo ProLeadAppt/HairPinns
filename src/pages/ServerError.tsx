@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
@@ -6,10 +6,12 @@ import { AlertCircle } from "lucide-react";
 const ServerError = () => {
   return (
     <>
-      <Helmet>
-        <title>500 Server Error | Hair Pinns</title>
-        <meta name="robots" content="noindex,follow" />
-      </Helmet>
+      <SEOHead
+        title="500 Server Error | Hair Pinns"
+        description="Something went wrong. We've been notified and are working to fix it."
+        canonical="https://hairpinns.com/500"
+        noIndex={true}
+      />
       <div className="min-h-screen flex items-center justify-center bg-muted px-4">
         <div className="text-center max-w-md">
           <AlertCircle className="w-16 h-16 text-muted-foreground mx-auto mb-6" />

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -14,25 +14,20 @@ const RETURNS_FAQS = [
 const Returns = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Hair Product Returns Australia | 14-Day Returns | Hair Pinns</title>
-        <meta
-          name="description"
-          content="Hassle-free 14-day returns on hair care products. Hair Pinns ships Australia-wide. Contact us for returns and exchanges."
-        />
-        <link rel="canonical" href="https://hairpinns.com/policies/returns" />
-        <script type="application/ld+json">
-          {JSON.stringify(generateBreadcrumbSchema([
+      <SEOHead
+        title="Hair Product Returns Australia | 14-Day Returns | Hair Pinns"
+        description="Hassle-free 14-day returns on hair care products. Hair Pinns ships Australia-wide. Contact us for returns and exchanges."
+        canonical="https://hairpinns.com/policies/returns"
+        ogImage="https://hairpinns.com/og-default.jpg"
+        schemaJson={[
+          generateBreadcrumbSchema([
             { name: "Home", url: "https://hairpinns.com/" },
             { name: "Policies", url: "https://hairpinns.com/policies" },
             { name: "Returns", url: "https://hairpinns.com/policies/returns" },
-          ]))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateFAQPageSchema(RETURNS_FAQS))}
-        </script>
-        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
-      </Helmet>
+          ]),
+          generateFAQPageSchema(RETURNS_FAQS),
+        ]}
+      />
       <Header />
       
       <main id="main-content" className="flex-grow">

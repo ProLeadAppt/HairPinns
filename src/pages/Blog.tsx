@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { getOGImage } from "@/lib/sitemap";
 import { generateWebPageSchema, generateBreadcrumbSchema, generateBlogItemListSchema } from "@/lib/schema";
 import Header from "@/components/Header";
@@ -10,6 +9,7 @@ import { blogPosts } from "@/data/blogPosts";
 import { Sparkles } from "lucide-react";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -27,42 +27,33 @@ const Blog = () => {
   const firstRowPosts = filteredPosts.slice(1, 3);
   const remainingPosts = filteredPosts.slice(3);
 
+  const schemas = [
+    generateWebPageSchema({
+      name: "Hair Tips & Product Advice | Hair Pinns Blog",
+      description: "Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide.",
+      url: "https://hairpinns.com/blog",
+    }),
+    generateBreadcrumbSchema([
+      { name: "Home", url: "https://hairpinns.com/" },
+      { name: "Blog", url: "https://hairpinns.com/blog" },
+    ]),
+    generateBlogItemListSchema(visiblePosts.map((p) => ({
+      name: p.title,
+      url: `https://hairpinns.com/blog/${p.slug}`,
+      datePublished: p.date,
+    })))
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Hair Tips & Product Advice | Hair Pinns Blog Australia</title>
-        <meta 
-          name="description" 
-          content="Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide." 
-        />
-        <link rel="canonical" href="https://hairpinns.com/blog" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com/blog" />
-        <meta property="og:title" content="Hair Tips & Product Advice | Hair Pinns Blog Australia" />
-        <meta property="og:description" content="Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide." />
-        <meta property="og:url" content="https://hairpinns.com/blog" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('blog')} />
-        <script type="application/ld+json">
-          {JSON.stringify(generateWebPageSchema({
-            name: "Hair Tips & Product Advice | Hair Pinns Blog",
-            description: "Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide.",
-            url: "https://hairpinns.com/blog",
-          }))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateBreadcrumbSchema([
-            { name: "Home", url: "https://hairpinns.com/" },
-            { name: "Blog", url: "https://hairpinns.com/blog" },
-          ]))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateBlogItemListSchema(visiblePosts.map((p) => ({
-            name: p.title,
-            url: `https://hairpinns.com/blog/${p.slug}`,
-            datePublished: p.date,
-          }))))}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Hair Tips & Product Advice | Hair Pinns Blog Australia"
+        description="Hair care tips and product advice from Jena at Hair Pinns. Professional recommendations for Australian hair. Shipped Australia-wide."
+        canonical="https://hairpinns.com/blog"
+        ogImage={getOGImage('blog')}
+        ogType="website"
+        schemaJson={schemas}
+      />
 
       <Header />
 

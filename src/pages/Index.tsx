@@ -1,10 +1,10 @@
-import { Helmet } from "react-helmet";
 import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import SEOHead from "@/components/SEOHead";
 
 // Below-fold sections (lazy-loaded for performance)
 const BestSellers = lazy(() => import("@/components/home/BestSellers"));
@@ -84,50 +84,44 @@ const Index = () => {
     },
   ]);
 
+  const schemas = [
+    organizationSchema,
+    localBusinessSchema,
+    knowledgeGraphSchema,
+    storeSchema,
+    faqSchema,
+    webPageSchema,
+    howToBookSchema,
+    authorSchema,
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Hair Pinns — Hair Care from Someone Who Actually Does Hair",
+      "description": "Jena Pinn, Bangor salon owner since 2009, shares the products she uses on clients. Shipped Australia-wide.",
+      "thumbnailUrl": "https://hairpinns.com/hero-home-new.webp",
+      "uploadDate": "2025-01-01",
+      "contentUrl": "https://hairpinns.com/hero-reel.mp4",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hair Pinns",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://hairpinns.com/logo.png"
+        }
+      }
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background font-sans">
-      <Helmet>
-        <title>Hair Pinns | Hair Care by Jena | Free Shipping Over $150</title>
-        <meta
-          name="description"
-          content="Hair care picked by Jena. The same products I use on my clients, shipped anywhere in Australia. Free shipping over $150. Based in Bangor, Sutherland Shire."
-        />
-        <link rel="canonical" href="https://hairpinns.com" />
-        <meta property="og:title" content="Hair Pinns | Hair Care by Jena | Free Shipping Over $150" />
-        <meta property="og:description" content="Hair care picked by Jena. The same products I use on my clients, shipped anywhere in Australia. Free shipping over $150." />
-        <meta property="og:url" content="https://hairpinns.com" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={getOGImage('default')} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link rel="alternate" hrefLang="en-AU" href="https://hairpinns.com" />
-        <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(knowledgeGraphSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(storeSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(howToBookSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(authorSchema)}</script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "VideoObject",
-            "name": "Hair Pinns — Hair Care from Someone Who Actually Does Hair",
-            "description": "Jena Pinn, Bangor salon owner since 2009, shares the products she uses on clients. Shipped Australia-wide.",
-            "thumbnailUrl": "https://hairpinns.com/hero-home-new.webp",
-            "uploadDate": "2025-01-01",
-            "contentUrl": "https://hairpinns.com/hero-reel.mp4",
-            "publisher": {
-              "@type": "Organization",
-              "name": "Hair Pinns",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://hairpinns.com/logo.png"
-              }
-            }
-          })}
-        </script>
-      </Helmet>
+      <SEOHead
+        title="Hair Pinns | Hair Care by Jena | Free Shipping Over $150"
+        description="Hair care picked by Jena. The same products I use on my clients, shipped anywhere in Australia. Free shipping over $150. Based in Bangor, Sutherland Shire."
+        canonical="https://hairpinns.com"
+        ogImage={getOGImage('default')}
+        ogType="website"
+        schemaJson={schemas}
+      />
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
       <main id="main-content" ref={mainRef as any}>

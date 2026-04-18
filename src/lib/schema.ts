@@ -881,7 +881,7 @@ export const generateEnhancedServiceSchema = (service: EnhancedServiceData) => {
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '4.9',
-        reviewCount: '815',
+        reviewCount: '53',
         bestRating: '5',
         worstRating: '1',
       },
@@ -1128,11 +1128,11 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
         unitCode: 'KM',
       },
     },
-    // Enhanced aggregateRating with all review sources
+    // AggregateRating — Google Reviews only (verifiable source)
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.95',
-      reviewCount: '815',
+      ratingValue: '4.9',
+      reviewCount: '53',
       bestRating: '5',
       worstRating: '1',
     },

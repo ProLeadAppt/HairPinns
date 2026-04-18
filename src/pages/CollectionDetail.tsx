@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -25,6 +24,7 @@ import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
 import { getCollectionFAQs } from "@/data/collectionFAQs";
+import SEOHead from "@/components/SEOHead";
 
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
@@ -308,58 +308,50 @@ const CollectionDetail = () => {
     );
   }
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://hairpinns.com/" },
+    { name: "Collections", url: "https://hairpinns.com/collections" },
+    { name: collectionTitle, url: `https://hairpinns.com/collections/${handle}` },
+  ]);
+
+  const collectionPageSchema = generateCollectionPageSchema({
+    name: collectionTitle,
+    description: collectionDescription,
+    url: `https://hairpinns.com/collections/${handle}`,
+    image: collection?.image?.url || getOGImage('collection'),
+    numberOfItems: filteredProducts.length,
+    items: filteredProducts.slice(0, 20).map((product) => ({
+      name: product.title,
+      description: product.description || `${product.title} - Salon-quality hair care product`,
+      url: `https://hairpinns.com/products/${product.handle}`,
+      image: product.image,
+      price: product.price.toString(),
+      currency: product.currency || "AUD",
+    })),
+  });
+
+  const faqSchema = generateFAQPageSchema(getCollectionFAQs(handle));
+
+  const webPageSchema = generateWebPageSchema({
+    name: collectionTitle,
+    description: collectionDescription,
+    url: `https://hairpinns.com/collections/${handle}`,
+    speakable: { cssSelector: [".speakable-collection-intro"] },
+  });
+
+  const schemas = [breadcrumbSchema, collectionPageSchema, faqSchema, webPageSchema];
+
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{collectionTitle} | Hair Care Australia | Hair Pinns</title>
-        <meta 
-          name="description" 
-          content={`${collectionDescription.substring(0, 130)} Shipped Australia-wide. Free shipping over $150.`}
-        />
-        <link rel="canonical" href={`https://hairpinns.com/collections/${handle}`} />
-        <meta property="og:title" content={`${collectionTitle} | Salon Hair Products Australia | Hair Pinns`} />
-        <meta property="og:description" content={`${collectionDescription.substring(0, 130)} Shipped Australia-wide.`} />
-        <meta property="og:url" content={`https://hairpinns.com/collections/${handle}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={collection?.image?.url || getOGImage('collection')} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link rel="alternate" hrefLang="en-AU" href={`https://hairpinns.com/collections/${handle}`} />
-        <script type="application/ld+json">
-          {JSON.stringify(generateBreadcrumbSchema([
-            { name: "Home", url: "https://hairpinns.com/" },
-            { name: "Collections", url: "https://hairpinns.com/collections" },
-            { name: collectionTitle, url: `https://hairpinns.com/collections/${handle}` },
-          ]))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateCollectionPageSchema({
-            name: collectionTitle,
-            description: collectionDescription,
-            url: `https://hairpinns.com/collections/${handle}`,
-            image: collection?.image?.url || getOGImage('collection'),
-            numberOfItems: filteredProducts.length,
-            items: filteredProducts.slice(0, 20).map((product) => ({
-              name: product.title,
-              description: product.description || `${product.title} - Salon-quality hair care product`,
-              url: `https://hairpinns.com/products/${product.handle}`,
-              image: product.image,
-              price: product.price.toString(),
-              currency: product.currency || "AUD",
-            })),
-          }))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateFAQPageSchema(getCollectionFAQs(handle)))}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateWebPageSchema({
-            name: collectionTitle,
-            description: collectionDescription,
-            url: `https://hairpinns.com/collections/${handle}`,
-            speakable: { cssSelector: [".speakable-collection-intro"] },
-          }))}
-        </script>
-      </Helmet>
+      <SEOHead
+        title={`${collectionTitle} | Hair Care Australia | Hair Pinns`}
+        description={`${collectionDescription.substring(0, 130)} Shipped Australia-wide. Free shipping over $150.`}
+        canonical={`https://hairpinns.com/collections/${handle}`}
+        ogImage={collection?.image?.url || getOGImage('collection')}
+        ogType="website"
+        hrefLang="en-AU"
+        schemaJson={schemas}
+      />
       <Header />
       
       {/* Trust Strip */}

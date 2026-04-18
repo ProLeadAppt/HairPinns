@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
@@ -149,12 +149,12 @@ const OrderConfirmation = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Order Confirmed - Hair Pinns</title>
-        <meta name="description" content="Your Hair Pinns order has been confirmed. Thank you for your purchase!" />
-        <meta name="robots" content="noindex, nofollow" />
-        <meta property="og:image" content="https://hairpinns.com/og-default.jpg" />
-      </Helmet>
+      <SEOHead
+        title="Order Confirmed - Hair Pinns"
+        description="Your Hair Pinns order has been confirmed. Thank you for your purchase!"
+        noIndex={true}
+        ogImage="https://hairpinns.com/og-default.jpg"
+      />
 
       <Header />
 
