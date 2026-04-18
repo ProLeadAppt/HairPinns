@@ -25,12 +25,33 @@ export default defineConfig(async ({ mode }) => {
             renderAfterTime: 15000,
             maxConcurrentRoutes: 4,
             headless: true,
+            // Explicit prerender UA so third-party widgets (LeadConnector chat,
+            // Clarity, etc.) can detect & skip themselves during build.
+            userAgent: 'HairPinnsPrerender/1.0 (+HeadlessChrome; prerender=true)',
           },
           postProcess(renderedRoute: any) {
-            // Remove Leadconnector chat widget DOM pollution
+            // Strip LeadConnector / Ionic / reCAPTCHA pollution that may have
+            // snuck in despite the UA guard in index.html. Also remove the
+            // prerender-ready marker and any recaptcha origin-trial meta.
             renderedRoute.html = renderedRoute.html
+              // Ionic / LeadConnector custom elements
               .replace(/<[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)[^>]*>[\s\S]*?<\/[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)>/gi, '')
               .replace(/<slot-fb[^>]*>[\s\S]*?<\/slot-fb>/gi, '')
+              // Ionic-injected style block that hides unhydrated custom elements
+              .replace(/<style data-styles="">[\s\S]*?<\/style>/gi, '')
+              // reCAPTCHA origin-trial meta injected by third-party scripts
+              .replace(/<meta http-equiv="origin-trial"[^>]*>/gi, '')
+              // reCAPTCHA runtime script the Puppeteer browser loaded
+              .replace(/<script[^>]*recaptcha[^>]*><\/script>/gi, '')
+              .replace(/<script[^>]*gstatic\.com\/recaptcha[^>]*><\/script>/gi, '')
+              // LeadConnector runtime scripts / assets the browser loaded
+              .replace(/<script[^>]*leadconnectorhq\.com[^>]*>[\s\S]*?<\/script>/gi, '')
+              .replace(/<link[^>]*leadconnectorhq\.com[^>]*>/gi, '')
+              .replace(/<link[^>]*fonts\.bunny\.net[^>]*>/gi, '')
+              // Ionic className on <html>
+              .replace(/<html([^>]*?)class="plt-[^"]*"([^>]*?)mode="md"([^>]*)>/gi, '<html$1$2$3>')
+              .replace(/<html([^>]*?)mode="md"([^>]*)>/gi, '<html$1$2>')
+              // The prerender-ready DOM marker
               .replace(/<div id="prerender-ready-marker"[^>]*><\/div>/gi, '');
             return renderedRoute;
           },

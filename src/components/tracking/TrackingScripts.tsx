@@ -65,15 +65,20 @@ const TrackingScripts = () => {
         </>
       )}
 
-      {/* Microsoft Clarity */}
+      {/* Microsoft Clarity — skips during prerender/headless so the build
+          step doesn't record fake sessions */}
       {CLARITY_PROJECT_ID && (
         <script>
           {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
+            (function(){
+              var ua=navigator.userAgent||"";
+              if(ua.indexOf("HeadlessChrome")!==-1||ua.indexOf("HairPinnsPrerender")!==-1)return;
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
+            })();
           `}
         </script>
       )}

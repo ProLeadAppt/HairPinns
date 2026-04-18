@@ -43,10 +43,33 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script 
-      src="https://widgets.leadconnectorhq.com/loader.js"  
-      data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
-      data-widget-id="68aad9175a3f32497c546754"   > 
+    <!-- LeadConnector chat widget — deferred so it never runs during
+         prerender (Puppeteer would otherwise let it hijack <head>/<html>
+         and strip our SEO tags). Loads after first user interaction OR
+         2s after DOMContentLoaded in real browsers; stays silent under
+         the prerender UA. -->
+    <script>
+      (function () {
+        var ua = navigator.userAgent || '';
+        if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
+        var loaded = false;
+        function load() {
+          if (loaded) return; loaded = true;
+          var s = document.createElement('script');
+          s.src = 'https://widgets.leadconnectorhq.com/loader.js';
+          s.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+          s.setAttribute('data-widget-id', '68aad9175a3f32497c546754');
+          document.body.appendChild(s);
+        }
+        ['mousemove','touchstart','scroll','keydown'].forEach(function (e) {
+          window.addEventListener(e, load, { once: true, passive: true });
+        });
+        if (document.readyState === 'complete') {
+          setTimeout(load, 2000);
+        } else {
+          window.addEventListener('load', function () { setTimeout(load, 2000); });
+        }
+      })();
     </script>
   </body>
 </html>
