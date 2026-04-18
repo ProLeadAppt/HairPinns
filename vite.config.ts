@@ -1,6 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { fileURLToPath } from "url";
+import prerender from "@prerenderer/rollup-plugin";
+import { collectRoutes } from "./scripts/collect-prerender-routes.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
@@ -8,20 +14,26 @@ export default defineConfig(async ({ mode }) => {
 
   if (mode === 'production') {
     try {
-      const vitePrerender = (await import('vite-plugin-prerender')).default;
-      const Renderer = (await import('@prerenderer/renderer-puppeteer')).default;
-      const { collectRoutes } = await import('./scripts/collect-prerender-routes.js');
       const routes = await collectRoutes();
 
       plugins.push(
-        vitePrerender({
-          staticDir: path.join(__dirname, 'dist'),
+        prerender({
           routes,
-          renderer: new Renderer({
+          renderer: '@prerenderer/renderer-puppeteer',
+          rendererOptions: {
+            renderAfterDocumentEvent: 'prerender-ready',
             renderAfterTime: 5000,
             maxConcurrentRoutes: 4,
             headless: true,
-          }),
+            skipThirdPartyRequests: true,
+          },
+          postProcess(renderedRoute: any) {
+            // Remove Leadconnector chat widget DOM pollution
+            renderedRoute.html = renderedRoute.html
+              .replace(/<[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)[^>]*>[\s\S]*?<\/[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)>/gi, '')
+              .replace(/<slot-fb[^>]*>[\s\S]*?<\/slot-fb>/gi, '');
+            return renderedRoute;
+          },
         })
       );
     } catch (err: any) {

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 /**
  * GA4 and Meta Pixel initialization scripts

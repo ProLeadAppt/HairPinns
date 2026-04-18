@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 

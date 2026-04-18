@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 interface ImagePreloaderProps {
   src: string; // Base path without extension

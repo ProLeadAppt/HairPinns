@@ -98,6 +98,7 @@ const Reviews = () => {
       <SEOHead
         title="Share Your Experience | Hair Pinns"
         description="How was your experience with Hair Pinns? Share your feedback to help us improve."
+        canonical="/reviews"
         noIndex={true}
       />
 

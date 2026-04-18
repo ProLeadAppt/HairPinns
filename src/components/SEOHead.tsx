@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet-async";
-import { ReactNode } from "react";
+import { Helmet } from "react-helmet";
+import { ReactNode, useEffect } from "react";
 
 interface SEOHeadProps {
   /** Page title (used for <title> and og:title) */
@@ -58,6 +58,18 @@ export const SEOHead = ({
 
   // Handle multiple schema objects
   const schemas = Array.isArray(schemaJson) ? schemaJson : schemaJson ? [schemaJson] : [];
+
+  // Signal to prerender that the page is ready. Helmet updates head tags
+  // synchronously in useEffect, so firing on the next microtask means tags
+  // are in the DOM when puppeteer captures.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.dispatchEvent(new Event('prerender-ready'));
+      });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [title, description, cleanCanonical]);
 
   return (
     <Helmet>
