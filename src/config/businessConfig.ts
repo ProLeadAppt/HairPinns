@@ -3,6 +3,9 @@
  * Keep in sync with Google My Business profile for local SEO.
  */
 
+/** Canonical site URL — single source of truth for all SEO references */
+export const SITE_URL = 'https://hairpinns.com';
+
 export const BUSINESS_NAP = {
   name: "Hair Pinns",
   address: {
