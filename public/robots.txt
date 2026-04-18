@@ -1,12 +1,35 @@
-# Allow all bots - optimised for local SEO, organic traffic, and map pack
+# Hair Pinns — robots.txt
+# https://hairpinns.com
+
 User-agent: *
 Allow: /
 
-# Disallow cart and checkout pages (handled by Shopify)
+# AI Crawlers — explicitly allowed for AEO/GEO visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Disallow transactional and internal paths
 Disallow: /cart
 Disallow: /cart/
 Disallow: /checkout
 Disallow: /account
+Disallow: /order-confirmation
+Disallow: /confirm
+Disallow: /dev/
+Disallow: /reviews/feedback
+Disallow: /reviews/google
 
 # Disallow query parameters that create duplicate content
 Disallow: /*?*utm_*
@@ -15,5 +38,5 @@ Disallow: /*?*gclid=*
 Disallow: /*?*sort=*
 Disallow: /*?*filter=*
 
-# Sitemap - required for discovery by Google, Bing, and other search engines
+# Sitemaps
 Sitemap: https://hairpinns.com/sitemap.xml

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/inject-nap.js && node scripts/generate-sitemap.js && vite build && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
+    "build": "node scripts/generate-sitemap.js && vite build && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "submit-indexnow": "node scripts/submit-indexnow.js",
     "build:dev": "vite build --mode development",
