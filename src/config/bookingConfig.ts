@@ -10,10 +10,20 @@ export const BOOK_URL = "https://www.fresha.com/a/hair-pinns-bangor-studio-bango
 export const FRESHA_REVIEWS_URL = "https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb?reviews=true";
 
 /**
- * Track booking CTA click event
- * Sends analytics event to Zapier (no PII)
+ * Track booking CTA click event.
+ * Fires a GA4 "begin_booking" event for conversion tracking AND sends to
+ * Zapier for CRM attribution (no PII in either).
  */
 export const trackBookingClick = async (placement: string, source_page: string) => {
+  // GA4 event — runs synchronously, used as a conversion in GA4 admin
+  if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+    (window as any).gtag("event", "begin_booking", {
+      placement,
+      source_page,
+    });
+  }
+
+  // Zapier / CRM event
   try {
     const hpCaptureModule = await import("@/lib/hpCapture");
     const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;

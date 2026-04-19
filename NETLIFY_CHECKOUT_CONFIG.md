@@ -7,13 +7,13 @@ Set these in **Netlify → Site configuration → Environment variables**:
 | Variable | Value | Required |
 |----------|-------|----------|
 | `SHOPIFY_MYSHOPIFY_DOMAIN` | `femtat-zu.myshopify.com` | Yes |
-| `SF_STOREFRONT_TOKEN` | Your Storefront API token from Hair Pinns - Headless app | Yes |
+| `SF_STOREFRONT_TOKEN` | Your Storefront API token from the Shopify custom app | Yes |
 | `SF_API_VERSION` | `2025-01` | No (defaults to 2025-01) |
 
 ## How to Find Values
 
 - **SHOPIFY_MYSHOPIFY_DOMAIN**: Match exactly what appears in Shopify → Settings → Domains (the `.myshopify.com` domain)
-- **SF_STOREFRONT_TOKEN**: Shopify → Settings → Apps → App development → Hair Pinns - Headless → API credentials → Storefront API access token
+- **SF_STOREFRONT_TOKEN**: Shopify → Settings → Apps and sales channels → Develop apps → [custom storefront app] → API credentials → Storefront API access token
 
 ## Deploy Context
 
