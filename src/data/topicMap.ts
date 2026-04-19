@@ -62,6 +62,7 @@ export const topics: Topic[] = [
       'qiqi-bare-repair-oil-shine-strength-smoothness',
       'sutherland-shire-hair-salon-guide',
       'meet-jena-15-years-sutherland-shire',
+      'best-hair-salon-bangor',
     ],
     collectionSlugs: ['qiqi'],
     serviceSlugs: [
@@ -86,6 +87,7 @@ export const topics: Topic[] = [
       'meet-jena-15-years-sutherland-shire',
       'the-7-colouring-mistakes-i-see-every-week',
       'how-to-recover-hair-from-box-dye-damage',
+      'best-hair-salon-bangor',
     ],
     collectionSlugs: ['aromaganic', 'blonde-bombshells'],
     serviceSlugs: [
@@ -120,6 +122,13 @@ export const topics: Topic[] = [
       'why-wet-brush-is-a-must-have',
       'your-hair-deserves-the-best-wet-brush',
       'meet-jena-15-years-sutherland-shire',
+      'best-hair-salon-bangor',
+      'best-hair-salon-near-illawong',
+      'best-hair-salon-near-sutherland',
+      'best-hair-salon-near-cronulla',
+      'best-hair-salon-near-como',
+      'best-hair-salon-near-miranda',
+      'best-hair-salon-near-engadine',
     ],
     collectionSlugs: ['styling', 'wet-brush-detanglers'],
     serviceSlugs: [

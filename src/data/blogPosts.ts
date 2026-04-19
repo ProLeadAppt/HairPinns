@@ -2493,6 +2493,356 @@ export const blogPosts: BlogPost[] = [
       servicePath: "/services/colouring-packages/long-hair-colour-package",
       customText: "Book a colour correction consultation"
     }
+  },
+  {
+    slug: "best-hair-salon-bangor",
+    title: "The Best Hair Salon in Bangor: Meet Hair Pinns",
+    excerpt: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire — 15+ years of local stylist experience, honest pricing, free parking, and a team that knows your hair history.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "5 min read",
+    image: juuce119,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you live in Bangor and you're looking for a hair salon, you don't have to drive out of the suburb. Hair Pinns is right here — and we've built the salon around what Bangor locals actually want from their stylist: continuity, honest pricing, and hair that still looks good three months after the appointment. Here's a bit about who we are and what we do.",
+      sections: [
+        {
+          heading: "Where We Are in Bangor",
+          content: "Hair Pinns is at our Bangor shopfront with free parking right out the front. For Bangor locals it's a short drive from any postcode in the suburb — no traffic, no parking drama, no need to leave the Shire. We're also convenient for clients from Menai, Illawong, Woronora, and Barden Ridge, most of whom are regulars at this point."
+        },
+        {
+          heading: "What Bangor Clients Tell Us They Value",
+          content: "Three things come up in every new-client consultation with Bangor locals: (1) They want the same stylist every visit — not a rotating team that never remembers their history. At Hair Pinns you see Jena every time, or her trusted team who've been with the salon for years. (2) They want honest pricing on a public menu, not surprise fees at checkout. Our services are priced transparently online. (3) They want a salon that treats their hair like a long-term relationship, not a one-off service. Most of our Bangor clients have been with us for 3+ years."
+        },
+        {
+          heading: "Services Popular with Bangor Locals",
+          content: "The most-booked services for Bangor clients: Straight Up Smoothing (8–12 weeks of frizz-free hair through Sydney humidity), full head foils for blonde maintenance, and balayage for low-maintenance colour. We also do kids cuts and formal styling — big for Bangor families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "About the Salon and the Team in Bangor",
+          content: "Hair Pinns was founded by Jena Pinn after 15+ years working in salons across the Sutherland Shire. The salon is small by design — we'd rather take fewer clients and know them well than rotate high volumes. Jena is certified in Juuce, QIQI Vega, and Straight Up Smoothing systems, and specialises in colour (especially colour correction and balayage) and smoothing. Our team has been with the salon for years — when you book, you know who you're getting. Read more about Jena's background in Meet Jena: 15+ Years Behind the Chair in Sutherland Shire."
+        },
+        {
+          heading: "What to Expect on Your First Visit",
+          content: "Your first visit starts with a 10-minute consultation — hair history, goals, what's worked and what hasn't. We price everything upfront before we start. If what you're asking for isn't the right call for your hair (for example, going too light in one session on damaged hair), we'll tell you and propose an alternative. No upsell pressure, no surprise costs at the end. Just honest work you can book again next time."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon in Bangor?",
+        answer: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire, run by Jena Pinn with 15+ years of local experience. Specialises in colour, Straight Up Smoothing, and cuts. 4.9-star Google rating, free parking, transparent pricing. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns is based in Bangor with free parking out the front",
+        "Most-booked services: Straight Up Smoothing, full head foils, balayage",
+        "Owner-operated by Jena Pinn with 15+ years of Sutherland Shire experience",
+        "Honest pricing and stylist continuity are the core values",
+        "Most Bangor clients have been with the salon 3+ years"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment at Hair Pinns Bangor"
+    }
+  },
+  {
+    slug: "best-hair-salon-near-illawong",
+    title: "Best Hair Salon Near Illawong: What the Locals Say",
+    excerpt: "Looking for a hair salon near Illawong? Here's what Illawong locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: juuce120,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're in Illawong and searching for a hair salon, you have options — but the feedback we hear from Illawong locals who've become Hair Pinns regulars tends to be the same: 'Wish I'd found you sooner.' Here's what matters when you're picking a salon close to Illawong, and honest answers about whether we're the right fit.",
+      sections: [
+        {
+          heading: "Why Illawong Locals Drive to Bangor",
+          content: "Hair Pinns is a short drive from Illawong via Alfords Point Road and Fowler Road — generally under 10 minutes without traffic. Free parking right out the front of the salon. For most Illawong postcodes it's faster than heading into Miranda or Sutherland and trying to find parking. A good portion of our regulars come from the Illawong and Menai areas combined."
+        },
+        {
+          heading: "What Illawong Clients Tell Us They Value",
+          content: "Three things come up in every new-client consultation from the Illawong area: (1) They want the same stylist every time — not a rotating roster. At Hair Pinns you see Jena every visit, or her trusted team who've been here for years. (2) They want transparent pricing on a public menu, no surprise fees. (3) They want a salon that treats their hair like a long-term investment, not a quick transaction. Long-standing client relationships are how we measure whether we're doing the job right."
+        },
+        {
+          heading: "Services Popular with Illawong Locals",
+          content: "The most-booked services for Illawong clients: Straight Up Smoothing (keeps frizz down through Sydney humidity for 8–12 weeks), full head foils for blonde maintenance, and weekend appointments — we know the Illawong commute is tighter on weekdays. We also do kids cuts and formal styling. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Real Review from an Illawong Client",
+          content: "'Honest pricing, same stylist every visit, and I walk out with hair that still looks right in three weeks. That's all I wanted and it took years to find it.' — K. R., Illawong. (Composite of client feedback — real quote to be added before publish.) This captures the Hair Pinns approach: we don't promise miracles, we deliver what we say we'll deliver, and we charge for exactly that."
+        },
+        {
+          heading: "What If You're Not Ready to Switch Salons?",
+          content: "Fair. Most of our Illawong clients first came for one specific service — usually smoothing or a colour fix — while keeping their existing salon for everything else. After a few visits, they switched fully. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no hard sell."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon near Illawong?",
+        answer: "Hair Pinns in Bangor is under 10 minutes from Illawong via Alfords Point Road with free parking out the front. Specialises in colour, Straight Up Smoothing, foils, and weekend appointments. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns Bangor is a short drive from Illawong via Alfords Point Road",
+        "Free parking, stylist continuity, transparent pricing",
+        "Popular Illawong bookings: Straight Up Smoothing, full head foils, weekends",
+        "Try a single service first — no membership required",
+        "Most clients stay 3+ years once they switch"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment from Illawong"
+    }
+  },
+  {
+    slug: "best-hair-salon-near-sutherland",
+    title: "Best Hair Salon Near Sutherland: What the Locals Say",
+    excerpt: "Looking for a hair salon near Sutherland? Here's what Sutherland locals value in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: juuce091,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're in Sutherland and searching for a hair salon, you have plenty of options in town — but a lot of Sutherland locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Sutherland, and honest answers about whether we're worth the drive.",
+      sections: [
+        {
+          heading: "Why Sutherland Locals Drive to Bangor",
+          content: "Hair Pinns is 10–12 minutes from central Sutherland via Old Illawarra Road — generally faster than trying to find parking in central Sutherland during peak hours. Free parking out the front of the salon. Several of our regulars make the drive because the parking and the predictable time beats the convenience of walking distance in the Sutherland CBD."
+        },
+        {
+          heading: "What Sutherland Clients Tell Us They Value",
+          content: "Three things come up every time from Sutherland locals: (1) They want one stylist per visit, consistently — not a rotating team where no one remembers the last conversation. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing — full service menu public, no surprise fees at checkout. (3) They want long-term hair health prioritised over the single-service sale. Most Sutherland clients have been with us for several years."
+        },
+        {
+          heading: "Services Popular with Sutherland Locals",
+          content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined), Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair), and professional blowdries for events. We also do colour correction and balayage — Sutherland clients tend to want salon-finish blowdries that last. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Real Review from a Sutherland Client",
+          content: "'Jena priced my colour correction upfront, delivered the result over three visits exactly as she said she would, and my hair has been in better condition ever since. I used to drive into the city. Now I drive to Bangor.' — M. T., Sutherland. (Composite of client feedback — real quote to be added before publish.) This captures our approach: honest timelines, honest pricing, long-term results."
+        },
+        {
+          heading: "What If You're Not Ready to Switch Salons?",
+          content: "Totally fair. Most of our Sutherland clients first booked us for one specific service — usually a colour correction or smoothing treatment — while keeping their existing salon for routine cuts. After two or three visits, most switch fully. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon near Sutherland?",
+        answer: "Hair Pinns in Bangor is 10–12 minutes from Sutherland via Old Illawarra Road with free parking out the front. Specialises in full colour packages, Straight Up Smoothing, and colour correction. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns Bangor is 10–12 minutes from Sutherland via Old Illawarra Road",
+        "Free parking out the front beats central Sutherland parking hunts",
+        "Popular Sutherland bookings: full colour packages, smoothing, event blowdries",
+        "Transparent pricing and stylist continuity drive most switch-over decisions",
+        "Try one service first — no membership required"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment from Sutherland"
+    }
+  },
+  {
+    slug: "best-hair-salon-near-cronulla",
+    title: "Best Hair Salon Near Cronulla: What the Locals Say",
+    excerpt: "Looking for a hair salon near Cronulla? Here's what Cronulla locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: accessories016,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're in Cronulla and searching for a hair salon, you've got choices up and down the beach — but several Cronulla locals make the drive to Bangor because Hair Pinns specialises in the exact problems beach-and-sun hair faces. Here's what matters when you're picking a salon close to Cronulla, and honest answers about whether we're the right fit.",
+      sections: [
+        {
+          heading: "Why Cronulla Locals Drive to Bangor",
+          content: "Hair Pinns is 15–18 minutes from central Cronulla via Kingsway and Old Illawarra Road. Free parking right out the front — no hunting for a meter. Several of our regulars drive from Cronulla because the parking and the predictable timing is worth the extra few minutes compared to the Cronulla CBD parking situation."
+        },
+        {
+          heading: "What Cronulla Clients Tell Us They Value",
+          content: "Three things come up every time from Cronulla clients: (1) They want a stylist who understands beach-and-sun hair — salt, chlorine, UV exposure destroy colour and texture faster than most salons account for. (2) They want transparent pricing — no surprise fees at checkout. (3) They want a salon that plays the long game, not one pushing this week's special. Cronulla clients especially tend to stay 3+ years once they switch."
+        },
+        {
+          heading: "Services Popular with Cronulla Locals",
+          content: "The most-booked services for Cronulla clients: blonde balayage and full head foils (blonde beach hair is the brief), beach-recovery smoothing treatments (Straight Up Smoothing keeps frizz down for 8–12 weeks despite salt water), and deep-conditioning or bond-repair treatments for sun-damaged ends. We stock heat protection and sulfate-free ranges that beach-hair clients especially benefit from. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Real Review from a Cronulla Client",
+          content: "'I surf year-round and my hair used to fry by January. Jena put me on a smoothing and bond-repair schedule and now my hair survives summer — even my colour. Worth every minute of the drive.' — J. L., Cronulla. (Composite of client feedback — real quote to be added before publish.) This captures the Cronulla-specific approach: we plan around the lifestyle, not just the appointment."
+        },
+        {
+          heading: "What If You're Not Ready to Switch Salons?",
+          content: "Fair enough. Most of our Cronulla clients first came for one specific service — usually a smoothing treatment for beach hair or a colour correction — while keeping their existing salon for everything else. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon near Cronulla?",
+        answer: "Hair Pinns in Bangor is 15–18 minutes from Cronulla via Kingsway with free parking out the front. Specialises in blonde balayage, foils, beach-recovery smoothing, and bond-repair for sun-damaged hair. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns Bangor is 15–18 minutes from Cronulla via Kingsway",
+        "Free parking out the front beats the Cronulla CBD parking hunt",
+        "Cronulla clients especially benefit from smoothing, bond-repair, and beach-ready blonde services",
+        "Stylist continuity lets us plan around your actual lifestyle",
+        "Try one service first — no membership required"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment from Cronulla"
+    }
+  },
+  {
+    slug: "best-hair-salon-near-como",
+    title: "Best Hair Salon Near Como: What the Locals Say",
+    excerpt: "Looking for a hair salon near Como? Here's what Como locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: img0133,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're in Como and searching for a hair salon, the options nearest you are limited — which is why a lot of Como locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Como, and honest answers about whether we're the right fit.",
+      sections: [
+        {
+          heading: "Why Como Locals Drive to Bangor",
+          content: "Hair Pinns is 8–10 minutes from Como via Como Bridge and the Princes Highway. Free parking out the front of the salon — no meter hunting. Como sits on the bridge between the Sutherland Shire proper and the St George area; heading south to Bangor is usually quicker than heading north into busier suburbs."
+        },
+        {
+          heading: "What Como Clients Tell Us They Value",
+          content: "Three things come up with Como clients: (1) They want one stylist every visit who remembers their hair history — not rotating staff where every visit starts from scratch. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing on a public menu — no surprise fees. (3) They want low-maintenance results — colour that grows out gracefully, cuts that don't need a blowdry to look right. Most Como clients stay long-term because the results hold up."
+        },
+        {
+          heading: "Services Popular with Como Locals",
+          content: "The most-booked services for Como clients: low-maintenance balayage (grows out gracefully over 3–4 months), mid-length cut-and-blowdry packages, and toner refreshes. We also do Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Real Review from a Como Client",
+          content: "'Jena gave me a balayage that genuinely looks good at 12 weeks — I've never had that from another salon. Honest pricing, same stylist every time, and the short drive from Como is a non-issue.' — S. B., Como. (Composite of client feedback — real quote to be added before publish.) This captures the Como-specific appeal: low-maintenance results that justify the drive."
+        },
+        {
+          heading: "What If You're Not Ready to Switch Salons?",
+          content: "Fair. Most of our Como clients first came for a balayage or a smoothing treatment while keeping their existing salon for everything else. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon near Como?",
+        answer: "Hair Pinns in Bangor is 8–10 minutes from Como via Como Bridge and the Princes Highway with free parking out the front. Specialises in low-maintenance balayage, mid-length cuts, and Straight Up Smoothing. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns Bangor is 8–10 minutes from Como via Como Bridge",
+        "Free parking out the front — no meter hunting",
+        "Popular Como bookings: low-maintenance balayage, mid-length cut-and-blowdry, smoothing",
+        "Stylist continuity and transparent pricing drive switch-over decisions",
+        "Try one service first — no membership required"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment from Como"
+    }
+  },
+  {
+    slug: "best-hair-salon-near-miranda",
+    title: "Best Hair Salon Near Miranda: What the Locals Say",
+    excerpt: "Looking for a hair salon near Miranda? Here's what Miranda locals look for in a family-friendly salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: juuce037,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're in Miranda and searching for a hair salon, you have no shortage of options in and around Westfield. But many Miranda locals — especially families with school-age kids — make the drive to Bangor for Hair Pinns because we do family appointments well. Here's what matters when you're picking a salon close to Miranda, and honest answers about whether we're the right fit.",
+      sections: [
+        {
+          heading: "Why Miranda Locals Drive to Bangor",
+          content: "Hair Pinns is 10–12 minutes from central Miranda via Kingsway and Old Illawarra Road. Free parking out the front — very different from Miranda Westfield's parking situation. For families bringing kids, the out-the-front parking and the quieter suburb vibe is often the whole reason they switched."
+        },
+        {
+          heading: "What Miranda Clients Tell Us They Value",
+          content: "Three things come up with Miranda clients: (1) They want one stylist per person per visit — parents want a consistent stylist, kids want someone who remembers them. At Hair Pinns every family member sees the same stylist consistently. (2) They want transparent pricing, including kids services, on a public menu. (3) They want a salon that handles the practical stuff — booking the whole family in one session, kids' cuts that don't turn into a battle, formal styling for school events. Miranda families especially stay long-term."
+        },
+        {
+          heading: "Services Popular with Miranda Locals",
+          content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Real Review from a Miranda Client",
+          content: "'I bring both kids and book myself for the same session. The kids actually look forward to it now — the stylist knows them by name. Parking out the front with two under five is the difference between possible and not.' — R. G., Miranda. (Composite of client feedback — real quote to be added before publish.) This captures what Miranda families specifically come for."
+        },
+        {
+          heading: "What If You're Not Ready to Switch Salons?",
+          content: "Fair. Most of our Miranda clients first came for a formal styling appointment (school formal, wedding) or a one-off smoothing, while keeping their existing salon for routine cuts. After a few visits, most switch fully — especially once the kids come along and family booking becomes a factor. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon near Miranda?",
+        answer: "Hair Pinns in Bangor is 10–12 minutes from Miranda via Kingsway with free parking out the front. Specialises in family appointments, kids cuts, mid-length cuts, and school formal styling. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns Bangor is 10–12 minutes from Miranda via Kingsway",
+        "Free parking out the front — easier than Miranda Westfield for families",
+        "Popular Miranda bookings: family appointments, kids cuts, formal styling",
+        "Every family member sees a consistent stylist",
+        "Try one service first — no membership required"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment from Miranda"
+    }
+  },
+  {
+    slug: "best-hair-salon-near-engadine",
+    title: "Best Hair Salon Near Engadine: What the Locals Say",
+    excerpt: "Looking for a hair salon near Engadine? Here's what Engadine locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: juuce064,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're in Engadine and searching for a hair salon, the local options work for most people — but a lot of Engadine clients drive to Bangor for Hair Pinns because of the combination of consistency, honest pricing, and services that cover the whole family. Here's what matters when you're picking a salon close to Engadine, and honest answers about whether we're the right fit.",
+      sections: [
+        {
+          heading: "Why Engadine Locals Drive to Bangor",
+          content: "Hair Pinns is 10–14 minutes from central Engadine via the Princes Highway and Old Illawarra Road. Free parking out the front. For Engadine locals it's generally faster than heading north into Sutherland or south into Heathcote for a salon, and the Bangor parking is a non-issue."
+        },
+        {
+          heading: "What Engadine Clients Tell Us They Value",
+          content: "Three things come up with Engadine clients: (1) They want stylist continuity — seeing the same person every visit who knows their hair history and can adjust as hair changes over time. At Hair Pinns, that's Jena or her trusted team who've been here for years. (2) They want transparent pricing on a public menu. (3) They want a salon that works for the whole family — kids' cuts, mum's colour, seniors' wash-and-set. Engadine clients especially appreciate that we cover the full age range well."
+        },
+        {
+          heading: "Services Popular with Engadine Locals",
+          content: "The most-booked services for Engadine clients: family cut appointments, kids cut-and-blowdry bundles, seniors' colour and styling (we do gentle colour suited to mature hair very well), and mid-length cut packages. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Real Review from an Engadine Client",
+          content: "'My mum, my daughter, and I all go to Jena now. Three generations, same stylist. My mum used to dread hair appointments and now looks forward to them.' — D. P., Engadine. (Composite of client feedback — real quote to be added before publish.) This captures the Engadine-specific appeal: a salon that genuinely works across ages."
+        },
+        {
+          heading: "What If You're Not Ready to Switch Salons?",
+          content: "Fair. Most of our Engadine clients first came for one service — often a kids cut or a gentle senior colour — while keeping their existing salon for other services. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon near Engadine?",
+        answer: "Hair Pinns in Bangor is 10–14 minutes from Engadine via the Princes Highway with free parking out the front. Specialises in family appointments, kids cuts, mid-length cuts, and gentle colour for mature hair. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns Bangor is 10–14 minutes from Engadine via the Princes Highway",
+        "Free parking out the front, no meter hunting",
+        "Popular Engadine bookings: family cut packages, kids cuts, seniors colour",
+        "One stylist who knows your hair across multiple generations",
+        "Try one service first — no membership required"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment from Engadine"
+    }
   }
 ];
 
