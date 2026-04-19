@@ -16,10 +16,14 @@ const FeaturedPost = ({ post }: FeaturedPostProps) => {
         <div className="grid lg:grid-cols-2 gap-0 items-center">
           {/* Image Section */}
           <div className="relative aspect-[21/9] lg:aspect-square overflow-hidden">
-            <img 
-              src={post.image} 
+            <img
+              src={post.image}
               alt={post.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              width="800"
+              height="800"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-heading/80 via-heading/40 to-transparent lg:hidden" />
             <div className="absolute top-6 left-6">

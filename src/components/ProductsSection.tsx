@@ -93,7 +93,10 @@ const ProductsSection = () => {
                           alt={imageAlt}
                           className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
                           loading="lazy"
-                        />
+              decoding="async"
+              width="800"
+              height="800"
+            />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-muted-foreground">
                           <ShoppingBag className="w-12 h-12" />

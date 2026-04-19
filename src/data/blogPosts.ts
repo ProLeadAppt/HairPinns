@@ -379,7 +379,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "call-sam",
-      servicePath: "/services/keratin-smoothing",
+      servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
       customText: "Want to try a Straight Up treatment?"
     }
   },
@@ -467,7 +467,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "call-sam",
-      servicePath: "/services/keratin-smoothing",
+      servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
       customText: "Ready to book your Straight Up treatment?"
     }
   },
@@ -840,7 +840,7 @@ export const blogPosts: BlogPost[] = [
     },
     cta: {
       type: "call-sam",
-      servicePath: "/services/keratin-smoothing",
+      servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
       customText: "Want to learn more about QIQI Vega?"
     }
   },

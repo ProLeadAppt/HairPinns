@@ -262,7 +262,11 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
                           src={merch?.image?.url || "/placeholder.svg"}
                           alt={merch?.product?.title || ""}
                           className="w-full h-full object-cover"
-                        />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                       </Link>
                     ) : (
                       <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted flex-shrink-0">
@@ -270,7 +274,11 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
                           src={merch?.image?.url || "/placeholder.svg"}
                           alt={merch?.product?.title || ""}
                           className="w-full h-full object-cover"
-                        />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
@@ -350,7 +358,11 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
                         src={product.image}
                         alt={product.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                      />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h5 className="text-sm font-semibold text-heading line-clamp-1 mb-1">

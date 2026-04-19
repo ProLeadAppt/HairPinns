@@ -26,6 +26,7 @@ import { getSuburbData } from "@/data/suburbPages";
 import { generateFAQPageSchema, generateWebPageSchema, generatePlaceSchema, generateQAPageSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { BUSINESS_NAP, BUSINESS_HOURS, BUSINESS_HOURS_DISPLAY } from "@/config/businessConfig";
+import RelatedContent from "@/components/RelatedContent";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import LocationProducts from "@/components/local/LocationProducts";
@@ -483,6 +484,13 @@ const SuburbPage = () => {
               </div>
             </div>
           </section>
+
+          {/* Topic cluster links — every suburb page is a local SEO gateway
+              into smoothing, cuts, colour, and frizz-control content. */}
+          <RelatedContent
+            topics={["smoothing", "cuts", "colour", "frizz-control"]}
+            heading="Popular with locals"
+          />
         </main>
 
         <Footer />

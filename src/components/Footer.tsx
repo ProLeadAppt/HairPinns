@@ -76,7 +76,11 @@ const Footer = () => {
                 src={hairPinnsLogo}
                 alt="Hair Pinns - Happy Hair Specialist"
                 className="h-16 w-auto"
-              />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
             </Link>
             <p className="text-foreground mb-4 text-sm leading-relaxed max-w-md">
               Hair care picked by Jena. Shipped anywhere in Australia. Free over {FREE_SHIPPING_THRESHOLD_DISPLAY}.

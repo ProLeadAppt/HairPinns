@@ -103,7 +103,11 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
                 src={firstImage?.url || "/placeholder.svg"}
                 alt={product.title}
                 className="w-full h-full object-cover"
-              />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
             </div>
 
             {/* Product Info */}

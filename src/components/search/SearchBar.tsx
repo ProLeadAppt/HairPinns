@@ -137,7 +137,11 @@ const SearchBar = ({ onSelect }: SearchBarProps) => {
                       src={product.image}
                       alt={product.title}
                       className="w-full h-full object-cover"
-                    />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-heading line-clamp-1">{product.title}</p>

@@ -16,6 +16,8 @@ import QuickAnswer from "@/components/blog/QuickAnswer";
 import KeyTakeaways from "@/components/blog/KeyTakeaways";
 import { blogPosts } from "@/data/blogPosts";
 import { getOGImage } from "@/lib/sitemap";
+import RelatedContent from "@/components/RelatedContent";
+import { topicsForBlogPost } from "@/data/topicMap";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
@@ -129,7 +131,11 @@ const BlogPost = () => {
             src={post.image} 
             alt={post.title}
             className="w-full h-full object-cover"
-          />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
           <div className="absolute inset-0 bg-gradient-to-t from-heading/90 via-heading/50 to-transparent" />
           
           <div className="absolute inset-0 flex items-end">
@@ -270,10 +276,17 @@ const BlogPost = () => {
           </div>
         </article>
 
-        {/* Related Posts */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        {/* Related Posts (same category) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
           <RelatedPosts currentSlug={post.slug} />
         </div>
+
+        {/* Related services / collections (topic cluster) */}
+        <RelatedContent
+          topics={topicsForBlogPost(post.slug).map((t) => t.slug)}
+          show={["service", "collection"]}
+          heading="Related services & products"
+        />
       </main>
 
       <SocialShareBar url={currentUrl} title={post.title} />

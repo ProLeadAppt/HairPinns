@@ -66,7 +66,11 @@ const PostPurchaseModule = ({ pairsWith = [] }: PostPurchaseModuleProps) => {
                     src={product.image}
                     alt={product.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
-                  />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                 </div>
               )}
               <h3 className="font-semibold text-heading mb-1 text-sm">

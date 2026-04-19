@@ -23,6 +23,10 @@ const BeforeAfter = ({
               src={beforeImage} 
               alt={beforeAlt}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
             />
           </div>
           <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1.5 rounded-full bg-muted text-heading font-semibold text-sm shadow-lg">
@@ -37,6 +41,10 @@ const BeforeAfter = ({
               src={afterImage} 
               alt={afterAlt}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
             />
           </div>
           <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1.5 rounded-full bg-brand-500 text-white font-semibold text-sm shadow-lg">

@@ -153,7 +153,11 @@ const FrequentlyBoughtTogether = ({
                     src={currentProduct.image}
                     alt={currentProduct.title}
                     className="w-full h-full object-cover"
-                  />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                 </div>
                 <h4 className="font-semibold text-sm text-heading mb-2 line-clamp-2">
                   {currentProduct.title}
@@ -190,7 +194,11 @@ const FrequentlyBoughtTogether = ({
                       src={product.image}
                       alt={product.title}
                       className="w-full h-full object-cover"
-                    />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                   </div>
                   <h4 className="font-semibold text-sm text-heading mb-2 line-clamp-2">
                     {product.title}

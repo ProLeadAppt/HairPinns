@@ -1,4 +1,5 @@
 // Schema.org JSON-LD utilities for SEO
+import { googleReviews } from '@/data/reviews';
 
 interface BreadcrumbItem {
   name: string;
@@ -162,35 +163,28 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
     bestRating: '5',
     worstRating: '1',
   },
-  // Additional review sources
-  review: [
-    {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '4.9',
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Organization',
-        name: 'Google Reviews',
-      },
-      reviewBody: 'Hair Pinns has 53+ Google reviews with an average rating of 4.9 stars.',
+  // Individual customer reviews — Google-eligible for review rich results.
+  // Sourced from src/data/reviews.ts which is refreshed manually from
+  // Google Business Profile. Keep the top 5 most recent 5-star reviews.
+  review: googleReviews.slice(0, 5).map((r) => ({
+    '@type': 'Review',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: String(r.rating),
+      bestRating: '5',
+      worstRating: '1',
     },
-    {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5.0',
-        bestRating: '5',
-      },
-      author: {
-        '@type': 'Organization',
-        name: 'Fresha',
-      },
-      reviewBody: 'Hair Pinns has 762+ five-star reviews on Fresha.',
+    author: {
+      '@type': 'Person',
+      name: r.author,
     },
-  ],
+    datePublished: r.date,
+    reviewBody: r.text,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Google',
+    },
+  })),
   foundingDate: '2009',
   foundingLocation: {
     '@type': 'City',

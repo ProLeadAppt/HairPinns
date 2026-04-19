@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/select";
 import { Star, ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
+import RelatedContent from "@/components/RelatedContent";
+import { topicsForCollection } from "@/data/topicMap";
 import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { toast } from "sonner";
@@ -774,6 +776,10 @@ const ProductDetail = () => {
               src={currentImg.url}
               alt={currentImg.altText || product.title}
               className="max-w-[90vw] max-h-[90vh] object-contain"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
             />
           </div>
         )}
@@ -805,6 +811,17 @@ const ProductDetail = () => {
               <SocialShareBar url={`https://hairpinns.com/products/${handle}`} title={product.title} />
             </div>
           </section>
+        )}
+
+        {/* Topic cluster: services and blog posts that use/apply this product */}
+        {product?.collections?.edges?.[0]?.node?.handle && (
+          <RelatedContent
+            topics={topicsForCollection(
+              product.collections.edges[0].node.handle
+            ).map((t) => t.slug)}
+            show={["service", "blog"]}
+            heading="Services & reading that pair with this"
+          />
         )}
       </main>
 

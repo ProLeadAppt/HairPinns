@@ -81,7 +81,11 @@ const LocationProducts = ({ suburb, climate }: LocationProductsProps) => {
                   src={product.image}
                   alt={product.title}
                   className="w-full h-full object-cover hover:scale-105 transition-transform"
-                />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
               </Link>
               <div className="p-4">
                 <h4 className="font-semibold text-heading mb-2 line-clamp-2">

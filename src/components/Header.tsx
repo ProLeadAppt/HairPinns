@@ -51,7 +51,12 @@ const Header = () => {
           <div className="flex items-center justify-between h-full gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
-              <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-12 lg:h-14 w-auto" />
+              <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-12 lg:h-14 w-auto"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
             </Link>
 
             {/* Desktop Navigation */}

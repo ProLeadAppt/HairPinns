@@ -58,6 +58,10 @@ const CollectionGrid = ({
               src={collection.image}
               alt={collection.name}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
             />
             <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/10 transition-colors duration-base" />
           </div>

@@ -33,6 +33,9 @@ const ImageGallery = ({ images, columns = 3 }: ImageGalleryProps) => {
               alt={img.alt}
               loading="lazy"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              decoding="async"
+              width="800"
+              height="800"
             />
           </button>
         ))}
@@ -63,7 +66,12 @@ const ImageGallery = ({ images, columns = 3 }: ImageGalleryProps) => {
             src={images[lightboxIdx].src}
             alt={images[lightboxIdx].alt}
             className="max-w-full max-h-[85vh] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) =
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            > e.stopPropagation()}
           />
           <button
             className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white text-4xl px-2"

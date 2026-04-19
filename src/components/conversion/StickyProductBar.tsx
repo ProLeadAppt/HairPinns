@@ -121,7 +121,10 @@ const StickyProductBar = ({ threshold = 300 }: StickyProductBarProps) => {
                   alt={product.title}
                   className="w-12 h-12 object-cover rounded"
                   loading="lazy"
-                />
+              decoding="async"
+              width="800"
+              height="800"
+            />
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold text-heading line-clamp-1">{product.title}</p>
                   <p className="text-xs font-bold text-brand-500">{formatPrice(product.price, product.currency || "AUD")}</p>

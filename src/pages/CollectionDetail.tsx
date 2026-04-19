@@ -25,6 +25,8 @@ import { getOGImage } from "@/lib/sitemap";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
 import { getCollectionFAQs } from "@/data/collectionFAQs";
 import SEOHead from "@/components/SEOHead";
+import RelatedContent from "@/components/RelatedContent";
+import { topicsForCollection } from "@/data/topicMap";
 
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
@@ -538,7 +540,11 @@ const CollectionDetail = () => {
                     {recent.map((p: any) => (
                       <Link key={p.slug} to={`/products/${p.slug}`} className="group">
                         <div className="aspect-square bg-muted rounded-card overflow-hidden mb-2">
-                          <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                          <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
                         </div>
                         <p className="text-sm font-medium text-heading line-clamp-1 group-hover:text-brand-500 transition-colors">{p.title}</p>
                       </Link>
@@ -550,6 +556,13 @@ const CollectionDetail = () => {
           } catch { return null; }
         })()}
 
+        {handle && (
+          <RelatedContent
+            topics={topicsForCollection(handle).map((t) => t.slug)}
+            show={["service", "blog"]}
+            heading="Services & reading about this range"
+          />
+        )}
       </main>
       <Footer />
 

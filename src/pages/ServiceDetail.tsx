@@ -15,6 +15,8 @@ import { generateServiceSchema, generateBreadcrumbSchema, generateFAQPageSchema,
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { serviceDetailData } from "@/data/serviceDetails";
+import RelatedContent from "@/components/RelatedContent";
+import { topicsForService } from "@/data/topicMap";
 
 const ServiceDetail = () => {
   const { categorySlug, serviceSlug } = useParams<{ categorySlug: string; serviceSlug: string }>();
@@ -386,6 +388,12 @@ const ServiceDetail = () => {
             </div>
           </div>
         </section>
+
+        <RelatedContent
+          topics={topicsForService(`${categorySlug}/${serviceSlug}`).map((t) => t.slug)}
+          excludeSlug={`${categorySlug}/${serviceSlug}`}
+          heading="Learn more about this treatment"
+        />
       </main>
 
       <Footer />

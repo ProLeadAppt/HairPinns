@@ -24,6 +24,7 @@ import {
 import { getLocationData } from "@/data/locationPages";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import RelatedContent from "@/components/RelatedContent";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { serviceDetailData } from "@/data/serviceDetails";
 import { BUSINESS_HOURS } from "@/config/businessConfig";
@@ -500,6 +501,11 @@ const LocationPage = () => {
               </div>
             </div>
           </Section>
+
+          <RelatedContent
+            topics={["smoothing", "cuts", "colour", "frizz-control"]}
+            heading="Popular with locals"
+          />
         </main>
 
         <Footer />

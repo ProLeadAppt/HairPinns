@@ -9,10 +9,14 @@ const HeroSection = () => {
     <section className="relative min-h-[80vh] flex items-center bg-gradient-hero overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
+        <img
+          src={heroImage}
           alt="Hair Pinns boutique salon interior with elegant styling chairs and professional atmosphere"
           className="w-full h-full object-cover"
+          width="1920"
+          height="1080"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-[hsl(0,0%,0%)/0.6]"></div>
       </div>

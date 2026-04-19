@@ -51,7 +51,11 @@ const Testimonial = ({
             src={avatar} 
             alt={author}
             className="w-12 h-12 rounded-full object-cover mr-4"
-          />
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+            />
         )}
         <div>
           <cite className="text-foreground font-medium not-italic">{author}</cite>

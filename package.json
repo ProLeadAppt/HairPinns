@@ -8,6 +8,7 @@
     "build": "node scripts/generate-sitemap.js && vite build && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "submit-indexnow": "node scripts/submit-indexnow.js",
+    "refresh-reviews": "node scripts/refresh-google-reviews.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
