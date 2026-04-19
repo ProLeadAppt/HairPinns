@@ -2843,6 +2843,333 @@ export const blogPosts: BlogPost[] = [
       type: "booking",
       customText: "Book your appointment from Engadine"
     }
+  },
+  {
+    slug: "summer-hair-care-australia-beach-sun-salt",
+    title: "Summer Hair Care in Australia: Beach, Sun, Salt Guide",
+    excerpt: "A stylist's complete guide to summer hair care in Australia — how to protect your hair from sun, salt, chlorine, and humidity, and the products that actually work.",
+    category: "Seasonal",
+    date: "April 19, 2026",
+    readTime: "7 min read",
+    image: juuce120,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Australian summer is brutal on hair. UV, salt water, chlorine, humidity, and surprise northerly winds all pile up between December and February, and by March most clients walk into the salon with hair that's drier, more brittle, and a different colour than when they left in November. Here's how to actually protect your hair through an Australian summer — what works, what doesn't, and the products I put on my own clients.",
+      sections: [
+        {
+          heading: "The Four Things Killing Your Hair in Summer",
+          content: "UV radiation breaks down the melanin in your hair cortex, fading colour and weakening the structure. Salt water strips moisture and leaves a rough residue on the cuticle. Chlorine oxidises colour and damages bonds — especially on blonde hair, which can literally turn green from copper in chlorinated water. Humidity swells the cuticle and causes frizz. All four compound. A single beach day with no protection is the equivalent of weeks of normal wear."
+        },
+        {
+          heading: "Before the Beach or Pool",
+          content: "Two habits make a huge difference. (1) Wet your hair with fresh water before you go in the sea or pool. Hair that's already saturated absorbs less salt or chlorine. (2) Apply a leave-in conditioner or oil to damp hair before going out. This creates a barrier. Juuce Heat Shield or Pure Precious Ends both work — the silicone-lite ones are better than heavy oils because they don't go sticky in sun. Reapply every couple of hours if you're in and out of the water."
+        },
+        {
+          heading: "After the Beach or Pool",
+          content: "Rinse with fresh water ASAP. Don't leave salt or chlorine sitting on your hair to dry in the sun — that's where most of the damage happens. Within a few hours, do a proper wash with a clarifying or cleansing shampoo (we like Juuce Clarifying) to remove residue, then deep-condition. This isn't optional — it's the single biggest summer-hair habit that separates clients whose hair survives summer from clients whose hair falls apart."
+        },
+        {
+          heading: "Weekly Summer Routine",
+          content: "Weekly bond-repair mask (Juuce Bond Repair, left on 10–15 minutes). This rebuilds what UV and chlorine are actively breaking. Once a week clarify with a clarifying shampoo to remove product and mineral buildup. Sulfate-free everyday shampoo otherwise. Heat protection before any hot tool — but honestly, try to air-dry through summer when you can. Less heat means less compound damage."
+        },
+        {
+          heading: "Blondes Need Extra Help in Summer",
+          content: "Blonde hair turning brassy, orange, or green is summer's signature damage. Purple or violet toning shampoo 1–2 times a week stops brassiness. For green from chlorine — apply a clarifying shampoo with baking soda mixed in (tablespoon per handful) before you leave the pool, rinse, and it won't set. Already green? A clarifying shampoo routine over a few washes usually lifts it. If not, book a toner refresh."
+        },
+        {
+          heading: "Should You Time Your Colour Around Summer?",
+          content: "If you're a regular colour client, time major colour work (full foils, balayage refresh, colour correction) for late summer or early autumn — March–May — so the colour is fresh going into less-damaging seasons. Going into summer with a brand-new platinum blonde and no pre-summer protection plan is setting money on fire. Your stylist can plan this with you — bring it up at your next appointment."
+        },
+        {
+          heading: "Products to Stock for Summer",
+          content: "Minimum kit: (1) leave-in conditioner or oil for beach days, (2) clarifying shampoo for post-beach washes, (3) weekly bond-repair mask, (4) sulfate-free everyday shampoo, (5) purple shampoo if blonde, (6) heat protection for any styling. All of these are available at hairpinns.com/collections — free shipping over $150 Australia-wide."
+        }
+      ],
+      productModule: {
+        title: "Summer hair survival kit",
+        products: [
+          { name: "Heat protection range", link: "https://hairpinns.com/collections/heat-protection", description: "Barrier for sun and styling heat" },
+          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Weekly mask rebuilds UV and chlorine damage" },
+          { name: "Frizz-free must-haves", link: "https://hairpinns.com/collections/frizz-free-must-haves", description: "Humidity-fighting leave-ins and serums" }
+        ]
+      },
+      quickAnswer: {
+        question: "How do you protect your hair in Australian summer?",
+        answer: "Protect summer hair by wetting it with fresh water before the beach or pool, applying leave-in conditioner or oil as a barrier, rinsing with fresh water immediately after, and washing with clarifying shampoo to remove salt and chlorine. Weekly bond-repair masks, sulfate-free shampoo, and purple shampoo for blondes are essential. Time major colour work for March–May, not pre-summer."
+      },
+      keyTakeaways: [
+        "UV, salt, chlorine, and humidity all damage hair — effects compound",
+        "Wet hair with fresh water before the beach so it absorbs less salt",
+        "Rinse immediately after the beach — never let salt dry in the sun",
+        "Weekly bond-repair mask is the single best summer habit",
+        "Time major colour work for March–May, not pre-summer"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/heat-protection",
+      customText: "Shop summer hair protection"
+    }
+  },
+  {
+    slug: "winter-hair-care-sydney-2026",
+    title: "Winter Hair Care for Sydney Weather (2026 Guide)",
+    excerpt: "A stylist's guide to winter hair care in Sydney — dealing with dry heat, wind, cold rain, and the specific problems Sydney winter causes for coloured and treated hair.",
+    category: "Seasonal",
+    date: "April 19, 2026",
+    readTime: "6 min read",
+    image: juuce091,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Sydney winter is milder than most Australian cities, but it still does damage — just differently from summer. Cold wind, low humidity, indoor heating, and more frequent hot-water washes all conspire to dry hair out by late August. Here's what actually happens to hair in Sydney winter and the routine I recommend to clients to keep hair in condition through to spring.",
+      sections: [
+        {
+          heading: "What Sydney Winter Does to Hair",
+          content: "Three things. (1) Dry air. Indoor heating and lower humidity pull moisture out of the hair shaft, leading to brittle mid-lengths and static at the ends. (2) Wind. Cold wind causes tangles and breakage, especially on longer hair. (3) Hot showers. Winter is when people habitually crank the shower temperature — hot water opens the cuticle and strips colour and moisture faster than warm water. Milder than summer damage, but compounds over 4–5 months."
+        },
+        {
+          heading: "The Winter Routine That Works",
+          content: "Switch to a more hydrating shampoo and conditioner (we use Juuce hydration range or Pure Sacred Mask in the salon). Wash 2–3 times a week maximum — over-washing in winter strips oils that are already depleted. Weekly deep-conditioning or bond-repair mask becomes non-negotiable. Turn the shower temperature down — lukewarm, not hot. Leave-in conditioner daily on mid-lengths to ends."
+        },
+        {
+          heading: "Protect Ends From Wind Damage",
+          content: "Long-haired clients get ends that look chewed through by August — that's wind friction plus dry air. Tie hair back loosely when outdoors in windy weather (a silk scrunchie rather than an elastic). A leave-in with a small amount of oil on the ends creates a protective film. At night, a silk or satin pillowcase cuts friction damage while you sleep — this helps year-round but makes a visible difference in winter."
+        },
+        {
+          heading: "Indoor Heating Is the Hidden Problem",
+          content: "Reverse-cycle aircon and fan heaters pull humidity out of the air and out of your hair. If you're in a heavily-heated home or office, a humidifier near your main work area helps — hair isn't the only thing that benefits. Skin, lips, and eyes all hold up better with 40–50% humidity vs 20%. Hair shows it fastest."
+        },
+        {
+          heading: "Colour Care in Winter",
+          content: "Coloured hair loses depth and vibrancy in winter — not because winter fades colour, but because dry hair cuticles reflect less light, so colour looks dull. Weekly gloss or glaze treatment (we do these in under 30 minutes in the salon) restores shine. At home, a colour-depositing conditioner 1–2 times a week between visits keeps brightness up. Especially important for blondes whose tone shifts warmer in dry conditions."
+        },
+        {
+          heading: "When to Book the Big Services",
+          content: "Winter is actually a great time for bigger colour work and smoothing treatments — less UV exposure, less humidity, colour and smoothing hold longer. If you've been holding off on a major foil service or a Straight Up Smoothing, July–August is prime booking season."
+        }
+      ],
+      productModule: {
+        title: "Winter hydration kit",
+        products: [
+          { name: "Juuce Hydration range", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Shampoo and conditioner for winter dryness" },
+          { name: "Pure Sacred Mask", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Weekly deep-conditioning mask" },
+          { name: "Leave-in conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Daily protection for mid-lengths and ends" }
+        ]
+      },
+      quickAnswer: {
+        question: "How do you care for hair in Sydney winter?",
+        answer: "Sydney winter hair care means switching to hydrating shampoo and conditioner, washing 2–3 times a week maximum in lukewarm water, using a weekly bond-repair or deep-conditioning mask, and applying leave-in daily to mid-lengths and ends. Indoor heating dries hair more than outdoor cold does — a humidifier and silk pillowcase both help."
+      },
+      keyTakeaways: [
+        "Dry air, cold wind, and hot showers are Sydney winter's main hair stressors",
+        "Lukewarm showers and 2–3 washes a week, not hot daily washes",
+        "Weekly deep-conditioning or bond-repair mask is non-negotiable",
+        "Silk pillowcase cuts overnight friction damage",
+        "Winter is the best season for major colour or smoothing work — holds longer"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
+      customText: "Shop winter hydration range"
+    }
+  },
+  {
+    slug: "school-formal-hair-trends-2026",
+    title: "School Formal Hair Trends 2026: What's In and How to Book",
+    excerpt: "A stylist's guide to 2026 school formal hair trends — what's in, what photographs well, how to prep, and when to book so you're not disappointed.",
+    category: "Seasonal",
+    date: "April 19, 2026",
+    readTime: "6 min read",
+    image: accessories016,
+    author: "Jena Pinn",
+    content: {
+      introduction: "School formal season creeps up every year — and every year a handful of year 12s walk in the week of the formal hoping for a specific look with no booking and no trial run. Here's what's trending for 2026 school formal hair, what actually photographs well (trends and photographs aren't always the same thing), how to prep your hair in the weeks leading up, and when to book so you're not scrambling.",
+      sections: [
+        {
+          heading: "2026 Formal Hair Trends We're Booking",
+          content: "Four looks come up most often in 2026 consultations. (1) Soft Hollywood waves with a deep side part — the 'old money' look. Photographs beautifully, suits most hair lengths, doesn't date. (2) Sleek low bun with a middle part and face-framing pieces — minimal, modern, photographs well with structured dresses. (3) Half-up with volume crown and loose cascading curls through the lengths — the 'princess' look, suits long hair specifically. (4) Loose textured updo with pulled-out face pieces — undone-but-intentional, big on TikTok, pairs with flowier dresses."
+        },
+        {
+          heading: "What Actually Photographs Well",
+          content: "Formal photos last forever, so the ranking matters. Defined shapes photograph better than loose texture — the flash flattens subtle texture. Face-framing pieces are essential because they add dimension that photography otherwise loses. Don't over-gel — shiny in person often reads as greasy in photos. A mid-level hold with some movement photographs better than cement-firm structure."
+        },
+        {
+          heading: "Hair Prep Timeline for Formal",
+          content: "8 weeks out: if you're planning a major colour change, this is the latest safe window. Don't go for a radical new colour the week of the formal — hair needs time to settle. 4 weeks out: trim any dead ends so your style holds. 2 weeks out: weekly deep-conditioning masks so hair is in peak condition. 1 week out: book your formal appointment if you haven't — and critically, book a trial if the look is complex. Day before: deep condition but don't wash morning-of — day-old hair holds styles better than squeaky-clean hair."
+        },
+        {
+          heading: "Should You Do a Trial?",
+          content: "For complex updos, yes, always. A 30-minute trial 1–2 weeks before the formal lets you see the look on your own hair, photograph it, and adjust. For simpler looks like Hollywood waves or a sleek low bun, usually unnecessary if you trust your stylist. If you've never been to the salon before, a trial is always worth it — the stylist learns your hair's quirks before the main event."
+        },
+        {
+          heading: "Extensions for Formal",
+          content: "Clip-in extensions remain the best way to add length or thickness for a formal night without committing to permanent extensions. We sell high-quality clip-ins you can install yourself the day of, or the stylist can blend them in during the appointment. Budget $100–$250 for good-quality clip-ins in the right colour match. Avoid cheap synthetic — they don't hold heat and look obvious in photos."
+        },
+        {
+          heading: "When to Book",
+          content: "For a formal in October–November, book your hair appointment by early August. Good formal appointment slots fill up 2–3 months out because most schools have formals clustered in the same weeks. If you leave it until September, you'll struggle to get your preferred time. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Makeup Timing on Formal Day",
+          content: "Quick tip: do hair before makeup, not the other way around. Hair styling can smudge freshly-applied makeup with movement and product sprays. If you're booking both at the salon, your stylist will sequence this correctly — we always do hair first unless there's a specific reason otherwise."
+        }
+      ],
+      quickAnswer: {
+        question: "What are the 2026 school formal hair trends?",
+        answer: "The 2026 school formal hair trends booking most often are soft Hollywood waves with a deep side part, sleek low buns with a middle part, half-up volume-crown styles, and loose textured updos with pulled-out face-framing pieces. Book 2–3 months ahead for formal season, and do a trial 1–2 weeks before the formal if the look is complex."
+      },
+      keyTakeaways: [
+        "Four top 2026 trends: Hollywood waves, sleek low bun, half-up volume, textured updo",
+        "Defined shapes photograph better than loose texture in flash lighting",
+        "Book 2–3 months before formal season — slots fill fast",
+        "Do a trial for complex updos 1–2 weeks before the main event",
+        "Hair before makeup on formal day"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/kids-formal/high-school-formal-hairstyle",
+      customText: "Book your school formal appointment"
+    }
+  },
+  {
+    slug: "christmas-hair-gifts-2026",
+    title: "Christmas Hair Care Gift Guide 2026",
+    excerpt: "A stylist's Christmas gift guide for anyone who loves their hair — from $30 stocking fillers to premium bundles, shipped Australia-wide with free shipping over $150.",
+    category: "Seasonal",
+    date: "April 19, 2026",
+    readTime: "5 min read",
+    image: juuce118,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Hair care makes a better Christmas gift than most people realise. Good salon-grade products last months, get used every single day, and solve real problems. The generic department-store gift sets are often a disappointment — cheap formulas in pretty packaging. Here's what I'd actually give as a Christmas gift across price points, with a note on who each one suits.",
+      sections: [
+        {
+          heading: "Under $40 — Stocking Fillers That Get Used",
+          content: "A good detangling brush ($30–$40). Wet Brush is the one we recommend most — it works wet or dry, reduces breakage, and comes in fun designs that genuinely land with teenagers and adults alike. Clip-in accessories and ponytail wraps ($15–$35) for anyone who wants styling options without commitment. A quality leave-in conditioner ($30–$40) — Juuce or Pure leave-ins are daily-use products most people wouldn't buy themselves but happily use when gifted."
+        },
+        {
+          heading: "$40–$80 — Practical Gifts That Solve Problems",
+          content: "A bond-repair mask ($45–$65) for anyone who colours, heat-styles, or complains about damaged hair. Juuce Bond Repair is the go-to. A heat-protection spray ($40–$50) for anyone who uses hot tools. Purple or silver shampoo ($40–$55) for any blonde friend — they'll use it, they'll notice the difference, it's a genuinely useful gift. A quality hair oil ($50–$75) — QIQI Bare Repair or Pure Precious Ends both work for ends protection."
+        },
+        {
+          heading: "$80–$150 — Proper Routine Starter Kits",
+          content: "A shampoo-and-conditioner duo in a premium range ($80–$120) — Juuce, Pure, or Aromaganic depending on the recipient's priorities (bond repair, organic, or blonde care). This replaces their supermarket purchases and actually shifts their hair condition over 6–8 weeks. A complete smoothing-maintenance kit ($100–$150) — shampoo, conditioner, mask, oil — for anyone who's had a smoothing treatment done at a salon. Pairs especially well with a gift voucher for a service."
+        },
+        {
+          heading: "Over $150 — Premium or Bundles",
+          content: "A full routine bundle — shampoo, conditioner, mask, leave-in, heat protection ($150–$250). Free shipping applies at $150+ so bundle gifting is cost-efficient. A salon service gift voucher — especially popular for Christmas. We offer vouchers from $50 up; most people gift $100–$200 as a contribution toward a service. Recipient books the appointment of their choice. Zero mismatch risk."
+        },
+        {
+          heading: "For the Teenagers and Tweens",
+          content: "Teenagers are fussy gift recipients, but a Wet Brush in a glitter design and a set of Pure clip-in accessories almost always lands well. For slightly older teens who actually care about their hair, a purple shampoo (if blonde) or a leave-in conditioner tends to be genuinely used. Skip anything that needs application technique — they won't read the instructions."
+        },
+        {
+          heading: "What to Avoid as a Gift",
+          content: "Generic drugstore 'hair care gift sets' with mystery ingredients — they disappoint. Heat tools for someone who already has one — unless you know specifically they want a new one. Hair cuts vouchers as standalone gifts — people get picky about stylists; book it with an 'any service' gift voucher instead. Anything requiring a hair-type match you're guessing at — shampoo for curly hair given to someone with straight hair is awkward."
+        },
+        {
+          heading: "Order Cutoffs and Gift Wrapping",
+          content: "We ship Australia-wide with free shipping over $150. Christmas order cutoffs are usually mid-December for guaranteed delivery before the 25th — check hairpinns.com for the exact date closer to the season. Gift-wrap options available at checkout. Local Sutherland Shire pickup available year-round."
+        }
+      ],
+      productModule: {
+        title: "Shop Christmas hair gifts",
+        products: [
+          { name: "Wet Brush range", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Best stocking-filler gift, every price point" },
+          { name: "Hair accessories", link: "https://hairpinns.com/collections/hair-pinns-accessories", description: "Clip-ins and ponytail wraps under $40" },
+          { name: "Pure Organic bundles", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Premium routine gifts, $80+" }
+        ]
+      },
+      quickAnswer: {
+        question: "What are the best hair care Christmas gifts?",
+        answer: "The best hair care Christmas gifts by price: under $40 — Wet Brush or leave-in conditioner; $40–$80 — bond-repair mask, heat protection, or purple shampoo; $80–$150 — shampoo-conditioner duos in premium ranges; over $150 — full routine bundles with free shipping, or salon service gift vouchers. Avoid generic drugstore gift sets."
+      },
+      keyTakeaways: [
+        "Wet Brush is the reliable stocking-filler across all age groups",
+        "Bond-repair mask makes the best $40–$80 gift — solves a real problem",
+        "Salon service gift vouchers avoid mismatch risk entirely",
+        "Free shipping kicks in at $150 — bundle gifts efficiently",
+        "Skip generic drugstore gift sets"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/hair-pinns-accessories",
+      customText: "Shop Christmas hair gifts"
+    }
+  },
+  {
+    slug: "beating-frizz-sydney-humidity",
+    title: "Beating Frizz in Sydney Humidity: A Stylist's Complete Guide",
+    excerpt: "A stylist's complete guide to beating frizz in Sydney humidity — why it happens, what actually works, and the salon treatments that give you months of smooth hair.",
+    category: "Seasonal",
+    date: "April 19, 2026",
+    readTime: "7 min read",
+    image: juuce038,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Sydney humidity turns smooth hair into frizz within minutes of stepping outside, and a lot of the advice online doesn't work — or works for 20 minutes then falls apart. After 15+ years doing hair in the Sutherland Shire I've tested every approach, and here's the version that actually holds up through a real Sydney summer or spring day. Causes, at-home fixes, and when it's time to consider a salon treatment.",
+      sections: [
+        {
+          heading: "Why Hair Frizzes in Humidity",
+          content: "The science is simple. Hair has an outer cuticle (like roof tiles) and an inner cortex. When humidity is high, moisture in the air is absorbed through the cuticle into the cortex. The cortex swells, the cuticle lifts, and hair appears frizzy. Dry or damaged hair frizzes more because the cuticle is already raised — moisture rushes in even faster. Healthy, well-moisturised hair with a closed cuticle frizzes less. Everything that follows is about keeping the cuticle flat and the hair hydrated enough that it doesn't need to grab moisture from the air."
+        },
+        {
+          heading: "The Daily Routine That Reduces Frizz",
+          content: "Four habits matter. (1) Sulfate-free shampoo — sulfates roughen the cuticle, making hair frizz-prone. (2) Conditioner on every wash, mid-lengths to ends, left on for 2–3 minutes. (3) Leave-in with a lightweight silicone or oil on damp hair before styling — this creates a barrier against humidity. (4) Avoid over-washing. Hair washed daily is hair stripped daily. 2–3 washes a week is plenty for most hair types."
+        },
+        {
+          heading: "Styling to Prevent Frizz",
+          content: "Heat styling, counterintuitively, helps with frizz — the cuticle seals flat when heated. Key is low heat (below 180°C) with a good heat protectant. A smoothing cream before blow-drying, blow-dry with the nozzle pointing down the hair shaft (root to tip), and a quick pass with a flat iron on the worst frizz zones. Finish with a shine spray or a drop of hair oil on the ends. Air-drying without product is a frizz guarantee in Sydney humidity."
+        },
+        {
+          heading: "What Doesn't Work (But People Swear By)",
+          content: "Argan oil on dry hair alone — without the underlying moisture balance, it just sits on top. Heavy silicone 'anti-frizz' drugstore serums — often work for an hour then hair feels coated. Cold-water rinses — barely helps. 'Don't touch your hair once it's dry' — realistic for nobody. The fundamental issue is cuticle health; surface fixes without that base don't last."
+        },
+        {
+          heading: "Products That Actually Work in Sydney",
+          content: "Juuce Heat Shield doubles as heat protection and humidity defence — our most-reached-for product at this salon for a reason. Pure Guardian Angel for finer hair. QIQI Bare Repair oil as a finishing product on the ends. Juuce Bond Repair weekly mask if hair is also damaged. All available at hairpinns.com with free shipping over $150."
+        },
+        {
+          heading: "The Salon Treatment That Changes Everything: Straight Up Smoothing",
+          content: "If your hair is frizz-prone and humidity is ruining your life from October to March, a salon smoothing treatment is the biggest upgrade available. Straight Up Smoothing is our signature treatment — no formaldehyde, suits most hair types, and gives 8–12 weeks of frizz-free hair through Sydney humidity. It doesn't make hair poker-straight — it seals the cuticle so humidity can't penetrate. Most clients say it changed their relationship with hair in summer. Priced $220–$480 depending on length. Book a consultation first if you've never had a smoothing treatment so we can assess your hair."
+        },
+        {
+          heading: "When to Book Smoothing for Best Results",
+          content: "Smoothing treatments hold 8–12 weeks. To cover peak humidity (December–February), book a smoothing in late October or November. For year-round control, clients typically book twice a year — one pre-summer (October–November) and one mid-autumn (April–May). Aftercare is non-negotiable: sulfate-free shampoo only, or the smoothing washes out fast."
+        },
+        {
+          heading: "When Frizz Means Damage, Not Humidity",
+          content: "If your hair is frizzy in low-humidity weather too (winter, indoors), that's damage, not humidity. The fix is bond-repair-focused: weekly Juuce Bond Repair mask, a trim to remove the worst damage, a colour-treatment break if possible. Smoothing won't fix damaged hair — the foundation needs to be there first. Book a consultation and we'll tell you honestly which path fits your hair."
+        }
+      ],
+      productModule: {
+        title: "Sydney humidity survival kit",
+        products: [
+          { name: "Frizz-free must-haves", link: "https://hairpinns.com/collections/frizz-free-must-haves", description: "Leave-ins and serums for humidity defence" },
+          { name: "QIQI smoothing range", link: "https://hairpinns.com/collections/qiqi", description: "At-home maintenance for salon smoothing" },
+          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Weekly mask if frizz is damage-related" }
+        ]
+      },
+      quickAnswer: {
+        question: "How do you beat frizz in Sydney humidity?",
+        answer: "Beat Sydney humidity frizz with sulfate-free shampoo, daily conditioner on mid-lengths to ends, a leave-in or oil before styling, and low-heat blow-drying with a heat protectant. For long-term control, a salon smoothing treatment like Straight Up Smoothing gives 8–12 weeks of frizz-free hair through peak humidity. Best booked in October–November for summer coverage."
+      },
+      keyTakeaways: [
+        "Frizz happens when humidity swells the hair cortex and lifts the cuticle",
+        "Daily basics: sulfate-free shampoo, conditioner every wash, leave-in before styling",
+        "Heat styling with protectant actually reduces frizz by sealing the cuticle",
+        "Straight Up Smoothing gives 8–12 weeks of humidity-proof hair",
+        "If hair frizzes in low humidity too, it's damage — fix with bond repair first"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/frizz-free-must-haves",
+      customText: "Shop frizz-free must-haves"
+    }
   }
 ];
 
