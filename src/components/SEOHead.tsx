@@ -95,9 +95,16 @@ export const SEOHead = ({
     addMeta({ name: 'description', content: description });
     addMeta({ 'http-equiv': 'content-language', content: 'en-AU' });
 
-    // Canonical + hreflang
+    // Canonical + hreflang.
+    //   - en-AU: primary (Australian audience, spelling, prices)
+    //   - en: generic English fallback for global English searches
+    //   - x-default: served when no better locale match exists
     addLink({ rel: 'canonical', href: cleanCanonical });
     addLink({ rel: 'alternate', hreflang: hrefLang, href: cleanCanonical });
+    if (hrefLang === 'en-AU') {
+      addLink({ rel: 'alternate', hreflang: 'en', href: cleanCanonical });
+      addLink({ rel: 'alternate', hreflang: 'x-default', href: cleanCanonical });
+    }
 
     // Robots
     if (noIndex) {

@@ -6,9 +6,26 @@
 import { writeFileSync, existsSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
+
+/**
+ * Get the most recent commit date for a file. Falls back to today if
+ * the file isn't tracked or git fails.
+ */
+function gitLastMod(relativePath) {
+  try {
+    const result = execSync(
+      `git log -1 --format=%cd --date=short -- "${relativePath}"`,
+      { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }
+    ).trim();
+    return result || new Date().toISOString().split('T')[0];
+  } catch {
+    return new Date().toISOString().split('T')[0];
+  }
+}
 
 // Load .env if present (for local builds)
 if (existsSync(resolve(root, '.env'))) {
@@ -73,19 +90,31 @@ async function getShopifyCollections() {
 async function main() {
   const urls = [];
 
+  // Lastmod from git for static page files
+  const idxMod = gitLastMod('src/pages/Index.tsx');
+  const svcMod = gitLastMod('src/pages/Services.tsx');
+  const aboutMod = gitLastMod('src/pages/About.tsx');
+  const bookMod = gitLastMod('src/pages/Booking.tsx');
+  const contactMod = gitLastMod('src/pages/Contact.tsx');
+  const colMod = gitLastMod('src/pages/Collections.tsx');
+  const blogIdxMod = gitLastMod('src/pages/Blog.tsx');
+  const areasIdxMod = gitLastMod('src/pages/AreasIndex.tsx');
+  const faqMod = gitLastMod('src/pages/FAQ.tsx');
+  const reviewsMod = gitLastMod('src/pages/Reviews.tsx');
+
   // Core pages
-  urls.push(url(BASE, 'weekly', 1.0));
-  urls.push(url(`${BASE}/services`, 'weekly', 0.9));
-  urls.push(url(`${BASE}/about`, 'monthly', 0.8));
-  urls.push(url(`${BASE}/booking`, 'weekly', 0.9));
-  urls.push(url(`${BASE}/contact`, 'monthly', 0.8));
-  urls.push(url(`${BASE}/collections`, 'weekly', 0.9));
-  urls.push(url(`${BASE}/blog`, 'weekly', 0.8));
+  urls.push(url(BASE, 'weekly', 1.0, idxMod));
+  urls.push(url(`${BASE}/services`, 'weekly', 0.9, svcMod));
+  urls.push(url(`${BASE}/about`, 'monthly', 0.8, aboutMod));
+  urls.push(url(`${BASE}/booking`, 'weekly', 0.9, bookMod));
+  urls.push(url(`${BASE}/contact`, 'monthly', 0.8, contactMod));
+  urls.push(url(`${BASE}/collections`, 'weekly', 0.9, colMod));
+  urls.push(url(`${BASE}/blog`, 'weekly', 0.8, blogIdxMod));
   urls.push(url(`${BASE}/search`, 'weekly', 0.7));
-  urls.push(url(`${BASE}/areas`, 'monthly', 0.9));
+  urls.push(url(`${BASE}/areas`, 'monthly', 0.9, areasIdxMod));
   urls.push(url(`${BASE}/sitemap`, 'monthly', 0.5));
-  urls.push(url(`${BASE}/reviews`, 'monthly', 0.7));
-  urls.push(url(`${BASE}/faq`, 'monthly', 0.8));
+  urls.push(url(`${BASE}/reviews`, 'monthly', 0.7, reviewsMod));
+  urls.push(url(`${BASE}/faq`, 'monthly', 0.8, faqMod));
 
   // Collections - from Shopify or fallback to known
   let collectionHandles = await getShopifyCollections();
@@ -105,25 +134,28 @@ async function main() {
   // Location pages (areas) - read from source
   const locPath = resolve(root, 'src/data/locationPages.ts');
   const locContent = existsSync(locPath) ? readFileSync(locPath, 'utf8') : '';
+  const locMod = gitLastMod('src/data/locationPages.ts');
   const areaSlugs = [...(locContent.match(/"([a-z0-9-]+)":\s*\{/g) || [])].map((m) => m.replace(/"([a-z0-9-]+)":\s*\{/, '$1'));
   [...new Set(areaSlugs)].filter((s) => s.length > 1).forEach((slug) => {
-    urls.push(url(`${BASE}/areas/${slug}`, 'monthly', 0.7));
+    urls.push(url(`${BASE}/areas/${slug}`, 'monthly', 0.7, locMod));
   });
 
   // Suburb pages (near)
   const subPath = resolve(root, 'src/data/suburbPages.ts');
   const subContent = existsSync(subPath) ? readFileSync(subPath, 'utf8') : '';
+  const subMod = gitLastMod('src/data/suburbPages.ts');
   const suburbSlugs = [...(subContent.match(/"([a-z0-9-]+)":\s*\{/g) || [])].map((m) => m.replace(/"([a-z0-9-]+)":\s*\{/, '$1'));
   [...new Set(suburbSlugs)].filter((s) => s.length > 1).forEach((slug) => {
-    urls.push(url(`${BASE}/near/${slug}`, 'monthly', 0.7));
+    urls.push(url(`${BASE}/near/${slug}`, 'monthly', 0.7, subMod));
   });
 
   // Blog posts - read slug from source
   const blogPath = resolve(root, 'src/data/blogPosts.ts');
   const blogContent = existsSync(blogPath) ? readFileSync(blogPath, 'utf8') : '';
+  const blogMod = gitLastMod('src/data/blogPosts.ts');
   const blogSlugs = [...(blogContent.match(/slug:\s*["']([^"']+)["']/g) || [])].map((m) => m.replace(/slug:\s*["']([^"']+)["']/, '$1'));
   [...new Set(blogSlugs)].filter((s) => s.length > 2).forEach((slug) => {
-    urls.push(url(`${BASE}/blog/${slug}`, 'monthly', 0.6));
+    urls.push(url(`${BASE}/blog/${slug}`, 'monthly', 0.6, blogMod));
   });
 
   // Policy pages

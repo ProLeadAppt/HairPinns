@@ -6,6 +6,31 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Check } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+
+const bookingFaqs = [
+  {
+    question: "How do I book an appointment online?",
+    answer: "Click the Book Now button on this page or visit hairpinns.com/booking. You'll be taken to Fresha where you pick your service, date, and time. Booking takes about 2 minutes and you'll get instant confirmation by email."
+  },
+  {
+    question: "Can I book a same-day appointment?",
+    answer: "Same-day appointments are sometimes available depending on the day — check Fresha for live availability, or call 0468 093 991 to ask directly."
+  },
+  {
+    question: "Do I have to pay a deposit to book?",
+    answer: "Deposits are only required for longer services like full-head foils and smoothing treatments. Short appointments like trims and blowouts don't need a deposit."
+  },
+  {
+    question: "How do I cancel or reschedule?",
+    answer: "You can cancel or reschedule for free up to 24 hours before your appointment through the link in your confirmation email. For last-minute changes, call 0468 093 991."
+  },
+  {
+    question: "What should I bring to my first appointment?",
+    answer: "Come with clean, product-free hair if possible. If you have photos of the look you want or hair you like, bring those — they're the best way to communicate colour and cut ideas."
+  }
+];
+
 
 const Booking = () => {
 
@@ -18,6 +43,13 @@ const Booking = () => {
         ogImage={getOGImage('service')}
         ogType="website"
         hrefLang="en-AU"
+        schemaJson={[
+          generateFAQPageSchema(bookingFaqs),
+          generateBreadcrumbSchema([
+            { name: 'Home', url: 'https://hairpinns.com' },
+            { name: 'Booking', url: 'https://hairpinns.com/booking' },
+          ]),
+        ]}
       />
       <Header />
       <main id="main-content">

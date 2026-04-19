@@ -6,6 +6,7 @@ import { Star, Award, Heart, ShoppingBag, Calendar, MapPin } from "lucide-react"
 import { getOGImage } from "@/lib/sitemap";
 import ImageGallery from "@/components/gallery/ImageGallery";
 import SEOHead from "@/components/SEOHead";
+import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 
 // Salon & results gallery images
 import salonInterior from "@/assets/images/hair.pinns_1773312619_3851143514822403759_2244281067.avif";
@@ -72,6 +73,35 @@ const About = () => {
   //   { src: "...", alt: "Welcome area and reception" }
   // ];
 
+  const aboutFaqs = [
+    {
+      question: "How long has Jena been doing hair?",
+      answer: "Jena has been a professional hairstylist since 2009 — more than 15 years behind the chair. She runs Hair Pinns in Bangor as a boutique salon serving the Sutherland Shire."
+    },
+    {
+      question: "What services does Hair Pinns specialise in?",
+      answer: "Hair Pinns specialises in colour and blonding, Straight Up Smoothing treatments, and precision cuts. The salon also offers foil packages, kids and formal styling, and retails professional hair care products with Australia-wide shipping."
+    },
+    {
+      question: "Where is Hair Pinns located?",
+      answer: "Hair Pinns is at 60 Goorgool Rd, Bangor NSW 2234, in Sydney's Sutherland Shire. The salon serves clients from across the Shire including Menai, Illawong, Sutherland, Cronulla, Miranda, and surrounding suburbs."
+    },
+    {
+      question: "Do I need to book in advance?",
+      answer: "Yes, Hair Pinns operates by appointment. Book online 24/7 through Fresha at hairpinns.com/booking or call 0468 093 991. Same-day appointments are sometimes available — call to ask."
+    },
+    {
+      question: "Can I buy hair products without coming to the salon?",
+      answer: "Yes. Hair Pinns ships professional hair care products Australia-wide through the online store. Jena personally selects every product she sells based on what she uses on her own clients."
+    }
+  ];
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://hairpinns.com' },
+    { name: 'About', url: 'https://hairpinns.com/about' },
+  ]);
+  const faqSchema = generateFAQPageSchema(aboutFaqs);
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
@@ -80,7 +110,7 @@ const About = () => {
         canonical="https://hairpinns.com/about"
         ogImage={getOGImage('default')}
         ogType="website"
-        schemaJson={jenaPersonSchema}
+        schemaJson={[jenaPersonSchema, breadcrumbSchema, faqSchema]}
       />
       <Header />
 
@@ -366,6 +396,22 @@ const About = () => {
                 </Button>
               </a>
             </div>
+          </div>
+        </section>
+
+        <section className="py-lg bg-background" aria-labelledby="about-faq-heading">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="about-faq-heading" className="text-h2 font-heading text-heading mb-6 text-center">
+              Frequently asked
+            </h2>
+            <dl className="space-y-4">
+              {aboutFaqs.map((faq) => (
+                <div key={faq.question} className="rounded-md border border-border bg-card p-4">
+                  <dt className="font-semibold text-foreground">{faq.question}</dt>
+                  <dd className="mt-2 text-muted">{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
       </main>

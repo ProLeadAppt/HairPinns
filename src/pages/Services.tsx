@@ -11,7 +11,7 @@ import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
 import ReviewStrip from "@/components/reviews/ReviewStrip";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
-import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, generateEnhancedServiceSchema, generateFAQPageSchema } from "@/lib/schema";
+import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, generateEnhancedServiceSchema, generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
@@ -484,7 +484,12 @@ const Services = () => {
     answer: faq.answer
   })));
 
-  const schemas = [organizationSchema, localBusinessSchema, faqSchema];
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://hairpinns.com' },
+    { name: 'Services', url: 'https://hairpinns.com/services' },
+  ]);
+
+  const schemas = [organizationSchema, localBusinessSchema, faqSchema, breadcrumbSchema];
 
   return (
     <div className="min-h-screen bg-bg">

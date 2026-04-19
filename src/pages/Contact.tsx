@@ -12,6 +12,27 @@ import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
 import ContactForm from "@/components/forms/ContactForm";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+
+const contactFaqs = [
+  {
+    question: "What's the fastest way to contact Hair Pinns?",
+    answer: "Call or SMS Sam directly on 0468 093 991 for immediate replies during opening hours. You can also chat with our AI assistant Isabella 24/7 via the chat widget, or send a message through the contact form and we'll respond within one business day."
+  },
+  {
+    question: "Can I book an appointment by phone?",
+    answer: "Yes — call 0468 093 991. For after-hours bookings, use the 24/7 online booking system via Fresha at hairpinns.com/booking."
+  },
+  {
+    question: "What are your opening hours?",
+    answer: "Tuesday 10am–5pm, Wednesday 6pm–9pm, Thursday 9am–9pm, Friday 9am–5:30pm, Saturday 8am–2pm. Closed Sunday and Monday."
+  },
+  {
+    question: "Is there parking at the salon?",
+    answer: "Yes, there's free on-street parking directly outside the salon on Goorgool Rd, Bangor."
+  }
+];
+
 const Contact = () => {
   const {
     toast
@@ -146,7 +167,14 @@ const Contact = () => {
         ogImage={getOGImage('default')}
         ogType="website"
         hrefLang="en-AU"
-        schemaJson={[localBusinessSchema]}
+        schemaJson={[
+          localBusinessSchema,
+          generateFAQPageSchema(contactFaqs),
+          generateBreadcrumbSchema([
+            { name: 'Home', url: 'https://hairpinns.com' },
+            { name: 'Contact', url: 'https://hairpinns.com/contact' },
+          ]),
+        ]}
       />
 
       <Header />
