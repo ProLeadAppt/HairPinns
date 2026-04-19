@@ -2238,6 +2238,261 @@ export const blogPosts: BlogPost[] = [
       servicePath: "/services/cut-packages/mid-length-wash-cut-blowdry",
       customText: "Book a haircut at Hair Pinns"
     }
+  },
+  {
+    slug: "meet-jena-15-years-sutherland-shire",
+    title: "Meet Jena: 15+ Years Behind the Chair in Sutherland Shire",
+    excerpt: "Jena Pinn, founder of Hair Pinns Bangor, shares her 15+ years of hairdressing experience in the Sutherland Shire — her training, her approach, and why she opened her own salon.",
+    category: "About",
+    date: "April 19, 2026",
+    readTime: "7 min read",
+    image: juuce091,
+    author: "Jena Pinn",
+    content: {
+      introduction: "I'm Jena Pinn, founder of Hair Pinns in Bangor. I've been behind the chair for over 15 years, mostly in the Sutherland Shire, and I opened Hair Pinns because I wanted a salon that worked the way I'd always wished salons worked — honest, consistent, and built around the client's long-term hair health, not this week's upsell. Here's a bit about how I got here, what I specialise in, and why I do it the way I do.",
+      sections: [
+        {
+          heading: "How I Got Here: 15+ Years in Sutherland Shire Salons",
+          content: "I trained in the Sutherland Shire and apprenticed through salons across Miranda, Cronulla, and Caringbah before opening Hair Pinns. Over that time I've done continuing education with Juuce, QIQI, and Aromaganic, specialised in colour correction and smoothing systems, and seen the industry shift from chemical-heavy to bond-repair and organic formulations. The Sutherland Shire has been my whole career — I know the water, the humidity, the beach-and-sun lifestyle, and how Shire hair actually behaves through a Sydney summer."
+        },
+        {
+          heading: "What I Specialise In",
+          content: "Three areas make up most of my chair time: colour (balayage, foils, and colour correction — especially fixing at-home box dye or other salons' over-processing); smoothing treatments (Straight Up Smoothing and QIQI Vega — I'm certified in both); and cut-and-finish work on mid-length to long hair. I'm not a trendy-every-six-months salon. Clients come to me because they want their hair to look good in three months, not just walking out the door today."
+        },
+        {
+          heading: "Why I Opened Hair Pinns",
+          content: "I spent years working in salons that prioritised upselling over honest advice. Clients getting pushed into services that didn't suit their hair. Stylists rotated every visit so no one knew your history. That's not how hair works — hair is a long game. You need continuity, honest pricing, and a stylist who remembers that three months ago you had a reaction to a specific product line. Hair Pinns was built around those three things: one stylist (me, or my trusted team who've been with the salon for years), transparent pricing on every service, and records of what works for your hair specifically."
+        },
+        {
+          heading: "My Approach: Long-Term Hair Health First",
+          content: "If you come in wanting something that will damage your hair, I'll tell you — and I'll usually propose a multi-session plan instead. For example, box-dye recovery normally takes 2–3 visits to do safely, not one aggressive bleach bath. Dramatic colour changes on previously-treated hair take time. I'd rather lose a one-time service than damage a client's hair and lose them forever. Most Hair Pinns clients have been with me for 3+ years. That's the test."
+        },
+        {
+          heading: "Who I Work Well With",
+          content: "Clients who want honest pricing, a stylist who knows their hair history, and results that look good weeks and months after the appointment. I'm less suited to clients who want a different radical look every visit or who chase whatever's trending online. There are excellent salons for that — I'm not one. I'm the 'I want this to actually work and keep working' salon."
+        },
+        {
+          heading: "Where to Find the Salon",
+          content: "Hair Pinns is at our Bangor location in the Sutherland Shire, with free parking out the front and a 5–10 minute drive from most Shire suburbs. You can book online 24/7 at hairpinns.com/booking, call 0468 093 991, or chat with Isabella (our booking assistant) from any page on the site. First visit? Mention you found us through the blog — I like to know what brought you in."
+        }
+      ],
+      quickAnswer: {
+        question: "Who is Jena Pinn?",
+        answer: "Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with 15+ years of hairdressing experience across the Sutherland Shire. She specialises in colour (including box-dye recovery and balayage), Straight Up Smoothing and QIQI Vega treatments, and cut-and-finish work on mid-length to long hair."
+      },
+      keyTakeaways: [
+        "15+ years in Sutherland Shire salons before opening Hair Pinns",
+        "Certified in Juuce, QIQI Vega, and Straight Up Smoothing systems",
+        "Specialises in colour correction, balayage, smoothing, and cuts",
+        "Built Hair Pinns around stylist continuity, honest pricing, and long-term hair health",
+        "Most clients have been with the salon for 3+ years"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your first appointment with Jena"
+    }
+  },
+  {
+    slug: "the-7-colouring-mistakes-i-see-every-week",
+    title: "The 7 Colouring Mistakes I See Every Week (And How to Avoid Them)",
+    excerpt: "After 15+ years behind the chair, these are the seven hair-colouring mistakes I see every week — at-home and at other salons — and exactly how to avoid them.",
+    category: "Colour",
+    date: "April 19, 2026",
+    readTime: "9 min read",
+    image: aromaganicShampoo,
+    author: "Jena Pinn",
+    content: {
+      introduction: "After 15+ years behind the chair in the Sutherland Shire, these are the seven hair-colouring mistakes I see every single week — some from home dye jobs, some from other salons, some from clients following advice they read online. Every one of them is avoidable, and every one of them makes the next appointment harder (and more expensive). Here's what they are and how to stop making them.",
+      sections: [
+        {
+          heading: "Mistake 1: Box Dye Over Previously-Coloured Hair",
+          content: "Box dye contains a one-size-fits-all developer strength that doesn't know what's already on your hair. If you've had foils, balayage, or any professional colour, box dye reacts unpredictably — I've seen blondes turn green, brunettes turn orange, and previously-healthy hair come out like straw. If you need to cover regrowth between salon appointments, ask your stylist for a root tint take-home kit mixed to your formula. Safe, consistent, and won't wreck the colour underneath."
+        },
+        {
+          heading: "Mistake 2: Bleaching at Home to 'Save Money'",
+          content: "Home bleach damage is the single most common reason clients book a consultation. The maths never works out — a $30 home bleach kit that goes wrong turns into $400–$800 of colour correction over 2–3 visits, plus 6+ months of extra conditioning. I'd rather you booked a quarter-head foil package ($200ish) than touched a home bleach kit. Every time."
+        },
+        {
+          heading: "Mistake 3: Washing Hair Too Soon After Colour",
+          content: "The first wash after colour sets how long the colour holds. Most people wash within 24 hours — colour pigments are still settling into the cortex for 48–72 hours after the service. Waiting 72 hours before the first wash, then washing with a sulfate-free shampoo, adds weeks to the colour's life. One small change, big payoff."
+        },
+        {
+          heading: "Mistake 4: Using Regular Shampoo on Coloured Hair",
+          content: "Sulfates (SLS, SLES) strip colour. Faster than sun, faster than heat, faster than anything else. If your shampoo lathers aggressively and leaves hair 'squeaky clean', it's stripping colour. Switch to a sulfate-free shampoo — we stock Juuce, Pure, and Aromaganic sulfate-free ranges at the salon. The difference in colour longevity is dramatic: 4 weeks vs 8–10."
+        },
+        {
+          heading: "Mistake 5: Going Too Light in One Session",
+          content: "Clients come in wanting to go from brunette to Scandinavian blonde in one appointment. It almost never works safely. Each lightening session lifts 2–3 levels; going 4–5 levels means bleach pushed too far, and hair that looks ashy the first week but feels like cotton candy by week three. Real platinum transformations are 2–3 sessions, 4–6 weeks apart. Any stylist who promises it in one session is prioritising the sale over your hair."
+        },
+        {
+          heading: "Mistake 6: Skipping Bond Builder During Colour",
+          content: "A bond-building additive (Olaplex, Smartbond, or similar) mixed into bleach or colour is the single biggest hair-health upgrade of the last decade. It costs $20–$40 to add to a service and the difference in hair condition post-colour is night and day. If your salon doesn't offer it or charges $80+ for it, that's a red flag. We include bond builder in all our colour packages because not using it is cutting corners on hair health."
+        },
+        {
+          heading: "Mistake 7: Chasing Instagram Colours on Wrong Base",
+          content: "Pinterest and Instagram colour inspiration is amazing, but the photo you're showing me was taken on a model with a naturally level-7 blonde base, professional lighting, and a fresh service. If your base is level-4 dark brunette, achieving that exact photo takes 2–3 sessions and will look different in real light. I'll always tell you what's achievable and what isn't — and what the photo is hiding. Pick colour based on your own base, not someone else's."
+        },
+        {
+          heading: "A Quick Story: The Most-Common Fix",
+          content: "Composite of several clients I've seen: comes in after a home bleach and box-dye combo, hair orange-banded at the mid-lengths, platinum patches at the front, and brittle texture overall. We don't try to fix it in one visit. Visit one: cut off the worst damage, apply a colour-depositing toner to unify the tone, bond-repair mask. Visit two (4 weeks later): low-lights in the orange bands to restore dimension. Visit three (4 weeks later): final toner and gloss. Cost across all three: around $500–$700. Cost of the one-visit miracle a different salon quoted: $300 but with the damage doubled. Slower is cheaper and better. Every time."
+        }
+      ],
+      productModule: {
+        title: "Protect coloured hair at home",
+        products: [
+          { name: "Sulfate-free shampoo range", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Stops colour stripping at wash time" },
+          { name: "Aromaganic Blonde Care", link: "https://hairpinns.com/collections/aromaganic", description: "Violet pigment for bright, brass-free blonde" },
+          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Weekly mask to rebuild colour-damaged bonds" }
+        ]
+      },
+      quickAnswer: {
+        question: "What are the most common hair colouring mistakes?",
+        answer: "The seven most common colouring mistakes are: box dye over previously-coloured hair, home bleach to save money, washing too soon after colour, using sulfate shampoo on coloured hair, going too light in one session, skipping bond builder during the service, and chasing Instagram colours on the wrong base. Each one makes the next service harder and more expensive."
+      },
+      keyTakeaways: [
+        "Box dye over professional colour is unpredictable and often damaging",
+        "Home bleach kits almost always cost more than a salon service in the long run",
+        "Wait 72 hours before the first wash post-colour for best longevity",
+        "Sulfate-free shampoo is non-negotiable for colour-treated hair",
+        "Real platinum transformations are 2–3 sessions, not one"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/colouring-packages/long-hair-colour-package",
+      customText: "Book a colour consultation"
+    }
+  },
+  {
+    slug: "home-hair-care-myths-stylist-wishes-youd-stop",
+    title: "Home Hair Care Myths a Stylist Wishes You'd Stop Believing",
+    excerpt: "After 15+ years in the salon, these are the home hair care myths I hear most often — and what actually works instead.",
+    category: "Education",
+    date: "April 19, 2026",
+    readTime: "6 min read",
+    image: juuce118,
+    author: "Jena Pinn",
+    content: {
+      introduction: "After 15+ years behind the chair in the Sutherland Shire, I've heard every home-hair-care myth there is. Some are harmless, some are actively damaging, and a lot of them got started in beauty magazines in the 1990s and never died. Here are the ones I wish would stop — and what actually works for healthy hair at home.",
+      sections: [
+        {
+          heading: "Myth: You Need to Wash Your Hair Every Day",
+          content: "Most people over-wash. Washing strips natural oils (sebum) that protect and moisturise the hair shaft. For fine straight hair, every 2–3 days is enough. For thick or wavy hair, 2–3 times a week. For curly hair, once a week plus co-washes. Greasy-feeling hair in the first week of washing less is the scalp rebalancing — push through it and it settles in 2–3 weeks."
+        },
+        {
+          heading: "Myth: Trimming Makes Hair Grow Faster",
+          content: "Trimming doesn't change growth rate — hair grows at the root, not the tip. What trimming does do is prevent splits from travelling up the shaft, which means more hair stays on your head instead of breaking off. So yes, trim every 10–12 weeks if you're growing hair out. But you're preventing loss, not accelerating growth."
+        },
+        {
+          heading: "Myth: 100 Brush Strokes a Night for Shiny Hair",
+          content: "This one won't die. 100 strokes of a bristle brush on dry hair causes breakage, especially at the mid-lengths where the hair is most fragile. If you want shiny hair: detangle gently with a wet brush or wide-tooth comb, use a leave-in with a small amount of oil on the ends, and let your scalp's natural oils distribute over the day. Aggressive brushing is not a shine strategy."
+        },
+        {
+          heading: "Myth: Cold Water Rinses Add Shine",
+          content: "Barely. The cuticle-flattening effect from cold water is minor and temporary. What actually adds shine: cuticle-smoothing products (silicone-lite leave-ins, shine sprays), heat tools below 180°C with heat protection, and avoiding hard-water mineral buildup with a clarifying wash monthly. Cold rinses aren't wrong, they're just not doing what you've been told they're doing."
+        },
+        {
+          heading: "Myth: Natural Oils Fix Damage",
+          content: "Coconut oil, argan oil, castor oil — all helpful for moisture and sealing the cuticle. None of them repair damage. Damage is broken disulfide bonds inside the hair shaft, and once bonds are broken, only professional bond-repair products (Juuce Bond Repair, Olaplex-type treatments) can rebuild them. Natural oils sit on top of the hair — they mask damage, they don't fix it. The fix is a bond-repair mask weekly plus a trim of anything beyond repair."
+        },
+        {
+          heading: "Myth: Expensive Shampoo Is Always Better",
+          content: "Price correlates with quality but not perfectly. A $25 sulfate-free shampoo that suits your hair will outperform a $70 one that doesn't. What matters: sulfate-free formula, pH-balanced (5.0–6.5), no heavy silicones if you're curly or fine. Ask your stylist for a recommendation based on your hair type rather than buying the most-expensive option."
+        },
+        {
+          heading: "What Actually Works",
+          content: "The basics that actually move the needle on hair health: sulfate-free shampoo, conditioner on mid-lengths to ends (never the scalp), a weekly bond-repair mask if you colour or heat-style, heat protection every time you use a hot tool, and a trim every 10–12 weeks. Skip the rest. No supplement, brush technique, or rinse temperature replaces those basics."
+        }
+      ],
+      quickAnswer: {
+        question: "What are the biggest home hair care myths?",
+        answer: "The biggest home hair care myths are: needing to wash daily, trimming speeds up growth, 100 brush strokes for shine, cold water rinses add shine, natural oils repair damage, and expensive shampoo is always better. What actually works: sulfate-free shampoo, conditioner on mid-lengths, weekly bond-repair mask, heat protection, and regular trims."
+      },
+      keyTakeaways: [
+        "Over-washing strips natural oils — most hair needs every 2–3 days max",
+        "Trimming prevents breakage, it doesn't speed up growth",
+        "Natural oils mask damage, they don't repair broken bonds",
+        "Sulfate-free shampoo is the single biggest home-care upgrade",
+        "Stick to basics: sulfate-free shampoo, bond mask weekly, heat protection, regular trims"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/cut-packages/mid-length-wash-cut-blowdry",
+      customText: "Book a trim at Hair Pinns"
+    }
+  },
+  {
+    slug: "how-to-recover-hair-from-box-dye-damage",
+    title: "How to Recover Hair From Box Dye Damage",
+    excerpt: "A stylist's honest guide to recovering hair from box dye damage — what the process actually looks like, how long it takes, and how much it costs in the Sutherland Shire.",
+    category: "Colour",
+    date: "April 19, 2026",
+    readTime: "9 min read",
+    image: juuce050,
+    author: "Jena Pinn",
+    content: {
+      introduction: "After 15+ years behind the chair in the Sutherland Shire, box-dye recovery is the single most common consultation I take. You've dyed your hair at home, it's gone wrong — wrong colour, uneven, damaged, or all three — and now you're looking for help. Here's the honest version: what's actually achievable, how long it takes, how much it costs, and what to do in the meantime.",
+      sections: [
+        {
+          heading: "First: Why Box Dye Damage Is So Hard to Fix",
+          content: "Box dye contains a fixed-strength developer (usually 20 or 30 volume) designed to work across all hair types. It doesn't know you've already got colour on your hair, has no way to read porosity, and deposits pigment in unpredictable ways over previously-treated hair. The result is usually one of three patterns: orange or brassy banding at the mid-lengths, patchy lift (platinum patches next to dark patches), or an overall muddy tone that sits somewhere between your goal and your starting colour. Fixing it means working with hair that now has multiple different colour histories on the same head."
+        },
+        {
+          heading: "Step 1: The Consultation (Not the Service)",
+          content: "Before any colour goes on, I do a consultation — strand test, porosity check, and history-taking. I need to know every product on your hair in the last 12 months. Henna, box dye, semi-permanent, 'natural' colours from the health food store — all of it matters. Some ingredients (henna especially) react violently with salon lighteners and can cause hair to literally smoke. This is why reputable salons refuse to colour over unknown home treatments without testing first. Don't hide anything — I can't help you if I don't know what's on the hair."
+        },
+        {
+          heading: "Step 2: Visit One — Stabilise, Don't Lift",
+          content: "The first visit is almost never where we get to the final colour. It's the visit where we stabilise the hair — cut off the worst damaged ends, apply a colour-depositing toner or gloss to even out the tone, and do a bond-repair treatment. Goal: your hair is healthier, more even, and looks presentable, even if it's not the final shade. Cost: usually $200–$350 depending on length. Time: 2–3 hours."
+        },
+        {
+          heading: "Step 3: Visit Two — Gentle Progression",
+          content: "4–6 weeks after visit one, visit two starts the progression toward your goal colour. This might be low-lights to break up banding, a partial foil package to introduce dimension, or a gentle gloss for tone. We're still not going for 'the full transformation' — we're one step closer. Cost: $250–$400. Another bond-repair treatment goes in."
+        },
+        {
+          heading: "Step 4: Visit Three — Final Colour",
+          content: "4–6 weeks after visit two, the final visit is where we land on your goal colour. By now the hair is healthier, more predictable, and can handle the final step (full balayage, a toner refresh, a cut to remove the last damaged length). Cost: $280–$450. Total cost across all three visits: $730–$1200. Total time: 10–14 weeks."
+        },
+        {
+          heading: "Honest Answer: What If You Can't Wait That Long?",
+          content: "I get it — a wedding, a work event, a new job. If time matters more than optimal hair health, we can compress to two visits, or sometimes one if the damage is mild. I'll tell you the tradeoff upfront: faster means more aggressive, which means more damage, which means more ongoing conditioning and probably another cut 6 months down the track. Sometimes that's the right call for the situation. Sometimes it isn't. I'd rather you make that call with real information than not know what you're trading."
+        },
+        {
+          heading: "What to Do Between Appointments",
+          content: "Weekly bond-repair mask (Juuce Bond Repair is our salon favourite). Sulfate-free shampoo — no exceptions. Heat styling below 160°C with heat protection. A silk or satin pillowcase to reduce friction breakage. Absolutely no home colour during recovery, including 'just the roots' box dye. One more home dye job during a recovery process can undo a full visit's worth of work."
+        },
+        {
+          heading: "A Client Case Study (Composite)",
+          content: "Composite of several clients I've seen: started with mid-brunette natural base, box-dyed blonde at home, ended up with orange banding and platinum patches. Visit one: cut 6cm off the worst damage, applied a low-level gloss to unify tone, bond mask. Result: looked presentable, not final, but much less dramatic. Visit two (4 weeks): low-lights in the orange bands to add depth. Visit three (8 weeks from start): final balayage and gloss. Final cost: around $850. Final result: a soft dimensional blonde that grows out gracefully. She's been back every 12 weeks for two years now and her hair is in the best condition it's been in a decade. That's the path. It's slower, it works, it lasts."
+        }
+      ],
+      productModule: {
+        title: "Between-appointment recovery kit",
+        products: [
+          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Weekly mask to rebuild damaged bonds" },
+          { name: "Sulfate-free shampoo", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Stops further colour stripping" },
+          { name: "Heat protection spray", link: "https://hairpinns.com/collections/heat-protection", description: "Essential before any hot tool" }
+        ]
+      },
+      quickAnswer: {
+        question: "How do you recover hair from box dye damage?",
+        answer: "Box dye damage is recovered over 2–3 salon visits spaced 4–6 weeks apart, not in one session. Visit one stabilises tone and cuts damaged ends; visit two adds dimension with low-lights or foils; visit three lands on the final colour. Total cost in the Sutherland Shire: $730–$1200. Weekly bond-repair masks and sulfate-free shampoo are essential between visits."
+      },
+      keyTakeaways: [
+        "Box dye over previous colour causes unpredictable banding and patchy lift",
+        "Recovery is always multi-visit — 2–3 visits over 8–14 weeks",
+        "Visit one stabilises, visit two progresses, visit three lands the final colour",
+        "Total cost in the Sutherland Shire: $730–$1200 depending on length and damage",
+        "Weekly bond-repair mask and sulfate-free shampoo are non-negotiable between visits"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/colouring-packages/long-hair-colour-package",
+      customText: "Book a colour correction consultation"
+    }
   }
 ];
 
