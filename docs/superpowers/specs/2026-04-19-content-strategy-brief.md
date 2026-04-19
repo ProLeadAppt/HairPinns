@@ -31,17 +31,17 @@ These searches are ready-to-book. Rank well for these and the phone rings.
 | balayage sutherland shire | "Balayage in Sutherland Shire: What It Costs and How Long It Lasts" | 2000w | ✅ Published |
 | hair extensions bangor | "Hair Extensions in Bangor: Salon-Grade vs. DIY Clip-Ins" | 1500w | ✅ Published |
 
-### Cluster 2 — Comparison & decision content (product e-commerce)
+### Cluster 2 — Comparison & decision content (product e-commerce) ✅ PUBLISHED 2026-04-19
 
 These target researchers who are about to buy. "Vs" and "best for" queries convert.
 
-| Target keyword | Post title | Length |
-|---|---|---|
-| juuce vs pure shampoo | "Juuce vs Pure Organic Shampoo: Which Is Right for Your Hair?" | 1800w |
-| best shampoo colour treated hair australia | "Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)" | 2500w |
-| sulfate free shampoo australia | "The Best Sulfate-Free Shampoos Available in Australia" | 2000w |
-| wet brush vs tangle teezer | "Wet Brush vs Tangle Teezer: Honest Comparison (From a Stylist)" | 1500w |
-| keratin treatment vs brazilian blowout | "Keratin vs Brazilian Blowout vs Straight Up: Which One?" | 2000w |
+| Target keyword | Post title | Length | Status |
+|---|---|---|---|
+| juuce vs pure shampoo | "Juuce vs Pure Organic Shampoo: Which Is Right for Your Hair?" | 1800w | ✅ Published |
+| best shampoo colour treated hair australia | "Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)" | 2500w | ✅ Published |
+| sulfate free shampoo australia | "The Best Sulfate-Free Shampoos Available in Australia" | 2000w | ✅ Published |
+| wet brush vs tangle teezer | "Wet Brush vs Tangle Teezer: Honest Comparison (From a Stylist)" | 1500w | ✅ Published |
+| keratin treatment vs brazilian blowout | "Keratin vs Brazilian Blowout vs Straight Up: Which One?" | 2000w | ✅ Published |
 
 ### Cluster 3 — "How often / how much / how long" questions (AEO gold)
 

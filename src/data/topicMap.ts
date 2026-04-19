@@ -50,10 +50,12 @@ export const topics: Topic[] = [
     name: 'Smoothing Treatments',
     hub: { kind: 'service', path: 'smoothing/mid-length-straight-up-smoothing', label: 'Straight Up Smoothing' },
     blogSlugs: [
+      'keratin-vs-brazilian-blowout-vs-straight-up',
       'keratin-smoothing-sydney-prices-brands',
       'whats-a-straight-up-smoothing-treatment',
       'truth-about-shampoo-after-straight-up-treatment',
       'qiqi-vega-vs-nanoplasty-whats-the-difference',
+      'sulfate-free-shampoo-australia',
       'say-goodbye-to-frizzy-hair-march-2025',
       'the-secret-behind-that-steamy-towel-moment',
       'qiqi-bare-repair-oil-shine-strength-smoothness',
@@ -72,6 +74,7 @@ export const topics: Topic[] = [
     name: 'Hair Colouring',
     hub: { kind: 'service', path: 'colouring-packages/long-hair-colour-package', label: 'Colour Packages' },
     blogSlugs: [
+      'best-shampoo-colour-treated-hair-australia',
       'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',
       'smooth-seal-strengthen-pure-precious-ends',
@@ -149,6 +152,7 @@ export const topics: Topic[] = [
     name: 'Frizz Control',
     hub: { kind: 'collection', slug: 'frizz-free-must-haves', label: 'Frizz-Free Must Haves' },
     blogSlugs: [
+      'keratin-vs-brazilian-blowout-vs-straight-up',
       'keratin-smoothing-sydney-prices-brands',
       'say-goodbye-to-frizzy-hair-march-2025',
       'whats-a-straight-up-smoothing-treatment',
@@ -166,6 +170,8 @@ export const topics: Topic[] = [
     name: 'Bond Repair & Damaged Hair',
     hub: { kind: 'collection', slug: 'juuce-botanicals', label: 'Juuce Bond Repair' },
     blogSlugs: [
+      'juuce-vs-pure-organic-shampoo',
+      'best-shampoo-colour-treated-hair-australia',
       'best-hair-products-australia-2025',
       'how-often-should-you-replace-your-shampoo',
       'qiqi-bare-repair-oil-shine-strength-smoothness',
@@ -179,6 +185,8 @@ export const topics: Topic[] = [
     name: 'Scalp Health',
     hub: { kind: 'collection', slug: 'pure-certified-organic-hair-care', label: 'Pure Scalp Care' },
     blogSlugs: [
+      'juuce-vs-pure-organic-shampoo',
+      'sulfate-free-shampoo-australia',
       'pure-walnut-scrub-scalp-detox',
       'infrared-sauna-for-hair-scalp-health',
       '5-ways-infrared-sauna-boosts-hair-skin-glow',
@@ -193,6 +201,8 @@ export const topics: Topic[] = [
     name: 'Organic & Natural Care',
     hub: { kind: 'collection', slug: 'pure-certified-organic-hair-care', label: 'Pure Organic Range' },
     blogSlugs: [
+      'juuce-vs-pure-organic-shampoo',
+      'sulfate-free-shampoo-australia',
       'pure-walnut-scrub-scalp-detox',
       'smooth-seal-strengthen-pure-precious-ends',
     ],
@@ -204,7 +214,10 @@ export const topics: Topic[] = [
     slug: 'curly-hair',
     name: 'Curly Hair',
     hub: { kind: 'collection', slug: 'curly-girlys', label: 'Curly Girlys' },
-    blogSlugs: [],
+    blogSlugs: [
+      'sulfate-free-shampoo-australia',
+      'wet-brush-vs-tangle-teezer',
+    ],
     collectionSlugs: ['curly-girlys', 'frizz-free-must-haves'],
     serviceSlugs: ['cut-packages/mid-length-wash-cut-blowdry'],
     keywords: ['curly', 'curl', 'wavy', 'cgm', 'curl cream'],
@@ -214,6 +227,7 @@ export const topics: Topic[] = [
     name: 'Blonde Hair Care',
     hub: { kind: 'collection', slug: 'blonde-bombshells', label: 'Blonde Bombshells' },
     blogSlugs: [
+      'best-shampoo-colour-treated-hair-australia',
       'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',
       'smooth-seal-strengthen-pure-precious-ends',
@@ -239,6 +253,7 @@ export const topics: Topic[] = [
     name: 'Styling Tools',
     hub: { kind: 'collection', slug: 'wet-brush-detanglers', label: 'Wet Brush Range' },
     blogSlugs: [
+      'wet-brush-vs-tangle-teezer',
       'hair-extensions-bangor',
       'why-wet-brush-is-a-must-have',
       'your-hair-deserves-the-best-wet-brush',

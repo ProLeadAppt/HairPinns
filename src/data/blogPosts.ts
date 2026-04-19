@@ -1633,6 +1633,340 @@ export const blogPosts: BlogPost[] = [
       productPath: "https://hairpinns.com/collections/poppet-locks-reuseable-hair-extension-ponytails",
       customText: "Shop clip-on ponytail extensions"
     }
+  },
+  // ========================================================================
+  // E-commerce comparison cluster (April 2026) — Month 2 of strategy brief
+  // ========================================================================
+  {
+    slug: "juuce-vs-pure-organic-shampoo",
+    title: "Juuce vs Pure Organic Shampoo: Which Is Right for Your Hair?",
+    excerpt: "A stylist's honest comparison of Juuce and Pure Organic shampoos — ingredients, performance, price, and which one actually suits your hair type.",
+    category: "Products",
+    date: "April 19, 2026",
+    readTime: "8 min read",
+    image: juuce037,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Juuce and Pure are two of the most popular professional brands we stock at Hair Pinns. Clients ask me every week which one they should buy. The honest answer: it depends on what your hair actually needs. Here's the side-by-side breakdown — no sponsorship, no brand loyalty, just what I've seen in ten years of recommending these to clients.",
+      sections: [
+        {
+          heading: "The Quick Verdict",
+          content: "Choose Juuce if you want performance-driven professional formulas for colour-treated, damaged, or heat-styled hair. Choose Pure if you want certified organic, sensitive-scalp-friendly, eco-conscious hair care. Both are high-quality. They solve different problems."
+        },
+        {
+          heading: "Juuce: The Performance Specialist",
+          content: "Juuce is an Australian professional brand built around specific hair concerns — bond repair, colour care, hydration, volume. Each range is formulated for a distinct job. The Bond Repair Duo is what I reach for when a client comes in with broken, over-processed hair. The Heat Shield doubles as humidity protection in Sydney's climate. The formulas are more technical — they tend to have active ingredients in higher concentrations than Pure's organic equivalents."
+        },
+        {
+          heading: "Pure: The Organic Specialist",
+          content: "Pure is certified organic, sulfate-free, paraben-free, and uses cold-pressed botanical oils. This matters if: (1) You have a sensitive scalp that reacts to synthetic sulfates. (2) You prefer natural ingredients for health or environmental reasons. (3) Your hair responds better to gentler cleansing. Pure Sacred Mask is a weekly favourite for my clients who want deep conditioning without silicones. The Walnut Scrub is unique in the category — a weekly scalp detox that nothing else really matches."
+        },
+        {
+          heading: "Which One for Your Hair Type",
+          content: "Damaged or colour-treated hair: Juuce Bond Repair first, add Pure Precious Ends as a leave-in. Sensitive scalp or fragrance-sensitive: Pure everything, avoid Juuce's more heavily fragranced ranges. Fine or oily hair that gets weighed down: Juuce volume or daily wash ranges; Pure can be too rich. Thick, dry hair: Pure Sacred Mask weekly plus Juuce daily wash. Recently smoothed or keratin-treated hair: QIQI Bare Repair or Pure Precious Ends — both sulfate-free; Juuce has sulfate options so read labels carefully."
+        },
+        {
+          heading: "Price Comparison",
+          content: "Juuce shampoos range $25–$40 for 300ml, conditioners $28–$42. Pure shampoos $32–$48 for 300ml, conditioners $35–$52. Pure is slightly more expensive gram-for-gram because of the organic certification costs. But both are comparable to salon-brand prices and both significantly outperform supermarket options at the same or lower price point."
+        },
+        {
+          heading: "What I Use At Home",
+          content: "I rotate: Juuce Heat Shield every wash in summer (Sydney humidity is relentless), Pure Sacred Mask weekly, Juuce Bond Repair when my hair feels dry from sun exposure. Client hair varies wildly; mine is fine and colour-treated. The rotation works because I'm not asking one product to do everything — that's the biggest hair-care mistake people make."
+        },
+        {
+          heading: "Can I Mix Them?",
+          content: "Yes. Shampoo with one brand, condition with another, mask with a third. The idea that you must use a 'complete system' from one brand is marketing, not science. Pick the best shampoo for your scalp needs, the best conditioner for your length and ends, the best mask for your condition concerns. My salon clients' best results come from these mix-and-match routines."
+        }
+      ],
+      productModule: {
+        title: "Shop both ranges — Australia-wide",
+        products: [
+          { name: "Juuce Range", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Professional performance formulas for every concern" },
+          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, sensitive-scalp-friendly" },
+          { name: "Bond Repair & Leave-Ins", link: "https://hairpinns.com/collections/frizz-free-must-haves", description: "Mix-and-match essentials from both brands" }
+        ]
+      },
+      quickAnswer: {
+        question: "Juuce vs Pure Organic shampoo — which is better?",
+        answer: "Juuce is the performance specialist — better for colour-treated, damaged, or heat-styled hair with targeted ranges like Bond Repair and Heat Shield. Pure is certified organic — better for sensitive scalps, eco-conscious buyers, and sulfate-free routines. Both are high-quality; they solve different problems. You can mix them."
+      },
+      keyTakeaways: [
+        "Juuce = performance specialist (bond repair, colour care, heat protection)",
+        "Pure = certified organic specialist (sensitive scalp, natural ingredients)",
+        "Sensitive scalp → Pure. Damaged hair → Juuce. Smoothed hair → Pure.",
+        "Price is comparable — $25–$52 per bottle depending on range",
+        "Mixing brands (shampoo from one, mask from another) is fine and often better"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections",
+      customText: "Shop Juuce and Pure — Australia-wide shipping"
+    }
+  },
+  {
+    slug: "best-shampoo-colour-treated-hair-australia",
+    title: "Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)",
+    excerpt: "A stylist's guide to the best shampoos for colour-treated hair in Australia — what actually keeps colour vibrant, what strips it, and what to buy.",
+    category: "Products",
+    date: "April 19, 2026",
+    readTime: "9 min read",
+    image: juuce050,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you spend $300+ on colour every 8 weeks, your shampoo is the single biggest factor in whether that investment lasts. I've seen beautiful balayage fade to brass in 3 weeks because of the wrong shampoo — and I've seen $25 colour jobs hold up for months with the right routine. Here's what actually works in the Australian climate and water, based on what my colour clients use.",
+      sections: [
+        {
+          heading: "The #1 Rule: Sulfate-Free, Non-Negotiable",
+          content: "Sodium lauryl sulfate and sodium laureth sulfate are the foaming agents in most supermarket shampoos. They strip colour molecules out of the hair shaft with every wash. Using a sulfate shampoo after colouring is like washing your new car with steel wool. Check the ingredients label — 'sulfate-free' should be the first thing you verify before anything else. If your shampoo contains SLS or SLES, it's wrong for colour-treated hair."
+        },
+        {
+          heading: "My Top Picks for Colour-Treated Hair (Australia)",
+          content: "1. Juuce Radiant Colour Duo — designed specifically for colour-treated hair, UV filter, sulfate-free, $60–$70 for the set. My #1 recommendation for brunettes and multi-tonal colours. 2. Aromaganic Colour Care — Australian, certified organic, amazing for sensitive scalps, $30–$38 per bottle. 3. Pure Sacred range — sulfate-free, cold-pressed oils, gentle enough for daily use, $35–$45. 4. For blondes specifically: add a violet toning shampoo like Juuce Platinum 1–2 times weekly."
+        },
+        {
+          heading: "What to Avoid (Even If It's Expensive)",
+          content: "Clarifying shampoos more than once every 4–6 weeks — they deep-clean but they strip colour. Any shampoo marketed for 'oily hair' — usually contains stronger surfactants. Any shampoo with sulfates, even professional brands. Hot-water washing — turn the temperature down to lukewarm. Daily washing — every 2–3 days is enough for colour-treated hair; daily strips colour faster than anything else."
+        },
+        {
+          heading: "Blonde vs Brunette: Different Shampoos, Different Schedules",
+          content: "Blondes need violet/purple toning shampoos 1–2x per week to neutralise yellow brassiness. Overuse turns hair ashy or dull. Brunettes benefit from blue shampoo occasionally to kill orange tones — especially after 6+ weeks between colour appointments. Copper and red tones need a colour-depositing shampoo to maintain vibrancy (red fades faster than any other colour). Know your specific colour family and buy accordingly."
+        },
+        {
+          heading: "Sydney Water Is Hard — This Matters",
+          content: "Sydney's tap water is relatively hard, meaning high mineral content. Minerals build up on colour-treated hair and make it look dull. A clarifying mask once a month (use sparingly — it also strips colour) or a shower filter helps significantly. Malibu C Hard Water Wellness Remedy is a one-time deep clean that removes mineral buildup without destroying colour; use it every 6–8 weeks if your hair feels coated."
+        },
+        {
+          heading: "Leave-Ins and Masks — Your Weekly Must-Haves",
+          content: "Shampoo alone isn't enough for colour-treated hair. Add: Pure Precious Ends (leave-in, seals cuticle), Juuce Bond Repair mask (weekly, rebuilds broken bonds from colour processing), and a heat protectant before any hot-tool styling. The combination — sulfate-free shampoo + bond repair mask + leave-in + heat protection — is what makes $300 colour hold for 8 weeks instead of 3."
+        },
+        {
+          heading: "Quick Shopping Guide by Budget",
+          content: "Under $35: Aromaganic Colour Care Shampoo solo. Under $70: Aromaganic + Pure Precious Ends leave-in. Under $120: Juuce Radiant Duo + Bond Repair mask. Over $120: full routine with toning shampoo for blonde, weekly mask, heat protectant, and leave-in. Build up over 2–3 months; you don't need to buy everything at once."
+        }
+      ],
+      productModule: {
+        title: "Best shampoos for colour-treated hair",
+        products: [
+          { name: "Juuce Radiant Colour Duo", link: "https://hairpinns.com/collections/juuce-botanicals", description: "My top pick for brunettes and multi-tonal colour" },
+          { name: "Aromaganic Colour Care", link: "https://hairpinns.com/collections/aromaganic", description: "Certified organic, gentle on sensitive scalps" },
+          { name: "Pure Precious Ends", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "The leave-in that locks colour in" }
+        ]
+      },
+      quickAnswer: {
+        question: "What's the best shampoo for colour-treated hair in Australia?",
+        answer: "The best shampoos for colour-treated hair in Australia are sulfate-free and colour-safe — Juuce Radiant Colour Duo ($60–$70) for brunettes, Aromaganic Colour Care ($30–$38) certified organic, and Pure Sacred range ($35–$45). Avoid all sulfate shampoos, wash with lukewarm water, and add a bond repair mask weekly."
+      },
+      keyTakeaways: [
+        "Sulfate-free is non-negotiable — check labels before buying",
+        "Top picks: Juuce Radiant, Aromaganic Colour Care, Pure Sacred range",
+        "Blondes need violet toning 1–2x/week, brunettes benefit from blue occasionally",
+        "Sydney's hard water builds up — monthly clarifying mask or shower filter helps",
+        "Full routine: sulfate-free shampoo + bond mask + leave-in + heat protection"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
+      customText: "Shop colour-safe shampoos Australia-wide"
+    }
+  },
+  {
+    slug: "sulfate-free-shampoo-australia",
+    title: "The Best Sulfate-Free Shampoos Available in Australia",
+    excerpt: "What sulfate-free really means, why it matters for coloured, curly, or sensitive-scalp hair, and the best options shipped Australia-wide.",
+    category: "Products",
+    date: "April 19, 2026",
+    readTime: "7 min read",
+    image: juuce038,
+    author: "Jena Pinn",
+    content: {
+      introduction: "'Sulfate-free' is the most misused label in shampoo marketing. A lot of products claim it while still containing harsh cleansing agents. Here's what sulfate-free actually means, why it matters for certain hair types, and the real sulfate-free options I stock at Hair Pinns and recommend to clients across Australia.",
+      sections: [
+        {
+          heading: "What Are Sulfates, Really?",
+          content: "Sulfates are detergents that create foam and strip oils from hair. The common ones are sodium lauryl sulfate (SLS) and sodium laureth sulfate (SLES). They're effective cleansers — maybe too effective. On colour-treated hair, they strip colour molecules. On curly hair, they strip the natural oils that define curl pattern. On sensitive scalps, they cause irritation and dryness. That's why sulfate-free matters for specific hair types — not because sulfates are 'toxic' (they're not), but because they cause specific problems for specific hair."
+        },
+        {
+          heading: "Who Actually Needs Sulfate-Free?",
+          content: "Colour-treated hair — sulfates fade colour fast. Anyone with a smoothing treatment or keratin treatment — sulfates strip the treatment, making a $500 service last 4 weeks instead of 12. Curly and wavy hair — sulfates strip natural oils that hold curl shape. Sensitive scalps or eczema-prone skin — sulfates irritate. Fine hair that gets flyaway — sulfate-free shampoos tend to be gentler and less drying. If none of these apply to you, a sulfate shampoo is fine."
+        },
+        {
+          heading: "Marketing Traps — Not All 'Sulfate-Free' Is Equal",
+          content: "Some shampoos replace SLS with cocamidopropyl betaine or sodium cocoyl isethionate — technically not sulfates, but still relatively harsh. Worse, some label themselves 'sulfate-free' while containing sodium coco-sulfate (which is a sulfate, just derived from coconut). Read the full ingredient list. Look for surfactants like decyl glucoside, coco-glucoside, or sodium lauroyl sarcosinate — these are genuinely gentle sulfate alternatives."
+        },
+        {
+          heading: "Best Sulfate-Free Shampoos in Australia (2026)",
+          content: "1. Pure Sacred Shampoo — certified organic, decyl glucoside base, $38–$42. Our most-sold sulfate-free option. 2. Aromaganic Colour Care — sulfate-free, sensitive-scalp friendly, $30–$38. 3. QIQI Bare Repair — specifically formulated for post-smoothing maintenance, sulfate-free, $45–$55. 4. Juuce Radiant — sulfate-free colour-safe formula, $32–$38. All shipped Australia-wide from Hair Pinns with free shipping over $150."
+        },
+        {
+          heading: "What to Expect Switching to Sulfate-Free",
+          content: "Less foam. That's not a bug — it's the point. Sulfates create the rich foam most people associate with 'cleanness'. Sulfate-free shampoos lather less but clean just as well. It takes 2–3 washes to adjust mentally. Some people also experience a brief 'detox' period where hair feels waxy or heavy — this usually resolves within 1–2 weeks as your scalp's oil production rebalances."
+        },
+        {
+          heading: "Pair With the Right Conditioner and Mask",
+          content: "Sulfate-free shampoos are gentler, which means you need conditioners and masks to do slightly more work. Pure Sacred Mask weekly, or Juuce Bond Repair for damage recovery. A leave-in conditioner like Pure Precious Ends is the secret weapon — adds moisture throughout the day without re-washing. Sulfate-free isn't a single product decision; it's a routine decision."
+        }
+      ],
+      productModule: {
+        title: "Best sulfate-free shampoos — Australia-wide",
+        products: [
+          { name: "Pure Sacred Shampoo", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, decyl glucoside base" },
+          { name: "Aromaganic Colour Care", link: "https://hairpinns.com/collections/aromaganic", description: "Sulfate-free, gentle on sensitive scalps" },
+          { name: "QIQI Bare Repair", link: "https://hairpinns.com/collections/qiqi", description: "Specifically for post-smoothing maintenance" }
+        ]
+      },
+      quickAnswer: {
+        question: "What are the best sulfate-free shampoos in Australia?",
+        answer: "The best sulfate-free shampoos in Australia include Pure Sacred ($38–$42, certified organic), Aromaganic Colour Care ($30–$38, sensitive-scalp friendly), QIQI Bare Repair ($45–$55, post-smoothing), and Juuce Radiant ($32–$38, colour-safe). All available from Hair Pinns with free Australia-wide shipping over $150."
+      },
+      keyTakeaways: [
+        "Sulfates strip colour, smoothing treatments, and natural oils from curly hair",
+        "Not all 'sulfate-free' labels are equal — read the full ingredient list",
+        "Top picks: Pure Sacred, Aromaganic Colour Care, QIQI Bare Repair, Juuce Radiant",
+        "Expect less foam and a 1–2 week adjustment period after switching",
+        "Pair with a weekly mask and leave-in for full effectiveness"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      customText: "Shop sulfate-free shampoos Australia-wide"
+    }
+  },
+  {
+    slug: "wet-brush-vs-tangle-teezer",
+    title: "Wet Brush vs Tangle Teezer: Honest Comparison (From a Stylist)",
+    excerpt: "Wet Brush vs Tangle Teezer — which detangling brush is actually worth it? An honest side-by-side from a stylist who's used both for a decade.",
+    category: "Products",
+    date: "April 19, 2026",
+    readTime: "5 min read",
+    image: accessories016,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Wet Brush and Tangle Teezer are the two most-asked-about detangling brushes I hear about from clients. Both promise gentler detangling, less breakage, better hair days. Only one of them actually delivers on all three, in my experience. Here's the direct comparison — no affiliate, no sponsorship.",
+      sections: [
+        {
+          heading: "The Short Answer",
+          content: "Wet Brush wins for most people. It's gentler, works on more hair types, and lasts longer. Tangle Teezer has its uses — specifically for fine, lightly tangled hair on dry days — but for wet hair, thick hair, or heavily tangled hair, Wet Brush is significantly better. This isn't close in my experience."
+        },
+        {
+          heading: "Wet Brush: What It Does Right",
+          content: "The IntelliFlex bristles bend independently, gliding through tangles without snapping hair. Works on wet or dry hair (hence the name). Suitable for all hair types — fine, thick, curly, straight. The handle is ergonomic and the design is sturdy enough for daily use for years. The Mini Detangler ($14–$18) is the best-value brush in the category. The Pro version ($22–$28) is worth the upgrade for thick hair. Comes in every colour and pattern — kids love them, which matters if you're detangling children's hair."
+        },
+        {
+          heading: "Tangle Teezer: Where It Wins, Where It Doesn't",
+          content: "Tangle Teezer is designed for fine-to-medium dry hair with light tangling. It works well for that use case. Where it struggles: wet hair (the short teeth don't get through), thick hair (too small a surface area), and heavily tangled hair (the fixed teeth pull more than Wet Brush's flexible bristles). The handle-less design is polarising — some love it, others find it awkward. Price is similar to Wet Brush, around $15–$25."
+        },
+        {
+          heading: "Hair Type Matchups",
+          content: "Fine, straight hair that gets light tangles: Either works. Wet Brush is gentler; Tangle Teezer is faster. Thick or curly hair: Wet Brush, without question. Kids: Wet Brush — fewer tears, flexible bristles. Post-shower wet detangling: Wet Brush. Fine dry hair with occasional tangles: Tangle Teezer is fine. Extension wearers: Wet Brush (the flexible bristles are kinder to bonds and tapes)."
+        },
+        {
+          heading: "What I Use in the Salon",
+          content: "I use Wet Brush exclusively in the salon. Every chair has one. Clients' hair comes out of the basin wet and tangled, and I need to detangle without breakage before any service. Wet Brush is the only brush I trust for this. I've tried Tangle Teezer in the salon — it pulled too much on thick hair and frustrated both me and the client."
+        },
+        {
+          heading: "Longevity and Value",
+          content: "A Wet Brush lasts 2–4 years of daily use. Bristles don't break easily and the handle survives accidental drops. Tangle Teezers tend to lose teeth after heavier use — I've had multiple clients mention this. Dollar-for-dollar, Wet Brush wins on lifetime cost."
+        },
+        {
+          heading: "Which to Buy",
+          content: "For most people: Wet Brush Original Detangler ($18–$25) or the Pro version for thick hair ($22–$28). If you have fine, usually-untangled dry hair and specifically want a handle-less mini brush for your handbag, Tangle Teezer Original is a fine secondary option. At Hair Pinns we stock the full Wet Brush range — detanglers, pro brushes, mini keyring size, and the curl-defining brush. Free shipping Australia-wide over $150."
+        }
+      ],
+      productModule: {
+        title: "Wet Brush range — stocked at Hair Pinns",
+        products: [
+          { name: "Wet Brush Original Detangler", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Our daily-use favourite for all hair types" },
+          { name: "Wet Brush Mini Detangler", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Handbag-sized, same bristles, travel-friendly" },
+          { name: "Curl Defining Brush", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Purpose-built for curly and wavy hair" }
+        ]
+      },
+      quickAnswer: {
+        question: "Is Wet Brush better than Tangle Teezer?",
+        answer: "Wet Brush is better for most hair types — its flexible IntelliFlex bristles work on wet or dry hair, all thicknesses, and heavy tangles without breakage. Tangle Teezer is fine for fine, dry, lightly-tangled hair only. For thick, curly, wet, or heavily-tangled hair, Wet Brush wins clearly. Both cost $15–$25."
+      },
+      keyTakeaways: [
+        "Wet Brush wins for most hair types — thick, curly, wet, or heavily tangled",
+        "Tangle Teezer only suits fine, dry, lightly-tangled hair",
+        "Wet Brush lasts 2–4 years of daily use; Tangle Teezers tend to lose teeth faster",
+        "Kids and extension wearers should go Wet Brush every time",
+        "Hair Pinns stocks the full Wet Brush range with free shipping over $150"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/wet-brush-detanglers",
+      customText: "Shop Wet Brush range Australia-wide"
+    }
+  },
+  {
+    slug: "keratin-vs-brazilian-blowout-vs-straight-up",
+    title: "Keratin vs Brazilian Blowout vs Straight Up: Which One?",
+    excerpt: "The three main smoothing treatments explained — true keratin, Brazilian blowout, and amino-acid Straight Up Smoothing. Which fits your hair and budget?",
+    category: "Treatments",
+    date: "April 19, 2026",
+    readTime: "8 min read",
+    image: juuce119,
+    author: "Jena Pinn",
+    content: {
+      introduction: "People use 'keratin', 'Brazilian blowout', and 'smoothing' interchangeably — but they're not the same treatment. The differences matter: formaldehyde content, durability, effect on curl pattern, and aftercare requirements are all different. Here's an honest breakdown from someone who offers the amino-acid version (Straight Up Smoothing) and has referred clients out for the other two.",
+      sections: [
+        {
+          heading: "The Three Categories, Clearly Defined",
+          content: "True keratin treatment: uses a keratin-based solution sealed with heat. Modern versions are formaldehyde-free. Results last 3–5 months. Reduces frizz significantly and can straighten curls depending on formulation. Brazilian blowout (brand name Brazilian Blowout®, also used generically): a specific protein-based treatment originally formulated in Brazil. Historically contained formaldehyde; current formulations have reformulated but concerns linger. Results last 2–3 months. Amino-acid smoothing (Straight Up Smoothing): a newer category using amino acids to smooth the cuticle without changing hair structure. No formaldehyde, no harsh chemicals. Results last 8–12 weeks. Hair keeps natural movement."
+        },
+        {
+          heading: "Which Keeps Natural Movement, Which Flattens It?",
+          content: "Straight Up Smoothing: keeps waves and natural volume — it reduces frizz and adds shine without making hair poker-straight. Best for clients who like their natural texture but want it more manageable. Keratin treatment: depending on formulation, can keep some movement or make hair completely straight. Ask your stylist specifically which result you'll get. Brazilian blowout: traditionally makes hair quite straight with minimal curl remaining. Less flexible on 'I want to keep my waves' requests."
+        },
+        {
+          heading: "Price Comparison in Sydney (2026)",
+          content: "Straight Up Smoothing: $400–$600 at Hair Pinns depending on hair length. Mid-range for the service category. True keratin treatment: $500–$900 at premium salons. Brazilian blowout: $450–$750. Nanoplasty (a different restoration-focused treatment often confused with these): $700–$1200. Cheaper options exist for all of these but usually signal shortcut technique or lower-quality formulas."
+        },
+        {
+          heading: "Durability vs Cost: Math That Matters",
+          content: "Straight Up at $500 lasting 10 weeks: $50/week. Keratin at $700 lasting 16 weeks: $43/week. Brazilian blowout at $600 lasting 10 weeks: $60/week. On pure cost-per-week, keratin wins slightly. But the catch: keratin requires stricter aftercare and is more sensitive to sulfate shampoos, pool chlorine, and sunscreen. Miss a week of careful aftercare and you've lost your advantage. Straight Up is more forgiving."
+        },
+        {
+          heading: "Damage Profile",
+          content: "Straight Up Smoothing: minimal damage — it's essentially a deep conditioning treatment with smoothing active ingredients. Keratin treatment: low damage if done correctly, but the high-heat sealing step (230°C flat iron) causes cumulative damage over years of retreatments. Brazilian blowout: slightly higher damage risk due to the protein-concentrate formula; some clients report brittleness after multiple applications. Nanoplasty: designed to restore rather than damage — actually improves hair condition with each treatment."
+        },
+        {
+          heading: "Which One Should You Choose?",
+          content: "Choose Straight Up Smoothing if: you want to keep your natural wave or curl, you want a gentle treatment without compromise on ingredients, you prefer a 10–12 week refresh cycle, or you're new to smoothing and want the lowest-risk option. Choose keratin if: you want long-lasting results (4+ months), you're committed to sulfate-free aftercare, you don't mind a straighter result, and you're willing to pay the premium. Choose Brazilian blowout only if: you want hair to be genuinely straight with low volume, and you've done it before without issues. Personally, I recommend Straight Up Smoothing to 80% of new clients and it gives them everything they actually wanted."
+        },
+        {
+          heading: "Book a Consultation First",
+          content: "Any smoothing treatment is a commitment. The best salons offer a free 15-minute consultation to assess your hair's condition, discuss results you want, and recommend the right treatment. Come with photos of looks you like. Mention any previous chemical services (colour, relaxer, previous smoothing). We'll match the treatment to your hair — not the other way around."
+        }
+      ],
+      productModule: {
+        title: "Aftercare — what we use",
+        products: [
+          { name: "QIQI Bare Repair Oil", link: "https://hairpinns.com/collections/qiqi", description: "Seals cuticle, extends treatment life" },
+          { name: "Pure Precious Ends", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Leave-in — the difference between 8 weeks and 12 weeks" },
+          { name: "Juuce Heat Shield", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Non-negotiable heat protection for any smoothed hair" }
+        ]
+      },
+      quickAnswer: {
+        question: "What's the difference between keratin, Brazilian blowout, and Straight Up Smoothing?",
+        answer: "Straight Up Smoothing uses amino acids, keeps natural movement, and lasts 8–12 weeks ($400–$600). Keratin treatments use keratin sealed with heat, straighten more, and last 3–5 months ($500–$900). Brazilian blowout uses protein and produces the straightest result but is the most polarising ($450–$750). Choose Straight Up for gentle natural results, keratin for long-lasting straightness."
+      },
+      keyTakeaways: [
+        "Straight Up = amino acids, keeps natural wave, 8–12 weeks, gentlest",
+        "Keratin = true keratin sealed with heat, 3–5 months, straighter result",
+        "Brazilian blowout = protein concentrate, most polarising, straightest",
+        "Pricing: $400–$600 Straight Up, $500–$900 keratin, $450–$750 Brazilian",
+        "All require sulfate-free aftercare to deliver on durability promise"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
+      customText: "See our Straight Up Smoothing services"
+    }
   }
 ];
 
