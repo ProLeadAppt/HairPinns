@@ -2303,7 +2303,7 @@ export const blogPosts: BlogPost[] = [
     image: aromaganicShampoo,
     author: "Jena Pinn",
     content: {
-      introduction: "After 15+ years behind the chair in the Sutherland Shire, these are the seven hair-colouring mistakes I see every single week — some from home dye jobs, some from other salons, some from clients following advice they read online. Every one of them is avoidable, and every one of them makes the next appointment harder (and more expensive). Here's what they are and how to stop making them.",
+      introduction: "After [15+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), these are the seven hair-colouring mistakes I see every single week — some from home dye jobs, some from other salons, some from clients following advice they read online. Every one of them is avoidable, and every one of them makes the next appointment harder (and more expensive). Here's what they are and how to stop making them.",
       sections: [
         {
           heading: "Mistake 1: Box Dye Over Previously-Coloured Hair",
@@ -2374,7 +2374,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce118,
     author: "Jena Pinn",
     content: {
-      introduction: "After 15+ years behind the chair in the Sutherland Shire, I've heard every home-hair-care myth there is. Some are harmless, some are actively damaging, and a lot of them got started in beauty magazines in the 1990s and never died. Here are the ones I wish would stop — and what actually works for healthy hair at home.",
+      introduction: "After [15+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), I've heard every home-hair-care myth there is. Some are harmless, some are actively damaging, and a lot of them got started in beauty magazines in the 1990s and never died. Here are the ones I wish would stop — and what actually works for healthy hair at home.",
       sections: [
         {
           heading: "Myth: You Need to Wash Your Hair Every Day",
@@ -2433,7 +2433,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce050,
     author: "Jena Pinn",
     content: {
-      introduction: "After 15+ years behind the chair in the Sutherland Shire, box-dye recovery is the single most common consultation I take. You've dyed your hair at home, it's gone wrong — wrong colour, uneven, damaged, or all three — and now you're looking for help. Here's the honest version: what's actually achievable, how long it takes, how much it costs, and what to do in the meantime.",
+      introduction: "After [15+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), box-dye recovery is the single most common consultation I take. You've dyed your hair at home, it's gone wrong — wrong colour, uneven, damaged, or all three — and now you're looking for help. Here's the honest version: what's actually achievable, how long it takes, how much it costs, and what to do in the meantime.",
       sections: [
         {
           heading: "First: Why Box Dye Damage Is So Hard to Fix",

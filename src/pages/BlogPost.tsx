@@ -18,6 +18,7 @@ import { blogPosts } from "@/data/blogPosts";
 import { getOGImage } from "@/lib/sitemap";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForBlogPost } from "@/data/topicMap";
+import { renderInlineLinks } from "@/lib/renderInlineLinks";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
@@ -191,7 +192,7 @@ const BlogPost = () => {
 
           {/* Introduction with drop cap effect */}
           <p className="text-xl leading-relaxed text-text mb-8 first-letter:text-5xl first-letter:font-heading first-letter:font-bold first-letter:text-brand-500 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-            {post.content.introduction}
+            {renderInlineLinks(post.content.introduction)}
           </p>
 
           {/* Content Sections */}
@@ -203,7 +204,7 @@ const BlogPost = () => {
               <div className="h-1 w-20 bg-brand-500 mb-6" />
               
               <p className="text-lg leading-relaxed text-text">
-                {section.content}
+                {renderInlineLinks(section.content)}
               </p>
 
               {/* Insert Product Module after 3rd section */}
