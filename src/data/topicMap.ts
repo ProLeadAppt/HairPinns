@@ -50,12 +50,14 @@ export const topics: Topic[] = [
     name: 'Smoothing Treatments',
     hub: { kind: 'service', path: 'smoothing/mid-length-straight-up-smoothing', label: 'Straight Up Smoothing' },
     blogSlugs: [
+      'keratin-smoothing-sydney-prices-brands',
       'whats-a-straight-up-smoothing-treatment',
       'truth-about-shampoo-after-straight-up-treatment',
       'qiqi-vega-vs-nanoplasty-whats-the-difference',
       'say-goodbye-to-frizzy-hair-march-2025',
       'the-secret-behind-that-steamy-towel-moment',
       'qiqi-bare-repair-oil-shine-strength-smoothness',
+      'sutherland-shire-hair-salon-guide',
     ],
     collectionSlugs: ['qiqi'],
     serviceSlugs: [
@@ -70,8 +72,10 @@ export const topics: Topic[] = [
     name: 'Hair Colouring',
     hub: { kind: 'service', path: 'colouring-packages/long-hair-colour-package', label: 'Colour Packages' },
     blogSlugs: [
+      'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',
       'smooth-seal-strengthen-pure-precious-ends',
+      'sutherland-shire-hair-salon-guide',
     ],
     collectionSlugs: ['aromaganic', 'blonde-bombshells'],
     serviceSlugs: [
@@ -85,7 +89,7 @@ export const topics: Topic[] = [
     slug: 'foils',
     name: 'Foil Highlights',
     hub: { kind: 'service', path: 'foil-packages/full-head-foils-package', label: 'Foil Packages' },
-    blogSlugs: [],
+    blogSlugs: ['balayage-sutherland-shire'],
     collectionSlugs: ['blonde-bombshells'],
     serviceSlugs: [
       'foil-packages/full-head-foils-package',
@@ -99,6 +103,8 @@ export const topics: Topic[] = [
     name: 'Cuts & Styling',
     hub: { kind: 'service', path: 'cut-packages/mid-length-wash-cut-blowdry', label: 'Cut Packages' },
     blogSlugs: [
+      'best-hair-salon-near-menai',
+      'sutherland-shire-hair-salon-guide',
       'whats-the-best-hairspray-to-use',
       'why-wet-brush-is-a-must-have',
       'your-hair-deserves-the-best-wet-brush',
@@ -116,7 +122,7 @@ export const topics: Topic[] = [
     slug: 'kids-formal',
     name: 'Kids & Formal Styling',
     hub: { kind: 'service', path: 'kids-formal/primary-formal-hairstyle', label: 'Kids & Formal' },
-    blogSlugs: [],
+    blogSlugs: ['hair-extensions-bangor'],
     collectionSlugs: ['hair-pinns-accessories', 'the-perfect-pony-hair'],
     serviceSlugs: [
       'kids-formal/primary-formal-hairstyle',
@@ -143,6 +149,7 @@ export const topics: Topic[] = [
     name: 'Frizz Control',
     hub: { kind: 'collection', slug: 'frizz-free-must-haves', label: 'Frizz-Free Must Haves' },
     blogSlugs: [
+      'keratin-smoothing-sydney-prices-brands',
       'say-goodbye-to-frizzy-hair-march-2025',
       'whats-a-straight-up-smoothing-treatment',
       'winter-weather-hair-care-sydney',
@@ -207,6 +214,7 @@ export const topics: Topic[] = [
     name: 'Blonde Hair Care',
     hub: { kind: 'collection', slug: 'blonde-bombshells', label: 'Blonde Bombshells' },
     blogSlugs: [
+      'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',
       'smooth-seal-strengthen-pure-precious-ends',
     ],
@@ -231,6 +239,7 @@ export const topics: Topic[] = [
     name: 'Styling Tools',
     hub: { kind: 'collection', slug: 'wet-brush-detanglers', label: 'Wet Brush Range' },
     blogSlugs: [
+      'hair-extensions-bangor',
       'why-wet-brush-is-a-must-have',
       'your-hair-deserves-the-best-wet-brush',
     ],

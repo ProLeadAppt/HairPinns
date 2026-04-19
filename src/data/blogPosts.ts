@@ -1329,6 +1329,310 @@ export const blogPosts: BlogPost[] = [
       productPath: "https://hairpinns.com/collections",
       customText: "Shop hair care Australia-wide"
     }
+  },
+  // ========================================================================
+  // Local-intent cluster (April 2026) — Sutherland Shire hair salon authority
+  // ========================================================================
+  {
+    slug: "sutherland-shire-hair-salon-guide",
+    title: "The Sutherland Shire Hair Salon Guide: What to Look For",
+    excerpt: "How to pick a Sutherland Shire hair salon that actually listens. A stylist's honest guide to colour, cuts, smoothing, and what makes a great local salon.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "8 min read",
+    image: juuce050,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After 15+ years behind the chair in Bangor, I've heard every version of 'my last hairdresser didn't listen' — and I've seen what separates a good appointment from a great one. This is an honest guide to what to look for, what to avoid, and how to know you've found the right salon before you sit down.",
+      sections: [
+        {
+          heading: "Start With the Consultation, Not the Price List",
+          content: "A good Sutherland Shire salon spends time on the consultation before they touch your hair. Fifteen minutes of questions about your routine, your products at home, your past experiences, and what 'I hate my hair' actually means to you. If a salon books you straight into the chair and starts sectioning without asking about your history, that's a red flag. Colour, smoothing treatments, and cuts all depend on knowing what's already on your hair. Skip the consultation and you skip the results."
+        },
+        {
+          heading: "Look for Honesty About What You Can't Have (Yet)",
+          content: "The best stylists will tell you no. If your hair isn't healthy enough for platinum blonde, you need someone who'll say 'we'll get there over three sessions' — not 'sure, we can do it today.' I've rebuilt more bond-damaged hair from box dye and over-processed balayage than any other single issue. Honest salons cost less long-term because they don't create damage they later charge to fix."
+        },
+        {
+          heading: "Check the Products They Use and Sell",
+          content: "A salon that only sells generic supermarket brands, or pushes whatever gives them the biggest retail margin, isn't invested in your hair between visits. Look for salons that stock professional ranges they actually use on clients — Juuce, Pure, QIQI, Aromaganic. Ask what the stylist uses at home. If they can't answer, the retail is for show."
+        },
+        {
+          heading: "Reviews Should Mention Service, Not Just Results",
+          content: "Anyone can deliver a good blowout once. What matters in the Sutherland Shire is consistency across visits. Read past review 50, and look for: 'Jena told me not to do X because my hair wasn't ready.' 'She didn't try to upsell me.' 'She remembered me from last time.' These signals beat any 'before/after' photo. Our Google reviews (53+ at 4.9 stars) over-index on this language because that's how we work — honesty first, always."
+        },
+        {
+          heading: "Location, Parking, and Timing Matter More Than You Think",
+          content: "If a salon is 40 minutes away at 5pm on a Thursday, you'll cancel. The best salon is the one you'll keep going to. Hair Pinns is in Bangor, central to Menai, Illawong, Alfords Point, Sutherland, Miranda, and Cronulla. Free parking outside. Evening appointments Wednesday and Thursday. Small things that add up to showing up consistently."
+        },
+        {
+          heading: "Specialties Matter — Not Every Salon Does Every Service Well",
+          content: "A Sutherland Shire salon that claims to specialise in everything usually specialises in nothing. Look for clear signals: 'We're known for blonde', 'Our smoothing treatments are our thing', 'We cut curly hair dry'. At Hair Pinns our three specialties are colour and blonding, Straight Up Smoothing treatments, and precision cuts. If you want perm, extensions installation, or hair systems, I'll happily refer you on to someone in the Shire who does that well."
+        },
+        {
+          heading: "The Test: Can You Trust Them With a 'Fix'?",
+          content: "The real test of a salon is whether you'd send your best friend there with a colour emergency. Box dye disaster, wedding tomorrow, foils gone brassy the day before work. If you'd trust them with the hard stuff, they're the right salon for the easy stuff too."
+        }
+      ],
+      quickAnswer: {
+        question: "What should I look for in a Sutherland Shire hair salon?",
+        answer: "Look for a salon that starts with a 15-minute consultation, tells you no when your hair isn't ready for a service, stocks professional products they actually use, and has reviews that mention service and honesty (not just photos). In the Sutherland Shire, Hair Pinns in Bangor specialises in colour, Straight Up Smoothing, and cuts with a 4.9-star Google rating."
+      },
+      keyTakeaways: [
+        "Good salons spend 15 minutes on consultation before touching your hair",
+        "Honesty about what your hair can handle is the #1 sign of expertise",
+        "Check what the stylist personally uses — not just what they sell",
+        "Reviews that mention service and honesty beat before/after photos",
+        "A specialist beats a generalist for colour, smoothing, or cuts"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book a consultation at Hair Pinns Bangor"
+    }
+  },
+  {
+    slug: "keratin-smoothing-sydney-prices-brands",
+    title: "Keratin Smoothing Sydney: Prices, Brands & What You Actually Get",
+    excerpt: "A stylist's honest breakdown of keratin smoothing in Sydney — what you pay, what brands work, and the difference between Straight Up, QIQI Vega, and Nanoplasty.",
+    category: "Treatments",
+    date: "April 19, 2026",
+    readTime: "10 min read",
+    image: juuce064,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you've searched 'keratin smoothing Sydney price' you've seen a range from $150 to $900 and a dozen brand names. Most blog posts tell you the price without telling you what actually changes between them. After a decade of running smoothing services at Hair Pinns in Bangor, here's the honest breakdown — what you're paying for, what's worth the premium, and what to avoid.",
+      sections: [
+        {
+          heading: "What 'Keratin Smoothing' Really Means in Sydney Salons",
+          content: "The term 'keratin smoothing' in Australia covers three different treatment categories: true keratin (formaldehyde-free modern versions), amino-acid smoothing (what we call Straight Up Smoothing), and nanoplasty. They're not the same, the results are different, and the prices should be too. The industry mixes these terms freely, which is why clients get confused. Short version: if a salon can't explain what category their treatment falls into, book somewhere else."
+        },
+        {
+          heading: "Price Ranges in Sydney (April 2026)",
+          content: "Budget salons: $150–$250 for short hair, often using generic keratin formulas and shortcutting the wash, seal, and flat-iron steps. Results last 4–6 weeks. Mid-tier: $300–$500, better products (Inoar, Cadiveu, QIQI), proper technique, 8–12 week results. Premium: $500–$900 at boutique salons, using top-tier formulas with proper prep and aftercare. Results 3–4 months. Hair Pinns pricing sits in the mid-to-premium band depending on hair length — mid-length Straight Up Smoothing starts around $400, long/thick from $550. Book online for exact pricing."
+        },
+        {
+          heading: "Straight Up Smoothing: What We Do at Hair Pinns",
+          content: "Straight Up Smoothing is our signature treatment. It's an amino-acid-based smoothing service (formaldehyde-free) that reduces frizz by up to 90% without completely flattening natural movement. Hair still has volume — it just behaves. Ideal for clients who want manageable hair but don't want a poker-straight look. Lasts 8–12 weeks with correct aftercare. We do three versions: mid-length, long and thick, and a teen-specific formulation."
+        },
+        {
+          heading: "QIQI Vega and Nanoplasty: What's the Difference?",
+          content: "QIQI is a Brazilian brand popular for its Vega and Bare Repair ranges. Vega is a hybrid smoothing/protein treatment — stronger on damaged hair, slightly more dramatic straightening. Nanoplasty is a different category altogether: it's a molecular restructuring treatment that restores hair while smoothing. Nanoplasty is expensive (often $700+), takes longer in-chair (3–4 hours), and lasts longer (up to 5 months). If your hair is chemically damaged or over-processed, nanoplasty is worth the premium. If your hair is healthy and you just want frizz control, Straight Up is faster and cheaper with similar results."
+        },
+        {
+          heading: "What to Watch Out For",
+          content: "Formaldehyde is banned in professional treatments in Australia, but cheap imported formulas sometimes still contain it — ventilation should not be a concern at a reputable salon. If you smell anything strong or eye-irritating, walk out. Also avoid any salon that can't tell you the pH of the solution they're using, can't explain the wash-out timeline, or tells you 'it washes out in a week anyway' — a proper smoothing treatment is chemically bonded to the hair and isn't supposed to wash out quickly."
+        },
+        {
+          heading: "Aftercare Determines Whether You Get What You Paid For",
+          content: "Smoothing treatments need sulfate-free shampoo for the first 72 hours minimum, and ideally ongoing. Shampoo with sulfates strips the treatment. At Hair Pinns we use QIQI Bare Repair or Pure Precious Ends for aftercare — both are sulfate-free and specifically formulated to preserve smoothing results. Skip aftercare with a drugstore shampoo and a $600 treatment lasts 4 weeks instead of 12. That's the single biggest reason people tell me 'keratin didn't work for my hair' — it did, they washed it off."
+        },
+        {
+          heading: "What Does Hair Pinns Recommend?",
+          content: "For most people in Sydney's humid climate: Straight Up Smoothing. It handles the frizz, keeps natural movement, fits the $400–$600 range for most hair lengths, and lasts a full summer. For heat-damaged or over-bleached hair: QIQI Vega with a bond repair regimen. For people who want the absolute longest-lasting smoothest result and are willing to invest: Nanoplasty. Book a free consultation if you're unsure — we'll assess your hair and recommend honestly."
+        }
+      ],
+      productModule: {
+        title: "Smoothing aftercare — what we actually use",
+        products: [
+          { name: "QIQI Bare Repair Oil", link: "https://hairpinns.com/collections/qiqi", description: "Seals cuticle and extends smoothing treatment life" },
+          { name: "Pure Precious Ends", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Leave-in treatment — prevents fade on smoothed hair" },
+          { name: "Juuce Heat Shield", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Essential heat protection to preserve the treatment" }
+        ]
+      },
+      quickAnswer: {
+        question: "How much does keratin smoothing cost in Sydney?",
+        answer: "Keratin smoothing in Sydney ranges from $150 at budget salons to $900+ at premium boutiques. Mid-range ($300–$600) delivers the best value — proper technique, professional formulas, and 8–12 weeks of results. At Hair Pinns in Bangor, Straight Up Smoothing starts from $400 for mid-length hair."
+      },
+      keyTakeaways: [
+        "Sydney pricing: $150 (budget) to $900+ (premium) — mid-range is the sweet spot",
+        "Straight Up, QIQI Vega, and Nanoplasty are three different treatment categories",
+        "Sulfate-free aftercare is the difference between 4 weeks and 12 weeks of results",
+        "Formaldehyde is banned in Australia — avoid any salon with strong chemical smells",
+        "Book a consultation to match your hair's condition to the right treatment"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
+      customText: "See our Straight Up Smoothing services"
+    }
+  },
+  {
+    slug: "best-hair-salon-near-menai",
+    title: "Best Hair Salon Near Menai: What the Locals Say",
+    excerpt: "Looking for a hair salon near Menai? Here's what locals actually value — and why Hair Pinns in Bangor is the short drive worth making.",
+    category: "Local",
+    date: "April 19, 2026",
+    readTime: "5 min read",
+    image: juuce120,
+    author: "Jena Pinn",
+    content: {
+      introduction: "If you're in Menai and searching for a hair salon, you've got options — but the consistent feedback we hear from Menai locals who've become Hair Pinns regulars is the same: 'Wish I'd found you sooner.' Here's what matters when you're picking a salon close to Menai, and honest answers about whether we're the right fit.",
+      sections: [
+        {
+          heading: "Why Locals Drive to Bangor (It's Closer Than You Think)",
+          content: "Hair Pinns is a 5-minute drive from central Menai via Menai Road. Free parking right outside. For most Menai postcodes it's faster than driving into Sutherland or Miranda and trying to find parking. Many of our regulars come from Menai Heights, Barden Ridge, and Woronora — combined they make up a significant portion of our client base."
+        },
+        {
+          heading: "What Menai Clients Tell Us They Value",
+          content: "The three things that come up in every new-client consultation from the Menai area: (1) They want a salon that remembers them — not a rotating stylist roster. At Hair Pinns you see Jena every time, or her trusted team who've been with the salon for years. (2) They want honest pricing without upsell pressure. Our service menu is public, no surprise fees. (3) They want a salon that treats their hair like an investment, not a transaction."
+        },
+        {
+          heading: "Services Popular with Menai Locals",
+          content: "The most-booked services for Menai clients: Straight Up Smoothing (reduces frizz for 8–12 weeks — crucial in Sydney's humid summer), full head foils for blonde maintenance, and mid-length wash/cut/blowdry. We also do kids and formal styling, popular with Menai families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+        },
+        {
+          heading: "Real Review from a Menai Client",
+          content: "'I went to Jena after a box dye went wrong. She didn't try to fix it all in one go. Took three sessions, was upfront about the cost, and now my blonde actually looks like I wanted it to. Won't go anywhere else.' — Sarah M., Menai. This captures our approach. We don't promise miracles that damage your hair. We build toward the result, honestly, and charge for what we actually do."
+        },
+        {
+          heading: "What If You're Not Ready to Switch Salons?",
+          content: "Fair. Most of our clients from Menai first came for one specific service — usually smoothing or a fix — while keeping their existing salon for everything else. After a few visits, they switch. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no hard sell."
+        }
+      ],
+      quickAnswer: {
+        question: "What's the best hair salon near Menai?",
+        answer: "Hair Pinns in Bangor is a 5-minute drive from Menai with free parking, specialises in colour, Straight Up Smoothing, and cuts, and has a 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+      },
+      keyTakeaways: [
+        "Hair Pinns Bangor is a 5-minute drive from Menai with free parking",
+        "Regular clients come from Menai Heights, Barden Ridge, and Woronora",
+        "Most-booked services: Straight Up Smoothing, full head foils, mid-length cuts",
+        "Honest pricing, no upsell pressure, consistent stylist each visit",
+        "Try a single service first — no membership required"
+      ]
+    },
+    cta: {
+      type: "booking",
+      customText: "Book your appointment from Menai"
+    }
+  },
+  {
+    slug: "balayage-sutherland-shire",
+    title: "Balayage in Sutherland Shire: What It Costs and How Long It Lasts",
+    excerpt: "Balayage in the Sutherland Shire — what you actually pay, how often you need touch-ups, and why blonde balayage needs different maintenance than brunette.",
+    category: "Colour",
+    date: "April 19, 2026",
+    readTime: "7 min read",
+    image: juuce091,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Balayage is the most-requested colour service at Hair Pinns. It also generates the most questions: how long does it actually last? How much should I pay in the Sutherland Shire? Is it the same as foils? Here's everything you need to know before you book.",
+      sections: [
+        {
+          heading: "Balayage vs Foils: They're Not the Same Thing",
+          content: "Balayage is a freehand painting technique — colour is swept onto the hair with a brush, sealed in film or left open. The result is soft, grown-out-looking highlights that are lighter at the mid-lengths and ends. Foils use precise sectioning and aluminium foils to isolate strands for maximum lift — brighter, sharper, more graphic. Balayage gives a natural sun-kissed look. Foils give defined highlights. Many of our Sutherland Shire clients do a mix — foils at the root area, balayage through the ends — for the best of both."
+        },
+        {
+          heading: "Balayage Prices in the Sutherland Shire",
+          content: "Sutherland Shire balayage prices range from $220 for a partial balayage on short hair at a budget salon, to $500+ for a full balayage with toner and cut on long hair at a premium salon. At Hair Pinns our foil packages (which often include balayage technique for natural blending) start around $280 for quarter-head and go up to $450+ for full head including cut and blowdry. Exact pricing depends on length, thickness, and starting colour."
+        },
+        {
+          heading: "How Long Balayage Actually Lasts",
+          content: "This is where balayage shines. Because there's no sharp line where the colour starts, balayage grows out beautifully — you can go 3–4 months between full services, with a toner refresh every 6–8 weeks. Compare that to traditional foils, which show regrowth at 6–8 weeks and need touching up. If you want low-maintenance colour that still looks salon-fresh, balayage is the best-value service in the salon."
+        },
+        {
+          heading: "Blonde vs Brunette Balayage Maintenance",
+          content: "Blonde balayage needs purple or violet toning shampoo used 1–2 times a week to stop brassiness. Our go-to for blonde clients is the Aromaganic range — gentle but effective. Brunette balayage holds up with less maintenance, but benefits from a blue shampoo every few weeks to neutralise warm tones. For both, sulfate-free shampoo is non-negotiable — sulfates strip colour faster than anything else."
+        },
+        {
+          heading: "Aftercare: What Actually Preserves Balayage",
+          content: "Beyond the right shampoo, the two biggest factors: (1) Heat styling below 180°C with a good heat protectant. Juuce Heat Shield or Pure Precious Ends work well. (2) A weekly bond-repair mask if you've had multiple sessions or your hair is fine — Juuce Bond Repair is a favourite. Colour-treated hair that's well-cared-for looks better at 3 months than untreated hair does after 2."
+        },
+        {
+          heading: "How to Book Balayage at Hair Pinns",
+          content: "For a first balayage, book a foil package that fits your hair length — we'll use balayage technique within the package to give the softest blend. For clients already in regular colour maintenance, book a touch-up and mention you want balayage placement specifically. Unsure? Book a free consultation first — bring photos of the look you want and we'll match it to the right service."
+        }
+      ],
+      productModule: {
+        title: "Keep balayage looking fresh",
+        products: [
+          { name: "Aromaganic Blonde Range", link: "https://hairpinns.com/collections/aromaganic", description: "Violet toning for bright, brass-free blonde" },
+          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Weekly mask to keep colour-treated hair strong" },
+          { name: "Pure Precious Ends", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Leave-in seal for dry balayage ends" }
+        ]
+      },
+      quickAnswer: {
+        question: "How much does balayage cost in the Sutherland Shire?",
+        answer: "Balayage in the Sutherland Shire ranges from $220 (budget, short hair) to $500+ (premium, long hair with toner and cut). At Hair Pinns in Bangor, our foil packages start at $280 and go up to $450+ for full-head services including cut and blowdry. Balayage lasts 3–4 months between full services."
+      },
+      keyTakeaways: [
+        "Balayage is hand-painted, foils are sectioned — both can be combined",
+        "Sutherland Shire pricing: $220 (short) to $500+ (long, full service)",
+        "Full balayage lasts 3–4 months between services, toner every 6–8 weeks",
+        "Blonde needs purple toning shampoo weekly, brunette needs blue occasionally",
+        "Sulfate-free shampoo is the #1 rule for colour longevity"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/foil-packages/full-head-foils-package",
+      customText: "See our foil and balayage packages"
+    }
+  },
+  {
+    slug: "hair-extensions-bangor",
+    title: "Hair Extensions in Bangor: Salon-Grade vs DIY Clip-Ins",
+    excerpt: "Thinking about hair extensions in Bangor? Here's an honest breakdown of tape-ins, clip-ins, and ponytail extensions — what works, what doesn't, and where to shop.",
+    category: "Products",
+    date: "April 19, 2026",
+    readTime: "6 min read",
+    image: accessories016,
+    author: "Jena Pinn",
+    content: {
+      introduction: "We don't install permanent hair extensions at Hair Pinns — I'll tell you that upfront. But I get asked about them several times a week, and if you're in Bangor and searching for hair extensions, you deserve honest advice about your options. Here's what's worth your money, what isn't, and what most people don't realise about extensions until after they've spent $1000+.",
+      sections: [
+        {
+          heading: "The Four Main Types of Hair Extensions",
+          content: "Clip-ins: temporary, attached at home, worn for events. $80–$400 depending on quality. Low commitment, DIY-friendly. Tape-ins: semi-permanent adhesive strips, lasting 6–8 weeks between moves. $500–$1500 installation plus hair. Sewn-in wefts: braided base with wefts sewn in, popular for thick hair. $600–$1200. Bonded/fusion: glued individual strands, longest-lasting but most damaging if removed incorrectly. $1500–$3000."
+        },
+        {
+          heading: "The Ponytail Shortcut Most People Miss",
+          content: "For formals, events, and just-want-more-hair days, a high-quality clip-on ponytail is a far better solution than most people realise. They add dramatic length and volume, take 2 minutes to attach, cause zero damage, and cost $50–$200 instead of $2000+. Poppet Locks make reusable clip-on ponytails we stock at Hair Pinns — real human hair, come in natural colours, last years with proper care. Most of my formal clients use these."
+        },
+        {
+          heading: "Why Hair Pinns Doesn't Do Permanent Extensions",
+          content: "Permanent extensions are their own specialty. Done well, they require weekly checks and 6-week move-up appointments. I'd rather refer you to someone in the Shire who specialises in extensions full-time than do them occasionally and risk damage. Ask in the salon and I'll happily give you names of trusted extension specialists in the Sutherland Shire."
+        },
+        {
+          heading: "Extensions Damage Hair — Here's When They Don't",
+          content: "Extensions themselves don't damage hair. Incorrect installation and removal does. The two biggest causes of extension damage: (1) Bonds or tapes placed too close to the scalp, pulling the root. (2) Removal without proper solvent or technique, tearing the hair. If you're considering tape-ins or bonded extensions, vet your stylist harder than you'd vet a surgeon. Ask to see their before/after gallery, ask how they remove extensions, and ask what the aftercare routine looks like."
+        },
+        {
+          heading: "What to Buy From Hair Pinns for Extension Care",
+          content: "If you have extensions installed elsewhere and want to keep them looking good, three essentials: (1) Wet Brush — gentle detangling without pulling at bonds or tapes. Our most-sold product for extension wearers. (2) A sulfate-free shampoo like Juuce Daily Wash — sulfates break down tape and fusion bonds. (3) A silk pillowcase — reduces morning tangles significantly. Extensions are an investment; the products that protect them shouldn't be an afterthought."
+        },
+        {
+          heading: "Clip-In Ponytails: Our Go-To Recommendation",
+          content: "For most people asking me about extensions in Bangor, I suggest starting with a high-quality clip-on ponytail. You get the volume, the length, and the drama for a fraction of the cost. If after six months you still want permanent extensions, go for it — but most people find clip-ons give them 90% of what they wanted."
+        }
+      ],
+      productModule: {
+        title: "Shop extensions essentials",
+        products: [
+          { name: "Poppet Locks Ponytails", link: "https://hairpinns.com/collections/poppet-locks-reuseable-hair-extension-ponytails", description: "Reusable clip-on ponytails — real hair, zero damage" },
+          { name: "Wet Brush", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Gentle detangling for extension wearers" },
+          { name: "Hair Pinns Accessories", link: "https://hairpinns.com/collections/hair-pinns-accessories", description: "Silk-lined accessories and care essentials" }
+        ]
+      },
+      quickAnswer: {
+        question: "Where can I buy hair extensions in Bangor?",
+        answer: "Hair Pinns in Bangor stocks reusable Poppet Locks clip-on ponytails — real human hair, zero damage, $50–$200. For permanent tape-ins or bonded extensions, ask Jena for a referral to a trusted Sutherland Shire extensions specialist."
+      },
+      keyTakeaways: [
+        "Four main extension types: clip-ins, tape-ins, sewn-in wefts, bonded",
+        "Clip-on ponytails give 90% of what most people want — for 10% of the cost",
+        "Extensions themselves don't damage hair — bad installation and removal does",
+        "Hair Pinns doesn't install permanent extensions; we refer to Shire specialists",
+        "Wet Brush, sulfate-free shampoo, and silk pillowcases protect extensions"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/poppet-locks-reuseable-hair-extension-ponytails",
+      customText: "Shop clip-on ponytail extensions"
+    }
   }
 ];
 

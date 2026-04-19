@@ -19,17 +19,17 @@
 
 Content is organised by **searcher intent**. Pick one cluster at a time — do all 3–5 posts in a cluster before moving on. Intra-cluster cross-linking compounds authority.
 
-### Cluster 1 — Local service intent (highest commercial value)
+### Cluster 1 — Local service intent (highest commercial value) ✅ PUBLISHED 2026-04-19
 
 These searches are ready-to-book. Rank well for these and the phone rings.
 
-| Target keyword | Post title | Length | Notes |
+| Target keyword | Post title | Length | Status |
 |---|---|---|---|
-| hair salon sutherland shire | "The Sutherland Shire Hair Salon Guide: What to Look For" | 2000w | Compare what makes a good salon, positioning Hair Pinns as the benchmark. Link to every suburb page. |
-| keratin smoothing sydney price | "Keratin Smoothing Sydney: Prices, Brands & What You Actually Get" | 2500w | Price ranges by salon tier, compare Vega vs. Nanoplasty vs. keratin. Strong internal link to all 3 smoothing service pages + qiqi collection. |
-| best hair salon menai | "Best Hair Salon Near Menai: What the Locals Say" | 1500w | Use real Google reviews, mention landmarks, cross-link to `/near/menai`. Replicate for bangor, illawong, sutherland, cronulla, como, miranda (7 posts). |
-| balayage sutherland shire | "Balayage in Sutherland Shire: What It Costs and How Long It Lasts" | 2000w | Targets a high-intent query with growing volume. Link to foil-packages services. |
-| hair extensions bangor | "Hair Extensions in Bangor: Salon-Grade vs. DIY Clip-Ins" | 1500w | Even though Hair Pinns doesn't install extensions currently, ranking for this captures browsing intent; recommend Poppet Locks collection. |
+| hair salon sutherland shire | "The Sutherland Shire Hair Salon Guide: What to Look For" | 2000w | ✅ Published |
+| keratin smoothing sydney price | "Keratin Smoothing Sydney: Prices, Brands & What You Actually Get" | 2500w | ✅ Published |
+| best hair salon menai | "Best Hair Salon Near Menai: What the Locals Say" | 1500w | ✅ Published — replicate for bangor, illawong, sutherland, cronulla, como, miranda |
+| balayage sutherland shire | "Balayage in Sutherland Shire: What It Costs and How Long It Lasts" | 2000w | ✅ Published |
+| hair extensions bangor | "Hair Extensions in Bangor: Salon-Grade vs. DIY Clip-Ins" | 1500w | ✅ Published |
 
 ### Cluster 2 — Comparison & decision content (product e-commerce)
 
