@@ -50,6 +50,7 @@ export const topics: Topic[] = [
     name: 'Smoothing Treatments',
     hub: { kind: 'service', path: 'smoothing/mid-length-straight-up-smoothing', label: 'Straight Up Smoothing' },
     blogSlugs: [
+      'how-long-does-keratin-smoothing-last',
       'keratin-vs-brazilian-blowout-vs-straight-up',
       'keratin-smoothing-sydney-prices-brands',
       'whats-a-straight-up-smoothing-treatment',
@@ -74,6 +75,8 @@ export const topics: Topic[] = [
     name: 'Hair Colouring',
     hub: { kind: 'service', path: 'colouring-packages/long-hair-colour-package', label: 'Colour Packages' },
     blogSlugs: [
+      'how-much-full-head-foils-cost-sydney',
+      'can-you-use-purple-shampoo-every-day',
       'best-shampoo-colour-treated-hair-australia',
       'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',
@@ -92,7 +95,7 @@ export const topics: Topic[] = [
     slug: 'foils',
     name: 'Foil Highlights',
     hub: { kind: 'service', path: 'foil-packages/full-head-foils-package', label: 'Foil Packages' },
-    blogSlugs: ['balayage-sutherland-shire'],
+    blogSlugs: ['how-much-full-head-foils-cost-sydney', 'balayage-sutherland-shire'],
     collectionSlugs: ['blonde-bombshells'],
     serviceSlugs: [
       'foil-packages/full-head-foils-package',
@@ -106,6 +109,7 @@ export const topics: Topic[] = [
     name: 'Cuts & Styling',
     hub: { kind: 'service', path: 'cut-packages/mid-length-wash-cut-blowdry', label: 'Cut Packages' },
     blogSlugs: [
+      'when-should-you-get-a-haircut',
       'best-hair-salon-near-menai',
       'sutherland-shire-hair-salon-guide',
       'whats-the-best-hairspray-to-use',
@@ -152,6 +156,7 @@ export const topics: Topic[] = [
     name: 'Frizz Control',
     hub: { kind: 'collection', slug: 'frizz-free-must-haves', label: 'Frizz-Free Must Haves' },
     blogSlugs: [
+      'how-long-does-keratin-smoothing-last',
       'keratin-vs-brazilian-blowout-vs-straight-up',
       'keratin-smoothing-sydney-prices-brands',
       'say-goodbye-to-frizzy-hair-march-2025',
@@ -185,6 +190,7 @@ export const topics: Topic[] = [
     name: 'Scalp Health',
     hub: { kind: 'collection', slug: 'pure-certified-organic-hair-care', label: 'Pure Scalp Care' },
     blogSlugs: [
+      'how-often-should-you-wash-your-hair',
       'juuce-vs-pure-organic-shampoo',
       'sulfate-free-shampoo-australia',
       'pure-walnut-scrub-scalp-detox',
@@ -201,6 +207,7 @@ export const topics: Topic[] = [
     name: 'Organic & Natural Care',
     hub: { kind: 'collection', slug: 'pure-certified-organic-hair-care', label: 'Pure Organic Range' },
     blogSlugs: [
+      'how-often-should-you-wash-your-hair',
       'juuce-vs-pure-organic-shampoo',
       'sulfate-free-shampoo-australia',
       'pure-walnut-scrub-scalp-detox',
@@ -227,6 +234,8 @@ export const topics: Topic[] = [
     name: 'Blonde Hair Care',
     hub: { kind: 'collection', slug: 'blonde-bombshells', label: 'Blonde Bombshells' },
     blogSlugs: [
+      'can-you-use-purple-shampoo-every-day',
+      'how-much-full-head-foils-cost-sydney',
       'best-shampoo-colour-treated-hair-australia',
       'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',

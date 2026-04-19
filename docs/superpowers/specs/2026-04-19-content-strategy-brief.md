@@ -43,17 +43,17 @@ These target researchers who are about to buy. "Vs" and "best for" queries conve
 | wet brush vs tangle teezer | "Wet Brush vs Tangle Teezer: Honest Comparison (From a Stylist)" | 1500w | ✅ Published |
 | keratin treatment vs brazilian blowout | "Keratin vs Brazilian Blowout vs Straight Up: Which One?" | 2000w | ✅ Published |
 
-### Cluster 3 — "How often / how much / how long" questions (AEO gold)
+### Cluster 3 — "How often / how much / how long" questions (AEO gold) ✅ PUBLISHED 2026-04-19
 
 These target AI Overviews and Featured Snippets. Short, direct answers.
 
-| Target keyword | Post title | Length |
-|---|---|---|
-| how often should you wash your hair | "How Often Should You Wash Your Hair? (By Hair Type)" | 1200w |
-| how long does keratin smoothing last | "How Long Does Keratin Smoothing Actually Last?" | 1000w |
-| how much does a full head of foils cost | "How Much Does a Full Head of Foils Cost in Sydney?" | 1200w |
-| can I use purple shampoo every day | "Can You Use Purple Shampoo Every Day? What Stylists Say" | 1000w |
-| when should I get a haircut | "When Should You Get a Haircut? Signs You're Overdue" | 1000w |
+| Target keyword | Post title | Length | Status |
+|---|---|---|---|
+| how often should you wash your hair | "How Often Should You Wash Your Hair? (By Hair Type)" | 1200w | ✅ Published |
+| how long does keratin smoothing last | "How Long Does Keratin Smoothing Actually Last?" | 1000w | ✅ Published |
+| how much does a full head of foils cost | "How Much Does a Full Head of Foils Cost in Sydney?" | 1200w | ✅ Published |
+| can I use purple shampoo every day | "Can You Use Purple Shampoo Every Day? What Stylists Say" | 1000w | ✅ Published |
+| when should I get a haircut | "When Should You Get a Haircut? Signs You're Overdue" | 1000w | ✅ Published |
 
 ### Cluster 4 — Seasonal & trending (recurring traffic)
 

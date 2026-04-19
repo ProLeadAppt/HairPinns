@@ -1967,6 +1967,277 @@ export const blogPosts: BlogPost[] = [
       servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
       customText: "See our Straight Up Smoothing services"
     }
+  },
+  // ========================================================================
+  // AEO / AI Overview cluster (April 2026) — Month 3 of strategy brief
+  // Short Q&A posts optimised for featured snippets and "People Also Ask"
+  // ========================================================================
+  {
+    slug: "how-often-should-you-wash-your-hair",
+    title: "How Often Should You Wash Your Hair? (By Hair Type)",
+    excerpt: "A stylist's direct answer to how often you should wash your hair, broken down by hair type, scalp condition, and lifestyle.",
+    category: "Education",
+    date: "April 19, 2026",
+    readTime: "5 min read",
+    image: juuce118,
+    author: "Jena Pinn",
+    content: {
+      introduction: "How often you wash your hair is one of the top questions I get asked in the salon. The honest answer depends on your hair type, scalp, and routine — not a universal rule. Here's a direct breakdown so you can figure out what's right for you.",
+      sections: [
+        {
+          heading: "The Short Answer by Hair Type",
+          content: "Fine or straight hair: every 2 days. Thick or wavy hair: every 3–4 days. Curly hair: every 5–7 days (or co-wash between). Oily scalp: every 1–2 days (but use a gentle shampoo). Dry or colour-treated hair: every 3–4 days maximum. If you exercise daily or live somewhere humid, add one extra wash per week. If you don't exercise and have normal scalp oil production, you can usually go one day longer than you think."
+        },
+        {
+          heading: "Why Washing Too Often Damages Hair",
+          content: "Over-washing strips the scalp's natural oil (sebum), which actually signals your scalp to produce MORE oil — a feedback loop that makes hair greasier faster. For colour-treated hair, every wash fades colour. For smoothed or keratin-treated hair, frequent washing dissolves the treatment. For curly hair, frequent washing breaks the curl pattern and causes frizz. Once you reduce washes, the first week feels greasier — then your scalp rebalances and hair feels better than before."
+        },
+        {
+          heading: "Why Washing Too Rarely Is Also a Problem",
+          content: "If you go a week or more between washes, you risk: product buildup that flattens hair and weighs it down, scalp imbalance that causes itchiness or flakiness, and potential bacterial/fungal issues from trapped oil and sweat. The sweet spot isn't maximum time between washes — it's washing often enough to keep your scalp healthy and hair clean, but not so often you strip natural oils."
+        },
+        {
+          heading: "Signs You're Washing Too Much",
+          content: "Hair feels dry or brittle at the mid-lengths and ends. Colour fades within 4 weeks. Scalp feels tight or itchy the day after washing. Roots get greasy faster than they used to. These are all signals to reduce wash frequency by one day per week and see if your hair improves."
+        },
+        {
+          heading: "Signs You're Not Washing Enough",
+          content: "Scalp feels heavy or itchy. Visible flakes or dandruff. Hair lacks volume at the roots. Product doesn't perform the way it did fresh-washed. If any of these apply, add a wash back in. Some people need 3 washes per week; some only 1. There's no wrong answer as long as your scalp and hair are healthy."
+        },
+        {
+          heading: "Sulfate-Free Shampoos Let You Wash More Often",
+          content: "If you want to wash daily without damage, a gentle sulfate-free shampoo is the fix. Pure Sacred or Aromaganic Colour Care can be used daily without stripping hair because they use gentler surfactants. My fine-haired clients who need daily washes all use sulfate-free shampoos — they get clean hair without the compound damage of harsh detergents."
+        }
+      ],
+      quickAnswer: {
+        question: "How often should you wash your hair?",
+        answer: "How often you wash your hair depends on your hair type: fine or straight hair every 2 days, thick or wavy every 3–4 days, curly every 5–7 days, oily scalp every 1–2 days with a gentle shampoo, and dry or colour-treated every 3–4 days maximum. Most people wash too often — reducing by one day per week usually improves hair health."
+      },
+      keyTakeaways: [
+        "Fine: every 2 days. Thick: every 3–4. Curly: every 5–7. Oily: every 1–2.",
+        "Over-washing strips oils and triggers more oil production — makes hair greasier",
+        "Signs of over-washing: dry ends, faded colour, tight scalp, faster-greasing roots",
+        "Signs of under-washing: itchy scalp, flakes, flat roots, products underperforming",
+        "Sulfate-free shampoos allow safe daily washing if you need it"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      customText: "Shop sulfate-free shampoos"
+    }
+  },
+  {
+    slug: "how-long-does-keratin-smoothing-last",
+    title: "How Long Does Keratin Smoothing Actually Last?",
+    excerpt: "A direct answer to how long keratin smoothing lasts — by treatment type, aftercare, and the single biggest factor that determines whether you get 4 weeks or 12.",
+    category: "Treatments",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: juuce064,
+    author: "Jena Pinn",
+    content: {
+      introduction: "'How long does keratin smoothing last?' is asked before almost every booking. The honest answer: anywhere from 4 weeks to 5 months — it varies more than any other treatment category. Here's what actually controls it, and how to maximise your result.",
+      sections: [
+        {
+          heading: "By Treatment Type",
+          content: "Straight Up Smoothing (amino-acid based): 8–12 weeks. QIQI Vega / traditional keratin: 3–4 months. Nanoplasty: up to 5 months. Brazilian Blowout: 2–3 months. These are maximums with proper aftercare — realistic averages are often 20–30% shorter. If someone tells you 'keratin lasts 6 months', they're describing the absolute best case, not the average."
+        },
+        {
+          heading: "The Single Biggest Factor: Aftercare Shampoo",
+          content: "Sulfate shampoos dissolve smoothing treatments. Every wash with a sulfate shampoo shortens treatment life by days. Using a drugstore shampoo can turn a 12-week treatment into a 4-week treatment. The difference between clients who love their smoothing and clients who feel ripped off is almost always aftercare shampoo. Use QIQI Bare Repair, Pure Sacred, or any genuinely sulfate-free option."
+        },
+        {
+          heading: "Other Factors That Shorten Treatment Life",
+          content: "Chlorine pool water (wear a swim cap or wet hair with clean water first). Sun exposure (UV breaks down treatment — use a UV filter leave-in). Heat styling above 200°C (cumulative damage to the treatment layer). Saltwater swimming (rinse thoroughly after). Hard water in Sydney (monthly clarifying mineral-removing treatment helps). Daily washing (stretch to every 3–4 days minimum)."
+        },
+        {
+          heading: "Factors That Extend It",
+          content: "Washing every 3–4 days instead of daily. Sulfate-free shampoo only. A leave-in conditioner (Pure Precious Ends or similar) after each wash. Silk pillowcase to reduce friction. Heat protection spray before any hot-tool styling. Weekly bond-repair mask (Juuce Bond Repair) to keep the treatment layer intact. Clients who follow all six get the advertised duration. Clients who skip most get a fraction."
+        },
+        {
+          heading: "When to Book Your Refresh",
+          content: "Signs you need a refresh: frizz returning in humidity, hair feeling less manageable at the mid-lengths, blow-dry time increasing back to pre-treatment levels. Don't wait until it's completely gone — book when you're 70–80% to that point so you never fully lose the result. Most Hair Pinns clients book refreshes at the 10-week mark for Straight Up, 14-week mark for QIQI Vega."
+        }
+      ],
+      quickAnswer: {
+        question: "How long does keratin smoothing last?",
+        answer: "Keratin smoothing lasts 2 months to 5 months depending on treatment type: Straight Up Smoothing 8–12 weeks, traditional keratin or QIQI Vega 3–4 months, Nanoplasty up to 5 months, and Brazilian Blowout 2–3 months. The single biggest factor determining duration is whether you use sulfate-free shampoo — sulfates dissolve the treatment and cut results by up to 70%."
+      },
+      keyTakeaways: [
+        "Straight Up 8–12 weeks, QIQI Vega 3–4 months, Nanoplasty up to 5 months",
+        "Sulfate-free shampoo is the #1 factor — drugstore shampoo kills treatments fast",
+        "Chlorine, sun, heat above 200°C, and hard water all shorten results",
+        "Leave-in + silk pillowcase + weekly bond mask = advertised duration",
+        "Book your refresh at 70–80% fade, not 100% — never fully lose the result"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
+      customText: "Book a Straight Up Smoothing appointment"
+    }
+  },
+  {
+    slug: "how-much-full-head-foils-cost-sydney",
+    title: "How Much Does a Full Head of Foils Cost in Sydney?",
+    excerpt: "Straight answers on the real price range for full head foils across Sydney, what's included, and when to expect extras.",
+    category: "Colour",
+    date: "April 19, 2026",
+    readTime: "5 min read",
+    image: juuce091,
+    author: "Jena Pinn",
+    content: {
+      introduction: "'How much does a full head of foils cost in Sydney?' The range is wider than most people realise — $180 at budget salons to $700+ at premium ones. Here's what actually drives the price and what to expect at each tier.",
+      sections: [
+        {
+          heading: "The Sydney Price Range (April 2026)",
+          content: "Budget salons: $180–$280. Usually shorter hair, fewer foils, often doesn't include cut or proper toner. Mid-tier: $300–$450. Full-head coverage, professional colour, toner included, often includes cut and blowdry. Premium/boutique: $450–$700+. Full-head foils with extended sectioning, high-quality colour (L'Oréal, Wella, Schwarzkopf top lines), toner, cut, and blowdry. Hair Pinns pricing: full-head foils package starts at $420 for mid-length and goes up based on hair length and thickness."
+        },
+        {
+          heading: "What Makes Prices Different",
+          content: "Hair length — anything below shoulders costs less; anything below waist costs considerably more. Hair thickness — thick hair needs more foils and more colour. Starting colour — going from dark to blonde requires multiple processes and more time. Toner — a quality toner adds $30–$80 but makes a massive visual difference. Cut and blowdry — often bundled, sometimes extra. Senior stylist premium — some salons charge more for specific stylists. Always ask whether the quoted price includes toner, cut, and blowdry."
+        },
+        {
+          heading: "Hidden Fees to Watch For",
+          content: "'Long hair surcharge' — can add $50–$150. 'Thick hair surcharge' — another $30–$80. Tone or 'glaze' as a separate line item ($30–$80). Bond-builder additive (Olaplex, etc.) as extra ($30–$50). Some salons quote 'from $220' but bill $450 after all the add-ons. Ask for the total estimate including your specific hair length and thickness before booking."
+        },
+        {
+          heading: "What You Actually Get at Hair Pinns",
+          content: "Our full head foils package includes: full head of foils, professional-grade colour, toner, cut, blowdry. No hidden fees. Price is quoted upfront based on your hair length and thickness. Mid-length: $420. Long: $480–$520. Extra-thick or longer than waist-length: we'll quote on consultation. Plus a free 15-minute consultation before booking if you've never been before."
+        },
+        {
+          heading: "Worth the Premium?",
+          content: "For a one-off: mid-tier ($300–$450) is usually the sweet spot. Budget is risky because cheap colour fades and damages more. For recurring colour (every 6–8 weeks): mid-to-premium pays off because hair stays healthier long-term and you don't end up paying a specialist later to fix a DIY disaster. Cheap colour done repeatedly costs more than quality colour done well."
+        }
+      ],
+      quickAnswer: {
+        question: "How much does a full head of foils cost in Sydney?",
+        answer: "A full head of foils in Sydney costs $180–$280 at budget salons, $300–$450 at mid-tier salons, and $450–$700+ at premium/boutique salons (April 2026). At Hair Pinns in Bangor, our full head foils package starts at $420 for mid-length hair and includes colour, toner, cut, and blowdry with no hidden fees."
+      },
+      keyTakeaways: [
+        "Budget: $180–$280. Mid-tier: $300–$450. Premium: $450–$700+.",
+        "Watch for hidden fees: long-hair surcharge, toner extra, bond-builder extra",
+        "Always ask for total estimate including your specific length and thickness",
+        "Hair Pinns: $420 for mid-length, all inclusive — no hidden charges",
+        "Mid-tier is the sweet spot for quality — budget risks fade and damage"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/foil-packages/full-head-foils-package",
+      customText: "See full head foils package pricing"
+    }
+  },
+  {
+    slug: "can-you-use-purple-shampoo-every-day",
+    title: "Can You Use Purple Shampoo Every Day? What Stylists Say",
+    excerpt: "A straight answer on whether daily purple shampoo use is safe, the overuse warning signs, and how often you actually need it.",
+    category: "Education",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: juuce038,
+    author: "Jena Pinn",
+    content: {
+      introduction: "'Can I use purple shampoo every day?' is one of the most common blonde-care questions I hear. Short answer: no, you shouldn't — and most people using it daily are making their hair ashy, dull, or damaged without realising it. Here's when to use it, how often, and what to do instead.",
+      sections: [
+        {
+          heading: "The Short Answer: 1–2 Times Per Week Maximum",
+          content: "Use purple shampoo 1–2 times per week if you're blonde, platinum, silver, or have cool-toned highlights. Skip it the other wash days and use a regular sulfate-free shampoo. Using it more often doesn't tone hair faster — it over-deposits violet pigment and can turn blonde ashy-grey or even lilac-tinted in extreme cases. Less is more."
+        },
+        {
+          heading: "Why Daily Use Backfires",
+          content: "Purple shampoo works by depositing violet pigment onto the hair shaft to neutralise yellow tones. Every use adds more pigment. Used daily, the pigment layers up and: (1) Makes hair look dull or grey. (2) Strips natural shine because the pigment sits on top rather than in the hair. (3) Dries hair out — most purple shampoos are less moisturising than regular shampoo. (4) Builds up on fine hair, weighing it down. The fix: less frequent use plus a clarifying rinse every 4–6 weeks."
+        },
+        {
+          heading: "When to Use More Often (Genuine Cases)",
+          content: "If you've just come out of a colour appointment with brass immediately showing — one extra wash with purple shampoo in the first 48 hours is fine to knock out brassiness. If you swim in chlorinated pools frequently — 2–3 times per week helps offset chlorine's yellowing effect. If you're trying to push blonde towards a cooler tone for a specific look — short-term 2x per week for 2–3 weeks is fine. Then back to 1x per week maintenance."
+        },
+        {
+          heading: "Signs You're Overusing",
+          content: "Hair looks grey or ashy-dull rather than bright blonde. Lilac or purple tint visible in direct light. Hair feels dry or straw-like. Blonde looks flat and one-dimensional. If any of these apply: stop for 2 weeks, clarify once, then restart at half the frequency."
+        },
+        {
+          heading: "What to Use Between Purple Shampoo Washes",
+          content: "A sulfate-free colour-safe shampoo the other 1–3 wash days per week. My pick for blonde maintenance: Aromaganic Colour Care (Australian, certified organic, doesn't add pigment but protects colour). Juuce Radiant is another good option. Every wash doesn't need to be a toning wash — most of the work happens between salon visits with gentle colour-safe maintenance."
+        }
+      ],
+      quickAnswer: {
+        question: "Can you use purple shampoo every day?",
+        answer: "No, don't use purple shampoo every day. Use it 1–2 times per week maximum for blonde, platinum, silver, or cool-toned highlights. Daily use over-deposits violet pigment and can turn blonde ashy, grey, or even lilac-tinted. Use a sulfate-free colour-safe shampoo on other wash days and clarify every 4–6 weeks."
+      },
+      keyTakeaways: [
+        "Use purple shampoo 1–2 times per week maximum",
+        "Daily use over-deposits pigment, causing grey, lilac, or dull hair",
+        "Temporary 2–3x per week is fine for brass, chlorine, or tone-shifting periods",
+        "Signs of overuse: ashy-grey tint, lilac undertones, dry/straw-like hair",
+        "Use sulfate-free colour-safe shampoo on non-purple wash days"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/blonde-bombshells",
+      customText: "Shop blonde maintenance range"
+    }
+  },
+  {
+    slug: "when-should-you-get-a-haircut",
+    title: "When Should You Get a Haircut? Signs You're Overdue",
+    excerpt: "A stylist's guide to the five clear signs you're overdue for a haircut, and how often different lengths and hair types actually need trims.",
+    category: "Education",
+    date: "April 19, 2026",
+    readTime: "4 min read",
+    image: juuce120,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Most people wait too long between haircuts and notice hair feels 'off' without knowing why. Here are the five clear signs you're overdue for a cut, and how often each hair type and length actually needs a trim to stay its best.",
+      sections: [
+        {
+          heading: "How Often You Actually Need a Haircut",
+          content: "Short hair (pixie, bob): every 4–6 weeks. The shape loses definition quickly and a trim keeps it looking styled. Mid-length hair: every 8–10 weeks. Balances shape maintenance with growing out. Long hair: every 10–12 weeks minimum for a dusting, 12–14 weeks for a proper trim. Curly hair: every 10–12 weeks regardless of length — dry cutting every few months keeps curl shape intact. Damaged or colour-treated hair: every 6–8 weeks to stop split ends travelling up the shaft."
+        },
+        {
+          heading: "Sign 1: Ends Feel 'Stringy' or Wispy",
+          content: "Healthy ends feel the same density as mid-lengths. When the ends feel thinner, stringy, or wispy — that's split ends travelling up the hair shaft. Once splits start, they get worse until cut off. Waiting an extra month means losing an extra inch when you finally book."
+        },
+        {
+          heading: "Sign 2: Styling Takes Longer or Doesn't Hold",
+          content: "Your hair knows the shape it was cut in. When that shape grows out, styling becomes harder — the blowdry takes longer, curls don't hold, the part won't sit. If your styling routine has quietly gotten longer over a few months, your cut is growing out."
+        },
+        {
+          heading: "Sign 3: Layers Look Flat or Undefined",
+          content: "Layered cuts rely on specific lengths to create movement. After 10–12 weeks, layers grow out and the cut looks blunt or shapeless. If your hair looks 'flat' when you used to have movement, that's a cut signal."
+        },
+        {
+          heading: "Sign 4: You Can't Remember When You Last Booked",
+          content: "If you can't remember your last haircut date, you're overdue. Track it in your phone calendar. For most people, 10–12 weeks is the upper limit before hair health starts to decline."
+        },
+        {
+          heading: "Sign 5: Hair Feels Dry and Products Don't Work",
+          content: "Damaged ends don't absorb product. If your conditioner, leave-in, or mask feels like it's sitting on your hair instead of absorbing, the ends are damaged enough that they can't hold moisture anymore. Only a cut fixes this — no treatment brings damaged hair back."
+        },
+        {
+          heading: "Don't Grow Out Hair Without Trimming",
+          content: "The biggest mistake when growing hair: skipping trims entirely. Ends split, splits travel up the shaft, and eventually you have to cut more to remove damage than if you'd trimmed every 10–12 weeks. Even growing hair needs a 1cm trim every 3 months to stay healthy. Mention 'dusting — just the ends' and a good stylist will trim minimally."
+        }
+      ],
+      quickAnswer: {
+        question: "When should you get a haircut?",
+        answer: "Get a haircut every 4–6 weeks for short hair, every 8–10 weeks for mid-length, and every 10–12 weeks for long hair. Signs you're overdue: stringy or wispy ends, styling taking longer than usual, layers looking flat, or products no longer absorbing into damaged ends. Even when growing hair out, trim every 3 months to prevent damage."
+      },
+      keyTakeaways: [
+        "Short hair every 4–6 weeks, mid-length 8–10, long 10–12, curly every 10–12",
+        "Sign #1: stringy or wispy ends (split ends travelling up the shaft)",
+        "Sign #2: styling takes longer or doesn't hold as well",
+        "Sign #3: layers look flat or undefined",
+        "Even when growing hair, dust ends every 3 months to prevent damage"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/cut-packages/mid-length-wash-cut-blowdry",
+      customText: "Book a haircut at Hair Pinns"
+    }
   }
 ];
 
