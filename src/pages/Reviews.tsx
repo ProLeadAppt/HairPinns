@@ -99,7 +99,6 @@ const Reviews = () => {
         title="Share Your Experience | Hair Pinns"
         description="How was your experience with Hair Pinns? Share your feedback to help us improve."
         canonical="/reviews"
-        noIndex={true}
       />
 
       <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12 relative overflow-hidden">

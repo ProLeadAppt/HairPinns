@@ -12,7 +12,6 @@ const Terms = () => {
         description="Hair Pinns terms of service for salon services and online purchases."
         canonical="https://hairpinns.com/terms"
         hrefLang="en-AU"
-        noIndex={true}
         ogImage="https://hairpinns.com/og-default.jpg"
       />
 

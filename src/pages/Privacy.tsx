@@ -12,7 +12,6 @@ const Privacy = () => {
         description="Hair Pinns privacy policy. How we collect, use and protect your personal information."
         canonical="https://hairpinns.com/privacy"
         hrefLang="en-AU"
-        noIndex={true}
         ogImage="https://hairpinns.com/og-default.jpg"
       />
 
