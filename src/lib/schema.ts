@@ -558,6 +558,55 @@ export const generateArticleSchema = (post: BlogPostData & { speakable?: { cssSe
   return schema;
 };
 
+/**
+ * Person schema for Jena Pinn — E-E-A-T author authority.
+ * Emitted on every blog post authored by Jena and referenced by `author` in
+ * Article/BlogPosting schemas via the Meet Jena bio URL.
+ */
+export const generateJenaPersonSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${BASE_URL}/blog/meet-jena-15-years-sutherland-shire#person`,
+  name: 'Jena Pinn',
+  jobTitle: 'Hair Stylist, Colourist & Founder of Hair Pinns',
+  description:
+    'Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with 15+ years of hairdressing experience across the Sutherland Shire. Specialises in colour correction, balayage, foils, Straight Up Smoothing, and QIQI Vega treatments.',
+  url: `${BASE_URL}/blog/meet-jena-15-years-sutherland-shire`,
+  image: LOGO_URL,
+  worksFor: {
+    '@type': 'Organization',
+    '@id': `${BASE_URL}/#organization`,
+    name: 'Hair Pinns',
+    url: BASE_URL,
+  },
+  knowsAbout: [
+    'Hair colouring',
+    'Balayage',
+    'Foil highlights',
+    'Colour correction',
+    'Box dye recovery',
+    'Keratin smoothing',
+    'Straight Up Smoothing',
+    'QIQI Vega smoothing',
+    'Bond repair',
+    'Sutherland Shire hair salons',
+  ],
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Hairdresser',
+    occupationLocation: {
+      '@type': 'Place',
+      name: 'Sutherland Shire, Sydney, Australia',
+    },
+    skills:
+      'Colour correction, balayage, foils, smoothing treatments, cut and finish, bond repair',
+  },
+  sameAs: [
+    'https://www.instagram.com/hair.pinns/',
+    'https://www.facebook.com/Hair.Pinns',
+  ],
+});
+
 // Helper to combine multiple schemas without @context/@type conflicts
 export const combineSchemas = (...schemas: any[]) => {
   return schemas.map((schema) => {

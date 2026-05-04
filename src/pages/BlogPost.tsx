@@ -26,6 +26,7 @@ import {
   generateFAQPageSchema,
   generateArticleSchema,
   generateQAPageSchema,
+  generateJenaPersonSchema,
 } from "@/lib/schema";
 
 const BlogPost = () => {
@@ -101,6 +102,9 @@ const BlogPost = () => {
   const faqSchema = generateFAQPageSchema(blogFaqs);
   const currentUrl = `https://hairpinns.com/blog/${post.slug}`;
 
+  const personSchema =
+    post.author === "Jena Pinn" ? generateJenaPersonSchema() : null;
+
   const schemas = [
     organizationSchema,
     blogPostSchema,
@@ -108,6 +112,7 @@ const BlogPost = () => {
     faqSchema,
     articleSchema,
     ...(qaSchema ? [qaSchema] : []),
+    ...(personSchema ? [personSchema] : []),
   ];
 
   return (

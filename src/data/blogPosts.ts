@@ -1286,50 +1286,6 @@ export const blogPosts: BlogPost[] = [
       customText: "Book your infrared sauna session"
     }
   },
-  {
-    slug: "best-hair-products-australia-2025",
-    title: "Best Hair Products Australia 2025: Jena's Top Picks",
-    excerpt: "Check out the best hair products available in Australia. Jena's top picks from Hair Pinns. Juuce, Pure, QIQI and more. Shipped Australia-wide with free shipping over $150.",
-    category: "Products",
-    date: "February 25, 2025",
-    readTime: "6 min read",
-    image: juuce091,
-    author: "Jena Pinn",
-    content: {
-      introduction: "Looking for the best hair products in Australia? With [15+ years in the salon](/blog/meet-jena-15-years-sutherland-shire), I've picked the products that deliver real results, no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
-      quickAnswer: {
-        question: "What are the best hair products in Australia?",
-        answer: "The best hair products in Australia include Juuce (smoothing, colour care, hydration), Pure certified organic (eco-friendly, high-performance), and QIQI (professional treatments). Hair Pinns stocks these and ships Australia-wide with free shipping over $150."
-      },
-      sections: [
-        {
-          heading: "Why Salon Quality Matters",
-          content: "Supermarket hair products often rely on cheap fillers and harsh sulfates. Professional products from brands like Juuce and Pure use concentrated, high-performance ingredients that actually nourish your hair, and a little goes a long way. When you shop with Hair Pinns, every product is one I use in the salon and trust."
-        },
-        {
-          heading: "Top Picks for 2025",
-          content: "Juuce Miracle Smooth Duo: Best for frizz and unruly hair. The Juuce Radiant Colour Duo keeps colour vibrant. Pure certified organic range is perfect for anyone wanting clean, eco-friendly formulas. QIQI Bare Repair Oil is a game-changer for damaged hair. And Wet Brush detanglers make every wash day easier. All available at hairpinns.com with free shipping over $150."
-        },
-        {
-          heading: "Shop Hair Care Australia-Wide",
-          content: "Hair Pinns ships to every state and territory: Melbourne, Brisbane, Perth, Sydney, Darwin, Hobart, Adelaide, Canberra. No international shipping; we focus on serving Australia with the best salon products. Free shipping on orders over $150. Your best hair days start here."
-        }
-      ],
-      productModule: {
-        title: "Shop Hair Care Australia-Wide",
-        products: [
-          { name: "Juuce Hair Care", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Professional formulas for all hair types" },
-          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, eco-friendly hair care" },
-          { name: "QIQI Professional", link: "https://hairpinns.com/collections/qiqi", description: "Professional treatments and oils" }
-        ]
-      }
-    },
-    cta: {
-      type: "product",
-      productPath: "https://hairpinns.com/collections",
-      customText: "Shop hair care Australia-wide"
-    }
-  },
   // ========================================================================
   // Local-intent cluster (April 2026) — Sutherland Shire hair salon authority
   // ========================================================================
@@ -2257,7 +2213,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "What I Specialise In",
-          content: "Three areas make up most of my chair time: colour (balayage, foils, and colour correction — especially fixing at-home box dye or other salons' over-processing); smoothing treatments (Straight Up Smoothing and QIQI Vega — I'm certified in both); and cut-and-finish work on mid-length to long hair. I'm not a trendy-every-six-months salon. Clients come to me because they want their hair to look good in three months, not just walking out the door today."
+          content: "Three areas make up most of my chair time: colour (balayage, foils, and [colour correction](/blog/the-7-colouring-mistakes-i-see-every-week) — especially [fixing at-home box dye](/blog/how-to-recover-hair-from-box-dye-damage) or other salons' over-processing); smoothing treatments (Straight Up Smoothing and QIQI Vega — I'm certified in both); and cut-and-finish work on mid-length to long hair. I'm not a trendy-every-six-months salon. Clients come to me because they want their hair to look good in three months, not just walking out the door today."
         },
         {
           heading: "Why I Opened Hair Pinns",
@@ -2269,7 +2225,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Who I Work Well With",
-          content: "Clients who want honest pricing, a stylist who knows their hair history, and results that look good weeks and months after the appointment. I'm less suited to clients who want a different radical look every visit or who chase whatever's trending online. There are excellent salons for that — I'm not one. I'm the 'I want this to actually work and keep working' salon."
+          content: "Clients who want honest pricing, a stylist who knows their hair history, and results that look good weeks and months after the appointment. I'm also the salon clients land at when they're tired of [home hair care myths](/blog/home-hair-care-myths-stylist-wishes-youd-stop) that haven't worked and want straight answers about what actually does. I'm less suited to clients who want a different radical look every visit or who chase whatever's trending online. There are excellent salons for that — I'm not one. I'm the 'I want this to actually work and keep working' salon."
         },
         {
           heading: "Where to Find the Salon",
