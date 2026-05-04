@@ -19,6 +19,7 @@ import { getOGImage } from "@/lib/sitemap";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForBlogPost } from "@/data/topicMap";
 import { renderInlineLinks } from "@/lib/renderInlineLinks";
+import { shopifyImage } from "@/lib/shopifyImage";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
@@ -133,8 +134,8 @@ const BlogPost = () => {
       <main id="main-content">
         {/* Hero Section - Overlay Style */}
         <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden">
-          <img 
-            src={post.image} 
+          <img
+            src={shopifyImage(post.image, 1600)}
             alt={post.title}
             className="w-full h-full object-cover"
               loading="lazy"

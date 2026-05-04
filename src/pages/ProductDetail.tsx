@@ -514,6 +514,8 @@ const ProductDetail = () => {
                     width="800"
                     height="800"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    decoding="async"
+                    fetchPriority="high"
                   />
                   
                   {/* Navigation Arrows */}
@@ -571,6 +573,8 @@ const ProductDetail = () => {
                           className="w-full h-full object-cover"
                           width="200"
                           height="200"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </button>
                     ))}

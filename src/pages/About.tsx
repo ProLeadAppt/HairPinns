@@ -137,6 +137,8 @@ const About = () => {
                     className="w-full h-full object-cover"
                     width="600"
                     height="800"
+                    decoding="async"
+                    fetchPriority="high"
                   />
                 </div>
               </div>
@@ -271,6 +273,8 @@ const About = () => {
                   className="w-full h-full object-cover"
                   width="600"
                   height="600"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

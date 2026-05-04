@@ -4,6 +4,7 @@ import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Badge from "@/components/design-system/Badge";
 import { blogPosts } from "@/data/blogPosts";
+import { shopifyImage } from "@/lib/shopifyImage";
 
 const BlogTrio = () => {
   // Select 3 featured blog posts that are most relevant for homepage
@@ -42,11 +43,12 @@ const BlogTrio = () => {
           >
             <article className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base">
               <div className="aspect-video bg-muted relative overflow-hidden">
-                <img 
-                  src={post.image} 
+                <img
+                  src={shopifyImage(post.image, 720)}
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
                   loading="lazy"
+                  decoding="async"
                   width="600"
                   height="338"
                   sizes="(max-width: 768px) 100vw, 33vw"

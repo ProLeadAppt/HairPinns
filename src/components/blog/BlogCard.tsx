@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Calendar, Clock } from "lucide-react";
 import { BlogPost } from "@/data/blogPosts";
+import { shopifyImage } from "@/lib/shopifyImage";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -18,7 +19,7 @@ const BlogCard = ({ post, size = "regular" }: BlogCardProps) => {
       <article className="h-full flex flex-col bg-surface rounded-card overflow-hidden shadow-card hover:shadow-xl transition-all duration-500 border border-accent/20 hover:-translate-y-1">
         <div className="relative aspect-[16/9] overflow-hidden">
           <img
-            src={post.image}
+            src={shopifyImage(post.image, 720)}
             alt={post.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             loading="lazy"

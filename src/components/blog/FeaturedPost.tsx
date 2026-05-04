@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { BlogPost } from "@/data/blogPosts";
+import { shopifyImage } from "@/lib/shopifyImage";
 
 interface FeaturedPostProps {
   post: BlogPost;
@@ -17,7 +18,7 @@ const FeaturedPost = ({ post }: FeaturedPostProps) => {
           {/* Image Section */}
           <div className="relative aspect-[21/9] lg:aspect-square overflow-hidden">
             <img
-              src={post.image}
+              src={shopifyImage(post.image, 1000)}
               alt={post.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               width="800"
