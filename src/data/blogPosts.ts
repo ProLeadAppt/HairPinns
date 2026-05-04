@@ -62,7 +62,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "After 15+ years in the salon, I've seen what works and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
+      introduction: "After [15+ years in the salon](/blog/meet-jena-15-years-sutherland-shire), I've seen what works and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
       sections: [
         {
           heading: "Best for Bond Repair & Damage",
@@ -1296,7 +1296,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "Looking for the best hair products in Australia? With 15+ years in the salon, I've picked the products that deliver real results, no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
+      introduction: "Looking for the best hair products in Australia? With [15+ years in the salon](/blog/meet-jena-15-years-sutherland-shire), I've picked the products that deliver real results, no supermarket quality, no gimmicks. Here are my top picks for 2025, all available from Hair Pinns and shipped Australia-wide.",
       quickAnswer: {
         question: "What are the best hair products in Australia?",
         answer: "The best hair products in Australia include Juuce (smoothing, colour care, hydration), Pure certified organic (eco-friendly, high-performance), and QIQI (professional treatments). Hair Pinns stocks these and ships Australia-wide with free shipping over $150."
@@ -1343,7 +1343,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce050,
     author: "Jena Pinn",
     content: {
-      introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After 15+ years behind the chair in Bangor, I've heard every version of 'my last hairdresser didn't listen' — and I've seen what separates a good appointment from a great one. This is an honest guide to what to look for, what to avoid, and how to know you've found the right salon before you sit down.",
+      introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After [15+ years behind the chair in Bangor](/blog/meet-jena-15-years-sutherland-shire), I've heard every version of 'my last hairdresser didn't listen' — and I've seen what separates a good appointment from a great one. This is an honest guide to what to look for, what to avoid, and how to know you've found the right salon before you sit down.",
       sections: [
         {
           heading: "Start With the Consultation, Not the Price List",
@@ -1401,7 +1401,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce064,
     author: "Jena Pinn",
     content: {
-      introduction: "If you've searched 'keratin smoothing Sydney price' you've seen a range from $150 to $900 and a dozen brand names. Most blog posts tell you the price without telling you what actually changes between them. After a decade of running smoothing services at Hair Pinns in Bangor, here's the honest breakdown — what you're paying for, what's worth the premium, and what to avoid.",
+      introduction: "If you've searched 'keratin smoothing Sydney price' you've seen a range from $150 to $900 and a dozen brand names. Most blog posts tell you the price without telling you what actually changes between them. After [a decade of running smoothing services at Hair Pinns in Bangor](/blog/meet-jena-15-years-sutherland-shire), here's the honest breakdown — what you're paying for, what's worth the premium, and what to avoid.",
       sections: [
         {
           heading: "What 'Keratin Smoothing' Really Means in Sydney Salons",
@@ -1647,7 +1647,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce037,
     author: "Jena Pinn",
     content: {
-      introduction: "Juuce and Pure are two of the most popular professional brands we stock at Hair Pinns. Clients ask me every week which one they should buy. The honest answer: it depends on what your hair actually needs. Here's the side-by-side breakdown — no sponsorship, no brand loyalty, just what I've seen in ten years of recommending these to clients.",
+      introduction: "Juuce and Pure are two of the most popular professional brands we stock at Hair Pinns. Clients ask me every week which one they should buy. The honest answer: it depends on what your hair actually needs. Here's the side-by-side breakdown — no sponsorship, no brand loyalty, just what [I've seen in ten years of recommending these to clients](/blog/meet-jena-15-years-sutherland-shire).",
       sections: [
         {
           heading: "The Quick Verdict",
@@ -1714,7 +1714,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce050,
     author: "Jena Pinn",
     content: {
-      introduction: "If you spend $300+ on colour every 8 weeks, your shampoo is the single biggest factor in whether that investment lasts. I've seen beautiful balayage fade to brass in 3 weeks because of the wrong shampoo — and I've seen $25 colour jobs hold up for months with the right routine. Here's what actually works in the Australian climate and water, based on what my colour clients use.",
+      introduction: "If you spend $300+ on colour every 8 weeks, your shampoo is the single biggest factor in whether that investment lasts. I've seen beautiful balayage fade to brass in 3 weeks because of the wrong shampoo — and I've seen $25 colour jobs hold up for months with the right routine. Here's what actually works in the Australian climate and water, based on what [my colour clients](/blog/meet-jena-15-years-sutherland-shire) use.",
       sections: [
         {
           heading: "The #1 Rule: Sulfate-Free, Non-Negotiable",
@@ -1781,7 +1781,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce038,
     author: "Jena Pinn",
     content: {
-      introduction: "'Sulfate-free' is the most misused label in shampoo marketing. A lot of products claim it while still containing harsh cleansing agents. Here's what sulfate-free actually means, why it matters for certain hair types, and the real sulfate-free options I stock at Hair Pinns and recommend to clients across Australia.",
+      introduction: "'Sulfate-free' is the most misused label in shampoo marketing. A lot of products claim it while still containing harsh cleansing agents. Here's what sulfate-free actually means, why it matters for certain hair types, and the real sulfate-free options [I stock at Hair Pinns](/blog/meet-jena-15-years-sutherland-shire) and recommend to clients across Australia.",
       sections: [
         {
           heading: "What Are Sulfates, Really?",
@@ -1844,7 +1844,7 @@ export const blogPosts: BlogPost[] = [
     image: accessories016,
     author: "Jena Pinn",
     content: {
-      introduction: "Wet Brush and Tangle Teezer are the two most-asked-about detangling brushes I hear about from clients. Both promise gentler detangling, less breakage, better hair days. Only one of them actually delivers on all three, in my experience. Here's the direct comparison — no affiliate, no sponsorship.",
+      introduction: "Wet Brush and Tangle Teezer are the two most-asked-about detangling brushes I hear about from clients. Both promise gentler detangling, less breakage, better hair days. Only one of them actually delivers on all three, [in my experience](/blog/meet-jena-15-years-sutherland-shire). Here's the direct comparison — no affiliate, no sponsorship.",
       sections: [
         {
           heading: "The Short Answer",
@@ -1982,7 +1982,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce118,
     author: "Jena Pinn",
     content: {
-      introduction: "How often you wash your hair is one of the top questions I get asked in the salon. The honest answer depends on your hair type, scalp, and routine — not a universal rule. Here's a direct breakdown so you can figure out what's right for you.",
+      introduction: "How often you wash your hair is one of the top questions [I get asked in the salon](/blog/meet-jena-15-years-sutherland-shire). The honest answer depends on your hair type, scalp, and routine — not a universal rule. Here's a direct breakdown so you can figure out what's right for you.",
       sections: [
         {
           heading: "The Short Answer by Hair Type",
