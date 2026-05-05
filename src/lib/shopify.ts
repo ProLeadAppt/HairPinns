@@ -78,6 +78,7 @@ export async function getProductByHandle(handle: string) {
             amount
             currencyCode
           }
+        }
         images(first: 50) {
           edges {
             node {
