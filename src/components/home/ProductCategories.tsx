@@ -120,11 +120,7 @@ const ProductCategories = () => {
                 <h3 className="text-2xl font-heading font-bold text-white mb-2">
                   {collection.title}
                 </h3>
-                {collection.productCount > 0 && (
-                  <p className="text-sm text-white/80">
-                    {collection.productCount} {collection.productCount === 1 ? 'product' : 'products'}
-                  </p>
-                )}
+
               </div>
             </div>
           </Link>

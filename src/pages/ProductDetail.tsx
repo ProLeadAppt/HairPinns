@@ -152,7 +152,7 @@ const ProductDetail = () => {
       const variantImage = matchingVariant.node.image;
       if (variantImage && product.images?.edges) {
         const imageIndex = product.images.edges.findIndex(
-          (edge: any) => edge.node.url === variantImage.url
+          (edge: any) => edge.node.id === variantImage.id || edge.node.url === variantImage.url
         );
         if (imageIndex !== -1) {
           setCurrentImage(imageIndex);

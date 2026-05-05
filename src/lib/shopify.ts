@@ -78,8 +78,7 @@ export async function getProductByHandle(handle: string) {
             amount
             currencyCode
           }
-        }
-        images(first: 10) {
+        images(first: 50) {
           edges {
             node {
               id
@@ -107,6 +106,10 @@ export async function getProductByHandle(handle: string) {
               selectedOptions {
                 name
                 value
+              }
+              image {
+                id
+                url
               }
             }
           }
