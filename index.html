@@ -44,32 +44,16 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- LeadConnector chat widget — deferred so it never runs during
-         prerender (Puppeteer would otherwise let it hijack <head>/<html>
-         and strip our SEO tags). Loads after first user interaction OR
-         2s after DOMContentLoaded in real browsers; stays silent under
-         the prerender UA. -->
+    <!-- LeadConnector chat widget (Loads immediately, skips during prerender to prevent build hangs) -->
     <script>
       (function () {
         var ua = navigator.userAgent || '';
         if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
-        var loaded = false;
-        function load() {
-          if (loaded) return; loaded = true;
-          var s = document.createElement('script');
-          s.src = 'https://beta.leadconnectorhq.com/loader.js';
-          s.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
-          s.setAttribute('data-widget-id', '69faa5663cc757c354898554');
-          document.body.appendChild(s);
-        }
-        ['mousemove','touchstart','scroll','keydown'].forEach(function (e) {
-          window.addEventListener(e, load, { once: true, passive: true });
-        });
-        if (document.readyState === 'complete') {
-          setTimeout(load, 2000);
-        } else {
-          window.addEventListener('load', function () { setTimeout(load, 2000); });
-        }
+        var s = document.createElement('script');
+        s.src = 'https://beta.leadconnectorhq.com/loader.js';
+        s.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+        s.setAttribute('data-widget-id', '69faa5663cc757c354898554');
+        document.body.appendChild(s);
       })();
     </script>
   </body>
