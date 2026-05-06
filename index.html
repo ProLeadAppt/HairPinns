@@ -44,17 +44,6 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- LeadConnector chat widget (Loads immediately, skips during prerender to prevent build hangs) -->
-    <script>
-      (function () {
-        var ua = navigator.userAgent || '';
-        if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
-        var s = document.createElement('script');
-        s.src = 'https://beta.leadconnectorhq.com/loader.js';
-        s.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
-        s.setAttribute('data-widget-id', '69faa5663cc757c354898554');
-        document.body.appendChild(s);
-      })();
-    </script>
+
   </body>
 </html>

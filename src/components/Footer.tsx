@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { useState, FormEvent } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
@@ -14,6 +14,22 @@ const Footer = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Inject LeadConnector chat widget
+  useEffect(() => {
+    const ua = navigator.userAgent || '';
+    if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
+    
+    // Check if script already exists to prevent duplicates on re-renders
+    if (document.getElementById('leadconnector-widget')) return;
+
+    const script = document.createElement('script');
+    script.id = 'leadconnector-widget';
+    script.src = 'https://beta.leadconnectorhq.com/loader.js';
+    script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+    script.setAttribute('data-widget-id', '69faa5663cc757c354898554');
+    document.body.appendChild(script);
+  }, []);
 
   const handleNewsletterSubmit = async (e: FormEvent) => {
     e.preventDefault();
