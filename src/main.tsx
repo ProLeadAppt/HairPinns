@@ -3,11 +3,21 @@ import App from "./App.tsx";
 import "./index.css";
 import "./lib/shopifySanityCheck";
 
-// Register service worker for PWA support
+// Unregister any leftover service worker from a previous deploy.
+//
+// We used to ship a cache-first SW, but it served stale JS chunks across
+// deploys (chunk hashes change → users got 404s on the old chunk names
+// → site broke). public/sw.js is now a kill-switch that wipes its cache
+// and unregisters itself. We also nuke any registration here in case a
+// browser somehow held on to the old one without picking up the new SW.
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
-  });
+  navigator.serviceWorker.getRegistrations().then((regs) => {
+    regs.forEach((r) => r.unregister().catch(() => {}));
+  }).catch(() => {});
+  // Also clear any caches the old SW left behind.
+  if ('caches' in window) {
+    caches.keys().then((keys) => keys.forEach((k) => caches.delete(k))).catch(() => {});
+  }
 }
 
 // Error boundary for React render
