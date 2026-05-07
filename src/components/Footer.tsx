@@ -19,7 +19,7 @@ const Footer = () => {
   useEffect(() => {
     const ua = navigator.userAgent || '';
     if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
-    
+
     // Check if script already exists to prevent duplicates on re-renders
     if (document.getElementById('leadconnector-widget')) return;
 
@@ -29,6 +29,63 @@ const Footer = () => {
     script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
     script.setAttribute('data-widget-id', '69faa5663cc757c354898554');
     document.body.appendChild(script);
+  }, []);
+
+  // Force-refresh chat messages while the chat panel is open.
+  //
+  // Background: the LeadConnector chat widget has socket.io realtime code
+  // built in (path /sockets-live-chat/socket.io) but the widget config from
+  // GHL doesn't enable it (`socketConnected` flag is undefined/false), so
+  // agent replies don't push to the open browser. Visitors only see new
+  // replies on page reload or after sending another message.
+  //
+  // Workaround until GHL enables sockets server-side: while the chat panel
+  // is open, dispatch a `visibilitychange` event every 5s. The widget bundle
+  // listens for this event and refetches the conversation, so agent replies
+  // appear within 5s of being sent.
+  //
+  // This is a polite poll — only runs when the panel is actually open, so
+  // it doesn't waste cycles or hit the API while the user isn't engaged.
+  useEffect(() => {
+    const ua = navigator.userAgent || '';
+    if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
+
+    const POLL_MS = 5000;
+    let intervalId: number | undefined;
+
+    const isChatOpen = (): boolean => {
+      const widget = document.querySelector('chat-widget');
+      if (!widget?.shadowRoot) return false;
+      // The expanded chat panel mounts a wrapper with a known stencil class.
+      // Multiple selectors used because the class names vary across widget versions.
+      const panel = widget.shadowRoot.querySelector(
+        '[class*="chat-window"]:not([class*="hidden"]), ' +
+        '[class*="chat-container"]:not([style*="display: none"]), ' +
+        '[class*="lc_text-widget--expanded"], ' +
+        '[class*="open"][class*="chat"]'
+      );
+      return !!panel;
+    };
+
+    const tick = () => {
+      if (!isChatOpen()) return;
+      // Fire the visibilitychange event the widget listens for.
+      try {
+        document.dispatchEvent(new Event('visibilitychange'));
+      } catch {
+        /* swallow — never break the page */
+      }
+    };
+
+    // Wait for the widget to mount before starting the poll.
+    const startTimer = window.setTimeout(() => {
+      intervalId = window.setInterval(tick, POLL_MS);
+    }, 8000);
+
+    return () => {
+      clearTimeout(startTimer);
+      if (intervalId !== undefined) clearInterval(intervalId);
+    };
   }, []);
 
   const handleNewsletterSubmit = async (e: FormEvent) => {
