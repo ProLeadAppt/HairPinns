@@ -34,11 +34,19 @@ self.addEventListener('activate', (event) => {
     //    the SW at all.
     await self.registration.unregister();
 
-    // 4. Force a reload on every controlled tab so they stop using the
-    //    stale assets they got from the old SW's cache.
+    // 4. Force a hard reload on every controlled tab so they bypass HTTP
+    //    cache (not just the SW cache). client.navigate() doesn't bypass
+    //    HTTP cache; postMessage tells the page to do `location.reload(true)`
+    //    style behaviour by reassigning location.href with a cache-buster.
     const allClients = await self.clients.matchAll({ type: 'window' });
-    allClients.forEach((client) => client.navigate(client.url));
+    allClients.forEach((client) => {
+      client.postMessage({ type: 'sw-killswitch-reload' });
+    });
   })());
 });
 
-// No fetch handler — the browser goes directly to the network.
+// Pass-through fetch handler so we don't accidentally intercept anything
+// while we're still controlling pages waiting to reload.
+self.addEventListener('fetch', () => {
+  // intentionally empty — let the network handle it
+});
