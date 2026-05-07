@@ -248,7 +248,7 @@ const Footer = () => {
               <p>
                 This website was built by{" "}
                 <a 
-                  href="https://www.munyal.com.au" 
+                  href="https://munyal.com.au"
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors underline"
