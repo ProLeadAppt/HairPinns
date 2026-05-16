@@ -15,7 +15,12 @@ const BookingBanner = () => {
             <p className="text-white/80 mb-6 max-w-md">
               Pick your service, pick your time. Takes 2 minutes.
             </p>
-            <Button asChild size="lg" className="bg-white text-brand-600 hover:bg-white/90 font-semibold" style={{ borderRadius: '999px' }}>
+            <Button
+              asChild
+              size="lg"
+              className="bg-white !text-brand-600 hover:bg-white hover:!text-brand-700 hover:scale-[1.02] active:scale-[0.99] font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              style={{ borderRadius: '999px' }}
+            >
               <a
                 href={BOOK_URL}
                 target="_blank"
