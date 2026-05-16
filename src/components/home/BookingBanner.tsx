@@ -12,7 +12,7 @@ const BookingBanner = () => {
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
               Ready to book?
             </h2>
-            <p className="text-white/80 mb-6 max-w-md">
+            <p className="text-white/95 mb-6 max-w-md">
               Pick your service, pick your time. Takes 2 minutes.
             </p>
             <Button
@@ -35,7 +35,7 @@ const BookingBanner = () => {
           </div>
 
           {/* Right: Quick details */}
-          <div className="text-white/70 text-sm space-y-1 md:text-right">
+          <div className="text-white/90 text-sm space-y-1 md:text-right">
             <p>60 Goorgool Rd, Bangor NSW</p>
             <p>0468 093 991</p>
             <p>Tue–Sat · Walk-ins welcome</p>

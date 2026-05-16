@@ -52,7 +52,7 @@ const Booking = () => {
         ]}
       />
       <Header />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         {/* Hero */}
         <section className="bg-accent py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

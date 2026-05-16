@@ -15,20 +15,49 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Inject LeadConnector chat widget
+  // Inject LeadConnector chat widget — but as a facade. The real loader.js (plus
+  // its socket.io + Ionic web-components payload, hundreds of KB) only runs once
+  // the user has shown intent: a meaningful scroll, the first pointer/key event,
+  // OR after 8 s of idle, whichever comes first. Skipped during prerender so
+  // the build step doesn't fetch the widget.
   useEffect(() => {
     const ua = navigator.userAgent || '';
     if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
-
-    // Check if script already exists to prevent duplicates on re-renders
     if (document.getElementById('leadconnector-widget')) return;
 
-    const script = document.createElement('script');
-    script.id = 'leadconnector-widget';
-    script.src = 'https://beta.leadconnectorhq.com/loader.js';
-    script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
-    script.setAttribute('data-widget-id', '69faa5663cc757c354898554');
-    document.body.appendChild(script);
+    let loaded = false;
+    const load = () => {
+      if (loaded || document.getElementById('leadconnector-widget')) return;
+      loaded = true;
+      const script = document.createElement('script');
+      script.id = 'leadconnector-widget';
+      script.src = 'https://beta.leadconnectorhq.com/loader.js';
+      script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+      script.setAttribute('data-widget-id', '69faa5663cc757c354898554');
+      document.body.appendChild(script);
+      cleanup();
+    };
+
+    const onScroll = () => {
+      if (window.scrollY > 200) load();
+    };
+
+    const cleanup = () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('pointerdown', load);
+      window.removeEventListener('keydown', load);
+      window.removeEventListener('touchstart', load);
+      if (idleTimer) window.clearTimeout(idleTimer);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('pointerdown', load, { once: true });
+    window.addEventListener('keydown', load, { once: true });
+    window.addEventListener('touchstart', load, { once: true, passive: true });
+
+    const idleTimer = window.setTimeout(load, 8000);
+
+    return cleanup;
   }, []);
 
   // Note on chat realtime: the LeadConnector chat widget ships with socket.io
@@ -117,36 +146,38 @@ const Footer = () => {
                 href="https://www.instagram.com/hair.pinns/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
-                aria-label="Follow us on Instagram"
+                className="w-11 h-11 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
+                aria-label="Follow Hair Pinns on Instagram"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="https://www.facebook.com/Hair.Pinns"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
-                aria-label="Follow us on Facebook"
+                className="w-11 h-11 rounded-full bg-brand-500/10 flex items-center justify-center hover:bg-brand-500 hover:text-primary-foreground transition-all duration-base"
+                aria-label="Follow Hair Pinns on Facebook"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-5 h-5" />
               </a>
             </div>
 
             {/* Newsletter inline */}
             <div className="bg-accent/20 rounded-xl p-4 max-w-md">
-              <p className="text-sm font-semibold text-heading mb-2">
+              <label htmlFor="footer-newsletter-email" className="block text-sm font-semibold text-heading mb-2">
                 Get 10% off your first order
-              </p>
+              </label>
               <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
                 <Input
+                  id="footer-newsletter-email"
                   type="email"
                   placeholder="Your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isSubmitting}
                   className="h-10 text-sm flex-1"
-                  aria-label="Email address for newsletter"
+                  aria-label="Email address for 10% off newsletter signup"
+                  autoComplete="email"
                 />
                 <Button
                   type="submit"

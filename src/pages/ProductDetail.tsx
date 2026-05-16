@@ -496,7 +496,7 @@ const ProductDetail = () => {
       {/* Exit Intent Modal */}
       {/* ExitIntentModal removed */}
       
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         {/* Breadcrumbs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
           <Breadcrumbs 

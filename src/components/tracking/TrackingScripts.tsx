@@ -6,8 +6,10 @@ import { Helmet } from "react-helmet";
  * IDs loaded from environment variables for production
  */
 
-// Load from environment variables - set in Netlify or .env file
-const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID || "";
+// Load from environment variables - set in Netlify or .env file. The GA4
+// fallback matches the previous index.html hard-coded ID so this remains the
+// single source of truth even if the env var isn't configured.
+const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID || "G-N6Y1TJMWGG";
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || "";
 const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID || "wdl274809i";
 
@@ -65,19 +67,27 @@ const TrackingScripts = () => {
         </>
       )}
 
-      {/* Microsoft Clarity — skips during prerender/headless so the build
-          step doesn't record fake sessions */}
+      {/* Microsoft Clarity — skips during prerender/headless, and waits for the
+          browser to be idle (or 3s, whichever first) so it doesn't compete with
+          LCP, hydration, or any user interaction on first paint. */}
       {CLARITY_PROJECT_ID && (
         <script>
           {`
             (function(){
               var ua=navigator.userAgent||"";
               if(ua.indexOf("HeadlessChrome")!==-1||ua.indexOf("HairPinnsPrerender")!==-1)return;
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
+              var load=function(){
+                (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
+              };
+              if("requestIdleCallback" in window){
+                window.requestIdleCallback(load,{timeout:3000});
+              } else {
+                setTimeout(load,3000);
+              }
             })();
           `}
         </script>

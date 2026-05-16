@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import ProductModule from "@/components/blog/ProductModule";
@@ -33,6 +34,10 @@ import {
 const BlogPost = () => {
   const { slug } = useParams();
   const post = slug ? blogPosts.find(p => p.slug === slug) : undefined;
+  // Wire the IntersectionObserver that flips `.reveal` → `.reveal.visible`.
+  // Without this, every `<div className="reveal">` in this template renders
+  // at opacity:0 and never appears — silently hiding every blog body section.
+  const revealRef = useScrollReveal();
 
   if (!post) {
     return <Navigate to="/404" replace />;
@@ -144,7 +149,7 @@ const BlogPost = () => {
       <ProgressBar />
       <Header />
       
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1} ref={revealRef as any}>
         {/* Hero Section - Overlay Style */}
         <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden">
           <img

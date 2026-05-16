@@ -66,7 +66,7 @@ const Blog = () => {
         </div>
       </div>
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-brand-500 via-[#773E77] to-[#5D2C5D] py-20 lg:py-28">
           <div className="absolute inset-0 opacity-10">

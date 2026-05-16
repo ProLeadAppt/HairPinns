@@ -89,7 +89,7 @@ const RelatedContent = ({
           {heading}
         </h2>
         {topicNames && (
-          <p className="text-sm text-muted mb-6">More on {topicNames}</p>
+          <p className="text-sm text-muted-foreground mb-6">More on {topicNames}</p>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -105,7 +105,7 @@ const RelatedContent = ({
               <h3 className="mt-2 text-base font-semibold text-foreground group-hover:text-brand-500 transition-colors">
                 {post.title}
               </h3>
-              <p className="mt-1 text-sm text-muted line-clamp-2">{post.excerpt}</p>
+              <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>
             </Link>
           ))}
 
@@ -119,9 +119,9 @@ const RelatedContent = ({
                 Service
               </span>
               <h3 className="mt-2 text-base font-semibold text-foreground group-hover:text-brand-500 transition-colors">
-                {service.name}
+                {service.title}
               </h3>
-              <p className="mt-1 text-sm text-muted">{category.name}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{category.title}</p>
             </Link>
           ))}
 
@@ -137,7 +137,7 @@ const RelatedContent = ({
               <h3 className="mt-2 text-base font-semibold text-foreground group-hover:text-brand-500 transition-colors capitalize">
                 {slug.replace(/-/g, " ")}
               </h3>
-              <p className="mt-1 text-sm text-muted">Browse the collection</p>
+              <p className="mt-1 text-sm text-muted-foreground">Browse the collection</p>
             </Link>
           ))}
         </div>

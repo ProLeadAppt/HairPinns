@@ -194,7 +194,7 @@ const SuburbPage = () => {
       <div className="min-h-screen flex flex-col">
         <Header />
         
-        <main id="main-content" className="flex-grow">
+        <main id="main-content" tabIndex={-1} className="flex-grow">
           {/* Breadcrumbs */}
           <div className="bg-background border-b border-border">
             <div className="container-custom py-4">

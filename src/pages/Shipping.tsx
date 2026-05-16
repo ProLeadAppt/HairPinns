@@ -32,7 +32,7 @@ const Shipping = () => {
       />
       <Header />
       
-      <main id="main-content" className="flex-grow">
+      <main id="main-content" tabIndex={-1} className="flex-grow">
         <Section className="pt-xl">
           <SectionHeader as="h1" title="Shipping Policy" />
           <div className="max-w-3xl mx-auto prose prose-lg">

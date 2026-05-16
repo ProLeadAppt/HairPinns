@@ -71,7 +71,7 @@ const FAQPage = () => {
         </div>
       </div>
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         {/* Hero */}
         <section className="bg-gradient-to-b from-accent/30 to-background py-16 md:py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -29,21 +29,25 @@ const Header = () => {
   const promoLink = isStocktakeActive() ? "/collections" : QIQI_DISCOUNT_ACTIVE ? `/collections/${PROMO_COLLECTIONS.qiqi}` : "/collections";
 
   return <>
-      {/* Top Promo Strip */}
-      {showPromo && <Link to={promoLink} className="block bg-brand-500 text-primary-foreground py-2 px-4 text-center text-sm relative hover:bg-brand-600 transition-colors duration-fast">
-          <p className="font-medium">{isStocktakeActive() ? "✨ " : ""}{promoMessage}</p>
-          <button 
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setShowPromo(false);
-            }} 
-            className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-80" 
-            aria-label="Close promo banner"
+      {/* Top Promo Strip — link and close button are siblings so we don't ship invalid nested-interactive HTML. */}
+      {showPromo && (
+        <div className="bg-brand-500 text-primary-foreground relative">
+          <Link
+            to={promoLink}
+            className="block py-2 px-4 pr-12 text-center text-sm hover:bg-brand-600 transition-colors duration-fast"
+          >
+            <p className="font-medium">{isStocktakeActive() ? "✨ " : ""}{promoMessage}</p>
+          </Link>
+          <button
+            type="button"
+            onClick={() => setShowPromo(false)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded hover:bg-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Dismiss promo banner"
           >
             <X className="w-4 h-4" />
           </button>
-        </Link>}
+        </div>
+      )}
 
       {/* Main Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border h-16">
@@ -86,11 +90,17 @@ const Header = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-              <Button variant="ghost" size="sm" onClick={openCart} aria-label="View cart" className="relative">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={openCart}
+                aria-label={itemCount > 0 ? `View cart, ${itemCount} item${itemCount === 1 ? "" : "s"}` : "View cart"}
+                className="relative"
+              >
                 <ShoppingCart className="w-4 h-4" />
                 Cart
                 {itemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-brand-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  <span aria-hidden="true" className="absolute -top-1 -right-1 w-4 h-4 bg-brand-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                     {itemCount}
                   </span>
                 )}

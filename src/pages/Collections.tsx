@@ -203,7 +203,7 @@ const Collections = () => {
         </div>
       </div>
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-accent/40 via-background to-accent/30 py-20 md:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.15),transparent_50%)]" />

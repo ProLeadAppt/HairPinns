@@ -188,7 +188,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <main id="main-content" className="flex-grow">
+      <main id="main-content" tabIndex={-1} className="flex-grow">
         {/* Hero Section */}
         <Section className="pt-xl pb-lg">
           <SectionHeader as="h1" title="Visit Hair Pinns Bangor" subtitle="Easy parking, friendly welcome, honest service." />

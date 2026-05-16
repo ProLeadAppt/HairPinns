@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+/* Fonts are loaded via <link> in index.html — do not re-import here, the @import is render-blocking and duplicates the request. */
 
 @tailwind base;
 @tailwind components;
@@ -161,6 +161,15 @@ a:focus-visible:not(.skip-link) {
   border-radius: 2px;
 }
 
+/* Skip-link target: tabIndex={-1} lets us programmatically focus the <main>,
+   but we don't want a visible outline ring after the keyboard user activates
+   the skip link — focus is moving them into content, not onto an interactive
+   element. */
+main#main-content:focus,
+main#main-content:focus-visible {
+  outline: none;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -303,11 +312,34 @@ a:focus-visible:not(.skip-link) {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  /* Failsafe: if useScrollReveal isn't wired on a page (or JS fails / a
+     crawler doesn't run JS / prerender misses it), force the element
+     visible after 1s so content NEVER gets permanently hidden.
+     `.reveal.visible` overrides this with its own static opacity:1. */
+  animation: revealFallback 0.6s ease-out 1s forwards;
+}
+
+@keyframes revealFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  animation: none;
+}
+
+/* Honour reduced-motion: skip the animation and show content immediately. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
 }
 
 /* Stagger children: apply .reveal-stagger to parent */

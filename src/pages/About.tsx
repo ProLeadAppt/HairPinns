@@ -123,7 +123,7 @@ const About = () => {
         </div>
       </div>
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         {/* Hero with Jena's Photo */}
         <section className="py-16 md:py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

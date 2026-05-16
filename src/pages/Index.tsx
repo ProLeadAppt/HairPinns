@@ -124,7 +124,7 @@ const Index = () => {
       />
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
-      <main id="main-content" ref={mainRef as any}>
+      <main id="main-content" tabIndex={-1} ref={mainRef as any}>
         {/* 1. Hero */}
         <HeroHome />
 
