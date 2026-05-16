@@ -11,7 +11,7 @@ import StickyBooking from "@/components/conversion/StickyBooking";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ReviewStrip from "@/components/reviews/ReviewStrip";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
-import { generateServiceSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateHowToSchema, generateWebPageSchema } from "@/lib/schema";
+import { generateEnhancedServiceSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateHowToSchema, generateWebPageSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { serviceDetailData } from "@/data/serviceDetails";
@@ -42,10 +42,15 @@ const ServiceDetail = () => {
     url: item.href ? `https://hairpinns.com${item.href}` : `https://hairpinns.com/services/${categorySlug}/${serviceSlug}`
   })));
 
-  const serviceSchema = generateServiceSchema({
+  // Parse "A$ 324" or "$324" → "324" for schema. Currency comes from data.
+  const numericPrice = serviceData.price?.replace(/[^\d.]/g, '') || undefined;
+
+  const serviceSchema = generateEnhancedServiceSchema({
     name: serviceData.title,
     description: serviceData.description,
-    url: `https://hairpinns.com/services/${categorySlug}/${serviceSlug}`
+    url: `https://hairpinns.com/services/${categorySlug}/${serviceSlug}`,
+    ...(numericPrice && { price: numericPrice, priceCurrency: 'AUD' }),
+    ...(serviceData.duration && { duration: serviceData.duration }),
   });
 
   const faqSchema = serviceData.faqs?.length

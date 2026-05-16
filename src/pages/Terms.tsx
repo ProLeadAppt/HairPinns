@@ -19,7 +19,7 @@ const Terms = () => {
       
       <main className="flex-grow">
         <Section className="pt-xl">
-          <SectionHeader title="Terms of Service" />
+          <SectionHeader as="h1" title="Terms of Service" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-muted-foreground mb-8">Last updated: March 2026</p>
 

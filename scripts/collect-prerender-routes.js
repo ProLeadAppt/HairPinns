@@ -6,6 +6,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { SERVICE_ROUTES } from './service-routes.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -85,24 +86,7 @@ export async function collectRoutes() {
   const blogSlugs = [...new Set(extractBlogSlugs(resolve(root, 'src/data/blogPosts.ts')))];
   blogSlugs.forEach((slug) => routes.push(`/blog/${slug}`));
 
-  const services = [
-    ['smoothing', 'mid-length-straight-up-smoothing'],
-    ['smoothing', 'long-thick-straight-up-smoothing'],
-    ['smoothing', 'straight-up-smoothing-teens'],
-    ['foil-packages', 'full-head-foils-package'],
-    ['foil-packages', 'half-head-foils-cut-blowdry'],
-    ['foil-packages', 'quarter-head-foils-cut-blowdry'],
-    ['colouring-packages', 'long-hair-colour-package'],
-    ['colouring-packages', 'mid-length-colour-package'],
-    ['colouring-packages', 'short-hair-colour-package'],
-    ['cut-packages', 'long-hair-wash-cut-blowdry'],
-    ['cut-packages', 'mid-length-wash-cut-blowdry'],
-    ['cut-packages', 'short-wash-cut-blowdry'],
-    ['cut-packages', 'kids-cut-blowdry-bundle'],
-    ['kids-formal', 'primary-formal-hairstyle'],
-    ['kids-formal', 'high-school-formal-hairstyle'],
-  ];
-  services.forEach(([cat, svc]) => routes.push(`/services/${cat}/${svc}`));
+  SERVICE_ROUTES.forEach(([cat, svc]) => routes.push(`/services/${cat}/${svc}`));
 
   let collectionHandles = await fetchShopifyHandles('collections');
   if (collectionHandles.length === 0) {

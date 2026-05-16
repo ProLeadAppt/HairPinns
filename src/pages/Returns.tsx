@@ -32,7 +32,7 @@ const Returns = () => {
       
       <main id="main-content" className="flex-grow">
         <Section className="pt-xl">
-          <SectionHeader title="Returns & Exchanges" />
+          <SectionHeader as="h1" title="Returns & Exchanges" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-foreground leading-relaxed mb-6">
               Not happy with your purchase? We'll sort it out. Here's how returns work.

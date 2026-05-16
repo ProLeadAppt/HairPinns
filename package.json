@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-sitemap.js && npx puppeteer browsers install chrome && vite build && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
+    "build": "node scripts/generate-sitemap.js && npx puppeteer browsers install chrome && vite build && (node scripts/seo-smoke-test.js || echo 'SEO smoke-test reported issues — non-blocking') && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "submit-indexnow": "node scripts/submit-indexnow.js",
+    "seo-smoke": "node scripts/seo-smoke-test.js",
     "refresh-reviews": "node scripts/refresh-google-reviews.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

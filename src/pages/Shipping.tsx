@@ -34,7 +34,7 @@ const Shipping = () => {
       
       <main id="main-content" className="flex-grow">
         <Section className="pt-xl">
-          <SectionHeader title="Shipping Policy" />
+          <SectionHeader as="h1" title="Shipping Policy" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-foreground leading-relaxed mb-6">
               At Hair Pinns, we get your hair care products to you 

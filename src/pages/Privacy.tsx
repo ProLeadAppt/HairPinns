@@ -19,7 +19,7 @@ const Privacy = () => {
       
       <main className="flex-grow">
         <Section className="pt-xl">
-          <SectionHeader title="Privacy Policy" />
+          <SectionHeader as="h1" title="Privacy Policy" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-muted-foreground mb-8">Last updated: March 2026</p>
 

@@ -7,6 +7,11 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-mo
 import confetti from "canvas-confetti";
 import { soundEffects } from "@/lib/soundEffects";
 import { haptics } from "@/lib/haptics";
+import {
+  generateEnhancedLocalBusinessSchema,
+  generateBreadcrumbSchema,
+  generateWebPageSchema,
+} from "@/lib/schema";
 
 const sentimentLabels = ['Poor', 'Fair', 'Good', 'Great', 'Excellent'];
 
@@ -93,12 +98,32 @@ const Reviews = () => {
     }, 600);
   };
 
+  // LocalBusiness schema already includes aggregateRating (4.9/53) and the
+  // top 5 Google reviews — gives crawlers + AI overviews ratings context
+  // for "is Hair Pinns Bangor any good" queries even though this page is
+  // primarily a feedback-collection form.
+  const localBusinessSchema = generateEnhancedLocalBusinessSchema(
+    "https://hairpinns.com/reviews"
+  );
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://hairpinns.com" },
+    { name: "Reviews", url: "https://hairpinns.com/reviews" },
+  ]);
+  const webPageSchema = generateWebPageSchema({
+    name: "Hair Pinns Reviews | Bangor NSW Hair Salon",
+    description:
+      "Hair Pinns Bangor — 4.9 stars from 53+ verified Google reviews. Share your own experience or read what real clients say about Jena's salon.",
+    url: "https://hairpinns.com/reviews",
+  });
+  const schemas = [localBusinessSchema, breadcrumbSchema, webPageSchema];
+
   return (
     <>
       <SEOHead
         title="Share Your Experience | Hair Pinns"
         description="How was your experience with Hair Pinns? Share your feedback to help us improve."
-        canonical="/reviews"
+        canonical="https://hairpinns.com/reviews"
+        schemaJson={schemas}
       />
 
       <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12 relative overflow-hidden">

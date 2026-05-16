@@ -5,13 +5,16 @@ interface SectionHeaderProps {
   subtitle?: string;
   align?: "left" | "center" | "right";
   className?: string;
+  /** Heading level. Use "h1" for the top-of-page hero on policy/contact pages. Defaults to "h2". */
+  as?: "h1" | "h2";
 }
 
-const SectionHeader = ({ 
-  title, 
-  subtitle, 
+const SectionHeader = ({
+  title,
+  subtitle,
   align = "center",
-  className 
+  className,
+  as = "h2",
 }: SectionHeaderProps) => {
   const alignClasses = {
     left: "text-left",
@@ -19,15 +22,17 @@ const SectionHeader = ({
     right: "text-right"
   };
 
+  const HeadingTag = as;
+
   return (
     <div className={cn(
       alignClasses[align],
       "mb-12",
       className
     )}>
-      <h2 className="text-h2-lg font-heading text-heading mb-4">
+      <HeadingTag className="text-h2-lg font-heading text-heading mb-4">
         {title}
-      </h2>
+      </HeadingTag>
       {subtitle && (
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {subtitle}

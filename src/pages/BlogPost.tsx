@@ -65,7 +65,10 @@ const BlogPost = () => {
     url: `https://hairpinns.com/blog/${post.slug}`,
     wordCount: wordCount,
     speakable: {
-      cssSelector: [".quick-answer", "h2", "h3"],
+      // `.post-intro` is the lede paragraph (always present); .quick-answer is
+      // present on posts with a featured-snippet block. h2/h3 give voice
+      // assistants a fallback when the body has structure but no intro paragraph.
+      cssSelector: [".post-intro", ".quick-answer", "h2", "h3"],
     },
   });
 
@@ -79,7 +82,11 @@ const BlogPost = () => {
       })
     : null;
 
-  const blogFaqs = [
+  // Generic fallback FAQs shown visibly on posts that don't yet have their own
+  // faqSection. NOT emitted as schema — duplicate FAQPage JSON-LD across 57
+  // posts would trigger Google's spam heuristics. Backfill `faqSection` on
+  // individual posts to get per-post FAQ rich results.
+  const defaultBlogFaqs = [
     {
       question: "What's the best treatment for frizz in humid Sydney weather?",
       answer: "A keratin-free smoothing treatment paired with a humidity-resistant leave-in works best for Sydney's changeable climate. Start with a gentle, sulphate-free wash, add a protein-balanced mask weekly, then seal with a heat-activated protectant before blow-drying."
@@ -94,13 +101,19 @@ const BlogPost = () => {
     },
   ];
 
+  const visibleFaqs = post.content.faqSection ?? defaultBlogFaqs;
+
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: 'https://hairpinns.com' },
     { name: 'Blog', url: 'https://hairpinns.com/blog' },
     { name: post.title, url: `https://hairpinns.com/blog/${post.slug}` },
   ]);
 
-  const faqSchema = generateFAQPageSchema(blogFaqs);
+  // Only emit FAQPage schema when the post has its OWN per-post FAQs. Emitting
+  // the same generic FAQPage on every post would be flagged as duplicate content.
+  const faqSchema = post.content.faqSection
+    ? generateFAQPageSchema(post.content.faqSection)
+    : null;
   const currentUrl = `https://hairpinns.com/blog/${post.slug}`;
 
   const personSchema =
@@ -110,8 +123,8 @@ const BlogPost = () => {
     organizationSchema,
     blogPostSchema,
     breadcrumbSchema,
-    faqSchema,
     articleSchema,
+    ...(faqSchema ? [faqSchema] : []),
     ...(qaSchema ? [qaSchema] : []),
     ...(personSchema ? [personSchema] : []),
   ];
@@ -197,7 +210,7 @@ const BlogPost = () => {
           )}
 
           {/* Introduction with drop cap effect */}
-          <p className="text-xl leading-relaxed text-text mb-8 first-letter:text-5xl first-letter:font-heading first-letter:font-bold first-letter:text-brand-500 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+          <p className="post-intro text-xl leading-relaxed text-text mb-8 first-letter:text-5xl first-letter:font-heading first-letter:font-bold first-letter:text-brand-500 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
             {renderInlineLinks(post.content.introduction)}
           </p>
 
@@ -257,7 +270,7 @@ const BlogPost = () => {
               Frequently Asked Questions
             </h2>
             <div className="space-y-6">
-              {blogFaqs.map((faq, index) => (
+              {visibleFaqs.map((faq, index) => (
                 <div key={index} className="bg-accent/5 rounded-card p-6 border border-accent/20">
                   <h3 className="font-heading font-semibold text-xl text-heading mb-3">
                     {faq.question}

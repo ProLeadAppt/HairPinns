@@ -42,6 +42,13 @@ export interface BlogPost {
       answer: string;
     };
     keyTakeaways?: string[];
+    // Optional structured FAQ block — when present, emits FAQPage JSON-LD
+    // on the post so Google can show a rich-result accordion and AI overviews
+    // can cite individual Q&As. Backfill 5-12 high-traffic posts first.
+    faqSection?: Array<{
+      question: string;
+      answer: string;
+    }>;
   };
   cta?: {
     type: "call-sam" | "chat-isabella" | "service" | "product" | "booking";

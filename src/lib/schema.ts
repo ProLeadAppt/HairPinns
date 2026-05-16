@@ -1117,6 +1117,49 @@ export const generateBlogItemListSchema = (items: Array<{
 });
 
 /**
+ * ItemList schema for the /services index page.
+ * Groups every bookable service so search engines + AI overviews understand
+ * the full menu and can surface sitelinks/structured answers to
+ * "what services does Hair Pinns offer" and "how much does X cost".
+ */
+export const generateServiceItemListSchema = (items: Array<{
+  name: string;
+  url: string;
+  description?: string;
+  price?: string; // numeric only, e.g. "324"
+}>) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Hair Salon Services | Hair Pinns Bangor',
+  description: 'Smoothing treatments, foil packages, colouring, cuts, kids & formal styling at Hair Pinns in Bangor, NSW. Book online with Jena.',
+  url: `${BASE_URL}/services`,
+  numberOfItems: items.length,
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Service',
+      name: item.name,
+      url: item.url.startsWith('http') ? item.url : `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
+      ...(item.description && { description: item.description }),
+      provider: {
+        '@type': 'HairSalon',
+        name: 'Hair Pinns',
+        url: BASE_URL,
+      },
+      ...(item.price && {
+        offers: {
+          '@type': 'Offer',
+          price: item.price,
+          priceCurrency: 'AUD',
+          availability: 'https://schema.org/InStock',
+        },
+      }),
+    },
+  })),
+});
+
+/**
  * Enhanced LocalBusiness Schema for AEO
  * Adds serviceArea and geo radius for better location-based queries
  */

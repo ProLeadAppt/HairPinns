@@ -7,6 +7,7 @@ import { writeFileSync, existsSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { SERVICE_ROUTES } from './service-routes.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -115,6 +116,13 @@ async function main() {
   urls.push(url(`${BASE}/sitemap`, 'monthly', 0.5));
   urls.push(url(`${BASE}/reviews`, 'monthly', 0.7, reviewsMod));
   urls.push(url(`${BASE}/faq`, 'monthly', 0.8, faqMod));
+
+  // Service detail pages - high local intent, must be indexed.
+  // Sourced from scripts/service-routes.js (shared with prerender script).
+  const svcMod2 = gitLastMod('src/data/serviceDetails.ts');
+  SERVICE_ROUTES.forEach(([cat, svc]) => {
+    urls.push(url(`${BASE}/services/${cat}/${svc}`, 'monthly', 0.8, svcMod2));
+  });
 
   // Collections - from Shopify or fallback to known
   let collectionHandles = await getShopifyCollections();

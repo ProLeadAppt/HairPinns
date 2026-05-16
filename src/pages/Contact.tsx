@@ -191,7 +191,7 @@ const Contact = () => {
       <main id="main-content" className="flex-grow">
         {/* Hero Section */}
         <Section className="pt-xl pb-lg">
-          <SectionHeader title="Visit Hair Pinns Bangor" subtitle="Easy parking, friendly welcome, honest service." />
+          <SectionHeader as="h1" title="Visit Hair Pinns Bangor" subtitle="Easy parking, friendly welcome, honest service." />
         </Section>
 
         {/* NAP Block & Map */}

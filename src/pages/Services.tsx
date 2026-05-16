@@ -11,10 +11,11 @@ import TrustStrip from "@/components/conversion/TrustStrip";
 import FAQSection from "@/components/FAQSection";
 import ReviewStrip from "@/components/reviews/ReviewStrip";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
-import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, generateEnhancedServiceSchema, generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, generateEnhancedServiceSchema, generateFAQPageSchema, generateBreadcrumbSchema, generateServiceItemListSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { serviceDetailData } from "@/data/serviceDetails";
 
 interface Service {
   title: string;
@@ -489,7 +490,21 @@ const Services = () => {
     { name: 'Services', url: 'https://hairpinns.com/services' },
   ]);
 
-  const schemas = [organizationSchema, localBusinessSchema, faqSchema, breadcrumbSchema];
+  // Aggregate every bookable service for AI overviews + sitelinks.
+  // Prices already publicly visible on Services + ServiceDetail pages, so
+  // emitting them in schema adds no new disclosure — just machine-readability.
+  const serviceItemListSchema = generateServiceItemListSchema(
+    serviceDetailData.flatMap((category) =>
+      category.services.map((svc) => ({
+        name: svc.title,
+        url: `/services/${category.slug}/${svc.slug}`,
+        description: svc.tagline || svc.metaDescription,
+        price: svc.price?.replace(/[^\d.]/g, '') || undefined,
+      }))
+    )
+  );
+
+  const schemas = [organizationSchema, localBusinessSchema, faqSchema, breadcrumbSchema, serviceItemListSchema];
 
   return (
     <div className="min-h-screen bg-bg">
