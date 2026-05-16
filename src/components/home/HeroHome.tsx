@@ -38,18 +38,23 @@ const HeroHome = () => {
 
   return (
     <section className="relative min-h-[85vh] md:min-h-[80vh] flex items-end overflow-hidden">
-      {/* Background — poster image is LCP; video is lazy-mounted after idle, never on reduced motion or Save-Data. */}
+      {/* Background — poster <picture> is the LCP. AVIF (~33KB) for browsers that
+          support it; webp (~85KB) is the fallback. Video lazy-mounts after idle,
+          never on reduced motion or Save-Data. */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-          fetchPriority="high"
-          decoding="async"
-          width="1600"
-          height="900"
-        />
+        <picture>
+          <source srcSet="/hero-poster.avif" type="image/avif" />
+          <img
+            src={heroImage}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
+            decoding="async"
+            width="1600"
+            height="900"
+          />
+        </picture>
         {shouldLoadVideo && (
           <video
             ref={videoRef}

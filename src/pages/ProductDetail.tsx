@@ -530,19 +530,21 @@ const ProductDetail = () => {
                     fetchPriority="high"
                   />
                   
-                  {/* Navigation Arrows */}
+                  {/* Navigation Arrows — 44px hit area + always-visible on mobile (no hover) */}
                   {images.length > 1 && (
                     <>
                       <button
+                        type="button"
                         onClick={prevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 flex items-center justify-center md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-white focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Previous image"
                       >
                         <ChevronLeft className="w-5 h-5" />
                       </button>
                       <button
+                        type="button"
                         onClick={nextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 flex items-center justify-center md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-white focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Next image"
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -550,18 +552,27 @@ const ProductDetail = () => {
                     </>
                   )}
 
-                  {/* Dots Indicator */}
+                  {/* Dots Indicator — the visible pill is 8px tall, but the
+                       interactive hit-area is 44×44 (transparent padding) to
+                       meet WCAG/Lighthouse tap-target. */}
                   {images.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
                       {images.map((_: any, index: number) => (
                         <button
                           key={index}
+                          type="button"
                           onClick={() => setCurrentImage(index)}
-                          className={`w-2 h-2 rounded-full transition-all ${
-                            index === currentImage ? "bg-white w-6" : "bg-white/50"
-                          }`}
+                          className="group/dot w-11 h-11 flex items-center justify-center focus-visible:outline-none"
                           aria-label={`View image ${index + 1}`}
-                        />
+                          aria-current={index === currentImage ? "true" : undefined}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className={`block h-2 rounded-full transition-all group-focus-visible/dot:ring-2 group-focus-visible/dot:ring-brand-500 ${
+                              index === currentImage ? "bg-white w-6" : "bg-white/60 w-2 group-hover/dot:bg-white/90"
+                            }`}
+                          />
+                        </button>
                       ))}
                     </div>
                   )}

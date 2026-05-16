@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://www.fresha.com" crossorigin>
+
+    <!-- Preload the hero poster so it's in flight before the React bundle parses — biggest LCP win on the home page. -->
+    <link rel="preload" as="image" href="/hero-poster.avif" type="image/avif" fetchpriority="high">
     
     <!-- Performance: Preload critical fonts -->
     <!-- (Preload removed because it conflicts with Google Fonts dynamic woff2 URLs) -->

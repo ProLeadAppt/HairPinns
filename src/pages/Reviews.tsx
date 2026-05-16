@@ -4,7 +4,8 @@ import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SEOHead from "@/components/SEOHead";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import confetti from "canvas-confetti";
+// canvas-confetti is dynamically imported at click time — keeps ~30KB out of
+// the initial bundle on a page that only fires the effect after a star click.
 import { soundEffects } from "@/lib/soundEffects";
 import { haptics } from "@/lib/haptics";
 import {
@@ -51,43 +52,45 @@ const Reviews = () => {
     setSelectedStar(rating);
     soundEffects.playClick();
     haptics.medium();
-    
-    // Advanced confetti for 4-5 stars
+
+    // Advanced confetti for 4-5 stars — dynamic import keeps ~30KB out of
+    // the initial bundle since it's only needed after a positive rating.
     if (rating >= 4) {
       soundEffects.playCelebration();
       haptics.success();
-      
-      // Multi-burst confetti
-      const duration = 1000;
-      const end = Date.now() + duration;
 
-      const colors = ['#8B4A8B', '#E7D2EE', '#773E77', '#5D2C5D'];
+      void import("canvas-confetti").then((mod) => {
+        const confetti: (opts: Record<string, unknown>) => void = (mod as { default: (opts: Record<string, unknown>) => void }).default;
+        const duration = 1000;
+        const end = Date.now() + duration;
+        const colors = ['#8B4A8B', '#E7D2EE', '#773E77', '#5D2C5D'];
 
-      (function frame() {
-        confetti({
-          particleCount: 3,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0, y: 0.6 },
-          colors: colors,
-        });
-        confetti({
-          particleCount: 3,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1, y: 0.6 },
-          colors: colors,
-        });
+        (function frame() {
+          confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: 0.6 },
+            colors: colors,
+          });
+          confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: 0.6 },
+            colors: colors,
+          });
 
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      })();
+          if (Date.now() < end) {
+            requestAnimationFrame(frame);
+          }
+        })();
+      });
     } else if (rating <= 2) {
       soundEffects.playSympathy();
       haptics.error();
     }
-    
+
     // Delay for visual feedback
     setTimeout(() => {
       if (rating <= 3) {
