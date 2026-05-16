@@ -40,6 +40,50 @@
   status = 302
   force = true
 
+# Legacy Shopify blog URL slug mismatches -> canonical React routes.
+# These must come BEFORE the /blogs/blogs/* wildcard so the specific match wins.
+# Bing had these long-form/punctuated slugs indexed and they don't map 1:1 to current slugs.
+[[redirects]]
+  from = "/blogs/blogs/the-truth-about-shampoo-after-straight-up-treatment-what-i-really-want-you-to-know"
+  to = "/blog/truth-about-shampoo-after-straight-up-treatment"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/qiqi-vega-vs-nanoplasty-what-s-the-difference"
+  to = "/blog/qiqi-vega-vs-nanoplasty-whats-the-difference"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/welcome-to-a-new-version-of-hair-pinns"
+  to = "/blog"
+  status = 301
+  force = true
+
+# Legacy Shopify blog URL pattern -> current React route
+# Bing/Google had `/blogs/blogs/<slug>` indexed from the old Shopify storefront.
+# Without this redirect, the SPA serves index.html with no H1 to non-JS crawlers.
+[[redirects]]
+  from = "/blogs/blogs/*"
+  to = "/blog/:splat"
+  status = 301
+  force = true
+
+# Catch any other legacy Shopify blog handles (e.g. /blogs/news/<slug>) -> /blog/<slug>
+[[redirects]]
+  from = "/blogs/*/:slug"
+  to = "/blog/:slug"
+  status = 301
+  force = true
+
+# Discontinued product handles -> closest-fit collection (recover backlink equity)
+[[redirects]]
+  from = "/products/juuce-fibre-goo-sumo-grip"
+  to = "/collections/hair-styling-products"
+  status = 301
+  force = true
+
 # Sitemap - ensure XML is served (static file takes precedence; this is a fallback)
 [[headers]]
   for = "/sitemap.xml"

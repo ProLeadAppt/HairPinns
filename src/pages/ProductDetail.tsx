@@ -336,6 +336,12 @@ const ProductDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
+        <SEOHead
+          title="Loading product… | Hair Pinns"
+          description="Loading product details. Hair Pinns ships hair care Australia-wide with free shipping over $150."
+          canonical={`https://hairpinns.com/products/${handle ?? ""}`}
+          noIndex={true}
+        />
         <Header />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
@@ -351,6 +357,12 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="min-h-screen bg-background">
+        <SEOHead
+          title={`Product not found: ${handle ?? "unknown"} | Hair Pinns`}
+          description="This product doesn't exist or has been removed. Browse our full hair care range at Hair Pinns — shipped Australia-wide."
+          canonical={`https://hairpinns.com/products/${handle ?? ""}`}
+          noIndex={true}
+        />
         <Header />
         <main className="flex items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
