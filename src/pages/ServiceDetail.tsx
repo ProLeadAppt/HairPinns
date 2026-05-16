@@ -261,7 +261,7 @@ const ServiceDetail = () => {
             <p className="text-xl mb-2" style={{ color: 'hsl(var(--text))' }}>
               Starting from <span className="font-bold text-brand-500">{serviceData.price}</span>
             </p>
-            <p className="text-sm mb-6" style={{ color: 'hsl(var(--text))', opacity: 0.7 }}>
+            <p className="text-sm mb-6 text-muted-foreground">
               {serviceData.duration && `Approximately ${serviceData.duration}`}
             </p>
             <a 

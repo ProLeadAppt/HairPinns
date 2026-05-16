@@ -412,7 +412,7 @@ const About = () => {
               {aboutFaqs.map((faq) => (
                 <div key={faq.question} className="rounded-md border border-border bg-card p-4">
                   <dt className="font-semibold text-foreground">{faq.question}</dt>
-                  <dd className="mt-2 text-muted">{faq.answer}</dd>
+                  <dd className="mt-2 text-muted-foreground">{faq.answer}</dd>
                 </div>
               ))}
             </dl>

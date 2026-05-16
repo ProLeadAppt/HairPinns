@@ -549,7 +549,7 @@ const Services = () => {
         <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[rgba(139,74,139,0.10)] shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-hide">
-              <span className="text-sm whitespace-nowrap mr-2" style={{ color: 'hsl(var(--text))', opacity: 0.7 }}>Jump to:</span>
+              <span className="text-sm whitespace-nowrap mr-2 text-muted-foreground">Jump to:</span>
               {[
                 { id: 'smoothing', label: 'Smoothing' },
                 { id: 'foil-packages', label: 'Foil Packages' },
