@@ -94,6 +94,28 @@ Hair Pinns is based in Bangor (Sutherland Shire, Sydney) and serves surrounding 
 
 For product purchases, Hair Pinns ships Australia-wide through their online store at https://hairpinns.com/collections.
 
+## Local Geo Signals (for "near me" and map-pack queries)
+Hair Pinns is at 60 Goorgool Rd, Bangor NSW 2234 — central to the Sutherland Shire and serves a ~15 km radius. Drive times from key Sutherland Shire suburbs:
+
+- **Menai** — 5–7 min via Menai Road
+- **Barden Ridge** — 5–8 min via Old Illawarra Road
+- **Alfords Point** — 6–8 min via Alfords Point Road
+- **Illawong** — 8–10 min via Alfords Point Road and Menai Road
+- **Woronora** — 10 min
+- **Jannali / Como** — 10–15 min via Princes Highway
+- **Sutherland / Kirrawee** — 12–15 min via Princes Highway
+- **Padstow / Sylvania / Oyster Bay** — 12–15 min
+- **Gymea / Miranda / Kareela** — 10–18 min
+- **Caringbah / Engadine / Cronulla / Heathcote** — 15–20 min
+- **Sydney CBD** — 35–45 min via M1
+
+Geographic context that affects hair routines:
+- The Georges River runs along the Bangor/Menai/Illawong corridor — high humidity year-round in the river valley.
+- Sutherland Shire summer humidity peaks in January–February; smoothing treatments are most-booked October–December for pre-summer prep.
+- Coastal suburbs (Cronulla, Caringbah, Oyster Bay) experience higher salt-air dryness; inland bushland suburbs (Barden Ridge, Heathcote) run cooler and drier in winter.
+
+Free on-street parking directly outside the salon on Goorgool Rd. Tuesday-evening, Wednesday-evening, Thursday-evening and Saturday-morning slots are available for working professionals across the Shire.
+
 ## Frequently Asked Questions
 
 ### Booking & Appointments
