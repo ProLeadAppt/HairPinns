@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "After [15+ years in the salon](/blog/meet-jena-15-years-sutherland-shire), I've seen what works and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
+      introduction: "After [20+ years in the salon](/blog/meet-jena-15-years-sutherland-shire), I've seen what works and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
       sections: [
         {
           heading: "Best for Bond Repair & Damage",
@@ -134,7 +134,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Hair Pinns: Chosen by Jena, Australia-Wide",
-          content: "At Hair Pinns, we've been looking after hair since 2009. Every product is chosen by Jena with 15+ years in the salon. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Free shipping on orders over $150. No guesswork, just professional products delivered to your door."
+          content: "At Hair Pinns, we've been looking after hair since 2009. Every product is chosen by Jena with 20+ years in the salon. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Free shipping on orders over $150. No guesswork, just professional products delivered to your door."
         },
         {
           heading: "Popular Brands You Can Trust",
@@ -202,7 +202,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Why Hair Pinns for Australia-Wide Hair Care",
-          content: "15+ years in the salon. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Your best hair is a click away."
+          content: "20+ years in the salon. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Your best hair is a click away."
         }
       ],
       productModule: {
@@ -1306,7 +1306,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce050,
     author: "Jena Pinn",
     content: {
-      introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After [15+ years behind the chair in Bangor](/blog/meet-jena-15-years-sutherland-shire), I've heard every version of 'my last hairdresser didn't listen' — and I've seen what separates a good appointment from a great one. This is an honest guide to what to look for, what to avoid, and how to know you've found the right salon before you sit down.",
+      introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After [20+ years behind the chair in Bangor](/blog/meet-jena-15-years-sutherland-shire), I've heard every version of 'my last hairdresser didn't listen' — and I've seen what separates a good appointment from a great one. This is an honest guide to what to look for, what to avoid, and how to know you've found the right salon before you sit down.",
       sections: [
         {
           heading: "Start With the Consultation, Not the Price List",
@@ -2204,18 +2204,18 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "meet-jena-15-years-sutherland-shire",
-    title: "Meet Jena: 15+ Years Behind the Chair in Sutherland Shire",
-    excerpt: "Jena Pinn, founder of Hair Pinns Bangor, shares her 15+ years of hairdressing experience in the Sutherland Shire — her training, her approach, and why she opened her own salon.",
+    title: "Meet Jena: 20+ Years Behind the Chair in Sutherland Shire",
+    excerpt: "Jena Pinn, founder of Hair Pinns Bangor, shares her 20+ years of hairdressing experience in the Sutherland Shire — her training, her approach, and why she opened her own salon.",
     category: "About",
     date: "April 19, 2026",
     readTime: "7 min read",
     image: juuce091,
     author: "Jena Pinn",
     content: {
-      introduction: "I'm Jena Pinn, founder of Hair Pinns in Bangor. I've been behind the chair for over 15 years, mostly in the Sutherland Shire, and I opened Hair Pinns because I wanted a salon that worked the way I'd always wished salons worked — honest, consistent, and built around the client's long-term hair health, not this week's upsell. Here's a bit about how I got here, what I specialise in, and why I do it the way I do.",
+      introduction: "I'm Jena Pinn, founder of Hair Pinns in Bangor. I've been behind the chair for over 20 years, mostly in the Sutherland Shire, and I opened Hair Pinns because I wanted a salon that worked the way I'd always wished salons worked — honest, consistent, and built around the client's long-term hair health, not this week's upsell. Here's a bit about how I got here, what I specialise in, and why I do it the way I do.",
       sections: [
         {
-          heading: "How I Got Here: 15+ Years in Sutherland Shire Salons",
+          heading: "How I Got Here: 20+ Years in Sutherland Shire Salons",
           content: "I trained in the Sutherland Shire and apprenticed through salons across Miranda, Cronulla, and Caringbah before opening Hair Pinns. Over that time I've done continuing education with Juuce, QIQI, and Aromaganic, specialised in colour correction and smoothing systems, and seen the industry shift from chemical-heavy to bond-repair and organic formulations. The Sutherland Shire has been my whole career — I know the water, the humidity, the beach-and-sun lifestyle, and how Shire hair actually behaves through a Sydney summer."
         },
         {
@@ -2241,10 +2241,10 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "Who is Jena Pinn?",
-        answer: "Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with 15+ years of hairdressing experience across the Sutherland Shire. She specialises in colour (including box-dye recovery and balayage), Straight Up Smoothing and QIQI Vega treatments, and cut-and-finish work on mid-length to long hair."
+        answer: "Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with 20+ years of hairdressing experience across the Sutherland Shire. She specialises in colour (including box-dye recovery and balayage), Straight Up Smoothing and QIQI Vega treatments, and cut-and-finish work on mid-length to long hair."
       },
       keyTakeaways: [
-        "15+ years in Sutherland Shire salons before opening Hair Pinns",
+        "20+ years in Sutherland Shire salons before opening Hair Pinns",
         "Certified in Juuce, QIQI Vega, and Straight Up Smoothing systems",
         "Specialises in colour correction, balayage, smoothing, and cuts",
         "Built Hair Pinns around stylist continuity, honest pricing, and long-term hair health",
@@ -2259,14 +2259,14 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "the-7-colouring-mistakes-i-see-every-week",
     title: "The 7 Colouring Mistakes I See Every Week (And How to Avoid Them)",
-    excerpt: "After 15+ years behind the chair, these are the seven hair-colouring mistakes I see every week — at-home and at other salons — and exactly how to avoid them.",
+    excerpt: "After 20+ years behind the chair, these are the seven hair-colouring mistakes I see every week — at-home and at other salons — and exactly how to avoid them.",
     category: "Colour",
     date: "April 19, 2026",
     readTime: "9 min read",
     image: aromaganicShampoo,
     author: "Jena Pinn",
     content: {
-      introduction: "After [15+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), these are the seven hair-colouring mistakes I see every single week — some from home dye jobs, some from other salons, some from clients following advice they read online. Every one of them is avoidable, and every one of them makes the next appointment harder (and more expensive). Here's what they are and how to stop making them.",
+      introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), these are the seven hair-colouring mistakes I see every single week — some from home dye jobs, some from other salons, some from clients following advice they read online. Every one of them is avoidable, and every one of them makes the next appointment harder (and more expensive). Here's what they are and how to stop making them.",
       sections: [
         {
           heading: "Mistake 1: Box Dye Over Previously-Coloured Hair",
@@ -2330,14 +2330,14 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "home-hair-care-myths-stylist-wishes-youd-stop",
     title: "Home Hair Care Myths a Stylist Wishes You'd Stop Believing",
-    excerpt: "After 15+ years in the salon, these are the home hair care myths I hear most often — and what actually works instead.",
+    excerpt: "After 20+ years in the salon, these are the home hair care myths I hear most often — and what actually works instead.",
     category: "Education",
     date: "April 19, 2026",
     readTime: "6 min read",
     image: juuce118,
     author: "Jena Pinn",
     content: {
-      introduction: "After [15+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), I've heard every home-hair-care myth there is. Some are harmless, some are actively damaging, and a lot of them got started in beauty magazines in the 1990s and never died. Here are the ones I wish would stop — and what actually works for healthy hair at home.",
+      introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), I've heard every home-hair-care myth there is. Some are harmless, some are actively damaging, and a lot of them got started in beauty magazines in the 1990s and never died. Here are the ones I wish would stop — and what actually works for healthy hair at home.",
       sections: [
         {
           heading: "Myth: You Need to Wash Your Hair Every Day",
@@ -2396,7 +2396,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce050,
     author: "Jena Pinn",
     content: {
-      introduction: "After [15+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), box-dye recovery is the single most common consultation I take. You've dyed your hair at home, it's gone wrong — wrong colour, uneven, damaged, or all three — and now you're looking for help. Here's the honest version: what's actually achievable, how long it takes, how much it costs, and what to do in the meantime.",
+      introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), box-dye recovery is the single most common consultation I take. You've dyed your hair at home, it's gone wrong — wrong colour, uneven, damaged, or all three — and now you're looking for help. Here's the honest version: what's actually achievable, how long it takes, how much it costs, and what to do in the meantime.",
       sections: [
         {
           heading: "First: Why Box Dye Damage Is So Hard to Fix",
@@ -2460,7 +2460,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "best-hair-salon-bangor",
     title: "The Best Hair Salon in Bangor: Meet Hair Pinns",
-    excerpt: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire — 15+ years of local stylist experience, honest pricing, free parking, and a team that knows your hair history.",
+    excerpt: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire — 20+ years of local stylist experience, honest pricing, free parking, and a team that knows your hair history.",
     category: "Local",
     date: "April 19, 2026",
     readTime: "5 min read",
@@ -2483,7 +2483,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "About the Salon and the Team in Bangor",
-          content: "Hair Pinns was founded by Jena Pinn after 15+ years working in salons across the Sutherland Shire. The salon is small by design — we'd rather take fewer clients and know them well than rotate high volumes. Jena is certified in Juuce, QIQI Vega, and Straight Up Smoothing systems, and specialises in colour (especially colour correction and balayage) and smoothing. Our team has been with the salon for years — when you book, you know who you're getting. Read more about Jena's background in Meet Jena: 15+ Years Behind the Chair in Sutherland Shire."
+          content: "Hair Pinns was founded by Jena Pinn after 20+ years working in salons across the Sutherland Shire. The salon is small by design — we'd rather take fewer clients and know them well than rotate high volumes. Jena is certified in Juuce, QIQI Vega, and Straight Up Smoothing systems, and specialises in colour (especially colour correction and balayage) and smoothing. Our team has been with the salon for years — when you book, you know who you're getting. Read more about Jena's background in Meet Jena: 15+ Years Behind the Chair in Sutherland Shire."
         },
         {
           heading: "What to Expect on Your First Visit",
@@ -2492,12 +2492,12 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon in Bangor?",
-        answer: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire, run by Jena Pinn with 15+ years of local experience. Specialises in colour, Straight Up Smoothing, and cuts. 4.9-star Google rating, free parking, transparent pricing. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire, run by Jena Pinn with 20+ years of local experience. Specialises in colour, Straight Up Smoothing, and cuts. 4.9-star Google rating, free parking, transparent pricing. Book online 24/7 or call 0468 093 991."
       },
       keyTakeaways: [
         "Hair Pinns is based in Bangor with free parking out the front",
         "Most-booked services: Straight Up Smoothing, full head foils, balayage",
-        "Owner-operated by Jena Pinn with 15+ years of Sutherland Shire experience",
+        "Owner-operated by Jena Pinn with 20+ years of Sutherland Shire experience",
         "Honest pricing and stylist continuity are the core values",
         "Most Bangor clients have been with the salon 3+ years"
       ]
@@ -3073,7 +3073,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce038,
     author: "Jena Pinn",
     content: {
-      introduction: "Sydney humidity turns smooth hair into frizz within minutes of stepping outside, and a lot of the advice online doesn't work — or works for 20 minutes then falls apart. After 15+ years doing hair in the Sutherland Shire I've tested every approach, and here's the version that actually holds up through a real Sydney summer or spring day. Causes, at-home fixes, and when it's time to consider a salon treatment.",
+      introduction: "Sydney humidity turns smooth hair into frizz within minutes of stepping outside, and a lot of the advice online doesn't work — or works for 20 minutes then falls apart. After 20+ years doing hair in the Sutherland Shire I've tested every approach, and here's the version that actually holds up through a real Sydney summer or spring day. Causes, at-home fixes, and when it's time to consider a salon treatment.",
       sections: [
         {
           heading: "Why Hair Frizzes in Humidity",
@@ -3144,7 +3144,7 @@ export const blogPosts: BlogPost[] = [
     image: juuce118,
     author: "Jena Pinn",
     content: {
-      introduction: "If you've ever stood in the haircare aisle wondering whether you actually need a leave-in conditioner — or when you're supposed to use one — you're not alone. After [15+ years behind the chair at Hair Pinns](/blog/meet-jena-15-years-sutherland-shire), it's one of the questions I get every week. Short answer: most people benefit from a leave-in, but it's about *when* and *how* you use it. Here's the honest version.",
+      introduction: "If you've ever stood in the haircare aisle wondering whether you actually need a leave-in conditioner — or when you're supposed to use one — you're not alone. After [20+ years behind the chair at Hair Pinns](/blog/meet-jena-15-years-sutherland-shire), it's one of the questions I get every week. Short answer: most people benefit from a leave-in, but it's about *when* and *how* you use it. Here's the honest version.",
       sections: [
         {
           heading: "What a Leave-In Conditioner Actually Does",

@@ -570,7 +570,7 @@ export const generateJenaPersonSchema = () => ({
   name: 'Jena Pinn',
   jobTitle: 'Hair Stylist, Colourist & Founder of Hair Pinns',
   description:
-    'Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with 15+ years of hairdressing experience across the Sutherland Shire. Specialises in colour correction, balayage, foils, Straight Up Smoothing, and QIQI Vega treatments.',
+    'Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with over 20 years of hairdressing experience across the Sutherland Shire. Established Hair Pinns in December 2009. Specialises in QIQI smoothing treatments, fast foiling, colour correction, balayage, and Straight Up Smoothing — known for an honest, warm, family-friendly approach.',
   url: `${BASE_URL}/blog/meet-jena-15-years-sutherland-shire`,
   image: LOGO_URL,
   worksFor: {

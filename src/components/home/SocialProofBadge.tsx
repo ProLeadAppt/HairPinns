@@ -27,8 +27,8 @@ const SocialProofBadge = () => {
       
       <div className="flex items-center gap-2 text-sm md:text-base font-semibold text-heading">
         <Award className="w-5 h-5 text-brand-500" />
-        <span>15+ Years Experience</span>
-        <span className="text-muted-foreground text-xs md:text-sm">(since 2009)</span>
+        <span>20+ Years Experience</span>
+        <span className="text-muted-foreground text-xs md:text-sm">(Hair Pinns est. 2009)</span>
       </div>
     </div>
   );

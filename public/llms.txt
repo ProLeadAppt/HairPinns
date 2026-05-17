@@ -1,6 +1,9 @@
 # Hair Pinns
 
-> Hair Pinns is a premier hair salon in Bangor, NSW (Sutherland Shire, Sydney) owned by Jena Pinn. We offer smoothing treatments, foils, colouring, cuts, and kids/formal styling. We also retail professional hair care products from brands like Juuce, Qiqi, Pure, and Wet Brush through our online store with Australia-wide shipping.
+> Hair Pinns is a family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney) owned by Jena Pinn — a hairdresser with 20+ years of professional experience. The salon was established in December 2009 and specialises in QIQI smoothing treatments, fast foiling techniques, colour, cuts, and kids/formal styling. Hair Pinns also retails personally-selected, salon-quality hair care products from Juuce, Qiqi, Pure, and Wet Brush through the online store with Australia-wide shipping.
+
+## About Jena (Owner & Stylist)
+Jena Pinn has worked as a professional hairdresser for over 20 years and founded Hair Pinns in December 2009. Approach: honest, reliable, authentic, warm and welcoming — a family-friendly home-salon feel. Known for QIQI smoothing treatments, fast foiling techniques, and personalised product/service recommendations tailored to each client's hair needs. Every product on this site is one Jena personally uses or recommends in-salon.
 
 ## Key Facts
 - Location: 60 Goorgool Rd, Bangor NSW 2234, Australia
@@ -10,21 +13,32 @@
 - Google Rating: 4.9 stars (53+ reviews)
 - Online Booking: https://hairpinns.com/booking (via Fresha)
 
-## Services
-- [Smoothing Treatments](https://hairpinns.com/services/smoothing) — Straight Up Smoothing for mid-length, long/thick, and teen hair
-- [Foil Packages](https://hairpinns.com/services/foil-packages) — Full head, half head, and quarter head foils with cut and blowdry
-- [Colouring Packages](https://hairpinns.com/services/colouring-packages) — Full colour packages for short, mid-length, and long hair
-- [Cut Packages](https://hairpinns.com/services/cut-packages) — Wash, cut and blowdry for all lengths including kids
-- [Kids & Formal](https://hairpinns.com/services/kids-formal) — Primary and high school formal hairstyling
+## Services (Fresha-aligned pricing in AUD)
+- [Smoothing Treatments](https://hairpinns.com/services/smoothing) — Straight Up Smoothing: mid-length $324, long/thick $349, teens $234
+- [Foil Packages](https://hairpinns.com/services/foil-packages) — quarter head $202, half head $237, full head $267 (incl. cut & blowdry)
+- [Colouring Packages](https://hairpinns.com/services/colouring-packages) — short $184, mid-length $178, long $205
+- [Cut Packages](https://hairpinns.com/services/cut-packages) — kids $54, short $79, mid-length $89, long $99
+- [Kids & Formal](https://hairpinns.com/services) — primary and high school formal hairstyling
 
-## Products (Australia-Wide Shipping)
+## Jena's Top Product Picks
+Personally tested in-salon. Primarily Australian brands (work in the Australian climate and water) plus Wet Brush (USA — best detangler for every hair type).
+
+- [Pure Lamellar Vitality Range](https://hairpinns.com/collections/pure-certified-organic-hair-care) — Jena's #1 range
+- [Juuce Solar Enz](https://hairpinns.com/collections/juuce-botanicals) — heat/UV/environmental protection leave-in
+- [Juuce Botanic Oil Serum](https://hairpinns.com/collections/juuce-botanicals) — shine and frizz control
+- [Juuce Super Soft Hydration Mask](https://hairpinns.com/collections/juuce-botanicals) — weekly deep moisture (best seller)
+- [Juuce Miracle Smooth Shampoo & Conditioner](https://hairpinns.com/collections/juuce-botanicals) — best-selling smoothing duo
+- [Juuce Hydration Range](https://hairpinns.com/collections/juuce-botanicals) — hyaluronic acid hydration
+- [Pure Forever Blonde Shampoo & Conditioner](https://hairpinns.com/collections/pure-certified-organic-hair-care) — keeping cool blondes bright
+- [Wet Brush Detanglers](https://hairpinns.com/collections/wet-brush-detanglers) — gentle, all hair types, all ages
+
+## Product Collections (Australia-Wide Shipping)
 - [All Collections](https://hairpinns.com/collections)
-- [Juuce Hair Care](https://hairpinns.com/collections/juuce) — Professional botanicals range
-- [Qiqi Professional](https://hairpinns.com/collections/qiqi) — Professional treatments and oils
-- [Pure Organic](https://hairpinns.com/collections/pure) — Certified organic hair care
-- [Wet Brush](https://hairpinns.com/collections/wet-brush) — Detangling brushes for all hair types
-- [Treatments](https://hairpinns.com/collections/treatments) — Deep conditioning and repair
-- [Styling Products](https://hairpinns.com/collections/styling) — Professional styling products
+- [Juuce Hair Care](https://hairpinns.com/collections/juuce-botanicals) — Australian professional botanicals
+- [Pure Certified Organic](https://hairpinns.com/collections/pure-certified-organic-hair-care) — Australian certified organic
+- [QIQI Professional](https://hairpinns.com/collections/qiqi) — Professional smoothing aftercare
+- [Aromaganic](https://hairpinns.com/collections/aromaganic) — Australian organic colour care
+- [Wet Brush](https://hairpinns.com/collections/wet-brush-detanglers) — USA detangling brushes
 
 ## Service Areas
 - [All Areas](https://hairpinns.com/areas) — Sutherland Shire and surrounding suburbs

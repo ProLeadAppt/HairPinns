@@ -24,7 +24,7 @@ const jenaPersonSchema = {
   "@type": "Person",
   "name": "Jena Pinn",
   "jobTitle": "Hair Stylist & Colorist",
-  "description": "Founder of Hair Pinns boutique salon in Bangor, NSW. 15+ years experience specializing in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling for the Sutherland Shire.",
+  "description": "Founder of Hair Pinns boutique salon in Bangor, NSW. 20+ years experience specializing in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling for the Sutherland Shire.",
   "image": "https://hairpinns.com/jena-headshot.webp",
   "url": "https://hairpinns.com/about",
   "worksFor": {
@@ -76,7 +76,7 @@ const About = () => {
   const aboutFaqs = [
     {
       question: "How long has Jena been doing hair?",
-      answer: "Jena has been a professional hairstylist since 2009 — more than 15 years behind the chair. She runs Hair Pinns in Bangor as a boutique salon serving the Sutherland Shire."
+      answer: "Jena has been a professional hairstylist for over 20 years and established Hair Pinns in December 2009. She runs the salon in Bangor as a boutique studio serving the Sutherland Shire."
     },
     {
       question: "What services does Hair Pinns specialise in?",
@@ -106,7 +106,7 @@ const About = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="About Jena & Hair Pinns Bangor | Boutique Hair Salon"
-        description="Meet Jena, founder of Hair Pinns boutique salon in Bangor. 15+ years experience in colour, smoothing & cuts. Sutherland Shire expert. Honest care, expert results."
+        description="Meet Jena, founder of Hair Pinns boutique salon in Bangor. 20+ years experience in colour, smoothing & cuts. Sutherland Shire expert. Honest care, expert results."
         canonical="https://hairpinns.com/about"
         ogImage={getOGImage('default')}
         ogType="website"
@@ -150,7 +150,7 @@ const About = () => {
                 </h1>
                 <p className="text-lg text-foreground leading-relaxed mb-6">
                   I started sweeping floors and assisting in salons from 13 years old. Qualified at 17, 
-                  then opened my own home salon at the end of 2009. With over 15 years of experience, 
+                  then opened my own home salon at the end of 2009. With over 20 years of experience, 
                   I specialize in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling 
                   for clients across the Sutherland Shire.
                 </p>

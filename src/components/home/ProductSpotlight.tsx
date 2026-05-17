@@ -43,7 +43,7 @@ const ProductSpotlight = () => {
               bullets: [
                 product.description?.substring(0, 40) || "Premium hair care",
                 "Professional formula",
-                "Picked by Jena, 15+ years experience"
+                "Picked by Jena, 20+ years experience"
               ]
             };
           });

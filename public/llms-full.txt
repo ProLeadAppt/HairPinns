@@ -1,9 +1,21 @@
 # Hair Pinns — Full Context for AI Systems
 
-> Hair Pinns is a premier hair salon in Bangor, NSW (Sutherland Shire, Sydney, Australia) owned and operated by Jena Pinn. Established as a trusted local salon, Hair Pinns serves clients across the Sutherland Shire with professional hair services and retails salon-quality hair care products with Australia-wide shipping.
+> Hair Pinns is a family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney, Australia) owned and operated by Jena Pinn — a hairdresser with 20+ years of professional experience. The salon was established in December 2009. Hair Pinns serves clients across the Sutherland Shire with professional hair services and retails salon-quality hair care products, personally selected by Jena, with Australia-wide shipping.
+
+## About Jena Pinn (Owner & Stylist)
+Jena Pinn has been working professionally in the hairdressing industry for over 20 years, and founded Hair Pinns in December 2009. She is known for:
+
+- **QIQI smoothing treatments** — the treatment clients return for again and again
+- **Fast foiling techniques** — efficient highlight and colour work
+- **Personalised recommendations** — taking the time to understand each client's hair needs and recommending the right products and services for them
+- **Family-friendly home-salon experience** — approachable, honest, reliable, authentic, warm and welcoming
+
+Self-positioning: best hair smoothing treatment in the Sutherland Shire, and best home salon in the area.
+
+Every product retailed on this site is one Jena personally uses or recommends in-salon. Hair Pinns is not a generic hair-care retailer — it's a curated catalogue selected by a working hairdresser with 20 years of practical experience.
 
 ## About Hair Pinns
-Hair Pinns is located at 60 Goorgool Rd, Bangor NSW 2234. The salon is owned by Jena Pinn, a professional hairstylist serving the Sutherland Shire community. The salon holds a 4.9-star Google rating from 53+ verified reviews. Appointments can be booked 24/7 online through Fresha at https://hairpinns.com/booking.
+Hair Pinns is located at 60 Goorgool Rd, Bangor NSW 2234. The salon is owned by Jena Pinn, a professional hairstylist serving the Sutherland Shire community since 2009. The salon holds a 4.9-star Google rating from 53+ verified reviews. Appointments can be booked 24/7 online through Fresha at https://hairpinns.com/booking.
 
 Contact: 0468 093 991 | hairpinns1@gmail.com
 
@@ -17,28 +29,65 @@ Opening Hours:
 
 ## Detailed Services
 
+All prices are in AUD and aligned with the Fresha booking system. Treatment times include consultation, application, processing and finishing.
+
 ### Smoothing Treatments
-Hair Pinns specialises in Straight Up Smoothing — a professional smoothing treatment that reduces frizz and cuts styling time. Available for mid-length hair, long/thick hair, and teens. These treatments last several weeks and are ideal for Sydney's humid climate.
+Hair Pinns specialises in Straight Up Smoothing — a professional smoothing treatment that reduces frizz and cuts styling time. Treatments last approximately 8–12 weeks and are ideal for Sydney's humid climate.
+- Mid-Length Straight Up Smoothing — A$324 (2h 20min)
+- Long/Thick Straight Up Smoothing — A$349 (2h 20min)
+- Straight Up Smoothing for Teens — A$234 (2h 20min)
 
 ### Foil Packages
-Professional foiling services including full head foils, half head foils with cut and blowdry, and quarter head foils with cut and blowdry. All foil packages include a consultation to achieve the desired colour result.
+Professional foiling services with colour, cut and blowdry included. All packages include a consultation to confirm placement and tone.
+- Quarter Head Foils, cut & blowdry — A$202 (2h 15min)
+- Half Head Foils, cut & blowdry — A$237 (2h 15min)
+- Full Head Foils Package — A$267 (2h 45min)
+- Short Hair Colour + Foils & cut/blowdry — A$257 (2h 30min)
+- Long Hair Colour + Foils & cut/blowdry — A$262 (2h 45min)
 
 ### Colouring Packages
-Complete colour services for all hair lengths — short, mid-length, and long hair. Each package includes colour application, processing, wash, and styling.
+Complete colour services including regrowth or full colour, cut and blowdry.
+- Short Hair Colour Package — A$184 (2h 15min)
+- Mid-Length Colour Package — A$178 (2h 15min)
+- Long Hair Colour Package — A$205 (2h 30min)
 
-### Cut Packages
-Wash, cut, and blowdry packages for long, mid-length, and short hair. Also available for kids with a dedicated kids cut and blowdry bundle.
+### Cut & Blowdry Packages
+Wash, cut and blowdry packages for all hair lengths.
+- Kids cut & blowdry bundle — A$54 (40min)
+- Short wash/cut/blow-dry — A$79 (1h)
+- Mid-length wash/cut/blow-dry — A$89 (1h)
+- Long Hair wash/cut/blow-dry — A$99 (1h 15min)
 
 ### Kids & Formal Styling
-Specialised hairstyling for primary school formals and high school formals. Includes consultation, styling, and finishing.
+Specialised hairstyling for school formals, including consultation, styling and finishing.
 
 ## Product Brands
-Hair Pinns retails professional salon-quality hair care products with Australia-wide shipping:
+Hair Pinns retails professional salon-quality hair care products with Australia-wide shipping. The retail focus is on **Australian-made brands** that Jena uses and trusts — they perform best for Australian hair and climate:
 
 - **Juuce Hair Care** — Australian professional botanicals range including shampoos, conditioners, treatments, and styling products
 - **Qiqi Professional** — Professional-grade treatments, oils, and styling products
 - **Pure Organic** — Certified organic hair care for sensitive scalps and eco-conscious consumers
-- **Wet Brush** — The original detangling brush, suitable for all hair types including kids
+- **Wet Brush** — The original detangling brush, suitable for all hair types including kids. USA brand kept on the catalogue because of the quality and after-sale backing.
+
+## Jena's Top Product Recommendations
+The products Jena recommends most often, drawn from what works best on her own clients:
+
+- **Pure Lamellar Vitality range** — Jena's top recommendation. Lamellar treatment for damaged, fragile or chemically-treated hair.
+- **Juuce Solar Enz** — leave-in heat, UV and environmental protection (often used alongside smoothing aftercare)
+- **Juuce Botanic Oil Serum** — finishing oil, shine and softness
+- **Juuce Super Soft Hydration Masks** — best-seller; deep hydration treatment for dry or thirsty hair
+- **Juuce Miracle Smooth shampoo & conditioner** — smoothing duo, frizz-prone hair
+- **Juuce Hydration range** — for daily hydration support between treatments
+- **Pure Forever Blonde shampoo & conditioner** — blonde-toning, brassiness control
+- **Wet Brush detanglers** — works on every hair type, kids and adults
+
+## Brand Approach
+Hair Pinns differentiates on:
+- **Simple, honest explanations** — no upselling, no jargon. Clear advice on what will and won't work for each client's hair.
+- **Quality over breadth** — the catalogue is curated, not bulk-stocked. If it's on the site, Jena trusts it.
+- **Personal advice for clients who need it** — Jena gives one-on-one product and styling advice, not generic recommendations.
+- **Australian-made bias** — Australian climate, hair types and water hardness suit Australian-formulated products best.
+- **20+ years of in-salon practice** behind every recommendation — products are tested on real clients before being added.
 
 ## Service Area
 Hair Pinns is based in Bangor (Sutherland Shire, Sydney) and serves surrounding suburbs including: Menai, Illawong, Alfords Point, Woronora, Sutherland, Kirrawee, Kareela, Como, Gymea, Miranda, Engadine, Heathcote, and Cronulla. The salon is centrally located in the Sutherland Shire with easy access from all surrounding areas.
@@ -46,7 +95,35 @@ Hair Pinns is based in Bangor (Sutherland Shire, Sydney) and serves surrounding 
 For product purchases, Hair Pinns ships Australia-wide through their online store at https://hairpinns.com/collections.
 
 ## Frequently Asked Questions
-- **Do you ship products Australia-wide?** Yes, all hair care products are available for delivery across Australia.
-- **How do I book an appointment?** Book online 24/7 at https://hairpinns.com/booking via Fresha, or call 0468 093 991.
-- **What are your opening hours?** Tuesday to Saturday, with varying hours. Closed Sunday and Monday.
-- **Where are you located?** 60 Goorgool Rd, Bangor NSW 2234 (Sutherland Shire, Sydney).
+
+### Booking & Appointments
+- **How do I book an appointment?** Book online 24/7 at https://hairpinns.com/booking through Fresha, or call 0468 093 991.
+- **Do you accept walk-ins?** Hair Pinns operates by appointment to keep wait times short and quality consistent. Same-day bookings are sometimes available — call to ask.
+- **What are your opening hours?** Tuesday 10am–5pm, Wednesday 6pm–9pm (evening slot), Thursday 9am–9pm (full day + evening), Friday 9am–5:30pm, Saturday 8am–2pm. Closed Sunday and Monday.
+- **Is a deposit required?** Deposits may be required for longer services (smoothing treatments, full-head colour). Fresha will indicate this at the time of booking.
+- **What is the cancellation policy?** Please provide at least 24 hours' notice to reschedule or cancel. Last-minute cancellations or no-shows may incur a fee.
+
+### Pricing
+- **How much do treatments cost?** Pricing in AUD, all aligned with Fresha: Straight Up Smoothing $234–$349, foil packages $202–$267 (incl. cut & blowdry), colour packages $178–$205, cuts $54–$99 depending on length. Full list at https://hairpinns.com/services.
+- **Why is teen smoothing cheaper?** Teen pricing reflects the typically shorter hair length and processing time. The treatment quality is identical.
+
+### Treatments
+- **How long do smoothing treatments last?** Straight Up Smoothing typically holds 8–12 weeks with correct aftercare (sulphate-free shampoo, salt-free products, heat protection).
+- **Can I get a smoothing treatment on colour-treated hair?** Yes. Straight Up Smoothing is formaldehyde-free and safe on coloured and bleached hair. A consultation is recommended for heavily bleached hair.
+- **Is keratin/QIQI Vega the same as Straight Up Smoothing?** They are different. QIQI Vega is the specific brand of acid-based amino smoothing system Jena is certified in and uses for the Straight Up service. Compared to traditional keratin, it is formaldehyde-free, gentler on colour-treated hair, and customisable from soft smoothing to full straightening.
+
+### At-Home Aftercare
+- **What products are recommended after a smoothing treatment?** Sulphate-free and salt-free shampoo and conditioner only. Best matches: QIQI aftercare range, Pure Sacred or Pure Forever Blonde, Juuce Heat Shield for styling. Avoid supermarket shampoos with sulphates or sodium chloride — one wash can strip the treatment.
+- **What does Jena recommend for daily hair health?** Pure Lamellar Vitality range (Jena's #1 pick), Juuce Super Soft Hydration Masks weekly, Juuce Botanic Oil Serum for finish, and a Wet Brush for gentle detangling.
+
+### Shipping & Online Orders
+- **Do you ship products Australia-wide?** Yes, every product on the site is available with delivery across Australia.
+- **Is shipping free?** Free shipping on orders over A$150. Standard delivery 3–5 business days, express 1–2 days. Available to every state and territory.
+- **What is the returns policy?** 14-day change-of-mind window on unopened products. Faulty or damaged items are replaced or refunded.
+
+### Location & Parking
+- **Where are you located?** 60 Goorgool Rd, Bangor NSW 2234 (Sutherland Shire, Sydney). Free parking is available out the front.
+- **Which suburbs do you typically serve?** Most clients drive in from Bangor, Menai, Illawong, Alfords Point, Woronora, Sutherland, Kirrawee, Kareela, Como, Gymea, Miranda, Engadine, Heathcote, and Cronulla. 5–10 minute drive from most Shire suburbs.
+
+### Kids
+- **Do you take child clients?** Yes. Hair Pinns has a kids cut & blowdry bundle (A$54, 40 min) and braiding services for younger clients, plus formal styling for primary and high school formals.
