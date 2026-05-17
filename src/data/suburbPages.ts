@@ -25,7 +25,7 @@ export interface SuburbData {
 }
 
 export const suburbPages: Record<string, SuburbData> = {
-  bangor: {
+  "bangor": {
     slug: "bangor",
     name: "Bangor",
     quickAnswer: "Hair Pinns is a boutique hair salon in Bangor, NSW, specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena brings over 20 years of experience to every appointment, with services tailored to the Sutherland Shire's unique river-valley climate.",
@@ -51,7 +51,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["menai", "woronora", "heathcote"],
   },
-  menai: {
+  "menai": {
     slug: "menai",
     name: "Menai",
     quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Menai, Illawong, and the Sutherland Shire with Colour, Smoothing, and Cuts. Just 5-7 minutes from Menai via Menai Road.",
@@ -77,7 +77,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["illawong", "bangor"],
   },
-  illawong: {
+  "illawong": {
     slug: "illawong",
     name: "Illawong",
     quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Illawong and surrounding suburbs. Colour, Smoothing, and Cuts tailored to Sydney's climate, 8-10 minutes via Alfords Point Road and Menai Road.",
@@ -129,7 +129,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["illawong", "bangor"],
   },
-  woronora: {
+  "woronora": {
     slug: "woronora",
     name: "Woronora",
     quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Woronora with Colour, Smoothing, and Cuts. 10–12 minutes via Woronora Road, with treatments designed for the river valley's humidity.",
@@ -155,7 +155,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["sutherland", "bangor"],
   },
-  sutherland: {
+  "sutherland": {
     slug: "sutherland",
     name: "Sutherland",
     quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Sutherland with over 20 years of expertise in Colour, Smoothing, and Cuts. 8–10 minutes via Princes Highway.",
@@ -181,7 +181,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["woronora", "kirrawee"],
   },
-  kirrawee: {
+  "kirrawee": {
     slug: "kirrawee",
     name: "Kirrawee",
     quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Kirrawee with Colour, Smoothing, and Cuts. 12–15 minutes via Princes Highway, with treatments designed for coastal air.",
@@ -207,7 +207,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["sutherland", "gymea"],
   },
-  kareela: {
+  "kareela": {
     slug: "kareela",
     name: "Kareela",
     quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Kareela with Colour, Smoothing, and Cuts. 10–12 minutes via President Avenue, with hydrating treatments for bushland surrounds.",
@@ -233,7 +233,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["sutherland", "como"],
   },
-  como: {
+  "como": {
     slug: "como",
     name: "Como",
     quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Como with Colour, Smoothing, and Cuts. 12–14 minutes via Princes Highway, with smoothing treatments proven for riverside humidity.",
@@ -259,7 +259,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["kareela", "gymea"],
   },
-  gymea: {
+  "gymea": {
     slug: "gymea",
     name: "Gymea",
     quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Gymea and the Sutherland Shire with Colour, Smoothing, and Cuts. 15–18 minutes via Princes Highway, with treatments that protect against coastal salt air.",
@@ -285,7 +285,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["miranda", "como"],
   },
-  miranda: {
+  "miranda": {
     slug: "miranda",
     name: "Miranda",
     quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Miranda with Colour, Smoothing, and Cuts. 15–18 minutes via Princes Highway, with all-day hold for busy lifestyles.",
@@ -311,7 +311,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["gymea", "kirrawee"],
   },
-  engadine: {
+  "engadine": {
     slug: "engadine",
     name: "Engadine",
     quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Engadine with Colour, Smoothing, and Cuts. 10–12 minutes via Princes Highway via Heathcote, with hydrating treatments for bush surrounds.",
@@ -337,7 +337,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["heathcote", "woronora"],
   },
-  heathcote: {
+  "heathcote": {
     slug: "heathcote",
     name: "Heathcote",
     quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Heathcote with Colour, Smoothing, and Cuts. Just 5–7 minutes via Princes Highway, with treatments designed for bushland conditions.",
@@ -363,7 +363,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["engadine", "bangor"],
   },
-  cronulla: {
+  "cronulla": {
     slug: "cronulla",
     name: "Cronulla",
     quickAnswer: "Hair Pinns serves Cronulla with colour, smoothing and cuts, just 20-25 minutes inland in Bangor. We specialise in beach hair care: restoring sun and salt damage, maintaining blonde brightness, and keratin smoothing for coastal frizz.",
@@ -389,7 +389,7 @@ export const suburbPages: Record<string, SuburbData> = {
     ],
     nearbySuburbs: ["miranda", "gymea", "sutherland"],
   },
-  sydney: {
+  "sydney": {
     slug: "sydney",
     name: "Sydney",
     quickAnswer: "Hair Pinns serves Sydney with colour, blonding, keratin smoothing and precision cuts. Just 35–45 minutes from the CBD, our Bangor salon offers boutique care without city prices.",
@@ -414,6 +414,162 @@ export const suburbPages: Record<string, SuburbData> = {
       },
     ],
     nearbySuburbs: ["miranda", "sutherland", "gymea"],
+  },
+  "barden-ridge": {
+    slug: "barden-ridge",
+    name: "Barden Ridge",
+    quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Barden Ridge with Colour, Smoothing and Cuts. Just 5–8 minutes via Old Illawarra Road, with services tailored to bushland-edge living and Sutherland Shire humidity.",
+    driveTime: "5–8 minutes",
+    route: "Old Illawarra Road",
+    localNote: "Barden Ridge sits on the bushland edge — dry winds in winter, river humidity in summer. Both extremes need different care, and we tune each appointment to the season you're booking in.",
+    landmarks: ["Heathcote Road", "Bangor State Forest", "Old Illawarra Road"],
+    seasonalNote: "Bushland-edge suburbs hit colder mornings in winter — hydration treatments are particularly worth booking through May–August.",
+    intro: "Hair Pinns is a quick 5–8 minute drive from Barden Ridge, with Jena's 20+ years of experience behind every appointment. We cover the full range of colour, blonding, Straight Up smoothing, foils and cuts — and because Barden Ridge sits right on the bushland fringe with a different climate profile to the riverside suburbs, we tailor recommendations to your specific routine. Easy parking, honest advice, no upselling.",
+    faqs: [
+      {
+        question: "How do I keep my hair healthy through Sydney winters in Barden Ridge?",
+        answer: "Bushland-edge suburbs like Barden Ridge run cooler and drier than the river-belt suburbs, which can leave hair brittle and static-prone in winter. We recommend a hydration mask weekly (Juuce Super Soft Hydration is a salon favourite), plus a leave-in conditioner like Juuce Botanic Oil Serum to lock in moisture between washes. If you colour or blonde, book a gloss or toner every 6–8 weeks — winter dryness exaggerates brassiness fast.",
+      },
+      {
+        question: "Is it worth driving to Bangor for hair when there are closer options?",
+        answer: "Most of our Barden Ridge regulars say yes — the drive is under 10 minutes and what you get in return is consultation time, real expertise, and a salon that's not running you through on a 30-minute clock. We don't upsell, we tell you what your hair actually needs, and we stock the products we personally use on clients. Easier parking than the bigger Miranda salons too.",
+      },
+      {
+        question: "Can I book a colour and smoothing in one visit?",
+        answer: "Best practice is to space colour and smoothing at least a week apart — colour needs to settle into the cuticle before a smoothing treatment seals it. We're happy to plan a two-visit schedule that gets both done with the right gap, and our pricing for the combo is the same as booking each service separately. Text us or book the colour first on Fresha and we'll handle the smoothing booking from there.",
+      },
+    ],
+    nearbySuburbs: ["menai", "bangor", "illawong"],
+  },
+  "caringbah": {
+    slug: "caringbah",
+    name: "Caringbah",
+    quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Caringbah with Colour, Smoothing and Cuts. About 15–18 minutes via The Kingsway, with the personalised service you don't get at a busy Westfield-area salon.",
+    driveTime: "15–18 minutes",
+    route: "The Kingsway via Box Road",
+    localNote: "Caringbah locals tell us they make the drive to escape the rushed feel of busier Shire-centre salons. We're boutique, one-stylist, and time is built into every appointment.",
+    landmarks: ["Caringbah Station", "Westfield Miranda", "The Kingsway"],
+    seasonalNote: "Caringbah's proximity to Botany Bay means heavier salt air than the inland suburbs — that adds dryness on top of summer humidity, so layered hydration matters.",
+    intro: "Hair Pinns is about 15–18 minutes from Caringbah via The Kingsway, with Jena bringing over 20 years of hairdressing experience to every appointment. We cover colour and blonding, Straight Up smoothing treatments, foils, cuts and kids/formal styling. If you've been bouncing between bigger Caringbah and Miranda salons looking for someone who'll actually listen, give us a try — boutique service, honest advice, easy parking.",
+    faqs: [
+      {
+        question: "What makes a boutique salon in Bangor different from the bigger Caringbah salons?",
+        answer: "Time. We see one client at a time, so consultations don't get rushed, colour gets the development minutes it actually needs, and Jena can adjust the approach during the appointment based on how your hair is responding. You're not handed off between three stylists. That's the main reason Caringbah clients make the drive — and it's why so many of them book the same Saturday slot every six weeks.",
+      },
+      {
+        question: "Can you fix a colour I'm not happy with?",
+        answer: "Yes, colour correction is one of Jena's specialisations. Bring a clear photo of where you are now and where you want to be, and we'll quote honestly — including whether it's a one-visit fix or needs to be staged over multiple sessions. We don't promise miracles, but with 20+ years of correction work we can usually get there safely. Text +61 468 093 991 with photos for the fastest quote.",
+      },
+      {
+        question: "How do I maintain my hair in Caringbah's salt-air climate?",
+        answer: "Salt air is gentle on volume but harsh on moisture — your hair will feel drier than friends a few suburbs inland. Use a hydrating mask weekly (Juuce Super Soft Hydration is our most-recommended), a leave-in oil like Juuce Botanic Oil Serum, and rinse with fresh water as soon as you can after the beach. For blonde, the salt accelerates brassiness — a purple shampoo once a week plus a toner every 6–8 weeks holds it back.",
+      },
+    ],
+    nearbySuburbs: ["miranda", "sutherland", "cronulla"],
+  },
+  "jannali": {
+    slug: "jannali",
+    name: "Jannali",
+    quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Jannali with Colour, Smoothing and Cuts. About 10–12 minutes via the Princes Highway, ideal for clients who want time and personal care over a rushed appointment.",
+    driveTime: "10–12 minutes",
+    route: "Princes Highway via Como Bridge",
+    localNote: "Jannali sits in the Georges River valley — humidity is on the higher side, especially in summer, which is where our smoothing treatments earn their keep.",
+    landmarks: ["Jannali Station", "Jannali Oval", "Princes Highway"],
+    seasonalNote: "The Georges River valley traps humidity from December through February. Booking a smoothing treatment in October–November keeps you frizz-free across the worst of summer.",
+    intro: "Hair Pinns is about 10–12 minutes from Jannali via the Princes Highway. Jena specialises in colour and blonding, Straight Up smoothing treatments, foils, and precision cuts — every service backed by 20+ years of professional experience. The Georges River valley brings its own humidity profile, and we tailor every treatment to that. Book online 24/7 through Fresha or text for a personalised quote.",
+    faqs: [
+      {
+        question: "Why is smoothing so popular with Jannali clients?",
+        answer: "The Georges River valley funnels humidity from late spring through early autumn. Even hair that behaves perfectly in winter starts frizzing by November. Our Straight Up smoothing treatments seal the cuticle and hold against humidity for 8–12 weeks. Booking in October means you stay smooth through Christmas; booking in February holds you to autumn. The teen pricing is also popular for school-age clients wanting a fix before formal season.",
+      },
+      {
+        question: "Do you offer school formal styling for Jannali high schools?",
+        answer: "Yes — Jena does formal hair for primary and high school formals across the Shire, including Jannali area schools. Book at least 4–6 weeks ahead during peak formal season (October–November is busiest). Bring a photo of the style you'd like and we'll do a quick test run if there's time. Hair Pinns also stocks the at-home products needed to keep the style holding through the night.",
+      },
+      {
+        question: "What's the best home shampoo and conditioner for colour-treated hair?",
+        answer: "Our most-recommended duo for coloured hair is the Juuce Miracle Smooth shampoo and conditioner — gentle on colour, controls frizz, and works across most hair types. For blondes specifically, the Pure Forever Blonde shampoo and conditioner keep tones cool. Both are sulphate-free, which is the single biggest thing you can do at home to make colour last longer. All in stock with Australia-wide shipping at hairpinns.com.",
+      },
+    ],
+    nearbySuburbs: ["como", "sutherland", "kirrawee"],
+  },
+  "oyster-bay": {
+    slug: "oyster-bay",
+    name: "Oyster Bay",
+    quickAnswer: "Hair Pinns is a boutique hair salon in Bangor serving Oyster Bay with Colour, Smoothing and Cuts. About 12–15 minutes via Como Road and Princes Highway, with services tuned for waterfront-suburb humidity.",
+    driveTime: "12–15 minutes",
+    route: "Como Road via Princes Highway",
+    localNote: "Oyster Bay is a quiet leafy peninsula off the Georges River — beautiful to live in, but the river air keeps humidity higher than the western Shire suburbs.",
+    landmarks: ["Georges River", "Oyster Bay Reserve", "Oyster Bay Peninsula"],
+    seasonalNote: "Waterfront peninsulas hold humidity year-round. Smoothing treatments are worth booking even in cooler months — the moisture in the air doesn't drop the way it does inland.",
+    intro: "Hair Pinns is around 12–15 minutes from Oyster Bay via Como Road and the Princes Highway. Jena's 20+ years of professional experience means every appointment gets the time and attention it needs — colour, blonding, Straight Up smoothing, foils, cuts. Living on the peninsula brings constant river humidity, and we tune every treatment recommendation to that reality. Easy parking, no upselling, honest advice.",
+    faqs: [
+      {
+        question: "Does waterfront living really change how I should care for my hair?",
+        answer: "Yes — and Oyster Bay is a good example. Peninsulas trap humidity from both sides, so unlike inland suburbs your hair almost never gets the dry phase that lets a blow-dry hold all day. Anti-humidity styling products help, but the bigger win is sealing the cuticle with a smoothing treatment. Our regular Oyster Bay clients book one every 3–4 months and the difference to their daily routine is significant.",
+      },
+      {
+        question: "What's the best leave-in product for hair near the water?",
+        answer: "Juuce Botanic Oil Serum is our top pick for waterfront-suburb hair — it locks in moisture, smooths frizz, and adds shine without weighing fine hair down. A few drops through mid-lengths and ends after every wash. For thicker hair, Juuce Solar Enz adds UV protection on top, useful when you're out on the water or in the garden. Both stocked at hairpinns.com with Australia-wide shipping.",
+      },
+      {
+        question: "Is balayage worth it if I'm in the water often?",
+        answer: "Yes — actually balayage is better for water-heavy lifestyles than full foils. The soft regrowth means you can go 12–16 weeks between appointments without an obvious line of regrowth, which is friendlier on hair that's already being asked to deal with chlorine or river water. We'll customise the placement so the lighter pieces frame your face but the back stays lower-maintenance. Text +61 468 093 991 with a photo for a quote.",
+      },
+    ],
+    nearbySuburbs: ["como", "sylvania", "gymea"],
+  },
+  "padstow": {
+    slug: "padstow",
+    name: "Padstow",
+    quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Padstow with Colour, Smoothing and Cuts. About 12–15 minutes via Henry Lawson Drive across the river, with the personal service of a one-stylist studio.",
+    driveTime: "12–15 minutes",
+    route: "Henry Lawson Drive across Alfords Point Bridge",
+    localNote: "Padstow is just across the Georges River from us, easy run via Henry Lawson Drive and the Alfords Point Bridge. Many of our Padstow regulars say the drive's actually faster than fighting Padstow traffic for a closer salon.",
+    landmarks: ["Padstow Station", "Henry Lawson Drive", "Alfords Point Bridge"],
+    seasonalNote: "Padstow sits on the northern bank of the Georges River — similar humidity profile to Bangor, with summer being the toughest period for fine and colour-treated hair.",
+    intro: "Hair Pinns is a 12–15 minute drive from Padstow via Henry Lawson Drive and the Alfords Point Bridge. Jena has 20+ years of hairdressing experience and covers the full range — colour, blonding, Straight Up smoothing, foils, cuts, kids and formal styling. Many Padstow clients tell us the drive is faster than the local traffic, and you get a boutique salon experience at the end of it. Book online 24/7 or text for a quote.",
+    faqs: [
+      {
+        question: "Is it really faster to drive to Bangor than to a Padstow salon?",
+        answer: "For a lot of our Padstow regulars, yes. Henry Lawson Drive moves well outside peak hour and the Alfords Point Bridge crossing is usually only a couple of minutes. The catch is timing — avoid 8–9am and 5–6pm and you'll do it in 12 minutes. We have easy parking right at the salon, which alone saves you the 10 minutes of circling that Padstow shopping precinct often costs.",
+      },
+      {
+        question: "Can you do colour for an event with short notice?",
+        answer: "Same-week colour bookings are usually possible if you can come Tuesday, Thursday or Friday. Same-day is harder but worth a text to +61 468 093 991 — we can often slot in a toner or gloss refresh. For full-head colour ahead of an event, give us at least 5–7 days so the colour has time to settle properly. We don't recommend major colour changes within 48 hours of an important event.",
+      },
+      {
+        question: "Do you sell hair care products I can pick up after my appointment?",
+        answer: "Yes — Hair Pinns retails the full range of products Jena uses in-salon. Pure Lamellar Vitality, Juuce shampoos and treatments, Pure Forever Blonde, Wet Brush detanglers — all stocked. You can take them home after your appointment or order anytime through hairpinns.com with Australia-wide shipping. Jena's recommendations are based on what she's actually used on your hair, not a generic upsell.",
+      },
+    ],
+    nearbySuburbs: ["alfords-point", "illawong", "menai"],
+  },
+  "sylvania": {
+    slug: "sylvania",
+    name: "Sylvania",
+    quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Sylvania with Colour, Smoothing and Cuts. About 12–15 minutes via the Princes Highway, with the personal-stylist experience you don't get at the busier Westfield-area salons.",
+    driveTime: "12–15 minutes",
+    route: "Princes Highway via Como",
+    localNote: "Sylvania (and Sylvania Waters) sit right on the Georges River — high humidity year-round, particularly hard on fine or colour-treated hair without proper aftercare.",
+    landmarks: ["Tom Uglys Bridge", "Sylvania Waters", "Princes Highway"],
+    seasonalNote: "Sylvania Waters and the canal estates hold humidity even on cool days. A monthly hydrating treatment plus a quality leave-in does more here than in drier suburbs.",
+    intro: "Hair Pinns is about 12–15 minutes from Sylvania via the Princes Highway. With 20+ years of professional experience, Jena specialises in colour and blonding, Straight Up smoothing treatments, foils, cuts and kids/formal styling. The waterway-heavy geography of Sylvania means humidity is a near-constant — we'll talk through which products and treatments actually move the needle for your routine. Easy parking, honest pricing, no upselling.",
+    faqs: [
+      {
+        question: "Why does my hair feel different in Sylvania than other Sydney suburbs?",
+        answer: "Sylvania (especially Sylvania Waters) is more humid than most Shire suburbs because of the canal estates and proximity to the Georges River mouth. Hair that's perfectly behaved at work can fall apart on the walk to the car at home. The fix is a combination — a smoothing treatment to seal the cuticle, an anti-humidity leave-in like Juuce Botanic Oil Serum for daily styling, and a hydration mask once a week. Most Sylvania clients see real change within the first cycle.",
+      },
+      {
+        question: "Are smoothing treatments safe if I'm in the pool a lot?",
+        answer: "Yes, with two caveats. First, wait at least 2 weeks after a fresh smoothing treatment before getting back in chlorinated water — it lets the treatment fully cure. Second, always wet your hair with clean water before swimming (it stops the chlorine being absorbed) and use a clarifying-but-gentle shampoo after. Done right, smoothing actually protects pool-frequent hair from the damage chlorine usually causes.",
+      },
+      {
+        question: "Can I get a colour quote without coming in for a consultation?",
+        answer: "Yes — text a clear photo of your hair in natural light to +61 468 093 991, plus a photo of the result you're after. Jena will reply with a price range and let you know if it's a one-visit job or needs to be staged. We don't quote without seeing the hair because too much depends on starting condition, but the photo + text method works well and saves you a trip if the price isn't right.",
+      },
+    ],
+    nearbySuburbs: ["miranda", "gymea", "oyster-bay"],
   },
 };
 

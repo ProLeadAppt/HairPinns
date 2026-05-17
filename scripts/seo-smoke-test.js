@@ -9,9 +9,11 @@
  *   - <link rel="canonical">
  *   - at least one <script type="application/ld+json">
  *
- * Output: console table of findings. Exits 0 always (non-blocking) so it
- * reports without breaking CI. To make it blocking, change the final
- * `process.exit(0)` to `process.exit(failures.length > 0 ? 1 : 0)`.
+ * Output: console table of findings. Exits non-zero when any prerendered
+ * route is missing H1/title/description/canonical/JSON-LD — this fails the
+ * build, preventing SEO regressions reaching production. To switch back to
+ * report-only mode, change the final `process.exit(failures.length > 0 ? 1 : 0)`
+ * back to `process.exit(0)`.
  *
  * Run after `vite build`:
  *   node scripts/seo-smoke-test.js
@@ -109,6 +111,7 @@ if (failures.length > 0) {
   console.log('');
 }
 
-// Non-blocking by design — change to `process.exit(failures.length > 0 ? 1 : 0)`
-// to fail the build when routes have issues.
-process.exit(0);
+// Blocking: any failure (missing H1/title/description/canonical/JSON-LD on a
+// prerendered route) fails the build. Switch back to `process.exit(0)` to
+// report without blocking.
+process.exit(failures.length > 0 ? 1 : 0);
