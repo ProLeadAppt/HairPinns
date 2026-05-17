@@ -1269,3 +1269,28 @@ export const getOpeningHoursSpecification = () =>
     opens: h.opens,
     closes: h.closes,
   }));
+
+/**
+ * DefinedTermSet schema for /glossary — gives AI overviews and search
+ * engines a structured definition list to cite for "what is X" queries.
+ */
+export const generateDefinedTermSetSchema = (terms: Array<{
+  id: string;
+  term: string;
+  definition: string;
+}>) => ({
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTermSet',
+  '@id': `${BASE_URL}/glossary#termset`,
+  name: 'Hair Care Glossary | Hair Pinns',
+  description: 'Plain-English definitions of common hair-care terms, treatments, colour techniques and products — from Jena at Hair Pinns Bangor.',
+  url: `${BASE_URL}/glossary`,
+  hasDefinedTerm: terms.map((t) => ({
+    '@type': 'DefinedTerm',
+    '@id': `${BASE_URL}/glossary#${t.id}`,
+    name: t.term,
+    description: t.definition,
+    inDefinedTermSet: `${BASE_URL}/glossary#termset`,
+    url: `${BASE_URL}/glossary#${t.id}`,
+  })),
+});

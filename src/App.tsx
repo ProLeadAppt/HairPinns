@@ -45,6 +45,7 @@ const DevCollections = lazy(() => import("./pages/DevCollections"));
 const DevShopify = lazy(() => import("./pages/DevShopify"));
 const Reviews = lazy(() => import("./pages/Reviews"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const Glossary = lazy(() => import("./pages/Glossary"));
 const ReviewFeedback = lazy(() => import("./pages/ReviewFeedback"));
 const ReviewGoogle = lazy(() => import("./pages/ReviewGoogle"));
 const SearchResults = lazy(() => import("./pages/SearchResults"));
@@ -123,6 +124,7 @@ const AppContent = () => {
               <Route path="/terms" element={<Terms />} />
               <Route path="/sitemap" element={<Sitemap />} />
               <Route path="/faq" element={<FAQ />} />
+              <Route path="/glossary" element={<Glossary />} />
               <Route path="/reviews" element={<Reviews />} />
               <Route path="/reviews/feedback" element={<ReviewFeedback />} />
               <Route path="/reviews/google" element={<ReviewGoogle />} />

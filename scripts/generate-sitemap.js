@@ -102,6 +102,7 @@ async function main() {
   const areasIdxMod = gitLastMod('src/pages/AreasIndex.tsx');
   const faqMod = gitLastMod('src/pages/FAQ.tsx');
   const reviewsMod = gitLastMod('src/pages/Reviews.tsx');
+  const glossaryMod = gitLastMod('src/pages/Glossary.tsx');
 
   // Core pages
   urls.push(url(BASE, 'weekly', 1.0, idxMod));
@@ -116,6 +117,7 @@ async function main() {
   urls.push(url(`${BASE}/sitemap`, 'monthly', 0.5));
   urls.push(url(`${BASE}/reviews`, 'monthly', 0.7, reviewsMod));
   urls.push(url(`${BASE}/faq`, 'monthly', 0.8, faqMod));
+  urls.push(url(`${BASE}/glossary`, 'monthly', 0.8, glossaryMod));
 
   // Service detail pages - high local intent, must be indexed.
   // Sourced from scripts/service-routes.js (shared with prerender script).

@@ -108,7 +108,25 @@ export const blogPosts: BlogPost[] = [
       quickAnswer: {
         question: "What are the best hair products in Australia 2025?",
         answer: "The best hair products in Australia for 2025 include Juuce Bond Repair for damage, Aromaganic for blonde care, Juuce Heat Shield for frizz, and Wet Brush for detangling. All available from Hair Pinns, shipped Australia-wide with free shipping over $150."
-      }
+      },
+      faqSection: [
+        {
+          question: "What's the best product for damaged or colour-treated hair?",
+          answer: "Juuce Bond Repair Duo is my top pick — the shampoo and conditioner work together to rebuild broken bonds and restore strength. If you've had bleach, keratin, or regular heat styling, this is what you need. The formulas are technical and specifically target damage. Use it as your foundation and layer in other treatments on top."
+        },
+        {
+          question: "How do I prevent blonde hair from turning brassy in Australia's sun and humidity?",
+          answer: "Aromaganic's colour care range keeps blonde bright and brass-free, paired with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, use a quality violet shampoo 1–2 times weekly — it makes a huge difference. My Sydney clients swear by this combo because our sun and humidity are relentless on blonde."
+        },
+        {
+          question: "What's the best detangler for all hair types?",
+          answer: "Wet Brush is my go-to. It reduces breakage and makes combing through knots effortless whether hair is wet or dry. The glitter designs make it popular with clients of all ages, but the real win is the gentle bristles that don't pull or damage. Pair it with a leave-in conditioner for extra slip."
+        },
+        {
+          question: "Can I get professional hair products in Australia with free shipping?",
+          answer: "Yes. Hair Pinns ships all these products Australia-wide with free shipping on orders over $150. You can shop from Melbourne, Brisbane, Perth, or anywhere in Australia. All products are chosen by me personally and used in the salon, so you get the real deal — no guesswork, just professional products delivered to your door."
+        }
+      ]
     },
     cta: { type: "product", productPath: "https://hairpinns.com/collections", customText: "Shop best hair products Australia-wide" }
   },
@@ -168,7 +186,25 @@ export const blogPosts: BlogPost[] = [
       quickAnswer: {
         question: "Where can I buy salon hair products in Australia?",
         answer: "Hair Pinns ships professional hair care Australia-wide. Free shipping over $150. Personally chosen by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more at hairpinns.com."
-      }
+      },
+      faqSection: [
+        {
+          question: "Why are salon hair products better than supermarket shampoos?",
+          answer: "Salon products use higher concentrations of active ingredients, fewer fillers, and formulas designed for professional results. They're pH-balanced, usually sulfate-free, and built to protect colour and treatments. Supermarket versions are often watered down. You're getting the real deal from a trusted salon retailer, not a fake version from a corporation trying to cut costs."
+        },
+        {
+          question: "What should I look for when buying professional hair products online in Australia?",
+          answer: "Choose retailers that stock genuine professional brands like Juuce, QIQI, Pure, and Wet Brush. Look for someone who actually uses and tests the products — not just selling whatever makes money. Verify they ship Australia-wide with clear delivery times, offer a free shipping threshold, and have a hassle-free returns policy. And ask if the person behind it actually cares about hair."
+        },
+        {
+          question: "Does Hair Pinns really ship to all of Australia?",
+          answer: "Yes. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra — every state and territory. Free shipping on orders over $150. Every product is personally chosen by Jena since 2009. We've been looking after hair for years, so you're not just buying products, you're getting the salon experience delivered to your door."
+        },
+        {
+          question: "What professional brands can I trust for at-home hair care?",
+          answer: "Juuce offers bond repair, colour protection, and hydration for all hair types. QIQI delivers professional treatments and oils. Pure brings certified organic options for sensitive scalps. Wet Brush is the go-to for gentle detangling. All of these are available Australia-wide through Hair Pinns with advice when you need it. Pick what matches your hair's specific needs, not just what's cheapest."
+        }
+      ]
     },
     cta: {
       type: "product",
@@ -216,7 +252,25 @@ export const blogPosts: BlogPost[] = [
       quickAnswer: {
         question: "Where can I buy hair products in Melbourne, Brisbane or Perth?",
         answer: "Hair Pinns ships professional hair care to Melbourne, Brisbane, Perth and all of Australia. Free shipping over $150. Personally chosen by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush at hairpinns.com."
-      }
+      },
+      faqSection: [
+        {
+          question: "Does Hair Pinns ship professional hair products to Melbourne?",
+          answer: "Yes. Melbourne's humidity and hard water are tough on hair, and we ship Juuce, QIQI, Pure, and Wet Brush to Melbourne with free shipping on orders over $150. Standard delivery is 3–5 business days, express is 1–2 days. Every product is personally tested by me, so you get professional-grade hair care delivered to your door."
+        },
+        {
+          question: "What hair products should I use in Brisbane's subtropical climate?",
+          answer: "Brisbane's heat and humidity demand products that protect against both. Bond repair, colour protection, and smoothing aftercare are all available with free shipping over $150. The subtropical climate is similar to Sydney's, so the same routines work — sulfate-free shampoo, heat protection, and weekly masks make a huge difference."
+        },
+        {
+          question: "Can I get professional hair products shipped to Perth and Western Australia?",
+          answer: "Absolutely. Perth and Western Australia are fully covered. Whether you're in Perth CBD, Fremantle, or regional WA, your order arrives in 3–5 business days standard or 1–2 days express. Free shipping over $150. No exceptions — your best hair is a click away no matter where you are in Australia."
+        },
+        {
+          question: "Why should I buy hair products from Hair Pinns instead of a big retailer?",
+          answer: "20+ years of salon experience. Genuine professional brands only — no cheap knockoffs. 14-day hassle-free returns. We ship to every state and territory. But most importantly: the products are chosen by Jena personally based on what actually works in the salon. You're supporting a local salon that genuinely cares about your hair health, not a corporation trying to move volume."
+        }
+      ]
     },
     cta: { type: "product", productPath: "https://hairpinns.com/collections", customText: "Shop hair products Australia-wide" }
   },
@@ -1347,6 +1401,24 @@ export const blogPosts: BlogPost[] = [
         "Check what the stylist personally uses — not just what they sell",
         "Reviews that mention service and honesty beat before/after photos",
         "A specialist beats a generalist for colour, smoothing, or cuts"
+      ],
+      faqSection: [
+        {
+          question: "What should I ask a Sutherland Shire salon before booking my first appointment?",
+          answer: "Ask about their consultation process — good salons spend 15 minutes asking about your routine, history, and what you actually want before touching your hair. Ask what products they stock and use, and check whether a stylist can tell you what they personally use at home. Look at their reviews for language about service and honesty, not just before/after photos. And ask about their specialties — a salon that claims to do everything well usually does nothing well."
+        },
+        {
+          question: "How do I know if a Sutherland Shire salon is being honest about what my hair can handle?",
+          answer: "The best stylists will tell you no. If your hair isn't healthy enough for platinum blonde, they'll say 'we'll get there over three sessions, not today.' Honest salons cost less long-term because they don't create damage they later charge to fix. Red flag: a salon that promises miracles in one session. That usually means damage."
+        },
+        {
+          question: "Is location really that important when choosing a hair salon in the Sutherland Shire?",
+          answer: "More than you think. The best salon is the one you'll actually keep going to. If it's 40 minutes away at 5pm on Thursday, you'll cancel. Hair Pinns is in Bangor, central to Menai, Illawong, Alfords Point, Sutherland, Miranda, and Cronulla, with free parking and evening appointments. Those small things add up to consistency, which is what matters."
+        },
+        {
+          question: "What's the real test of whether a Sutherland Shire salon is trustworthy?",
+          answer: "Would you send your best friend there with a colour emergency? A box dye disaster, a wedding tomorrow, foils gone brassy the day before work. If you'd trust them with the hard stuff, they're the right salon for the easy stuff too. That's how we test ourselves at Hair Pinns — we specialise in the fixes and the transformations."
+        }
       ]
     },
     cta: {
@@ -1413,6 +1485,24 @@ export const blogPosts: BlogPost[] = [
         "Sulfate-free aftercare is the difference between 4 weeks and 12 weeks of results",
         "Formaldehyde is banned in Australia — avoid any salon with strong chemical smells",
         "Book a consultation to match your hair's condition to the right treatment"
+      ],
+      faqSection: [
+        {
+          question: "What's the difference between Straight Up Smoothing, QIQI Vega, and Nanoplasty?",
+          answer: "They're three different treatment categories. Straight Up is an amino-acid smoothing that reduces frizz by 90% without flattening movement — ideal for manageable hair with volume. QIQI Vega is a hybrid smoothing and protein treatment, stronger on damaged hair. Nanoplasty is molecular restructuring that restores and smooths, lasts the longest (up to 5 months), but costs more and takes 3–4 hours. Pick based on your hair condition and what result you actually want."
+        },
+        {
+          question: "How long does a keratin smoothing treatment actually last?",
+          answer: "It depends on the brand and your aftercare. Budget treatments at $150–$250 last about 4–6 weeks. Mid-range treatments like Straight Up ($300–$500) give you 8–12 weeks. Premium treatments ($500–$900) last 3–4 months. The biggest factor isn't the salon — it's what you do after. Sulfate-free shampoo for the first 72 hours minimum (ideally ongoing) is the difference between 4 weeks and 12 weeks of results."
+        },
+        {
+          question: "Why should I avoid cheap keratin smoothing treatments in Sydney?",
+          answer: "Budget salons often use generic keratin formulas and skip the proper wash, seal, and flat-iron steps. You might smell strong chemicals — formaldehyde is banned in Australia but cheap imported formulas sometimes still contain it. Any salon that can't explain what pH they're using, can't explain the wash-out timeline, or tells you 'it washes out in a week anyway' is cutting corners. The result isn't worth the damage risk."
+        },
+        {
+          question: "Does sulfate-free shampoo really make that much difference to smoothing results?",
+          answer: "Yes. Sulfates strip the treatment chemicals right out of your hair with every wash. A $600 smoothing treatment lasts 4 weeks with a drugstore sulfate shampoo instead of 12 weeks with sulfate-free. That's the single biggest reason people tell me 'keratin didn't work' — the treatment worked, they just washed it off. Get a sulfate-free option like QIQI Bare Repair or Pure Precious Ends and treat it like the investment it is."
+        }
       ]
     },
     cta: {
@@ -1464,6 +1554,24 @@ export const blogPosts: BlogPost[] = [
         "Most-booked services: Straight Up Smoothing, full head foils, mid-length cuts",
         "Honest pricing, no upsell pressure, consistent stylist each visit",
         "Try a single service first — no membership required"
+      ],
+      faqSection: [
+        {
+          question: "How far is Hair Pinns from Menai, and is it worth the drive?",
+          answer: "Hair Pinns is a 5-minute drive from central Menai via Menai Road with free parking right outside. For most Menai postcodes it's actually faster than driving into Sutherland or Miranda and trying to find parking. Lots of our regulars come from Menai Heights, Barden Ridge, and Woronora, and they say it's worth the short drive because they see the same stylist every time and get honest advice."
+        },
+        {
+          question: "What makes a good salon for local clients in Menai?",
+          answer: "The three things Menai clients consistently tell us they value: a salon that remembers them and doesn't rotate stylists every visit, honest pricing with no upsell pressure and transparent menus, and a salon that treats their hair like an investment rather than a transaction. If a salon checks those boxes, you've found the right fit."
+        },
+        {
+          question: "What are the most popular services among Menai clients at Hair Pinns?",
+          answer: "Straight Up Smoothing is huge — it reduces frizz for 8–12 weeks, which is crucial in Sydney's humid summers. Full head foils for blonde maintenance, and mid-length wash/cut/blowdry are also really popular. We also do kids and formal styling, which Menai families book for school events. Book online 24/7 or call to find out exact pricing for your specific needs."
+        },
+        {
+          question: "Do I have to switch salons completely, or can I try Hair Pinns for one service?",
+          answer: "Most Menai clients book a single service first — usually smoothing or a fix — while keeping their existing salon for everything else. After a few visits, they usually switch over, but we're happy either way. No commitment required, no membership, no hard sell. Try us once for a specific service and see if we're the right fit."
+        }
       ]
     },
     cta: {
@@ -1526,6 +1634,24 @@ export const blogPosts: BlogPost[] = [
         "Full balayage lasts 3–4 months between services, toner every 6–8 weeks",
         "Blonde needs purple toning shampoo weekly, brunette needs blue occasionally",
         "Sulfate-free shampoo is the #1 rule for colour longevity"
+      ],
+      faqSection: [
+        {
+          question: "How long does balayage last compared to traditional foils?",
+          answer: "Balayage is designed to grow out beautifully because there's no sharp line where the colour starts. You can go 3–4 months between full services with just a toner refresh every 6–8 weeks. Traditional foils show regrowth at 6–8 weeks and need touching up much sooner. If you want low-maintenance colour that still looks salon-fresh, balayage is the best value."
+        },
+        {
+          question: "What's the difference between balayage and foils, and which should I get?",
+          answer: "Balayage is freehand painting — soft, grown-out-looking highlights lighter at the ends. Foils use sectioning and aluminium to isolate strands for sharper, brighter, more defined highlights. Many clients do a mix for the best result: foils at the roots for definition, balayage through the ends for a natural blend. It depends whether you want a natural sun-kissed look or graphic highlights."
+        },
+        {
+          question: "How do I keep blonde balayage from turning brassy?",
+          answer: "Use a purple or violet toning shampoo 1–2 times a week — the Aromaganic range is gentle but effective. The key is matching the shampoo to your colour: blonde needs purple to stop brassiness, brunette benefits from blue shampoo every few weeks to neutralise warm tones. But the most important rule is always sulfate-free — sulfates strip colour faster than anything else."
+        },
+        {
+          question: "How much should I expect to pay for balayage in the Sutherland Shire?",
+          answer: "Balayage ranges from $220 for a partial on short hair at budget salons, to $500+ for full balayage with toner and cut at premium salons. At Hair Pinns our foil packages start around $280 for quarter-head and go up to $450+ for full head including cut and blowdry. Exact price depends on your hair length, thickness, and starting colour."
+        }
       ]
     },
     cta: {
@@ -1589,6 +1715,24 @@ export const blogPosts: BlogPost[] = [
         "Extensions themselves don't damage hair — bad installation and removal does",
         "Hair Pinns doesn't install permanent extensions; we refer to Shire specialists",
         "Wet Brush, sulfate-free shampoo, and silk pillowcases protect extensions"
+      ],
+      faqSection: [
+        {
+          question: "What's the easiest and cheapest type of hair extension to get?",
+          answer: "Clip-on ponytails are the shortcut most people miss. They add dramatic length and volume, take 2 minutes to attach, cause zero damage, and cost $50–$200 instead of $2000+. Poppet Locks make reusable clip-on ponytails from real human hair in natural colours that last years with proper care. If you want the volume without the commitment, start here."
+        },
+        {
+          question: "How much do permanent hair extensions cost, and what's the difference between types?",
+          answer: "Tape-ins cost $500–$1500 for installation plus hair and last 6–8 weeks between moves. Sewn-in wefts are $600–$1200 and popular for thick hair. Bonded or fusion extensions are $1500–$3000, longest-lasting but most damaging if removed wrong. Each has trade-offs on cost, maintenance, and damage risk. That's why I recommend starting with a clip-on ponytail to see if you actually want permanent extensions."
+        },
+        {
+          question: "Can hair extensions damage my hair?",
+          answer: "Extensions themselves don't damage hair — incorrect installation and removal does. The two biggest causes of damage are bonds or tapes placed too close to the scalp pulling the root, and removal without proper solvent or technique tearing the hair. If you're considering permanent extensions, vet your stylist harder than you'd vet a surgeon. Ask to see their before/after gallery and ask how they remove extensions."
+        },
+        {
+          question: "What products do I need to protect extensions I have installed elsewhere?",
+          answer: "Three essentials: a Wet Brush for gentle detangling without pulling at bonds or tapes — it's our most-sold product for extension wearers. A sulfate-free shampoo like Juuce Daily Wash because sulfates break down tape and fusion bonds. And a silk pillowcase to reduce morning tangles. Extensions are an investment; the products that protect them shouldn't be an afterthought."
+        }
       ]
     },
     cta: {
@@ -1659,6 +1803,24 @@ export const blogPosts: BlogPost[] = [
         "Sensitive scalp → Pure. Damaged hair → Juuce. Smoothed hair → Pure.",
         "Price is comparable — $25–$52 per bottle depending on range",
         "Mixing brands (shampoo from one, mask from another) is fine and often better"
+      ],
+      faqSection: [
+        {
+          question: "Which is better for colour-treated hair — Juuce or Pure Organic?",
+          answer: "If your hair is damaged or over-processed from colour, Juuce Bond Repair is what I reach for first. The formulas are technical with higher concentrations of active ingredients. For recently smoothed or keratin-treated hair, you want Pure Precious Ends because it's sulfate-free — Juuce has sulfate options, so you need to read the label carefully. Either way, both are high-quality."
+        },
+        {
+          question: "Should I use the same brand for shampoo, conditioner, and mask?",
+          answer: "No. The idea that you must use a complete system from one brand is marketing, not science. Pick the best shampoo for your scalp needs, the best conditioner for your length and ends, the best mask for your condition. I rotate Juuce Heat Shield in summer, Pure Sacred Mask weekly, and Juuce Bond Repair when my hair feels dry. Mix-and-match routines often give better results than staying with one brand."
+        },
+        {
+          question: "Is Pure Organic shampoo worth the extra cost compared to Juuce?",
+          answer: "Pure is slightly more expensive gram-for-gram because of the organic certification costs — Pure shampoos run $32–$48 for 300ml, Juuce runs $25–$40. But both are comparable to salon-brand prices and both significantly outperform supermarket options at the same or lower price point. You're paying for certification and natural ingredients, which matters if you have a sensitive scalp or care about eco-conscious products."
+        },
+        {
+          question: "If I have a sensitive scalp, should I choose Pure over Juuce?",
+          answer: "Yes. Pure is certified organic, sulfate-free, paraben-free, and uses cold-pressed botanical oils — it's specifically designed for sensitive scalps that react to synthetic sulfates. Juuce is more heavily fragranced in some ranges, which can irritate sensitive skin. If fragrance sensitivity is an issue, go Pure everything. If you have a tough scalp, Juuce's technical formulas often perform better."
+        }
       ]
     },
     cta: {
