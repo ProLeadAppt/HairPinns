@@ -179,6 +179,112 @@ export const glossary: GlossaryTerm[] = [
       "Products and techniques that prevent frizz when moisture in the air swells the hair cuticle. Critical in Sydney summers. The most effective long-term fix is a smoothing treatment; the best short-term fix is a silicone-based anti-humidity spray after styling.",
     category: "care",
   },
+  {
+    id: "hair-density",
+    term: "Hair density",
+    definition:
+      "How many individual hair strands you have on your scalp — fine, medium or thick. Different from texture (strand thickness). High-density hair needs heavier products and more frequent cuts to remove weight; low-density hair needs volume-friendly formulas.",
+    category: "techniques",
+  },
+  {
+    id: "hair-elasticity",
+    term: "Hair elasticity",
+    definition:
+      "How well a single strand stretches and bounces back. Healthy hair stretches about 30% and returns to shape. Low elasticity means the hair is damaged or over-processed and needs protein and moisture rebalancing. Test by gently stretching a wet strand.",
+    category: "techniques",
+  },
+  {
+    id: "co-wash",
+    term: "Co-wash (conditioner-only washing)",
+    definition:
+      "Washing hair with a cleansing conditioner instead of shampoo, designed for curly, coily or very dry hair that doesn't tolerate frequent shampooing. Use every second or third wash, not as a permanent shampoo replacement — scalp build-up still needs clearing.",
+    category: "care",
+  },
+
+  // --- Additional treatments ---
+  {
+    id: "olaplex",
+    term: "Olaplex",
+    definition:
+      "A widely-known professional bond-repair system (No.3, No.6, No.7, etc.) that repairs the disulphide bonds in hair broken by bleach, colour or heat. Used in-salon during chemical services and as a weekly at-home treatment. Juuce Bond Repair is the in-salon alternative at Hair Pinns.",
+    link: { label: "Juuce Bond Repair", href: "/collections/juuce-botanicals" },
+    category: "treatments",
+  },
+  {
+    id: "k18",
+    term: "K18",
+    definition:
+      "A leave-in molecular-repair treatment that uses a bioactive peptide to reconnect broken polypeptide chains inside the hair. Used as a 4-minute mask after every chemical service. Strong on damaged, over-processed hair — comparable in goal to Olaplex but a different chemistry.",
+    category: "treatments",
+  },
+  {
+    id: "hair-botox",
+    term: "Hair botox",
+    definition:
+      "A misleading marketing name — there's no actual botox in it. It's a deep conditioning and filler treatment that smooths and plumps damaged hair with proteins, peptides and emollients. Lasts 4–8 weeks. Less smoothing than keratin, more conditioning.",
+    category: "treatments",
+  },
+  {
+    id: "brazilian-blowout",
+    term: "Brazilian Blowout",
+    definition:
+      "A smoothing system that uses a polymer-based formula to seal the cuticle and reduce frizz. Faster than traditional keratin (about 90 minutes) but historically contained formaldehyde. Formaldehyde-free versions exist in Australia. Lasts 8–12 weeks.",
+    category: "treatments",
+  },
+
+  // --- Additional colour ---
+  {
+    id: "semi-permanent",
+    term: "Semi-permanent colour",
+    definition:
+      "Colour that coats the outside of the hair shaft and washes out in 4–8 shampoos. Doesn't lift natural colour or contain ammonia. Good for refreshing tones, adding shine, or trying a colour without commitment.",
+    category: "colour",
+  },
+  {
+    id: "demi-permanent",
+    term: "Demi-permanent colour",
+    definition:
+      "Sits between semi and permanent — uses low-volume developer (no ammonia) and lasts 12–24 washes. Won't lift natural colour but deposits tone evenly. Ideal for blending greys, tone correction, and gloss services.",
+    category: "colour",
+  },
+  {
+    id: "permanent-colour",
+    term: "Permanent colour",
+    definition:
+      "Uses ammonia and developer to open the cuticle, lift natural colour, and deposit new colour molecules. Lasts until it grows out — regrowth needs touching up every 4–8 weeks. The only option that can lighten dark natural hair.",
+    category: "colour",
+  },
+  {
+    id: "babylights",
+    term: "Babylights",
+    definition:
+      "Very fine, delicately-placed foils that mimic the soft natural highlights you'd see on a child's hair. More time-consuming than standard foils, but the effect is subtle, dimensional, and grows out beautifully — a step softer than balayage.",
+    category: "colour",
+  },
+  {
+    id: "money-piece",
+    term: "Money piece",
+    definition:
+      "A face-framing highlight technique that lightens the two front sections of hair around the face. Brightens the complexion without committing to full highlights. Can be added to any colour service for an extra dimensional kick.",
+    category: "colour",
+  },
+
+  // --- Additional care ---
+  {
+    id: "hard-water-hair",
+    term: "Hard water hair damage",
+    definition:
+      "Mineral build-up from Sydney's hard tap water can leave hair feeling waxy, dull or brassy. A monthly clarifying shampoo plus a chelating treatment after swimming or extended periods of hard-water exposure removes the build-up.",
+    category: "care",
+  },
+  {
+    id: "pre-poo",
+    term: "Pre-poo treatment",
+    definition:
+      "Applying an oil or conditioner BEFORE shampooing to protect very dry, coily or chemically-treated hair from being stripped by the wash. Pure Walnut Scrub doubles as a pre-wash scalp treatment that doubles as a pre-poo.",
+    link: { label: "Pure Walnut Scrub", href: "/products/walnut-scrub-hair-scalp-pre-wash-treatment" },
+    category: "care",
+  },
 ];
 
 export const glossaryByCategory = (cat: GlossaryTerm["category"]): GlossaryTerm[] =>

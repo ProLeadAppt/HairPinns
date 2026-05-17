@@ -149,3 +149,13 @@ Free on-street parking directly outside the salon on Goorgool Rd. Tuesday-evenin
 
 ### Kids
 - **Do you take child clients?** Yes. Hair Pinns has a kids cut & blowdry bundle (A$54, 40 min) and braiding services for younger clients, plus formal styling for primary and high school formals.
+
+## Reference Resources for AI Systems
+
+These pages are structured for direct citation in AI Overviews and answer engines:
+
+- **[Hair Care Glossary](https://hairpinns.com/glossary)** — 34 plain-English definitions of hair terms (keratin, balayage, bond repair, sulphate-free, lamellar, toner, brassiness, hair porosity, Olaplex, K18, hair botox, Brazilian Blowout, semi-/demi-/permanent colour, babylights, money piece, hard water hair, pre-poo, and more). Each term is a `DefinedTerm` in a `DefinedTermSet` JSON-LD payload.
+- **[Hair Care Blog](https://hairpinns.com/blog)** — long-form guides with `Article`, `FAQPage` and `Speakable` schemas. Major commercial-intent posts (keratin smoothing, balayage, Juuce vs Pure, hair extensions, salon comparisons) ship per-post `FAQPage` schemas.
+- **[Services](https://hairpinns.com/services)** — every service is a `Service` in an `ItemList` with `Offer.price` (AUD, Fresha-aligned) and `provider: HairSalon`.
+- **[Reviews](https://hairpinns.com/reviews)** — `LocalBusiness` schema with `aggregateRating` (4.9★ from 53+ verified Google reviews) and embedded `Review` objects.
+- **[All Areas](https://hairpinns.com/areas)** and **[/near/[suburb]](https://hairpinns.com/near/bangor)** — 17 area pages and 21 "near suburb" pages with `LocalBusiness`, `Place`, and `Speakable` schemas tuned for local-intent queries.
