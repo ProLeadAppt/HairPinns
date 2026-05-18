@@ -975,11 +975,22 @@ export const generateEnhancedServiceSchema = (service: EnhancedServiceData) => {
   };
 
   if (service.price) {
+    // Hair Pinns salon services are bookable in AUD by Australian customers only.
+    // Matches the product Offer eligibleRegion so the whole site signals
+    // "Australian market" consistently.
     schema.offers = {
       '@type': 'Offer',
       price: service.price,
       priceCurrency: service.priceCurrency || 'AUD',
       availability: 'https://schema.org/InStock',
+      eligibleRegion: {
+        '@type': 'Country',
+        name: 'AU',
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'AU',
+      },
       url: service.url,
     };
   }

@@ -17,6 +17,21 @@ export interface ServiceDetailData {
   benefits: string[];
   faqs: { question: string; answer: string }[];
   relatedServices: string[];
+  /**
+   * Take-it-home product recommendations specific to this service.
+   * Renders as a "Continue the result at home" module on the service page.
+   * Jena's actual pick-list per service. Drives cross-sell from booked
+   * clients to product orders.
+   */
+  homeCareBundles?: {
+    title: string;
+    intro?: string;
+    products: Array<{
+      name: string;
+      link: string;
+      reason: string;
+    }>;
+  };
 }
 
 export interface ServiceCategoryData {
@@ -96,7 +111,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "long-thick-straight-up-smoothing",
           "straight-up-smoothing-teens",
           "superior-conditioning-treatment"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Keep your smoothing going for months at home',
+          intro: "Sulphate-free aftercare is non-negotiable. Use this routine and you'll stretch the result to four to five months instead of two.",
+          products: [
+          { name: 'QIQI Bare Repair Oil', link: 'https://hairpinns.com/products/qiqi-bare-repair-oil', reason: 'Seals the cuticle after each wash. Five drops, mid-lengths to ends.' },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily finishing oil. Adds shine, fights humidity.' },
+          { name: 'Pure Sacred Mask', link: 'https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment', reason: "Weekly deep hydration treatment. Use Sunday night, you'll feel the difference Monday." },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Non-negotiable before any heat tool. Sulphate-free aftercare means nothing if you fry it with a straightener.' }
+          ]
+        }
       },
       {
         slug: "long-thick-straight-up-smoothing",
@@ -161,7 +186,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "mid-length-straight-up-smoothing",
           "long-hair-colour-package",
           "superior-conditioning-treatment"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Long and thick hair needs the full aftercare kit',
+          intro: "Long thick hair drinks product. You'll get through more, but the math still wins. Salon smoothing plus this routine gives four to five months versus two months of just hoping.",
+          products: [
+          { name: 'QIQI Bare Repair Oil', link: 'https://hairpinns.com/products/qiqi-bare-repair-oil', reason: 'Seals the cuticle. Long hair needs more drops than mid-length, work it through evenly.' },
+          { name: 'Juuce Super Soft Hydration Moisture Mask', link: 'https://hairpinns.com/products/juuce-super-soft-hydration-moisture-mask', reason: 'Weekly deep mask. Long hair loses moisture fastest at the ends, this puts it back.' },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily finishing oil. Sydney humidity test passed.' },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Heat protection is the difference between four months and ten weeks.' }
+          ]
+        }
       },
       {
         slug: "straight-up-smoothing-teens",
@@ -230,7 +265,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "high-school-formal-hairstyle",
           "mid-length-wash-cut-blowdry",
           "superior-conditioning-treatment"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Teen-friendly routine, parent-approved',
+          intro: "I've tested everything I sell on my own teen clients and these are the four products that actually get used at home instead of sitting in the shower untouched.",
+          products: [
+          { name: 'QIQI Bare Repair Oil', link: 'https://hairpinns.com/products/qiqi-bare-repair-oil', reason: "A few drops after each wash. Teens love that it's not greasy and the bottle lasts." },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily smoothness. School mornings get easier.' },
+          { name: 'Wet Brush Original Detangler', link: 'https://hairpinns.com/products/wet-brush-original-detangler', reason: 'Detangles wet hair without breaking. Teen hair is more fragile than people think.' },
+          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for the ends. Stops the split-end cycle so cuts last longer between trims.' }
+          ]
+        }
       }
     ]
   },
@@ -301,7 +346,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "half-head-foils-cut-blowdry",
           "long-hair-colour-package",
           "superior-conditioning-treatment"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Lock in your blonde at home',
+          intro: 'Full head foils are an investment. The aftercare routine is what makes them last six to eight months instead of fading brassy in six weeks.',
+          products: [
+          { name: 'Pure Forever Blonde Shampoo', link: 'https://hairpinns.com/products/pure-forever-blonde-shampoo', reason: 'Use twice a week to neutralise brass. Not every wash, that turns hair purple.' },
+          { name: 'Pure Forever Blonde Conditioner', link: 'https://hairpinns.com/products/pure-forever-blonde-conditioner', reason: 'The matching half. Always use the conditioner after the purple shampoo.' },
+          { name: 'Juuce Bond Repair Shampoo', link: 'https://hairpinns.com/products/juuce-bond-repair-shampoo', reason: "Daily wash on the days you're not using purple. Rebuilds what the foil work broke." },
+          { name: 'Juuce Solar Enz', link: 'https://hairpinns.com/products/juuce-protect-solar-enz', reason: 'UV protection leave-in. Without this, the sun pulls your blonde to brass in two weekends.' }
+          ]
+        }
       },
       {
         slug: "half-head-foils-cut-blowdry",
@@ -362,7 +417,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "full-head-foils-package",
           "quarter-head-foils-cut-blowdry",
           "mid-length-colour-package"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Same routine as full head, fewer foils to maintain',
+          intro: "Half head foils need the same aftercare attention as a full head. Use this routine and you'll stretch your gap between appointments by two to four weeks.",
+          products: [
+          { name: 'Pure Forever Blonde Shampoo & Conditioner', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Twice-weekly purple shampoo and conditioner combo. Keeps tone cool.' },
+          { name: 'Juuce Bond Repair Shampoo', link: 'https://hairpinns.com/products/juuce-bond-repair-shampoo', reason: 'Daily wash. Rebuilds bonds the foiling work broke.' },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Before every blow-dry or straightener. Non-negotiable on lightened hair.' },
+          { name: 'Juuce Solar Enz', link: 'https://hairpinns.com/products/juuce-protect-solar-enz', reason: "UV defence so summer doesn't undo your colour appointment." }
+          ]
+        }
       },
       {
         slug: "quarter-head-foils-cut-blowdry",
@@ -423,7 +488,16 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "half-head-foils-cut-blowdry",
           "toner",
           "short-hair-colour-package"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Quarter head is light maintenance, but still maintenance',
+          intro: 'Quarter head foils need less aftercare than a full head, but you still want to protect what you paid for. These three are the core kit.',
+          products: [
+          { name: 'Pure Forever Blonde Shampoo & Conditioner', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Once a week is enough for quarter head foils. Tones the brightened pieces.' },
+          { name: 'Juuce Radiant Colour Shampoo', link: 'https://hairpinns.com/products/juuce-radiant-colour-shampoo', reason: 'Your daily wash. Locks in colour and slows fade.' },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Before every heat tool. Quarter head foil pieces fade fastest if you skip this.' }
+          ]
+        }
       }
     ]
   },
@@ -490,7 +564,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "mid-length-colour-package",
           "long-thick-straight-up-smoothing",
           "superior-conditioning-treatment"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Long colour needs long-term protection',
+          intro: 'Long hair holds a lot of colour and loses it fastest. The right wash routine doubles the time between top-ups.',
+          products: [
+          { name: 'Juuce Radiant Colour Shampoo', link: 'https://hairpinns.com/products/juuce-radiant-colour-shampoo', reason: 'Daily wash. Locks in colour, slows fade, smells incredible.' },
+          { name: 'Juuce Radiant Colour Conditioner', link: 'https://hairpinns.com/products/juuce-radiant-colour-conditioner', reason: 'Matched conditioner. Always pair the two, not with anything else.' },
+          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for long hair ends. Stops the split-end cycle so cuts last longer.' },
+          { name: 'Pure Sacred Mask', link: 'https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment', reason: 'Weekly Sunday-night ritual. Colour-treated long hair drinks moisture.' }
+          ]
+        }
       },
       {
         slug: "mid-length-colour-package",
@@ -551,7 +635,16 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "long-hair-colour-package",
           "short-hair-colour-package",
           "half-head-foils-cut-blowdry"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Mid-length colour routine',
+          intro: 'Mid-length hair is the sweet spot. Easier to maintain than long, more product than short. This routine keeps your colour looking salon-fresh for weeks.',
+          products: [
+          { name: 'Juuce Radiant Colour Shampoo & Conditioner', link: 'https://hairpinns.com/collections/juuce-botanicals', reason: 'Daily routine. Always use the matching pair.' },
+          { name: 'Pure Sacred Mask', link: 'https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment', reason: 'Weekly hydration mask. Colour-treated mid-length hair benefits hugely.' },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily finishing oil. Adds the shine that makes new colour look new.' }
+          ]
+        }
       },
       {
         slug: "short-hair-colour-package",
@@ -612,7 +705,16 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "mid-length-colour-package",
           "quarter-head-foils-cut-blowdry",
           "short-wash-cut-blowdry"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Short colour, minimal maintenance, maximum vibrancy',
+          intro: "Short colour-treated hair is the easiest to maintain, which is good because you're cutting it more often. Keep it simple, keep it consistent.",
+          products: [
+          { name: 'Juuce Radiant Colour Shampoo & Conditioner', link: 'https://hairpinns.com/collections/juuce-botanicals', reason: 'Daily routine. Locks in tone, slows fade.' },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Tiny amount on the ends after each blow-dry.' },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Short hair gets styled more. Heat protection matters even more.' }
+          ]
+        }
       }
     ]
   },
@@ -678,7 +780,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "mid-length-wash-cut-blowdry",
           "long-hair-colour-package",
           "superior-conditioning-treatment"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Make this blow-dry last days, not hours',
+          intro: 'A salon blow-dry should look fresh for three to four days. This take-home kit is what makes that possible.',
+          products: [
+          { name: 'Pure Lamellar Vitality Shampoo & Conditioner', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Lightweight daily wash. My number one pick for any hair type.' },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Before any styling. Long hair is fragile at the ends, heat shield is mandatory.' },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Mid-lengths to ends. Smooths, shines, controls flyaways.' },
+          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for the ends. Stops splits so your cut lasts ten weeks instead of six.' }
+          ]
+        }
       },
       {
         slug: "mid-length-wash-cut-blowdry",
@@ -734,7 +846,16 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "long-hair-wash-cut-blowdry",
           "short-wash-cut-blowdry",
           "mid-length-colour-package"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Daily routine for fresh-cut mid-length',
+          intro: 'Mid-length hair is the most versatile. Get the daily routine right and your cut keeps its shape for eight weeks easy.',
+          products: [
+          { name: 'Pure Lamellar Vitality Shampoo & Conditioner', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Daily lightweight wash. Works for almost every hair type.' },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Before any heat tool. The single most underused product in most bathrooms.' },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Two pumps before blow-drying. Adds shine and stops frizz.' }
+          ]
+        }
       },
       {
         slug: "short-wash-cut-blowdry",
@@ -790,7 +911,16 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "mid-length-wash-cut-blowdry",
           "short-hair-colour-package",
           "kids-cut-blowdry-bundle"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Short hair routine, no fuss',
+          intro: 'Short hair is low maintenance but you still want it looking fresh. Three products, two minutes a day.',
+          products: [
+          { name: 'Pure Lamellar Vitality Shampoo & Conditioner', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: "Lightweight daily wash. Doesn't weigh down short styles." },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Before any styling. Short hair gets styled often, heat shield is the difference between healthy and fried.' },
+          { name: 'Tame Texture Wax Stick', link: 'https://hairpinns.com/products/tame-texture-wax-stick', reason: 'Finish stick for control on shorter styles. Tiny amount, big difference.' }
+          ]
+        }
       },
       {
         slug: "kids-cut-blowdry-bundle",
@@ -850,7 +980,16 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "primary-formal-hairstyle",
           "high-school-formal-hairstyle",
           "kids-blowdry"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Make wash day easier for everyone',
+          intro: 'Kids hair gets tangled fast and nobody enjoys morning brush fights. These three are the ones I send home with every kid client.',
+          products: [
+          { name: 'Wet Brush Kids Detangler', link: 'https://hairpinns.com/products/wet-brush-kids-detangler', reason: 'Detangles wet hair without breaking. The end of brush-time tears.' },
+          { name: 'Juuce Knot Knotty Detangler', link: 'https://hairpinns.com/products/juuce-knot-knotty-detangler', reason: 'Spray-in detangler. Spritz it on wet or dry hair before the brush comes out.' },
+          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for ends. Stops the split-end cycle that means cuts every six weeks.' }
+          ]
+        }
       }
     ]
   },
@@ -920,7 +1059,16 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "high-school-formal-hairstyle",
           "kids-cut-blowdry-bundle",
           "custom-braided-hairstyle"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Hold the style without the crunch',
+          intro: 'Formal hair has to last through dancing, photos, and a bus ride home. These three products do the work without making hair feel like a helmet.',
+          products: [
+          { name: 'Juuce Stuck Up Lacquer', link: 'https://hairpinns.com/products/juuce-stuck-up-lacquer', reason: 'Flexible hairspray that holds without crunch. Brushes out clean at the end of the night.' },
+          { name: 'Wet Brush Original Detangler', link: 'https://hairpinns.com/products/wet-brush-original-detangler', reason: 'Brush out the style after the event without breaking hair.' },
+          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in on the ends the day before. Smooths and shines so up-styles look polished.' }
+          ]
+        }
       },
       {
         slug: "high-school-formal-hairstyle",
@@ -989,7 +1137,17 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "straight-up-smoothing-teens",
           "primary-formal-hairstyle",
           "wedding-pp"
-        ]
+        ],
+        homeCareBundles: {
+          title: 'Formal-night kit that survives the dance floor',
+          intro: 'School formals are five-hour events with a lot of movement. This kit holds the style and keeps hair healthy through it.',
+          products: [
+          { name: 'Juuce Stuck Up Lacquer', link: 'https://hairpinns.com/products/juuce-stuck-up-lacquer', reason: 'The hold without the crunch. Brushable, photo-friendly, no helmet hair.' },
+          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Before any curling or straightening on formal day. Protect the colour you paid for.' },
+          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Mid-lengths to ends after styling. Photo-ready shine.' },
+          { name: 'Wet Brush Original Detangler', link: 'https://hairpinns.com/products/wet-brush-original-detangler', reason: "For the morning-after brush-out. Easier than you'd expect." }
+          ]
+        }
       }
     ]
   }

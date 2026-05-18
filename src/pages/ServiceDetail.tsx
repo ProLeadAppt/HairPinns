@@ -281,6 +281,39 @@ const ServiceDetail = () => {
             </a>
           </div>
 
+          {/* Take-home product picks — Jena's per-service recommendations.
+              Drives cross-sell from booked clients into product orders. */}
+          {serviceData.homeCareBundles && (
+            <div className="mb-16">
+              <div className="rounded-card p-6 sm:p-8 bg-gradient-to-br from-brand-500/5 to-accent/5 border border-brand-500/15">
+                <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-3" style={{ color: 'hsl(var(--heading))' }}>
+                  {serviceData.homeCareBundles.title}
+                </h2>
+                {serviceData.homeCareBundles.intro && (
+                  <p className="text-base sm:text-lg mb-6" style={{ color: 'hsl(var(--text))', lineHeight: '1.6' }}>
+                    {serviceData.homeCareBundles.intro}
+                  </p>
+                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {serviceData.homeCareBundles.products.map((product, idx) => (
+                    <a
+                      key={idx}
+                      href={product.link}
+                      className="group block bg-white border border-border rounded-card p-4 hover:border-brand-500 hover:shadow-md transition-all"
+                    >
+                      <h3 className="font-heading font-semibold text-base mb-1 group-hover:text-brand-500 transition-colors" style={{ color: 'hsl(var(--heading))' }}>
+                        {product.name}
+                      </h3>
+                      <p className="text-sm leading-relaxed" style={{ color: 'hsl(var(--text))' }}>
+                        {product.reason}
+                      </p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* FAQs */}
           {serviceData.faqs && serviceData.faqs.length > 0 && (
             <div className="mb-16">

@@ -18,7 +18,7 @@
  * The `localIntro`, `climateHook`, `productPicks`, `faqs`, and
  * `nearbyDestinations` fields are designed to be hand-edited by Jena.
  * Everything else (postcode ranges, delivery windows, capitals) is shipped
- * with safe defaults — change them only if Australia Post / courier ETAs
+ * with safe defaults. change them only if Australia Post / courier ETAs
  * shift, or if a state's postcode range changes (it won't).
  *
  * Add a new entry by copy-pasting an existing block and updating fields.
@@ -29,13 +29,13 @@
  */
 
 export interface ShippingStateData {
-  /** URL slug — kebab-case state name (e.g. "victoria", "western-australia"). */
+  /** URL slug. kebab-case state name (e.g. "victoria", "western-australia"). */
   slug: string;
   /** Full state name (e.g. "Victoria", "Western Australia"). */
   name: string;
   /** Official abbreviation (NSW, VIC, QLD, WA, SA, TAS, ACT, NT). */
   abbreviation: string;
-  /** Capital city — primary shipping destination. */
+  /** Capital city. primary shipping destination. */
   capital: string;
   /** Australia Post postcode prefix range (e.g. "3000–3999"). */
   postcodeRange: string;
@@ -51,7 +51,7 @@ export interface ShippingStateData {
   majorCities: string[];
   /**
    * One-sentence climate hook that ties the state's hair-care challenges to
-   * the products Hair Pinns recommends. Jena's voice — edit freely.
+   * the products Hair Pinns recommends. Jena's voice. edit freely.
    */
   climateHook: string;
   /**
@@ -71,7 +71,7 @@ export interface ShippingStateData {
   /**
    * 4–6 state-specific FAQs. Lean on real shipping questions ("delivery to
    * <regional town>", "weekend delivery to <capital>") plus climate-tied
-   * product questions. Each must be unique across the whole site — duplicate
+   * product questions. Each must be unique across the whole site. duplicate
    * FAQs across pages get filtered out of Google's FAQ rich results.
    */
   faqs: Array<{ question: string; answer: string }>;
@@ -92,8 +92,8 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "1–3",
     expressDeliveryDays: "1–2",
     majorCities: ["Sydney", "Newcastle", "Wollongong", "Central Coast", "Wagga Wagga", "Coffs Harbour"],
-    climateHook: "Coastal humidity from Sydney to Coffs Harbour means frizz is the default state of hair — smoothing treatments and humidity-shield products carry the day.",
-    localIntro: "Hair Pinns dispatches every order from Bangor, NSW 2234 — which makes New South Wales the fastest-shipping state on the network. Sydney metro typically lands the next business day; Newcastle, Wollongong and the Central Coast follow within 1–3 days; regional NSW (Wagga, Dubbo, Tamworth, the Mid North Coast) sits at the 2–3 day mark. Salon-quality hair care, hand-selected by Jena from 20+ years of working with NSW humidity, shipped fast. Free shipping over $150 AUD.",
+    climateHook: "Most NSW hair is fighting humidity ten months of the year. My whole product wall is built around that one problem.",
+    localIntro: "Hi NSW, I'm Jena. I run Hair Pinns from my home salon in Bangor and ship everything from right here in 2234. That's why you're the fastest state on my list. Sydney usually lands the next business day, Newcastle, Wollongong and the Central Coast in two to three, and regional NSW (Wagga, Dubbo, Tamworth, the Mid North Coast) about the same. Twenty years of doing hair in Sydney's humidity has shaped my whole product wall, so what you're ordering is what I'm actually using on local heads every week. Free shipping over $150.",
     productPicks: [
       {
         label: "Smoothing & frizz control",
@@ -108,7 +108,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       {
         label: "Pure Certified Organic",
         collectionPath: "/collections/pure-certified-organic-hair-care",
-        reason: "Jena's #1 daily range — sulphate-free, water-friendly for harder Sydney metro water.",
+        reason: "Jena's #1 daily range. Sulphate-free, water-friendly for harder Sydney metro water.",
       },
     ],
     faqs: [
@@ -126,7 +126,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Can I pick up from the Bangor salon instead of shipping?",
-        answer: "Yes — message Hair Pinns to arrange a salon collection from 60 Goorgool Rd, Bangor NSW 2234. No shipping cost and you get Jena's product recommendation in person.",
+        answer: "Yes. Message Hair Pinns to arrange a salon collection from 60 Goorgool Rd, Bangor NSW 2234. No shipping cost and you get Jena's product recommendation in person.",
       },
     ],
     nearbyStates: ["australian-capital-territory", "victoria", "queensland"],
@@ -141,13 +141,13 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "3–5",
     expressDeliveryDays: "1–2",
     majorCities: ["Melbourne", "Geelong", "Ballarat", "Bendigo", "Shepparton", "Mildura"],
-    climateHook: "Melbourne's four-seasons-in-a-day weather hammers hair with cold dry winds in winter and dry heat in summer — bond-repair and deep-hydration treatments are non-negotiable.",
-    localIntro: "Hair Pinns ships salon-quality hair care to every Victorian postcode from our Bangor, NSW dispatch hub. Melbourne metro typically lands within 3–5 business days via AusPost or 1–2 days express; regional Victoria (Geelong, Ballarat, Bendigo, Shepparton, Mildura) sits in the same window. Jena hand-picks every product on the catalogue — particularly the bond-repair and hydration ranges Victorian clients lean on through Melbourne's dry winters. Free shipping on orders over $150 AUD.",
+    climateHook: "Melbourne does four seasons in a day, and your hair feels every one of them. Bond repair and deep hydration are the two products you can't skip.",
+    localIntro: "Hi Victoria, Jena here. I send your orders down from Bangor, NSW, so Melbourne usually has them in three to five days standard or one to two express. Geelong, Ballarat, Bendigo, Shepparton and Mildura all sit in that same window. My Melbourne clients always tell me the same thing. Winter strips moisture out of their hair, summer adds a different kind of damage, and the heating cycle through autumn ruins ends. So I lean hard on bond repair and weekly hydration when I'm picking products for VIC orders. Free shipping over $150.",
     productPicks: [
       {
         label: "Bond repair & damaged hair",
         collectionPath: "/collections/juuce-botanicals",
-        reason: "Melbourne's dry winters and styling-tool overuse break bonds — Juuce bond repair rebuilds without weight.",
+        reason: "Melbourne's dry winters and styling-tool overuse break bonds. Juuce bond repair rebuilds without weight.",
       },
       {
         label: "Hydration & moisture",
@@ -167,7 +167,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Do you ship to regional Victoria (Geelong, Ballarat, Bendigo)?",
-        answer: "Yes — every Victorian postcode in the 3000–3999 range is covered. Regional VIC typically arrives in 3–5 business days; remote postcodes may take an extra day.",
+        answer: "Yes. Every Victorian postcode in the 3000–3999 range is covered. Regional VIC typically arrives in 3–5 business days; remote postcodes may take an extra day.",
       },
       {
         question: "What products help with Melbourne's dry winter hair?",
@@ -190,8 +190,8 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "3–5",
     expressDeliveryDays: "2–3",
     majorCities: ["Brisbane", "Gold Coast", "Sunshine Coast", "Townsville", "Cairns", "Toowoomba"],
-    climateHook: "Tropical and subtropical Queensland is the toughest test for hair — chlorine, salt, UV, and constant humidity from Cairns to Brisbane all conspire against colour and smooth styles.",
-    localIntro: "Hair Pinns ships professional hair care to every Queensland postcode from Bangor, NSW. Brisbane and the Gold Coast typically receive orders within 3–5 business days via AusPost standard or 2–3 days express. Sunshine Coast, Townsville, Cairns, and Toowoomba sit in the same window. Jena's curated catalogue is heavily weighted toward UV-protection, colour-locking and smoothing-aftercare ranges — exactly what Queensland hair needs to hold colour and stay smooth through the wet season. Free shipping over $150 AUD.",
+    climateHook: "QLD weather is the worst combination for hair anywhere in the country. Chlorine, salt, UV and humidity all at once, all year. Your hair needs to fight back.",
+    localIntro: "Hi Queensland, I'm Jena. I run Hair Pinns from Bangor in Sydney's south and your orders go out the same day Monday to Friday. Brisbane and the Gold Coast usually have them in three to five days standard, two to three days express. Sunshine Coast, Townsville, Cairns and Toowoomba sit in the same window. Your weather is the worst hair conditions in the country, no contest. So when I'm picking what to recommend for QLD orders I lean on the things that actually hold up. QIQI smoothing aftercare to keep humidity from undoing your blow-dry, Solar Enz to stop the sun cooking your colour, Pure Forever Blonde to keep brass at bay. Free shipping over $150.",
     productPicks: [
       {
         label: "Blonde & colour care",
@@ -206,7 +206,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       {
         label: "QIQI smoothing aftercare",
         collectionPath: "/collections/qiqi",
-        reason: "Tropical humidity erodes smoothing treatments — sulphate-free QIQI aftercare extends results.",
+        reason: "Tropical humidity erodes smoothing treatments. Sulphate-free QIQI aftercare extends results.",
       },
     ],
     faqs: [
@@ -216,7 +216,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Do you ship to Far North Queensland (Cairns, Townsville)?",
-        answer: "Yes — every QLD postcode in the 4000–4999 range is covered. Cairns and Townsville typically arrive within 4–5 business days; remote tropical postcodes may take an extra 1–2 days.",
+        answer: "Yes. Every QLD postcode in the 4000–4999 range is covered. Cairns and Townsville typically arrive within 4–5 business days; remote tropical postcodes may take an extra 1–2 days.",
       },
       {
         question: "What products protect blonde hair from Queensland sun?",
@@ -224,7 +224,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Can hair smoothing survive Queensland humidity?",
-        answer: "Yes — but only with sulphate-free aftercare. QIQI smoothing-aftercare shampoo and conditioner extend the treatment by 2–3 months even in Cairns or Brisbane summer humidity.",
+        answer: "Yes. But only with sulphate-free aftercare. QIQI smoothing-aftercare shampoo and conditioner extend the treatment by 2–3 months even in Cairns or Brisbane summer humidity.",
       },
     ],
     nearbyStates: ["new-south-wales", "northern-territory"],
@@ -239,8 +239,8 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "5–8",
     expressDeliveryDays: "3–5",
     majorCities: ["Perth", "Fremantle", "Mandurah", "Bunbury", "Kalgoorlie", "Geraldton"],
-    climateHook: "Perth and the WA south-west sit between hard mineral-rich water and intense UV — bond repair and scalp-detox products undo what the environment does.",
-    localIntro: "Hair Pinns dispatches WA orders from Bangor, NSW via AusPost — Perth metro typically receives within 5–8 business days standard or 3–5 days express. Mandurah, Bunbury, Fremantle and the Perth peripheral suburbs sit in the same window. Regional WA (Kalgoorlie, Geraldton, Broome, Albany) extends slightly. Jena's catalogue leans on bond-repair and scalp-detox ranges for WA shoppers — both rebuild what Perth's hard water and brutal UV strip from hair. Free shipping over $150 AUD.",
+    climateHook: "Perth's water is hard, the UV is brutal, and the wind never stops. Three different things damaging your hair at once, three different fixes.",
+    localIntro: "Hi WA, Jena here. You're the furthest from my Bangor dispatch hub so your orders take a little longer than the east coast. Perth metro usually lands in five to eight days standard or three to five days express. Mandurah, Bunbury, Fremantle and the rest of the Perth peripheral are in that same window. Regional WA (Kalgoorlie, Geraldton, Broome, Albany) takes a bit longer. The thing about Perth hair is the water. It's mineral-heavy and it leaves residue your shampoo can't always shift. So when I'm picking products for WA orders I lean on scalp-detox treatments to clear that residue, and bond repair to fix what the UV and wind keep undoing. Worth the wait. Free shipping over $150.",
     productPicks: [
       {
         label: "Scalp health & detox",
@@ -265,7 +265,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Do you ship to regional Western Australia?",
-        answer: "Yes — every WA postcode in the 6000–6999 range is covered. Regional towns (Kalgoorlie, Geraldton, Albany, Broome) typically arrive within 7–10 business days standard.",
+        answer: "Yes. Every WA postcode in the 6000–6999 range is covered. Regional towns (Kalgoorlie, Geraldton, Albany, Broome) typically arrive within 7–10 business days standard.",
       },
       {
         question: "What products work best for Perth's hard water?",
@@ -273,7 +273,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Is shipping insured?",
-        answer: "Yes — every Hair Pinns order ships with tracking and Australia Post / courier transit cover. Damaged goods are replaced or refunded; contact Hair Pinns within 7 days of delivery.",
+        answer: "Yes. Every Hair Pinns order ships with tracking and Australia Post / courier transit cover. Damaged goods are replaced or refunded; contact Hair Pinns within 7 days of delivery.",
       },
     ],
     nearbyStates: ["south-australia", "northern-territory"],
@@ -288,13 +288,13 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "4–6",
     expressDeliveryDays: "2–4",
     majorCities: ["Adelaide", "Mount Gambier", "Whyalla", "Murray Bridge", "Port Lincoln", "Victor Harbor"],
-    climateHook: "Adelaide's hot dry summers and cool dry winters demand the opposite end of the hydration spectrum to Queensland — deep mask treatments and oil serums earn their keep year-round.",
-    localIntro: "Hair Pinns ships to every South Australian postcode from Bangor, NSW. Adelaide metro typically receives orders within 4–6 business days via AusPost standard or 2–4 days express. Regional SA (Mount Gambier, Whyalla, Murray Bridge, the Fleurieu Peninsula) sits in the same window. SA shoppers tend to favour Jena's deep-hydration and oil-serum picks — both counter the dry climate without making fine hair feel weighed down. Free shipping over $150 AUD.",
+    climateHook: "Adelaide is dry. Hot dry summers, cold dry winters, and not enough rain in between. Your hair needs weekly hydration or it goes brittle fast.",
+    localIntro: "Hi South Australia, I'm Jena. Your orders ship from my Bangor salon in Sydney and usually land in four to six days standard or two to four days express. Mount Gambier, Whyalla, Murray Bridge and the Fleurieu Peninsula are in that same window. SA hair is the opposite problem to Queensland. It's dry, not humid, and the moisture loss is constant. So when I'm packing SA orders I'm choosing deep hydration masks for the weekly reset, lightweight oil serums to seal ends, and sulphate-free shampoos so the dryness isn't getting worse with every wash. None of it heavy. Free shipping over $150.",
     productPicks: [
       {
         label: "Deep hydration masks",
         collectionPath: "/collections/juuce-botanicals",
-        reason: "Adelaide's dry climate strips moisture faster than humid states — weekly mask treatments rebuild.",
+        reason: "Adelaide's dry climate strips moisture faster than humid states. Weekly mask treatments rebuild.",
       },
       {
         label: "Bond repair",
@@ -314,11 +314,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Do you ship to regional South Australia?",
-        answer: "Yes — every SA postcode in the 5000–5999 range is covered. Mount Gambier, Whyalla, and the Fleurieu Peninsula typically arrive within 5–7 business days standard.",
+        answer: "Yes. Every SA postcode in the 5000–5999 range is covered. Mount Gambier, Whyalla, and the Fleurieu Peninsula typically arrive within 5–7 business days standard.",
       },
       {
         question: "What products help dry Adelaide hair?",
-        answer: "Weekly Juuce Super Soft Hydration Mask, daily Pure Lamellar Vitality range, Juuce Botanic Oil Serum to seal ends — and sulphate-free shampoos that won't compound the moisture loss.",
+        answer: "Weekly Juuce Super Soft Hydration Mask, daily Pure Lamellar Vitality range, Juuce Botanic Oil Serum to seal ends. And sulphate-free shampoos that won't compound the moisture loss.",
       },
       {
         question: "Are products sulphate-free for sensitive scalps?",
@@ -337,8 +337,8 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "5–8",
     expressDeliveryDays: "3–5",
     majorCities: ["Hobart", "Launceston", "Devonport", "Burnie", "Ulverstone"],
-    climateHook: "Tasmania's cool wet climate and indoor heating cycle hair through hydration and dehydration weekly — bond repair and lightweight oils restore the balance.",
-    localIntro: "Hair Pinns ships to every Tasmanian postcode from Bangor, NSW via AusPost. Hobart and Launceston typically receive orders within 5–8 business days standard or 3–5 days express; Devonport, Burnie, and the north-west coast sit in the same window. Tasmanian shoppers lean heavily on Jena's bond-repair and hydration ranges — both undo the cold-and-wet-then-heated-and-dry damage cycle. Free shipping over $150 AUD.",
+    climateHook: "Tassie cycles your hair through wet and cold then dry and heated, every single day in winter. Hair hates that. Bond repair and weekly hydration fix it.",
+    localIntro: "Hi Tassie, I'm Jena. Hobart and Launceston usually get your orders in five to eight days from my Bangor dispatch, or three to five days express. Devonport, Burnie and the north-west coast are the same. Bass Strait adds a day or two compared to the mainland, but tracking comes through to your inbox the moment your order leaves. The Tassie hair problem is the cycle. Wet and cold outside, dry and heated inside, repeat. That cycle breaks bonds and strips moisture, so I pack TAS orders with Juuce Bond Repair for daily strength, a weekly hydration mask to reset, and a Wet Brush because wet hair gets brushed a lot in your climate. Free shipping over $150.",
     productPicks: [
       {
         label: "Bond repair",
@@ -348,12 +348,12 @@ export const shippingStates: Record<string, ShippingStateData> = {
       {
         label: "Hydration & moisture",
         collectionPath: "/collections/juuce-botanicals",
-        reason: "Heated air strips moisture fast — weekly Juuce Super Soft Hydration Mask restores it.",
+        reason: "Heated air strips moisture fast. Weekly Juuce Super Soft Hydration Mask restores it.",
       },
       {
         label: "Wet Brush detanglers",
         collectionPath: "/collections/wet-brush-detanglers",
-        reason: "Wet TAS weather means wet hair — Wet Brush detangles without breakage.",
+        reason: "Wet TAS weather means wet hair. Wet Brush detangles without breakage.",
       },
     ],
     faqs: [
@@ -363,7 +363,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Do you ship to Devonport, Burnie, and the north-west coast?",
-        answer: "Yes — every TAS postcode in the 7000–7999 range is covered. North-west TAS typically arrives within 6–9 business days standard.",
+        answer: "Yes. Every TAS postcode in the 7000–7999 range is covered. North-west TAS typically arrives within 6–9 business days standard.",
       },
       {
         question: "What products work for cold wet Tasmanian winters?",
@@ -386,13 +386,13 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "2–4",
     expressDeliveryDays: "1–2",
     majorCities: ["Canberra", "Belconnen", "Tuggeranong", "Gungahlin", "Woden"],
-    climateHook: "Canberra's cold dry winters and hot dry summers swing hair between brittle and parched — hydration and bond-repair carry the heavy lifting year-round.",
-    localIntro: "Hair Pinns ships to every ACT postcode from Bangor, NSW. Canberra metro typically receives orders within 2–4 business days via AusPost standard or 1–2 days via express post — one of the fastest delivery windows on the network thanks to proximity to NSW. Jena's catalogue is well-suited to Canberra's dry continental climate: hydration ranges and bond-repair products counter the moisture loss from cold dry air and indoor heating. Free shipping over $150 AUD.",
+    climateHook: "Canberra winters are brutally dry, summers are brutally dry, and the heating cycles in between finish the job. Your hair is thirsty all year.",
+    localIntro: "Hi Canberra, Jena here. You're one of the closest states to my Bangor dispatch hub so your orders are quick. Two to four days standard or one to two days express. All your suburbs (Belconnen, Tuggeranong, Gungahlin, Woden) are in that same window. The Canberra problem is dryness, full stop. Cold dry air in winter, hot dry air in summer, indoor heating cycling through both. So I lean hydration heavy for ACT orders. Weekly Juuce Super Soft Hydration Mask, daily Pure Lamellar Vitality, a finishing oil to seal ends, and bond repair if your hair is colour-treated. The dry climate hates your hair, but the right routine wins. Free shipping over $150.",
     productPicks: [
       {
         label: "Hydration & moisture",
         collectionPath: "/collections/juuce-botanicals",
-        reason: "Canberra's dry continental climate strips hair moisture year-round — weekly hydration is essential.",
+        reason: "Canberra's dry continental climate strips hair moisture year-round. Weekly hydration is essential.",
       },
       {
         label: "Bond repair",
@@ -408,11 +408,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How fast does shipping reach Canberra?",
-        answer: "Canberra metro orders typically arrive within 2–4 business days via AusPost standard or 1–2 days express — one of the fastest windows on the Hair Pinns network. Free shipping over $150 AUD.",
+        answer: "Canberra metro orders typically arrive within 2–4 business days via AusPost standard or 1–2 days express. One of the fastest windows on the Hair Pinns network. Free shipping over $150 AUD.",
       },
       {
         question: "Do you ship to all Canberra suburbs (Belconnen, Tuggeranong, Gungahlin)?",
-        answer: "Yes — every ACT postcode is covered. All metro Canberra suburbs sit within the 2–4 day standard window.",
+        answer: "Yes. Every ACT postcode is covered. All metro Canberra suburbs sit within the 2–4 day standard window.",
       },
       {
         question: "What products help dry Canberra hair?",
@@ -420,7 +420,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Can I pick up from Sydney instead?",
-        answer: "If you'd prefer salon pickup, Hair Pinns is at 60 Goorgool Rd, Bangor NSW 2234 — roughly a 3 hr drive from Canberra. Most ACT customers prefer the 2-day shipping.",
+        answer: "If you'd prefer salon pickup, Hair Pinns is at 60 Goorgool Rd, Bangor NSW 2234. Roughly a 3 hr drive from Canberra. Most ACT customers prefer the 2-day shipping.",
       },
     ],
     nearbyStates: ["new-south-wales", "victoria"],
@@ -435,18 +435,18 @@ export const shippingStates: Record<string, ShippingStateData> = {
     standardDeliveryDays: "6–10",
     expressDeliveryDays: "4–6",
     majorCities: ["Darwin", "Alice Springs", "Palmerston", "Katherine", "Nhulunbuy"],
-    climateHook: "Tropical Darwin and the arid Red Centre demand opposite hair-care strategies — high-humidity smoothing and frizz control up north, deep hydration and UV protection in Alice Springs.",
-    localIntro: "Hair Pinns ships to every Northern Territory postcode from Bangor, NSW via AusPost. Darwin metro typically receives orders within 6–10 business days standard or 4–6 days express; Alice Springs, Palmerston, Katherine and the broader NT sit in a similar window. NT shoppers split between two product profiles — tropical-north humidity calls for smoothing and frizz control, while the arid centre needs deep hydration and aggressive UV protection. Jena's catalogue covers both. Free shipping over $150 AUD.",
+    climateHook: "NT is two completely different hair problems in one territory. Darwin sweats your blow-dry out by morning, Alice Springs cooks your colour by lunchtime.",
+    localIntro: "Hi NT, I'm Jena. You're the furthest from my Bangor dispatch hub so your orders take the longest. Darwin metro usually has them in six to ten days standard or four to six days express, and Alice Springs, Palmerston and Katherine are about the same. The Top End and the Red Centre are two completely different hair problems, so I pack NT orders differently depending on where you are. Up north it's the humidity, so smoothing aftercare from QIQI and frizz-control oils. Down in the centre it's UV and dry air, so heat protection, Solar Enz, weekly hydration masks. Tell me your postcode if you're on the fence and I'll point you at the right routine. Free shipping over $150.",
     productPicks: [
       {
         label: "QIQI smoothing aftercare",
         collectionPath: "/collections/qiqi",
-        reason: "Darwin's tropical humidity erodes smoothing treatments — QIQI aftercare extends results by months.",
+        reason: "Darwin's tropical humidity erodes smoothing treatments. QIQI aftercare extends results by months.",
       },
       {
         label: "Heat protection & UV",
         collectionPath: "/collections/heat-protection",
-        reason: "NT sun is brutal everywhere — Juuce Solar Enz blocks UV; sun-damaged colour fades fast otherwise.",
+        reason: "NT sun is brutal everywhere. Juuce Solar Enz blocks UV; sun-damaged colour fades fast otherwise.",
       },
       {
         label: "Bond repair",
@@ -461,7 +461,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Do you ship to Alice Springs and remote NT?",
-        answer: "Yes — every NT postcode is covered. Alice Springs typically arrives within 8–12 business days standard; remote and Indigenous community postcodes may extend further.",
+        answer: "Yes. Every NT postcode is covered. Alice Springs typically arrives within 8–12 business days standard; remote and Indigenous community postcodes may extend further.",
       },
       {
         question: "What products work for Darwin's tropical humidity?",
@@ -480,5 +480,5 @@ export const shippingStates: Record<string, ShippingStateData> = {
 export const getShippingStateData = (slug: string): ShippingStateData | undefined =>
   shippingStates[slug];
 
-/** All state slugs in order — used by sitemap + prerender generators. */
+/** All state slugs in order. used by sitemap + prerender generators. */
 export const allShippingStateSlugs = Object.keys(shippingStates);

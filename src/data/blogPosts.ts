@@ -3358,6 +3358,340 @@ export const blogPosts: BlogPost[] = [
       productPath: "https://hairpinns.com/collections/frizz-free-must-haves",
       customText: "Shop leave-in conditioners"
     }
+  },
+  // ========================================================================
+  // X-vs-Y comparison posts (May 2026) — Jena's voice, high commercial intent
+  // ========================================================================
+  {
+    slug: "salon-foils-vs-box-dye-highlights-at-home",
+    title: "Salon Foils vs Box Dye Highlights: Honest Talk From Someone Who Fixes Them",
+    excerpt: "Box-dye highlight kits look like a $30 shortcut. After 20 years of cleaning them up, here's what I actually think you're saving and what you're risking.",
+    category: "Colour",
+    date: "May 5, 2026",
+    readTime: "6 min read",
+    image: juuce091,
+    author: "Jena Pinn",
+    content: {
+      introduction: "I get a steady flow of clients in my chair after a box-dye disaster. They wanted highlights, spent thirty bucks at the chemist, and now they're sitting in front of me with patchy bands, brassy roots, or hair that won't take colour properly. So let me be straight with you about what box-dye highlights actually do at home, and when paying for foils is worth it.",
+      sections: [
+        {
+          heading: "What box-dye highlight kits actually are",
+          content: "The cap kits are the worst offenders. You pull strands of hair through a perforated cap with a crochet hook, slap bleach on them, and hope. The balayage-style kits look more modern but they're still a one-bottle developer and lightening cream. No tone control, no sectioning, no way to see what you've done at the back of your head. They are designed to give you a lifted result that looks 'fine' under bathroom lighting, not a placement that grows out cleanly six months later."
+        },
+        {
+          heading: "Why your bathroom is the wrong place to lift hair",
+          content: "Lightening hair is a chemistry problem. Heat from your scalp pushes the bleach to develop faster at the roots than the ends, which is why home jobs end up with bright roots and underprocessed mid-lengths. Bathroom lighting is yellow and warm, so the colour you see in the mirror is not the colour anyone else sees in daylight. And you can't see the back of your own head, so the back is almost always patchy. The professional version is foils because foils trap heat evenly, isolate sections from each other, and let me actually see what I'm doing."
+        },
+        {
+          heading: "What I see in the chair after a box-dye job goes wrong",
+          content: "Four recurring problems. Banding, which is horizontal stripes where the colour deposited unevenly. Hot roots, where the bleach lifted too fast near the scalp and now sits brassy or orange against unprocessed mid-lengths. Chemical breakage, which happens when bleach is left on too long or applied over previously coloured hair without knowing what's underneath. And patches at the back where you couldn't see. Fixing any of these costs more than just paying for foils in the first place, because I'm correcting damage as well as colour."
+        },
+        {
+          heading: "What you're actually paying for at a salon",
+          content: "Professional lightener (about three times more expensive than box, and gentler), a developer matched to your hair history, foils for even heat distribution, a toner to neutralise unwanted warmth, and twenty years of knowing what your specific hair will do based on a five-minute consultation. I can see when previous colour is still sitting in your hair. I can spot where you've used heat tools too much. I can lift your roots three levels without scorching them, because I know how to time it."
+        },
+        {
+          heading: "The real cost over a year",
+          content: "A box-dye highlight kit is $30 and lasts about three months before the regrowth and fade get embarrassing. That's $120 a year in product, plus the fix-up I do every twelve to eighteen months which usually costs $400 to $700 because I'm correcting and lightening at the same time. So you're at $500 to $800 per year, with hair that's compromised the whole time. A full head of foils at Hair Pinns is $267 (price includes cut and blowdry) and you get six to eight months out of it. Two foil appointments a year is $534. Same total cost, much better hair, no corrections needed."
+        },
+        {
+          heading: "When DIY actually works",
+          content: "I'll be honest, there are two cases where home colour is fine. The first is a permanent root touch-up on a solid base colour (not highlights), where you're matching a shade you've used before and it's a one-step deposit. The second is a temporary gloss or toner used on the lengths to refresh existing colour. Both are deposit-only, low-risk applications. Anything that involves lightening, lifting, or going more than one shade away from your natural tone needs a professional. Not because I'm trying to take your money, but because the chemistry is unforgiving and I see what happens when it goes wrong."
+        }
+      ],
+      productModule: {
+        title: "If you've already done a box-dye and want to recover",
+        products: [
+          { name: "Juuce Bond Repair Shampoo & Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Rebuilds the bonds bleach broke. Use four times a week for a month." },
+          { name: "Pure Forever Blonde Shampoo & Conditioner", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Tones brassy roots while you wait for your appointment." },
+          { name: "Pure Sacred Mask", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Weekly intense hydration to put moisture back into stripped hair." }
+        ]
+      },
+      quickAnswer: {
+        question: "Should I do highlights at home with a box-dye kit?",
+        answer: "No, in almost every case. Box-dye highlight kits cause banding, hot roots, and uneven patches because they have no temperature control, no proper sectioning, and you can't see the back of your own head. The annual cost works out the same as twice-yearly salon foils once you factor in the corrective colour I end up doing on damaged hair. Save the $30 kit for solid-shade root touch-ups on a base colour you already use, and book foils for anything involving lightening."
+      },
+      keyTakeaways: [
+        "Box-dye highlights cause four predictable problems: banding, hot roots, chemical breakage, and patches at the back",
+        "Bathroom lighting and your own line of sight make even placement impossible at home",
+        "Salon foils give six to eight months of grow-out; box kits give three months tops",
+        "Annual cost is roughly the same once you add the corrective colour, but salon hair is healthier the whole time",
+        "Home colour is fine for solid root touch-ups or temporary glosses, not for any lightening"
+      ],
+      faqSection: [
+        { question: "Why does my box-dye job have stripes?", answer: "That's banding, and it happens because the bleach developed unevenly across your hair. Heat from your scalp makes the roots lift faster than the ends, and without foils to trap heat evenly the result is horizontal lines. It can be corrected with professional toning and a balayage placement to break up the stripes, but it takes a full appointment." },
+        { question: "Can you fix a bad box-dye highlight?", answer: "Yes, in most cases. Bring photos of what you wanted, what you got, and any previous colour history. I'll do a strand test in the consultation to check what the existing colour will do under professional product, and we'll usually correct over one or two appointments depending on damage." },
+        { question: "Is salon colour really gentler than box dye?", answer: "Yes, measurably. Salon developers go down to 10 volume for deposit-only and gentle lifting; most box dyes use 20 or 30 volume regardless of what you need. Salon lighteners include bond builders by default now. Box kits are formulated for the worst-case scenario, so they're stronger than most people need." },
+        { question: "How long should I wait between a box-dye job and getting foils?", answer: "Wait at least four weeks if you can. Use Juuce bond repair shampoo and conditioner during that gap to rebuild what the box dye stripped. Some clients can be corrected immediately, but a four-week recovery makes the salon job better and reduces breakage risk." }
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/foil-packages/full-head-foils-package",
+      customText: "See our full head foils package"
+    }
+  },
+  {
+    slug: "olaplex-vs-k18-vs-juuce-bond-repair",
+    title: "Olaplex vs K18 vs Juuce Bond Repair: What's Actually In The Bottle",
+    excerpt: "Three big bond repair brands, three different science stories. Twenty years of salon experience and four hundred client trials later, here's which one I actually keep on my shelf and why.",
+    category: "Products",
+    date: "May 6, 2026",
+    readTime: "7 min read",
+    image: juuce119,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Bond repair is the most over-marketed and under-explained category in hair care. Three big brands dominate Australia: Olaplex, K18, and Juuce Bond Repair. Clients ask me weekly which one to use, and the honest answer depends on what kind of damage you actually have. Here's what's in each bottle, what they realistically do on damaged hair, and what I've seen them deliver in twenty years of running a salon.",
+      sections: [
+        {
+          heading: "What bond repair actually means",
+          content: "Hair is held together by three types of internal bonds. Hydrogen bonds (broken by water, reformed by drying), salt bonds (broken by pH changes), and disulfide bonds (broken by bleach, perms, smoothing chemistry, and heat over 230 degrees). When stylists talk about bond repair, they almost always mean the disulfide bonds. These are the ones that, once broken, do not reform on their own. Bond repair products try to recreate or replace them. The three big brands all do this in different ways, with different chemistry, at different price points."
+        },
+        {
+          heading: "Olaplex: the original, now retail-heavy",
+          content: "Olaplex No.3 is the at-home product most people know. The active ingredient is bis-aminopropyl diglycol dimaleate. In plain English, it's a small molecule that bridges across broken disulfide bonds and gives them something to hold onto while they reform. Olaplex was a salon-only product when it launched in 2014, then went retail, and the formula in the bottle you buy at Chemist Warehouse now is identical to what's used in salons. Works best as a pre-wash treatment left on for ten minutes. Realistic result on damaged hair after eight weeks of weekly use: noticeable strength, less breakage when brushing, slightly more shine. Not magic, but real."
+        },
+        {
+          heading: "K18: the newest, the boldest claims",
+          content: "K18 launched in 2020 with a heavy marketing budget and a peptide-based active called K18Peptide. The science claim is that the peptide is small enough to enter the hair shaft and re-link broken keratin chains. The four-minute leave-in mask is the headline product. Realistic result: works fastest of the three on freshly damaged hair (like the night you bleached it). Less impressive on damage that's been sitting for months. Heavy price tag, around $70 for the small mask in Australia. I keep it in the salon for emergency repairs the day of a chemical service, but I do not recommend it as a weekly home routine because the cost stops making sense."
+        },
+        {
+          heading: "Juuce Bond Repair: what I actually keep on my shelf",
+          content: "Juuce is the Australian brand I built most of my retail wall around. Bond Repair Shampoo and Bond Repair Conditioner use a quaternised wheat-protein-based bond fix that sits between Olaplex's mechanism and K18's. It's not as fast as K18 on day-of damage, but used as a daily shampoo and conditioner pair it builds up real strength over weeks. I have clients who have used the Juuce bond range for two years after bleach work and their hair looks better now than before they coloured it. The pricing is roughly half the cost-per-wash of Olaplex No.3 and a quarter of the K18 mask."
+        },
+        {
+          heading: "Which one for which damage",
+          content: "Fresh chemical damage (you just bleached, or you just got a perm): K18 mask, used within 72 hours of the service. Worth the cost for the speed. Ongoing chemical damage (regular colour client, ends are dry and brittle): Juuce bond repair as your daily shampoo and conditioner, plus Olaplex No.3 once a week. Heat-tool damage from straighteners and curling wands: Juuce bond repair daily plus a heat protectant before styling. Split ends and breakage with no chemical history: this is usually mechanical damage, not bond damage. Bond repair will help slightly but the real fix is reducing heat use and getting a cut every eight weeks."
+        },
+        {
+          heading: "Cost per use, honestly",
+          content: "Olaplex No.3: around $55 in Australia, lasts about ten uses, so $5.50 per treatment. K18 four-minute mask: around $70 for the small size, lasts about eight uses, so $8.75 per treatment. Juuce Bond Repair Shampoo and Conditioner duo: around $80 for both, lasts about fifty washes, so $1.60 per wash. If you only have budget for one, Juuce gives the most value because it replaces your daily shampoo and conditioner rather than being an add-on."
+        },
+        {
+          heading: "My recommendation by hair history",
+          content: "If you bleach or do major colour two or more times a year: Juuce Bond Repair shampoo and conditioner daily, K18 mask the day after each chemical service, Olaplex No.3 once a fortnight. If you colour once a year and use heat tools regularly: Juuce Bond Repair shampoo and conditioner three to four times a week, Olaplex No.3 once a fortnight. Skip the K18 unless you have an event. If your hair is virgin or minimally coloured: don't waste money on bond repair, focus on hydration. Pure Lamellar Vitality will do more for your hair than any of these three."
+        }
+      ],
+      productModule: {
+        title: "What I stock and use in the salon",
+        products: [
+          { name: "Juuce Bond Repair Shampoo", link: "https://hairpinns.com/collections/juuce-botanicals", description: "My daily recommendation for colour-treated or bleached hair. Builds strength over weeks." },
+          { name: "Juuce Bond Repair Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "The matching half. Use both together for best results." },
+          { name: "Pure Sacred Mask", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Weekly hydrating mask to pair with bond repair. Bond repair fixes strength, hydration fixes shine." }
+        ]
+      },
+      quickAnswer: {
+        question: "Which is better, Olaplex, K18, or Juuce bond repair?",
+        answer: "None is universally best. K18 works fastest on fresh chemical damage and is worth the price the day of a bleach service. Olaplex No.3 is reliable for weekly maintenance on chemically treated hair. Juuce Bond Repair shampoo and conditioner is the most cost-effective option because it replaces your daily wash routine rather than being an extra step. For most clients with regular colour services, Juuce daily plus Olaplex weekly gives the best result for the lowest cost."
+      },
+      keyTakeaways: [
+        "K18 is fastest for day-of damage, around $70 for a small mask, best as an in-salon emergency repair",
+        "Olaplex No.3 is reliable for weekly home maintenance, around $5.50 per treatment",
+        "Juuce Bond Repair shampoo and conditioner is the daily routine I recommend, around $1.60 per wash",
+        "For colour clients twice a year or more: Juuce daily + Olaplex fortnightly + K18 post-bleach is the gold standard",
+        "If your hair is virgin or low-colour, skip bond repair and focus on hydration instead"
+      ],
+      faqSection: [
+        { question: "Does Olaplex really work or is it marketing?", answer: "It works, but not the way the marketing suggests. It doesn't 'rebuild' your hair to virgin condition. It bridges broken disulfide bonds and gives them structural support while they slowly re-link. Real result on bleached hair after eight to twelve weeks of weekly use: visibly less breakage, more strength when wet, slightly more shine. Don't expect transformation in one wash." },
+        { question: "Why is K18 so expensive?", answer: "The peptide active in K18 is patented and expensive to manufacture. The brand has also chosen a premium positioning. The science is real and the speed of effect on freshly damaged hair is genuinely impressive, but for ongoing weekly maintenance the cost-per-treatment math stops working compared to other brands." },
+        { question: "Can I use all three together?", answer: "Yes, and many of my clients do for the first few months after major chemical work. Juuce Bond Repair shampoo and conditioner daily, Olaplex No.3 once a week as a pre-wash treatment, K18 mask in the salon on the day of any new chemical service. The three target slightly different parts of the bond-repair process and stack well." },
+        { question: "How long until I see results from bond repair?", answer: "Realistic timelines: K18 shows a result the day you use it, but it doesn't compound. Olaplex shows results in four to six weeks of consistent weekly use. Juuce Bond Repair shows results in three to four weeks of daily use. None of these work overnight despite the marketing." }
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
+      customText: "Shop Juuce Bond Repair"
+    }
+  },
+  {
+    slug: "bond-repair-vs-protein-treatment-difference",
+    title: "Bond Repair vs Protein Treatment: They Don't Do The Same Job",
+    excerpt: "Half my client consultations start with 'I've been doing protein treatments and my hair is getting worse, why?' Because protein treatments and bond repair fix different things. Here's how to know which one your hair actually needs.",
+    category: "Treatments",
+    date: "May 8, 2026",
+    readTime: "5 min read",
+    image: juuce064,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Half my client consultations start with the same sentence. 'My hair feels weak, I've been using a protein treatment every week, why is it getting worse?' Because protein treatments and bond repair are not the same thing. Using the wrong one makes damage worse, not better. Let me clear this up so you can pick the right product for what your hair actually needs.",
+      sections: [
+        {
+          heading: "Bond repair rebuilds the inside of your hair",
+          content: "Bond repair products target the disulfide bonds inside the hair shaft. These are the structural bonds that get broken by bleach, permanent colour, perms, and heat over 230 degrees. When they break, the hair becomes weak and stretches further than it should before snapping. Bond repair active ingredients (Olaplex bis-amino, K18 peptide, Juuce wheat-protein bond fix) bridge across these broken bonds and let the hair regain structural strength from the inside out."
+        },
+        {
+          heading: "Protein treatment fills holes on the surface",
+          content: "Protein treatments work on the outside of the hair shaft, not the inside. They deposit hydrolysed protein (usually keratin, sometimes silk or wheat) into surface gaps in the cuticle. The result is that the hair feels stronger, smoother, and looks shinier within hours of application. The protein is sitting on top of the hair, filling in damage, not actually rebuilding it. It washes off over four to six washes, then needs reapplying."
+        },
+        {
+          heading: "How to tell which one your hair needs (the stretch test)",
+          content: "Take a single strand of hair from a hairbrush or pull one from your head. Hold it between thumb and forefinger of each hand and stretch it slowly. If it stretches a long way then snaps without bouncing back, your hair needs bond repair. The internal bonds are broken and there's no elastic recovery. If it barely stretches before snapping (feels brittle and dry), your hair needs hydration first, then maybe protein. If it stretches normally and bounces back, your hair is fine, save your money."
+        },
+        {
+          heading: "Why too much protein actually breaks hair",
+          content: "Protein overload is a real thing and I see it constantly. Symptoms include hair that feels straw-like, ends that snap with the lightest touch, hair that won't hold a curl or style, and a weird coated feeling after washing. It happens when you keep applying protein to hair that's already protein-saturated. The protein hardens the cuticle to the point where it becomes brittle. The fix is to stop using protein products immediately, switch to deep hydration (Pure Sacred Mask, Juuce Super Soft Hydration Mask) for two to three weeks, then reassess."
+        },
+        {
+          heading: "When to use both, in what order",
+          content: "Hair with chemical damage often needs both, in the right sequence. First, hydrate for one to two weeks to bring moisture back. Second, bond repair for three to four weeks to rebuild internal structure. Third, add protein treatments occasionally as a finishing layer to give the cuticle a smooth surface. Most people do this in the wrong order, leading with protein on dehydrated hair, which is why they feel like things keep getting worse."
+        },
+        {
+          heading: "The quick decision shortcut",
+          content: "If your hair has been bleached, permanently coloured, or chemically smoothed in the last six months, lead with bond repair. Juuce Bond Repair shampoo and conditioner as your daily routine, plus Olaplex No.3 weekly. If your hair is naturally fine and limp and you want more substance, occasional protein treatments work well, but not weekly. If your hair feels brittle and dry, do not add more protein. Hydrate first with weekly deep masks, then reassess in three weeks."
+        }
+      ],
+      productModule: {
+        title: "What I use for each job",
+        products: [
+          { name: "Juuce Bond Repair Shampoo & Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Daily routine for chemically damaged hair. Rebuilds internal bonds over weeks." },
+          { name: "Pure Sacred Mask", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Weekly deep hydration. Use this if your hair feels dry, before any protein treatment." },
+          { name: "Juuce Super Soft Hydration Moisture Mask", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Lightweight weekly hydration for fine hair that can't handle heavy masks." }
+        ]
+      },
+      quickAnswer: {
+        question: "What's the difference between bond repair and protein treatment?",
+        answer: "Bond repair targets broken disulfide bonds inside the hair shaft, the kind broken by bleach or heat, and rebuilds strength from within. Protein treatment deposits hydrolysed protein on the outside of the hair, filling cuticle gaps and giving a temporary stronger feel. Bond repair compounds with consistent use over weeks. Protein treatment washes off over four to six washes. Most chemically damaged hair needs bond repair as the foundation, with occasional protein treatments as a finishing layer."
+      },
+      keyTakeaways: [
+        "Bond repair rebuilds inside the hair shaft, protein treatment fills holes on the surface",
+        "Stretch test: long stretch then snap means bond repair, brittle no-stretch snap means hydration",
+        "Protein overload is real and causes the brittle straw-feel people mistake for needing more protein",
+        "Right order on damaged hair: hydrate first, bond repair second, protein occasionally as a finish",
+        "Chemically treated hair almost always needs bond repair first, not protein"
+      ]
+    },
+    cta: {
+      type: "product",
+      productPath: "https://hairpinns.com/collections/juuce-botanicals",
+      customText: "Shop bond repair and hydration"
+    }
+  },
+  {
+    slug: "balayage-vs-foils-which-suits-which-hair",
+    title: "Balayage vs Foils: Which Lightening Technique Suits Your Hair?",
+    excerpt: "Balayage and foils are not interchangeable. They lighten differently, grow out differently, and cost different amounts. After two decades of doing both, here's how to pick the right one before you book.",
+    category: "Colour",
+    date: "May 10, 2026",
+    readTime: "6 min read",
+    image: juuce091,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Balayage and foils are not interchangeable, but most clients book one when they actually wanted the other. They lighten hair differently, sit differently as they grow out, and cost different amounts. Pick wrong and you'll be uncomfortable with the result for months until your next appointment. Here's how to pick the right one before you book.",
+      sections: [
+        {
+          heading: "What each technique actually does",
+          content: "Foils involve sectioning the hair, painting lightener onto specific pieces, and wrapping each section in foil. The foil traps heat, processes the lightener faster, and lifts hair to a more uniform brightness. Result is brighter, more defined contrast, with lifting all the way to the root. Balayage is freehand painting on the surface of the hair without foils. The lightener oxidises in open air, more slowly, so it lifts less aggressively. Result is softer, sun-kissed, with most of the lightness through the mid-lengths and ends and barely any at the roots."
+        },
+        {
+          heading: "The grow-out, which nobody talks about enough",
+          content: "Foils grow out with a visible line of demarcation between your natural root and the lightened pieces. This is the regrowth most people complain about at week eight, where the roots are darker than the lightened sections. Balayage grows out with no visible line because the original placement avoided the roots. You can stretch balayage to four to six months between appointments. You will get six to eight weeks out of foils before the regrowth gets noticeable."
+        },
+        {
+          heading: "Maintenance and total cost",
+          content: "Foils at Hair Pinns: $267 for full head including cut and blowdry, every six to eight weeks. That's roughly $1,600 to $2,100 per year if you stay consistent. Balayage at Hair Pinns: around $300 to $400 depending on length, every four to five months. That's roughly $900 to $1,200 per year. Balayage is cheaper annually because the maintenance is less frequent. The catch is that the initial result is softer, so if you want bright bright blonde, you need foils."
+        },
+        {
+          heading: "Which suits which hair type",
+          content: "Foils work best on: hair you want significantly lighter than your natural base, fine hair that needs visual depth and contrast, anyone who wants a polished maintained look, and clients who can commit to six-to-eight-week appointments. Balayage works best on: hair you want naturally sun-kissed rather than dramatically lifted, thicker hair that can carry surface placement well, busy clients who can't commit to frequent salon visits, and anyone who hates the look of grown-out roots. Curly and wavy hair takes balayage beautifully because the wave pattern shows off the placement."
+        },
+        {
+          heading: "Can you combine them?",
+          content: "Yes, and this is what I do most often for clients who want the brightness of foils with the grow-out of balayage. We foil the front face-framing pieces and the top crown for maximum brightness where it shows, then balayage through the back and underneath for soft dimension. Maintenance is every ten to twelve weeks instead of six to eight. Cost lands between the two. About 60 percent of my colour clients end up on this hybrid because it solves both problems at once."
+        },
+        {
+          heading: "What I recommend for first-timers",
+          content: "If you've never had your hair lightened before, start with balayage. It's gentler, the grow-out is forgiving if you decide you don't love it, and the maintenance commitment is lower while you figure out whether you actually want to be a blonde. Once you've done balayage once or twice and know you want to be brighter, then move to foils or the hybrid combination. Going straight to full-head foils on virgin hair is a big jump and a big maintenance commitment. Ease in."
+        }
+      ],
+      productModule: {
+        title: "Aftercare for balayage and foils",
+        products: [
+          { name: "Pure Forever Blonde Shampoo & Conditioner", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Tones brassy tones between appointments. Use twice a week." },
+          { name: "Juuce Bond Repair Shampoo & Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Rebuilds bonds broken by lightening. Daily routine." },
+          { name: "Juuce Solar Enz", link: "https://hairpinns.com/collections/juuce-botanicals", description: "UV-protection leave-in. Stops sun from fading your blonde to brass." }
+        ]
+      },
+      quickAnswer: {
+        question: "Should I get balayage or foils?",
+        answer: "Pick foils if you want significantly lighter hair with brightness all the way to the root, can commit to six-to-eight-week appointments, and want defined contrast. Pick balayage if you want softer sun-kissed lightness, want four to five months between appointments, and hate visible regrowth lines. A hybrid of foils through the front and crown plus balayage through the back gives the brightness of foils with the grow-out of balayage and is what I recommend for most clients."
+      },
+      keyTakeaways: [
+        "Foils lift hair brighter all over including roots, with a visible regrowth line in six to eight weeks",
+        "Balayage softens lightness through mid-lengths and ends, with no visible regrowth for four to six months",
+        "Foils cost more annually ($1,600 to $2,100) but give defined contrast and clean root coverage",
+        "Balayage costs less annually ($900 to $1,200) but result is softer, not as bright",
+        "Hybrid foils + balayage is what most of my clients end up loving, every ten to twelve weeks"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/foil-packages/full-head-foils-package",
+      customText: "See foils and balayage packages"
+    }
+  },
+  {
+    slug: "permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss",
+    title: "Permanent vs Semi-Permanent vs Demi-Permanent vs Gloss: A Plain English Guide",
+    excerpt: "Colour terminology is a mess. Four different types of colour, all do different jobs, all last different amounts of time. Here's the plain English version so you know what you're actually booking.",
+    category: "Colour",
+    date: "May 12, 2026",
+    readTime: "5 min read",
+    image: juuce120,
+    author: "Jena Pinn",
+    content: {
+      introduction: "Colour terminology is a mess. Permanent, semi-permanent, demi-permanent, gloss, toner, glaze. All different things, all do different jobs, all last different amounts of time. If you don't know which one you're getting at your appointment, you don't know how long it'll last, what it'll do to your hair, or whether it'll cover your greys. Here's the plain English version.",
+      sections: [
+        {
+          heading: "Permanent colour: full chemistry, longest lasting",
+          content: "Permanent colour uses ammonia (or an ammonia-substitute) and a peroxide developer. The ammonia lifts the cuticle, the developer oxidises the existing pigment in your hair (lightening it) and deposits new pigment in its place. Result lasts until it grows out or fades to a slightly different tone, usually four to six months. This is the only category that can genuinely cover stubborn greys and the only one that can lift your hair significantly lighter than your natural base. Most damaging, longest lasting, can cover anything."
+        },
+        {
+          heading: "Semi-permanent: stains the outside, washes out",
+          content: "Semi-permanent doesn't use ammonia or peroxide. It just stains the cuticle layer with direct dye pigments. Result lasts four to twelve washes depending on the brand and your hair porosity. It cannot lift hair (cannot make hair lighter), only deposits colour. Great for fashion colours (pink, purple, copper) where you know you'll get bored in two months. Terrible for grey coverage because there's no lifting. Lowest damage of all four categories, by a lot."
+        },
+        {
+          heading: "Demi-permanent: between the two, gentle and forgiving",
+          content: "Demi-permanent uses a low-volume developer (no ammonia, or very little) so it can deposit colour and tone existing colour but cannot lift. Result lasts twenty to twenty-eight washes, so roughly two to three months on weekly washers. This is what I use for most refresh appointments. It can blend grey (not fully cover, but blend), refresh colour vibrancy, deepen or warm tones, and tone unwanted brassiness. Low damage, predictable result, ideal for clients between major colour appointments."
+        },
+        {
+          heading: "Gloss and toner: surface tint only, treatment level commitment",
+          content: "Gloss and toner are both deposit-only treatments that adjust the tone of your existing colour. Used to neutralise brassiness in blondes, add shine and depth, or change the tone subtly. Both last four to eight weeks. They're basically a tinted conditioner and they leave your hair shinier and softer than they found it. I include a toner in every foil appointment because foils leave blonde with a yellow undertone that needs neutralising. You can also book a gloss as a standalone treatment between colour appointments to refresh."
+        },
+        {
+          heading: "Which one for what goal",
+          content: "Need to cover white greys: permanent. No substitute, semi or demi won't cover. Want to lift hair lighter than your natural shade: permanent (or foils with lightener). Demi and semi cannot lift. Want to refresh existing colour or blend grey at the roots: demi-permanent. Want to try a fun colour for a few weeks: semi-permanent. Want to neutralise brassiness in blonde: gloss or toner. Want to deepen or warm your existing shade without commitment: demi-permanent or gloss."
+        },
+        {
+          heading: "What I use at Hair Pinns",
+          content: "Inside a colour package appointment, the formula depends on what we're solving. Grey coverage and significant lift: permanent. Refresh of an existing colour without lift: demi-permanent. Toning after foils: gloss. For clients who want a fun colour for a season: I use semi-permanent on bleached or pre-lightened sections so the colour sits as a stain on top. Each has its place, each is the wrong choice for the wrong job."
+        }
+      ],
+      productModule: {
+        title: "At-home maintenance between colour appointments",
+        products: [
+          { name: "Juuce Radiant Colour Shampoo & Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Daily routine for colour-treated hair. Slows fade and locks in tone." },
+          { name: "Pure Forever Blonde Shampoo & Conditioner", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Tones brassy tones between gloss appointments." },
+          { name: "Aromaganic Colour Care Range", link: "https://hairpinns.com/collections/aromaganic", description: "Australian organic colour-safe range. Gentle daily wash." }
+        ]
+      },
+      quickAnswer: {
+        question: "What's the difference between permanent, semi-permanent, demi-permanent, and gloss colour?",
+        answer: "Permanent uses ammonia and developer to lift your existing colour and deposit new colour, lasts four to six months, can cover greys. Semi-permanent stains the cuticle surface with direct dye, no lift, lasts four to twelve washes. Demi-permanent uses low-volume developer, can deposit but not lift, lasts twenty to twenty-eight washes, ideal for refresh and grey blend. Gloss and toner are deposit-only treatments lasting four to eight weeks, used to tone or refresh existing colour. Pick permanent for grey coverage or lifting, demi for refreshing existing colour, semi for fun fashion shades, gloss for tone adjustment."
+      },
+      keyTakeaways: [
+        "Permanent: lifts and deposits, 4 to 6 months, only category that covers stubborn greys",
+        "Semi-permanent: stains only, 4 to 12 washes, great for fun colours, useless for greys",
+        "Demi-permanent: deposits with low developer, 20 to 28 washes, ideal for refresh and grey blend",
+        "Gloss and toner: surface tint only, 4 to 8 weeks, leaves hair shinier than it started",
+        "Match the product to the goal: greys need permanent, refresh needs demi, fun needs semi, tone needs gloss"
+      ]
+    },
+    cta: {
+      type: "service",
+      servicePath: "/services/colouring-packages/long-hair-colour-package",
+      customText: "See our colour packages"
+    }
   }
 ];
 
