@@ -150,14 +150,10 @@ async function main() {
     urls.push(url(`${BASE}/areas/${slug}`, 'monthly', 0.7, locMod));
   });
 
-  // Suburb pages (near)
-  const subPath = resolve(root, 'src/data/suburbPages.ts');
-  const subContent = existsSync(subPath) ? readFileSync(subPath, 'utf8') : '';
-  const subMod = gitLastMod('src/data/suburbPages.ts');
-  const suburbSlugs = [...(subContent.match(/"([a-z0-9-]+)":\s*\{/g) || [])].map((m) => m.replace(/"([a-z0-9-]+)":\s*\{/, '$1'));
-  [...new Set(suburbSlugs)].filter((s) => s.length > 1).forEach((slug) => {
-    urls.push(url(`${BASE}/near/${slug}`, 'monthly', 0.7, subMod));
-  });
+  // /near/<slug> routes are deprecated — they 301 to /areas/<slug>-<postcode>
+  // via netlify.toml. The route still renders locally so the suburbPages.ts
+  // data is preserved for future migration, but we no longer surface these
+  // URLs to crawlers.
 
   // Blog posts - read slug from source
   const blogPath = resolve(root, 'src/data/blogPosts.ts');
