@@ -107,14 +107,27 @@ export const SEOHead = ({
     addMeta({ name: 'description', content: description });
     addMeta({ 'http-equiv': 'content-language', content: 'en-AU' });
 
+    // Geo targeting — explicit AU signals for the wider search ecosystem.
+    // Hair Pinns ships only within Australia and the salon is in Bangor NSW,
+    // so we lean into these signals rather than presenting as a generic
+    // English site. `geo.position` / ICBM are Sydney lat/long (close enough
+    // for the Bangor 2234 retail/dispatch hub).
+    addMeta({ name: 'geo.region', content: 'AU-NSW' });
+    addMeta({ name: 'geo.placename', content: 'Bangor, New South Wales, Australia' });
+    addMeta({ name: 'geo.position', content: '-34.0227;151.0144' });
+    addMeta({ name: 'ICBM', content: '-34.0227, 151.0144' });
+    addMeta({ name: 'DC.coverage', content: 'Australia' });
+
     // Canonical + hreflang.
-    //   - en-AU: primary (Australian audience, spelling, prices)
-    //   - en: generic English fallback for global English searches
-    //   - x-default: served when no better locale match exists
+    //   - en-AU: primary and ONLY locale we serve. Hair Pinns ships only
+    //     within Australia, so we deliberately do NOT advertise a generic
+    //     `en` alternate (that would invite US/UK/CA traffic that can't
+    //     convert and pollutes the analytics signal).
+    //   - x-default: required when only one hreflang is declared; points
+    //     at the same en-AU URL since that is the only version available.
     addLink({ rel: 'canonical', href: cleanCanonical });
     addLink({ rel: 'alternate', hreflang: hrefLang, href: cleanCanonical });
     if (hrefLang === 'en-AU') {
-      addLink({ rel: 'alternate', hreflang: 'en', href: cleanCanonical });
       addLink({ rel: 'alternate', hreflang: 'x-default', href: cleanCanonical });
     }
 

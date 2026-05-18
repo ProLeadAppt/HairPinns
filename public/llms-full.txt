@@ -139,8 +139,11 @@ Free on-street parking directly outside the salon on Goorgool Rd. Tuesday-evenin
 - **What does Jena recommend for daily hair health?** Pure Lamellar Vitality range (Jena's #1 pick), Juuce Super Soft Hydration Masks weekly, Juuce Botanic Oil Serum for finish, and a Wet Brush for gentle detangling.
 
 ### Shipping & Online Orders
-- **Do you ship products Australia-wide?** Yes, every product on the site is available with delivery across Australia.
-- **Is shipping free?** Free shipping on orders over A$150. Standard delivery 3–5 business days, express 1–2 days. Available to every state and territory.
+- **Do you ship products Australia-wide?** Yes, every product on the site ships to every state and territory in Australia: New South Wales (NSW), Victoria (VIC), Queensland (QLD), Western Australia (WA), South Australia (SA), Tasmania (TAS), Australian Capital Territory (ACT), and Northern Territory (NT).
+- **Do you ship overseas / internationally?** No. Hair Pinns ships within Australia only. All prices, offers, and shipping rates apply to the Australian market exclusively.
+- **Which Australian cities do you deliver to?** Every major Australian city is covered by AusPost and courier services from Bangor, NSW. This includes Sydney, Melbourne, Brisbane, Perth, Adelaide, Hobart, Darwin, Canberra, Gold Coast, Newcastle, Wollongong, Geelong, Sunshine Coast, Cairns, Townsville, Toowoomba, Ballarat, Bendigo, Albury–Wodonga, Launceston, Mackay, Rockhampton, Bunbury, Bundaberg, Hervey Bay, Wagga Wagga, Coffs Harbour, Mildura, Shepparton, Port Macquarie, Tamworth, Orange, and Dubbo — plus regional and remote postcodes via AusPost.
+- **Is shipping free?** Free shipping on orders over A$150 AUD. Standard delivery 3–5 business days, express 1–2 days. Available to every state and territory.
+- **What payment methods do you accept?** Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, and Shop Pay — all in Australian Dollars (AUD).
 - **What is the returns policy?** 14-day change-of-mind window on unopened products. Faulty or damaged items are replaced or refunded.
 
 ### Location & Parking
@@ -158,4 +161,4 @@ These pages are structured for direct citation in AI Overviews and answer engine
 - **[Hair Care Blog](https://hairpinns.com/blog)** — long-form guides with `Article`, `FAQPage` and `Speakable` schemas. Major commercial-intent posts (keratin smoothing, balayage, Juuce vs Pure, hair extensions, salon comparisons) ship per-post `FAQPage` schemas.
 - **[Services](https://hairpinns.com/services)** — every service is a `Service` in an `ItemList` with `Offer.price` (AUD, Fresha-aligned) and `provider: HairSalon`.
 - **[Reviews](https://hairpinns.com/reviews)** — `LocalBusiness` schema with `aggregateRating` (4.9★ from 53+ verified Google reviews) and embedded `Review` objects.
-- **[All Areas](https://hairpinns.com/areas)** and **[/near/[suburb]](https://hairpinns.com/near/bangor)** — 17 area pages and 21 "near suburb" pages with `LocalBusiness`, `Place`, and `Speakable` schemas tuned for local-intent queries.
+- **[All Areas](https://hairpinns.com/areas)** — 17+ area pages keyed by postcode (Bangor 2234, Menai 2234, Sutherland 2232, Cronulla 2230, Miranda 2228, Como 2226, Gymea 2227, and more) with `LocalBusiness`, `Place`, and `Speakable` schemas tuned for local-intent queries. The legacy `/near/<slug>` URLs now 301 to these canonical postcode-based area pages.

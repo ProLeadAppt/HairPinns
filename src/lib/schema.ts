@@ -121,6 +121,16 @@ export const generateOrganizationSchema = () => ({
   name: 'Hair Pinns',
   url: BASE_URL,
   logo: LOGO_URL,
+  // Australia-only commerce. The Organization (Hair Pinns as a shop) ships
+  // nationally inside AU and explicitly does not service overseas. These
+  // fields plus the Offer-level eligibleRegion give search engines and AI
+  // surfaces unambiguous "AU market" signals.
+  areaServed: {
+    '@type': 'Country',
+    name: 'AU',
+  },
+  currenciesAccepted: 'AUD',
+  paymentAccepted: 'Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, Shop Pay',
   sameAs: [
     'https://www.facebook.com/Hair.Pinns',
     'https://www.instagram.com/hair.pinns/',
@@ -790,6 +800,19 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
       availability: product.availability
         ? `https://schema.org/${product.availability}`
         : 'https://schema.org/InStock',
+      // Australia-only fulfilment. `eligibleRegion` tells search engines and
+      // Merchant Center that this offer is valid for AU customers only;
+      // `ineligibleRegion` (implicit via omission) means international
+      // searchers don't see Shopping ads or rich results. Hair Pinns does
+      // not ship overseas so this is the truthful, deliberate signal.
+      eligibleRegion: {
+        '@type': 'Country',
+        name: 'AU',
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'AU',
+      },
       priceValidUntil: new Date(
         new Date().setFullYear(new Date().getFullYear() + 1)
       )
@@ -826,6 +849,11 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
         '@type': 'Organization',
         name: 'Hair Pinns',
         url: BASE_URL,
+        areaServed: {
+          '@type': 'Country',
+          name: 'AU',
+        },
+        currenciesAccepted: 'AUD',
       },
     },
   };
@@ -1204,8 +1232,14 @@ export const generatePlaceSchema = (data: {
 
 export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
   const baseSchema = generateLocalBusinessSchema(pageUrl);
-  
-  // Add serviceArea with radius (25km covers Sutherland Shire), hasMap for GEO
+
+  // Two distinct surfaces in one schema:
+  //   - The salon (HairSalon): hyper-local, 25km from Bangor. `serviceArea`
+  //     stays as the GeoCircle so Google Maps / "near me" queries route
+  //     correctly.
+  //   - Product e-commerce: nationally available across AU. `areaServed`
+  //     spans the whole country for product fulfilment, and `currenciesAccepted`
+  //     plus `paymentAccepted` give AU-shopper trust signals.
   return {
     ...baseSchema,
     hasMap: 'https://www.google.com/maps/place/Hair+Pinns+Bangor',
@@ -1222,6 +1256,8 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
         unitCode: 'KM',
       },
     },
+    currenciesAccepted: 'AUD',
+    paymentAccepted: 'Cash, Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, Shop Pay',
     // AggregateRating — Google Reviews only (verifiable source)
     aggregateRating: {
       '@type': 'AggregateRating',
