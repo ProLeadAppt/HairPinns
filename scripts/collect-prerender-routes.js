@@ -80,8 +80,10 @@ export async function collectRoutes() {
   const areaSlugs = [...new Set(extractObjectKeys(resolve(root, 'src/data/locationPages.ts')))];
   areaSlugs.forEach((slug) => routes.push(`/areas/${slug}`));
 
-  const suburbSlugs = [...new Set(extractObjectKeys(resolve(root, 'src/data/suburbPages.ts')))];
-  suburbSlugs.forEach((slug) => routes.push(`/near/${slug}`));
+  // /near/<slug> routes are deprecated (301 → /areas/<slug>-<postcode> in
+  // netlify.toml). Skipping prerender + sitemap so we don't ship static HTML
+  // for URLs that immediately redirect. The React route still resolves
+  // locally for the few internal links that haven't been migrated.
 
   const blogSlugs = [...new Set(extractBlogSlugs(resolve(root, 'src/data/blogPosts.ts')))];
   blogSlugs.forEach((slug) => routes.push(`/blog/${slug}`));
