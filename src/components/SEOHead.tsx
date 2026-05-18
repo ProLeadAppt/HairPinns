@@ -17,6 +17,17 @@ interface SEOHeadProps {
   hrefLang?: string;
   /** JSON-LD schema markup */
   schemaJson?: Record<string, any> | Record<string, any>[];
+  /**
+   * Whether this render represents the final, prerender-capturable state of
+   * the page. Defaults to true. Set to `false` from transient loading screens
+   * so Puppeteer waits for the real data render before snapshotting.
+   *
+   * Without this gate, async-data pages (ProductDetail, CollectionDetail) can
+   * be captured in their `<p>Loading…</p>` state because the SEOHead in the
+   * loading branch races ahead and signals prerender-ready before the Shopify
+   * fetch resolves.
+   */
+  prerenderReady?: boolean;
   /** Kept for back-compat; ignored — add custom tags via the imperative API */
   children?: ReactNode;
 }
@@ -46,6 +57,7 @@ export const SEOHead = ({
   noIndex = false,
   hrefLang = "en-AU",
   schemaJson,
+  prerenderReady = true,
 }: SEOHeadProps) => {
   // Normalise inputs to absolute URLs
   const cleanCanonical = canonical.startsWith("http")
@@ -133,10 +145,12 @@ export const SEOHead = ({
     // JSON-LD schemas
     schemaJSON.forEach(addScript);
 
-    // Prerender-ready marker — everything is in the DOM NOW because these
-    // are synchronous DOM writes, so we can set it on the next frame with
-    // no race conditions.
-    if (!document.getElementById('prerender-ready-marker')) {
+    // Prerender-ready marker — Puppeteer waits for this element before
+    // snapshotting. Only inject when the caller signals the page is in its
+    // final, indexable state (`prerenderReady !== false`). Transient loading
+    // screens pass `prerenderReady={false}` so the marker only fires once the
+    // async data render mounts.
+    if (prerenderReady && !document.getElementById('prerender-ready-marker')) {
       const marker = document.createElement('div');
       marker.id = 'prerender-ready-marker';
       marker.style.display = 'none';
@@ -157,6 +171,7 @@ export const SEOHead = ({
     noIndex,
     hrefLang,
     schemaJSON,
+    prerenderReady,
   ]);
 
   return null;

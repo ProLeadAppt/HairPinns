@@ -63,6 +63,9 @@ export async function getProductByHandle(handle: string) {
         description
         descriptionHtml
         availableForSale
+        vendor
+        productType
+        tags
         priceRange {
           minVariantPrice {
             amount
@@ -95,6 +98,8 @@ export async function getProductByHandle(handle: string) {
             node {
               id
               title
+              sku
+              barcode
               availableForSale
               price {
                 amount

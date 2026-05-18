@@ -3,8 +3,20 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
+import { generateWebPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 
 const Privacy = () => {
+  const schemas = [
+    generateWebPageSchema({
+      name: "Privacy Policy",
+      description: "Hair Pinns privacy policy. How we collect, use and protect your personal information.",
+      url: "https://hairpinns.com/privacy",
+    }),
+    generateBreadcrumbSchema([
+      { name: "Home", url: "https://hairpinns.com/" },
+      { name: "Privacy Policy", url: "https://hairpinns.com/privacy" },
+    ]),
+  ];
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
@@ -13,6 +25,7 @@ const Privacy = () => {
         canonical="https://hairpinns.com/privacy"
         hrefLang="en-AU"
         ogImage="https://hairpinns.com/og-default.jpg"
+        schemaJson={schemas}
       />
 
       <Header />

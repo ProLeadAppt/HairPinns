@@ -61,6 +61,25 @@
   status = 301
   force = true
 
+# Legacy Shopify tag/atom blog URLs - no tag pages exist on the React site, so
+# everything under /blogs/blogs/tagged/* (including .atom feeds and ?page=N
+# paginated variants) folds back to the blog index. Must come BEFORE the
+# /blogs/blogs/* catch-all so this more-specific match wins.
+[[redirects]]
+  from = "/blogs/blogs/tagged/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+# Bare /blogs/blogs (and its ?page=N variants - query is preserved but ignored
+# by the target). The /blogs/blogs/* rule below requires at least one trailing
+# segment, so this exact-match rule covers the bare URL.
+[[redirects]]
+  from = "/blogs/blogs"
+  to = "/blog"
+  status = 301
+  force = true
+
 # Legacy Shopify blog URL pattern -> current React route
 # Bing/Google had `/blogs/blogs/<slug>` indexed from the old Shopify storefront.
 # Without this redirect, the SPA serves index.html with no H1 to non-JS crawlers.
@@ -81,6 +100,69 @@
 [[redirects]]
   from = "/products/juuce-fibre-goo-sumo-grip"
   to = "/collections/hair-styling-products"
+  status = 301
+  force = true
+
+# Legacy Shopify collection-prefixed product URLs.
+# Old storefront indexed /collections/<collection>/products/<handle> alongside
+# the canonical /products/<handle>. Search Console flagged 50+ of these as
+# noindexed; 301 to the canonical recovers any backlink equity pointing at the
+# Shopify-era URL.
+[[redirects]]
+  from = "/collections/:collection/products/:handle"
+  to = "/products/:handle"
+  status = 301
+  force = true
+
+# Legacy Shopify static pages (/pages/<slug>) -> current React routes.
+# Specific mappings first, then a catch-all for any other historic /pages/ URL.
+[[redirects]]
+  from = "/pages/about-us"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/contact"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/price-list"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/*"
+  to = "/"
+  status = 301
+  force = true
+
+# Legacy Shopify policy URLs -> current /policies routes.
+[[redirects]]
+  from = "/policies/refund-policy"
+  to = "/policies/returns"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/policies/shipping-policy"
+  to = "/policies/shipping"
+  status = 301
+  force = true
+
+# Legacy /shop entry point (Shopify default) -> collections index.
+[[redirects]]
+  from = "/shop"
+  to = "/collections"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/shop/"
+  to = "/collections"
   status = 301
   force = true
 

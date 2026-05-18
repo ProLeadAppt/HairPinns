@@ -3,8 +3,20 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
+import { generateWebPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 
 const Terms = () => {
+  const schemas = [
+    generateWebPageSchema({
+      name: "Terms of Service",
+      description: "Hair Pinns terms of service for salon services and online purchases.",
+      url: "https://hairpinns.com/terms",
+    }),
+    generateBreadcrumbSchema([
+      { name: "Home", url: "https://hairpinns.com/" },
+      { name: "Terms of Service", url: "https://hairpinns.com/terms" },
+    ]),
+  ];
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
@@ -13,6 +25,7 @@ const Terms = () => {
         canonical="https://hairpinns.com/terms"
         hrefLang="en-AU"
         ogImage="https://hairpinns.com/og-default.jpg"
+        schemaJson={schemas}
       />
 
       <Header />

@@ -742,6 +742,12 @@ export const generateStoreSchema = () => ({
  * Complete product information optimized for AI understanding
  */
 export interface EnhancedProductData extends ProductData {
+  /**
+   * Canonical product page URL. Used for both schema `@id` and `offers.url`.
+   * If omitted, falls back to a SKU-based URL which Google can't resolve to
+   * a buyable page and will downgrade Merchant Listings eligibility.
+   */
+  url?: string;
   category?: string;
   productID?: string;
   mpn?: string;
@@ -761,10 +767,12 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
   const rawImages = Array.isArray(product.image) ? product.image : (product.image ? [product.image] : []);
   const imageUrls = rawImages.filter((url): url is string => typeof url === "string" && url.length > 0);
 
+  const canonicalUrl = product.url || `${BASE_URL}/products/${product.sku || product.productID || ''}`;
+
   const schema: any = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    '@id': `${BASE_URL}/products/${product.sku || product.productID || ''}`,
+    '@id': canonicalUrl,
     name: product.name,
     description: product.description,
     image: imageUrls.length > 0 ? imageUrls : [`${BASE_URL}/og-product.jpg`],
@@ -776,7 +784,7 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
     category: product.category || 'Hair Care',
     offers: {
       '@type': 'Offer',
-      url: `${BASE_URL}/products/${product.sku || product.productID || ''}`,
+      url: canonicalUrl,
       priceCurrency: product.currency || 'AUD',
       price: product.price,
       availability: product.availability

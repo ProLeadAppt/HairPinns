@@ -8,7 +8,19 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-User
 Allow: /
 
 User-agent: Google-Extended
@@ -17,7 +29,46 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: CCBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: YouBot
 Allow: /
 
 # Disallow transactional and internal paths
@@ -31,12 +82,25 @@ Disallow: /dev/
 Disallow: /reviews/feedback
 Disallow: /reviews/google
 
-# Disallow query parameters that create duplicate content
+# Disallow query parameters that create duplicate content.
+# Shopify variant/pagination/locale params generate near-infinite URL permutations
+# that all canonicalise to the same product/collection page. Search Console
+# (2026-05) flagged 182 URLs as "Alternative page with proper canonical tag" -
+# canonicals were working but crawl budget was being wasted on the dupes.
 Disallow: /*?*utm_*
 Disallow: /*?*fbclid=*
 Disallow: /*?*gclid=*
 Disallow: /*?*sort=*
 Disallow: /*?*filter=*
+Disallow: /*?*variant=*
+Disallow: /*?*phcursor=*
+Disallow: /*?*country=*
+Disallow: /*?*currency=*
+
+# Shopify infrastructure URLs that should never be indexed.
+Disallow: /web-pixels*
+Disallow: /customer_authentication/
+Disallow: /apps/
 
 # Sitemaps
 Sitemap: https://hairpinns.com/sitemap.xml

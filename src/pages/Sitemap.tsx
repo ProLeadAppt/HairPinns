@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FileText, ShoppingBag, MapPin, BookOpen, Info } from "lucide-react";
+import { generateWebPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 
 const Sitemap = () => {
   const sitemapSections = [
@@ -64,12 +65,25 @@ const Sitemap = () => {
     }
   ];
 
+  const schemas = [
+    generateWebPageSchema({
+      name: "Sitemap",
+      description: "Browse all pages on Hair Pinns website - services, products, blog articles, service areas, and policies.",
+      url: "https://hairpinns.com/sitemap",
+    }),
+    generateBreadcrumbSchema([
+      { name: "Home", url: "https://hairpinns.com/" },
+      { name: "Sitemap", url: "https://hairpinns.com/sitemap" },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Sitemap | Hair Pinns Bangor"
         description="Browse all pages on Hair Pinns website - services, products, blog articles, service areas, and policies."
         canonical="https://hairpinns.com/sitemap"
+        schemaJson={schemas}
       />
 
       <Header />

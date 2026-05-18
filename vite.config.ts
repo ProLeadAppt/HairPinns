@@ -22,7 +22,13 @@ export default defineConfig(async ({ mode }) => {
           renderer: '@prerenderer/renderer-puppeteer',
           rendererOptions: {
             renderAfterElementExists: '#prerender-ready-marker',
-            renderAfterTime: 15000,
+            // 30s fallback: with the `prerenderReady` gate in SEOHead, the
+            // marker only fires once async data lands. Slow Shopify responses
+            // (10-20s p99 under load) were getting cut off at the previous
+            // 15s ceiling, capturing pages mid-load with no <h1>. 30s gives
+            // headroom without materially extending overall build time since
+            // fast routes still resolve in ~2s and stop waiting immediately.
+            renderAfterTime: 30000,
             maxConcurrentRoutes: 4,
             headless: true,
             // Explicit prerender UA so third-party widgets (LeadConnector chat,
