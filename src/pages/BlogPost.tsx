@@ -12,6 +12,7 @@ import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import BlogCTA from "@/components/blog/BlogCTA";
 import ProgressBar from "@/components/blog/ProgressBar";
 import RelatedPosts from "@/components/blog/RelatedPosts";
+import AuthorBio from "@/components/blog/AuthorBio";
 import SocialShareBar from "@/components/blog/SocialShareBar";
 import QuickAnswer from "@/components/blog/QuickAnswer";
 import KeyTakeaways from "@/components/blog/KeyTakeaways";
@@ -289,10 +290,13 @@ const BlogPost = () => {
             </div>
           </div>
 
+          {/* Author bio — E-E-A-T anchor matching the Person JSON-LD */}
+          <AuthorBio />
+
           {/* Back to Blog */}
           <div className="mt-12 pt-8 border-t border-border">
-            <Link 
-              to="/blog" 
+            <Link
+              to="/blog"
               className="inline-flex items-center gap-2 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors group"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />

@@ -22,7 +22,8 @@ import {
   generateStoreSchema,
   generateWebPageSchema,
   generateHowToSchema,
-  generateAuthorSchema
+  generateAuthorSchema,
+  generateWebSiteSchema
 } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 
@@ -33,6 +34,9 @@ const Index = () => {
   const knowledgeGraphSchema = generateKnowledgeGraphSchema();
   const storeSchema = generateStoreSchema();
   const authorSchema = generateAuthorSchema();
+  // WebSite + SearchAction enables the sitelinks search box on the brand
+  // SERP. Emit only on the homepage so Google attributes it to the root URL.
+  const webSiteSchema = generateWebSiteSchema();
 
   const webPageSchema = generateWebPageSchema({
     name: "Hair Pinns - Hair Care by Jena",
@@ -85,6 +89,7 @@ const Index = () => {
   ]);
 
   const schemas = [
+    webSiteSchema,
     organizationSchema,
     localBusinessSchema,
     knowledgeGraphSchema,

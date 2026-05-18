@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
@@ -83,91 +84,91 @@
   </url>
   <url>
     <loc>https://hairpinns.com/services/smoothing/mid-length-straight-up-smoothing</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/smoothing/long-thick-straight-up-smoothing</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/smoothing/straight-up-smoothing-teens</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/foil-packages/full-head-foils-package</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/foil-packages/half-head-foils-cut-blowdry</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/foil-packages/quarter-head-foils-cut-blowdry</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/colouring-packages/long-hair-colour-package</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/colouring-packages/mid-length-colour-package</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/colouring-packages/short-hair-colour-package</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/long-hair-wash-cut-blowdry</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/mid-length-wash-cut-blowdry</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/short-wash-cut-blowdry</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/kids-cut-blowdry-bundle</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/kids-formal/primary-formal-hairstyle</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/kids-formal/high-school-formal-hairstyle</loc>
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -314,732 +315,2260 @@
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-4.jpg?v=1747030881</image:loc>
+      <image:title>Aromaganic Blondie Hair Strong Anti Yellow Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-17.jpg?v=1746879888</image:loc>
+      <image:title>Aromaganic Blondie Hair Strong Anti Yellow Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-blondie-hair-strong-anti-yellow-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-3.jpg?v=1747030842</image:loc>
+      <image:title>Aromaganic Blondie Hair Strong Anti Yellow Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-blondie-hair-strong-anti-yellow-shampoo-hair-pinns.webp?v=1747030842</image:loc>
+      <image:title>Aromaganic Blondie Hair Strong Anti Yellow Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-blondie-hair-strong-anti-yellow-shampoo-hair-pinns-life.jpg?v=1747030842</image:loc>
+      <image:title>Aromaganic Blondie Hair Strong Anti Yellow Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-blondie-hair-strong-anti-yellow-shampoo-conditioner-hair-pinns-life_bd5af554-1cb7-4b65-ae77-1f0b14ec11b5.jpg?v=1747030842</image:loc>
+      <image:title>Aromaganic Blondie Hair Strong Anti Yellow Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-6.jpg?v=1747030802</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-curly-curl-hair-conditioner-hair-pinns.webp?v=1747030802</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-curly-curl-hair-curly-hair-conditioner-hair-pinns-life.jpg?v=1747030802</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-curly-curl-hair-curly-hair-shampoo-conditioner-hair-pinns-life.jpg?v=1747030802</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-5.jpg?v=1747030779</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-curly-curl-hair-shampoo-hair-pinns.webp?v=1747030779</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-curly-curl-hair-curly-hair-shampoo-hair-pinns-life.jpg?v=1747030779</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-curly-curl-hair-curly-hair-shampoo-conditioner-hair-pinns-life_617858e5-2663-4638-abb2-483ab44e3f37.jpg?v=1747030779</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-shampoo-and-conditioner-duo-pack</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-16.jpg?v=1746880001</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-5.jpg?v=1747030779</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-6.jpg?v=1747030802</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/curly-duo_8c895fd8-922e-4b02-ae3c-2727e721291b.png?v=1746880001</image:loc>
+      <image:title>Aromaganic Curly Curl Hair Curly Hair Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-11.jpg?v=1747030762</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-conditioner-hair-pinns.webp?v=1747030762</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-conditioner-hair-pinns-life.jpg?v=1747030762</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-shampoo-conditioner-hair-pinns-life.jpg?v=1747030762</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-12.jpg?v=1747030734</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-shampoo-hair-pinns.webp?v=1747030734</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-shampoo-hair-pinns-life.jpg?v=1747030734</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-shampoo-conditioner-hair-pinns-life_50357057-937c-431a-bfbb-62cfe3c3e633.jpg?v=1747030734</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-shampoo-and-conditioner-duo-pack</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-13.jpg?v=1746852570</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-12.jpg?v=1747030734</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-11.jpg?v=1747030762</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-shampoo-conditioner-hair-pinns-life_bd52b98c-6813-4e4e-ab4e-ca4fd8736238.jpg?v=1746852570</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pmint-hair-scalp-renewal-shampoo-hair-pinns-life_d1b4536f-10a0-4708-9425-bb96dd938656.jpg?v=1746852570</image:loc>
+      <image:title>Aromaganic Pmint Hair Scalp Renewal Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-2.jpg?v=1746880179</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pumpd-hair-full-volume-conditioner-hair-pinns.webp?v=1746880179</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pumpd-hair-full-volume-conditioner-hair-pinns-life.jpg?v=1746880179</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pumpd-hair-full-volume-shampoo-conditioner-hair-pinns-life_d4a1d557-64c5-47a3-a942-cf63409d00c9.jpg?v=1746880179</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pumpd-hair-full-volume-shampoo-hair-pinns.webp?v=1746879807</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pumpd-hair-full-volume-shampoo-hair-pinns-life.jpg?v=1746879807</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-pumpd-hair-full-volume-shampoo-conditioner-hair-pinns-life.jpg?v=1746879807</image:loc>
+      <image:title>Aromaganic Pumpd Hair Full Volume Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-shampoo-and-conditioner-duo-pack</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-18.jpg?v=1746852474</image:loc>
+      <image:title>Aromaganic Pump Hair Full Volume Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-2.jpg?v=1746880179</image:loc>
+      <image:title>Aromaganic Pump Hair Full Volume Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807</image:loc>
+      <image:title>Aromaganic Pump Hair Full Volume Shampoo &amp; Conditioner Duo Pack</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-9-Edit.jpg?v=1746852377</image:loc>
+      <image:title>Aromaganic Smooth Hair Super Silky Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-smooth-hair-super-silky-conditioner-hair-pinns.webp?v=1746852377</image:loc>
+      <image:title>Aromaganic Smooth Hair Super Silky Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-smooth-hair-super-silky-conditioner-hair-pinns-life.jpg?v=1746852377</image:loc>
+      <image:title>Aromaganic Smooth Hair Super Silky Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-10.jpg?v=1746832828</image:loc>
+      <image:title>Aromaganic Smooth Hair Super Silky Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-smooth-hair-super-silky-shampoo-hair-pinns.webp?v=1746832828</image:loc>
+      <image:title>Aromaganic Smooth Hair Super Silky Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/aromaganic-smooth-hair-super-silky-shampoo-hair-pinns-life.jpg?v=1746832828</image:loc>
+      <image:title>Aromaganic Smooth Hair Super Silky Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587</image:loc>
+      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-hair-pinns.webp?v=1747026587</image:loc>
+      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560</image:loc>
+      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-heat-shield-straightening-oil-spray-styling-finishing-200ml-hair-pinns-scaled.webp?v=1747026587</image:loc>
+      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697</image:loc>
+      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat-guard-shield-duo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697</image:loc>
+      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-guard-shield-duo-hair-pinns.webp?v=1747030697</image:loc>
+      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-guard-shield-duo-hair-pinns-beach.webp?v=1747030697</image:loc>
+      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-essentials-hair-care-bundle-heat-guard-heat-shield-solar-enz-hair-pinns-vibrant.webp?v=1747030697</image:loc>
+      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat-shield-enz-duo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560</image:loc>
+      <image:title>Beat Heat Shield Enz Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-shield-enz-duo-hair-pinns.webp?v=1747030560</image:loc>
+      <image:title>Beat Heat Shield Enz Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-shield-enz-duo-hair-pinns-beach.webp?v=1747030560</image:loc>
+      <image:title>Beat Heat Shield Enz Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-essentials-hair-care-bundle-heat-guard-heat-shield-solar-enz-hair-pinns-vibrant_4d587fb2-7d17-4ba8-a08d-ec7db21a791c.webp?v=1747030560</image:loc>
+      <image:title>Beat Heat Shield Enz Duo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/beat-heat-solar-guard-duo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-120.jpg?v=1747030506</image:loc>
+      <image:title>Beat Heat Solar Guard Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-enz-guard-duo-hair-pinns.webp?v=1747030506</image:loc>
+      <image:title>Beat Heat Solar Guard Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-enz-guard-duo-hair-pinns-beach.webp?v=1747030506</image:loc>
+      <image:title>Beat Heat Solar Guard Duo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-essentials-hair-care-bundle-heat-guard-heat-shield-solar-enz-hair-pinns-vibrant_ef9d9ba3-77af-4ce7-8c5a-43fd240f9d0d.webp?v=1747030506</image:loc>
+      <image:title>Beat Heat Solar Guard Duo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-20-in-one-miracle</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-042.jpg?v=1744250283</image:loc>
+      <image:title>Juuce 20 In One Miracle Spray</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-20-in-one-miracle-benefits-treatment-200ml-hair-pinns-scaled.webp?v=1744250283</image:loc>
+      <image:title>Juuce 20 In One Miracle Spray</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-20-in-one-miracle-benefits-treatment-200ml-hair-pinns.png?v=1744250283</image:loc>
+      <image:title>Juuce 20 In One Miracle Spray</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-amp-it-up-volume</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-043.jpg?v=1744250210</image:loc>
+      <image:title>Juuce Amp It Up Volume</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-amp-it-up-volume-body-boosting-spray-200ml-hair-pinns-scaled.webp?v=1744250210</image:loc>
+      <image:title>Juuce Amp It Up Volume</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-amp-it-up-volume-body-boosting-spray-200ml-hair-pinns.png?v=1744250210</image:loc>
+      <image:title>Juuce Amp It Up Volume</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-anti-dandruff-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-082.jpg?v=1746832547</image:loc>
+      <image:title>Juuce Anti Dandruff Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-anti-dandruff-shampoo-soothe-itchy-scalp-300ml-hair-pinns-scaled.webp?v=1746832547</image:loc>
+      <image:title>Juuce Anti Dandruff Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-anti-dandruff-shampoo-soothe-itchy-scalp-300ml-hair-pinns.png?v=1746832547</image:loc>
+      <image:title>Juuce Anti Dandruff Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-blonde-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-026.jpg?v=1744250254</image:loc>
+      <image:title>Juuce Bond Blonde Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-blonde-conditioner-300ml-hair-pinns-scaled.webp?v=1744250254</image:loc>
+      <image:title>Juuce Bond Blonde Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-blonde-conditioner-300ml-hair-pinns.png?v=1744250254</image:loc>
+      <image:title>Juuce Bond Blonde Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-blonde-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-025.jpg?v=1744250368</image:loc>
+      <image:title>Juuce Bond Blonde Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-blonde-shampoo-300ml-hair-pinns-scaled.webp?v=1744250368</image:loc>
+      <image:title>Juuce Bond Blonde Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-blonde-shampoo-300ml-hair-pinns.png?v=1744250368</image:loc>
+      <image:title>Juuce Bond Blonde Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-repair-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-016.jpg?v=1744256594</image:loc>
+      <image:title>Juuce Bond Repair Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-repair-conditioner-300ml-hair-pinns-scaled.webp?v=1744256594</image:loc>
+      <image:title>Juuce Bond Repair Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-repair-conditioner-300ml-hair-pinns.png?v=1744256594</image:loc>
+      <image:title>Juuce Bond Repair Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-bond-repair-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-015.jpg?v=1744256570</image:loc>
+      <image:title>Juuce Bond Repair Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-repair-shampoo-300ml-hair-pinns-scaled.webp?v=1744256570</image:loc>
+      <image:title>Juuce Bond Repair Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-bond-repair-shampoo-300ml-hair-pinns.png?v=1744256570</image:loc>
+      <image:title>Juuce Bond Repair Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-boost-curl-kinky</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-035.jpg?v=1744178693</image:loc>
+      <image:title>Juuce Boost Curl Kinky</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-boost-curl-kinky-definition-styling-finishing-150ml-hair-pinns-scaled.webp?v=1744178693</image:loc>
+      <image:title>Juuce Boost Curl Kinky</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-boost-curl-kinky-definition-styling-finishing-150ml-hair-pinns.png?v=1744178693</image:loc>
+      <image:title>Juuce Boost Curl Kinky</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-botanic-oil-serum</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-050.jpg?v=1744178399</image:loc>
+      <image:title>Juuce Botanic Oil Serum</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-serum-botanic-oil-leave-in-treatment-hair-pinns.webp?v=1744178399</image:loc>
+      <image:title>Juuce Botanic Oil Serum</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-control-sculpt-lotion</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-034.jpg?v=1744179383</image:loc>
+      <image:title>Juuce Control Sculpt Lotion</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-control-sculpt-lotion-styling-finishing-lotion-150ml-hair-pinns-scaled.webp?v=1744179383</image:loc>
+      <image:title>Juuce Control Sculpt Lotion</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-control-sculpt-lotion-styling-finishing-lotion-150ml-hair-pinns.png?v=1744179383</image:loc>
+      <image:title>Juuce Control Sculpt Lotion</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-curls-to-straight</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-051.jpg?v=1744179560</image:loc>
+      <image:title>Juuce Curls To Straight</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-curls-to-straight-cream-straightener-150ml-hair-pinns-scaled.webp?v=1744179560</image:loc>
+      <image:title>Juuce Curls To Straight</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-curls-to-straight-cream-straightener-150ml-hair-pinns.png?v=1744179560</image:loc>
+      <image:title>Juuce Curls To Straight</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-deep-cleanse-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-010.jpg?v=1744179511</image:loc>
+      <image:title>Juuce Deep Cleanse Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-deep-cleanse-shampoo-300ml-hair-pinns-scaled.webp?v=1744179511</image:loc>
+      <image:title>Juuce Deep Cleanse Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-deep-cleanse-shampoo-300ml-hair-pinns.png?v=1744179511</image:loc>
+      <image:title>Juuce Deep Cleanse Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-double-up-thicken</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-044.jpg?v=1744179473</image:loc>
+      <image:title>Juuce Double Up Thicken</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-double-up-thicken-cream-for-body-150ml-hair-pinns-scaled.webp?v=1744179473</image:loc>
+      <image:title>Juuce Double Up Thicken</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-double-up-thicken-cream-for-body-150ml-hair-pinns.png?v=1744179473</image:loc>
+      <image:title>Juuce Double Up Thicken</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-dry-heat-guard</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-048.jpg?v=1744179415</image:loc>
+      <image:title>Juuce Dry Heat Guard</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-dry-heat-guard-4-in-one-defence-styling-finishing-125g-hair-pinns-scaled_098e133b-2a8e-45a8-b3f5-dd360f884988.webp?v=1744179415</image:loc>
+      <image:title>Juuce Dry Heat Guard</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-dry-heat-guard-4-in-one-defence-styling-finishing-125g-hair-pinns_db1519c4-da66-4612-a231-fd4f71dbac1f.png?v=1744179415</image:loc>
+      <image:title>Juuce Dry Heat Guard</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-dry-shampoo-volumiser</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-063.jpg?v=1744179294</image:loc>
+      <image:title>Juuce Dry Shampoo Volumiser</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-dry-shampoo-volumiser-extend-style-and-add-texture-120g-hair-pinns-scaled.webp?v=1744179294</image:loc>
+      <image:title>Juuce Dry Shampoo Volumiser</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-dry-shampoo-volumiser-extend-style-and-add-texture-120g-hair-pinns.png?v=1744179294</image:loc>
+      <image:title>Juuce Dry Shampoo Volumiser</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-full-volume-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-019.jpg?v=1744179233</image:loc>
+      <image:title>Juuce Full Volume Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-full-volume-conditioner-300ml-hair-pinns-scaled.webp?v=1744179233</image:loc>
+      <image:title>Juuce Full Volume Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-full-volume-conditioner-300ml-hair-pinns.png?v=1744179233</image:loc>
+      <image:title>Juuce Full Volume Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-full-volume-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-018.jpg?v=1744179204</image:loc>
+      <image:title>Juuce Full Volume Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-full-volume-shampoo-300ml-hair-pinns-scaled.webp?v=1744179204</image:loc>
+      <image:title>Juuce Full Volume Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-full-volume-shampoo-300ml-hair-pinns.png?v=1744179204</image:loc>
+      <image:title>Juuce Full Volume Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-heat-shield</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-065.jpg?v=1744179166</image:loc>
+      <image:title>Juuce Heat Shield</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-heat-shield-straightening-oil-spray-styling-finishing-200ml-hair-pinns-scaled_e9afa630-4400-4c84-b933-b018710768c3.webp?v=1744179166</image:loc>
+      <image:title>Juuce Heat Shield</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-heat-shield-straightening-oil-spray-styling-finishing-200ml-hair-pinns_66c26a2f-a41d-4ac2-9322-fbe965d03fde.png?v=1744179166</image:loc>
+      <image:title>Juuce Heat Shield</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-hyaluronic-hydrate-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-030.jpg?v=1744179136</image:loc>
+      <image:title>Juuce Hyaluronic Hydrate Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-hyaluronic-hydrate-conditioner-restore-moisture-balance-300ml-hair-pinns-scaled.webp?v=1744179136</image:loc>
+      <image:title>Juuce Hyaluronic Hydrate Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-hyaluronic-hydrate-conditioner-restore-moisture-balance-300ml-hair-pinns.png?v=1744179136</image:loc>
+      <image:title>Juuce Hyaluronic Hydrate Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-hyaluronic-hydrate-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-028.jpg?v=1744179101</image:loc>
+      <image:title>Juuce Hyaluronic Hydrate Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-hyaluronic-hydrate-shampoo-restore-moisture-balance-300ml-hair-pinns-scaled.webp?v=1744179101</image:loc>
+      <image:title>Juuce Hyaluronic Hydrate Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-hyaluronic-hydrate-shampoo-restore-moisture-balance-300ml-hair-pinns.png?v=1744179101</image:loc>
+      <image:title>Juuce Hyaluronic Hydrate Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-knot-knotty-detangler</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-041.jpg?v=1744178522</image:loc>
+      <image:title>Juuce Knot Knotty Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-knot-knotty-instantly-unknot-200ml-hair-pinns-scaled.webp?v=1744178522</image:loc>
+      <image:title>Juuce Knot Knotty Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-knot-knotty-instantly-unknot-200ml-hair-pinns.png?v=1744178522</image:loc>
+      <image:title>Juuce Knot Knotty Detangler</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-messed-up-texture</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-059.jpg?v=1744178971</image:loc>
+      <image:title>Juuce Messed Up Texture</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-messed-up-texture-styling-fibre-cream-finishing-150ml-hair-pinns-scaled.webp?v=1744178971</image:loc>
+      <image:title>Juuce Messed Up Texture</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-messed-up-texture-styling-fibre-cream-finishing-150ml-hair-pinns.png?v=1744178971</image:loc>
+      <image:title>Juuce Messed Up Texture</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-miracle-smooth-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-011.jpg?v=1744178942</image:loc>
+      <image:title>Juuce Miracle Smooth Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-miracle-smooth-conditioner-tame-all-frizz-or-curly-hair-300ml-hair-pinns-scaled.webp?v=1744178942</image:loc>
+      <image:title>Juuce Miracle Smooth Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-miracle-smooth-conditioner-tame-all-frizz-or-curly-hair-300ml-hair-pinns.png?v=1744178942</image:loc>
+      <image:title>Juuce Miracle Smooth Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-miracle-smooth-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-012.jpg?v=1744178910</image:loc>
+      <image:title>Juuce Miracle Smooth Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-miracle-smooth-shampoo-tame-all-frizz-or-curly-hair-300ml-hair-pinns-scaled.webp?v=1744178910</image:loc>
+      <image:title>Juuce Miracle Smooth Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-miracle-smooth-shampoo-tame-all-frizz-or-curly-hair-300ml-hair-pinns.png?v=1744178910</image:loc>
+      <image:title>Juuce Miracle Smooth Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-peppermint-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-024.jpg?v=1744178748</image:loc>
+      <image:title>Juuce Peppermint Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-peppermint-conditioner-300ml-hair-pinns-scaled.webp?v=1744178748</image:loc>
+      <image:title>Juuce Peppermint Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-peppermint-conditioner-300ml-hair-pinns.png?v=1744178748</image:loc>
+      <image:title>Juuce Peppermint Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-peppermint-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-023.jpg?v=1744178849</image:loc>
+      <image:title>Juuce Peppermint Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-peppermint-shampoo-300ml-hair-pinns-scaled.webp?v=1744178849</image:loc>
+      <image:title>Juuce Peppermint Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-peppermint-shampoo-300ml-hair-pinns.png?v=1744178849</image:loc>
+      <image:title>Juuce Peppermint Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-protect-solar-enz</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-060.jpg?v=1744178660</image:loc>
+      <image:title>Juuce Protect Solar Enz</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-protect-solar-enz-sun-protection-to-save-colour-leave-in-treatment-150ml-hair-pinns-scaled_38cdf9a3-19b1-4220-a53f-091c90f12540.webp?v=1744178660</image:loc>
+      <image:title>Juuce Protect Solar Enz</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-protect-solar-enz-sun-protection-to-save-colour-leave-in-treatment-150ml-hair-pinns_f986d4c6-319e-40e0-80ca-416ff035eddf.png?v=1744178660</image:loc>
+      <image:title>Juuce Protect Solar Enz</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-radiant-colour-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-014.jpg?v=1744178631</image:loc>
+      <image:title>Juuce Radiant Colour Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-radiant-colour-conditioner-protect-colour-treated-hair-300ml-hair-pinns-scaled.webp?v=1744178631</image:loc>
+      <image:title>Juuce Radiant Colour Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-radiant-colour-conditioner-protect-colour-treated-hair-300ml-hair-pinns.png?v=1744178631</image:loc>
+      <image:title>Juuce Radiant Colour Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-radiant-colour-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-013.jpg?v=1744178584</image:loc>
+      <image:title>Juuce Radiant Colour Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-radiant-colour-shampoo-protect-colour-treated-hair-300ml-hair-pinns-scaled.webp?v=1744178584</image:loc>
+      <image:title>Juuce Radiant Colour Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-radiant-colour-shampoo-protect-colour-treated-hair-300ml-hair-pinns.png?v=1744178584</image:loc>
+      <image:title>Juuce Radiant Colour Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-repair-1-minute-treatment</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-064.jpg?v=1744178553</image:loc>
+      <image:title>Juuce Repair 1 Minute Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-repair-1-minute-restore-and-rebond-treatment-150ml-hair-pinns-scaled.webp?v=1744178553</image:loc>
+      <image:title>Juuce Repair 1 Minute Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-repair-1-minute-restore-and-rebond-treatment-150ml-hair-pinns.png?v=1744178553</image:loc>
+      <image:title>Juuce Repair 1 Minute Treatment</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-repair-smooth-enz</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-062.jpg?v=1744178473</image:loc>
+      <image:title>Juuce Repair Smooth Enz</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/3C9FFEA5-BA20-4D7D-BE18-BE44DA0DFD53.jpg?v=1746873714</image:loc>
+      <image:title>Juuce Repair Smooth Enz</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-repair-smooth-enz-seal-the-ends-to-moisturise-leave-in-treatment-150ml-hair-pinns-scaled.webp?v=1746873714</image:loc>
+      <image:title>Juuce Repair Smooth Enz</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-repair-smooth-enz-seal-the-ends-to-moisturise-leave-in-treatment-150ml-hair-pinns.png?v=1746873714</image:loc>
+      <image:title>Juuce Repair Smooth Enz</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-sea-air-mist-beachy</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-061.jpg?v=1744178366</image:loc>
+      <image:title>Juuce Sea Air Mist Beachy</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-sea-air-mist-beachy-texture-spray-styling-finishing-200ml-hair-pinns-scaled.webp?v=1744178366</image:loc>
+      <image:title>Juuce Sea Air Mist Beachy</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-sea-air-mist-beachy-texture-spray-styling-finishing-200ml-hair-pinns.png?v=1744178366</image:loc>
+      <image:title>Juuce Sea Air Mist Beachy</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-shimmer-shine-spray</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-033.jpg?v=1744178340</image:loc>
+      <image:title>Juuce Shimmer Shine Spray</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-shimmer-shine-spray-smooth-and-soften-styling-finishing-100g-hair-pinns-scaled.webp?v=1744178340</image:loc>
+      <image:title>Juuce Shimmer Shine Spray</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-shimmer-shine-spray-smooth-and-soften-styling-finishing-100g-hair-pinns.png?v=1744178340</image:loc>
+      <image:title>Juuce Shimmer Shine Spray</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-silver-blonde-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-038.jpg?v=1744178300</image:loc>
+      <image:title>Juuce Silver Blonde Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-silver-blonde-conditioner-300ml-hair-pinns-scaled.webp?v=1744178300</image:loc>
+      <image:title>Juuce Silver Blonde Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-silver-blonde-conditioner-300ml-hair-pinns.png?v=1744178300</image:loc>
+      <image:title>Juuce Silver Blonde Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-silver-blonde-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-037.jpg?v=1744178272</image:loc>
+      <image:title>Juuce Silver Blonde Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-silver-blonde-shampoo-300ml-hair-pinns-scaled.webp?v=1744178272</image:loc>
+      <image:title>Juuce Silver Blonde Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-silver-blonde-shampoo-300ml-hair-pinns.png?v=1744178272</image:loc>
+      <image:title>Juuce Silver Blonde Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-softly-nourish-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-021.jpg?v=1744178239</image:loc>
+      <image:title>Juuce Softly Nourish Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-softly-nourish-conditioner-300ml-hair-pinns-scaled.webp?v=1744178239</image:loc>
+      <image:title>Juuce Softly Nourish Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-softly-nourish-conditioner-300ml-hair-pinns.png?v=1744178239</image:loc>
+      <image:title>Juuce Softly Nourish Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-softly-nourish-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-022.jpg?v=1744178213</image:loc>
+      <image:title>Juuce Softly Nourish Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-softly-nourish-shampoo-300ml-hair-pinns-scaled.webp?v=1744178213</image:loc>
+      <image:title>Juuce Softly Nourish Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-softly-nourish-shampoo-300ml-hair-pinns.png?v=1744178213</image:loc>
+      <image:title>Juuce Softly Nourish Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-stuck-up-lacquer</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-067.jpg?v=1744178179</image:loc>
+      <image:title>Juuce Stuck Up Lacquer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-036.jpg?v=1744178179</image:loc>
+      <image:title>Juuce Stuck Up Lacquer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-117.jpg?v=1754361147</image:loc>
+      <image:title>Juuce Stuck Up Lacquer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-stuck-up-lacquer-strong-hold-control-styling-finishing-400g-hair-pinns-scaled.webp?v=1754361147</image:loc>
+      <image:title>Juuce Stuck Up Lacquer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-stuck-up-lacquer-strong-hold-control-styling-finishing-400g-hair-pinns.png?v=1754361147</image:loc>
+      <image:title>Juuce Stuck Up Lacquer</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-super-soft-hydration-moisture-mask</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-057.jpg?v=1744178135</image:loc>
+      <image:title>Juuce Super Soft Hydration Moisture Mask</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-super-soft-hydration-rehydrate-and-soften-all-hair-types-moisture-mask-250g-hair-pinns-scaled.webp?v=1744178135</image:loc>
+      <image:title>Juuce Super Soft Hydration Moisture Mask</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-super-soft-hydration-rehydrate-and-soften-all-hair-types-moisture-mask-250g-hair-pinns.png?v=1744178135</image:loc>
+      <image:title>Juuce Super Soft Hydration Moisture Mask</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/WhatsApp_Image_2025-05-17_at_20.07.11.jpg?v=1747537693</image:loc>
+      <image:title>Juuce Super Soft Hydration Moisture Mask</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/WhatsApp_Image_2025-05-17_at_20.07.11_1.jpg?v=1747537693</image:loc>
+      <image:title>Juuce Super Soft Hydration Moisture Mask</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-tame-curls-smooth</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-032.jpg?v=1744178108</image:loc>
+      <image:title>Juuce Tame Curls Smooth</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-tame-curls-smooth-balm-for-curls-styling-finishing-150ml-hair-pinns-scaled.webp?v=1744178108</image:loc>
+      <image:title>Juuce Tame Curls Smooth</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-tame-curls-smooth-balm-for-curls-styling-finishing-150ml-hair-pinns.png?v=1744178108</image:loc>
+      <image:title>Juuce Tame Curls Smooth</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-wake-up-wax-spray</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-047.jpg?v=1744178076</image:loc>
+      <image:title>Juuce Wake Up Wax Spray</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-wake-up-wax-spray-texture-and-shape-styling-finishing-100g-hair-pinns-scaled.webp?v=1744178076</image:loc>
+      <image:title>Juuce Wake Up Wax Spray</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-wake-up-wax-spray-texture-and-shape-styling-finishing-100g-hair-pinns.png?v=1744178076</image:loc>
+      <image:title>Juuce Wake Up Wax Spray</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-2-pack</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029</image:loc>
+      <image:title>Qiqi Shampoo &amp; Conditioner Duo Bundle</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/77DDEB7B-D482-42A5-B44A-349435CBB055.jpg?v=1747083834</image:loc>
+      <image:title>Qiqi Shampoo &amp; Conditioner Duo Bundle</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/6D459123-0A01-42D4-8E35-3E21DFBA881B.jpg?v=1747084029</image:loc>
+      <image:title>Qiqi Shampoo &amp; Conditioner Duo Bundle</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-3-pack</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A298EC63-084E-4992-AF15-301E96E2CFC9.jpg?v=1774307990</image:loc>
+      <image:title>Qiqi Exploration Hair Care Set</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A3427352-8E3E-4FCE-9EA2-CC35E10608DB.jpg?v=1774307990</image:loc>
+      <image:title>Qiqi Exploration Hair Care Set</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/E55096F1-66DC-4863-93F7-9DA865EE6C21.jpg?v=1774307990</image:loc>
+      <image:title>Qiqi Exploration Hair Care Set</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/6D459123-0A01-42D4-8E35-3E21DFBA881B.jpg?v=1747084029</image:loc>
+      <image:title>Qiqi Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029</image:loc>
+      <image:title>Qiqi Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/62C8B7B1-67E8-4603-8F58-0029584E33EE.jpg?v=1747084029</image:loc>
+      <image:title>Qiqi Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A3427352-8E3E-4FCE-9EA2-CC35E10608DB.jpg?v=1774307990</image:loc>
+      <image:title>Qiqi Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-masque</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/FDE96C46-E813-4088-A8FF-10CB9E4F2BD1.jpg?v=1747083946</image:loc>
+      <image:title>Qiqi Masque</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/E6564F54-34B4-4F68-AA72-8BE8AE875A63.jpg?v=1747083946</image:loc>
+      <image:title>Qiqi Masque</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/4C6C968B-2501-4A0C-867A-7FA61DF36252.jpg?v=1748827999</image:loc>
+      <image:title>Qiqi Masque</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A298EC63-084E-4992-AF15-301E96E2CFC9.jpg?v=1774307990</image:loc>
+      <image:title>Qiqi Masque</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/77DDEB7B-D482-42A5-B44A-349435CBB055.jpg?v=1747083834</image:loc>
+      <image:title>Qiqi Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/6C9F56DD-EC84-4010-8618-0D634D92DBBE.jpg?v=1747083834</image:loc>
+      <image:title>Qiqi Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/020C1454-B37F-466B-8859-7DAE1114AD0E.jpg?v=1747083834</image:loc>
+      <image:title>Qiqi Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A3427352-8E3E-4FCE-9EA2-CC35E10608DB.jpg?v=1774307990</image:loc>
+      <image:title>Qiqi Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/E55096F1-66DC-4863-93F7-9DA865EE6C21.jpg?v=1774307990</image:loc>
+      <image:title>Qiqi Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/soft-towel</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/1FB984E5-CDC3-4326-A645-C1F8B79F57FE.jpg?v=1746873506</image:loc>
+      <image:title>Soft Head Towel- Bamboo + Charcoal</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/360DFB84-06F0-4A07-8657-E761B51045B1.jpg?v=1746873506</image:loc>
+      <image:title>Soft Head Towel- Bamboo + Charcoal</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C2BE11F8-43BC-42C8-8F7B-8BBE0FCED8F6.jpg?v=1746873506</image:loc>
+      <image:title>Soft Head Towel- Bamboo + Charcoal</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/bamcha-soft-towel.webp?v=1746873506</image:loc>
+      <image:title>Soft Head Towel- Bamboo + Charcoal</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-forever-blonde-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C04A5AE4-833C-4CA2-AFFB-AEB12D959B19.jpg?v=1746873457</image:loc>
+      <image:title>Pure Forever Blonde Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/19D5F2F2-D1DF-4BDF-8EAE-B954E84C22AA.png?v=1746873457</image:loc>
+      <image:title>Pure Forever Blonde Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-forever-blonde-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/F679E76B-F966-4244-9C5A-E7AABBFEFF83.jpg?v=1746873488</image:loc>
+      <image:title>Pure Forever Blonde Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/654316AF-F950-4D43-8F22-EF458B25868D.jpg?v=1746873488</image:loc>
+      <image:title>Pure Forever Blonde Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-glass-hair-treatment</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-045.jpg?v=1744177643</image:loc>
+      <image:title>Pure Lamellar Vitality Glass Hair Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/780AE1C9-1B54-4748-8E59-FC71752A6E6B.jpg?v=1744177643</image:loc>
+      <image:title>Pure Lamellar Vitality Glass Hair Treatment</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-037.jpg?v=1744177489</image:loc>
+      <image:title>Pure Lamellar Vitality Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-046.jpg?v=1744177489</image:loc>
+      <image:title>Pure Lamellar Vitality Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/01EE230A-2EB5-4A21-9836-6D70F7FE3C0A.jpg?v=1744177489</image:loc>
+      <image:title>Pure Lamellar Vitality Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-042.jpg?v=1744176901</image:loc>
+      <image:title>Pure Lamellar Vitality Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-050.jpg?v=1744176901</image:loc>
+      <image:title>Pure Lamellar Vitality Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/7D4ACFCE-0645-400D-B55B-F8586486E12D.jpg?v=1744176901</image:loc>
+      <image:title>Pure Lamellar Vitality Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-luminous-leave-in-silky-foam</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-041.jpg?v=1744176759</image:loc>
+      <image:title>Pure Lamellar Vitality Luminous Leave-in Silky Foam</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-049.jpg?v=1744176759</image:loc>
+      <image:title>Pure Lamellar Vitality Luminous Leave-in Silky Foam</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/653EF786-5BF7-49F0-99DA-17F0C2172706.jpg?v=1744176759</image:loc>
+      <image:title>Pure Lamellar Vitality Luminous Leave-in Silky Foam</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/lamellar-vitality-butter-mask-treatment</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-018.jpg?v=1744176835</image:loc>
+      <image:title>Pure Lamellar Vitality Butter Mask Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-048.jpg?v=1744176835</image:loc>
+      <image:title>Pure Lamellar Vitality Butter Mask Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Lamellar_Vitality-017.jpg?v=1744176835</image:loc>
+      <image:title>Pure Lamellar Vitality Butter Mask Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/002B68F7-A7BA-4AA6-831A-864A5554DCB7.jpg?v=1744176835</image:loc>
+      <image:title>Pure Lamellar Vitality Butter Mask Treatment</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/walnut-scrub-hair-scalp-pre-wash-treatment</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-077-Edit.jpg?v=1744177674</image:loc>
+      <image:title>Pure Walnut Scrub Hair &amp; Scalp Pre-wash Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/B4022282-FA5B-4D58-A264-C7D157C5E497.jpg?v=1744177674</image:loc>
+      <image:title>Pure Walnut Scrub Hair &amp; Scalp Pre-wash Treatment</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-goddess-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-060.jpg?v=1744177879</image:loc>
+      <image:title>Pure Goddess Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/79144B33-1B36-4F08-A5A9-F641C24B93E6.jpg?v=1744177879</image:loc>
+      <image:title>Pure Goddess Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-goddess-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-061.jpg?v=1744177846</image:loc>
+      <image:title>Pure Goddess Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/F0CAECE0-96CF-4D0A-89BD-A496A64DF077.jpg?v=1744177846</image:loc>
+      <image:title>Pure Goddess Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-precious-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-063.jpg?v=1744177801</image:loc>
+      <image:title>Pure Precious Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/2C243A78-FF6B-4B51-9080-76642F33067D.jpg?v=1744177801</image:loc>
+      <image:title>Pure Precious Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-precious-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-064.jpg?v=1744177722</image:loc>
+      <image:title>Pure Precious Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/AF36FD5A-0756-41D1-9D4E-28BE13FBBE52.jpg?v=1744177722</image:loc>
+      <image:title>Pure Precious Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-miracle-renew-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-050.jpg?v=1744177586</image:loc>
+      <image:title>Pure Miracle Renew Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A4536407-DF74-4F8D-AE21-C067FD021FFA.jpg?v=1744177586</image:loc>
+      <image:title>Pure Miracle Renew Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-miracle-renew-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-051.jpg?v=1744177544</image:loc>
+      <image:title>Pure Miracle Renew Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/73FCFBC8-CA7D-447D-A024-1320C972C879.jpg?v=1744177544</image:loc>
+      <image:title>Pure Miracle Renew Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-colour-angel-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-046.jpg?v=1744176693</image:loc>
+      <image:title>Pure Colour Angel Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/1FAF9722-81EA-42AB-B1D8-53B925BD949B.jpg?v=1744176693</image:loc>
+      <image:title>Pure Colour Angel Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-colour-angel-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-047.jpg?v=1744176660</image:loc>
+      <image:title>Pure Colour Angel Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/D7229097-061F-44DC-B88D-E012559483EB.jpg?v=1744176660</image:loc>
+      <image:title>Pure Colour Angel Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-curly-girly-foam-curl-primer</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-020.jpg?v=1744176541</image:loc>
+      <image:title>Pure Curly Girly Foam Curl Primer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/8047E0A6-0B64-474F-A132-FFC64C0C07CA.jpg?v=1744176541</image:loc>
+      <image:title>Pure Curly Girly Foam Curl Primer</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-miracle-renew-hair-treatmentt</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-076.jpg?v=1744176458</image:loc>
+      <image:title>Pure Miracle Renew Hair Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/404099A4-D308-4798-92C7-B6033AADAF6A.jpg?v=1744176458</image:loc>
+      <image:title>Pure Miracle Renew Hair Treatment</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-069.jpg?v=1744176487</image:loc>
+      <image:title>Pure Sacred Mask Hydrating Hair Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/B54E1350-77D7-4412-A6D8-DDB05808EBD0.jpg?v=1744176487</image:loc>
+      <image:title>Pure Sacred Mask Hydrating Hair Treatment</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-uplift-volume-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-036.jpg?v=1744176420</image:loc>
+      <image:title>Pure Uplift Volume Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/251137FC-3E9F-4DCD-B15F-0F5FB25144E3.jpg?v=1744176420</image:loc>
+      <image:title>Pure Uplift Volume Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-uplift-volume-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-035.jpg?v=1744176334</image:loc>
+      <image:title>Pure Uplift Volume Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C35D48C5-0045-44BB-A832-3D273574ED03.jpg?v=1744176334</image:loc>
+      <image:title>Pure Uplift Volume Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-guardian-angel</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-018.jpg?v=1744085605</image:loc>
+      <image:title>Pure Guardian Angel</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/9AA9B118-0D53-45F5-8296-BB2CF62206D6.jpg?v=1744085605</image:loc>
+      <image:title>Pure Guardian Angel</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/B595E3D7-ACFC-4754-A223-B561F7921347.jpg?v=1744085605</image:loc>
+      <image:title>Pure Guardian Angel</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/hair-pinns-gift-card</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/gift-certificate-hair-pinns.webp?v=1741736075</image:loc>
+      <image:title>Hair Pinns Gift Card</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/silicon-travel-bottle-duo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/E3C7B8CF-7461-40CD-8752-7D72461CC3E9.jpg?v=1746739385</image:loc>
+      <image:title>Silicon Reusable Travel Bottles 90mL</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/4B060946-424B-4054-B0BC-2E2869463C02.jpg?v=1746739385</image:loc>
+      <image:title>Silicon Reusable Travel Bottles 90mL</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/3B158CFF-AB07-4D25-958F-9E1EC902601E.jpg?v=1746739385</image:loc>
+      <image:title>Silicon Reusable Travel Bottles 90mL</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/head-massager</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Head_Massager_Blue_and_Pink.webp?v=1747032486</image:loc>
+      <image:title>Head Massager</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Head_Massager_Black_and_White.webp?v=1747032486</image:loc>
+      <image:title>Head Massager</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Head_Massager_Pink_2084d2f4-d570-4e1d-a443-48e0fd5f7f15.webp?v=1747032486</image:loc>
+      <image:title>Head Massager</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Head_Massager_White_201096e4-2b4a-456d-877e-2e60226fc163.webp?v=1747032486</image:loc>
+      <image:title>Head Massager</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Head_Massager_Blue_f2d72722-5f83-49b9-b164-407559bb4cc4.webp?v=1747032486</image:loc>
+      <image:title>Head Massager</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-self-tanning-foam</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningDeepBangingBronzeDIYFoam.webp?v=1742170894</image:loc>
+      <image:title>Island Vibes Self-Tanning Foam</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningSoftNaturalGlowDIYFoam.webp?v=1742170894</image:loc>
+      <image:title>Island Vibes Self-Tanning Foam</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/192979C9-F706-4C39-A9C5-0A947D922873.webp?v=1777037232</image:loc>
+      <image:title>Island Vibes Self-Tanning Foam</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-original-detangler</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Wet_Brush_Disney_Minnie_Mouse_54445608-71c1-4d3e-9565-66796ce5e862.webp?v=1757646262</image:loc>
+      <image:title>Wet Brush Original Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Wet_Brush_Disney_Daisy_Duck_fc8f1fdb-bd52-4ed7-a563-3d31666842ca.webp?v=1757646274</image:loc>
+      <image:title>Wet Brush Original Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/4C2F4C54-7CCF-4BF3-B3B9-1E2931F2E68D.webp?v=1768259455</image:loc>
+      <image:title>Wet Brush Original Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/5A3EF875-9511-4127-B09E-8277F6B557E9.webp?v=1777889000</image:loc>
+      <image:title>Wet Brush Original Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/05D43B0C-E298-44ED-ABC6-695749C752F8.webp?v=1777888811</image:loc>
+      <image:title>Wet Brush Original Detangler</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-flex-dry</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/B5B0F53F-173E-458C-AA11-D7436AF17203.jpg?v=1777889236</image:loc>
+      <image:title>Wet Brush Pro Flex Dry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/FC7F9F0A-011B-4FE8-95DB-362E5ABD2EC7.webp?v=1777889236</image:loc>
+      <image:title>Wet Brush Pro Flex Dry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/3E09D9BC-1568-4913-8C73-0FD895C3CBF3.webp?v=1777890094</image:loc>
+      <image:title>Wet Brush Pro Flex Dry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/CF8CDB66-1C26-4C3C-9864-45695A14810A.webp?v=1777890188</image:loc>
+      <image:title>Wet Brush Pro Flex Dry</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-application-mit</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningApplicationMitt.webp?v=1742265549</image:loc>
+      <image:title>Island Vibes Tanning Accessories</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesBlueMeTanningTools.webp?v=1748827725</image:loc>
+      <image:title>Island Vibes Tanning Accessories</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanning-BackApplicator.webp?v=1742265760</image:loc>
+      <image:title>Island Vibes Tanning Accessories</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-kids-detangler</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/721FA26F-81A2-45B7-84B5-90755DE58925.jpg?v=1777888364</image:loc>
+      <image:title>Wet Brush Kids &amp; Mini Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/85B52731-E6CA-4860-B0AA-01648D1E761D.jpg?v=1748865508</image:loc>
+      <image:title>Wet Brush Kids &amp; Mini Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/2A3BD58C-88B3-4EC2-AAB3-697FDE8A1328.jpg?v=1777888364</image:loc>
+      <image:title>Wet Brush Kids &amp; Mini Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/03CBDAC8-CA09-4E23-9246-1B02302BD07B.jpg?v=1777888364</image:loc>
+      <image:title>Wet Brush Kids &amp; Mini Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/wet-brush-wetbrush-kids-detangler-rainbow-1145916472.webp?v=1752643490</image:loc>
+      <image:title>Wet Brush Kids &amp; Mini Detangler</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/purple-wide-tooth-combs</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/98599680-F876-44FB-8AF2-687C0FC9176F.jpg?v=1746739385</image:loc>
+      <image:title>Purple Wide Tooth Combs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C80F9DAC-B383-4AD6-AD5D-127E0CB8632E.jpg?v=1746739385</image:loc>
+      <image:title>Purple Wide Tooth Combs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/6FA0C0A4-35E0-4728-8395-57EF946143DB.jpg?v=1746739385</image:loc>
+      <image:title>Purple Wide Tooth Combs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C2BE11F8-43BC-42C8-8F7B-8BBE0FCED8F6.jpg?v=1746873506</image:loc>
+      <image:title>Purple Wide Tooth Combs</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/mini-mermaid-pony</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/PoppetLocksMiniMermaidBarbieShimmer.webp?v=1742517263</image:loc>
+      <image:title>Mini Mermaid Plaited Pony Tail Hair Extensions</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Poppet_Locks_Mini_Mermaid_Elsa.webp?v=1742518220</image:loc>
+      <image:title>Mini Mermaid Plaited Pony Tail Hair Extensions</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Poppet_Locks_Mini_Mermaid_Fairy_Floss.webp?v=1742518219</image:loc>
+      <image:title>Mini Mermaid Plaited Pony Tail Hair Extensions</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Poppet_Locks_Mini_Mermaid_Melody.webp?v=1742518219</image:loc>
+      <image:title>Mini Mermaid Plaited Pony Tail Hair Extensions</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Poppet_Locks_Mini_Mermaid_Twilight_Sparkle.webp?v=1742518219</image:loc>
+      <image:title>Mini Mermaid Plaited Pony Tail Hair Extensions</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-fusion-complex-bond-repair-treatment</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-128.jpg?v=1746878192</image:loc>
+      <image:title>Pure Fusion Complex Bond Repair Treatment</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/PureFusionComplexBondRepairTreatment.webp?v=1746878192</image:loc>
+      <image:title>Pure Fusion Complex Bond Repair Treatment</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-fusion-complex-shampoo</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-126.jpg?v=1746878486</image:loc>
+      <image:title>Pure Fusion Complex Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-139.jpg?v=1746878486</image:loc>
+      <image:title>Pure Fusion Complex Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-142.jpg?v=1746878486</image:loc>
+      <image:title>Pure Fusion Complex Shampoo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure_-_Fusion_Complex_Shampoo_300ml.webp?v=1746878486</image:loc>
+      <image:title>Pure Fusion Complex Shampoo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-fusion-complex-conditioner</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-122.jpg?v=1746878410</image:loc>
+      <image:title>Pure Fusion Complex Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-139.jpg?v=1746878486</image:loc>
+      <image:title>Pure Fusion Complex Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-142.jpg?v=1746878486</image:loc>
+      <image:title>Pure Fusion Complex Conditioner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure_-_Fusion_Complex_Conditioner_300ml.webp?v=1746878410</image:loc>
+      <image:title>Pure Fusion Complex Conditioner</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-finest-volumizing-powder</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-112.jpg?v=1746878085</image:loc>
+      <image:title>Pure Finest Volumizing Powder</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/PureFinestVolumisingPowder.webp?v=1746878085</image:loc>
+      <image:title>Pure Finest Volumizing Powder</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-oomph-wax-spray</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-109.jpg?v=1746877708</image:loc>
+      <image:title>Pure Oomph Wax Spray</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/PureOomphWaxSpray.webp?v=1746877708</image:loc>
+      <image:title>Pure Oomph Wax Spray</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-shine-enhancer</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/3DBB9847-7914-46A1-83C2-042E875C212A.jpg?v=1753572288</image:loc>
+      <image:title>Wet Brush Pro Shine Enhancer &amp; Smooth Styler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/D003D0E8-8042-4CE2-9B3C-8813C3CCEA58.webp?v=1777887839</image:loc>
+      <image:title>Wet Brush Pro Shine Enhancer &amp; Smooth Styler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/BCB9D908-E119-4AE6-A4C7-5FC19EE8EECF.webp?v=1777887839</image:loc>
+      <image:title>Wet Brush Pro Shine Enhancer &amp; Smooth Styler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/BF7E31A8-700D-4E5C-80F3-67D029DBAFEE.webp?v=1777887839</image:loc>
+      <image:title>Wet Brush Pro Shine Enhancer &amp; Smooth Styler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/81944379-C77D-4B06-9CAC-5D737BA7323B.webp?v=1777887839</image:loc>
+      <image:title>Wet Brush Pro Shine Enhancer &amp; Smooth Styler</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/poppet-locks-little-plaited-piggy-tails</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/D9DFD7DD-E7C3-4CD4-8CEE-C44176D89D18.webp?v=1775128304</image:loc>
+      <image:title>Poppet Locks Piggy Tails Sets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/3A4127D6-93C9-4DD0-A092-FB457FC06D4B.webp?v=1775128304</image:loc>
+      <image:title>Poppet Locks Piggy Tails Sets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/E8C306FD-7729-4DFB-8727-EA13266644A3.webp?v=1775128304</image:loc>
+      <image:title>Poppet Locks Piggy Tails Sets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/51B1740A-3294-41B4-AADB-0F63585F5085.webp?v=1775128304</image:loc>
+      <image:title>Poppet Locks Piggy Tails Sets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/4661885B-446D-43A2-9413-906FE6721851.webp?v=1775128304</image:loc>
+      <image:title>Poppet Locks Piggy Tails Sets</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/poppet-locks-unicorn-straight-ponytail</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/73D78B93-A755-4A85-B603-5D31143A3CD3.webp?v=1775121799</image:loc>
+      <image:title>Poppet Locks Unicorn Straight Ponytail</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/toner-masks</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/PEARLYPLATINUMBLONDETONERMASK.png?v=1747284352</image:loc>
+      <image:title>Toner Masks</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/PINKTONERMASK.png?v=1747284352</image:loc>
+      <image:title>Toner Masks</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/REDTONERMASK.png?v=1747284352</image:loc>
+      <image:title>Toner Masks</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/ROSEWOODTONERMASK.png?v=1747284352</image:loc>
+      <image:title>Toner Masks</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/WARM-BEIGETONERMASK.png?v=1747284352</image:loc>
+      <image:title>Toner Masks</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-clean-hair-colour-organics</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/AromaganicHairColourBanner.webp?v=1748826574</image:loc>
+      <image:title>Aromaganic Clean Hair Colour Organics</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganic_Clean_Hair_Colour_1.0N_Natural_Black_6e0f86af-f1ac-45c2-8e71-d889a25f2a1d.jpg?v=1748827052</image:loc>
+      <image:title>Aromaganic Clean Hair Colour Organics</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganic_Clean_Hair_Colour_3.0n_Dark_Brown_Natural_54e7de25-9b50-4537-8546-1fbd3fadb2a3.jpg?v=1748827066</image:loc>
+      <image:title>Aromaganic Clean Hair Colour Organics</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganic_Clean_Hair_Colour_4.0N_Brown_Natural_a5c64848-7533-4231-a54d-58b2cc764bf9.webp?v=1748827078</image:loc>
+      <image:title>Aromaganic Clean Hair Colour Organics</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganic_Clean_Hair_Colour_6.0N_Dark_Blonde_Natural_aa56cdca-2bc0-42d9-876e-331c561eb0fa.jpg?v=1748827089</image:loc>
+      <image:title>Aromaganic Clean Hair Colour Organics</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/island-vibes-fade-tan-remover</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesFadeTanRemover.webp?v=1748827480</image:loc>
+      <image:title>Island Vibes Fade Tan Remover</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-all-out-blowout-styling-cream</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/QIQIAllOutBlowout.jpg?v=1748828320</image:loc>
+      <image:title>Qiqi All Out Blowout Styling Cream</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-porosity-play-spray</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/QIQIPoroosityPlay.jpg?v=1748828471</image:loc>
+      <image:title>Qiqi Porosity Play Spray</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-colour-optimising-treatments</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-093.jpg?v=1748828772</image:loc>
+      <image:title>Pure Colour Optimising Treatments</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-085.jpg?v=1748828976</image:loc>
+      <image:title>Pure Colour Optimising Treatments</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-080.jpg?v=1748828989</image:loc>
+      <image:title>Pure Colour Optimising Treatments</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-082.jpg?v=1748829001</image:loc>
+      <image:title>Pure Colour Optimising Treatments</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-084.jpg?v=1748829016</image:loc>
+      <image:title>Pure Colour Optimising Treatments</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/qiqi-bare-repair-oil</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/QIQIBareRepairOil50ml.jpg?v=1749105808</image:loc>
+      <image:title>QIQI Bare Repair Oil</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/QIQIBareRepairOil.jpg?v=1749105808</image:loc>
+      <image:title>QIQI Bare Repair Oil</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/mini-travel-hair-brush</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/841C3F5B-C3EE-4D5B-9DC5-DA26B2B43C6B.jpg?v=1752447076</image:loc>
+      <image:title>Mini Travel Hair Brush</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/19172988-E7ED-426F-A16E-61A4BB31BA8B.jpg?v=1752447111</image:loc>
+      <image:title>Mini Travel Hair Brush</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/2A9E39E9-421C-4ADF-893E-5A4568CD59CE.jpg?v=1752447133</image:loc>
+      <image:title>Mini Travel Hair Brush</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/AC3232E7-E544-4C83-B6B1-FD43BDEC2BBC.jpg?v=1752446754</image:loc>
+      <image:title>Mini Travel Hair Brush</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/tame-texture-wax-stick</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A96B9D56-5A54-458F-9D5C-DAF26AF03C8C.jpg?v=1753072697</image:loc>
+      <image:title>Tame &amp; Texture Wax Stick</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/84A80AB0-9DF9-47C6-8DC4-E2F5C2442DDF.jpg?v=1753072697</image:loc>
+      <image:title>Tame &amp; Texture Wax Stick</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/4D5E9FB6-426D-4A65-984C-1BC250F59F8B.jpg?v=1753072697</image:loc>
+      <image:title>Tame &amp; Texture Wax Stick</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/222543AF-8385-4A85-96E3-C0A666A410C8.webp?v=1753072697</image:loc>
+      <image:title>Tame &amp; Texture Wax Stick</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/flyaway-serum-baby-hair-control-smooth-hair-solution</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/6B214681-0F5A-43E0-813E-D2ADAB71E75C.jpg?v=1753072620</image:loc>
+      <image:title>Flyaway Serum - Baby Hair Control &amp; Smooth Hair Solution</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A2424A01-927B-4B55-A0E1-D95856931D02.webp?v=1753072620</image:loc>
+      <image:title>Flyaway Serum - Baby Hair Control &amp; Smooth Hair Solution</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/16107F82-435B-44EC-8632-2164218F5594.jpg?v=1753072620</image:loc>
+      <image:title>Flyaway Serum - Baby Hair Control &amp; Smooth Hair Solution</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A892F1CF-8C63-4645-A876-5FC54D64339C.webp?v=1753072620</image:loc>
+      <image:title>Flyaway Serum - Baby Hair Control &amp; Smooth Hair Solution</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/glow-go-tote</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/CF286AE2-DF5C-4F6F-9A90-AFC3A1F2CB23.webp?v=1754533319</image:loc>
+      <image:title>Glow &amp; Go - IV Beach Bag</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/9737E20F-4985-4591-83BF-26C23CE50816.webp?v=1754533319</image:loc>
+      <image:title>Glow &amp; Go - IV Beach Bag</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/54E1D7E9-2E4A-4A54-AF8A-4C573F09530C.webp?v=1754533205</image:loc>
+      <image:title>Glow &amp; Go - IV Beach Bag</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DD9488AB-BA86-410D-AE45-EDC81C055CBB.webp?v=1754533205</image:loc>
+      <image:title>Glow &amp; Go - IV Beach Bag</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/wetbrush-mini-keyring</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/104009.jpg?v=1755226549</image:loc>
+      <image:title>Wetbrush Mini Keyring</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/christmas-reusable-ponytails</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/D19AFEB1-183B-46CF-9161-FAF48D2DC7B8.jpg?v=1763080498</image:loc>
+      <image:title>Christmas Reusable Ponytails</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/35D1DE64-C4AD-43AF-A009-069DFEF9578F.jpg?v=1763080498</image:loc>
+      <image:title>Christmas Reusable Ponytails</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/50C64975-15CD-4122-B616-45BDD4F520E4.jpg?v=1763080498</image:loc>
+      <image:title>Christmas Reusable Ponytails</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/666F0D91-3A74-453E-8E15-36CCBDE072EE.jpg?v=1763080498</image:loc>
+      <image:title>Christmas Reusable Ponytails</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/rose-sunkiss-fix-hands-feet-face-tan-mist</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG-0232.webp?v=1769558542</image:loc>
+      <image:title>ROSE SUNKISS FIX - HANDS, FEET &amp; FACE TAN MIST</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG-0233.webp?v=1769558542</image:loc>
+      <image:title>ROSE SUNKISS FIX - HANDS, FEET &amp; FACE TAN MIST</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/goodbye-frizz-quad</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG-9966.png?v=1772843030</image:loc>
+      <image:title>Goodbye Frizz Quad</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-volumizing-spray</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DA3D1C4E-7FC2-4FB1-A4D7-F41DCCC3AD8F.jpg?v=1773527271</image:loc>
+      <image:title>Pure Volumizing Spray</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/the-curl-defining-detangle-brush</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/1AB2E09B-1384-42C8-B584-E6A6DD03E36E.jpg?v=1775423468</image:loc>
+      <image:title>The Curl Defining Detangle Brush</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/9B2AD54A-6690-451C-8D4A-1F6723DF1842.jpg?v=1775423468</image:loc>
+      <image:title>The Curl Defining Detangle Brush</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/87128213-B582-4AD4-B5C1-C454FD1295CE.jpg?v=1775423467</image:loc>
+      <image:title>The Curl Defining Detangle Brush</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/28F5AF86-41B4-487B-9DBF-0612438B19AB.jpg?v=1775423468</image:loc>
+      <image:title>The Curl Defining Detangle Brush</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/8AFA0FF6-4680-4AFC-970F-214922192C7E.jpg?v=1775423468</image:loc>
+      <image:title>The Curl Defining Detangle Brush</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/mother-s-day-pamper-pack</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/3D4EE63F-EEA9-4CD8-8365-22BA39909124.png?v=1776815468</image:loc>
+      <image:title>Mother’s Day Pamper Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/1FB984E5-CDC3-4326-A645-C1F8B79F57FE.jpg?v=1746873506</image:loc>
+      <image:title>Mother’s Day Pamper Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C80F9DAC-B383-4AD6-AD5D-127E0CB8632E.jpg?v=1746739385</image:loc>
+      <image:title>Mother’s Day Pamper Pack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/WhatsApp_Image_2025-05-17_at_20.07.11.jpg?v=1747537693</image:loc>
+      <image:title>Mother’s Day Pamper Pack</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/areas/como-2226</loc>
@@ -1565,6 +3094,78 @@
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/northern-territory</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/sydney</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/melbourne</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/brisbane</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/perth</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/adelaide</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/hobart</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/darwin</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/canberra</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/gold-coast</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/newcastle</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/wollongong</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/shipping-to/geelong</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

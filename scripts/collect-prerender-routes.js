@@ -94,6 +94,12 @@ export async function collectRoutes() {
   const stateSlugs = [...new Set(extractObjectKeys(resolve(root, 'src/data/shippingStates.ts')))];
   stateSlugs.forEach((slug) => routes.push(`/shipping-to/${slug}`));
 
+  // City-level shipping landing pages — capital cities + major regional
+  // hubs. Same /shipping-to/ route, lookup in ShippingStatePage resolves
+  // cities first then states. Auto-discovered from shippingCities.ts.
+  const citySlugs = [...new Set(extractObjectKeys(resolve(root, 'src/data/shippingCities.ts')))];
+  citySlugs.forEach((slug) => routes.push(`/shipping-to/${slug}`));
+
   SERVICE_ROUTES.forEach(([cat, svc]) => routes.push(`/services/${cat}/${svc}`));
 
   let collectionHandles = await fetchShopifyHandles('collections');
