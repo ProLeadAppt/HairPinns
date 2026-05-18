@@ -39,6 +39,7 @@ const SuburbPage = lazy(() => import("./pages/SuburbPage"));
 const SuburbRedirect = lazy(() => import("./pages/SuburbRedirect"));
 const LocationPage = lazy(() => import("./pages/LocationPage"));
 const AreasIndex = lazy(() => import("./pages/AreasIndex"));
+const ShippingStatePage = lazy(() => import("./pages/ShippingStatePage"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const DevCollections = lazy(() => import("./pages/DevCollections"));
@@ -119,6 +120,7 @@ const AppContent = () => {
               <Route path="/areas" element={<AreasIndex />} />
               <Route path="/areas/:slug" element={<LocationPage />} />
               <Route path="/policies/shipping" element={<Shipping />} />
+              <Route path="/shipping-to/:state" element={<ShippingStatePage />} />
               <Route path="/policies/returns" element={<Returns />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />

@@ -1,10 +1,12 @@
 import SEOHead from "@/components/SEOHead";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { generateBreadcrumbSchema, generateFAQPageSchema } from "@/lib/schema";
+import { shippingStates } from "@/data/shippingStates";
 
 const SHIPPING_FAQS = [
   { question: "Do you ship to Melbourne?", answer: "Yes. Hair Pinns ships professional hair care to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra and all of Australia. Free shipping on orders over $150." },
@@ -96,6 +98,25 @@ const Shipping = () => {
             <p className="text-foreground leading-relaxed mb-6">
               Local Sutherland Shire customers may also choose in-store pickup at no additional cost.
             </p>
+
+            {/* State landing pages — each has unique delivery times, climate-
+                appropriate product picks, and FAQs for that state's hair-care
+                challenges. Internal links here help crawlers discover the
+                cluster. */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mb-8 not-prose">
+              {Object.values(shippingStates).map((s) => (
+                <Link
+                  key={s.slug}
+                  to={`/shipping-to/${s.slug}`}
+                  className="block bg-card border border-border rounded-card px-3 py-2 text-center hover:border-brand-500 hover:text-brand-500 transition-colors"
+                >
+                  <span className="text-sm font-medium">{s.name}</span>
+                  <span className="block text-xs text-muted-foreground">
+                    {s.standardDeliveryDays} business days
+                  </span>
+                </Link>
+              ))}
+            </div>
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Questions?</h2>
             <p className="text-foreground leading-relaxed">

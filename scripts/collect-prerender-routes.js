@@ -88,6 +88,12 @@ export async function collectRoutes() {
   const blogSlugs = [...new Set(extractBlogSlugs(resolve(root, 'src/data/blogPosts.ts')))];
   blogSlugs.forEach((slug) => routes.push(`/blog/${slug}`));
 
+  // State-level shipping landing pages — one per AU state/territory. Auto-
+  // discovered from src/data/shippingStates.ts so adding a new entry there
+  // automatically gets the page prerendered.
+  const stateSlugs = [...new Set(extractObjectKeys(resolve(root, 'src/data/shippingStates.ts')))];
+  stateSlugs.forEach((slug) => routes.push(`/shipping-to/${slug}`));
+
   SERVICE_ROUTES.forEach(([cat, svc]) => routes.push(`/services/${cat}/${svc}`));
 
   let collectionHandles = await fetchShopifyHandles('collections');

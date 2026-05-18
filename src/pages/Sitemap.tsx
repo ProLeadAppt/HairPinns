@@ -54,6 +54,21 @@ const Sitemap = () => {
       ]
     },
     {
+      title: "Shipping Destinations",
+      icon: MapPin,
+      links: [
+        { title: "Shipping Policy", url: "/policies/shipping" },
+        { title: "Shipping to New South Wales", url: "/shipping-to/new-south-wales" },
+        { title: "Shipping to Victoria", url: "/shipping-to/victoria" },
+        { title: "Shipping to Queensland", url: "/shipping-to/queensland" },
+        { title: "Shipping to Western Australia", url: "/shipping-to/western-australia" },
+        { title: "Shipping to South Australia", url: "/shipping-to/south-australia" },
+        { title: "Shipping to Tasmania", url: "/shipping-to/tasmania" },
+        { title: "Shipping to ACT", url: "/shipping-to/australian-capital-territory" },
+        { title: "Shipping to Northern Territory", url: "/shipping-to/northern-territory" },
+      ]
+    },
+    {
       title: "Policies & Legal",
       icon: Info,
       links: [

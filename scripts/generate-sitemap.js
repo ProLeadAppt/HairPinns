@@ -164,6 +164,18 @@ async function main() {
     urls.push(url(`${BASE}/blog/${slug}`, 'monthly', 0.6, blogMod));
   });
 
+  // State-by-state shipping landing pages — one per AU state/territory.
+  // Source of truth: src/data/shippingStates.ts. High priority because
+  // these are the entry points for "hair products delivered to <state>"
+  // intent across the whole AU market.
+  const statePath = resolve(root, 'src/data/shippingStates.ts');
+  const stateContent = existsSync(statePath) ? readFileSync(statePath, 'utf8') : '';
+  const stateMod = gitLastMod('src/data/shippingStates.ts');
+  const stateSlugs = [...(stateContent.match(/"([a-z0-9-]+)":\s*\{\s*slug:/g) || [])].map((m) => m.replace(/"([a-z0-9-]+)":\s*\{\s*slug:/, '$1'));
+  [...new Set(stateSlugs)].filter((s) => s.length > 1).forEach((slug) => {
+    urls.push(url(`${BASE}/shipping-to/${slug}`, 'monthly', 0.8, stateMod));
+  });
+
   // Policy pages
   urls.push(url(`${BASE}/policies/shipping`, 'monthly', 0.4));
   urls.push(url(`${BASE}/policies/returns`, 'monthly', 0.4));
