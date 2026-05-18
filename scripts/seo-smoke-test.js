@@ -111,7 +111,18 @@ if (failures.length > 0) {
   console.log('');
 }
 
-// Blocking: any failure (missing H1/title/description/canonical/JSON-LD on a
-// prerendered route) fails the build. Switch back to `process.exit(0)` to
-// report without blocking.
-process.exit(failures.length > 0 ? 1 : 0);
+// Blocking by default: any failure (missing H1/title/description/canonical/
+// JSON-LD on a prerendered route) fails the build, preventing SEO regressions
+// from reaching production.
+//
+// Escape hatch: set SKIP_SEO_SMOKE=1 in the deploy environment to fall back to
+// report-only mode for one build. Use only when a genuine emergency needs to
+// ship and the failure has been verified as non-regressive. Don't make this
+// the default — once a regression slips through, Bing/Google take weeks to
+// re-evaluate.
+const skip = process.env.SKIP_SEO_SMOKE === '1' || process.env.SKIP_SEO_SMOKE === 'true';
+if (skip && failures.length > 0) {
+  console.warn('[seo-smoke] SKIP_SEO_SMOKE is set — failures above are NOT blocking this build.');
+  console.warn('[seo-smoke] Remove the env var on the next deploy and verify the regression is fixed.');
+}
+process.exit(!skip && failures.length > 0 ? 1 : 0);

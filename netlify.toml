@@ -40,6 +40,73 @@
   status = 302
   force = true
 
+# Legacy /near/<slug> routes (the old suburb-page system) -> the canonical
+# /areas/<slug>-<postcode> pages. Both code paths render today, but /areas/ is
+# the fully-built, sitemap-indexed system. Routing requests at the edge prevents
+# duplicate-content competition and consolidates SEO authority on /areas/.
+[[redirects]]
+  from = "/near/bangor"
+  to = "/areas/bangor-2234"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/menai"
+  to = "/areas/menai-2234"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/illawong"
+  to = "/areas/illawong-2234"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/alfords-point"
+  to = "/areas/alfords-point-2234"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/sutherland"
+  to = "/areas/sutherland-2232"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/kirrawee"
+  to = "/areas/kirrawee-2232"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/kareela"
+  to = "/areas/kareela-2232"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/como"
+  to = "/areas/como-2226"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/gymea"
+  to = "/areas/gymea-2227"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/miranda"
+  to = "/areas/miranda-2228"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/cronulla"
+  to = "/areas/cronulla-2230"
+  status = 301
+  force = true
+# Suburbs with no matching /areas/ entry (woronora, engadine, heathcote) fall
+# through to the /areas index — better than a 404 on a stale link.
+[[redirects]]
+  from = "/near/*"
+  to = "/areas"
+  status = 301
+  force = true
+
 # Legacy Shopify blog URL slug mismatches -> canonical React routes.
 # These must come BEFORE the /blogs/blogs/* wildcard so the specific match wins.
 # Bing had these long-form/punctuated slugs indexed and they don't map 1:1 to current slugs.
