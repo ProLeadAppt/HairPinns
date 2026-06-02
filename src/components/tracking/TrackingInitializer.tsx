@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { ga4 } from '@/lib/pixelTracking';
 
 /**
  * Component that initializes tracking on mount and tracks page views
  */
 const TrackingInitializer = () => {
   const location = useLocation();
+  const hasTrackedInitialRoute = useRef(false);
 
   useEffect(() => {
     // Initialize tracking on first load (non-blocking)
@@ -30,6 +32,12 @@ const TrackingInitializer = () => {
   }, []);
 
   useEffect(() => {
+    if (hasTrackedInitialRoute.current) {
+      ga4.pageView(location.pathname + location.search, document.title);
+    } else {
+      hasTrackedInitialRoute.current = true;
+    }
+
     // Update page tracking on route change (non-blocking)
     try {
       import('@/lib/hpCapture').then((module) => {

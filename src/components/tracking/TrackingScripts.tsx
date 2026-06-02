@@ -1,47 +1,26 @@
 import { Helmet } from "react-helmet";
 
 /**
- * GA4 and Meta Pixel initialization scripts
+ * Meta Pixel and Microsoft Clarity initialization scripts
  * Place in <head> via Helmet for proper loading
  * IDs loaded from environment variables for production
+ *
+ * GA4 is intentionally loaded in index.html so Google Tag Assistant and GA
+ * Realtime can see the tag immediately on first paint. SPA route-change
+ * page_view events are sent by TrackingInitializer.
  */
 
-// Load from environment variables - set in Netlify or .env file. The GA4
-// fallback matches the previous index.html hard-coded ID so this remains the
-// single source of truth even if the env var isn't configured.
-const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID || "G-N6Y1TJMWGG";
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || "";
 const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID || "wdl274809i";
 
 const TrackingScripts = () => {
   // Only render scripts if IDs are configured
-  if (!GA4_MEASUREMENT_ID && !META_PIXEL_ID && !CLARITY_PROJECT_ID) {
+  if (!META_PIXEL_ID && !CLARITY_PROJECT_ID) {
     return null;
   }
 
   return (
     <Helmet>
-      {/* Google Analytics 4 */}
-      {GA4_MEASUREMENT_ID && (
-        <>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
-          />
-          <script>
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA4_MEASUREMENT_ID}', {
-                send_page_view: false, // Manual page view tracking
-                cookie_flags: 'SameSite=None;Secure',
-              });
-            `}
-          </script>
-        </>
-      )}
-
       {/* Meta Pixel */}
       {META_PIXEL_ID && (
         <>

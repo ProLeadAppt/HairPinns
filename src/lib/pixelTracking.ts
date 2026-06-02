@@ -38,6 +38,22 @@ interface EcommerceData {
   items: EcommerceItem[];
 }
 
+function getGtag() {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+
+  if (typeof window.gtag !== 'function') {
+    window.gtag = (...args: any[]) => {
+      window.dataLayer?.push(args);
+    };
+  }
+
+  return window.gtag;
+}
+
 // ============================================
 // GA4 Tracking
 // ============================================
@@ -47,10 +63,12 @@ export const ga4 = {
    * Track page view
    */
   pageView: (path: string, title: string) => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'page_view', {
+    const gtag = getGtag();
+    if (gtag) {
+      gtag('event', 'page_view', {
         page_path: path,
         page_title: title,
+        page_location: `${window.location.origin}${path}`,
       });
       console.log('[GA4] page_view:', { path, title });
     }
@@ -60,8 +78,9 @@ export const ga4 = {
    * Track view_item event (Product Detail Page)
    */
   viewItem: (data: EcommerceData) => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'view_item', {
+    const gtag = getGtag();
+    if (gtag) {
+      gtag('event', 'view_item', {
         currency: data.currency,
         value: data.value,
         items: data.items.map(item => ({
@@ -79,8 +98,9 @@ export const ga4 = {
    * Track add_to_cart event
    */
   addToCart: (data: EcommerceData) => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'add_to_cart', {
+    const gtag = getGtag();
+    if (gtag) {
+      gtag('event', 'add_to_cart', {
         currency: data.currency,
         value: data.value,
         items: data.items.map(item => ({
@@ -98,8 +118,9 @@ export const ga4 = {
    * Track begin_checkout event
    */
   beginCheckout: (data: EcommerceData) => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'begin_checkout', {
+    const gtag = getGtag();
+    if (gtag) {
+      gtag('event', 'begin_checkout', {
         currency: data.currency,
         value: data.value,
         items: data.items.map(item => ({
@@ -117,8 +138,9 @@ export const ga4 = {
    * Track purchase event
    */
   purchase: (data: EcommerceData & { transaction_id: string }) => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'purchase', {
+    const gtag = getGtag();
+    if (gtag) {
+      gtag('event', 'purchase', {
         transaction_id: data.transaction_id,
         currency: data.currency,
         value: data.value,
@@ -137,8 +159,9 @@ export const ga4 = {
    * Track generate_lead event (form submissions)
    */
   generateLead: (leadValue?: number) => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'generate_lead', {
+    const gtag = getGtag();
+    if (gtag) {
+      gtag('event', 'generate_lead', {
         currency: 'AUD',
         value: leadValue || 0,
       });
