@@ -86,7 +86,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Illawong's riverside location means extra humidity, perfect for our anti-frizz smoothing treatments.",
     landmarks: ["Georges River", "Illawong Bay", "Alfords Point Bridge"],
     seasonalNote: "Riverside humidity peaks in summer. Our treatments seal the cuticle to combat frizz year-round.",
-    intro: "Hair Pinns is your local salon serving Illawong and surrounding suburbs. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's unique climate. With Jena's 20+ years of experience, you'll receive personalized service in a welcoming, boutique environment. From balayage to keratin treatments, we've got your hair goals covered.",
+    intro: "Hair Pinns is your local salon serving Illawong and surrounding suburbs. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's unique climate. With Jena's 20+ years of experience, you'll receive personalized service in a welcoming, boutique environment. From full head foils to keratin treatments, we've got your hair goals covered.",
     faqs: [
       {
         question: "Why does my hair get so frizzy near the river?",
@@ -190,7 +190,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Kirrawee's coastal air brings salt and humidity. Our treatments protect against both.",
     landmarks: ["Cronulla Beach", "Royal National Park", "Princes Highway"],
     seasonalNote: "Coastal salt air and summer humidity. Our treatments create a protective barrier for your hair.",
-    intro: "Hair Pinns is proud to serve Kirrawee with boutique hair services including Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With over 20 years of experience, Jena understands how to create beautiful, lasting results in Sydney's coastal climate. From balayage to keratin smoothing, we offer personalized service in a relaxed, professional environment.",
+    intro: "Hair Pinns is proud to serve Kirrawee with boutique hair services including Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With over 20 years of experience, Jena understands how to create beautiful, lasting results in Sydney's coastal climate. From full head foils to keratin smoothing, we offer personalized service in a relaxed, professional environment.",
     faqs: [
       {
         question: "How does coastal air affect my hair in Kirrawee?",
@@ -276,7 +276,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "What's the best blonde shade for Sydney's climate?",
-        answer: "Warmer, sun-kissed blondes tend to age more gracefully in Sydney's climate than cool, icy blondes. Balayage and dimensional colour with varied tones look more natural as they grow out and are more forgiving with brassiness. We'll customize a blonde shade that complements your skin tone and lifestyle while being low-maintenance between appointments. Toning every 6–8 weeks keeps it fresh.",
+        answer: "Warmer, sun-kissed blondes tend to age more gracefully in Sydney's climate than cool, icy blondes. Dimensional full head foils with varied tones look more natural as they grow out and are more forgiving with brassiness. We'll customize a blonde shade that complements your skin tone and lifestyle while being low-maintenance between appointments. Toning every 6–8 weeks keeps it fresh.",
       },
       {
         question: "How do I know if I need a smoothing treatment?",
@@ -354,7 +354,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "What colour services do you offer?",
-        answer: "We offer full colour services including root touch-ups, all-over colour, balayage, foil highlights, colour correction, toning, and glossing. Each service includes a consultation to assess your hair and discuss your goals. We use professional-grade products that minimize damage while delivering vibrant, long-lasting colour. Custom colour formulation ensures your shade is unique to you and complements your skin tone perfectly.",
+        answer: "We offer full colour services including root touch-ups, all-over colour, full head foils, half head foils, quarter head foils, colour correction, toning, and glossing. Each service includes a consultation to assess your hair and discuss your goals. We use professional-grade products that minimize damage while delivering vibrant, long-lasting colour. Custom colour formulation ensures your shade is unique to you and complements your skin tone perfectly.",
       },
       {
         question: "How far in advance should I book my appointment?",
@@ -398,7 +398,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Skip the city salon markup. Same premium quality, easier parking, personalised care.",
     landmarks: ["Sydney CBD", "M1 Motorway", "Sutherland Shire"],
     seasonalNote: "Sydney humidity peaks in summer. Our smoothing treatments are designed for these conditions.",
-    intro: "Hair Pinns serves Sydney with colour, blonding, keratin smoothing and precision cuts. Just 35–45 minutes from the CBD, our Bangor salon offers boutique care without city prices. Whether you're after dimensional balayage, frizz-taming smoothing treatments, or a fresh cut that works with Sydney's humidity, Jena brings over 20 years of experience to every appointment. Book online 24/7 or text for a personalised quote.",
+    intro: "Hair Pinns serves Sydney with colour, blonding, keratin smoothing and precision cuts. Just 35–45 minutes from the CBD, our Bangor salon offers boutique care without city prices. Whether you're after dimensional full head foils, frizz-taming smoothing treatments, or a fresh cut that works with Sydney's humidity, Jena brings over 20 years of experience to every appointment. Book online 24/7 or text for a personalised quote.",
     faqs: [
       {
         question: "How far is Hair Pinns from Sydney CBD?",
@@ -513,8 +513,8 @@ export const suburbPages: Record<string, SuburbData> = {
         answer: "Juuce Botanic Oil Serum is our top pick for waterfront-suburb hair — it locks in moisture, smooths frizz, and adds shine without weighing fine hair down. A few drops through mid-lengths and ends after every wash. For thicker hair, Juuce Solar Enz adds UV protection on top, useful when you're out on the water or in the garden. Both stocked at hairpinns.com with Australia-wide shipping.",
       },
       {
-        question: "Is balayage worth it if I'm in the water often?",
-        answer: "Yes — actually balayage is better for water-heavy lifestyles than full foils. The soft regrowth means you can go 12–16 weeks between appointments without an obvious line of regrowth, which is friendlier on hair that's already being asked to deal with chlorine or river water. We'll customise the placement so the lighter pieces frame your face but the back stays lower-maintenance. Text +61 468 093 991 with a photo for a quote.",
+        question: "Is colour worth the upkeep if I'm in the water often?",
+        answer: "Yes — full head foils are our most popular colour service for water-heavy lifestyles because regrowth is clean and easy to maintain. You can go 6–8 weeks between appointments with a toner refresh in between, and we'll customise the placement so the lighter pieces frame your face while the back stays lower-maintenance. Our sulphate-free aftercare range extends the life of your colour in chlorine and river water. Text +61 468 093 991 with a photo for a quote.",
       },
     ],
     nearbySuburbs: ["como", "sylvania", "gymea"],

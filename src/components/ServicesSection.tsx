@@ -11,7 +11,7 @@ const services = [
   {
     icon: Palette,
     title: "Color & Highlights",
-    description: "Dimensional color, balayage, and precision highlighting using premium products. Transform your look with our color expertise.",
+    description: "Dimensional color, full head foils, and precision highlighting using premium products. Transform your look with our color expertise.",
     price: "From $130",
   },
   {

@@ -15,10 +15,10 @@ export const googleReviews: Review[] = [
     author: "Sarah M.",
     rating: 5,
     date: "2025-01-10",
-    text: "Jena transformed my blonde hair! Best balayage I've ever had. She really understands colour and took time to explain the process. The salon is beautiful and relaxing. Highly recommend!",
+    text: "Jena transformed my blonde hair! Best full head foils I've ever had. She really understands colour and took time to explain the process. The salon is beautiful and relaxing. Highly recommend!",
     verified: true,
     location: "Menai",
-    service: "Balayage"
+    service: "Full Head Foils"
   },
   {
     id: "2",

@@ -59,7 +59,7 @@ const FeatureStrip = () => {
       icon: Sparkles,
       title: "Colour & Blonding",
       anchor: "colour",
-      description: "Balayage, highlights, toning"
+      description: "Full head foils, highlights, toning"
     },
     {
       icon: Wind,

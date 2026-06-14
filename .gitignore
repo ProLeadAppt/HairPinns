@@ -29,3 +29,4 @@ dist-ssr
 .env.*.local
 # Local Netlify folder
 .netlify
+img-audit/

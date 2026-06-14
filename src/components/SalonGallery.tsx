@@ -26,7 +26,7 @@ interface SalonGalleryProps {
  * @example
  * <SalonGallery
  *   images={[
- *     { src: '/gallery/balayage-1', alt: 'Balayage on blonde hair at Hair Pinns, Bangor', aspectRatio: 1.33 },
+ *     { src: '/gallery/foils-1', alt: 'Full head foils on blonde hair at Hair Pinns, Bangor', aspectRatio: 1.33 },
  *     { src: '/gallery/treatment-2', alt: 'Keratin treatment on curly hair at Hair Pinns, Bangor', aspectRatio: 0.75 }
  *   ]}
  *   columns={{ mobile: 2, tablet: 3, desktop: 4 }}
