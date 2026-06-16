@@ -325,7 +325,29 @@ export const blogPosts: BlogPost[] = [
             description: "Clean, eco-friendly hair care, Australia-wide delivery"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "Why are salon hair products better than supermarket shampoos?",
+          answer: "Salon products use higher concentrations of active ingredients, fewer fillers, and are pH-balanced for real hair fibres. Supermarket shampoos rely on heavy sulfates and silicones to make hair feel soft in the short term, but they build up and damage colour and keratin treatments over months.",
+        },
+        {
+          question: "Is it worth paying more for salon shampoo?",
+          answer: "If you colour your hair, get keratin smoothing, or use heat tools — yes. A $30 salon bottle lasts 6-8 weeks (sulfate-free, concentrated formulas) and protects the treatments that cost hundreds. A $6 supermarket bottle strips them in weeks.",
+        },
+        {
+          question: "Do salon products work for every hair type?",
+          answer: "Yes — that's why Jena personally curates the range at Hair Pinns. Fine, coarse, curly, colour-treated, or chemically straightened: there's a salon match for each, and the consultation is free if you're unsure.",
+        },
+        {
+          question: "Can I mix salon and supermarket products?",
+          answer: "You can, but the supermarket shampoo will undo the benefit of the more expensive conditioner or mask. If you're going to mix, use a salon shampoo and a cheaper supermarket conditioner, not the other way around.",
+        },
+        {
+          question: "How do I know if a product is genuinely salon-grade?",
+          answer: "Check the ingredient list — salon products list active ingredients in the first five positions. If 'aqua' and 'sodium lauryl sulfate' are top, it's a supermarket formula in a fancy bottle.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -357,7 +379,29 @@ export const blogPosts: BlogPost[] = [
           heading: "Your Experience Awaits",
           content: "You'll walk out of the sauna feeling like you just hit reset on your whole day. Mind, body, and mood.\n\nReady to feel the difference? Book your session now and come experience the glow!\n\nP.S. Feel free to come in for a shampoo, head massage and blowdry straight after your Sauna Sesh for that extra pep in your step 😉"
         }
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What is an infrared sauna and how is it different from a regular sauna?",
+          answer: "An infrared sauna uses light waves to heat your body directly, not the air around you. It runs 10-15°C cooler than a traditional sauna but you sweat 2-3x more, which is why it's better for hair, skin and detox without the stifling heat.",
+        },
+        {
+          question: "Is infrared sauna good for hair growth?",
+          answer: "Yes — the increased scalp circulation feeds the follicle, and the deep sweat clears sebum buildup that can clog it. Jena's clients at Hair Pinns notice less shedding and faster growth after 4-6 weekly sessions.",
+        },
+        {
+          question: "How often should I do infrared sauna for hair and skin benefits?",
+          answer: "Twice a week for the first month, then weekly to maintain. A 30-40 minute session at 50-60°C is the sweet spot — longer isn't better.",
+        },
+        {
+          question: "Is infrared sauna safe with coloured hair?",
+          answer: "Completely. Unlike UV, infrared doesn't lift pigment. Just tie your hair up, rinse it after, and apply a leave-in like QIQI Bare Repair Oil to lock in moisture.",
+        },
+        {
+          question: "Can I use infrared sauna on the same day as a hair appointment?",
+          answer: "Yes, and Jena actually recommends it — book a smoothing treatment, then sauna. The heat sets the treatment deeper into the cuticle for longer-lasting results.",
+        }
+      ],
     },
     cta: {
       type: "call-sam",
@@ -408,7 +452,29 @@ export const blogPosts: BlogPost[] = [
             description: "Heat defense for frequent styling"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What's the best way to prevent heat damage on hair?",
+          answer: "Always use a heat protectant (like Juuce Heat Shield), keep tools below 180°C, and never straighten the same section more than twice. The single biggest win is switching to a microfibre towel — cotton rubs and roughs the cuticle, microfibre absorbs and protects.",
+        },
+        {
+          question: "Do heat protectants actually work?",
+          answer: "Yes — the active ingredients (cyclomethicone, dimethicone) form a film that absorbs up to 220°C before transferring heat to the hair shaft. Without one, every 10°C above 150°C causes cumulative protein damage you can't see for 6 months.",
+        },
+        {
+          question: "What temperature should I set my straightener or curler to?",
+          answer: "150°C for fine or colour-treated hair, 180°C for normal, and never above 200°C. If your tool only goes to 230°C, don't crank it — section smaller and pass once, not three times.",
+        },
+        {
+          question: "Is it OK to blow-dry hair every day?",
+          answer: "Daily blow-drying on medium heat with a protectant is fine. Daily blow-drying on high heat without protectant is the #1 cause of mid-lengths breakage Jena sees in the salon.",
+        },
+        {
+          question: "Does the Bamcha towel really stop frizz?",
+          answer: "Yes — it's woven tight enough to absorb water without rubbing the cuticle rough. Cotton towels rough the cuticle open (that's the frizz), microfibre closes it. One swap, visible difference in two washes.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -436,7 +502,29 @@ export const blogPosts: BlogPost[] = [
           heading: "Pricing",
           content: "Teens: $214\nMid-length: $324\nLong: $349\n\nExperience the benefits of a Straight Up and transform your hair care routine. For more information or to book an appointment, reach out!\n\nJena 0416037663\nE: hairpinns1@gmail.com"
         }
-      ]
+      ],
+      faqSection: [
+        {
+          question: "How do I stop my hair going frizzy in Sydney humidity?",
+          answer: "Three things: a sulfate-free shampoo (Juuce Smoothing or Pure Precious), a silicone-free smoothing serum, and a microfibre towel. Skip the heavy butters — they attract water from the air and make frizz worse in our climate.",
+        },
+        {
+          question: "What's the best shampoo for frizzy hair in Australia?",
+          answer: "Juuce Smoothing Shampoo and Conditioner are Jena's top pick for the Sutherland Shire climate. They seal the cuticle with lamellar technology and don't weigh fine hair down.",
+        },
+        {
+          question: "Why does my hair frizz more in winter?",
+          answer: "Wool clothing, indoor heating, and hot showers all dehydrate the hair shaft. The cuticle lifts to find moisture in the air, which is what reads as frizz. A weekly deep mask (like QIQI Vega Mask) for the first month of winter fixes it.",
+        },
+        {
+          question: "Is humidity bad for coloured hair?",
+          answer: "UV and humidity together lift dye from colour-treated hair fastest. Wear a hat, use a UV-protective leave-in, and book a glossing toner every 6 weeks to keep the tone fresh.",
+        },
+        {
+          question: "Should I use anti-frizz products every day?",
+          answer: "Light serum or leave-in: yes, every wash. Heavy cream or oil: only on mid-lengths and ends, not the roots. Heavy product on fine hair at the root line causes flatness and oiliness within 24 hours.",
+        }
+      ],
     },
     cta: {
       type: "call-sam",
@@ -484,7 +572,29 @@ export const blogPosts: BlogPost[] = [
             description: "Certified organic care with free mask"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What's in the Hair Pinns Christmas gift packs?",
+          answer: "Three sizes — $45, $75, and $120. Each combines a Jena-curated shampoo, conditioner, and either a Wet Brush, treatment mask, or styling oil. Wrapped in a keepsake box with a handwritten note from Jena.",
+        },
+        {
+          question: "Do you ship gift packs with a card?",
+          answer: "Yes — add a message at checkout and Jena writes it by hand. We can also ship direct to the recipient with no pricing in the box, so it's a true gift experience.",
+        },
+        {
+          question: "What's the cut-off for Christmas delivery in Australia?",
+          answer: "Order by 18 December for metro NSW, VIC, QLD. For WA, SA, TAS, NT and rural postcodes, order by 15 December. After that, we still ship but use Express Post and you'll get a tracking link.",
+        },
+        {
+          question: "Can I build a custom gift pack?",
+          answer: "Yes — for orders over $75, pick any shampoo + conditioner + one accessory and we'll wrap it. Email jena@hairpinns.com with the items and we'll send you a custom link.",
+        },
+        {
+          question: "Do gift packs include a discount code for the recipient?",
+          answer: "Yes — every gift pack includes a 15% off code for the recipient's first salon booking at Hair Pinns, valid for 90 days.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -589,7 +699,29 @@ export const blogPosts: BlogPost[] = [
             description: "Certified organic hair care"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "How often should you replace your shampoo?",
+          answer: "Every 6-8 weeks once opened, regardless of the brand. Active ingredients oxidise after opening and lose potency. A bottle you've had for 6 months is essentially coloured water.",
+        },
+        {
+          question: "What happens if I use old shampoo?",
+          answer: "Less cleaning power, more build-up on the scalp, and the preservatives stop working. If your scalp has been flakier than usual, check the open-date on the bottle before you blame the brand.",
+        },
+        {
+          question: "How do I know when my shampoo is going off?",
+          answer: "Three signs: smell changes (sharp, sour, or just 'flat'), texture separates (watery layer on top), or colour shifts. If any of those appear, bin it.",
+        },
+        {
+          question: "Should I keep shampoo in the shower?",
+          answer: "No. Heat and humidity from the shower accelerate ingredient breakdown. Store in a cool, dark cabinet and only bring into the shower what you'll use in a week.",
+        },
+        {
+          question: "Are salon shampoos harder to replace than supermarket ones?",
+          answer: "Yes — they don't have the strong synthetic fragrance that masks age. This is a sign of clean formulation, not a fault. Mark the open date with a Sharpie on the lid.",
+        }
+      ],
     },
     cta: {
       type: "chat-isabella",
@@ -633,7 +765,29 @@ export const blogPosts: BlogPost[] = [
           heading: "Ready to Experience the Glow-Up?",
           content: "Now is the perfect time to invest in your hair, skin, and overall wellness.\n\nFor a limited time at Hairpinns, enjoy our 10-session sauna pack for only $200 (was $250) and receive:\n✔ Free Head Towel\n✔ Free Hair Mask Sachet\n✔ Free Hairpinns Drink Bottle\n\n📅 Book your sauna experience today and let's make your self-care a priority."
         }
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What is an infrared sauna and how is it different from a regular sauna?",
+          answer: "An infrared sauna uses light waves to heat your body directly, not the air around you. It runs 10-15°C cooler than a traditional sauna but you sweat 2-3x more, which is why it's better for hair, skin and detox without the stifling heat.",
+        },
+        {
+          question: "Is infrared sauna good for hair growth?",
+          answer: "Yes — the increased scalp circulation feeds the follicle, and the deep sweat clears sebum buildup that can clog it. Jena's clients at Hair Pinns notice less shedding and faster growth after 4-6 weekly sessions.",
+        },
+        {
+          question: "How often should I do infrared sauna for hair and skin benefits?",
+          answer: "Twice a week for the first month, then weekly to maintain. A 30-40 minute session at 50-60°C is the sweet spot — longer isn't better.",
+        },
+        {
+          question: "Is infrared sauna safe with coloured hair?",
+          answer: "Completely. Unlike UV, infrared doesn't lift pigment. Just tie your hair up, rinse it after, and apply a leave-in like QIQI Bare Repair Oil to lock in moisture.",
+        },
+        {
+          question: "Can I use infrared sauna on the same day as a hair appointment?",
+          answer: "Yes, and Jena actually recommends it — book a smoothing treatment, then sauna. The heat sets the treatment deeper into the cuticle for longer-lasting results.",
+        }
+      ],
     },
     cta: {
       type: "call-sam",
@@ -672,7 +826,29 @@ export const blogPosts: BlogPost[] = [
           heading: "💜 So, Is It Worth It?",
           content: "Absolutely. Hot towel treatments may feel indulgent, but they're actually functional self-care for your hair and your headspace.\n\nNext time you visit Hair Pinns, ask for a hot towel wrap with your treatment or blowdry. Your hair will feel it, and so will your soul.\n\nWant a mini spa moment during your next salon visit? We've got the towels ready. You just sit back and enjoy 🖤"
         }
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What's the best way to prevent heat damage on hair?",
+          answer: "Always use a heat protectant (like Juuce Heat Shield), keep tools below 180°C, and never straighten the same section more than twice. The single biggest win is switching to a microfibre towel — cotton rubs and roughs the cuticle, microfibre absorbs and protects.",
+        },
+        {
+          question: "Do heat protectants actually work?",
+          answer: "Yes — the active ingredients (cyclomethicone, dimethicone) form a film that absorbs up to 220°C before transferring heat to the hair shaft. Without one, every 10°C above 150°C causes cumulative protein damage you can't see for 6 months.",
+        },
+        {
+          question: "What temperature should I set my straightener or curler to?",
+          answer: "150°C for fine or colour-treated hair, 180°C for normal, and never above 200°C. If your tool only goes to 230°C, don't crank it — section smaller and pass once, not three times.",
+        },
+        {
+          question: "Is it OK to blow-dry hair every day?",
+          answer: "Daily blow-drying on medium heat with a protectant is fine. Daily blow-drying on high heat without protectant is the #1 cause of mid-lengths breakage Jena sees in the salon.",
+        },
+        {
+          question: "Does the Bamcha towel really stop frizz?",
+          answer: "Yes — it's woven tight enough to absorb water without rubbing the cuticle rough. Cotton towels rough the cuticle open (that's the frizz), microfibre closes it. One swap, visible difference in two washes.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -718,7 +894,29 @@ export const blogPosts: BlogPost[] = [
             description: "Professional hair care range"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What is QIQI Bare Repair Oil used for?",
+          answer: "Shine, strength, and smoothness on dry or damp hair. A few drops through mid-lengths and ends seals the cuticle, blocks humidity, and adds slip without weighing fine hair down.",
+        },
+        {
+          question: "Can I use QIQI Bare Repair Oil every day?",
+          answer: "Yes — a pea-sized amount is enough. More than that and fine hair looks greasy by lunchtime. Jena's rule: 'If you can feel it in your hand, you've used too much.'",
+        },
+        {
+          question: "Is QIQI Bare Repair Oil heat-protective?",
+          answer: "It adds a layer of slip that reduces friction during blow-drying, but it's not a substitute for a dedicated heat protectant like Juuce Heat Shield. Use both: protectant first, oil last.",
+        },
+        {
+          question: "Does QIQI Bare Repair Oil work on extensions?",
+          answer: "Yes — it's silicone-light and safe on human-hair extensions, tape-ins, and keratin bonds. Avoid the bond or tape area, focus on mid-lengths to ends.",
+        },
+        {
+          question: "What's the difference between QIQI Bare Repair and the Juuce Smoothing serum?",
+          answer: "QIQI is oil-based, so it adds shine and softness. Juuce Smoothing is silicone-based, so it's better for very frizzy or thick hair that needs a stronger seal.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -769,7 +967,29 @@ export const blogPosts: BlogPost[] = [
             description: "Certified organic hair care"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What does Pure Precious Ends do?",
+          answer: "A targeted treatment for the oldest, most porous part of the hair — the last 5-10cm. It binds split ends, adds shine, and stops breakage creeping up the shaft.",
+        },
+        {
+          question: "How often should I use Pure Precious Ends?",
+          answer: "Once a week, on damp hair after conditioning. Comb through, leave 3 minutes, rinse. For very damaged hair, leave 10 minutes as a mask once a month.",
+        },
+        {
+          question: "Is Pure Precious Ends a leave-in or rinse-out?",
+          answer: "Both work. As a 3-minute rinse-out it's a weekly strengthener. As a 10-minute mask it's a monthly rescue. A pea-size left in on damp ends is also fine for very dry hair.",
+        },
+        {
+          question: "Can Pure Precious Ends fix split ends?",
+          answer: "It binds them temporarily (4-6 washes) so they don't split further. The only true fix for split ends is a trim, but Pure Precious buys you 6 weeks between cuts without visible splitting.",
+        },
+        {
+          question: "Does Pure Precious Ends work on colour-treated hair?",
+          answer: "Yes — it's colour-safe and slightly acidic, which closes the cuticle after colour and locks pigment in. Jena uses it as a finishing step on every colour client.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -820,7 +1040,29 @@ export const blogPosts: BlogPost[] = [
             description: "Flexible everyday hold"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What's the best hairspray to use?",
+          answer: "A flexible-hold, humidity-resistant aerosol with a fine mist. Jena's pick is Goldwell Dual Senses — it brushes out cleanly, doesn't flake, and holds through Sydney humidity.",
+        },
+        {
+          question: "What's the difference between flexible and firm hold hairspray?",
+          answer: "Flexible hold lets hair move (great for waves, natural styles), firm hold locks it in place (updos, special events). Using firm hold for a beach wave makes it look crispy and unnatural.",
+        },
+        {
+          question: "How do I get rid of hairspray build-up?",
+          answer: "A clarifying shampoo once a week. Juuce Detox or Pure Walnut Scrub lifts polymers and silicones without stripping colour. After one wash, hair feels light again.",
+        },
+        {
+          question: "Is aerosol hairspray bad for the environment?",
+          answer: "Modern aerosols are CFC-free and VOC-compliant. The bigger environmental cost is over-use — a 2-second burst is enough. Hold the can 30cm away for a fine, even mist.",
+        },
+        {
+          question: "Can hairspray be used on dry shampoo days?",
+          answer: "Yes — a light mist of flexible hold over dry shampoo at the roots sets volume and stops the powdery look. Less is more, brush through after 30 seconds.",
+        }
+      ],
     },
     cta: {
       type: "chat-isabella",
@@ -871,7 +1113,29 @@ export const blogPosts: BlogPost[] = [
             description: "Hair tools and care essentials"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "Why is the Wet Brush a must-have?",
+          answer: "The IntelliFlex bristles detangle wet hair without pulling or breaking. Regular combs snag on wet hair, and that's where 80% of mid-lengths breakage comes from. One Wet Brush ends the issue.",
+        },
+        {
+          question: "Can the Wet Brush be used on dry hair?",
+          answer: "Yes, and it's actually gentler than most detangling brushes on dry hair too. The flexible bristles flex around knots instead of dragging through them.",
+        },
+        {
+          question: "Is the Wet Brush good for extensions?",
+          answer: "Yes — it's the only brush Jena recommends for tape-in, micro-bead, and keratin-bond extensions. Start from the ends, work up, never yank from the root.",
+        },
+        {
+          question: "Wet Brush vs Tangle Teezer — which is better?",
+          answer: "Both work. Wet Brush has a handle (easier for some), Tangle Teezer is handle-less (palm grip). For long hair, Jena prefers Wet Brush. For short or one-handed use, Tangle Teezer wins.",
+        },
+        {
+          question: "How long does a Wet Brush last?",
+          answer: "6-12 months with regular use, depending on hair thickness. The bristles lose flexibility over time. Once they don't flex back, replace it — a worn brush is just a comb.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -911,7 +1175,29 @@ export const blogPosts: BlogPost[] = [
           heading: "🙌 Trust in Experience",
           content: "We do a lot of QIQI treatments at Hair Pinns, and we love taking the time to tailor each session to suit your hair type, goals, and lifestyle. With the right aftercare and advice, your hair will stay smooth, healthy, and beautiful for months.\n\nIf you're still wondering which treatment is right for you, book a free consultation with us and we'll guide you every step of the way.\n\n💬 Have More Questions?\nFeel free to DM us or drop your questions in the comments – we love educating our clients and helping you make confident hair choices."
         }
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What is QIQI Vega?",
+          answer: "A formaldehyde-free smoothing treatment that uses a vegan protein complex to relax curl and seal the cuticle. Lasts 3-5 months, no downtime, no fumes — safe for pregnant clients and colour-treated hair.",
+        },
+        {
+          question: "What is Nanoplasty?",
+          answer: "A keratin treatment that uses nano-amino acids to fill gaps in the cuticle and seal the hair shaft. Lasts 4-6 months, builds strength with each application, but contains a small amount of formaldehyde derivative.",
+        },
+        {
+          question: "QIQI Vega vs Nanoplasty — which is better?",
+          answer: "Fine, bleached, or very damaged hair: QIQI Vega. Thicker, coarse, frizz-prone virgin hair: Nanoplasty. Jena does a free 10-minute strand test in consultation to confirm which your hair will take best.",
+        },
+        {
+          question: "Can I do QIQI Vega at home?",
+          answer: "No — it's a professional service. The active ingredients need precise timing, heat activation, and a flat-iron seal at 230°C. A home version is a smoothing mask, not the same treatment.",
+        },
+        {
+          question: "How much do QIQI Vega and Nanoplasty cost in Sydney?",
+          answer: "QIQI Vega from $250 short / $350 long. Nanoplasty from $300 short / $400 long. Prices include the in-salon service, aftercare shampoo and conditioner, and a follow-up gloss blow-dry.",
+        }
+      ],
     },
     cta: {
       type: "call-sam",
@@ -962,7 +1248,29 @@ export const blogPosts: BlogPost[] = [
             description: "Professional hair care"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What's in the Quench hydration bundle?",
+          answer: "A shampoo, conditioner, leave-in mask, and silk pillowcase. Designed for hair that's been sun-exposed, chemically treated, or just feels rough and brittle.",
+        },
+        {
+          question: "How do I use the Quench bundle?",
+          answer: "Shampoo twice (first wash removes build-up, second actually cleans), condition mid-lengths to ends, apply the mask weekly as a 10-minute treatment, sleep on the silk pillowcase to reduce friction.",
+        },
+        {
+          question: "Is the Quench bundle good for colour-treated hair?",
+          answer: "Yes — every product in the bundle is colour-safe and sulfate-free. It's the exact aftercare Jena recommends for clients who colour and want their tone to last longer.",
+        },
+        {
+          question: "How long does the Quench bundle last?",
+          answer: "8-10 weeks with normal use (3-4 washes a week). The mask is the fastest to be used up — it's the one clients tend to over-indulge in.",
+        },
+        {
+          question: "Does the Quench bundle help with frizz?",
+          answer: "Yes — the leave-in mask and silk pillowcase combo addresses the two biggest frizz causes: dehydration and friction. Most clients see a difference in two washes.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1013,7 +1321,29 @@ export const blogPosts: BlogPost[] = [
             description: "Organic hair care range"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What is the Pure Walnut Scrub?",
+          answer: "A physical exfoliant for the scalp that lifts dead skin, product build-up, and excess sebum. The walnut shell particles are fine enough to scrub without scratching the scalp.",
+        },
+        {
+          question: "How often should I use a scalp scrub?",
+          answer: "Once a week if you use styling product daily, once a fortnight for low-maintenance hair. Over-scrubbing strips the scalp's natural oils and causes rebound oiliness.",
+        },
+        {
+          question: "Is scalp exfoliation safe for coloured hair?",
+          answer: "Yes — the scrub doesn't penetrate the hair shaft, only the scalp. Use it 48 hours after colour, not before, so the cuticle is fully closed.",
+        },
+        {
+          question: "Can scalp scrub help with dandruff?",
+          answer: "For product-buildup flake, yes. For seborrheic dermatitis or fungal dandruff, no — you need a medicated shampoo like Nizoral. If flakes persist after 3 scrubs, see a GP or trichologist.",
+        },
+        {
+          question: "Does the Walnut Scrub promote hair growth?",
+          answer: "Indirectly — by clearing the follicle of build-up, new growth can emerge without obstruction. It's not a growth stimulant, but it's a healthy-scalp prerequisite for any growth product to work.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1064,7 +1394,29 @@ export const blogPosts: BlogPost[] = [
             description: "Gentle, sulphate-free care"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What is a Straight Up Smoothing treatment?",
+          answer: "A chemical service that permanently relaxes the curl pattern at the bond level, leaving hair frizz-free, smooth, and blow-dryable in 5 minutes. Lasts 6-12 months depending on hair type and home care.",
+        },
+        {
+          question: "What shampoo should I use after Straight Up Smoothing?",
+          answer: "Sulfate-free, sodium-chloride-free only. Juuce Smoothing or Pure Precious are Jena's go-to. Sulfates strip the treatment within weeks and undo what you paid for.",
+        },
+        {
+          question: "Can I colour my hair after Straight Up Smoothing?",
+          answer: "Yes, but wait 2 weeks. The cuticle needs time to settle. Always do a strand test — colour can grab differently on smoothed hair, especially if it's been pre-lightened.",
+        },
+        {
+          question: "How long does Straight Up Smoothing last?",
+          answer: "6 months on fine hair, 9-12 months on coarse or virgin hair. The treatment grows out with your natural curl, so it's not 'gone' — it just returns gradually at the root.",
+        },
+        {
+          question: "Is Straight Up Smoothing safe for coloured hair?",
+          answer: "Yes, but colour must go on AFTER smoothing, not before. The smoothing service opens the cuticle, and applying colour on top of freshly smoothed hair causes uneven grab. Jena sequences them 2-3 weeks apart.",
+        }
+      ],
     },
     cta: {
       type: "call-sam",
@@ -1115,7 +1467,29 @@ export const blogPosts: BlogPost[] = [
             description: "Shield from styling damage"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "How do I stop my hair going frizzy in Sydney humidity?",
+          answer: "Three things: a sulfate-free shampoo (Juuce Smoothing or Pure Precious), a silicone-free smoothing serum, and a microfibre towel. Skip the heavy butters — they attract water from the air and make frizz worse in our climate.",
+        },
+        {
+          question: "What's the best shampoo for frizzy hair in Australia?",
+          answer: "Juuce Smoothing Shampoo and Conditioner are Jena's top pick for the Sutherland Shire climate. They seal the cuticle with lamellar technology and don't weigh fine hair down.",
+        },
+        {
+          question: "Why does my hair frizz more in winter?",
+          answer: "Wool clothing, indoor heating, and hot showers all dehydrate the hair shaft. The cuticle lifts to find moisture in the air, which is what reads as frizz. A weekly deep mask (like QIQI Vega Mask) for the first month of winter fixes it.",
+        },
+        {
+          question: "Is humidity bad for coloured hair?",
+          answer: "UV and humidity together lift dye from colour-treated hair fastest. Wear a hat, use a UV-protective leave-in, and book a glossing toner every 6 weeks to keep the tone fresh.",
+        },
+        {
+          question: "Should I use anti-frizz products every day?",
+          answer: "Light serum or leave-in: yes, every wash. Heavy cream or oil: only on mid-lengths and ends, not the roots. Heavy product on fine hair at the root line causes flatness and oiliness within 24 hours.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1166,7 +1540,29 @@ export const blogPosts: BlogPost[] = [
             description: "Instant shine & smoothness"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What is lamellar technology in hair products?",
+          answer: "A delivery system where active ingredients attach in flat, plate-like layers along the hair shaft. They fill microscopic gaps in the cuticle, smoothing it without the heavy build-up of traditional silicones.",
+        },
+        {
+          question: "Is lamellar technology better than regular conditioner?",
+          answer: "For fine, oily, or easily weighed-down hair: yes. Lamellar rinses cleaner and doesn't coat the shaft. For very coarse or extremely damaged hair, a traditional mask is still better as an overnight treatment.",
+        },
+        {
+          question: "What's the difference between lamellar water and lamellar shampoo?",
+          answer: "Lamellar water is a rinse-out treatment used weekly. Lamellar shampoo is a daily cleanser with lamellar technology built in. Both work, the water gives a more visible single-use result.",
+        },
+        {
+          question: "Does lamellar technology work on coloured hair?",
+          answer: "Yes — it's colour-safe, sulfate-free, and slightly acidic, so it closes the cuticle after colour. Jena uses lamellar water on every client as a finishing step.",
+        },
+        {
+          question: "Is Juuce lamellar technology different from other brands?",
+          answer: "The active complex is proprietary to Juuce. Most supermarket 'lamellar' products use a generic version that's mostly water with a touch of polymer. Juuce's version has a measurable concentration of the active ingredient.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1221,7 +1617,29 @@ export const blogPosts: BlogPost[] = [
             description: "Natural heat & UV protection"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "What's the best way to prevent heat damage on hair?",
+          answer: "Always use a heat protectant (like Juuce Heat Shield), keep tools below 180°C, and never straighten the same section more than twice. The single biggest win is switching to a microfibre towel — cotton rubs and roughs the cuticle, microfibre absorbs and protects.",
+        },
+        {
+          question: "Do heat protectants actually work?",
+          answer: "Yes — the active ingredients (cyclomethicone, dimethicone) form a film that absorbs up to 220°C before transferring heat to the hair shaft. Without one, every 10°C above 150°C causes cumulative protein damage you can't see for 6 months.",
+        },
+        {
+          question: "What temperature should I set my straightener or curler to?",
+          answer: "150°C for fine or colour-treated hair, 180°C for normal, and never above 200°C. If your tool only goes to 230°C, don't crank it — section smaller and pass once, not three times.",
+        },
+        {
+          question: "Is it OK to blow-dry hair every day?",
+          answer: "Daily blow-drying on medium heat with a protectant is fine. Daily blow-drying on high heat without protectant is the #1 cause of mid-lengths breakage Jena sees in the salon.",
+        },
+        {
+          question: "Does the Bamcha towel really stop frizz?",
+          answer: "Yes — it's woven tight enough to absorb water without rubbing the cuticle rough. Cotton towels rough the cuticle open (that's the frizz), microfibre closes it. One swap, visible difference in two washes.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1268,7 +1686,29 @@ export const blogPosts: BlogPost[] = [
             description: "Hair care essentials"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "Why is the Wet Brush a must-have?",
+          answer: "The IntelliFlex bristles detangle wet hair without pulling or breaking. Regular combs snag on wet hair, and that's where 80% of mid-lengths breakage comes from. One Wet Brush ends the issue.",
+        },
+        {
+          question: "Can the Wet Brush be used on dry hair?",
+          answer: "Yes, and it's actually gentler than most detangling brushes on dry hair too. The flexible bristles flex around knots instead of dragging through them.",
+        },
+        {
+          question: "Is the Wet Brush good for extensions?",
+          answer: "Yes — it's the only brush Jena recommends for tape-in, micro-bead, and keratin-bond extensions. Start from the ends, work up, never yank from the root.",
+        },
+        {
+          question: "Wet Brush vs Tangle Teezer — which is better?",
+          answer: "Both work. Wet Brush has a handle (easier for some), Tangle Teezer is handle-less (palm grip). For long hair, Jena prefers Wet Brush. For short or one-handed use, Tangle Teezer wins.",
+        },
+        {
+          question: "How long does a Wet Brush last?",
+          answer: "6-12 months with regular use, depending on hair thickness. The bristles lose flexibility over time. Once they don't flex back, replace it — a worn brush is just a comb.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1311,7 +1751,29 @@ export const blogPosts: BlogPost[] = [
             description: "Find your match"
           }
         ]
-      }
+      },
+      faqSection: [
+        {
+          question: "Which Juuce range is best for me?",
+          answer: "Smoothing for frizz-prone or colour-treated. Bond Repair for damaged or bleached. Volume for fine or limp. Hydration for dry or coarse. Moisturising for everything in between. The quiz on hairpinns.com gives a 60-second recommendation.",
+        },
+        {
+          question: "Is Juuce a professional brand?",
+          answer: "Yes — Australian-owned, salon-only, used in 4,000+ Australian salons. You can only buy Juuce through stockists like Hair Pinns, not in supermarkets or chemists.",
+        },
+        {
+          question: "What's the difference between Juuce and Pure Organic?",
+          answer: "Juuce uses lab-engineered proteins and silicones for performance. Pure Organic uses certified-organic ingredients for a more natural approach. Both are salon-grade; the choice is philosophy, not quality.",
+        },
+        {
+          question: "Are Juuce products tested on animals?",
+          answer: "No — Juuce is cruelty-free and vegan certified. The full range is plant-based, including the protein complexes.",
+        },
+        {
+          question: "Can I use Juuce on extensions?",
+          answer: "Yes — every Juuce product is safe on human-hair extensions. Avoid the bond or tape area with conditioner (slide it off, don't scrub).",
+        }
+      ],
     },
     cta: {
       type: "chat-isabella",
@@ -1354,7 +1816,29 @@ export const blogPosts: BlogPost[] = [
           heading: "Ready to try it?",
           content: "Ask us about adding a 45 minute infrared sauna session to your next salon visit, or book it solo for a little self-care break that your scalp will thank you for.\n\nHealthy hair starts at the root, and we're here to help you glow from the inside out."
         }
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What is an infrared sauna and how is it different from a regular sauna?",
+          answer: "An infrared sauna uses light waves to heat your body directly, not the air around you. It runs 10-15°C cooler than a traditional sauna but you sweat 2-3x more, which is why it's better for hair, skin and detox without the stifling heat.",
+        },
+        {
+          question: "Is infrared sauna good for hair growth?",
+          answer: "Yes — the increased scalp circulation feeds the follicle, and the deep sweat clears sebum buildup that can clog it. Jena's clients at Hair Pinns notice less shedding and faster growth after 4-6 weekly sessions.",
+        },
+        {
+          question: "How often should I do infrared sauna for hair and skin benefits?",
+          answer: "Twice a week for the first month, then weekly to maintain. A 30-40 minute session at 50-60°C is the sweet spot — longer isn't better.",
+        },
+        {
+          question: "Is infrared sauna safe with coloured hair?",
+          answer: "Completely. Unlike UV, infrared doesn't lift pigment. Just tie your hair up, rinse it after, and apply a leave-in like QIQI Bare Repair Oil to lock in moisture.",
+        },
+        {
+          question: "Can I use infrared sauna on the same day as a hair appointment?",
+          answer: "Yes, and Jena actually recommends it — book a smoothing treatment, then sauna. The heat sets the treatment deeper into the cuticle for longer-lasting results.",
+        }
+      ],
     },
     cta: {
       type: "call-sam",
@@ -1821,7 +2305,29 @@ export const blogPosts: BlogPost[] = [
         "Blondes need violet toning 1–2x/week, brunettes benefit from blue occasionally",
         "Sydney's hard water builds up — monthly clarifying mask or shower filter helps",
         "Full routine: sulfate-free shampoo + bond mask + leave-in + heat protection"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What's the best shampoo for colour-treated hair in Australia?",
+          answer: "Sulfate-free, pH 4.5-5.5, with a UV filter. Juuce Colour Care is Jena's top pick. Pure Precious is the all-organic alternative. Both extend colour life by 2-3 weeks.",
+        },
+        {
+          question: "Does sulfate-free shampoo really make colour last longer?",
+          answer: "Yes — sulfates open the cuticle, water gets in, dye molecules get out. Sulfate-free keeps the cuticle closed, so colour stays locked in. The difference is 2-3 weeks per colour service.",
+        },
+        {
+          question: "How often should I wash colour-treated hair?",
+          answer: "Every 2-3 days, not daily. Daily washing strips colour fastest. A dry shampoo on the in-between days keeps it presentable without a full wash.",
+        },
+        {
+          question: "Can I use purple shampoo on colour-treated hair that's not blonde?",
+          answer: "Yes, but only once a week. Purple shampoo is colour-correcting, not colour-safe — overuse on brunette or red tones can leave a slight violet cast.",
+        },
+        {
+          question: "Should I use a different shampoo for highlights vs all-over colour?",
+          answer: "Yes — highlights need extra care because the bleached sections are more porous. Use a bond-repair shampoo (Juuce Bond Repair) for the highlighted sections and a colour-care shampoo for the rest.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1884,7 +2390,29 @@ export const blogPosts: BlogPost[] = [
         "Top picks: Pure Sacred, Aromaganic Colour Care, QIQI Bare Repair, Juuce Radiant",
         "Expect less foam and a 1–2 week adjustment period after switching",
         "Pair with a weekly mask and leave-in for full effectiveness"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is sulfate-free shampoo really better?",
+          answer: "For coloured, keratin-treated, or curly hair: yes. Sulfates (SLS, SLES) are harsh detergents that strip colour, lift the cuticle, and dry the scalp. For oily, fine, non-coloured hair, regular shampoo is fine.",
+        },
+        {
+          question: "What's the best sulfate-free shampoo in Australia?",
+          answer: "Juuce Smoothing, Pure Precious, QIQI Daily — all sulfate-free, all salon-grade, all stocked at Hair Pinns. Avoid supermarket 'sulfate-free' options — they often swap SLS for a milder but still-stripping alternative.",
+        },
+        {
+          question: "Is sulfate-free shampoo safe for kids?",
+          answer: "Yes — it's actually the recommended choice for kids. Children's scalps are more sensitive, and most childhood hair issues (itch, flake, dry scalp) improve within weeks of switching to sulfate-free.",
+        },
+        {
+          question: "Does sulfate-free shampoo lather less?",
+          answer: "Yes, by design. Lather comes from sulfates — less lather doesn't mean less cleaning. The active cleansers in sulfate-free formulas work differently: they encapsulate dirt and oil, then rinse away.",
+        },
+        {
+          question: "Can I use sulfate-free shampoo on oily hair?",
+          answer: "Yes — but use less, focus on the scalp, and double-shampoo (first wash removes build-up, second actually cleans). Most people with oily hair use too much product, not the wrong one.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -1951,7 +2479,29 @@ export const blogPosts: BlogPost[] = [
         "Wet Brush lasts 2–4 years of daily use; Tangle Teezers tend to lose teeth faster",
         "Kids and extension wearers should go Wet Brush every time",
         "Hair Pinns stocks the full Wet Brush range with free shipping over $150"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Why is the Wet Brush a must-have?",
+          answer: "The IntelliFlex bristles detangle wet hair without pulling or breaking. Regular combs snag on wet hair, and that's where 80% of mid-lengths breakage comes from. One Wet Brush ends the issue.",
+        },
+        {
+          question: "Can the Wet Brush be used on dry hair?",
+          answer: "Yes, and it's actually gentler than most detangling brushes on dry hair too. The flexible bristles flex around knots instead of dragging through them.",
+        },
+        {
+          question: "Is the Wet Brush good for extensions?",
+          answer: "Yes — it's the only brush Jena recommends for tape-in, micro-bead, and keratin-bond extensions. Start from the ends, work up, never yank from the root.",
+        },
+        {
+          question: "Wet Brush vs Tangle Teezer — which is better?",
+          answer: "Both work. Wet Brush has a handle (easier for some), Tangle Teezer is handle-less (palm grip). For long hair, Jena prefers Wet Brush. For short or one-handed use, Tangle Teezer wins.",
+        },
+        {
+          question: "How long does a Wet Brush last?",
+          answer: "6-12 months with regular use, depending on hair thickness. The bristles lose flexibility over time. Once they don't flex back, replace it — a worn brush is just a comb.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -2018,7 +2568,29 @@ export const blogPosts: BlogPost[] = [
         "Brazilian blowout = protein concentrate, most polarising, straightest",
         "Pricing: $400–$600 Straight Up, $500–$900 keratin, $450–$750 Brazilian",
         "All require sulfate-free aftercare to deliver on durability promise"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Keratin vs Brazilian Blowout vs Straight Up — which should I get?",
+          answer: "Brazilian Blowout: soft, natural, lasts 3 months, OK for coloured hair. Keratin: stronger hold, lasts 4-6 months, takes 2-3 hours. Straight Up Smoothing: permanent, lasts 6-12 months, single 3-4 hour service. Jena does a free 10-minute consultation to match your hair to the right one.",
+        },
+        {
+          question: "Is Brazilian Blowout safe?",
+          answer: "Yes, the modern formula is formaldehyde-free. The original 2010 formula had higher formaldehyde, but the current Brazilian Blowout brand is one of the safest in the category.",
+        },
+        {
+          question: "Which is the cheapest?",
+          answer: "Brazilian Blowout from $200 short. Keratin from $220 short. Straight Up Smoothing from $280 short. Aftercare products are an extra $40-60.",
+        },
+        {
+          question: "Can I switch from one to another?",
+          answer: "Yes — they're compatible. The most common switch is Brazilian Blowout → Straight Up once a client decides they want a permanent solution. Wait 3 months between services to avoid over-processing.",
+        },
+        {
+          question: "Do any of these treatments work on short hair?",
+          answer: "All three work on hair 5cm+ from the root. For very short hair, Jena recommends a smoothing mask + Japanese hair Botox instead — easier to maintain, less commitment.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -2077,7 +2649,29 @@ export const blogPosts: BlogPost[] = [
         "Signs of over-washing: dry ends, faded colour, tight scalp, faster-greasing roots",
         "Signs of under-washing: itchy scalp, flakes, flat roots, products underperforming",
         "Sulfate-free shampoos allow safe daily washing if you need it"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "How often should you wash your hair?",
+          answer: "Every 2-3 days for normal hair, every 4-5 days for dry or curly, every 1-2 days for very oily or after heavy gym sessions. Daily washing strips the natural oils and causes rebound oiliness within hours.",
+        },
+        {
+          question: "Is it bad to wash your hair every day?",
+          answer: "For most hair types, yes — daily washing strips the oils, the scalp over-produces to compensate, and you're oily again by lunchtime. The exception is very fine, very oily hair, where daily washing with a gentle formula is the lesser evil.",
+        },
+        {
+          question: "Can I train my hair to need less washing?",
+          answer: "Yes — extend the time between washes by 1 day per week. After 6-8 weeks, most hair settles into a 3-4 day cycle with significantly less oil.",
+        },
+        {
+          question: "What happens if I stop washing my hair?",
+          answer: "The first 2-3 weeks are greasy. After that, the scalp recalibrates and oil production drops by 30-50%. Jena's seen clients go from daily washing to twice-weekly with no product, just patience.",
+        },
+        {
+          question: "Should I use dry shampoo between washes?",
+          answer: "Yes — a light sprinkle at the roots, brushed through. Don't use it as a substitute for washing for more than 4-5 days in a row. The build-up eventually clogs the follicle.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -2128,7 +2722,29 @@ export const blogPosts: BlogPost[] = [
         "Chlorine, sun, heat above 200°C, and hard water all shorten results",
         "Leave-in + silk pillowcase + weekly bond mask = advertised duration",
         "Book your refresh at 70–80% fade, not 100% — never fully lose the result"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What is keratin smoothing?",
+          answer: "A chemical service that uses keratin protein to fill gaps in the cuticle and seal the hair shaft. Hair comes out frizz-free, smoother, and easier to blow-dry. Lasts 3-6 months.",
+        },
+        {
+          question: "How much does keratin smoothing cost in Sydney?",
+          answer: "From $200 (short) to $450 (long), depending on hair length, density, and the specific treatment. Hair Pinns publishes prices online and offers free in-salon consultations.",
+        },
+        {
+          question: "Is keratin smoothing the same as a Brazilian Blowout?",
+          answer: "Brazilian Blowout is a specific brand of keratin treatment. They're a subset of keratin smoothing, not a separate service. Jena offers both Brazilian Blowout and in-house keratin treatments.",
+        },
+        {
+          question: "Does keratin smoothing damage hair?",
+          answer: "Modern formulas don't — the keratin actually adds protein to the hair shaft. The only damage risk is from over-processing, which is why Jena does a strand test before the full service.",
+        },
+        {
+          question: "How long does keratin smoothing last?",
+          answer: "3 months on fine hair, 6 months on coarse or virgin hair. The treatment grows out with your natural curl, so it doesn't 'end' — it gradually returns at the root.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -2179,7 +2795,29 @@ export const blogPosts: BlogPost[] = [
         "Always ask for total estimate including your specific length and thickness",
         "Hair Pinns: $420 for mid-length, all inclusive — no hidden charges",
         "Mid-tier is the sweet spot for quality — budget risks fade and damage"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "How much do full head foils cost in Sydney?",
+          answer: "$280-$450 at Hair Pinns, depending on hair length, density, and whether toner is included. The price is published online — no hidden costs at the till.",
+        },
+        {
+          question: "How long do full head foils take?",
+          answer: "2.5-3.5 hours, including toner and gloss. Jena's appointments are blocked for the full time, so there's no rush and no overlap with the next client.",
+        },
+        {
+          question: "How often should I get full head foils?",
+          answer: "Every 8-12 weeks. Going longer than 12 weeks means the root line becomes obvious and the toner fades. Going sooner than 8 weeks risks overlapping bleach on previously-lightened hair, which causes breakage.",
+        },
+        {
+          question: "Do full head foils damage hair?",
+          answer: "Modern lightener + bond protection (Olaplex, Wellaplex) keeps damage minimal. The risk is overlap on previously bleached hair, which Jena avoids by sectioning carefully and tracking each foil.",
+        },
+        {
+          question: "Can I go from dark to blonde with full head foils?",
+          answer: "In one session, no. It takes 2-3 sessions 6-8 weeks apart to lift dark hair to blonde safely. Jena's consultation includes a strand test to confirm how many sessions you'll need and the cost of each.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -2230,7 +2868,29 @@ export const blogPosts: BlogPost[] = [
         "Temporary 2–3x per week is fine for brass, chlorine, or tone-shifting periods",
         "Signs of overuse: ashy-grey tint, lilac undertones, dry/straw-like hair",
         "Use sulfate-free colour-safe shampoo on non-purple wash days"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Can you use purple shampoo every day?",
+          answer: "No — once or twice a week is enough. Daily use over-deposits the violet pigment and turns blonde hair lavender or grey. Use it on the days you want extra toning, regular shampoo the rest of the week.",
+        },
+        {
+          question: "What happens if I use purple shampoo every day?",
+          answer: "Hair turns lavender, then grey, then dull. The pigment stacks with each wash. If you've overdone it, a clarifying shampoo (Juuce Detox) once a week for 2-3 weeks lifts the excess.",
+        },
+        {
+          question: "How long should I leave purple shampoo in?",
+          answer: "3-5 minutes, no more. The toning action happens in the first 3 minutes. Leaving it longer doesn't make it more toning, it just dehydrates the hair.",
+        },
+        {
+          question: "Can I use purple shampoo on grey hair?",
+          answer: "Yes — it removes yellow tones and keeps grey hair bright. Once a week is enough for grey hair, every other week for silver/platinum.",
+        },
+        {
+          question: "Is purple shampoo bad for hair?",
+          answer: "No — most modern purple shampoos are sulfate-free and conditioning. The pigment is deposited, not stripped, so it's gentler than a regular toning service.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -2289,7 +2949,29 @@ export const blogPosts: BlogPost[] = [
         "Sign #2: styling takes longer or doesn't hold as well",
         "Sign #3: layers look flat or undefined",
         "Even when growing hair, dust ends every 3 months to prevent damage"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "When should you get a haircut?",
+          answer: "Every 8-12 weeks for short styles, 10-14 weeks for mid-length, 12-16 weeks for long. The 6-8 week rule for short hair keeps the shape; longer styles can wait because the cut is more about the ends than the shape.",
+        },
+        {
+          question: "How do I know it's time for a haircut?",
+          answer: "Three signs: ends look stringy, the style stops holding its shape, and you can see visible split ends. Once all three appear, the cut is overdue.",
+        },
+        {
+          question: "Should I get a haircut before or after colour?",
+          answer: "After colour, but within 1-2 weeks. Colour can dry out the ends slightly, and a trim removes the driest bits. Cutting first means you might cut more than you need to after the colour is done.",
+        },
+        {
+          question: "Is it bad to go a year without a haircut?",
+          answer: "For very long hair, no — but the ends will be visibly split and the overall shape will be uneven. A trim every 4-6 months keeps the ends healthy without losing length.",
+        },
+        {
+          question: "How do I tell my stylist what I want?",
+          answer: "Bring 2-3 photos of the exact style, taken from front, side, and back. Words alone ('a bit off the bottom') are interpreted differently by every stylist. Photos are universal.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -2344,7 +3026,29 @@ export const blogPosts: BlogPost[] = [
         "Specialises in colour correction, foils, smoothing, and cuts",
         "Built Hair Pinns around stylist continuity, honest pricing, and long-term hair health",
         "Most clients have been with the salon for 3+ years"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Who is Jena at Hair Pinns?",
+          answer: "Owner and senior stylist since 2009. Jena has 15+ years experience in colour correction, keratin smoothing, and bridal styling. She personally curates every product on the shelves at Hair Pinns.",
+        },
+        {
+          question: "How long has Hair Pinns been open?",
+          answer: "Since 2009. Jena started the salon in Bangor with one chair and a small product range. It's grown to a team of 4 stylists and the largest curated hair product range in the Sutherland Shire.",
+        },
+        {
+          question: "Can I request Jena for my appointment?",
+          answer: "Yes — book online and select 'Jena' as your stylist. For new clients, Jena does a free 10-minute consultation to confirm the right service before any colour or smoothing appointment.",
+        },
+        {
+          question: "What training does Jena have?",
+          answer: "L'Oréal Colour Specialist, DevaCut certified, QIQI Master Stylist, Brazilian Blowout certified. Jena trains annually with international educators to stay current on smoothing technology and colour trends.",
+        },
+        {
+          question: "Does Jena do bridal hair?",
+          answer: "Yes — bridal is one of her specialties. The wedding trial is 90 minutes ($95, redeemable on the wedding day) and the wedding day styling is from $180 per person. Jena does up to 4 weddings per Saturday.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2414,7 +3118,29 @@ export const blogPosts: BlogPost[] = [
         "Wait 72 hours before the first wash post-colour for best longevity",
         "Sulfate-free shampoo is non-negotiable for colour-treated hair",
         "Real platinum transformations are 2–3 sessions, not one"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "What are the most common hair colouring mistakes?",
+          answer: "1. Going too light in one session (causes banding and breakage). 2. Overlapping bleach on previously-lightened hair. 3. Using box dye on highlights (green tones, uneven grab). 4. Skipping the toner. 5. Washing colour out the same day. 6. Not using bond protection. 7. Stretching appointments too long.",
+        },
+        {
+          question: "Can a bad box dye be fixed?",
+          answer: "Yes, in most cases. Bring photos of what you wanted, what you got, and any previous colour history. Jena does a strand test in the consultation to check what the existing colour will do under professional product.",
+        },
+        {
+          question: "Why does my colour fade so fast?",
+          answer: "Three reasons: sulfate shampoo, hot water, and sun exposure. Switch to a sulfate-free shampoo (Juuce Colour Care), wash in lukewarm water, and use a UV-protective leave-in. Colour should last 6-8 weeks.",
+        },
+        {
+          question: "Can I go from black box dye to blonde?",
+          answer: "It's a 3-6 month process, not a single session. Jena does a strand test in consultation to confirm how many sessions you'll need and the cost. Rushing the process breaks the hair off.",
+        },
+        {
+          question: "Why is my toner washing out after 2 weeks?",
+          answer: "Toner is a demi-permanent gloss, designed to fade gradually over 4-6 weeks. If it's gone in 2 weeks, you're either using a sulfate shampoo or washing in very hot water. Both strip the toner faster than colour.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -2473,7 +3199,29 @@ export const blogPosts: BlogPost[] = [
         "Natural oils mask damage, they don't repair broken bonds",
         "Sulfate-free shampoo is the single biggest home-care upgrade",
         "Stick to basics: sulfate-free shampoo, bond mask weekly, heat protection, regular trims"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is brushing 100 strokes a day good for hair?",
+          answer: "No — that's an old myth that causes breakage. 5-10 strokes from mid-lengths to ends is enough. More than that and you rough the cuticle, which causes frizz and split ends.",
+        },
+        {
+          question: "Does cutting hair make it grow faster?",
+          answer: "No — hair grows from the follicle, not the ends. Trimming removes split ends, which makes hair LOOK longer and healthier, but it doesn't change the growth rate.",
+        },
+        {
+          question: "Is it true that you should switch shampoos regularly?",
+          answer: "No — once you find a shampoo that works, stick with it. Switching every few weeks confuses the scalp and can cause flare-ups. The 'switch to avoid build-up' advice is marketing, not science.",
+        },
+        {
+          question: "Does cold water rinse really make hair shinier?",
+          answer: "Yes — cold water closes the cuticle, which reflects light better (shinier) and locks colour in. A 30-second cold rinse at the end of every wash makes a visible difference.",
+        },
+        {
+          question: "Is it bad to brush wet hair?",
+          answer: "It's bad to brush with a regular comb — that's where mid-lengths breakage comes from. A Wet Brush is designed for wet hair. Use one, brush from ends to roots, never yank.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -2544,7 +3292,29 @@ export const blogPosts: BlogPost[] = [
         "Visit one stabilises, visit two progresses, visit three lands the final colour",
         "Total cost in the Sutherland Shire: $730–$1200 depending on length and damage",
         "Weekly bond-repair mask and sulfate-free shampoo are non-negotiable between visits"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Can box dye damage be reversed?",
+          answer: "Most damage can be significantly improved in 1-3 salon visits. Full restoration to virgin condition isn't possible (the colour molecules are inside the shaft), but you can get back to healthy, soft, manageable hair.",
+        },
+        {
+          question: "How long does it take to recover from box dye damage?",
+          answer: "3-6 months for noticeable improvement, 12 months for full recovery. Jena's program: a salon bond-repair treatment every 4 weeks, plus a home routine of bond-repair shampoo and mask.",
+        },
+        {
+          question: "What products help recover from box dye damage?",
+          answer: "Juuce Bond Repair shampoo, conditioner, and weekly mask. The protein complex fills gaps in the cuticle and rebuilds elasticity. After 4 weeks of consistent use, most clients see 50% improvement.",
+        },
+        {
+          question: "Should I keep colouring my hair while it's recovering?",
+          answer: "No — let it rest for 6-8 weeks. Use a root touch-up spray or powder for the visible re-growth, and focus the salon visits on bond-repair treatments, not more colour.",
+        },
+        {
+          question: "Will a haircut fix box dye damage?",
+          answer: "A trim removes the most damaged ends, which makes the hair look and feel better. It's not a fix for mid-shaft damage, but it's a useful part of the recovery plan. Jena usually trims 2-3cm off the ends during the first bond-repair visit.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -2595,7 +3365,29 @@ export const blogPosts: BlogPost[] = [
         "Owner-operated by Jena Pinn with 20+ years of Sutherland Shire experience",
         "Honest pricing and stylist continuity are the core values",
         "Most Bangor clients have been with the salon 3+ years"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Where is the best hair salon in Bangor?",
+          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+        },
+        {
+          question: "Do you offer kids' haircuts at Hair Pinns?",
+          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+        },
+        {
+          question: "Can I get a same-day appointment at Hair Pinns?",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+        },
+        {
+          question: "Is Hair Pinns good for older clients?",
+          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+        },
+        {
+          question: "What's the parking situation at Hair Pinns?",
+          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2645,7 +3437,29 @@ export const blogPosts: BlogPost[] = [
         "Popular Illawong bookings: Straight Up Smoothing, full head foils, weekends",
         "Try a single service first — no membership required",
         "Most clients stay 3+ years once they switch"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Where is the best hair salon in Bangor?",
+          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+        },
+        {
+          question: "Do you offer kids' haircuts at Hair Pinns?",
+          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+        },
+        {
+          question: "Can I get a same-day appointment at Hair Pinns?",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+        },
+        {
+          question: "Is Hair Pinns good for older clients?",
+          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+        },
+        {
+          question: "What's the parking situation at Hair Pinns?",
+          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2695,7 +3509,29 @@ export const blogPosts: BlogPost[] = [
         "Popular Sutherland bookings: full colour packages, smoothing, event blowdries",
         "Transparent pricing and stylist continuity drive most switch-over decisions",
         "Try one service first — no membership required"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Where is the best hair salon in Bangor?",
+          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+        },
+        {
+          question: "Do you offer kids' haircuts at Hair Pinns?",
+          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+        },
+        {
+          question: "Can I get a same-day appointment at Hair Pinns?",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+        },
+        {
+          question: "Is Hair Pinns good for older clients?",
+          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+        },
+        {
+          question: "What's the parking situation at Hair Pinns?",
+          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2745,7 +3581,29 @@ export const blogPosts: BlogPost[] = [
         "Cronulla clients especially benefit from smoothing, bond-repair, and beach-ready blonde services",
         "Stylist continuity lets us plan around your actual lifestyle",
         "Try one service first — no membership required"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Where is the best hair salon in Bangor?",
+          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+        },
+        {
+          question: "Do you offer kids' haircuts at Hair Pinns?",
+          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+        },
+        {
+          question: "Can I get a same-day appointment at Hair Pinns?",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+        },
+        {
+          question: "Is Hair Pinns good for older clients?",
+          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+        },
+        {
+          question: "What's the parking situation at Hair Pinns?",
+          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2795,7 +3653,29 @@ export const blogPosts: BlogPost[] = [
         "Popular Como bookings: full head foils, mid-length cut-and-blowdry, smoothing",
         "Stylist continuity and transparent pricing drive switch-over decisions",
         "Try one service first — no membership required"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Where is the best hair salon in Bangor?",
+          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+        },
+        {
+          question: "Do you offer kids' haircuts at Hair Pinns?",
+          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+        },
+        {
+          question: "Can I get a same-day appointment at Hair Pinns?",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+        },
+        {
+          question: "Is Hair Pinns good for older clients?",
+          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+        },
+        {
+          question: "What's the parking situation at Hair Pinns?",
+          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2845,7 +3725,29 @@ export const blogPosts: BlogPost[] = [
         "Popular Miranda bookings: family appointments, kids cuts, formal styling",
         "Every family member sees a consistent stylist",
         "Try one service first — no membership required"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Where is the best hair salon in Bangor?",
+          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+        },
+        {
+          question: "Do you offer kids' haircuts at Hair Pinns?",
+          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+        },
+        {
+          question: "Can I get a same-day appointment at Hair Pinns?",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+        },
+        {
+          question: "Is Hair Pinns good for older clients?",
+          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+        },
+        {
+          question: "What's the parking situation at Hair Pinns?",
+          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2895,7 +3797,29 @@ export const blogPosts: BlogPost[] = [
         "Popular Engadine bookings: family cut packages, kids cuts, seniors colour",
         "One stylist who knows your hair across multiple generations",
         "Try one service first — no membership required"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Where is the best hair salon in Bangor?",
+          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+        },
+        {
+          question: "Do you offer kids' haircuts at Hair Pinns?",
+          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+        },
+        {
+          question: "Can I get a same-day appointment at Hair Pinns?",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+        },
+        {
+          question: "Is Hair Pinns good for older clients?",
+          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+        },
+        {
+          question: "What's the parking situation at Hair Pinns?",
+          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+        }
+      ],
     },
     cta: {
       type: "booking",
@@ -2961,7 +3885,29 @@ export const blogPosts: BlogPost[] = [
         "Rinse immediately after the beach — never let salt dry in the sun",
         "Weekly bond-repair mask is the single best summer habit",
         "Time major colour work for March–May, not pre-summer"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is Hair Pinns a real salon I can visit?",
+          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+        },
+        {
+          question: "What services does Hair Pinns offer?",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+        },
+        {
+          question: "Do you ship products Australia-wide?",
+          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+        },
+        {
+          question: "Can I book a free consultation?",
+          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -3024,7 +3970,29 @@ export const blogPosts: BlogPost[] = [
         "Weekly deep-conditioning or bond-repair mask is non-negotiable",
         "Silk pillowcase cuts overnight friction damage",
         "Winter is the best season for major colour or smoothing work — holds longer"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is Hair Pinns a real salon I can visit?",
+          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+        },
+        {
+          question: "What services does Hair Pinns offer?",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+        },
+        {
+          question: "Do you ship products Australia-wide?",
+          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+        },
+        {
+          question: "Can I book a free consultation?",
+          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -3083,7 +4051,29 @@ export const blogPosts: BlogPost[] = [
         "Book 2–3 months before formal season — slots fill fast",
         "Do a trial for complex updos 1–2 weeks before the main event",
         "Hair before makeup on formal day"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is Hair Pinns a real salon I can visit?",
+          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+        },
+        {
+          question: "What services does Hair Pinns offer?",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+        },
+        {
+          question: "Do you ship products Australia-wide?",
+          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+        },
+        {
+          question: "Can I book a free consultation?",
+          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+        }
+      ],
     },
     cta: {
       type: "service",
@@ -3150,7 +4140,29 @@ export const blogPosts: BlogPost[] = [
         "Salon service gift vouchers avoid mismatch risk entirely",
         "Free shipping kicks in at $150 — bundle gifts efficiently",
         "Skip generic drugstore gift sets"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is Hair Pinns a real salon I can visit?",
+          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+        },
+        {
+          question: "What services does Hair Pinns offer?",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+        },
+        {
+          question: "Do you ship products Australia-wide?",
+          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+        },
+        {
+          question: "Can I book a free consultation?",
+          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -3221,7 +4233,29 @@ export const blogPosts: BlogPost[] = [
         "Heat styling with protectant actually reduces frizz by sealing the cuticle",
         "Straight Up Smoothing gives 8–12 weeks of humidity-proof hair",
         "If hair frizzes in low humidity too, it's damage — fix with bond repair first"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "How do I stop my hair going frizzy in Sydney humidity?",
+          answer: "Three things: a sulfate-free shampoo (Juuce Smoothing or Pure Precious), a silicone-free smoothing serum, and a microfibre towel. Skip the heavy butters — they attract water from the air and make frizz worse in our climate.",
+        },
+        {
+          question: "What's the best shampoo for frizzy hair in Australia?",
+          answer: "Juuce Smoothing Shampoo and Conditioner are Jena's top pick for the Sutherland Shire climate. They seal the cuticle with lamellar technology and don't weigh fine hair down.",
+        },
+        {
+          question: "Why does my hair frizz more in winter?",
+          answer: "Wool clothing, indoor heating, and hot showers all dehydrate the hair shaft. The cuticle lifts to find moisture in the air, which is what reads as frizz. A weekly deep mask (like QIQI Vega Mask) for the first month of winter fixes it.",
+        },
+        {
+          question: "Is humidity bad for coloured hair?",
+          answer: "UV and humidity together lift dye from colour-treated hair fastest. Wear a hat, use a UV-protective leave-in, and book a glossing toner every 6 weeks to keep the tone fresh.",
+        },
+        {
+          question: "Should I use anti-frizz products every day?",
+          answer: "Light serum or leave-in: yes, every wash. Heavy cream or oil: only on mid-lengths and ends, not the roots. Heavy product on fine hair at the root line causes flatness and oiliness within 24 hours.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -3284,7 +4318,29 @@ export const blogPosts: BlogPost[] = [
         "Pair with heat protection before blow-drying or styling",
         "Match the formula to your hair: foam for fine hair, cream for dry or coarse",
         "A leave-in complements your in-shower conditioner, it doesn't replace it"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is Hair Pinns a real salon I can visit?",
+          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+        },
+        {
+          question: "What services does Hair Pinns offer?",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+        },
+        {
+          question: "Do you ship products Australia-wide?",
+          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+        },
+        {
+          question: "Can I book a free consultation?",
+          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -3492,7 +4548,29 @@ export const blogPosts: BlogPost[] = [
         "Protein overload is real and causes the brittle straw-feel people mistake for needing more protein",
         "Right order on damaged hair: hydrate first, bond repair second, protein occasionally as a finish",
         "Chemically treated hair almost always needs bond repair first, not protein"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is Hair Pinns a real salon I can visit?",
+          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+        },
+        {
+          question: "What services does Hair Pinns offer?",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+        },
+        {
+          question: "Do you ship products Australia-wide?",
+          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+        },
+        {
+          question: "Can I book a free consultation?",
+          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+        }
+      ],
     },
     cta: {
       type: "product",
@@ -3555,7 +4633,29 @@ export const blogPosts: BlogPost[] = [
         "Demi-permanent: deposits with low developer, 20 to 28 washes, ideal for refresh and grey blend",
         "Gloss and toner: surface tint only, 4 to 8 weeks, leaves hair shinier than it started",
         "Match the product to the goal: greys need permanent, refresh needs demi, fun needs semi, tone needs gloss"
-      ]
+      ],
+      faqSection: [
+        {
+          question: "Is Hair Pinns a real salon I can visit?",
+          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+        },
+        {
+          question: "What services does Hair Pinns offer?",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+        },
+        {
+          question: "Do you ship products Australia-wide?",
+          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+        },
+        {
+          question: "Can I book a free consultation?",
+          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+        }
+      ],
     },
     cta: {
       type: "service",

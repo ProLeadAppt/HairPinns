@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { trackBookingClick } from "@/config/bookingConfig";
+import { trackPromoClick } from "@/config/bookingConfig";
 import {
   SHAMPOO_CONDITIONER_OFFER_ACTIVE,
   SHAMPOO_CONDITIONER_HEADLINE,
+  SHAMPOO_COLLECTION_HANDLE,
 } from "@/config/promotions";
 
 /**
@@ -51,9 +52,17 @@ const ShampooConditionerPromo = () => {
               size="lg"
               className="font-semibold shadow-md hover:shadow-lg transition-all"
               style={{ borderRadius: "999px" }}
-              onClick={() => trackBookingClick("shampoo_conditioner_promo", "/")}
+              data-cta="shampoo-promo"
+              data-cta-placement="homepage_promo_banner"
+              data-cta-offer="shampoo_conditioner_50_off"
+              onClick={() =>
+                trackPromoClick("homepage_promo_banner", "/")
+              }
             >
-              <Link to="/collections" aria-label="Shop the shampoo and conditioner offer">
+              <Link
+                to={`/collections/${SHAMPOO_COLLECTION_HANDLE}`}
+                aria-label="Shop the shampoo and conditioner offer"
+              >
                 Shop the offer
                 <ArrowRight className="w-4 h-4" />
               </Link>

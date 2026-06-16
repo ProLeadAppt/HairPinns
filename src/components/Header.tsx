@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
 import {
   isStocktakeActive,
   QIQI_DISCOUNT_ACTIVE,
@@ -33,12 +33,19 @@ const Header = () => {
   const promoLink = isStocktakeActive()
     ? "/collections"
     : SHAMPOO_CONDITIONER_OFFER_ACTIVE
-      ? "/collections"
+      ? `/collections/${PROMO_COLLECTIONS.shampoos}`
       : QIQI_DISCOUNT_ACTIVE
         ? `/collections/${PROMO_COLLECTIONS.qiqi}`
         : "/collections";
   // Highlight the headline offer with a subtle emoji
   const isHeadlineOffer = SHAMPOO_CONDITIONER_OFFER_ACTIVE && !isStocktakeActive();
+  // Track which offer the strip is currently advertising (for analytics)
+  const headerPromoOfferId = (() => {
+    if (isStocktakeActive()) return "stocktake_2025";
+    if (SHAMPOO_CONDITIONER_OFFER_ACTIVE) return "shampoo_conditioner_50_off";
+    if (QIQI_DISCOUNT_ACTIVE) return "qiqi_20_off";
+    return "none";
+  })();
 
   return <>
       {/* Top Promo Strip — link and close button are siblings so we don't ship invalid nested-interactive HTML. */}
@@ -46,6 +53,12 @@ const Header = () => {
         <div className="bg-brand-600 text-white relative">
           <Link
             to={promoLink}
+            data-cta="header-promo-strip"
+            data-cta-placement="header_promo_strip"
+            data-cta-offer={headerPromoOfferId}
+            onClick={() =>
+              trackPromoClick("header_promo_strip", typeof window !== "undefined" ? window.location.pathname : "/")
+            }
             className="block py-2.5 px-4 pr-12 text-center text-sm sm:text-base font-semibold text-white hover:bg-brand-500 transition-colors duration-fast"
             aria-label="Shop the buy any shampoo, get 50% off conditioner offer"
           >
