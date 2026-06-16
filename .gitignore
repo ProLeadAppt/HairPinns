@@ -30,3 +30,7 @@ dist-ssr
 # Local Netlify folder
 .netlify
 img-audit/
+
+# Google service account keys (GSC pulse)
+gsc-service-account.json
+*-service-account.json

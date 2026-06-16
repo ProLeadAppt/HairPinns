@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-sitemap.js && npx puppeteer browsers install chrome && vite build && node scripts/seo-smoke-test.js && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
+    "build": "node scripts/generate-sitemap.js && vite build && node scripts/prerender.mjs && node scripts/seo-smoke-test.js && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
     "generate-sitemap": "node scripts/generate-sitemap.js",
+    "prerender": "node scripts/prerender.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.js",
     "seo-smoke": "node scripts/seo-smoke-test.js",
+    "gsc-pulse": "node scripts/gsc-pulse.mjs",
     "refresh-reviews": "node scripts/refresh-google-reviews.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

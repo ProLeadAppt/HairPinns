@@ -2,79 +2,30 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { fileURLToPath } from "url";
-import prerender from "@prerenderer/rollup-plugin";
-import { collectRoutes } from "./scripts/collect-prerender-routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ mode }) => {
-  const plugins: any[] = [react()];
-
-  if (mode === 'production') {
-    try {
-      const routes = await collectRoutes();
-
-      plugins.push(
-        prerender({
-          routes,
-          renderer: '@prerenderer/renderer-puppeteer',
-          rendererOptions: {
-            renderAfterElementExists: '#prerender-ready-marker',
-            // 30s fallback: with the `prerenderReady` gate in SEOHead, the
-            // marker only fires once async data lands. Slow Shopify responses
-            // (10-20s p99 under load) were getting cut off at the previous
-            // 15s ceiling, capturing pages mid-load with no <h1>. 30s gives
-            // headroom without materially extending overall build time since
-            // fast routes still resolve in ~2s and stop waiting immediately.
-            renderAfterTime: 30000,
-            maxConcurrentRoutes: 4,
-            headless: true,
-            // Explicit prerender UA so third-party widgets (LeadConnector chat,
-            // Clarity, etc.) can detect & skip themselves during build.
-            userAgent: 'HairPinnsPrerender/1.0 (+HeadlessChrome; prerender=true)',
-          },
-          postProcess(renderedRoute: any) {
-            // Strip LeadConnector / Ionic / reCAPTCHA pollution that may have
-            // snuck in despite the UA guard in index.html. Also remove the
-            // prerender-ready marker and any recaptcha origin-trial meta.
-            renderedRoute.html = renderedRoute.html
-              // Ionic / LeadConnector custom elements
-              .replace(/<[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)[^>]*>[\s\S]*?<\/[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)>/gi, '')
-              .replace(/<slot-fb[^>]*>[\s\S]*?<\/slot-fb>/gi, '')
-              // Ionic-injected style block that hides unhydrated custom elements
-              .replace(/<style data-styles="">[\s\S]*?<\/style>/gi, '')
-              // reCAPTCHA origin-trial meta injected by third-party scripts
-              .replace(/<meta http-equiv="origin-trial"[^>]*>/gi, '')
-              // reCAPTCHA runtime script the Puppeteer browser loaded
-              .replace(/<script[^>]*recaptcha[^>]*><\/script>/gi, '')
-              .replace(/<script[^>]*gstatic\.com\/recaptcha[^>]*><\/script>/gi, '')
-              // LeadConnector runtime scripts / assets the browser loaded
-              .replace(/<script[^>]*leadconnectorhq\.com[^>]*>[\s\S]*?<\/script>/gi, '')
-              .replace(/<link[^>]*leadconnectorhq\.com[^>]*>/gi, '')
-              .replace(/<link[^>]*fonts\.bunny\.net[^>]*>/gi, '')
-              // Ionic className on <html>
-              .replace(/<html([^>]*?)class="plt-[^"]*"([^>]*?)mode="md"([^>]*)>/gi, '<html$1$2$3>')
-              .replace(/<html([^>]*?)mode="md"([^>]*)>/gi, '<html$1$2>')
-              // The prerender-ready DOM marker
-              .replace(/<div id="prerender-ready-marker"[^>]*><\/div>/gi, '');
-            return renderedRoute;
-          },
-        })
-      );
-    } catch (err: any) {
-      console.warn('[prerender] Skipping prerendering:', err.message);
-    }
-  }
-
+//
+// Prerender is intentionally NOT wired into the bundler. We use
+// scripts/prerender.mjs as a separate post-build step (see package.json).
+// Rationale:
+//   - The old @prerenderer/rollup-plugin hard-fails on any route timeout.
+//     With 267 routes (many of which fetch live Shopify data) a single slow
+//     network response killed the build at 2m10s with 0 routes shipped.
+//   - Decoupling prerender from vite means build → deploy is fast, and
+//     prerender failures degrade gracefully (the SPA shell still ships).
+//   - Per-route metrics (time, bytes, schema count) live in
+//     dist/prerender-report.json for monitoring.
+export default defineConfig(() => {
   return {
     server: {
       host: "::",
       port: 5173,
       strictPort: false,
     },
-    plugins,
+    plugins: [react()],
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
