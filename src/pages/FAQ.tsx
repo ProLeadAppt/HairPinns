@@ -52,7 +52,7 @@ const FAQPage = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="FAQ | Hair Pinns | Common Questions About Hair Care and Shipping"
-        description="Got questions about hair care, shipping, returns or booking? Here are the answers. If you can't find what you need, just call Jena on 0468 093 991."
+        description="Got questions about hair care, shipping, returns or booking? Here are the answers. If you can't find what you need, just call Jena on 0416 037 663."
         canonical="https://hairpinns.com/faq"
         ogImage={getOGImage("default")}
         ogType="website"
@@ -80,8 +80,8 @@ const FAQPage = () => {
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               Can't find your answer? Call me on{" "}
-              <a href="tel:+61468093991" className="text-brand-500 font-medium hover:underline">
-                0468 093 991
+              <a href="tel:+61416037663" className="text-brand-500 font-medium hover:underline">
+                0416 037 663
               </a>{" "}
               or send a message on the{" "}
               <Link to="/contact" className="text-brand-500 font-medium hover:underline">
@@ -180,7 +180,7 @@ const FAQPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild variant="primary">
-                <a href="tel:+61468093991">Call 0468 093 991</a>
+                <a href="tel:+61416037663">Call 0416 037 663</a>
               </Button>
               <Button asChild variant="outline">
                 <Link to="/contact">Send a Message</Link>

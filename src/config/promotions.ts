@@ -26,8 +26,13 @@ export const SHAMPOO_CONDITIONER_HEADLINE = "Buy any Shampoo — get 50% off Con
 export const SHAMPOO_CONDITIONER_HEADER_MESSAGE =
   "💧 Buy any Shampoo — get 50% off Conditioner | Sitewide";
 
-/** Target the shampoos collection so the customer can shop the deal. */
-export const SHAMPOO_COLLECTION_HANDLE = "shampoos";
+/**
+ * Target a collection that actually shows both shampoo and conditioner options.
+ * The `shampoos` collection handle is NOT valid in Shopify (404s) — Juuce Botanical
+ * is the broadest hair-care collection with both, so it’s the right destination
+ * for the "buy any shampoo, get 50% off conditioner" CTA.
+ */
+export const SHAMPOO_COLLECTION_HANDLE = "juuce-botanicals";
 
 /** Collection handles for promo links — must match Shopify collection handles exactly */
 export const PROMO_COLLECTIONS = {

@@ -17,11 +17,11 @@ import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 const contactFaqs = [
   {
     question: "What's the fastest way to contact Hair Pinns?",
-    answer: "Call or SMS Sam directly on 0468 093 991 for immediate replies during opening hours. You can also chat with our AI assistant Isabella 24/7 via the chat widget, or send a message through the contact form and we'll respond within one business day."
+    answer: "Call or SMS Sam directly on 0416 037 663 for immediate replies during opening hours. You can also chat with our AI assistant Isabella 24/7 via the chat widget, or send a message through the contact form and we'll respond within one business day."
   },
   {
     question: "Can I book an appointment by phone?",
-    answer: "Yes — call 0468 093 991. For after-hours bookings, use the 24/7 online booking system via Fresha at hairpinns.com/booking."
+    answer: "Yes — call 0416 037 663. For after-hours bookings, use the 24/7 online booking system via Fresha at hairpinns.com/booking."
   },
   {
     question: "What are your opening hours?",
@@ -43,8 +43,8 @@ const Contact = () => {
   const businessInfo = {
     name: "Hair Pinns",
     address: "60 Goorgool Rd, Bangor NSW 2234",
-    phone: "0468 093 991",
-    phoneRaw: "+61468093991",
+    phone: "0416 037 663",
+    phoneRaw: "+61416037663",
     email: "hairpinns1@gmail.com",
     hours: [{
       day: "Monday",
@@ -161,8 +161,8 @@ const Contact = () => {
   };
   return <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Contact Hair Pinns Bangor | Call 0468 093 991"
-        description="Visit Hair Pinns in Bangor, Sutherland Shire NSW. Call 0468 093 991. Free parking, easy access. Open Tue-Sat. Shop hair products Australia-wide online."
+        title="Contact Hair Pinns Bangor | Call 0416 037 663"
+        description="Visit Hair Pinns in Bangor, Sutherland Shire NSW. Call 0416 037 663. Free parking, easy access. Open Tue-Sat. Shop hair products Australia-wide online."
         canonical="https://hairpinns.com/contact"
         ogImage={getOGImage('default')}
         ogType="website"
@@ -341,9 +341,9 @@ const Contact = () => {
                   variant="primary"
                   className="w-full bg-brand-500 hover:bg-brand-600"
                 >
-                  <a href="tel:+61468093991" className="no-link-color">
+                  <a href="tel:+61416037663" className="no-link-color">
                     <Phone className="w-5 h-5" />
-                    Call: 0468 093 991
+                    Call: 0416 037 663
                   </a>
                 </Button>
               </div>

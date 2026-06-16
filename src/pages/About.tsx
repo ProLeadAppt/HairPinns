@@ -88,7 +88,7 @@ const About = () => {
     },
     {
       question: "Do I need to book in advance?",
-      answer: "Yes, Hair Pinns operates by appointment. Book online 24/7 through Fresha at hairpinns.com/booking or call 0468 093 991. Same-day appointments are sometimes available — call to ask."
+      answer: "Yes, Hair Pinns operates by appointment. Book online 24/7 through Fresha at hairpinns.com/booking or call 0416 037 663. Same-day appointments are sometimes available — call to ask."
     },
     {
       question: "Can I buy hair products without coming to the salon?",
@@ -263,7 +263,7 @@ const About = () => {
                   in my own hair and in the salon every day. If it doesn't pass my standards, it doesn't make the cut.
                 </p>
                 <p className="text-foreground leading-relaxed">
-                  Need help choosing? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call us</a> or chat with Isabella for instant recommendations.
+                  Need help choosing? <a href="tel:+61416037663" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call us</a> or chat with Isabella for instant recommendations.
                 </p>
               </div>
               <div className="aspect-square bg-muted rounded-card overflow-hidden">

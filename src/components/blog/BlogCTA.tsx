@@ -74,12 +74,12 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
           className="bg-brand-500 hover:bg-brand-600"
         >
           <a
-            href="tel:+61468093991"
+            href="tel:+61416037663"
             onClick={trackPhoneClick}
             className="no-link-color"
           >
             <Phone className="w-5 h-5" />
-            Call Sam: 0468 093 991
+            Call Sam: 0416 037 663
           </a>
         </Button>
       </div>
@@ -130,7 +130,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
             variant="accent"
           >
             <a
-              href="tel:+61468093991"
+              href="tel:+61416037663"
               onClick={trackPhoneClick}
               className="no-link-color"
             >

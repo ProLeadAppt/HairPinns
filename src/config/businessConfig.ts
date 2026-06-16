@@ -18,9 +18,10 @@ export const BUSINESS_NAP = {
     fullForMaps: "60 Goorgool Rd, Bangor NSW 2234",
   },
   phone: {
-    display: "0468 093 991",
-    raw: "+61468093991",
-    tel: "tel:+61468093991",
+    // Updated 2026-06-16 to match the Google Business Profile mobile number.
+    display: "0416 037 663",
+    raw: "+614****7663",
+    tel: "tel:+614****7663",
   },
   email: "hairpinns1@gmail.com",
 } as const;

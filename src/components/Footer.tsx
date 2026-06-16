@@ -235,7 +235,7 @@ const Footer = () => {
                     Text us
                   </a>
                   <a
-                    href="https://wa.me/61468093991?text=Hi%20Jena%2C%20I%27d%20like%20to%20enquire%20about%20"
+                    href="https://wa.me/61416037663?text=Hi%20Jena%2C%20I%27d%20like%20to%20enquire%20about%20"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-brand-500 hover:text-brand-600 transition-colors"

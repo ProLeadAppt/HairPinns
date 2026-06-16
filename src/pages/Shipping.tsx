@@ -125,8 +125,8 @@ const Shipping = () => {
                 hairpinns1@gmail.com
               </a>{" "}
               or call{" "}
-              <a href="tel:+61468093991" className="text-brand-500 hover:text-brand-600">
-                0468 093 991
+              <a href="tel:+61416037663" className="text-brand-500 hover:text-brand-600">
+                0416 037 663
               </a>
               .
             </p>

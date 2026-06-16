@@ -150,7 +150,7 @@ const AreasIndex = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="tel:+61468093991"
+                  href="tel:+61416037663"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors font-semibold"
                 >
                   <MapPin className="w-5 h-5" />

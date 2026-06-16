@@ -15,7 +15,7 @@ const bookingFaqs = [
   },
   {
     question: "Can I book a same-day appointment?",
-    answer: "Same-day appointments are sometimes available depending on the day — check Fresha for live availability, or call 0468 093 991 to ask directly."
+    answer: "Same-day appointments are sometimes available depending on the day — check Fresha for live availability, or call 0416 037 663 to ask directly."
   },
   {
     question: "Do I have to pay a deposit to book?",
@@ -23,7 +23,7 @@ const bookingFaqs = [
   },
   {
     question: "How do I cancel or reschedule?",
-    answer: "You can cancel or reschedule for free up to 24 hours before your appointment through the link in your confirmation email. For last-minute changes, call 0468 093 991."
+    answer: "You can cancel or reschedule for free up to 24 hours before your appointment through the link in your confirmation email. For last-minute changes, call 0416 037 663."
   },
   {
     question: "What should I bring to my first appointment?",
@@ -64,7 +64,7 @@ const Booking = () => {
               Takes about 2 minutes.
             </p>
             <p className="text-foreground mb-8">
-              Need help choosing? <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
+              Need help choosing? <a href="tel:+61416037663" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
             </p>
             
             <a
@@ -130,12 +130,12 @@ const Booking = () => {
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm">
-                <a href="tel:+61468093991" className="text-brand-500 font-semibold hover:text-brand-600 transition-colors">
-                  Call 0468 093 991
+                <a href="tel:+61416037663" className="text-brand-500 font-semibold hover:text-brand-600 transition-colors">
+                  Call 0416 037 663
                 </a>
                 <span className="hidden sm:inline text-muted-foreground">or</span>
                 <a
-                  href="https://wa.me/61468093991?text=Hi%20Jena%2C%20I%27d%20like%20to%20book%20an%20appointment"
+                  href="https://wa.me/61416037663?text=Hi%20Jena%2C%20I%27d%20like%20to%20book%20an%20appointment"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-brand-500 font-semibold hover:text-brand-600 transition-colors"
@@ -220,9 +220,9 @@ const Booking = () => {
               We're here to help! Call or text us, or visit our FAQ page.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+61468093991">
+              <a href="tel:+61416037663">
                 <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
-                  Call: 0468 093 991
+                  Call: 0416 037 663
                 </Button>
               </a>
               <Link to="/services#faqs">

@@ -380,7 +380,7 @@ const Collections = () => {
                   asChild
                   className="w-full sm:w-auto text-lg px-8 py-6"
                 >
-                  <a href="tel:+61468093991">Call Sam Now</a>
+                  <a href="tel:+61416037663">Call Sam Now</a>
                 </Button>
                 <a 
                   href={BOOK_URL}

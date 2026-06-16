@@ -110,7 +110,7 @@ const LocationPage = () => {
       "longitude": "151.0333"
     },
     "url": `https://hairpinns.com/areas/${locationData.slug}`,
-    "telephone": "+61468093991",
+    "telephone": "+61416037663",
     "priceRange": "$$",
     "openingHoursSpecification": BUSINESS_HOURS.map(h => ({
       "@type": "OpeningHoursSpecification",
@@ -235,7 +235,7 @@ const LocationPage = () => {
                   className="font-semibold"
                   asChild
                 >
-                  <a href="tel:+61468093991" className="flex items-center gap-2">
+                  <a href="tel:+61416037663" className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
                     Call +61 468 093 991
                   </a>
@@ -462,7 +462,7 @@ const LocationPage = () => {
                   className="font-semibold"
                   asChild
                 >
-                  <a href="tel:+61468093991" className="flex items-center gap-2">
+                  <a href="tel:+61416037663" className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
                     Call +61 468 093 991
                   </a>

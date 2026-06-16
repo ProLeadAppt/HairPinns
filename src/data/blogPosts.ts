@@ -2033,7 +2033,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Menai Locals",
-          content: "The most-booked services for Menai clients: Straight Up Smoothing (reduces frizz for 8–12 weeks — crucial in Sydney's humid summer), full head foils for blonde maintenance, and mid-length wash/cut/blowdry. We also do kids and formal styling, popular with Menai families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Menai clients: Straight Up Smoothing (reduces frizz for 8–12 weeks — crucial in Sydney's humid summer), full head foils for blonde maintenance, and mid-length wash/cut/blowdry. We also do kids and formal styling, popular with Menai families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Real Review from a Menai Client",
@@ -2046,7 +2046,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Menai?",
-        answer: "Hair Pinns in Bangor is a 5-minute drive from Menai with free parking, specialises in colour, Straight Up Smoothing, and cuts, and has a 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is a 5-minute drive from Menai with free parking, specialises in colour, Straight Up Smoothing, and cuts, and has a 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is a 5-minute drive from Menai with free parking",
@@ -3015,7 +3015,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Where to Find the Salon",
-          content: "Hair Pinns is at our Bangor location in the Sutherland Shire, with free parking out the front and a 5–10 minute drive from most Shire suburbs. You can book online 24/7 at hairpinns.com/booking, call 0468 093 991, or chat with Isabella (our booking assistant) from any page on the site. First visit? Mention you found us through the blog — I like to know what brought you in."
+          content: "Hair Pinns is at our Bangor location in the Sutherland Shire, with free parking out the front and a 5–10 minute drive from most Shire suburbs. You can book online 24/7 at hairpinns.com/booking, call 0416 037 663, or chat with Isabella (our booking assistant) from any page on the site. First visit? Mention you found us through the blog — I like to know what brought you in."
         }
       ],
       quickAnswer: {
@@ -3346,7 +3346,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Bangor Locals",
-          content: "The most-booked services for Bangor clients: Straight Up Smoothing (8–12 weeks of frizz-free hair through Sydney humidity) and full head foils for blonde maintenance. We also do kids cuts and formal styling — big for Bangor families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Bangor clients: Straight Up Smoothing (8–12 weeks of frizz-free hair through Sydney humidity) and full head foils for blonde maintenance. We also do kids cuts and formal styling — big for Bangor families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "About the Salon and the Team in Bangor",
@@ -3359,7 +3359,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon in Bangor?",
-        answer: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire, run by Jena Pinn with 20+ years of local experience. Specialises in colour, Straight Up Smoothing, and cuts. 4.9-star Google rating, free parking, transparent pricing. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns is the hair salon in Bangor in the Sutherland Shire, run by Jena Pinn with 20+ years of local experience. Specialises in colour, Straight Up Smoothing, and cuts. 4.9-star Google rating, free parking, transparent pricing. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns is based in Bangor with free parking out the front",
@@ -3418,7 +3418,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Illawong Locals",
-          content: "The most-booked services for Illawong clients: Straight Up Smoothing (keeps frizz down through Sydney humidity for 8–12 weeks), full head foils for blonde maintenance, and weekend appointments — we know the Illawong commute is tighter on weekdays. We also do kids cuts and formal styling. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Illawong clients: Straight Up Smoothing (keeps frizz down through Sydney humidity for 8–12 weeks), full head foils for blonde maintenance, and weekend appointments — we know the Illawong commute is tighter on weekdays. We also do kids cuts and formal styling. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Real Review from an Illawong Client",
@@ -3431,7 +3431,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Illawong?",
-        answer: "Hair Pinns in Bangor is under 10 minutes from Illawong via Alfords Point Road with free parking out the front. Specialises in colour, Straight Up Smoothing, foils, and weekend appointments. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is under 10 minutes from Illawong via Alfords Point Road with free parking out the front. Specialises in colour, Straight Up Smoothing, foils, and weekend appointments. 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is a short drive from Illawong via Alfords Point Road",
@@ -3490,7 +3490,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Sutherland Locals",
-          content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined) and Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair). We also do colour correction and toner refreshes. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined) and Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair). We also do colour correction and toner refreshes. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Real Review from a Sutherland Client",
@@ -3503,7 +3503,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Sutherland?",
-        answer: "Hair Pinns in Bangor is 10–12 minutes from Sutherland via Old Illawarra Road with free parking out the front. Specialises in full colour packages, Straight Up Smoothing, and colour correction. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is 10–12 minutes from Sutherland via Old Illawarra Road with free parking out the front. Specialises in full colour packages, Straight Up Smoothing, and colour correction. 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 10–12 minutes from Sutherland via Old Illawarra Road",
@@ -3562,7 +3562,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Cronulla Locals",
-          content: "The most-booked services for Cronulla clients: full head foils (blonde beach hair is the brief), beach-recovery smoothing treatments (Straight Up Smoothing keeps frizz down for 8–12 weeks despite salt water), and deep-conditioning or bond-repair treatments for sun-damaged ends. We stock heat protection and sulfate-free ranges that beach-hair clients especially benefit from. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Cronulla clients: full head foils (blonde beach hair is the brief), beach-recovery smoothing treatments (Straight Up Smoothing keeps frizz down for 8–12 weeks despite salt water), and deep-conditioning or bond-repair treatments for sun-damaged ends. We stock heat protection and sulfate-free ranges that beach-hair clients especially benefit from. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Real Review from a Cronulla Client",
@@ -3575,7 +3575,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Cronulla?",
-        answer: "Hair Pinns in Bangor is 15–18 minutes from Cronulla via Kingsway with free parking out the front. Specialises in full head foils, beach-recovery smoothing, and bond-repair for sun-damaged hair. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is 15–18 minutes from Cronulla via Kingsway with free parking out the front. Specialises in full head foils, beach-recovery smoothing, and bond-repair for sun-damaged hair. 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 15–18 minutes from Cronulla via Kingsway",
@@ -3634,7 +3634,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Como Locals",
-          content: "The most-booked services for Como clients: full head foils with toner refreshes, mid-length cut-and-blowdry packages, and Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Como clients: full head foils with toner refreshes, mid-length cut-and-blowdry packages, and Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Real Review from a Como Client",
@@ -3647,7 +3647,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Como?",
-        answer: "Hair Pinns in Bangor is 8–10 minutes from Como via Como Bridge and the Princes Highway with free parking out the front. Specialises in full head foils, mid-length cuts, and Straight Up Smoothing. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is 8–10 minutes from Como via Como Bridge and the Princes Highway with free parking out the front. Specialises in full head foils, mid-length cuts, and Straight Up Smoothing. 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 8–10 minutes from Como via Como Bridge",
@@ -3706,7 +3706,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Miranda Locals",
-          content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Real Review from a Miranda Client",
@@ -3719,7 +3719,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Miranda?",
-        answer: "Hair Pinns in Bangor is 10–12 minutes from Miranda via Kingsway with free parking out the front. Specialises in family appointments, kids cuts, mid-length cuts, and school formal styling. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is 10–12 minutes from Miranda via Kingsway with free parking out the front. Specialises in family appointments, kids cuts, mid-length cuts, and school formal styling. 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 10–12 minutes from Miranda via Kingsway",
@@ -3778,7 +3778,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Engadine Locals",
-          content: "The most-booked services for Engadine clients: family cut appointments, kids cut-and-blowdry bundles, seniors' colour and styling (we do gentle colour suited to mature hair very well), and mid-length cut packages. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Engadine clients: family cut appointments, kids cut-and-blowdry bundles, seniors' colour and styling (we do gentle colour suited to mature hair very well), and mid-length cut packages. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Real Review from an Engadine Client",
@@ -3791,7 +3791,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Engadine?",
-        answer: "Hair Pinns in Bangor is 10–14 minutes from Engadine via the Princes Highway with free parking out the front. Specialises in family appointments, kids cuts, mid-length cuts, and gentle colour for mature hair. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is 10–14 minutes from Engadine via the Princes Highway with free parking out the front. Specialises in family appointments, kids cuts, mid-length cuts, and gentle colour for mature hair. 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 10–14 minutes from Engadine via the Princes Highway",
@@ -4036,7 +4036,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "When to Book",
-          content: "For a formal in October–November, book your hair appointment by early August. Good formal appointment slots fill up 2–3 months out because most schools have formals clustered in the same weeks. If you leave it until September, you'll struggle to get your preferred time. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "For a formal in October–November, book your hair appointment by early August. Good formal appointment slots fill up 2–3 months out because most schools have formals clustered in the same weeks. If you leave it until September, you'll struggle to get your preferred time. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
           heading: "Makeup Timing on Formal Day",

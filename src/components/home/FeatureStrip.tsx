@@ -113,7 +113,7 @@ const FeatureStrip = () => {
                 className="bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-full"
               >
                 <a 
-                  href="tel:+61468093991"
+                  href="tel:+61416037663"
                   onClick={trackPhoneClick}
                   className="flex items-center gap-2"
                 >

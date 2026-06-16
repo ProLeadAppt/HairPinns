@@ -37,7 +37,7 @@ const BookingBanner = () => {
           {/* Right: Quick details */}
           <div className="text-white/90 text-sm space-y-1 md:text-right">
             <p>60 Goorgool Rd, Bangor NSW</p>
-            <p>0468 093 991</p>
+            <p>0416 037 663</p>
             <p>Tue–Sat · Walk-ins welcome</p>
           </div>
         </div>

@@ -170,7 +170,7 @@ const ContactForm = ({
           </Button>
           <p className="text-sm text-muted-foreground">
             Or call us at{" "}
-            <a href="tel:+61468093991" className="text-brand-500 hover:underline font-semibold">
+            <a href="tel:+61416037663" className="text-brand-500 hover:underline font-semibold">
               +61 468 093 991
             </a>
           </p>
@@ -202,7 +202,7 @@ const ContactForm = ({
           </Button>
           <p className="text-sm text-muted-foreground">
             Need immediate help? Call us at{" "}
-            <a href="tel:+61468093991" className="text-brand-500 hover:underline">
+            <a href="tel:+61416037663" className="text-brand-500 hover:underline">
               +61 468 093 991
             </a>
           </p>
@@ -255,7 +255,7 @@ const ContactForm = ({
           <Input 
             id="contact_phone" 
             type="tel" 
-            placeholder="0468 093 991" 
+            placeholder="0416 037 663" 
             value={formData.phone} 
             onChange={e => setFormData({ ...formData, phone: e.target.value })} 
           />
@@ -321,8 +321,8 @@ const ContactForm = ({
 
         <p className="text-xs text-muted-foreground text-center">
           For urgent matters, call us at{" "}
-          <a href="tel:+61468093991" className="text-brand-500 hover:underline font-semibold">
-            0468 093 991
+          <a href="tel:+61416037663" className="text-brand-500 hover:underline font-semibold">
+            0416 037 663
           </a>
         </p>
       </form>
