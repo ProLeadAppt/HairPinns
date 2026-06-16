@@ -371,7 +371,7 @@ export const blogPosts: BlogPost[] = [
     category: "Hair Care",
     date: "March 25, 2025",
     readTime: "6 min read",
-    image: juuce037,
+    image: juuce091,
     author: "Jena Pinn",
     content: {
       introduction: "We all love a good styling session, whether it's a sleek blowout, bouncy curls, or just taming frizz before heading out the door. But if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
@@ -423,7 +423,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "March 21, 2025",
     readTime: "4 min read",
-    image: juuce038,
+    image: juuce050,
     author: "Jena Pinn",
     content: {
       introduction: "An all-natural, permanent hair straightening treatment designed to give you sleek, smooth locks without compromising hair health. Unlike traditional methods that often rely on harsh chemicals, Straight Up utilizes organic compounds, including citric acid, to achieve long lasting straightness safely.",
@@ -494,15 +494,15 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "whats-a-straight-up-smoothing-treatment",
-    title: "What's a Straight Up Smoothing Treatment??",
-    excerpt: "Smooth, Soft, Frizz-Free - Meet QIQI Vega, Your Hair's New Best Friend. The answer to all your frizz problems.",
+    title: "What's a Straight Up Smoothing Treatment?",
+    excerpt: "Smooth, soft, frizz-free hair with QIQI Vega — a hair-friendly smoothing system with no harsh chemicals, no downtime, and results that last up to 6 months.",
     category: "Treatments",
     date: "September 02, 2025",
     readTime: "5 min read",
-    image: juuce037,
+    image: juuce050,
     author: "Jena Pinn",
     content: {
-      introduction: "If you've ever wished your hair would just behave, no frizz, no puff, no morning wrestling match. Our Straight Up Smoothing Treatment might be the answer you've been dreaming of. And here's the secret: we use QIQI Vega, one of the most advanced and hair-friendly smoothing systems in the world.",
+      introduction: "If you've ever wished your hair would just behave — no frizz, no puff, no morning wrestling match — our Straight Up Smoothing Treatment might be the answer you've been dreaming of. We use QIQI Vega, one of the most advanced and hair-friendly smoothing systems in the world. QIQI Vega is the ideal entry-level smoothing for frizz-prone hair in Sydney's climate — gentle enough for colour-treated and blonde hair, but powerful enough to keep you sleek through humidity for months.",
       sections: [
         {
           heading: "This Isn't Your Typical Keratin Treatment",
@@ -514,7 +514,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Perfect For:",
-          content: "• Hair that frizzes at the first hint of moisture\n• Waves or curls that you'd like to soften without losing all shape\n• Thick, hard-to-manage hair that takes forever to style\n• Anyone wanting a sleek, polished look without damage"
+          content: "• Hair that frizzes at the first hint of moisture\n• Waves or curls that you'd like to soften without losing all shape\n• Thick, hard-to-manage hair that takes forever to style\n• Anyone wanting a sleek, polished look without damage\n• Frizzy-haired clients new to smoothing treatments who want to start gentle before considering keratin"
         },
         {
           heading: "The QIQI Vega Difference",
@@ -523,6 +523,20 @@ export const blogPosts: BlogPost[] = [
         {
           heading: "Your Hair Will Thank You 🙏🏼",
           content: "Imagine waking up and your hair already looks good.\n\nImagine walking out into humid weather and still having a great hair day.\n\nImagine cutting your styling time in half while your hair stays smooth, shiny, and soft for months.\n\nThat's what QIQI Vega delivers.\n\n💜 Book your Straight Up Smoothing Treatment today and let your hair do less fighting and more shining.\n\n📲 Send me a message with any further questions or to secure your appointment"
+        }
+      ],
+      faqSection: [
+        {
+          question: "Keratin vs. smoothing: which lasts longer?",
+          answer: "Smoothing services (like our Straight Up treatment using QIQI Vega) are the right starting point for most frizz-prone clients — gentler, colour-safe, no formaldehyde, no downtime, and results you can wash and style the same day. They last 4–8 weeks depending on hair type. Keratin treatments penetrate deeper and last 2–4 months, but they're a bigger commitment and harsher on colour-treated or fine hair. We almost always recommend starting with smoothing: if your hair still fights the humidity halfway through, that's the signal to graduate to keratin."
+        },
+        {
+          question: "What's the best treatment for frizz in humid Sydney weather?",
+          answer: "For Sydney's changeable climate — coastal humidity, summer storms, and salt air — keratin is the more durable option. It restructures the cuticle, locks out humidity, and holds for 2–4 months even through the worst of a Sydney summer. Smoothing (like our Straight Up QIQI Vega treatment) is the gentler choice for first-timers, blonde or colour-treated hair, and clients who don't want the longer appointment or aftercare rules. Most of our Sutherland Shire clients start with smoothing, then switch to keratin for the worst humidity months (December to March)."
+        },
+        {
+          question: "How long does the Straight Up smoothing treatment take, and is there any downtime?",
+          answer: "The appointment runs about 2–3 hours depending on hair length and thickness. There's zero downtime — you can wash, tie up, and style your hair the same day. No three-day waiting period like old-school keratin. Aftercare is simple: sulphate-free shampoo, less frequent washing, and a quality heat protectant. With the right routine, results last up to 6 months on most hair types."
         }
       ]
     },
@@ -872,7 +886,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "June 12, 2025",
     readTime: "7 min read",
-    image: juuce038,
+    image: juuce064,
     author: "Jena Pinn",
     content: {
       introduction: "If you're looking for smoother, frizz-free hair that lasts, you've probably come across both QIQI Vega and nanoplasty treatments. While they may seem similar at first glance, these treatments are very different in how they work, how they affect your hair, and the kind of results you can expect. At Hair Pinns, we offer QIQI Vega treatments because we believe in giving our clients reliable, safe, and long-lasting results without compromising the health of your hair.",
@@ -1167,7 +1181,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "May 18, 2025",
     readTime: "5 min read",
-    image: juuce037,
+    image: juuce118,
     author: "Jena Pinn",
     content: {
       introduction: "If you love your hair tools, whether it's your trusty blow dryer, straightener, or curling wand, then a heat protectant needs to be your hair's best friend. High heat can cause irreversible damage to the hair shaft, leading to dryness, split ends, and breakage. The good news? Using the right heat protection products can make all the difference.",
@@ -1580,87 +1594,6 @@ export const blogPosts: BlogPost[] = [
     }
   },
   {
-    slug: "balayage-sutherland-shire",
-    title: "Balayage in Sutherland Shire: What It Costs and How Long It Lasts",
-    excerpt: "Balayage in the Sutherland Shire — what you actually pay, how often you need touch-ups, and why blonde balayage needs different maintenance than brunette.",
-    category: "Colour",
-    date: "April 19, 2026",
-    readTime: "7 min read",
-    image: juuce091,
-    author: "Jena Pinn",
-    content: {
-      introduction: "Balayage is the most-requested colour service at Hair Pinns. It also generates the most questions: how long does it actually last? How much should I pay in the Sutherland Shire? Is it the same as foils? Here's everything you need to know before you book.",
-      sections: [
-        {
-          heading: "Balayage vs Foils: They're Not the Same Thing",
-          content: "Balayage is a freehand painting technique — colour is swept onto the hair with a brush, sealed in film or left open. The result is soft, grown-out-looking highlights that are lighter at the mid-lengths and ends. Foils use precise sectioning and aluminium foils to isolate strands for maximum lift — brighter, sharper, more graphic. Balayage gives a natural sun-kissed look. Foils give defined highlights. Many of our Sutherland Shire clients do a mix — foils at the root area, balayage through the ends — for the best of both."
-        },
-        {
-          heading: "Balayage Prices in the Sutherland Shire",
-          content: "Sutherland Shire balayage prices range from $220 for a partial balayage on short hair at a budget salon, to $500+ for a full balayage with toner and cut on long hair at a premium salon. At Hair Pinns our foil packages (which often include balayage technique for natural blending) start around $280 for quarter-head and go up to $450+ for full head including cut and blowdry. Exact pricing depends on length, thickness, and starting colour."
-        },
-        {
-          heading: "How Long Balayage Actually Lasts",
-          content: "This is where balayage shines. Because there's no sharp line where the colour starts, balayage grows out beautifully — you can go 3–4 months between full services, with a toner refresh every 6–8 weeks. Compare that to traditional foils, which show regrowth at 6–8 weeks and need touching up. If you want low-maintenance colour that still looks salon-fresh, balayage is the best-value service in the salon."
-        },
-        {
-          heading: "Blonde vs Brunette Balayage Maintenance",
-          content: "Blonde balayage needs purple or violet toning shampoo used 1–2 times a week to stop brassiness. Our go-to for blonde clients is the Aromaganic range — gentle but effective. Brunette balayage holds up with less maintenance, but benefits from a blue shampoo every few weeks to neutralise warm tones. For both, sulfate-free shampoo is non-negotiable — sulfates strip colour faster than anything else."
-        },
-        {
-          heading: "Aftercare: What Actually Preserves Balayage",
-          content: "Beyond the right shampoo, the two biggest factors: (1) Heat styling below 180°C with a good heat protectant. Juuce Heat Shield or Pure Precious Ends work well. (2) A weekly bond-repair mask if you've had multiple sessions or your hair is fine — Juuce Bond Repair is a favourite. Colour-treated hair that's well-cared-for looks better at 3 months than untreated hair does after 2."
-        },
-        {
-          heading: "How to Book Balayage at Hair Pinns",
-          content: "For a first balayage, book a foil package that fits your hair length — we'll use balayage technique within the package to give the softest blend. For clients already in regular colour maintenance, book a touch-up and mention you want balayage placement specifically. Unsure? Book a free consultation first — bring photos of the look you want and we'll match it to the right service."
-        }
-      ],
-      productModule: {
-        title: "Keep balayage looking fresh",
-        products: [
-          { name: "Aromaganic Blonde Range", link: "https://hairpinns.com/collections/aromaganic", description: "Violet toning for bright, brass-free blonde" },
-          { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Weekly mask to keep colour-treated hair strong" },
-          { name: "Pure Precious Ends", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Leave-in seal for dry balayage ends" }
-        ]
-      },
-      quickAnswer: {
-        question: "How much does balayage cost in the Sutherland Shire?",
-        answer: "Balayage in the Sutherland Shire ranges from $220 (budget, short hair) to $500+ (premium, long hair with toner and cut). At Hair Pinns in Bangor, our foil packages start at $280 and go up to $450+ for full-head services including cut and blowdry. Balayage lasts 3–4 months between full services."
-      },
-      keyTakeaways: [
-        "Balayage is hand-painted, foils are sectioned — both can be combined",
-        "Sutherland Shire pricing: $220 (short) to $500+ (long, full service)",
-        "Full balayage lasts 3–4 months between services, toner every 6–8 weeks",
-        "Blonde needs purple toning shampoo weekly, brunette needs blue occasionally",
-        "Sulfate-free shampoo is the #1 rule for colour longevity"
-      ],
-      faqSection: [
-        {
-          question: "How long does balayage last compared to traditional foils?",
-          answer: "Balayage is designed to grow out beautifully because there's no sharp line where the colour starts. You can go 3–4 months between full services with just a toner refresh every 6–8 weeks. Traditional foils show regrowth at 6–8 weeks and need touching up much sooner. If you want low-maintenance colour that still looks salon-fresh, balayage is the best value."
-        },
-        {
-          question: "What's the difference between balayage and foils, and which should I get?",
-          answer: "Balayage is freehand painting — soft, grown-out-looking highlights lighter at the ends. Foils use sectioning and aluminium to isolate strands for sharper, brighter, more defined highlights. Many clients do a mix for the best result: foils at the roots for definition, balayage through the ends for a natural blend. It depends whether you want a natural sun-kissed look or graphic highlights."
-        },
-        {
-          question: "How do I keep blonde balayage from turning brassy?",
-          answer: "Use a purple or violet toning shampoo 1–2 times a week — the Aromaganic range is gentle but effective. The key is matching the shampoo to your colour: blonde needs purple to stop brassiness, brunette benefits from blue shampoo every few weeks to neutralise warm tones. But the most important rule is always sulfate-free — sulfates strip colour faster than anything else."
-        },
-        {
-          question: "How much should I expect to pay for balayage in the Sutherland Shire?",
-          answer: "Balayage ranges from $220 for a partial on short hair at budget salons, to $500+ for full balayage with toner and cut at premium salons. At Hair Pinns our foil packages start around $280 for quarter-head and go up to $450+ for full head including cut and blowdry. Exact price depends on your hair length, thickness, and starting colour."
-        }
-      ]
-    },
-    cta: {
-      type: "service",
-      servicePath: "/services/foil-packages/full-head-foils-package",
-      customText: "See our foil and balayage packages"
-    }
-  },
-  {
     slug: "hair-extensions-bangor",
     title: "Hair Extensions in Bangor: Salon-Grade vs DIY Clip-Ins",
     excerpt: "Thinking about hair extensions in Bangor? Here's an honest breakdown of tape-ins, clip-ins, and ponytail extensions — what works, what doesn't, and where to shop.",
@@ -1751,7 +1684,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "April 19, 2026",
     readTime: "8 min read",
-    image: juuce037,
+    image: aromaganicShampoo,
     author: "Jena Pinn",
     content: {
       introduction: "Juuce and Pure are two of the most popular professional brands we stock at Hair Pinns. Clients ask me every week which one they should buy. The honest answer: it depends on what your hair actually needs. Here's the side-by-side breakdown — no sponsorship, no brand loyalty, just what [I've seen in ten years of recommending these to clients](/blog/meet-jena-15-years-sutherland-shire).",
@@ -1903,7 +1836,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "April 19, 2026",
     readTime: "7 min read",
-    image: juuce038,
+    image: aromaganicShampoo,
     author: "Jena Pinn",
     content: {
       introduction: "'Sulfate-free' is the most misused label in shampoo marketing. A lot of products claim it while still containing harsh cleansing agents. Here's what sulfate-free actually means, why it matters for certain hair types, and the real sulfate-free options [I stock at Hair Pinns](/blog/meet-jena-15-years-sutherland-shire) and recommend to clients across Australia.",
@@ -2382,7 +2315,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "What I Specialise In",
-          content: "Three areas make up most of my chair time: colour (balayage, foils, and [colour correction](/blog/the-7-colouring-mistakes-i-see-every-week) — especially [fixing at-home box dye](/blog/how-to-recover-hair-from-box-dye-damage) or other salons' over-processing); smoothing treatments (Straight Up Smoothing and QIQI Vega — I'm certified in both); and cut-and-finish work on mid-length to long hair. I'm not a trendy-every-six-months salon. Clients come to me because they want their hair to look good in three months, not just walking out the door today."
+          content: "Three areas make up most of my chair time: colour (full head foils and [colour correction](/blog/the-7-colouring-mistakes-i-see-every-week) — especially [fixing at-home box dye](/blog/how-to-recover-hair-from-box-dye-damage) or other salons' over-processing); smoothing treatments (Straight Up Smoothing and QIQI Vega — I'm certified in both); and cut-and-finish work on mid-length to long hair. I'm not a trendy-every-six-months salon. Clients come to me because they want their hair to look good in three months, not just walking out the door today."
         },
         {
           heading: "Why I Opened Hair Pinns",
@@ -2403,12 +2336,12 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "Who is Jena Pinn?",
-        answer: "Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with 20+ years of hairdressing experience across the Sutherland Shire. She specialises in colour (including box-dye recovery and balayage), Straight Up Smoothing and QIQI Vega treatments, and cut-and-finish work on mid-length to long hair."
+        answer: "Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with 20+ years of hairdressing experience across the Sutherland Shire. She specialises in colour (especially box-dye recovery and full head foils), Straight Up Smoothing and QIQI Vega treatments, and cut-and-finish work on mid-length to long hair."
       },
       keyTakeaways: [
         "20+ years in Sutherland Shire salons before opening Hair Pinns",
         "Certified in Juuce, QIQI Vega, and Straight Up Smoothing systems",
-        "Specialises in colour correction, balayage, smoothing, and cuts",
+        "Specialises in colour correction, foils, smoothing, and cuts",
         "Built Hair Pinns around stylist continuity, honest pricing, and long-term hair health",
         "Most clients have been with the salon for 3+ years"
       ]
@@ -2641,11 +2574,11 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Bangor Locals",
-          content: "The most-booked services for Bangor clients: Straight Up Smoothing (8–12 weeks of frizz-free hair through Sydney humidity), full head foils for blonde maintenance, and balayage for low-maintenance colour. We also do kids cuts and formal styling — big for Bangor families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Bangor clients: Straight Up Smoothing (8–12 weeks of frizz-free hair through Sydney humidity) and full head foils for blonde maintenance. We also do kids cuts and formal styling — big for Bangor families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
         },
         {
           heading: "About the Salon and the Team in Bangor",
-          content: "Hair Pinns was founded by Jena Pinn after 20+ years working in salons across the Sutherland Shire. The salon is small by design — we'd rather take fewer clients and know them well than rotate high volumes. Jena is certified in Juuce, QIQI Vega, and Straight Up Smoothing systems, and specialises in colour (especially colour correction and balayage) and smoothing. Our team has been with the salon for years — when you book, you know who you're getting. Read more about Jena's background in Meet Jena: 15+ Years Behind the Chair in Sutherland Shire."
+          content: "Hair Pinns was founded by Jena Pinn after 20+ years working in salons across the Sutherland Shire. The salon is small by design — we'd rather take fewer clients and know them well than rotate high volumes. Jena is certified in Juuce, QIQI Vega, and Straight Up Smoothing systems, and specialises in colour (especially colour correction and full head foils) and smoothing. Our team has been with the salon for years — when you book, you know who you're getting. Read more about Jena's background in Meet Jena: 15+ Years Behind the Chair in Sutherland Shire."
         },
         {
           heading: "What to Expect on Your First Visit",
@@ -2658,7 +2591,7 @@ export const blogPosts: BlogPost[] = [
       },
       keyTakeaways: [
         "Hair Pinns is based in Bangor with free parking out the front",
-        "Most-booked services: Straight Up Smoothing, full head foils, balayage",
+        "Most-booked services: Straight Up Smoothing, full head foils",
         "Owner-operated by Jena Pinn with 20+ years of Sutherland Shire experience",
         "Honest pricing and stylist continuity are the core values",
         "Most Bangor clients have been with the salon 3+ years"
@@ -2741,7 +2674,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Sutherland Locals",
-          content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined), Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair), and professional blowdries for events. We also do colour correction and balayage — Sutherland clients tend to want salon-finish blowdries that last. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined) and Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair). We also do colour correction and toner refreshes. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
         },
         {
           heading: "Real Review from a Sutherland Client",
@@ -2791,7 +2724,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Cronulla Locals",
-          content: "The most-booked services for Cronulla clients: blonde balayage and full head foils (blonde beach hair is the brief), beach-recovery smoothing treatments (Straight Up Smoothing keeps frizz down for 8–12 weeks despite salt water), and deep-conditioning or bond-repair treatments for sun-damaged ends. We stock heat protection and sulfate-free ranges that beach-hair clients especially benefit from. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Cronulla clients: full head foils (blonde beach hair is the brief), beach-recovery smoothing treatments (Straight Up Smoothing keeps frizz down for 8–12 weeks despite salt water), and deep-conditioning or bond-repair treatments for sun-damaged ends. We stock heat protection and sulfate-free ranges that beach-hair clients especially benefit from. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
         },
         {
           heading: "Real Review from a Cronulla Client",
@@ -2804,7 +2737,7 @@ export const blogPosts: BlogPost[] = [
       ],
       quickAnswer: {
         question: "What's the best hair salon near Cronulla?",
-        answer: "Hair Pinns in Bangor is 15–18 minutes from Cronulla via Kingsway with free parking out the front. Specialises in blonde balayage, foils, beach-recovery smoothing, and bond-repair for sun-damaged hair. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is 15–18 minutes from Cronulla via Kingsway with free parking out the front. Specialises in full head foils, beach-recovery smoothing, and bond-repair for sun-damaged hair. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 15–18 minutes from Cronulla via Kingsway",
@@ -2841,25 +2774,25 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Services Popular with Como Locals",
-          content: "The most-booked services for Como clients: low-maintenance balayage (grows out gracefully over 3–4 months), mid-length cut-and-blowdry packages, and toner refreshes. We also do Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
+          content: "The most-booked services for Como clients: full head foils with toner refreshes, mid-length cut-and-blowdry packages, and Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call 0468 093 991."
         },
         {
           heading: "Real Review from a Como Client",
-          content: "'Jena gave me a balayage that genuinely looks good at 12 weeks — I've never had that from another salon. Honest pricing, same stylist every time, and the short drive from Como is a non-issue.' — S. B., Como. (Composite of client feedback — real quote to be added before publish.) This captures the Como-specific appeal: low-maintenance results that justify the drive."
+          content: "'Jena gave me full head foils that genuinely look good at 12 weeks — I've never had that from another salon. Honest pricing, same stylist every time, and the short drive from Como is a non-issue.' — S. B., Como. (Composite of client feedback — real quote to be added before publish.) This captures the Como-specific appeal: long-lasting results that justify the drive."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair. Most of our Como clients first came for a balayage or a smoothing treatment while keeping their existing salon for everything else. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          content: "Fair. Most of our Como clients first came for a full head foils or a smoothing treatment while keeping their existing salon for everything else. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
         }
       ],
       quickAnswer: {
         question: "What's the best hair salon near Como?",
-        answer: "Hair Pinns in Bangor is 8–10 minutes from Como via Como Bridge and the Princes Highway with free parking out the front. Specialises in low-maintenance balayage, mid-length cuts, and Straight Up Smoothing. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
+        answer: "Hair Pinns in Bangor is 8–10 minutes from Como via Como Bridge and the Princes Highway with free parking out the front. Specialises in full head foils, mid-length cuts, and Straight Up Smoothing. 4.9-star Google rating. Book online 24/7 or call 0468 093 991."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 8–10 minutes from Como via Como Bridge",
         "Free parking out the front — no meter hunting",
-        "Popular Como bookings: low-maintenance balayage, mid-length cut-and-blowdry, smoothing",
+        "Popular Como bookings: full head foils, mid-length cut-and-blowdry, smoothing",
         "Stylist continuity and transparent pricing drive switch-over decisions",
         "Try one service first — no membership required"
       ]
@@ -2876,7 +2809,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: juuce037,
+    image: juuce091,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Miranda and searching for a hair salon, you have no shortage of options in and around Westfield. But many Miranda locals — especially families with school-age kids — make the drive to Bangor for Hair Pinns because we do family appointments well. Here's what matters when you're picking a salon close to Miranda, and honest answers about whether we're the right fit.",
@@ -3232,7 +3165,7 @@ export const blogPosts: BlogPost[] = [
     category: "Seasonal",
     date: "April 19, 2026",
     readTime: "7 min read",
-    image: juuce038,
+    image: juuce050,
     author: "Jena Pinn",
     content: {
       introduction: "Sydney humidity turns smooth hair into frizz within minutes of stepping outside, and a lot of the advice online doesn't work — or works for 20 minutes then falls apart. After 20+ years doing hair in the Sutherland Shire I've tested every approach, and here's the version that actually holds up through a real Sydney summer or spring day. Causes, at-home fixes, and when it's time to consider a salon treatment.",
@@ -3565,69 +3498,6 @@ export const blogPosts: BlogPost[] = [
       type: "product",
       productPath: "https://hairpinns.com/collections/juuce-botanicals",
       customText: "Shop bond repair and hydration"
-    }
-  },
-  {
-    slug: "balayage-vs-foils-which-suits-which-hair",
-    title: "Balayage vs Foils: Which Lightening Technique Suits Your Hair?",
-    excerpt: "Balayage and foils are not interchangeable. They lighten differently, grow out differently, and cost different amounts. After two decades of doing both, here's how to pick the right one before you book.",
-    category: "Colour",
-    date: "May 10, 2026",
-    readTime: "6 min read",
-    image: juuce091,
-    author: "Jena Pinn",
-    content: {
-      introduction: "Balayage and foils are not interchangeable, but most clients book one when they actually wanted the other. They lighten hair differently, sit differently as they grow out, and cost different amounts. Pick wrong and you'll be uncomfortable with the result for months until your next appointment. Here's how to pick the right one before you book.",
-      sections: [
-        {
-          heading: "What each technique actually does",
-          content: "Foils involve sectioning the hair, painting lightener onto specific pieces, and wrapping each section in foil. The foil traps heat, processes the lightener faster, and lifts hair to a more uniform brightness. Result is brighter, more defined contrast, with lifting all the way to the root. Balayage is freehand painting on the surface of the hair without foils. The lightener oxidises in open air, more slowly, so it lifts less aggressively. Result is softer, sun-kissed, with most of the lightness through the mid-lengths and ends and barely any at the roots."
-        },
-        {
-          heading: "The grow-out, which nobody talks about enough",
-          content: "Foils grow out with a visible line of demarcation between your natural root and the lightened pieces. This is the regrowth most people complain about at week eight, where the roots are darker than the lightened sections. Balayage grows out with no visible line because the original placement avoided the roots. You can stretch balayage to four to six months between appointments. You will get six to eight weeks out of foils before the regrowth gets noticeable."
-        },
-        {
-          heading: "Maintenance and total cost",
-          content: "Foils at Hair Pinns: $267 for full head including cut and blowdry, every six to eight weeks. That's roughly $1,600 to $2,100 per year if you stay consistent. Balayage at Hair Pinns: around $300 to $400 depending on length, every four to five months. That's roughly $900 to $1,200 per year. Balayage is cheaper annually because the maintenance is less frequent. The catch is that the initial result is softer, so if you want bright bright blonde, you need foils."
-        },
-        {
-          heading: "Which suits which hair type",
-          content: "Foils work best on: hair you want significantly lighter than your natural base, fine hair that needs visual depth and contrast, anyone who wants a polished maintained look, and clients who can commit to six-to-eight-week appointments. Balayage works best on: hair you want naturally sun-kissed rather than dramatically lifted, thicker hair that can carry surface placement well, busy clients who can't commit to frequent salon visits, and anyone who hates the look of grown-out roots. Curly and wavy hair takes balayage beautifully because the wave pattern shows off the placement."
-        },
-        {
-          heading: "Can you combine them?",
-          content: "Yes, and this is what I do most often for clients who want the brightness of foils with the grow-out of balayage. We foil the front face-framing pieces and the top crown for maximum brightness where it shows, then balayage through the back and underneath for soft dimension. Maintenance is every ten to twelve weeks instead of six to eight. Cost lands between the two. About 60 percent of my colour clients end up on this hybrid because it solves both problems at once."
-        },
-        {
-          heading: "What I recommend for first-timers",
-          content: "If you've never had your hair lightened before, start with balayage. It's gentler, the grow-out is forgiving if you decide you don't love it, and the maintenance commitment is lower while you figure out whether you actually want to be a blonde. Once you've done balayage once or twice and know you want to be brighter, then move to foils or the hybrid combination. Going straight to full-head foils on virgin hair is a big jump and a big maintenance commitment. Ease in."
-        }
-      ],
-      productModule: {
-        title: "Aftercare for balayage and foils",
-        products: [
-          { name: "Pure Forever Blonde Shampoo & Conditioner", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Tones brassy tones between appointments. Use twice a week." },
-          { name: "Juuce Bond Repair Shampoo & Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Rebuilds bonds broken by lightening. Daily routine." },
-          { name: "Juuce Solar Enz", link: "https://hairpinns.com/collections/juuce-botanicals", description: "UV-protection leave-in. Stops sun from fading your blonde to brass." }
-        ]
-      },
-      quickAnswer: {
-        question: "Should I get balayage or foils?",
-        answer: "Pick foils if you want significantly lighter hair with brightness all the way to the root, can commit to six-to-eight-week appointments, and want defined contrast. Pick balayage if you want softer sun-kissed lightness, want four to five months between appointments, and hate visible regrowth lines. A hybrid of foils through the front and crown plus balayage through the back gives the brightness of foils with the grow-out of balayage and is what I recommend for most clients."
-      },
-      keyTakeaways: [
-        "Foils lift hair brighter all over including roots, with a visible regrowth line in six to eight weeks",
-        "Balayage softens lightness through mid-lengths and ends, with no visible regrowth for four to six months",
-        "Foils cost more annually ($1,600 to $2,100) but give defined contrast and clean root coverage",
-        "Balayage costs less annually ($900 to $1,200) but result is softer, not as bright",
-        "Hybrid foils + balayage is what most of my clients end up loving, every ten to twelve weeks"
-      ]
-    },
-    cta: {
-      type: "service",
-      servicePath: "/services/foil-packages/full-head-foils-package",
-      customText: "See foils and balayage packages"
     }
   },
   {

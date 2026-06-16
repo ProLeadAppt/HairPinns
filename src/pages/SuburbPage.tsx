@@ -135,7 +135,7 @@ const SuburbPage = () => {
     {
       icon: Palette,
       title: "Colour & Blonding",
-      description: "From balayage to full colour transformations, we create dimensional, natural-looking colour that suits Sydney's climate.",
+      description: "From full head foils to colour corrections, we create dimensional, natural-looking colour that suits Sydney's climate.",
       link: "/services#foil-packages",
       detailLink: "/services/foil-packages/full-head-foils-package"
     },

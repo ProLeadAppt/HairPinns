@@ -74,18 +74,10 @@ export const glossary: GlossaryTerm[] = [
 
   // --- Colour ---
   {
-    id: "balayage",
-    term: "Balayage",
-    definition:
-      "A freehand colouring technique that paints highlights onto the surface of the hair for a soft, sun-kissed effect with no harsh regrowth line. Grows out beautifully over 3–4 months between full services.",
-    link: { label: "Balayage in the Sutherland Shire", href: "/blog/balayage-sutherland-shire" },
-    category: "colour",
-  },
-  {
     id: "foils",
     term: "Foils (highlights)",
     definition:
-      "A colouring technique that uses aluminium foil to isolate strands of hair while colour processes, giving brighter, more defined lightening than balayage. Better for high-contrast looks and faster colour lift.",
+      "A colouring technique that uses aluminium foil to isolate strands of hair while colour processes, giving brighter, more defined lightening with sharper contrast. Better for high-contrast looks and faster colour lift than freehand painting techniques.",
     link: { label: "Foil packages at Hair Pinns", href: "/services/foil-packages/full-head-foils-package" },
     category: "colour",
   },
@@ -258,7 +250,7 @@ export const glossary: GlossaryTerm[] = [
     id: "babylights",
     term: "Babylights",
     definition:
-      "Very fine, delicately-placed foils that mimic the soft natural highlights you'd see on a child's hair. More time-consuming than standard foils, but the effect is subtle, dimensional, and grows out beautifully — a step softer than balayage.",
+      "Very fine, delicately-placed foils that mimic the soft natural highlights you'd see on a child's hair. More time-consuming than standard foils, but the effect is subtle, dimensional, and grows out beautifully.",
     category: "colour",
   },
   {

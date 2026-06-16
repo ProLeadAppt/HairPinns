@@ -22,7 +22,7 @@ interface OptimizedImageProps {
  * @example
  * <OptimizedImage
  *   src="/images/hero"
- *   alt="Balayage on brunette hair at Hair Pinns, Bangor"
+ *   alt="Full head foils on brunette hair at Hair Pinns, Bangor"
  *   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
  *   priority={true}
  * />

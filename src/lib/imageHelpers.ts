@@ -8,7 +8,7 @@
 export const generateAltText = {
   /**
    * Service/Style on hair type
-   * @example "Balayage on brunette hair at Hair Pinns, Bangor"
+   * @example "Full head foils on brunette hair at Hair Pinns, Bangor"
    */
   service: (service: string, hairType: string) =>
     `${service} on ${hairType} hair at Hair Pinns, Bangor`,
@@ -31,7 +31,7 @@ export const generateAltText = {
 
   /**
    * Before/After
-   * @example "Before and after balayage transformation at Hair Pinns, Bangor"
+   * @example "Before and after full head foils transformation at Hair Pinns, Bangor"
    */
   transformation: (service: string) =>
     `Before and after ${service} transformation at Hair Pinns, Bangor`,

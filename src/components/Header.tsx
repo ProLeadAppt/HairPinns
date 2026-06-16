@@ -7,6 +7,8 @@ import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingCon
 import {
   isStocktakeActive,
   QIQI_DISCOUNT_ACTIVE,
+  SHAMPOO_CONDITIONER_OFFER_ACTIVE,
+  SHAMPOO_CONDITIONER_HEADER_MESSAGE,
   STOCKTAKE_HEADER_MESSAGE,
   DEFAULT_HEADER_MESSAGE,
   PROMO_COLLECTIONS,
@@ -18,6 +20,7 @@ import hairPinnsLogo from "@/assets/images/hair-pinns-logo-full.webp";
 
 function getPromoMessage(): string {
   if (isStocktakeActive()) return STOCKTAKE_HEADER_MESSAGE;
+  if (SHAMPOO_CONDITIONER_OFFER_ACTIVE) return SHAMPOO_CONDITIONER_HEADER_MESSAGE;
   if (QIQI_DISCOUNT_ACTIVE) return "20% off QIQI range, shop now";
   return DEFAULT_HEADER_MESSAGE;
 }
@@ -26,7 +29,16 @@ const Header = () => {
   const { openCart, itemCount } = useCart();
   const [showPromo, setShowPromo] = useState(true);
   const promoMessage = getPromoMessage();
-  const promoLink = isStocktakeActive() ? "/collections" : QIQI_DISCOUNT_ACTIVE ? `/collections/${PROMO_COLLECTIONS.qiqi}` : "/collections";
+  // Highest-priority offer drives the link target
+  const promoLink = isStocktakeActive()
+    ? "/collections"
+    : SHAMPOO_CONDITIONER_OFFER_ACTIVE
+      ? "/collections"
+      : QIQI_DISCOUNT_ACTIVE
+        ? `/collections/${PROMO_COLLECTIONS.qiqi}`
+        : "/collections";
+  // Highlight the headline offer with a subtle emoji
+  const isHeadlineOffer = SHAMPOO_CONDITIONER_OFFER_ACTIVE && !isStocktakeActive();
 
   return <>
       {/* Top Promo Strip — link and close button are siblings so we don't ship invalid nested-interactive HTML. */}
@@ -35,8 +47,11 @@ const Header = () => {
           <Link
             to={promoLink}
             className="block py-2 px-4 pr-12 text-center text-sm hover:bg-brand-600 transition-colors duration-fast"
+            aria-label="Shop the buy any shampoo, get 50% off conditioner offer"
           >
-            <p className="font-medium">{isStocktakeActive() ? "✨ " : ""}{promoMessage}</p>
+            <p className="font-medium">
+              {(isStocktakeActive() || isHeadlineOffer) ? "✨ " : ""}{promoMessage}
+            </p>
           </Link>
           <button
             type="button"

@@ -32,7 +32,7 @@ const jenaPersonSchema = {
     "name": "Hair Pinns",
     "url": "https://hairpinns.com"
   },
-  "knowsAbout": ["Hair Coloring", "Hair Blonding", "Balayage", "Hair Smoothing", "Keratin Treatments", "Hair Cutting", "Hair Styling"],
+  "knowsAbout": ["Hair Coloring", "Hair Blonding", "Full Head Foils", "Hair Smoothing", "Keratin Treatments", "Hair Cutting", "Hair Styling"],
   "areaServed": {
     "@type": "City",
     "name": "Sutherland Shire",
@@ -235,7 +235,7 @@ const About = () => {
                 { src: salonInterior, alt: "Hair Pinns salon interior, Bangor" },
                 { src: beforeAfter, alt: "Before and after smoothing treatment" },
                 { src: stylingResult, alt: "Formal styling — curls and braids" },
-                { src: blondeResult, alt: "Blonde balayage result" },
+                { src: blondeResult, alt: "Blonde foil highlights result" },
                 { src: curlsResult, alt: "Bouncy curls styling" },
                 { src: bobResult, alt: "Layered bob blowout" },
                 { src: highlightResult, alt: "Dimensional highlights" },

@@ -81,7 +81,6 @@ export const topics: Topic[] = [
       'how-much-full-head-foils-cost-sydney',
       'can-you-use-purple-shampoo-every-day',
       'best-shampoo-colour-treated-hair-australia',
-      'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',
       'smooth-seal-strengthen-pure-precious-ends',
       'sutherland-shire-hair-salon-guide',
@@ -90,7 +89,6 @@ export const topics: Topic[] = [
       'how-to-recover-hair-from-box-dye-damage',
       'best-hair-salon-bangor',
       'salon-foils-vs-box-dye-highlights-at-home',
-      'balayage-vs-foils-which-suits-which-hair',
       'permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss',
     ],
     collectionSlugs: ['aromaganic', 'blonde-bombshells'],
@@ -99,7 +97,7 @@ export const topics: Topic[] = [
       'colouring-packages/mid-length-colour-package',
       'colouring-packages/short-hair-colour-package',
     ],
-    keywords: ['colour', 'color', 'dye', 'balayage', 'aromaganic', 'permanent', 'semi-permanent', 'demi-permanent', 'gloss'],
+    keywords: ['colour', 'color', 'dye', 'foils', 'aromaganic', 'permanent', 'semi-permanent', 'demi-permanent', 'gloss'],
   },
   {
     slug: 'foils',
@@ -107,10 +105,8 @@ export const topics: Topic[] = [
     hub: { kind: 'service', path: 'foil-packages/full-head-foils-package', label: 'Foil Packages' },
     blogSlugs: [
       'how-much-full-head-foils-cost-sydney',
-      'balayage-sutherland-shire',
       'the-7-colouring-mistakes-i-see-every-week',
       'salon-foils-vs-box-dye-highlights-at-home',
-      'balayage-vs-foils-which-suits-which-hair',
     ],
     collectionSlugs: ['blonde-bombshells'],
     serviceSlugs: [
@@ -118,7 +114,7 @@ export const topics: Topic[] = [
       'foil-packages/half-head-foils-cut-blowdry',
       'foil-packages/quarter-head-foils-cut-blowdry',
     ],
-    keywords: ['foils', 'highlights', 'blonde', 'balayage', 'babylights', 'box dye'],
+    keywords: ['foils', 'highlights', 'blonde', 'babylights', 'box dye'],
   },
   {
     slug: 'cuts',
@@ -281,7 +277,6 @@ export const topics: Topic[] = [
       'can-you-use-purple-shampoo-every-day',
       'how-much-full-head-foils-cost-sydney',
       'best-shampoo-colour-treated-hair-australia',
-      'balayage-sutherland-shire',
       'what-is-lamellar-vitality-technology',
       'smooth-seal-strengthen-pure-precious-ends',
       'the-7-colouring-mistakes-i-see-every-week',

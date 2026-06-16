@@ -51,7 +51,7 @@ const Glossary = () => {
   const webPageSchema = generateWebPageSchema({
     name: "Hair Care Glossary | Hair Pinns",
     description:
-      "Plain-English hair-care glossary — keratin treatments, balayage, bond repair, toner, sulphate-free, lamellar and more. Defined by Jena at Hair Pinns Bangor.",
+      "Plain-English hair-care glossary — keratin treatments, full head foils, bond repair, toner, sulphate-free, lamellar and more. Defined by Jena at Hair Pinns Bangor.",
     url: "https://hairpinns.com/glossary",
     speakable: { cssSelector: [".glossary-term-definition"] },
   });
@@ -60,7 +60,7 @@ const Glossary = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <SEOHead
         title="Hair Care Glossary | Plain-English Hair Terms | Hair Pinns"
-        description="Hair-care terms explained simply by a 20-year salon owner. Keratin, balayage, bond repair, toner, sulphate-free, lamellar treatment and more — what they actually mean and when to use them."
+        description="Hair-care terms explained simply by a 20-year salon owner. Keratin, full head foils, bond repair, toner, sulphate-free, lamellar treatment and more — what they actually mean and when to use them."
         canonical="https://hairpinns.com/glossary"
         ogImage={getOGImage("default")}
         ogType="website"

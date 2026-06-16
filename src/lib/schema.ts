@@ -221,8 +221,8 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Balayage',
-              description: 'Hand-painted highlights for natural, sun-kissed dimension',
+              name: 'Full Head Foils',
+              description: 'Precision foiling for bright, defined highlights from root to ends',
             },
           },
           {
@@ -580,7 +580,7 @@ export const generateJenaPersonSchema = () => ({
   name: 'Jena Pinn',
   jobTitle: 'Hair Stylist, Colourist & Founder of Hair Pinns',
   description:
-    'Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with over 20 years of hairdressing experience across the Sutherland Shire. Established Hair Pinns in December 2009. Specialises in QIQI smoothing treatments, fast foiling, colour correction, balayage, and Straight Up Smoothing — known for an honest, warm, family-friendly approach.',
+    'Jena Pinn is the founder and head stylist of Hair Pinns in Bangor, with over 20 years of hairdressing experience across the Sutherland Shire. Established Hair Pinns in December 2009. Specialises in QIQI smoothing treatments, fast foiling, colour correction, and Straight Up Smoothing — known for an honest, warm, family-friendly approach.',
   url: `${BASE_URL}/blog/meet-jena-15-years-sutherland-shire`,
   image: LOGO_URL,
   worksFor: {
@@ -591,7 +591,7 @@ export const generateJenaPersonSchema = () => ({
   },
   knowsAbout: [
     'Hair colouring',
-    'Balayage',
+    'Full Head Foils',
     'Foil highlights',
     'Colour correction',
     'Box dye recovery',
@@ -609,7 +609,7 @@ export const generateJenaPersonSchema = () => ({
       name: 'Sutherland Shire, Sydney, Australia',
     },
     skills:
-      'Colour correction, balayage, foils, smoothing treatments, cut and finish, bond repair',
+      'Colour correction, foils, smoothing treatments, cut and finish, bond repair',
   },
   sameAs: [
     'https://www.instagram.com/hair.pinns/',
@@ -700,7 +700,7 @@ export const generateKnowledgeGraphSchema = () => ({
   knowsAbout: [
     'Hair Coloring',
     'Hair Blonding',
-    'Balayage',
+    'Full Head Foils',
     'Hair Smoothing Treatments',
     'Keratin Treatments',
     'Hair Cutting',
@@ -1297,7 +1297,7 @@ export const generateAuthorSchema = () => ({
   },
   knowsAbout: [
     'Hair Colouring',
-    'Balayage',
+    'Full Head Foils',
     'Keratin Smoothing Treatments',
     'Hair Care Products',
     'Foiling and Highlights',
