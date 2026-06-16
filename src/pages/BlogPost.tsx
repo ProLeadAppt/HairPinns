@@ -44,6 +44,13 @@ const BlogPost = () => {
     return <Navigate to="/404" replace />;
   }
 
+  // Archived posts are 301'd to the live destination (collections page or homepage).
+  // Doing it client-side via <Navigate> keeps the URL change observable and avoids
+  // letting search engines index dead/seasonal content like the Christmas gift pack post.
+  if (post.archived && post.redirectTo) {
+    return <Navigate to={post.redirectTo} replace />;
+  }
+
   const wordCount = 
     post.content.introduction.split(/\s+/).filter((word) => word.length > 0).length +
     post.content.sections.reduce((total, section) => 

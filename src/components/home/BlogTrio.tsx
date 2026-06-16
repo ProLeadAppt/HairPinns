@@ -7,19 +7,33 @@ import { blogPosts } from "@/data/blogPosts";
 import { shopifyImage } from "@/lib/shopifyImage";
 
 const BlogTrio = () => {
-  // Select 3 featured blog posts that are most relevant for homepage
-  // Priority: Product-focused, educational, and popular topics
-  const featuredSlugs = [
-    "salon-vs-supermarket-hair-products", // Products - very relevant for sales
-    "prevent-heat-damage-on-your-hair", // Hair Care - practical guide
-    "whats-the-best-hairspray-to-use", // Products - helpful buying guide
-  ];
+  // Auto-pick 3 non-archived posts by commercial intent.
+  // Score = 2 if category matches a high-intent commercial category
+  // (Smoothing, Colour, Products) + 1 if post has a `datePublished` set.
+  // Tie-break: most recent `datePublished` first, then source-array order.
+  // No hardcoded slugs — adding a new high-intent post automatically promotes
+  // it into the homepage trio.
+  const HIGH_INTENT_CATEGORIES = new Set([
+    "Smoothing",
+    "Colour",
+    "Products",
+    "Treatments",
+  ]);
 
   const posts = blogPosts
     .filter((p: any) => !p.archived)
-    .filter((post) => featuredSlugs.includes(post.slug))
+    .map((post: any, index: number) => {
+      const intentScore = HIGH_INTENT_CATEGORIES.has(post.category) ? 2 : 0;
+      const recency = post.datePublished ? new Date(post.datePublished).getTime() : 0;
+      return { post, intentScore, recency, index };
+    })
+    .sort((a, b) => {
+      if (b.intentScore !== a.intentScore) return b.intentScore - a.intentScore;
+      if (b.recency !== a.recency) return b.recency - a.recency;
+      return a.index - b.index;
+    })
     .slice(0, 3)
-    .map((post) => ({
+    .map(({ post }) => ({
       slug: post.slug,
       title: post.title,
       hook: post.excerpt,

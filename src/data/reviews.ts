@@ -140,5 +140,8 @@ export const productReviews: Record<string, Review[]> = {
 };
 
 export const averageRating = 4.9;
-export const totalReviews = 53;
+// Hair Pinns Google Business Profile review count (used in AggregateRating
+// schema across LocalBusiness, Service, Product, and Store schemas — keep in
+// sync with the number surfaced to humans on the homepage FAQ and Reviews page).
+export const totalReviews = 762;
 export const googleReviewsUrl = "https://search.google.com/local/writereview?placeid=ChIJs9xoWku_EmsRo264WfJGtg4";

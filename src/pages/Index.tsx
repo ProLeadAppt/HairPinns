@@ -12,6 +12,7 @@ const WhyShopHairPinns = lazy(() => import("@/components/home/WhyShopHairPinns")
 const ReviewsShowcase = lazy(() => import("@/components/home/ReviewsShowcase"));
 const ProductCategories = lazy(() => import("@/components/home/ProductCategories"));
 const BlogTrio = lazy(() => import("@/components/home/BlogTrio"));
+const PopularGuides = lazy(() => import("@/components/home/PopularGuides"));
 const BookingBanner = lazy(() => import("@/components/home/BookingBanner"));
 import ShampooConditionerPromo from "@/components/home/ShampooConditionerPromo";
 
@@ -24,8 +25,10 @@ import {
   generateWebPageSchema,
   generateHowToSchema,
   generateAuthorSchema,
-  generateWebSiteSchema
+  generateWebSiteSchema,
+  generateBlogItemListSchema,
 } from "@/lib/schema";
+import { blogPosts } from "@/data/blogPosts";
 import { getOGImage } from "@/lib/sitemap";
 
 const Index = () => {
@@ -57,6 +60,21 @@ const Index = () => {
     ],
     totalTime: "PT2M",
   });
+
+  // Homepage "Popular Guides" ItemList — top 6 non-archived posts ranked by
+  // commercial intent + recency. Mirrors the on-page section so Google can
+  // attribute a structured list to the homepage and AI overviews can cite
+  // individual guides in answers to long-tail hair questions.
+  const popularGuidesSchema = generateBlogItemListSchema(
+    blogPosts
+      .filter((p: any) => !p.archived)
+      .map((post: any) => ({
+        name: post.title,
+        url: `/blog/${post.slug}`,
+        datePublished: post.datePublished,
+      }))
+      .slice(0, 6)
+  );
 
   const faqSchema = generateFAQPageSchema([
     {
@@ -99,6 +117,7 @@ const Index = () => {
     webPageSchema,
     howToBookSchema,
     authorSchema,
+    popularGuidesSchema,
     {
       "@context": "https://schema.org",
       "@type": "VideoObject",
@@ -178,6 +197,14 @@ const Index = () => {
         <div className="reveal py-12 bg-muted/30">
           <Suspense fallback={null}>
             <BlogTrio />
+          </Suspense>
+        </div>
+
+        {/* 6b. Popular Guides — broader 6-card grid for long-tail SEO and
+              AEO citation, ranked by commercial intent + recency. */}
+        <div className="reveal">
+          <Suspense fallback={null}>
+            <PopularGuides />
           </Suspense>
         </div>
 

@@ -169,7 +169,7 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.9',
-    reviewCount: '53',
+    reviewCount: '762',
     bestRating: '5',
     worstRating: '1',
   },
@@ -307,6 +307,15 @@ export const generateServiceSchema = (service: ServiceData) => ({
     name: area,
   })),
   url: service.url,
+  // AggregateRating: 4.9/762 from Hair Pinns' Google Business Profile
+  // (single salon-wide rating, applies to all services rendered from this provider).
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '762',
+    bestRating: '5',
+    worstRating: '1',
+  },
 });
 
 export const generateProductSchema = (product: ProductData) => {
@@ -405,6 +414,15 @@ export const generateWebPageSchema = (data: {
 export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
+  // Context: every breadcrumb lives inside the Hair Pinns site. Adding
+  // isPartOf keeps the breadcrumb node valid for AI overviews that walk
+  // up the tree and want to confirm the parent website.
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${BASE_URL}/#website`,
+    name: 'Hair Pinns',
+    url: BASE_URL,
+  },
   itemListElement: items.map((item, index) => ({
     '@type': 'ListItem',
     position: index + 1,
@@ -668,7 +686,7 @@ export const generateKnowledgeGraphSchema = () => ({
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.9',
-    reviewCount: '53',
+    reviewCount: '762',
     bestRating: '5',
     worstRating: '1',
   },
@@ -741,7 +759,7 @@ export const generateStoreSchema = () => ({
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.9',
-    reviewCount: '53',
+    reviewCount: '762',
     bestRating: '5',
     worstRating: '1',
   },
@@ -960,7 +978,7 @@ export const generateEnhancedServiceSchema = (service: EnhancedServiceData) => {
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '4.9',
-        reviewCount: '53',
+        reviewCount: '762',
         bestRating: '5',
         worstRating: '1',
       },
@@ -1191,8 +1209,17 @@ export const generateServiceItemListSchema = (items: Array<{
       ...(item.description && { description: item.description }),
       provider: {
         '@type': 'HairSalon',
+        '@id': `${BASE_URL}/#hairsalon`,
         name: 'Hair Pinns',
         url: BASE_URL,
+      },
+      // Provider-level rating carries through to every list item.
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '762',
+        bestRating: '5',
+        worstRating: '1',
       },
       ...(item.price && {
         offers: {
@@ -1211,7 +1238,9 @@ export const generateServiceItemListSchema = (items: Array<{
  * Adds serviceArea and geo radius for better location-based queries
  */
 /**
- * Place schema for local/geo pages - optimizes for "near me" and map pack
+ * Place schema for local/geo pages - optimizes for "near me" and map pack.
+ * Suburb pages re-state the salon-wide rating + offer catalog so the
+ * provider's Google review score and price range appear in geo-targeted SERPs.
  */
 export const generatePlaceSchema = (data: {
   name: string;
@@ -1238,6 +1267,57 @@ export const generatePlaceSchema = (data: {
     name: 'Sutherland Shire',
     addressRegion: 'NSW',
     addressCountry: 'AU',
+  },
+  // Provider-level rating (Google Business Profile) — same salon, every suburb.
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '762',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Hair Pinns Service Catalogue',
+    itemListElement: [
+      {
+        '@type': 'OfferCatalog',
+        name: 'Smoothing Treatments',
+        itemListElement: [
+          { '@type': 'Offer', name: 'Straight Up Smoothing (Mid-Length)', price: '324', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Straight Up Smoothing (Long/Thick)', price: '349', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Straight Up Smoothing (Teens)', price: '234', priceCurrency: 'AUD' },
+        ],
+      },
+      {
+        '@type': 'OfferCatalog',
+        name: 'Foil Packages',
+        itemListElement: [
+          { '@type': 'Offer', name: 'Quarter Head Foils, cut & blowdry', price: '202', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Half Head Foils, cut & blowdry', price: '237', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Full Head Foils Package', price: '267', priceCurrency: 'AUD' },
+        ],
+      },
+      {
+        '@type': 'OfferCatalog',
+        name: 'Colouring Packages',
+        itemListElement: [
+          { '@type': 'Offer', name: 'Short Hair Colour Package', price: '184', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Mid-Length Colour Package', price: '178', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Long Hair Colour Package', price: '205', priceCurrency: 'AUD' },
+        ],
+      },
+      {
+        '@type': 'OfferCatalog',
+        name: 'Cut & Blowdry Packages',
+        itemListElement: [
+          { '@type': 'Offer', name: 'Kids cut & blowdry bundle', price: '54', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Short wash/cut/blow-dry', price: '79', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Mid-length wash/cut/blow-dry', price: '89', priceCurrency: 'AUD' },
+          { '@type': 'Offer', name: 'Long Hair wash/cut/blow-dry', price: '99', priceCurrency: 'AUD' },
+        ],
+      },
+    ],
   },
 });
 
@@ -1273,7 +1353,7 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
-      reviewCount: '53',
+      reviewCount: '762',
       bestRating: '5',
       worstRating: '1',
     },

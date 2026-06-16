@@ -87,7 +87,7 @@ const HeroHome = () => {
             Jena Pinn. Bangor salon. Shipping nationwide.
           </p>
 
-          <div>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Button
               asChild
               size="lg"
@@ -95,7 +95,32 @@ const HeroHome = () => {
               className="text-white font-semibold"
               style={{ borderRadius: '999px', padding: '0.875rem 2.5rem' }}
             >
-              <Link to="/collections">Shop Now</Link>
+              <Link to="/collections">Shop Products</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="text-white border-white hover:bg-white hover:text-heading font-semibold"
+              style={{ borderRadius: '999px', padding: '0.875rem 2.5rem' }}
+            >
+              <a
+                href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Book a salon appointment at Hair Pinns (opens in new tab)"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                    (window as any).dataLayer.push({
+                      event: 'booking_click',
+                      location: 'hero_home',
+                      cta: 'book_now',
+                    });
+                  }
+                }}
+              >
+                Book Salon
+              </a>
             </Button>
           </div>
         </div>
