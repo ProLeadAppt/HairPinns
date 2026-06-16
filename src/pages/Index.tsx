@@ -13,6 +13,7 @@ const ReviewsShowcase = lazy(() => import("@/components/home/ReviewsShowcase"));
 const ProductCategories = lazy(() => import("@/components/home/ProductCategories"));
 const BlogTrio = lazy(() => import("@/components/home/BlogTrio"));
 const BookingBanner = lazy(() => import("@/components/home/BookingBanner"));
+import ShampooConditionerPromo from "@/components/home/ShampooConditionerPromo";
 
 import {
   generateOrganizationSchema,
@@ -132,6 +133,9 @@ const Index = () => {
       <main id="main-content" tabIndex={-1} ref={mainRef as any}>
         {/* 1. Hero */}
         <HeroHome />
+
+        {/* 1b. Shampoo + 50% off Conditioner — sitewide headline offer */}
+        <ShampooConditionerPromo />
 
         {/* 2. Best Sellers */}
         <div className="reveal">
