@@ -43,20 +43,20 @@ const Header = () => {
   return <>
       {/* Top Promo Strip — link and close button are siblings so we don't ship invalid nested-interactive HTML. */}
       {showPromo && (
-        <div className="bg-brand-500 text-primary-foreground relative">
+        <div className="bg-brand-600 text-white relative">
           <Link
             to={promoLink}
-            className="block py-2 px-4 pr-12 text-center text-sm hover:bg-brand-600 transition-colors duration-fast"
+            className="block py-2.5 px-4 pr-12 text-center text-sm sm:text-base font-semibold text-white hover:bg-brand-500 transition-colors duration-fast"
             aria-label="Shop the buy any shampoo, get 50% off conditioner offer"
           >
-            <p className="font-medium">
+            <p className="text-white">
               {(isStocktakeActive() || isHeadlineOffer) ? "✨ " : ""}{promoMessage}
             </p>
           </Link>
           <button
             type="button"
             onClick={() => setShowPromo(false)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded hover:bg-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded text-white hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Dismiss promo banner"
           >
             <X className="w-4 h-4" />
