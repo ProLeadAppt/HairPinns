@@ -2,9 +2,11 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
+import HeroSocialProofBar from "@/components/home/HeroSocialProofBar";
 import TrustStrip from "@/components/home/TrustStrip";
 import JennaPromise from "@/components/home/JennaPromise";
 import EditorialPullQuote from "@/components/home/EditorialPullQuote";
+import StickyBookBar from "@/components/home/StickyBookBar";
 import SectionNumber from "@/components/design-system/SectionNumber";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import useScrollReveal from "@/hooks/useScrollReveal";
@@ -157,7 +159,11 @@ const Index = () => {
         {/* 1. Hero — "the welcome" */}
         <HeroHome />
 
-        {/* 1a. Trust strip — marquee of brand promises (free shipping, in-chair since 2009, etc). */}
+        {/* 1a. Above-the-fold social proof strip — solves the audit gap of
+            having no trust signal in the first screen for first-time visitors. */}
+        <HeroSocialProofBar />
+
+        {/* 1b. Trust strip — marquee of brand promises (free shipping, in-chair since 2009, etc). */}
         <TrustStrip />
 
         {/* 1b. Shampoo + 50% off Conditioner — sitewide headline offer */}
@@ -233,6 +239,7 @@ const Index = () => {
         </Suspense>
       </main>
       <Footer />
+      <StickyBookBar />
     </div>
   );
 };
