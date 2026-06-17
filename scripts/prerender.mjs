@@ -25,7 +25,7 @@
  * Usage:
  *   node scripts/prerender.mjs [--dry-run] [--concurrency=4] [--timeout=20000]
  */
-import { spawn } from 'child_process';
+import { spawn, execSync } from 'child_process';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, copyFileSync } from 'fs';
 import { resolve, dirname, join, relative } from 'path';
 import { fileURLToPath } from 'url';
@@ -47,7 +47,7 @@ const DRY_RUN = argMap['dry-run'] === 'true';
 const CONCURRENCY = parseInt(argMap.concurrency || '4', 10);
 const TIMEOUT_MS = parseInt(argMap.timeout || '20000', 10);
 const PORT = parseInt(argMap.port || '4180', 10);
-const PREVIEW_URL = `http://localhost:${PORT}`;
+const PREVIEW_URL = `http://127.0.0.1:${PORT}`;
 
 // ----- third-party pollution to strip from rendered HTML -----
 // Mirrors the regexes from the old rollup-plugin's postProcess. Each one
@@ -153,38 +153,76 @@ async function main() {
 
   console.log(`[prerender] ${routes.length} routes, concurrency=${CONCURRENCY}, timeout=${TIMEOUT_MS}ms, dryRun=${DRY_RUN}`);
 
-  // Start preview server
-  const preview = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], {
+  // Start preview server. Bind to an explicit loopback host and strict port so
+  // the address is deterministic regardless of any PORT/HOST env Netlify sets.
+  const PREVIEW_HOST = '127.0.0.1';
+  const preview = spawn('npx', ['vite', 'preview', '--host', PREVIEW_HOST, '--port', String(PORT), '--strictPort'], {
     cwd: root,
     stdio: ['ignore', 'pipe', 'pipe'],
   });
-  // Wait for "Local:" line
-  await new Promise((resolveReady, reject) => {
-    let buf = '';
-    const onData = (chunk) => {
-      buf += chunk.toString();
-      if (buf.includes(`localhost:${PORT}`) || buf.includes(`http://localhost:${PORT}`)) {
-        preview.stdout.removeListener('data', onData);
-        preview.stderr.removeListener('data', onData);
-        resolveReady();
-      }
-    };
-    preview.stdout.on('data', onData);
-    preview.stderr.on('data', onData);
-    preview.on('error', reject);
-    setTimeout(() => reject(new Error('Preview server start timeout')), 15000);
-  }).catch((err) => {
-    console.error('[prerender] Failed to start preview server:', err.message);
+
+  // Capture all output for diagnostics, and watch for an early exit (e.g. port
+  // in use, missing dist) so we fail fast with a useful message.
+  let previewOutput = '';
+  let previewExited = null;
+  preview.stdout.on('data', (c) => { previewOutput += c.toString(); });
+  preview.stderr.on('data', (c) => { previewOutput += c.toString(); });
+  preview.on('exit', (code, signal) => { previewExited = { code, signal }; });
+  preview.on('error', (err) => { previewExited = { error: err.message }; });
+
+  // Readiness: poll the HTTP endpoint until it actually answers. This is far
+  // more reliable than scraping the startup banner from stdout, which varies
+  // between Vite versions and can be buffered/colorised in CI.
+  const START_TIMEOUT_MS = 60000;
+  const startDeadline = Date.now() + START_TIMEOUT_MS;
+  let ready = false;
+  while (Date.now() < startDeadline) {
+    if (previewExited) {
+      console.error(`[prerender] Preview server exited before becoming ready:`, JSON.stringify(previewExited));
+      if (previewOutput.trim()) console.error(previewOutput.slice(0, 2000));
+      process.exit(1);
+    }
+    try {
+      const res = await fetch(`${PREVIEW_URL}/`, { method: 'GET' });
+      if (res.status >= 200 && res.status < 500) { ready = true; break; }
+    } catch {
+      // Server not accepting connections yet — keep polling.
+    }
+    await new Promise((r) => setTimeout(r, 300));
+  }
+  if (!ready) {
+    console.error(`[prerender] Failed to start preview server: not reachable at ${PREVIEW_URL} within ${START_TIMEOUT_MS}ms`);
+    if (previewOutput.trim()) console.error(previewOutput.slice(0, 2000));
     preview.kill();
     process.exit(1);
-  });
+  }
+  console.log(`[prerender] Preview server ready at ${PREVIEW_URL}`);
 
   // Lazy import puppeteer (large dep)
   const puppeteer = (await import('puppeteer')).default;
-  const browser = await puppeteer.launch({
+  const launchOpts = {
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-  });
+  };
+  let browser;
+  try {
+    browser = await puppeteer.launch(launchOpts);
+  } catch (err) {
+    // Chrome may be absent from the build cache: Netlify restores node_modules
+    // from cache without re-running puppeteer's postinstall download, leaving
+    // ~/.cache/puppeteer empty. Install the expected browser, then retry once.
+    console.warn(`[prerender] Chrome not available (${err.message}). Installing browser…`);
+    try {
+      execSync('npx --yes puppeteer browsers install chrome', { cwd: root, stdio: 'inherit' });
+      browser = await puppeteer.launch(launchOpts);
+    } catch (installErr) {
+      // Still no usable browser. Don't fail the build — the SPA shell is valid
+      // for JS-capable crawlers. Skip prerendering and exit cleanly.
+      console.warn(`[prerender] Skipping prerender — Chrome unavailable: ${installErr.message}`);
+      preview.kill();
+      return;
+    }
+  }
 
   const results = [];
   let processed = 0;

@@ -14,7 +14,7 @@
     "refresh-reviews": "node scripts/refresh-google-reviews.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "vite preview --host 0.0.0.0 --port ${PORT:-4173}",
     "convert-images": "node scripts/convert-images-to-webp.js",
     "compress-collections": "node scripts/compress-collection-images.js"
   },
