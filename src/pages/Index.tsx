@@ -4,9 +4,11 @@ import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
 import HeroSocialProofBar from "@/components/home/HeroSocialProofBar";
 import TrustStrip from "@/components/home/TrustStrip";
+import ServiceAreasStrip from "@/components/home/ServiceAreasStrip";
 import JennaPromise from "@/components/home/JennaPromise";
 import EditorialPullQuote from "@/components/home/EditorialPullQuote";
 import StickyBookBar from "@/components/home/StickyBookBar";
+import BeforeAfterShowcase from "@/components/home/BeforeAfterShowcase";
 import SectionNumber from "@/components/design-system/SectionNumber";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import useScrollReveal from "@/hooks/useScrollReveal";
@@ -166,6 +168,11 @@ const Index = () => {
         {/* 1b. Trust strip — marquee of brand promises (free shipping, in-chair since 2009, etc). */}
         <TrustStrip />
 
+        {/* 1c. Service areas — geo trust bar naming the closest suburbs
+              with proper internal links. Closes the "is this for me?" gap
+              for Shire visitors in the first screen of scroll. */}
+        <ServiceAreasStrip />
+
         {/* 1b. Shampoo + 50% off Conditioner — sitewide headline offer */}
         <ShampooConditionerPromo />
 
@@ -207,6 +214,11 @@ const Index = () => {
             <WhyShopHairPinns />
           </Suspense>
         </div>
+
+        {/* 7b. Section number 04 — "in the chair". Drag-to-compare styling
+              reference using real in-salon photos. Closes the "what does
+              the finish look like" gap with honest framing. */}
+        <BeforeAfterShowcase />
 
         {/* 8. Reviews */}
         <div className="reveal">
