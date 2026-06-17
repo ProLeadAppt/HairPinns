@@ -275,6 +275,14 @@ async function main() {
         const t0 = Date.now();
         const url = `${PREVIEW_URL}${route}`;
         const page = await browser.newPage();
+        // Propagate the script-level timeout to every Puppeteer call (goto,
+        // waitForSelector, waitForFunction, etc.). Without this, any Puppeteer
+        // helper that doesn't accept a per-call timeout reverts to its
+        // hardcoded 30s default and can still hard-fail a build on a slow
+        // network-bound page. Verified 2026-06-17: prerender was crashing
+        // at 50/267 with a 30000ms TimeoutError despite TIMEOUT_MS=20000.
+        page.setDefaultTimeout(TIMEOUT_MS);
+        page.setDefaultNavigationTimeout(TIMEOUT_MS);
         // Block any non-essential third-party (analytics, chat widgets) so
         // they don't slow prerender or pollute HTML. CSP-friendly list of
         // domains we serve our own copies of or that are non-essential.

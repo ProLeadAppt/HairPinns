@@ -215,7 +215,7 @@ const Index = () => {
           </Suspense>
         </div>
 
-        {/* 7b. Section number 04 — "in the chair". Drag-to-compare styling
+        {/* 7b. Section number 03 — "in the chair". Drag-to-compare styling
               reference using real in-salon photos. Closes the "what does
               the finish look like" gap with honest framing. */}
         <BeforeAfterShowcase />

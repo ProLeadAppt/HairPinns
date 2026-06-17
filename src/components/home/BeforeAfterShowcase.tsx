@@ -80,7 +80,7 @@ const BeforeAfterShowcase = () => {
 
   return (
     <Section padding="editorial" maxWidth="xl">
-      <SectionNumber index="04" label="in the chair" />
+      <SectionNumber index="03" label="in the chair" />
 
       <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div>
