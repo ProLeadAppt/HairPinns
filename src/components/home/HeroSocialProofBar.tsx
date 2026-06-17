@@ -1,49 +1,37 @@
-import { Star, CalendarCheck, Shield, Truck } from "lucide-react";
+import { Star, Truck, Shield } from "lucide-react";
 
 /**
- * HeroSocialProofBar — the above-the-fold micro-row that sits directly
- * below the hero. Solves the audit gap "first-time visitors get no trust
- * signal before scrolling past the hero".
+ * HeroSocialProofBar — editorial-soft rev.
  *
- * Four compact chips, each is a single icon + 1 short line:
- *   - 762+ five-star reviews (the number is the strongest social proof in
- *     the entire site, so it has to live ABOVE the fold, not in the
- *     TrustStrip marquee that scrolls under the hero)
- *   - "X slots open this week" — Fresha availability pulse
- *   - Free shipping over $150
- *   - 14-day returns
+ * The bar lives under the hero and carries the trust signals so the hero
+ * itself can stay a single beat (one portrait, one headline, one CTA).
  *
- * All four lines are <60 chars so the row never wraps on mobile.
- * White text on the brand-purple band keeps the editorial pattern of
- * gold-soft + white on a dark wash.
+ * Three quiet chips, plenty of air. No competing icon row.
  */
 const HeroSocialProofBar = () => {
   return (
-    <div className="bg-gradient-to-r from-[hsl(var(--brand-500))] to-[hsl(var(--brand-600))] text-white border-y border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 py-3.5 text-xs sm:text-sm">
-          <li className="flex items-center gap-2 justify-center md:justify-start">
-            <Star className="w-4 h-4 text-[hsl(var(--star-color))] fill-[hsl(var(--star-color))]" strokeWidth={1.5} aria-hidden="true" />
-            <span className="font-medium whitespace-nowrap">
-              <span className="font-bold">762+</span>&nbsp;five-star reviews
+    <div className="border-y border-[hsl(var(--gold))]/15 bg-[hsl(var(--background))]/80 backdrop-blur">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 py-5 text-sm text-foreground/80">
+          <li className="flex items-center gap-3 justify-center sm:justify-start">
+            <Star className="h-4 w-4 text-[hsl(var(--gold))] fill-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
+            <span className="whitespace-nowrap">
+              <span className="font-semibold text-foreground">4.9 / 5</span>{" "}
+              <span className="text-foreground/60">from 762+ reviews</span>
             </span>
           </li>
-          <li className="flex items-center gap-2 justify-center md:justify-start">
-            <CalendarCheck className="w-4 h-4 text-[hsl(var(--star-color))]" strokeWidth={1.5} aria-hidden="true" />
-            <span className="font-medium whitespace-nowrap">
-              <span className="font-bold">Book online</span>&nbsp;24/7
+          <li className="flex items-center gap-3 justify-center sm:justify-start">
+            <Truck className="h-4 w-4 text-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
+            <span className="whitespace-nowrap">
+              <span className="font-semibold text-foreground">Free shipping</span>{" "}
+              <span className="text-foreground/60">over $150</span>
             </span>
           </li>
-          <li className="flex items-center gap-2 justify-center md:justify-start">
-            <Truck className="w-4 h-4 text-[hsl(var(--star-color))]" strokeWidth={1.5} aria-hidden="true" />
-            <span className="font-medium whitespace-nowrap">
-              <span className="font-bold">Free shipping</span>&nbsp;over&nbsp;$150
-            </span>
-          </li>
-          <li className="flex items-center gap-2 justify-center md:justify-start">
-            <Shield className="w-4 h-4 text-[hsl(var(--star-color))]" strokeWidth={1.5} aria-hidden="true" />
-            <span className="font-medium whitespace-nowrap">
-              <span className="font-bold">14-day</span>&nbsp;returns, no&nbsp;drama
+          <li className="flex items-center gap-3 justify-center sm:justify-start">
+            <Shield className="h-4 w-4 text-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
+            <span className="whitespace-nowrap">
+              <span className="font-semibold text-foreground">14-day returns</span>{" "}
+              <span className="text-foreground/60">no drama</span>
             </span>
           </li>
         </ul>
