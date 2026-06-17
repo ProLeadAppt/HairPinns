@@ -518,6 +518,38 @@ main#main-content:focus-visible {
   /* On mobile, dial back by one step — 160px stacked sections feel broken. */
   .section-rhythm-lg { padding-top: var(--space-section-md); padding-bottom: var(--space-section-md); }
   .section-rhythm-xl { padding-top: var(--space-section-lg); padding-bottom: var(--space-section-lg); }
+
+  /* Audit round 5 mobile fix: clip horizontal overflow on the editorial
+     rhythm sections so absolutely-positioned badges (e.g. "MEET JENA")
+     can never escape the viewport on the left or right edges. */
+  .section-rhythm-md,
+  .section-rhythm-lg,
+  .section-rhythm-xl { overflow-x: clip; }
+}
+
+@media (max-width: 640px) {
+  /* Audit round 5 mobile fix: the `.section-number` flex layout with
+     `flex: 1` gradient hairlines on either side overflows on phones
+     (~414px). The `white-space: nowrap` label then pushes the lines
+     off-screen and stacks. Drop the hairlines on mobile — the label
+     is enough on its own. */
+  .section-number::before,
+  .section-number::after { display: none; }
+  .section-number { padding: 0 1rem; gap: 0; }
+  .section-number-label {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+  }
+
+  /* Headline + body text-wrap so the long Jena Promise H2 and any
+     long-form prose don't blow past the right edge. */
+  h1, h2, h3, .text-h1-lg, .text-h2-lg, .text-h2, .text-h3 {
+    text-wrap: balance;
+  }
+  p, li, blockquote {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
 }
 
 /* Section-numbered divider. Renders as a thin hairline rule with a small
