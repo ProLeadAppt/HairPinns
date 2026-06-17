@@ -5,7 +5,7 @@ import HeroHome from "@/components/home/HeroHome";
 import HeroSocialProofBar from "@/components/home/HeroSocialProofBar";
 import TrustStrip from "@/components/home/TrustStrip";
 import ServiceAreasStrip from "@/components/home/ServiceAreasStrip";
-import JennaPromise from "@/components/home/JennaPromise";
+import JenaPromise from "@/components/home/JenaPromise";
 import EditorialPullQuote from "@/components/home/EditorialPullQuote";
 import StickyBookBar from "@/components/home/StickyBookBar";
 import BeforeAfterShowcase from "@/components/home/BeforeAfterShowcase";
@@ -176,8 +176,8 @@ const Index = () => {
         {/* 1b. Shampoo + 50% off Conditioner — sitewide headline offer */}
         <ShampooConditionerPromo />
 
-        {/* 2. The Jenna Promise — editorial gold-band section, replaces the old "About" teaser. */}
-        <JennaPromise />
+        {/* 2. The Jena Promise — editorial gold-band section, replaces the old "About" teaser. */}
+        <JenaPromise />
 
         {/* 3. Best Sellers */}
         <div className="reveal">
@@ -227,8 +227,8 @@ const Index = () => {
           </Suspense>
         </div>
 
-        {/* 9. Section number 03 — "read, learn, ask" */}
-        <SectionNumber index="03" label="read, learn, ask" />
+        {/* 9. Section number 04 — "read, learn, ask" */}
+        <SectionNumber index="04" label="read, learn, ask" />
 
         {/* 10. From the Blog */}
         <div className="reveal py-12 bg-muted/30">

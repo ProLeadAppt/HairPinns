@@ -3,16 +3,22 @@ import { Button } from "@/components/ui/button";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { Award, Heart, Sparkles } from "lucide-react";
-import jennaImage from "@/assets/images/jena-headshot.webp";
+import jenaPromisePortraitWebp from "@/assets/images/jena-promise-portrait.webp";
+import jenaPromisePortraitAvif from "@/assets/images/jena-promise-portrait.avif";
 
 /**
- * The Jenna Promise — the editorial "about the owner" section.
+ * The Jena Promise — the editorial "about the owner" section.
  *
- * This is the brand-truth beat: Jena's face + her promise. It lives between
- * the hero and the bestsellers to make the page feel like a magazine spread,
- * not a product catalog. Uses the editorial section rhythm (96–128px
- * vertical padding) and the gold-soft banded background so it visually
- * separates the hero's "video drama" from the product grid below.
+ * This is the brand-truth beat: Jena's portrait + her promise. It lives
+ * between the hero and the bestsellers to make the page feel like a
+ * magazine spread, not a product catalog. Uses the editorial section
+ * rhythm (96–128px vertical padding) and the gold-soft banded background
+ * so it visually separates the hero's "video drama" from the product grid
+ * below.
+ *
+ * NOTE: The section number ("01 — the jena promise") is rendered ONCE by
+ * the `Section` component below. The `SectionHeader` does NOT also render
+ * an eyebrow — that would double-up the number. (Fix 2026-06-17.)
  */
 const promises = [
   {
@@ -32,23 +38,27 @@ const promises = [
   },
 ];
 
-const JennaPromise = () => {
+const JenaPromise = () => {
   return (
     <Section
       variant="gold"
       padding="editorial"
-      number={{ index: "01", label: "the jenna promise" }}
+      number={{ index: "01", label: "the jena promise" }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         {/* Portrait */}
         <div className="lg:col-span-5 reveal">
           <div className="img-hover-zoom rounded-sm overflow-hidden shadow-xl aspect-[4/5] bg-[hsl(var(--accent))]">
             <picture>
+              <source
+                srcSet={jenaPromisePortraitAvif}
+                type="image/avif"
+              />
               <img
-                src={jennaImage}
+                src={jenaPromisePortraitWebp}
                 alt="Jena Pinn, owner and senior stylist at Hair Pinns Bangor"
-                width="1080"
-                height="1350"
+                width="1600"
+                height="1140"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
@@ -64,7 +74,6 @@ const JennaPromise = () => {
         <div className="lg:col-span-7">
           <SectionHeader
             align="left"
-            eyebrow="01 — the jenna promise"
             tagline="Hair care from someone who actually does hair."
             title="I started Hair Pinns in 2009, and I still do the colour."
             subtitle="Three things haven't changed since the first cut. The products I trust, the way I treat a client, and the salon I work from. The site is just a way to ship those products to you."
@@ -120,4 +129,4 @@ const JennaPromise = () => {
   );
 };
 
-export default JennaPromise;
+export default JenaPromise;
