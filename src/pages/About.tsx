@@ -25,7 +25,7 @@ const jenaPersonSchema = {
   "name": "Jena Pinn",
   "jobTitle": "Hair Stylist & Colorist",
   "description": "Founder of Hair Pinns boutique salon in Bangor, NSW. 20+ years experience specializing in Colour & Blonding, Straight Up Smoothing Treatments, and precision Cuts & Styling for the Sutherland Shire.",
-  "image": "https://hairpinns.com/jena-headshot.webp",
+  "image": "https://hairpinns.com/assets/images/jena-headshot.webp",
   "url": "https://hairpinns.com/about",
   "worksFor": {
     "@type": "Organization",
@@ -42,8 +42,8 @@ const jenaPersonSchema = {
 };
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import Breadcrumbs from "@/components/Breadcrumbs";
-// Use salon hero image until Jena provides a headshot
-import jenaHeadshot from "@/assets/images/hero-salon-1280w.webp";
+// Jena's portrait (proper headshot, was the salon interior placeholder)
+import jenaHeadshot from "@/assets/images/jena-headshot.webp";
 
 const About = () => {
   const testimonials = [

@@ -4,7 +4,6 @@ import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { Award, Heart, Sparkles } from "lucide-react";
 import jennaImage from "@/assets/images/jena-headshot.webp";
-import jennaImage1200 from "@/assets/images/jena-headshot-1200.webp";
 
 /**
  * The Jenna Promise — the editorial "about the owner" section.
@@ -45,15 +44,14 @@ const JennaPromise = () => {
         <div className="lg:col-span-5 reveal">
           <div className="img-hover-zoom rounded-sm overflow-hidden shadow-xl aspect-[4/5] bg-[hsl(var(--accent))]">
             <picture>
-              <source srcSet={jennaImage1200} type="image/webp" />
               <img
                 src={jennaImage}
                 alt="Jena Pinn, owner and senior stylist at Hair Pinns Bangor"
+                width="1080"
+                height="1350"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
-                width={800}
-                height={1000}
               />
             </picture>
           </div>

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Star, Sparkles } from "lucide-react";
 import heroBg from "@/assets/images/hero-home-new.webp";
 import jenaPortrait from "@/assets/images/jena-headshot.webp";
-import jenaPortrait1200 from "@/assets/images/jena-headshot-1200.webp";
 
 /**
  * HeroHome — the homepage hero (rev 3).
@@ -220,15 +219,11 @@ const HeroHome = () => {
             >
               <div className="relative overflow-hidden rounded-[3px] aspect-[4/5] bg-[hsl(var(--accent))]">
                 <picture>
-                  <source
-                    srcSet={jenaPortrait1200}
-                    type="image/webp"
-                  />
                   <img
                     src={jenaPortrait}
                     alt="Jena Pinn — owner and senior stylist at Hair Pinns Bangor, pictured in her Bangor salon studio"
-                    width="1200"
-                    height="1200"
+                    width="1080"
+                    height="1350"
                     className="w-full h-full object-cover"
                     loading="eager"
                     decoding="async"

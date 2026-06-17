@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CheckCircle2, Award, MapPin, Instagram, Facebook } from "lucide-react";
-import jenaHeadshot from "@/assets/images/hero-salon-1280w.webp";
+import jenaHeadshot from "@/assets/images/jena-headshot.webp";
 
 /**
  * Author bio block rendered at the end of every blog post.
