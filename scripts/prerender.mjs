@@ -118,8 +118,41 @@ function routeToPath(route) {
 }
 
 // ----- main -----
+// Kill the entire preview-server process group and wait for it to actually
+// exit. `spawn` is created with `detached: true` below, so the child PID is
+// also its own process-group leader — `process.kill(-pid, signal)` reaches
+// every descendant (npx → vite preview → its own worker handles), which a
+// plain `preview.kill()` (SIGTERM to the parent only) does not. On Linux the
+// `npx` shim spawns `vite preview` as a separate child, and without group
+// signalling that child becomes orphaned and keeps the HTTP port bound —
+// Node's event loop stays alive, the build script never returns, and Netlify
+// kills the whole job at 18m. Returns true if the group was reaped, false
+// if it was still alive after the hard-kill fallback (still resolved so the
+// build can proceed to the next step regardless).
+async function stopPreview(preview, { graceMs = 5000 } = {}) {
+  if (!preview || preview.killed || preview.exitCode !== null) return true;
+  const pid = preview.pid;
+  if (!pid) return true;
+  // SIGTERM the whole group first — gives vite a chance to flush.
+  try { process.kill(-pid, 'SIGTERM'); } catch { /* already gone */ }
+  const exited = await Promise.race([
+    new Promise((r) => preview.once('exit', () => r(true))),
+    new Promise((r) => setTimeout(() => r(false), graceMs)),
+  ]);
+  if (exited) return true;
+  // Hard fallback — nothing should still be listening.
+  try { process.kill(-pid, 'SIGKILL'); } catch { /* already gone */ }
+  // Give the kill a moment to actually reap; don't block the build forever.
+  await Promise.race([
+    new Promise((r) => preview.once('exit', () => r(true))),
+    new Promise((r) => setTimeout(r, 1000)),
+  ]);
+  return preview.exitCode !== null;
+}
+
 async function main() {
   const t0Total = Date.now();
+  let preview = null;
 
   // Dry-run path doesn't need a built dist — just enumerate routes.
   if (DRY_RUN) {
@@ -155,10 +188,16 @@ async function main() {
 
   // Start preview server. Bind to an explicit loopback host and strict port so
   // the address is deterministic regardless of any PORT/HOST env Netlify sets.
+  // `detached: true` + `stdio: ignore` (below) puts the child in its own
+  // process group with PID == PGID, so we can kill the whole tree (npx →
+  // vite preview → workers) with a single negative-PID signal at teardown.
+  // Without this, SIGTERM to the npx shim leaves the actual `vite` node
+  // process orphaned and the port stays bound, holding the build open.
   const PREVIEW_HOST = '127.0.0.1';
-  const preview = spawn('npx', ['vite', 'preview', '--host', PREVIEW_HOST, '--port', String(PORT), '--strictPort'], {
+  preview = spawn('npx', ['vite', 'preview', '--host', PREVIEW_HOST, '--port', String(PORT), '--strictPort'], {
     cwd: root,
     stdio: ['ignore', 'pipe', 'pipe'],
+    detached: true,
   });
 
   // Capture all output for diagnostics, and watch for an early exit (e.g. port
@@ -180,6 +219,7 @@ async function main() {
     if (previewExited) {
       console.error(`[prerender] Preview server exited before becoming ready:`, JSON.stringify(previewExited));
       if (previewOutput.trim()) console.error(previewOutput.slice(0, 2000));
+      await stopPreview(preview);
       process.exit(1);
     }
     try {
@@ -193,7 +233,7 @@ async function main() {
   if (!ready) {
     console.error(`[prerender] Failed to start preview server: not reachable at ${PREVIEW_URL} within ${START_TIMEOUT_MS}ms`);
     if (previewOutput.trim()) console.error(previewOutput.slice(0, 2000));
-    preview.kill();
+    await stopPreview(preview);
     process.exit(1);
   }
   console.log(`[prerender] Preview server ready at ${PREVIEW_URL}`);
@@ -219,7 +259,7 @@ async function main() {
       // Still no usable browser. Don't fail the build — the SPA shell is valid
       // for JS-capable crawlers. Skip prerendering and exit cleanly.
       console.warn(`[prerender] Skipping prerender — Chrome unavailable: ${installErr.message}`);
-      preview.kill();
+      await stopPreview(preview);
       return;
     }
   }
@@ -296,7 +336,7 @@ async function main() {
   );
 
   await browser.close();
-  preview.kill();
+  await stopPreview(preview);
 
   // Write report
   const report = {
@@ -328,7 +368,19 @@ async function main() {
   // is the right place to enforce coverage gates.
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error('[prerender] Fatal:', err);
+  // Reap the preview server even on unexpected error paths so the build
+  // process exits cleanly. Without this, an unhandled throw here would
+  // skip the teardown and trigger the same 18m Netlify timeout.
+  const { execSync } = await import('child_process');
+  try { execSync('pkill -f "vite preview" || true', { stdio: 'ignore' }); } catch {}
   process.exit(1);
 });
+
+// Belt-and-braces: when Node's event loop drains, exit. This should be a
+// no-op (the await stopPreview calls above release the loop), but if anything
+// else (a stray setTimeout, a misbehaving native binding) ever sneaks in,
+// `process.exit(0)` is a final guarantee that the build script returns control
+// to `npm run build` and the Netlify job finishes inside its time limit.
+process.on('exit', () => { try { execSync('pkill -f "vite preview" || true', { stdio: 'ignore' }); } catch {} });
