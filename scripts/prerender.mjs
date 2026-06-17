@@ -310,6 +310,46 @@ async function main() {
           // Wait for the prerender-ready marker that SEOHead injects once
           // all async data (Shopify, blog content, etc.) has resolved.
           await page.waitForSelector('#prerender-ready-marker', { timeout: TIMEOUT_MS });
+          // SEOHead is ready; now we need to flush React.lazy() chunks
+          // and trigger IntersectionObserver-based reveals before
+          // capturing the HTML. Index.tsx wraps BestSellers,
+          // ProductCategories, WhyShopHairPinns, BlogTrio and
+          // PopularGuides in <Suspense>. Without scrolling, the lazy
+          // chunks fire but the .reveal wrappers stay empty (their
+          // contents are gated by useScrollReveal's IntersectionObserver
+          // — which only fires when the element enters the viewport).
+          //
+          // Two-step fix (2026-06-17):
+          //   1. Wait for the network to settle (all dynamic chunks +
+          //      Shopify + blog fetches complete).
+          //   2. Scroll the viewport to the bottom of the page to
+          //      trigger every IntersectionObserver, then back to top.
+          //      Each .reveal element gets its `.reveal.visible` class
+          //      so the inner content paints into the prerendered HTML.
+          try {
+            // 8s cap — Shopify/blog fetches can hold the network busy.
+            // 8s is long enough for the dynamic chunks + initial data,
+            // short enough to keep the build under 6min.
+            await page.waitForNetworkIdle({ idleTime: 800, timeout: 8000 });
+          } catch {
+            // Network may not reach idle within TIMEOUT_MS on slow
+            // Shopify/blog fetches; the scroll-and-wait fallback below
+            // still gives lazy chunks a chance to mount.
+          }
+          await page.evaluate(async () => {
+            const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+            const total = document.documentElement.scrollHeight;
+            const step = Math.max(window.innerHeight * 0.8, 400);
+            for (let y = 0; y <= total; y += step) {
+              window.scrollTo(0, y);
+              await sleep(80);
+            }
+            window.scrollTo(0, 0);
+            await sleep(200);
+          });
+          // Final settle window so any post-scroll fetches (lazy images,
+          // analytics we don't block) finish writing to the DOM.
+          await new Promise((r) => setTimeout(r, 600));
           const rawHtml = await page.content();
           const cleanedHtml = postProcessHtml(rawHtml);
           // Sanity checks: must have <h1>, <title>, meta description, JSON-LD

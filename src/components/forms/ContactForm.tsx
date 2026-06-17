@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
 import { pixelTracking } from "@/lib/pixelTracking";
 import { z } from "zod";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 interface ContactFormProps {
   formName?: string;
   title?: string;
@@ -170,9 +171,9 @@ const ContactForm = ({
           </Button>
           <p className="text-sm text-muted-foreground">
             Or call us at{" "}
-            <a href="tel:+61416037663" className="text-brand-500 hover:underline font-semibold">
-              +61 468 093 991
-            </a>
+                        <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline font-semibold">
+                          {BUSINESS_NAP.phone.display}
+                        </a>
           </p>
         </div>
       </div>;
@@ -202,9 +203,9 @@ const ContactForm = ({
           </Button>
           <p className="text-sm text-muted-foreground">
             Need immediate help? Call us at{" "}
-            <a href="tel:+61416037663" className="text-brand-500 hover:underline">
-              +61 468 093 991
-            </a>
+                        <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline">
+                          {BUSINESS_NAP.phone.display}
+                        </a>
           </p>
         </div>
       </div>;
@@ -321,9 +322,9 @@ const ContactForm = ({
 
         <p className="text-xs text-muted-foreground text-center">
           For urgent matters, call us at{" "}
-          <a href="tel:+61416037663" className="text-brand-500 hover:underline font-semibold">
-            0416 037 663
-          </a>
+                    <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline font-semibold">
+                      {BUSINESS_NAP.phone.display}
+                    </a>
         </p>
       </form>
     </div>;

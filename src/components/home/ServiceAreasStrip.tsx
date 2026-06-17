@@ -55,7 +55,7 @@ const ServiceAreasStrip = () => {
             return (
               <li key={slug}>
                 <Link
-                  to={`/areas/${slug}`}
+                  to={`/near/${slug}`}
                   className="group inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-background px-3 py-1.5 text-xs font-medium text-heading transition hover:border-gold hover:bg-gold/10"
                 >
                   <span>{suburb.name}</span>
@@ -69,7 +69,7 @@ const ServiceAreasStrip = () => {
               to="/areas"
               className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-gold underline-offset-4 hover:underline"
             >
-              All 18 suburbs <ArrowRight className="h-3 w-3" aria-hidden="true" />
+              All 21 suburbs <ArrowRight className="h-3 w-3" aria-hidden="true" />
             </Link>
           </li>
         </ul>

@@ -9,6 +9,7 @@ import SEOHead from "@/components/SEOHead";
 import { comprehensiveFAQs, searchFAQs, type FAQ } from "@/data/faqs";
 import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import TrustStrip from "@/components/conversion/TrustStrip";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -180,7 +181,7 @@ const FAQPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild variant="primary">
-                <a href="tel:+61416037663">Call 0416 037 663</a>
+                <a href={BUSINESS_NAP.phone.tel}>Call {BUSINESS_NAP.phone.display}</a>
               </Button>
               <Button asChild variant="outline">
                 <Link to="/contact">Send a Message</Link>

@@ -15,7 +15,7 @@
  *           502 { ok: false, error: "indexnow upstream returned <N>" }
  */
 
-const INDEXNOW_KEY = 'index-now-50e2273d-d5b2-4ec0-aec8-437be544c65c';
+const INDEXNOW_KEY = 'index-now-47c88da6-45b8-45df-af0e-5104971be587';
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 const SITE_HOST = 'hairpinns.com';
 const SITE_ORIGIN = `https://${SITE_HOST}`;

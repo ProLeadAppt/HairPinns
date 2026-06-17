@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Sparkles, MoveHorizontal } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionNumber from "@/components/design-system/SectionNumber";
@@ -38,6 +38,8 @@ const BeforeAfterShowcase = () => {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
+  // Stable id for the live-region so multiple instances on the page don't collide.
+  const liveRegionId = useId();
 
   const updatePosition = useCallback((clientX: number) => {
     const el = containerRef.current;
@@ -45,7 +47,8 @@ const BeforeAfterShowcase = () => {
     const rect = el.getBoundingClientRect();
     const x = clientX - rect.left;
     const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setPosition(pct);
+    // Snap to whole percent so aria-valuenow reads sensibly.
+    setPosition(Math.round(pct));
   }, []);
 
   useEffect(() => {
@@ -76,6 +79,38 @@ const BeforeAfterShowcase = () => {
     const clientX =
       "touches" in e ? e.touches[0]?.clientX ?? 0 : (e as React.MouseEvent).clientX;
     updatePosition(clientX);
+  };
+
+  // Keyboard support: Left/Right step 5%, Home/End jump to ends.
+  const onSliderKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const step = 5;
+    let next: number | null = null;
+    switch (e.key) {
+      case "ArrowLeft":
+      case "ArrowDown":
+        next = Math.max(0, position - step);
+        break;
+      case "ArrowRight":
+      case "ArrowUp":
+        next = Math.min(100, position + step);
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = 100;
+        break;
+      case "PageDown":
+        next = Math.max(0, position - 10);
+        break;
+      case "PageUp":
+        next = Math.min(100, position + 10);
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    setPosition(next);
   };
 
   return (
@@ -122,70 +157,89 @@ const BeforeAfterShowcase = () => {
         </div>
 
         <div>
-          {PAIRS.map((pair) => (
-            <div key={pair.id} className="space-y-3">
-              <div
-                ref={containerRef}
-                className="relative aspect-[4/5] w-full select-none overflow-hidden rounded-2xl border border-gold/20 bg-muted shadow-card"
-                onMouseDown={startDrag}
-                onTouchStart={startDrag}
-                role="img"
-                aria-label={`${pair.label} — drag to compare`}
-              >
-                {/* "After" — full bleed */}
-                <img
-                  src={pair.after}
-                  alt={pair.afterAlt}
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  draggable={false}
-                />
-
-                {/* "Before" — clipped from the left */}
+          {PAIRS.map((pair) => {
+            const sliderId = `${liveRegionId}-${pair.id}`;
+            const liveId = `${sliderId}-live`;
+            return (
+              <div key={pair.id} className="space-y-3">
                 <div
-                  className="absolute inset-0 overflow-hidden"
-                  style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+                  ref={containerRef}
+                  className="relative aspect-[4/5] w-full select-none overflow-hidden rounded-2xl border border-gold/20 bg-muted shadow-card"
+                  onMouseDown={startDrag}
+                  onTouchStart={startDrag}
+                  role="group"
+                  aria-roledescription="image comparison slider"
+                  aria-label={`${pair.label} — use the slider to compare natural hair with the finished style`}
                 >
+                  {/* "After" — full bleed */}
                   <img
-                    src={pair.before}
-                    alt={pair.beforeAlt}
+                    src={pair.after}
+                    alt={pair.afterAlt}
                     loading="lazy"
                     decoding="async"
                     className="absolute inset-0 h-full w-full object-cover"
                     draggable={false}
                   />
-                </div>
 
-                {/* Labels */}
-                <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-background/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-heading backdrop-blur">
-                  Natural
-                </span>
-                <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-heading/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-background backdrop-blur">
-                  Styled
-                </span>
-
-                {/* Slider handle */}
-                <div
-                  className="pointer-events-none absolute inset-y-0"
-                  style={{ left: `${position}%` }}
-                  aria-hidden="true"
-                >
-                  <div className="h-full w-px bg-background/90 shadow-[0_0_0_1px_rgba(0,0,0,0.15)]" />
-                  <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background text-heading shadow-lg ring-2 ring-gold">
-                    <MoveHorizontal className="h-4 w-4" />
+                  {/* "Before" — clipped from the left */}
+                  <div
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+                  >
+                    <img
+                      src={pair.before}
+                      alt={pair.beforeAlt}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover"
+                      draggable={false}
+                    />
                   </div>
+
+                  {/* Labels */}
+                  <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-background/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-heading backdrop-blur">
+                    Natural
+                  </span>
+                  <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-heading/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-background backdrop-blur">
+                    Styled
+                  </span>
+
+                  {/* Slider handle — focusable, keyboard-driven. */}
+                  <div
+                    id={sliderId}
+                    role="slider"
+                    tabIndex={0}
+                    aria-label={`${pair.label} comparison slider`}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={position}
+                    aria-valuetext={`${position} percent showing styled hair`}
+                    aria-controls={liveId}
+                    onKeyDown={onSliderKeyDown}
+                    className="absolute inset-y-0 -ml-px w-1 cursor-ew-resize focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    style={{ left: `${position}%` }}
+                  >
+                    <div className="h-full w-px bg-background/90 shadow-[0_0_0_1px_rgba(0,0,0,0.15)]" />
+                    <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background text-heading shadow-lg ring-2 ring-gold">
+                      <MoveHorizontal className="h-4 w-4" aria-hidden="true" />
+                    </div>
+                  </div>
+
+                  {/* Screen-reader-only status — polite so it doesn't interrupt. */}
+                  <span id={liveId} className="sr-only" aria-live="polite">
+                    Showing {position}% of the styled result.
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between px-1">
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    {pair.label}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{pair.caption}</p>
                 </div>
               </div>
-
-              <div className="flex items-center justify-between px-1">
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  {pair.label}
-                </p>
-                <p className="text-xs text-muted-foreground">{pair.caption}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </Section>

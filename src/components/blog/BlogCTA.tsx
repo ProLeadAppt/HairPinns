@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, ArrowRight, ShoppingBag } from "lucide-react";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { toast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 
@@ -74,7 +75,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
           className="bg-brand-500 hover:bg-brand-600"
         >
           <a
-            href="tel:+61416037663"
+            href={BUSINESS_NAP.phone.tel}
             onClick={trackPhoneClick}
             className="no-link-color"
           >
@@ -130,7 +131,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
             variant="accent"
           >
             <a
-              href="tel:+61416037663"
+              href={BUSINESS_NAP.phone.tel}
               onClick={trackPhoneClick}
               className="no-link-color"
             >

@@ -2,6 +2,7 @@ import { Phone, MessageCircle, Calendar, Sparkles, Wind, Scissors } from "lucide
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { toast } from "@/hooks/use-toast";
 
 const FeatureStrip = () => {
@@ -113,8 +114,8 @@ const FeatureStrip = () => {
                 className="bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-full"
               >
                 <a 
-                  href="tel:+61416037663"
-                  onClick={trackPhoneClick}
+                                  href={BUSINESS_NAP.phone.tel}
+                                  onClick={trackPhoneClick}
                   className="flex items-center gap-2"
                 >
                   <Phone className="w-4 h-4" />

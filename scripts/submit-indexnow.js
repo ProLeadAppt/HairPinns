@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const INDEXNOW_KEY = 'index-now-50e2273d-d5b2-4ec0-aec8-437be544c65c';
+const INDEXNOW_KEY = 'index-now-47c88da6-45b8-45df-af0e-5104971be587';
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 const SITEMAP_PATH = resolve(root, 'public', 'sitemap.xml');
 

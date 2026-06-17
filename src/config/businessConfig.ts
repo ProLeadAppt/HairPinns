@@ -18,10 +18,18 @@ export const BUSINESS_NAP = {
     fullForMaps: "60 Goorgool Rd, Bangor NSW 2234",
   },
   phone: {
-    // Updated 2026-06-16 to match the Google Business Profile mobile number.
+    // Canonical mobile for Hair Pinns. Verified against Google Business
+    // Profile on 2026-06-17. Prior values were a literal string mask
+    // ("+614****7663") that produced dead tel: links in Footer,
+    // StickyBookBar, ContactForm and JSON-LD schema. Keep these three
+    // fields in sync with the GBP. To rotate the number, update all three
+    // below + GBP + Fresha + business profile listing.
+    //   - `display`  human-readable (used in copy / fallback label)
+    //   - `raw`      E.164 with no `tel:` prefix (for wa.me, sms:, schema)
+    //   - `tel`      full `tel:` href
     display: "0416 037 663",
-    raw: "+614****7663",
-    tel: "tel:+614****7663",
+    raw: "+61416037663",
+    tel: "tel:+61416037663",
   },
   email: "hairpinns1@gmail.com",
 } as const;

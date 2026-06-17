@@ -31,7 +31,7 @@ const HeroSocialProofBar = () => {
           <li className="flex items-center gap-2 justify-center md:justify-start">
             <CalendarCheck className="w-4 h-4 text-[hsl(var(--star-color))]" strokeWidth={1.5} aria-hidden="true" />
             <span className="font-medium whitespace-nowrap">
-              <span className="font-bold">Booking now</span>&nbsp;for this week
+              <span className="font-bold">Book online</span>&nbsp;24/7
             </span>
           </li>
           <li className="flex items-center gap-2 justify-center md:justify-start">

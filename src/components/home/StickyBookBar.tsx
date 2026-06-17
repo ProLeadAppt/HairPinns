@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CalendarCheck, Phone } from "lucide-react";
+import { CalendarCheck, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -73,19 +73,21 @@ const StickyBookBar = () => {
             style={{ borderRadius: "999px" }}
           >
             <a
-              href="tel:+61416037663"
-              aria-label="Call Hair Pinns"
+              href="https://wa.me/61416037663?text=Hi%20Jena%2C%20I%27d%20like%20to%20enquire%20about%20booking"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Hair Pinns"
               onClick={() => {
                 if (typeof window !== "undefined" && (window as any).dataLayer) {
                   (window as any).dataLayer.push({
-                    event: "phone_click",
+                    event: "whatsapp_click",
                     location: "sticky_bar_mobile",
                   });
                 }
               }}
             >
-              <Phone className="w-4 h-4" />
-              <span className="sr-only">Call</span>
+              <MessageCircle className="w-4 h-4" />
+              <span className="sr-only">WhatsApp</span>
             </a>
           </Button>
         </div>

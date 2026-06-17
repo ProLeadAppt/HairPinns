@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Calendar } from "lucide-react";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { toast } from "@/hooks/use-toast";
 
 const AIAgentsCTA = () => {
@@ -85,7 +86,7 @@ const AIAgentsCTA = () => {
           className="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-primary-foreground font-semibold rounded-full shadow-md px-6 py-3 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-foreground/50"
         >
           <a 
-            href="tel:+61416037663"
+            href={BUSINESS_NAP.phone.tel}
             onClick={trackPhoneClick}
             className="flex items-center gap-2"
           >
