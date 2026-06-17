@@ -2,6 +2,10 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
+import TrustStrip from "@/components/home/TrustStrip";
+import JennaPromise from "@/components/home/JennaPromise";
+import EditorialPullQuote from "@/components/home/EditorialPullQuote";
+import SectionNumber from "@/components/design-system/SectionNumber";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
@@ -150,13 +154,19 @@ const Index = () => {
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
       <main id="main-content" tabIndex={-1} ref={mainRef as any}>
-        {/* 1. Hero */}
+        {/* 1. Hero — "the welcome" */}
         <HeroHome />
+
+        {/* 1a. Trust strip — marquee of brand promises (free shipping, in-chair since 2009, etc). */}
+        <TrustStrip />
 
         {/* 1b. Shampoo + 50% off Conditioner — sitewide headline offer */}
         <ShampooConditionerPromo />
 
-        {/* 2. Best Sellers */}
+        {/* 2. The Jenna Promise — editorial gold-band section, replaces the old "About" teaser. */}
+        <JennaPromise />
+
+        {/* 3. Best Sellers */}
         <div className="reveal">
           <Suspense fallback={
             <section className="py-12 bg-background">
@@ -172,35 +182,44 @@ const Index = () => {
           </Suspense>
         </div>
 
-        {/* 3. Shop by Brand */}
+        {/* 4. Editorial pull-quote — the one-per-page brand-truth beat. */}
+        <EditorialPullQuote />
+
+        {/* 5. Section number 02 — "what we make" */}
+        <SectionNumber index="02" label="what we make" />
+
+        {/* 6. Shop by Brand */}
         <div className="reveal">
           <Suspense fallback={null}>
             <ProductCategories />
           </Suspense>
         </div>
 
-        {/* 4. Why Shop with Me */}
+        {/* 7. Why Shop with Me */}
         <div className="reveal">
           <Suspense fallback={null}>
             <WhyShopHairPinns />
           </Suspense>
         </div>
 
-        {/* 5. Reviews */}
+        {/* 8. Reviews */}
         <div className="reveal">
           <Suspense fallback={null}>
             <ReviewsShowcase />
           </Suspense>
         </div>
 
-        {/* 6. From the Blog */}
+        {/* 9. Section number 03 — "read, learn, ask" */}
+        <SectionNumber index="03" label="read, learn, ask" />
+
+        {/* 10. From the Blog */}
         <div className="reveal py-12 bg-muted/30">
           <Suspense fallback={null}>
             <BlogTrio />
           </Suspense>
         </div>
 
-        {/* 6b. Popular Guides — broader 6-card grid for long-tail SEO and
+        {/* 10b. Popular Guides — broader 6-card grid for long-tail SEO and
               AEO citation, ranked by commercial intent + recency. */}
         <div className="reveal">
           <Suspense fallback={null}>
@@ -208,7 +227,7 @@ const Index = () => {
           </Suspense>
         </div>
 
-        {/* 7. Book with Jena */}
+        {/* 11. Book with Jena */}
         <Suspense fallback={null}>
           <BookingBanner />
         </Suspense>

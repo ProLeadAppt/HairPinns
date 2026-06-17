@@ -23,6 +23,12 @@ All colors MUST be HSL.
     --accent: 300 43% 95%;                 /* #F6ECF8 */
     --link: 300 34% 50%;                   /* Brand purple */
 
+    /* Rose-gold accent — used surgically (CTAs on hover, price, small editorial flourishes).
+       Keep distinct from --brand-500 so the homepage has a SECOND colour beat that
+       reads as warm/luxurious without competing with the brand purple. */
+    --gold: 17 49% 53%;                    /* #C68057 */
+    --gold-soft: 17 49% 95%;               /* Tint background for taglines/quotes */
+
     /* Premium Shadows & Effects */
     --shadow: 0 10px 30px rgba(139, 74, 139, 0.12);
     --shadow-hover: 0 6px 16px rgba(139, 74, 139, 0.18);
@@ -64,16 +70,21 @@ All colors MUST be HSL.
     --input: 210 20% 85%;
     --ring: var(--brand-500);
 
-    /* Typography scale - Hair Pinns exact match */
-    --text-h1: 2.25rem;        /* 36px */
-    --text-h1-lg: 2.625rem;    /* 42px */
-    --text-h2: 1.75rem;        /* 28px */
-    --text-h2-lg: 2rem;        /* 32px */
+    /* Typography scale - Hair Pinns exact match.
+       `clamp()` gives a fluid type scale that grows from mobile → desktop
+       without a hard breakpoint swap. Floor = mobile, ceiling = desktop. */
+    --text-h1: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);      /* 36 → 56 */
+    --text-h1-lg: clamp(2.625rem, 1.5rem + 4.5vw, 4.5rem);/* 42 → 72 */
+    --text-h2: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);   /* 28 → 40 */
+    --text-h2-lg: clamp(2rem, 1.25rem + 2.5vw, 3rem);     /* 32 → 48 */
     --text-body: 1rem;         /* 16px */
     --text-button: 1rem;       /* 16px */
     --text-button-lg: 1.125rem; /* 18px */
-    
-    /* Spacing scale - compressed for mobile */
+    /* Editorial display sizes — used on hero / section openers. */
+    --text-display: clamp(3rem, 2rem + 4vw, 5.5rem);       /* 48 → 88 */
+    --text-tagline: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);/* 18 → 22, italic Fraunces */
+
+    /* Spacing scale - compressed for mobile, generous for editorial sections */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -81,6 +92,12 @@ All colors MUST be HSL.
     --space-xl: 2rem;
     --space-2xl: 3rem;
     --space-3xl: 4rem;
+    /* Section-level vertical rhythm — much more generous than the old scale,
+       so the homepage feels like an editorial magazine spread, not a SaaS landing. */
+    --space-section-sm: 4rem;   /* 64px  — compact cards, brand strip */
+    --space-section-md: 6rem;   /* 96px  — default homepage section */
+    --space-section-lg: 8rem;   /* 128px — major beats, hero → next */
+    --space-section-xl: 10rem;  /* 160px — pull-quote, full-bleed image */
     
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -216,34 +233,62 @@ main#main-content:focus-visible {
 
   /* Headings use serif font like Hair Pinns */
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Playfair Display", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-family: "Playfair Display", "Fraunces", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color: hsl(var(--heading));
   }
-  
+
   h1 {
     font-size: var(--text-h1);
     font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
   }
-  
+
   h2 {
     font-size: var(--text-h2);
     font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
   }
-  
+
   h3 {
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 1.4;
   }
-  
+
   h4, h5, h6 {
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.5;
+  }
+
+  /* Editorial display heading — only for hero / section openers. Fraunces
+     with optical-size axis gives a wider, more confident feel at large sizes. */
+  .h-display {
+    font-family: "Fraunces", "Playfair Display", serif;
+    font-variation-settings: "opsz" 144;
+    font-size: var(--text-display);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+  .h-display em,
+  .h-display i {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+
+  /* Italic editorial tagline — the warm, human sentence under a hero or
+     at the top of a section. Pairs Fraunces italics with the brand purple. */
+  .tagline {
+    font-family: "Fraunces", "Playfair Display", serif;
+    font-style: italic;
+    font-variation-settings: "opsz" 14;
+    font-size: var(--text-tagline);
+    line-height: 1.5;
+    color: hsl(var(--brand-600));
+    font-weight: 400;
   }
   
   /* Links match Hair Pinns style */
@@ -261,12 +306,13 @@ main#main-content:focus-visible {
     content-visibility: auto;
   }
   
-  /* Responsive typography */
+  /* Responsive typography — h1-lg/h2-lg are the desktop sizes; mobile
+     already gets the fluid floor from the clamp() above. */
   @media (min-width: 1024px) {
     h1 {
       font-size: var(--text-h1-lg);
     }
-    
+
     h2 {
       font-size: var(--text-h2-lg);
     }
@@ -439,4 +485,208 @@ main#main-content:focus-visible {
     transform: none;
     animation: none;
   }
+
+  .btn-lift,
+  .img-hover-zoom,
+  .marquee-track {
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ========================================================================
+   Editorial redesign layer (Phase 1–3)
+   ------------------------------------------------------------------------
+   All classes here are ADDITIVE — every existing class/utility still works
+   the same. We use this layer for:
+     - Section-numbered hairline dividers ("01 — what we make")
+     - Editorial pull-quotes (large italic Fraunces, rose-gold mark)
+     - Generous section-level vertical rhythm (96 / 128 / 160px)
+     - Subtle button micro-interactions (lift + shadow grow + arrow slide)
+     - Image cross-fade on hover (a quiet luxury signal)
+     - Marquee for the trust strip + section-number small caps
+   ======================================================================== */
+
+/* Section-level padding utilities — far more generous than the old scale.
+   Use these on <Section size="md|lg|xl"> wrappers (see Section component). */
+.section-rhythm-sm { padding-top: var(--space-section-sm); padding-bottom: var(--space-section-sm); }
+.section-rhythm-md { padding-top: var(--space-section-md); padding-bottom: var(--space-section-md); }
+.section-rhythm-lg { padding-top: var(--space-section-lg); padding-bottom: var(--space-section-lg); }
+.section-rhythm-xl { padding-top: var(--space-section-xl); padding-bottom: var(--space-section-xl); }
+
+@media (max-width: 768px) {
+  /* On mobile, dial back by one step — 160px stacked sections feel broken. */
+  .section-rhythm-lg { padding-top: var(--space-section-md); padding-bottom: var(--space-section-md); }
+  .section-rhythm-xl { padding-top: var(--space-section-lg); padding-bottom: var(--space-section-lg); }
+}
+
+/* Section-numbered divider. Renders as a thin hairline rule with a small
+   uppercase eyebrow label: "01 — what we make". Used to break the homepage
+   into a magazine-style sequence. */
+.section-number {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.section-number::before,
+.section-number::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, hsl(var(--border)), transparent);
+}
+.section-number-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--muted));
+  font-weight: 500;
+  white-space: nowrap;
+}
+.section-number-index {
+  color: hsl(var(--gold));
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+/* Pull-quote — large italic Fraunces with a subtle rose-gold ornament.
+   Used as a 1-per-page editorial beat. */
+.pull-quote {
+  position: relative;
+  font-family: "Fraunces", "Playfair Display", serif;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: hsl(var(--heading));
+  max-width: 48rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Fraunces", serif;
+  font-size: 4rem;
+  color: hsl(var(--gold) / 0.35);
+  line-height: 1;
+  font-style: normal;
+}
+.pull-quote-attribution {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--muted));
+}
+
+/* Brand-tinted backgrounds — alternate beats in the editorial rhythm. */
+.bg-gold-soft { background-color: hsl(var(--gold-soft)); }
+.text-gold    { color: hsl(var(--gold)); }
+.border-gold  { border-color: hsl(var(--gold)); }
+
+/* Button micro-interaction — lift + shadow grow + arrow translate on hover.
+   Apply to <Button variant="primary|accent"> via className, or any <a>/<button>. */
+.btn-lift {
+  transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow  250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.btn-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px hsl(var(--brand-500) / 0.35);
+}
+.btn-lift:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px -4px hsl(var(--brand-500) / 0.3);
+}
+.btn-lift .btn-arrow {
+  display: inline-block;
+  transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-lift:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Image hover zoom — a quiet "luxury" signal. Wraps the <img> in a container
+   with overflow:hidden and applies a slow scale on group-hover. */
+.img-hover-zoom {
+  overflow: hidden;
+}
+.img-hover-zoom > img {
+  transition: transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.img-hover-zoom:hover > img {
+  transform: scale(1.04);
+}
+
+/* Marquee — used for the trust strip. Pauses on hover for accessibility. */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 3rem;
+  align-items: center;
+  animation: marquee 40s linear infinite;
+  white-space: nowrap;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Eyebrow label — small caps used above section titles. */
+.eyebrow {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: hsl(var(--gold));
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.eyebrow-muted {
+  color: hsl(var(--muted));
+  font-weight: 500;
+}
+
+/* Reveal-stagger — apply to a parent of `.reveal` children for cascading
+   fade-in. Slightly slower than the existing .hero-stagger so it feels
+   editorial, not "SaaS". */
+.reveal-stagger-slow > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger-slow > .reveal:nth-child(2) { transition-delay: 120ms; }
+.reveal-stagger-slow > .reveal:nth-child(3) { transition-delay: 240ms; }
+.reveal-stagger-slow > .reveal:nth-child(4) { transition-delay: 360ms; }
+.reveal-stagger-slow > .reveal:nth-child(5) { transition-delay: 480ms; }
+.reveal-stagger-slow > .reveal:nth-child(6) { transition-delay: 600ms; }
+
+/* Hairline — the 1px gold accent used at the very top of a section,
+   as a quiet separator from the previous block. */
+.hairline-gold {
+  width: 3rem;
+  height: 1px;
+  background: hsl(var(--gold));
+  margin: 0 auto 2rem;
+}
+.hairline-gold-left {
+  margin: 0 0 2rem 0;
 }

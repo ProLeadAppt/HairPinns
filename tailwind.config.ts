@@ -53,6 +53,11 @@ export default {
           500: "hsl(var(--brand-500))",
           600: "hsl(var(--brand-600))",
         },
+        // Rose-gold accent — second colour beat (CTAs hover, price, editorial).
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          soft: "hsl(var(--gold-soft))",
+        },
         text: "hsl(var(--text))",
         heading: "hsl(var(--heading))",
         link: "hsl(var(--link))",
@@ -66,12 +71,18 @@ export default {
         xl: "var(--space-xl)",
         "2xl": "var(--space-2xl)",
         "3xl": "var(--space-3xl)",
+        "section-sm": "var(--space-section-sm)",
+        "section-md": "var(--space-section-md)",
+        "section-lg": "var(--space-section-lg)",
+        "section-xl": "var(--space-section-xl)",
       },
       fontSize: {
-        "h1": ["var(--text-h1)", { lineHeight: "1.2", letterSpacing: "-0.025em" }],
-        "h1-lg": ["var(--text-h1-lg)", { lineHeight: "1.2", letterSpacing: "-0.025em" }],
-        "h2": ["var(--text-h2)", { lineHeight: "1.3", letterSpacing: "-0.02em" }],
-        "h2-lg": ["var(--text-h2-lg)", { lineHeight: "1.3", letterSpacing: "-0.02em" }],
+        "h1": ["var(--text-h1)", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
+        "h1-lg": ["var(--text-h1-lg)", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
+        "h2": ["var(--text-h2)", { lineHeight: "1.15", letterSpacing: "-0.025em" }],
+        "h2-lg": ["var(--text-h2-lg)", { lineHeight: "1.15", letterSpacing: "-0.025em" }],
+        "display": ["var(--text-display)", { lineHeight: "1.02", letterSpacing: "-0.035em" }],
+        "tagline": ["var(--text-tagline)", { lineHeight: "1.5" }],
         "body": ["var(--text-body)", { lineHeight: "1.6" }],
         "button": ["var(--text-button)", { lineHeight: "1.5" }],
         "button-lg": ["var(--text-button-lg)", { lineHeight: "1.5" }],
@@ -98,6 +109,9 @@ export default {
         'body': ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
         'sans': ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
         'serif': ["Playfair Display", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        // Fraunces — display serif with true italics + optical sizing.
+        // Used for the brand tagline, .h-display headings, and .pull-quote.
+        'display': ["Fraunces", "Playfair Display", "system-ui", "serif"],
       },
       keyframes: {
         "accordion-down": {

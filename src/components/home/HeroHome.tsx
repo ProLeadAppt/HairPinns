@@ -3,6 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/images/hero-home-new.webp";
 
+/**
+ * HeroHome — the homepage hero.
+ *
+ * Changes in this revision:
+ *  - h1 uses the new fluid `h-display` Fraunces class so it scales from
+ *    48px (mobile) → 88px (desktop) without a breakpoint swap.
+ *  - The brand tagline ("Jena Pinn. Bangor salon. Shipping nationwide.")
+ *    uses the new italic Fraunces `.tagline` class for a warmer, more
+ *    editorial voice.
+ *  - Buttons get the `.btn-lift` micro-interaction (lift + arrow slide).
+ *  - Eyebrow above the h1 ("hair care · est 2009 · bangor nsw") — small caps
+ *    gold, the new pattern across the redesign.
+ */
 const HeroHome = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
@@ -19,7 +32,7 @@ const HeroHome = () => {
     const onIdle = () => setShouldLoadVideo(true);
     type IdleWindow = Window & {
       requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
+      cancelIdleCallback?: (id: number) => number;
     };
     const w = window as IdleWindow;
     if (typeof w.requestIdleCallback === "function") {
@@ -76,14 +89,22 @@ const HeroHome = () => {
       {/* Content — left-aligned */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-16 md:pb-24">
         <div className="max-w-2xl hero-stagger">
+          {/* Eyebrow — small caps gold, the editorial redesign's new pattern. */}
+          <span className="eyebrow" style={{ color: "hsl(var(--gold))" }}>
+            hair care · est 2009 · bangor nsw
+          </span>
+
           <h1
-            className="speakable-hero-intro font-heading font-bold text-white leading-[1.1] mb-4"
-            style={{ fontSize: 'clamp(32px, 5vw, 60px)' }}
+            className="speakable-hero-intro h-display text-white mb-5"
+            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}
           >
-            Hair care from someone who actually does hair.
+            Hair care from someone who <em>actually</em> does hair.
           </h1>
 
-          <p className="text-white mb-8 max-w-lg" style={{ fontSize: 'clamp(16px, 2vw, 20px)', textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
+          <p
+            className="tagline text-white/90 mb-8 max-w-lg"
+            style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}
+          >
             Jena Pinn. Bangor salon. Shipping nationwide.
           </p>
 
@@ -92,17 +113,20 @@ const HeroHome = () => {
               asChild
               size="lg"
               variant="primary"
-              className="text-white font-semibold"
-              style={{ borderRadius: '999px', padding: '0.875rem 2.5rem' }}
+              className="btn-lift text-white font-semibold"
+              style={{ borderRadius: "999px", padding: "0.875rem 2.5rem" }}
             >
-              <Link to="/collections">Shop Products</Link>
+              <Link to="/collections">
+                <span>Shop Products</span>
+                <span className="btn-arrow ml-2" aria-hidden="true">→</span>
+              </Link>
             </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="text-white border-white hover:bg-white hover:text-heading font-semibold"
-              style={{ borderRadius: '999px', padding: '0.875rem 2.5rem' }}
+              className="btn-lift text-white border-white hover:bg-white hover:text-heading font-semibold"
+              style={{ borderRadius: "999px", padding: "0.875rem 2.5rem" }}
             >
               <a
                 href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer"
@@ -110,11 +134,11 @@ const HeroHome = () => {
                 rel="noopener noreferrer"
                 aria-label="Book a salon appointment at Hair Pinns (opens in new tab)"
                 onClick={() => {
-                  if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                  if (typeof window !== "undefined" && (window as any).dataLayer) {
                     (window as any).dataLayer.push({
-                      event: 'booking_click',
-                      location: 'hero_home',
-                      cta: 'book_now',
+                      event: "booking_click",
+                      location: "hero_home",
+                      cta: "book_now",
                     });
                   }
                 }}
