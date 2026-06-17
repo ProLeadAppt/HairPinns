@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 
 // Real salon editorial photos already in the bundle. We use these as a
 // "styling reference" demo (not a fake before/after claim) — the slider
-// reveals a styled look vs a natural-daylight look, both shot in-chair.
+// reveals a basin wash vs an in-chair finish, both shot at the Bangor salon.
 // Honest framing: "styling reference", not "transformation proof".
 
-import hairPinns03 from "@/assets/images/Hair_pinns-03.webp";
-import hairPinns04 from "@/assets/images/Hair_pinns-04.webp";
+import brunetteAtBasin from "@/assets/images/brunette-woman-getting-her-hair-washed.webp";
+import hairdresserWithClient from "@/assets/images/hairdresser-taking-care-her-client.webp";
 
 interface ComparisonPair {
   id: string;
@@ -26,11 +26,11 @@ const PAIRS: ComparisonPair[] = [
   {
     id: "bouncy-blow-dry",
     label: "Bouncy blow-dry",
-    caption: "Same hair. Same chair. Different finish.",
-    before: hairPinns03,
-    after: hairPinns04,
-    beforeAlt: "Natural hair, post-shampoo, ready to style",
-    afterAlt: "Finished bouncy blow-dry with volume at the root",
+    caption: "Same chair. Different moment.",
+    before: brunetteAtBasin,
+    after: hairdresserWithClient,
+    beforeAlt: "Brunette client at the basin, post-shampoo, ready to style",
+    afterAlt: "Hairdresser styling a client in the chair, mid-finish",
   },
 ];
 
