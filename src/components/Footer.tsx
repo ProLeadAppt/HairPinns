@@ -101,8 +101,8 @@ const Footer = () => {
         }
 
         toast({
-          title: "Success!",
-          description: "You've been added to our mailing list. Check your inbox for a welcome message.",
+          title: "You're on the list.",
+          description: "Check your inbox — your 10% off code is on its way.",
         });
         setEmail("");
       } else {
@@ -260,7 +260,7 @@ const Footer = () => {
                   Areas We Serve
                 </Link>
                 <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors text-sm">
-                  About Us
+                  About Jena
                 </Link>
                 <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors text-sm">
                   Blog & Tips
