@@ -5,25 +5,25 @@ const services = [
   {
     icon: Scissors,
     title: "Precision Cuts & Styling",
-    description: "Expert cuts tailored to your face shape and lifestyle. From classic to contemporary, we create looks that enhance your natural beauty.",
+    description: "Cuts that work with your hair, not against it. Dry-cut for curls, blunt for thick, layered for fine. From A$39 kids to A$85+ bespoke.",
     price: "From $85",
   },
   {
     icon: Palette,
     title: "Color & Highlights",
-    description: "Dimensional color, full head foils, and precision highlighting using premium products. Transform your look with our color expertise.",
+    description: "Full-head foils, half-head, balayage, root touch-up. I do the colour, then the cut and blow-dry in the same appointment — no two trips, no surprise cost. From A$130.",
     price: "From $130",
   },
   {
     icon: Sparkles,
     title: "Treatment & Care",
-    description: "Deep conditioning, keratin treatments, and scalp therapies. Restore and maintain your hair's health and vitality.",
+    description: "Straight Up Smoothing, Olaplex bond repair, deep conditioning masks, scalp rituals. If I haven't used it on a client, it doesn't make the shelf. From A$65.",
     price: "From $65",
   },
   {
     icon: Heart,
     title: "Special Occasions",
-    description: "Bridal styling, formal updos, and special event looks. Make your moments memorable with our styling expertise.",
+    description: "Wedding hair, formal up-dos, school formals. Trial run included on bridal bookings so we both know how the style will hold on the day. From A$120.",
     price: "From $120",
   },
 ];
@@ -34,11 +34,10 @@ const ServicesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-heading mb-4">
-              Our Services
+              What I actually do in the chair.
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover our comprehensive range of hair services, each delivered with 
-              expert technique and personalized attention to detail.
+              Four things I'm good at, priced honestly. If it isn't on this list, ask — I probably do it, I just don't list it on the homepage.
             </p>
           </div>
         

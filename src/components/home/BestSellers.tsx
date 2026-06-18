@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Loader2 } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { getAllCollections, searchProducts } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { useQuickAddToCart } from "@/hooks/useQuickAddToCart";
 
 const BestSellers = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -89,6 +90,7 @@ const BestSellers = () => {
           const compareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount
             ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount)
             : undefined;
+          const firstVariant = product.variants?.edges?.[0]?.node;
 
           return {
             id: product.id,
@@ -99,6 +101,7 @@ const BestSellers = () => {
             currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
             image: firstImage?.url || "/placeholder.svg",
             availableForSale: product.availableForSale,
+            variantId: firstVariant?.id,
           };
         });
 
@@ -192,6 +195,22 @@ const ProductCard = ({
   product: any;
   aspectClass: string;
 }) => {
+  const { addToCart, busy } = useQuickAddToCart();
+  const canQuickAdd = product.availableForSale && product.variantId && !busy;
+
+  const handleQuickAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!canQuickAdd) return;
+    addToCart({
+      variantId: product.variantId,
+      productId: product.id,
+      title: product.title,
+      price: product.price,
+      currency: product.currency,
+    });
+  };
+
   return (
     <div className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base group">
       <Link
@@ -236,17 +255,28 @@ const ProductCard = ({
           )}
         </div>
 
-        <Link to={`/products/${product.slug}`} className="flex-1">
-          <Button
-            variant="primary"
-            size="sm"
-            className="w-full"
-            disabled={!product.availableForSale}
+        {product.availableForSale && product.variantId ? (
+          <button
+            type="button"
+            onClick={handleQuickAdd}
+            disabled={busy}
+            aria-label={`Add ${product.title} to bag`}
+            className="inline-flex items-center justify-center gap-2 w-full whitespace-nowrap font-semibold rounded-btn h-8 rounded-md px-3 text-sm bg-[hsl(var(--brand-500))] !text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <ShoppingBag className="w-4 h-4 mr-1" />
-            {product.availableForSale ? "Add to Bag" : "View Details"}
-          </Button>
-        </Link>
+            {busy ? (
+              <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+            ) : (
+              <ShoppingBag className="w-4 h-4 mr-1" />
+            )}
+            {busy ? "Adding…" : "Add to Bag"}
+          </button>
+        ) : (
+          <Link to={`/products/${product.slug}`} className="flex-1">
+            <Button variant="primary" size="sm" className="w-full">
+              View Details
+            </Button>
+          </Link>
+        )}
       </div>
     </div>
   );

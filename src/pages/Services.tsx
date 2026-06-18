@@ -224,7 +224,7 @@ const Services = () => {
           title: "Complete Pamper Package",
           duration: "1h",
           serviceCount: "2 services",
-          description: "Escape to a blissful retreat as you surrender to a luxurious hair and scalp revamp, unveiling magnificent shine, banishing frizz, and experiencing a rejuvenating transformation. Leave the world behind and revel in being pampered and reclaim your hair's youthful charm while soaring to new heights of beauty.\nIncluded in this package is a scalp cleanse, deep conditioning treatment under heat or with hot towel, scalp massage and style so you can continue your Happy Hair Day :)",
+          description: "Scalp cleanse, deep conditioning under heat or with a hot towel, scalp massage, then a blow-dry finish. Book it when your hair feels heavy or your week has been heavy. A$62 for the lot.\n\nIf you want a real reset, ask me to scope your scalp before and after — most clients can see the difference straight away.",
           price: "A$ 62"
         }
       ]
