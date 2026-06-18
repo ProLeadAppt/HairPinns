@@ -256,7 +256,7 @@ const ServiceDetail = () => {
           {/* Pricing CTA */}
           <div className="text-center py-12 px-6 rounded-card bg-white border-2 border-brand-500/20 mb-16">
             <h2 className="text-3xl font-heading font-bold mb-4" style={{ color: 'hsl(var(--heading))' }}>
-              Ready to Transform Your Hair?
+              Ready to book this service?
             </h2>
             <p className="text-xl mb-2" style={{ color: 'hsl(var(--text))' }}>
               Starting from <span className="font-bold text-brand-500">{serviceData.price}</span>
@@ -392,10 +392,10 @@ const ServiceDetail = () => {
         <section className="py-16 bg-gradient-to-br from-[#FBF7FD] via-bg to-[#F5EFF8]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4" style={{ color: 'hsl(var(--heading))' }}>
-              Let's Make Your Hair Dreams Come True
+              Let's get you in the chair.
             </h2>
             <p className="text-lg mb-8" style={{ color: 'hsl(var(--text))', opacity: 0.9 }}>
-              Book your appointment with Jena today and experience the Hair Pinns difference.
+              Pick a time that suits you — same-day appointments usually available weekdays.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
