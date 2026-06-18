@@ -19,12 +19,12 @@ const ReviewsShowcase = () => {
 
         {/* Attribution */}
         <p className="text-sm text-muted-foreground mb-8">
-          Sarah M. &mdash; Google Review
+          Sarah M. · Google Review
         </p>
 
         {/* Supporting stats line */}
         <p className="text-sm text-muted-foreground">
-          4.9 on Google (53 reviews) &middot; 5.0 on Fresha (762+ reviews)
+          4.9 on Google · 5.0 on Fresha (762+ reviews)
         </p>
 
         {/* Link to all reviews */}

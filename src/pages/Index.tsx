@@ -3,26 +3,20 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
 import HeroSocialProofBar from "@/components/home/HeroSocialProofBar";
-import TrustStrip from "@/components/home/TrustStrip";
-import ServiceAreasStrip from "@/components/home/ServiceAreasStrip";
 import JenaPromise from "@/components/home/JenaPromise";
-import EditorialPullQuote from "@/components/home/EditorialPullQuote";
 import StickyBookBar from "@/components/home/StickyBookBar";
 import BeforeAfterShowcase from "@/components/home/BeforeAfterShowcase";
 import SectionNumber from "@/components/design-system/SectionNumber";
 import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
+import ShampooConditionerPromo from "@/components/home/ShampooConditionerPromo";
 
 // Below-fold sections (lazy-loaded for performance)
 const BestSellers = lazy(() => import("@/components/home/BestSellers"));
-const WhyShopHairPinns = lazy(() => import("@/components/home/WhyShopHairPinns"));
 const ReviewsShowcase = lazy(() => import("@/components/home/ReviewsShowcase"));
-const ProductCategories = lazy(() => import("@/components/home/ProductCategories"));
 const BlogTrio = lazy(() => import("@/components/home/BlogTrio"));
-const PopularGuides = lazy(() => import("@/components/home/PopularGuides"));
 const BookingBanner = lazy(() => import("@/components/home/BookingBanner"));
-import ShampooConditionerPromo from "@/components/home/ShampooConditionerPromo";
 
 import {
   generateOrganizationSchema,
@@ -46,8 +40,6 @@ const Index = () => {
   const knowledgeGraphSchema = generateKnowledgeGraphSchema();
   const storeSchema = generateStoreSchema();
   const authorSchema = generateAuthorSchema();
-  // WebSite + SearchAction enables the sitelinks search box on the brand
-  // SERP. Emit only on the homepage so Google attributes it to the root URL.
   const webSiteSchema = generateWebSiteSchema();
 
   const webPageSchema = generateWebPageSchema({
@@ -69,10 +61,6 @@ const Index = () => {
     totalTime: "PT2M",
   });
 
-  // Homepage "Popular Guides" ItemList — top 6 non-archived posts ranked by
-  // commercial intent + recency. Mirrors the on-page section so Google can
-  // attribute a structured list to the homepage and AI overviews can cite
-  // individual guides in answers to long-tail hair questions.
   const popularGuidesSchema = generateBlogItemListSchema(
     blogPosts
       .filter((p: any) => !p.archived)
@@ -158,35 +146,27 @@ const Index = () => {
       <Header />
       <GoogleReviewBadge variant="micro" showCTA />
       <main id="main-content" tabIndex={-1} ref={mainRef as any}>
-        {/* 1. Hero — "the welcome" */}
+
+        {/* 1. Hero */}
         <HeroHome />
 
-        {/* 1a. Above-the-fold social proof strip — solves the audit gap of
-            having no trust signal in the first screen for first-time visitors. */}
+        {/* 2. Trust bar — 3 quiet signals, lots of air */}
         <HeroSocialProofBar />
 
-        {/* 1b. Trust strip — marquee of brand promises (free shipping, in-chair since 2009, etc). */}
-        <TrustStrip />
-
-        {/* 1c. Service areas — geo trust bar naming the closest suburbs
-              with proper internal links. Closes the "is this for me?" gap
-              for Shire visitors in the first screen of scroll. */}
-        <ServiceAreasStrip />
-
-        {/* 1b. Shampoo + 50% off Conditioner — sitewide headline offer */}
+        {/* 3. Active offer */}
         <ShampooConditionerPromo />
 
-        {/* 2. The Jena Promise — editorial gold-band section, replaces the old "About" teaser. */}
+        {/* 4. The Jena Promise */}
         <JenaPromise />
 
-        {/* 3. Best Sellers */}
+        {/* 5. Best Sellers */}
         <div className="reveal">
           <Suspense fallback={
             <section className="py-12 bg-background">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-10">
                   <h2 className="text-h2-lg font-heading font-bold text-heading mb-4">Best Sellers</h2>
-                  <p className="text-lg text-muted-foreground">Loading the good stuff...</p>
+                  <p className="text-lg text-muted-foreground">Loading...</p>
                 </div>
               </div>
             </section>
@@ -195,60 +175,29 @@ const Index = () => {
           </Suspense>
         </div>
 
-        {/* 4. Editorial pull-quote — the one-per-page brand-truth beat. */}
-        <EditorialPullQuote />
-
-        {/* 5. Section number 02 — "what we make" */}
-        <SectionNumber index="02" label="what we make" />
-
-        {/* 6. Shop by Brand */}
-        <div className="reveal">
-          <Suspense fallback={null}>
-            <ProductCategories />
-          </Suspense>
-        </div>
-
-        {/* 7. Why Shop with Me */}
-        <div className="reveal">
-          <Suspense fallback={null}>
-            <WhyShopHairPinns />
-          </Suspense>
-        </div>
-
-        {/* 7b. Section number 03 — "in the chair". Drag-to-compare styling
-              reference using real in-salon photos. Closes the "what does
-              the finish look like" gap with honest framing. */}
+        {/* 6. In the chair — before/after styling showcase */}
         <BeforeAfterShowcase />
 
-        {/* 8. Reviews */}
+        {/* 7. Reviews */}
         <div className="reveal">
           <Suspense fallback={null}>
             <ReviewsShowcase />
           </Suspense>
         </div>
 
-        {/* 9. Section number 04 — "read, learn, ask" */}
+        {/* 8. From the blog */}
         <SectionNumber index="04" label="read, learn, ask" />
-
-        {/* 10. From the Blog */}
         <div className="reveal py-12 bg-muted/30">
           <Suspense fallback={null}>
             <BlogTrio />
           </Suspense>
         </div>
 
-        {/* 10b. Popular Guides — broader 6-card grid for long-tail SEO and
-              AEO citation, ranked by commercial intent + recency. */}
-        <div className="reveal">
-          <Suspense fallback={null}>
-            <PopularGuides />
-          </Suspense>
-        </div>
-
-        {/* 11. Book with Jena */}
+        {/* 9. Book with Jena */}
         <Suspense fallback={null}>
           <BookingBanner />
         </Suspense>
+
       </main>
       <Footer />
       <StickyBookBar />

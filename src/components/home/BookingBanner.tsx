@@ -10,10 +10,10 @@ const BookingBanner = () => {
           {/* Left: CTA */}
           <div>
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
-              Ready to book?
+              Come in and see me.
             </h2>
             <p className="text-white/95 mb-6 max-w-md">
-              Pick your service, pick your time. Takes 2 minutes.
+              Book online any time through Fresha. Colour, cuts, smoothing treatments.
             </p>
             <Button
               asChild

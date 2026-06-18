@@ -172,10 +172,10 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
     return (
       <div className="my-12 p-8 bg-accent rounded-card border border-border text-center">
         <h3 className="text-h3 font-heading font-bold mb-4 text-heading">
-          {customText || "Ready to transform your hair?"}
+          {customText || "Want to try these products?"}
         </h3>
         <p className="text-lg mb-6 text-text">
-          Book your appointment today and experience the Hair Pinns difference.
+          All stocked at Hair Pinns. Free shipping over $150, packed from the salon.
         </p>
         <Button
           asChild
