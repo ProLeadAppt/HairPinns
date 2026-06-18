@@ -19,7 +19,8 @@ import {
   Phone,
   Palette,
   Sparkles,
-  Scissors
+  Scissors,
+  Quote
 } from "lucide-react";
 import { getLocationData } from "@/data/locationPages";
 import { getOGImage } from "@/lib/sitemap";
@@ -253,6 +254,23 @@ const LocationPage = () => {
               </p>
             </div>
           </Section>
+
+          {/* Jena's Tip - Local SEO pull-quote, unique per suburb */}
+          {locationData.jenaTip && (
+            <Section padding="md" className="bg-gradient-to-b from-accent/10 to-white">
+              <div className="max-w-2xl mx-auto">
+                <figure className="relative bg-card border-l-4 border-brand-500 rounded-r-card shadow-sm p-6 md:p-8">
+                  <Quote className="absolute -top-3 left-6 w-8 h-8 text-brand-500 bg-card p-1 rounded-full" aria-hidden="true" />
+                  <blockquote className="text-lg md:text-xl text-heading font-light italic leading-relaxed mb-3">
+                    {locationData.jenaTip}
+                  </blockquote>
+                  <figcaption className="text-sm font-semibold text-brand-500 not-italic">
+                    — Jena, Hair Pinns
+                  </figcaption>
+                </figure>
+              </div>
+            </Section>
+          )}
 
           {/* Popular in {Suburb} - Premium Cards */}
           <Section variant="muted" padding="xl">

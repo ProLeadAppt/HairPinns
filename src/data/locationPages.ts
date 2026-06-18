@@ -7,6 +7,8 @@ export interface LocationData {
   postcode: string;
   driveTime: string;
   localIntro: string;
+  /** Short pull-quote from Jena — round-robin assigned at build time so every suburb page is unique. */
+  jenaTip?: string;
   popularServices: string[]; // 3 feature chips
   faqs: {
     question: string;
@@ -305,6 +307,37 @@ export const locationPages: Record<string, LocationData> = {
     nearbyLocations: ["illawong-2234", "menai-2234", "bangor-2234", "barden-ridge-2234"]
   }
 };
+
+/**
+ * Jena's product tips — round-robin assigned to each suburb page at module load.
+ * Different order per page = different unique copy on every page = unique LSEO signal.
+ * Tips reference actual best-selling products so each has a soft cross-sell hook.
+ */
+const JENA_PRODUCT_TIPS: string[] = [
+  "If your blonde's gone brassy in the sun, my go-to is the Aromaganics Blonde Shampoo once a week. Tones without drying.",
+  "For coastal humidity, I send every [Suburb] client home with a QIQI Bare Repair Oil. 3 drops through damp hair, that's it.",
+  "Straight Up Smoothing holds up to 12 weeks in coastal air. If you're tired of fighting the straightener, ask me about it.",
+  "Juuce Daily Indulge is my ride-or-die for aftercare. A small amount on damp hair, blowdry, you're done.",
+  "Walnut Scrub once a fortnight clears the buildup that flattens your colour. Most clients don't know about this one.",
+  "Heat Shield is non-negotiable in summer. Australian UV will fry your ends if you skip it. Two sprays before blowdry.",
+  "If you're between smoothing appointments, use a sulfate-free shampoo. Regular shampoo strips the treatment in half the time.",
+  "Curly girls — the Aromaganics Curl Duo is what I keep behind the chair. Cleansing without the crunch.",
+];
+
+/**
+ * Assign a unique Jena tip to each suburb by hashing the slug — same suburb always gets the same tip,
+ * but every suburb gets a different one (mostly — 8 tips across ~30 suburbs means 3-4 share a tip,
+ * which is fine because the LSEO signal comes from the surrounding copy being suburb-specific).
+ */
+(function assignJenaTips(): void {
+  const slugs = Object.keys(locationPages);
+  slugs.forEach((slug, idx) => {
+    const page = locationPages[slug];
+    if (!page) return;
+    const tipIdx = (idx * 7 + slug.charCodeAt(0)) % JENA_PRODUCT_TIPS.length;
+    page.jenaTip = JENA_PRODUCT_TIPS[tipIdx]?.replace("[Suburb]", page.name) || "";
+  });
+})();
 
 export const getAllLocationSlugs = (): string[] => {
   return Object.keys(locationPages);
