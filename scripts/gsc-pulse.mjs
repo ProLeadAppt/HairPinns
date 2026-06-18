@@ -29,14 +29,14 @@
  *      → Permission level: Owner (or Full)
  *
  *    CRITICAL: The site URL in GSC must match exactly. The script uses
- *    "sc-domain:hairpinns.com.au" by default (domain property). If your
- *    property is URL-prefix (https://www.hairpinns.com.au/), set
- *    GSC_SITE_URL=https://www.hairpinns.com.au/ in the env.
+ *    "sc-domain:hairpinns.com" by default (domain property). If your
+ *    property is URL-prefix (https://www.hairpinns.com/), set
+ *    GSC_SITE_URL=https://www.hairpinns.com/ in the env.
  *
  * 5. Save the JSON key in the project root as gsc-service-account.json
  *    (DO NOT commit — add to .gitignore). Then:
  *      export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/gsc-service-account.json"
- *      export GSC_SITE_URL="sc-domain:hairpinns.com.au"
+ *      export GSC_SITE_URL="sc-domain:hairpinns.com"
  *
  * 6. Smoke test:
  *      node scripts/gsc-pulse.mjs
@@ -76,7 +76,7 @@ if (existsSync(resolve(root, '.env'))) {
   });
 }
 
-const SITE_URL = process.env.GSC_SITE_URL || 'sc-domain:hairpinns.com.au';
+const SITE_URL = process.env.GSC_SITE_URL || 'sc-domain:hairpinns.com';
 const KEY_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS ||
   resolve(root, 'gsc-service-account.json');
 

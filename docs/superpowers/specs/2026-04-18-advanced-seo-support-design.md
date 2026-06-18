@@ -14,7 +14,7 @@ Hair Pinns is a React/Vite SPA hosted on Netlify. All SEO meta tags, Open Graph 
 1. **Social scrapers** (Facebook, Twitter/X, LinkedIn, WhatsApp, iMessage) don't execute JavaScript — they see an empty HTML shell with no title, description, or preview image.
 2. **Some search engines** (Bing, Yandex) and all AI crawlers receive the empty shell, limiting indexing and AEO/GEO visibility.
 3. **Google** can render JS but does so in a deferred "second wave" of indexing, which is slower and less reliable than static HTML.
-4. **Domain inconsistency** — `hairpinns.com` and `hairpinns.com.au` are used interchangeably across the codebase, splitting ranking authority.
+4. **Domain inconsistency** — `hairpinns.com` and `hairpinns.com` are used interchangeably across the codebase, splitting ranking authority.
 
 ---
 
@@ -83,13 +83,13 @@ The existing SPA catch-all redirect (`/* -> /index.html 200`) in `netlify.toml` 
 
 The codebase uses two domains interchangeably:
 - `hairpinns.com` — in `index.html` schemas, `robots.txt`
-- `hairpinns.com.au` — in `SEOHead.tsx`, `schema.ts`, `sitemap.ts`, `generate-sitemap.js`, `submit-indexnow.js`
+- `hairpinns.com` — in `SEOHead.tsx`, `schema.ts`, `sitemap.ts`, `generate-sitemap.js`, `submit-indexnow.js`
 
 Google treats these as separate sites. Mixed canonicals split ranking authority.
 
 ### The Fix
 
-Replace every instance of `hairpinns.com.au` with `hairpinns.com` in:
+Replace every instance of `hairpinns.com` with `hairpinns.com` in:
 
 | File | What changes |
 |---|---|
@@ -245,7 +245,7 @@ This is a mechanical find-and-replace with one provider wrapper addition.
 
 ### 6a: IndexNow Host Mismatch
 
-**Current bug:** `submit-indexnow.js` sends `host: 'hairpinns.com'` but `keyLocation: 'https://hairpinns.com.au/...'`. Fixed automatically by domain unification (Section 2).
+**Current bug:** `submit-indexnow.js` sends `host: 'hairpinns.com'` but `keyLocation: 'https://hairpinns.com/...'`. Fixed automatically by domain unification (Section 2).
 
 ### 6b: Duplicate Headers
 

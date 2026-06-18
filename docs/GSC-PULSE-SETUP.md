@@ -1,6 +1,6 @@
 # GSC Pulse — Setup for Tyson
 
-Daily digest of how Google sees hairpinns.com.au. Catches:
+Daily digest of how Google sees hairpinns.com. Catches:
 - **CTR opportunities** — pages with ≥50 impressions but <1% CTR (rewrite the title/meta)
 - **Indexing failures** — pages that exist on the site but GSC says they're not indexed
 - **Trend flips** — clicks/impressions/position vs the previous 28-day window
@@ -34,16 +34,16 @@ Delivered every morning at 8:00 AM AEST to the `#hair-pinns` Discord channel.
 ### 4. Grant GSC access
 
 1. Go to https://search.google.com/search-console/settings
-2. Pick the hairpinns.com.au property
+2. Pick the hairpinns.com property
 3. **Users and permissions** → **Add user**
 4. Paste the service account email (looks like `gsc-pulse-reader@hairpinns-seo.iam.gserviceaccount.com`)
 5. Permission: **Owner** (or Full — we only read)
 
 **Critical:** the GSC property URL must match `GSC_SITE_URL` exactly:
-- Domain property `sc-domain:hairpinns.com.au` → set `GSC_SITE_URL=sc-domain:hairpinns.com.au`
-- URL-prefix `https://www.hairpinns.com.au/` → set `GSC_SITE_URL=https://www.hairpinns.com.au/`
+- Domain property `sc-domain:hairpinns.com` → set `GSC_SITE_URL=sc-domain:hairpinns.com`
+- URL-prefix `https://www.hairpinns.com/` → set `GSC_SITE_URL=https://www.hairpinns.com/`
 
-The default in the script is `sc-domain:hairpinns.com.au`.
+The default in the script is `sc-domain:hairpinns.com`.
 
 ### 5. Drop the key on the server
 
@@ -55,7 +55,7 @@ scp ~/Downloads/hairpinns-seo-*.json /root/hairpinns-audit/gsc-service-account.j
 # In /root/hairpinns-audit/.env (already ignored):
 cat >> .env <<EOF
 GOOGLE_APPLICATION_CREDENTIALS=/root/hairpinns-audit/gsc-service-account.json
-GSC_SITE_URL=sc-domain:hairpinns.com.au
+GSC_SITE_URL=sc-domain:hairpinns.com
 EOF
 ```
 
@@ -79,7 +79,7 @@ The cron agent picks up the env vars from `~/.hermes/config.yaml` (or whatever p
 name: gsc-pulse-hairpinns
 schedule: "0 22 * * *"        # 22:00 UTC = 08:00 AEST
 prompt: |
-  You are the GSC pulse agent for hairpinns.com.au.
+  You are the GSC pulse agent for hairpinns.com.
   1. cd /root/hairpinns-audit
   2. node scripts/gsc-pulse.mjs > /tmp/gsc-pulse.txt 2>&1
   3. cat /tmp/gsc-pulse.txt

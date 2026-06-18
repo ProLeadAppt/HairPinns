@@ -52,7 +52,7 @@ export interface BlogPost {
     }>;
   };
   cta?: {
-    type: "call-sam" | "chat-isabella" | "service" | "product" | "booking";
+    type: "call-jena" | "chat-isabella" | "service" | "product" | "booking";
     servicePath?: string;
     productPath?: string;
     customText?: string;
@@ -94,7 +94,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Where to Buy These in Australia",
-          content: "All of these products are available at Hair Pinns. I use them in the salon and recommend them to clients, shipped Australia-wide. Free shipping on orders over $150. Need help choosing? Take the Juuce Hair Quiz or call Sam for personalised advice."
+          content: "All of these products are available at Hair Pinns. I use them in the salon and recommend them to clients, shipped Australia-wide. Free shipping on orders over $150. Need help choosing? Take the Juuce Hair Quiz or call Jena for personalised advice."
         }
       ],
       productModule: {
@@ -161,7 +161,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Ready to Shop?",
-          content: "Browse our collections, take the Juuce Hair Quiz if you're unsure, or call Sam for personalised recommendations. Your best hair days start with the right products, and the right place to buy them."
+          content: "Browse our collections, take the Juuce Hair Quiz if you're unsure, or call Jena for personalised recommendations. Your best hair days start with the right products, and the right place to buy them."
         }
       ],
       productModule: {
@@ -405,7 +405,7 @@ export const blogPosts: BlogPost[] = [
       ],
     },
     cta: {
-      type: "call-sam",
+      type: "call-jena",
       customText: "Ready to book your infrared sauna session?"
     }
   },
@@ -528,7 +528,7 @@ export const blogPosts: BlogPost[] = [
       ],
     },
     cta: {
-      type: "call-sam",
+      type: "call-jena",
       servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
       customText: "Want to try a Straight Up treatment?"
     }
@@ -653,7 +653,7 @@ export const blogPosts: BlogPost[] = [
       ]
     },
     cta: {
-      type: "call-sam",
+      type: "call-jena",
       servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
       customText: "Ready to book your Straight Up treatment?"
     }
@@ -792,7 +792,7 @@ export const blogPosts: BlogPost[] = [
       ],
     },
     cta: {
-      type: "call-sam",
+      type: "call-jena",
       customText: "Book your infrared sauna session today"
     }
   },
@@ -1202,7 +1202,7 @@ export const blogPosts: BlogPost[] = [
       ],
     },
     cta: {
-      type: "call-sam",
+      type: "call-jena",
       servicePath: "/services/smoothing/mid-length-straight-up-smoothing",
       customText: "Want to learn more about QIQI Vega?"
     }
@@ -1421,7 +1421,7 @@ export const blogPosts: BlogPost[] = [
       ],
     },
     cta: {
-      type: "call-sam",
+      type: "call-jena",
       productPath: "https://hairpinns.com/collections/qiqi",
       customText: "Questions about aftercare products?"
     }
@@ -1843,7 +1843,7 @@ export const blogPosts: BlogPost[] = [
       ],
     },
     cta: {
-      type: "call-sam",
+      type: "call-jena",
       customText: "Book your infrared sauna session"
     }
   },

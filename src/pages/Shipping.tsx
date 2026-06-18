@@ -7,6 +7,7 @@ import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { generateBreadcrumbSchema, generateFAQPageSchema } from "@/lib/schema";
 import { shippingStates } from "@/data/shippingStates";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
 const SHIPPING_FAQS = [
   { question: "Do you ship to Melbourne?", answer: "Yes. Hair Pinns ships professional hair care to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra and all of Australia. Free shipping on orders over $150." },
@@ -125,7 +126,7 @@ const Shipping = () => {
                 hairpinns1@gmail.com
               </a>{" "}
               or call{" "}
-              <a href="tel:+61416037663" className="text-brand-500 hover:text-brand-600">
+              <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:text-brand-600">
                 0416 037 663
               </a>
               .

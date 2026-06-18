@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import PostPurchaseModule from "@/components/conversion/PostPurchaseModule";
 import { pixelTracking } from "@/lib/pixelTracking";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
 interface OrderItem {
   title: string;
@@ -280,7 +281,7 @@ const OrderConfirmation = () => {
                 Contact us
               </a>{" "}
               or call{" "}
-              <a href="tel:+61416037663" className="text-brand-500 hover:underline">
+              <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline">
                 0416 037 663
               </a>
             </p>

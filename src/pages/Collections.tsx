@@ -14,6 +14,7 @@ import { generateStoreSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { BOOK_URL } from "@/config/bookingConfig";
 import SEOHead from "@/components/SEOHead";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 // All local collection images removed — using Shopify's own collection images and first product images
 
 interface ShopifyCollection {
@@ -354,7 +355,7 @@ const Collections = () => {
                 Not Sure What's Right for Your Hair?
               </h2>
               <p className="text-lg md:text-xl text-heading font-semibold leading-relaxed inline-block bg-background/90 backdrop-blur-sm px-6 py-3 rounded-xl shadow-md">
-                Chat with Isabella for instant product recommendations or call Sam for personalized advice.
+                Chat with Isabella for instant product recommendations or call Jena for personalized advice.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button 
@@ -380,7 +381,7 @@ const Collections = () => {
                   asChild
                   className="w-full sm:w-auto text-lg px-8 py-6"
                 >
-                  <a href="tel:+61416037663">Call Sam Now</a>
+                  <a href={BUSINESS_NAP.phone.tel}>Call Jena Now</a>
                 </Button>
                 <a 
                   href={BOOK_URL}

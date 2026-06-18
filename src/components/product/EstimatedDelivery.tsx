@@ -18,7 +18,7 @@ const EstimatedDelivery = ({ cartTotal = 0 }: EstimatedDeliveryProps) => {
     }
 
     let count = 0;
-    let date = new Date(today);
+    const date = new Date(today);
     
     while (count < businessDays) {
       date.setDate(date.getDate() + 1);

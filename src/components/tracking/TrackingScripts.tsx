@@ -39,7 +39,7 @@ const TrackingScripts = () => {
             `}
           </script>
           <noscript>
-            {`<img height="1" width="1" style="display:none"
+            {`<img height="1" width="1" style="display:none" alt="" aria-hidden="true"
             src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"
             />`}
           </noscript>

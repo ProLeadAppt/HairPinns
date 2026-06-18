@@ -7,6 +7,7 @@ import { Calendar, Check } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
 const bookingFaqs = [
   {
@@ -64,7 +65,7 @@ const Booking = () => {
               Takes about 2 minutes.
             </p>
             <p className="text-foreground mb-8">
-              Need help choosing? <a href="tel:+61416037663" className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Sam</a> or chat with Isabella for instant help.
+              Need help choosing? <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Jena</a> or chat with Isabella for instant help.
             </p>
             
             <a
@@ -130,7 +131,7 @@ const Booking = () => {
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm">
-                <a href="tel:+61416037663" className="text-brand-500 font-semibold hover:text-brand-600 transition-colors">
+                <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 font-semibold hover:text-brand-600 transition-colors">
                   Call 0416 037 663
                 </a>
                 <span className="hidden sm:inline text-muted-foreground">or</span>
@@ -220,7 +221,7 @@ const Booking = () => {
               We're here to help! Call or text us, or visit our FAQ page.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+61416037663">
+              <a href={BUSINESS_NAP.phone.tel}>
                 <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
                   Call: 0416 037 663
                 </Button>

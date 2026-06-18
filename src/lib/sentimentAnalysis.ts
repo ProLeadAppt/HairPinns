@@ -33,7 +33,7 @@ export function analyzeSentiment(text: string): SentimentResult {
   const words = lowerText.split(/\s+/);
   
   let score = 0;
-  let wordCount = 0;
+  const wordCount = 0;
 
   // Check for very strong words
   veryPositiveWords.forEach(word => {

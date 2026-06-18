@@ -48,7 +48,7 @@ const FeatureStrip = () => {
   const trackPhoneClick = () => {
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
-        agent: 'sam',
+        agent: 'jena',
         action: 'phone_clicked',
         location: 'feature_strip'
       });
@@ -94,7 +94,7 @@ const FeatureStrip = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10">
-            {/* Call Sam Card */}
+            {/* Call Jena Card */}
             <div className="glass-card bg-card rounded-card p-6 text-center border border-border shadow-md transition-all hover:scale-105">
               <div 
                 className="w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto"
@@ -103,7 +103,7 @@ const FeatureStrip = () => {
                 <Phone className="w-7 h-7" style={{ color: 'hsl(var(--brand-500))' }} />
               </div>
               <h3 className="text-lg font-heading font-semibold mb-2 text-heading">
-                📞 Call Sam
+                📞 Call Jena
               </h3>
               <p className="mb-4 text-sm text-text">
                 Instant answers over the phone, anytime day or night

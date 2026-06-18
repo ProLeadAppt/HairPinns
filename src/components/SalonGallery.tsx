@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type CSSProperties } from 'react';
 import OptimizedImage from './OptimizedImage';
 
 interface GalleryImage {
@@ -117,9 +117,8 @@ export const SalonGallery = ({
             key={index}
             className="gallery-item group cursor-pointer hover:opacity-95 transition-opacity duration-300"
             style={{
-              // @ts-ignore
               '--aspect-ratio': image.aspectRatio,
-            }}
+            } as CSSProperties}
             data-index={index}
             ref={(el) => {
               if (el && !shouldLoad && observerRef.current) {

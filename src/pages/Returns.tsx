@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { generateBreadcrumbSchema, generateFAQPageSchema } from "@/lib/schema";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
 const RETURNS_FAQS = [
   { question: "Can I return hair products in Australia?", answer: "Yes. Hair Pinns offers 14-day returns on unopened hair care products. We ship Australia-wide and accept returns from all Australian states and territories. Contact us at hairpinns1@gmail.com to start a return." },
@@ -92,7 +93,7 @@ const Returns = () => {
                 hairpinns1@gmail.com
               </a>{" "}
               or{" "}
-              <a href="tel:+61416037663" className="text-brand-500 hover:text-brand-600">
+              <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:text-brand-600">
                 0416 037 663
               </a>
               .

@@ -1603,6 +1603,6 @@ Expected: commit succeeds, status clean. All three clusters now shipped.
 
 **Placeholders scan:** No TBD/TODO markers in the plan content itself. The composite-review TODO comments are an intentional implementation pattern documented in the spec, not plan placeholders.
 
-**Type consistency:** Every post uses the existing `BlogPost` interface. Optional fields (`productModule`) only included where commerce intent makes them useful. `cta.type` values match the interface's union type (`"booking" | "service" | "product" | "chat-isabella" | "call-sam"`). `servicePath` uses `/services/...` prefix matching existing posts. `productPath` uses full `https://hairpinns.com/collections/...` URL matching existing posts.
+**Type consistency:** Every post uses the existing `BlogPost` interface. Optional fields (`productModule`) only included where commerce intent makes them useful. `cta.type` values match the interface's union type (`"booking" | "service" | "product" | "chat-isabella" | "call-jena"`). `servicePath` uses `/services/...` prefix matching existing posts. `productPath` uses full `https://hairpinns.com/collections/...` URL matching existing posts.
 
 Plan complete.

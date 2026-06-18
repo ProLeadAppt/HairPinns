@@ -81,7 +81,7 @@ const FAQPage = () => {
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               Can't find your answer? Call me on{" "}
-              <a href="tel:+61416037663" className="text-brand-500 font-medium hover:underline">
+              <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 font-medium hover:underline">
                 0416 037 663
               </a>{" "}
               or send a message on the{" "}

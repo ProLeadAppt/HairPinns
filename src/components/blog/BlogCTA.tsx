@@ -6,7 +6,7 @@ import { toast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 
 interface BlogCTAProps {
-  type: "call-sam" | "chat-isabella" | "service" | "product" | "booking";
+  type: "call-jena" | "chat-isabella" | "service" | "product" | "booking";
   servicePath?: string;
   productPath?: string;
   customText?: string;
@@ -52,21 +52,21 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
   const trackPhoneClick = () => {
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
-        agent: 'sam',
+        agent: 'jena',
         action: 'phone_clicked',
         location: 'blog_cta'
       });
     }
   };
 
-  if (type === "call-sam") {
+  if (type === "call-jena") {
     return (
       <div className="my-12 p-8 bg-accent rounded-card border border-border text-center">
         <h3 className="text-h3 font-heading font-bold mb-4 text-heading">
           {customText || "Questions about this service?"}
         </h3>
         <p className="text-lg mb-6 text-text">
-          Call Sam now to discuss your hair goals and book your appointment.
+          Call Jena now to discuss your hair goals and book your appointment.
         </p>
         <Button
           asChild
@@ -80,7 +80,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
             className="no-link-color"
           >
             <Phone className="w-5 h-5" />
-            Call Sam: 0416 037 663
+            Call Jena: 0416 037 663
           </a>
         </Button>
       </div>

@@ -28,6 +28,7 @@ import RelatedContent from "@/components/RelatedContent";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { serviceDetailData } from "@/data/serviceDetails";
 import { BUSINESS_HOURS } from "@/config/businessConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -235,7 +236,7 @@ const LocationPage = () => {
                   className="font-semibold"
                   asChild
                 >
-                  <a href="tel:+61416037663" className="flex items-center gap-2">
+                  <a href={BUSINESS_NAP.phone.tel} className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
                     Call +61 468 093 991
                   </a>
@@ -462,7 +463,7 @@ const LocationPage = () => {
                   className="font-semibold"
                   asChild
                 >
-                  <a href="tel:+61416037663" className="flex items-center gap-2">
+                  <a href={BUSINESS_NAP.phone.tel} className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
                     Call +61 468 093 991
                   </a>

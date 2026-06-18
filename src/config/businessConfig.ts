@@ -19,11 +19,12 @@ export const BUSINESS_NAP = {
   },
   phone: {
     // Canonical mobile for Hair Pinns. Verified against Google Business
-    // Profile on 2026-06-17. Prior values were a literal string mask
-    // ("+614****7663") that produced dead tel: links in Footer,
-    // StickyBookBar, ContactForm and JSON-LD schema. Keep these three
-    // fields in sync with the GBP. To rotate the number, update all three
-    // below + GBP + Fresha + business profile listing.
+    // Profile on 2026-06-17. `display` 0416 037 663 → E.164 +61416037663.
+    // Prior values were a literal string mask ("+61416037663") that
+    // produced dead tel: links in Footer, StickyBookBar, ContactForm and
+    // JSON-LD schema. Keep these three fields in sync with the GBP. To
+    // rotate the number, update all three below + GBP + Fresha + business
+    // profile listing.
     //   - `display`  human-readable (used in copy / fallback label)
     //   - `raw`      E.164 with no `tel:` prefix (for wa.me, sms:, schema)
     //   - `tel`      full `tel:` href

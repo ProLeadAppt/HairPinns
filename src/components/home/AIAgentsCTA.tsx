@@ -47,7 +47,7 @@ const AIAgentsCTA = () => {
   const trackPhoneClick = () => {
     if (window.hpCapture) {
       window.hpCapture('ai_agent_interaction', {
-        agent: 'sam',
+        agent: 'jena',
         action: 'phone_clicked',
         location: 'hero_cta'
       });
@@ -79,7 +79,7 @@ const AIAgentsCTA = () => {
           <span className="text-text">Chat with Isabella</span>
         </Button>
 
-        {/* SECONDARY: Call Sam */}
+        {/* SECONDARY: Call Jena */}
         <Button 
           asChild
           size="lg" 
@@ -91,7 +91,7 @@ const AIAgentsCTA = () => {
             className="flex items-center gap-2"
           >
             <Phone className="w-5 h-5" />
-            Call Sam Now
+            Call Jena Now
           </a>
         </Button>
       </div>

@@ -33,7 +33,7 @@ git commit -m "feat(seo): add SITE_URL constant to businessConfig"
 
 ---
 
-### Task 2: Domain Unification — Replace hairpinns.com.au with hairpinns.com
+### Task 2: Domain Unification — Replace hairpinns.com with hairpinns.com
 
 **Files:**
 - Modify: `src/lib/schema.ts:67`
@@ -57,7 +57,7 @@ In `src/lib/schema.ts`, replace line 67:
 
 ```ts
 // OLD
-const BASE_URL = 'https://hairpinns.com.au';
+const BASE_URL = 'https://hairpinns.com';
 
 // NEW
 import { SITE_URL } from '@/config/businessConfig';
@@ -77,7 +77,7 @@ import { SITE_URL } from '@/config/businessConfig';
 Replace line 27:
 ```ts
 // OLD
-const baseUrl = 'https://hairpinns.com.au';
+const baseUrl = 'https://hairpinns.com';
 // NEW
 const baseUrl = SITE_URL;
 ```
@@ -85,7 +85,7 @@ const baseUrl = SITE_URL;
 Replace line 72:
 ```ts
 // OLD
-const baseUrl = 'https://hairpinns.com.au';
+const baseUrl = 'https://hairpinns.com';
 // NEW
 const baseUrl = SITE_URL;
 ```
@@ -96,16 +96,16 @@ In `scripts/submit-indexnow.js`, fix line 44:
 
 ```js
 // OLD
-keyLocation: `https://hairpinns.com.au/${INDEXNOW_KEY}.txt`,
+keyLocation: `https://hairpinns.com/${INDEXNOW_KEY}.txt`,
 // NEW
 keyLocation: `https://hairpinns.com/${INDEXNOW_KEY}.txt`,
 ```
 
-- [ ] **Step 4: Bulk replace hairpinns.com.au in all remaining src files**
+- [ ] **Step 4: Bulk replace hairpinns.com in all remaining src files**
 
 Run a global find-and-replace across the entire `src/` directory:
 
-Replace all instances of `https://hairpinns.com.au` with `https://hairpinns.com`.
+Replace all instances of `https://hairpinns.com` with `https://hairpinns.com`.
 
 This covers:
 - `src/components/ContactSection.tsx` (1 instance)

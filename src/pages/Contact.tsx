@@ -13,11 +13,12 @@ import ConsentRow from "@/components/forms/ConsentRow";
 import ContactForm from "@/components/forms/ContactForm";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
 const contactFaqs = [
   {
     question: "What's the fastest way to contact Hair Pinns?",
-    answer: "Call or SMS Sam directly on 0416 037 663 for immediate replies during opening hours. You can also chat with our AI assistant Isabella 24/7 via the chat widget, or send a message through the contact form and we'll respond within one business day."
+    answer: "Call or SMS Jena directly on 0416 037 663 for immediate replies during opening hours. You can also chat with our AI assistant Isabella 24/7 via the chat widget, or send a message through the contact form and we'll respond within one business day."
   },
   {
     question: "Can I book an appointment by phone?",
@@ -321,7 +322,7 @@ const Contact = () => {
             <div className="text-center mb-12">
               <h2 className="text-h2 font-heading text-heading mb-4">Need Help? We're Here 24/7</h2>
               <p className="text-lg text-foreground mb-8">
-                Sam and Isabella are available 24/7 to answer your questions, help with bookings, and provide product recommendations. For detailed inquiries that need Jena's expertise, you can leave a message and she'll call you back within 24 hours.
+                Jena and Isabella are available 24/7 to answer your questions, help with bookings, and provide product recommendations. For detailed inquiries that need Jena's expertise, you can leave a message and she'll call you back within 24 hours.
               </p>
             </div>
 
@@ -331,9 +332,9 @@ const Contact = () => {
                 <div className="w-16 h-16 rounded-full bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
                   <Phone className="w-8 h-8 text-brand-500" />
                 </div>
-                <h3 className="text-xl font-heading font-bold text-heading mb-3">Call Sam</h3>
+                <h3 className="text-xl font-heading font-bold text-heading mb-3">Call Jena</h3>
                 <p className="text-foreground mb-6">
-                  Speak directly with Sam for instant answers to your hair questions and booking assistance.
+                  Speak directly with Jena for instant answers to your hair questions and booking assistance.
                 </p>
                 <Button 
                   asChild
@@ -341,7 +342,7 @@ const Contact = () => {
                   variant="primary"
                   className="w-full bg-brand-500 hover:bg-brand-600"
                 >
-                  <a href="tel:+61416037663" className="no-link-color">
+                  <a href={BUSINESS_NAP.phone.tel} className="no-link-color">
                     <Phone className="w-5 h-5" />
                     Call: 0416 037 663
                   </a>

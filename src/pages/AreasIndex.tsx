@@ -8,6 +8,7 @@ import Card from "@/components/design-system/Card";
 import SEOHead from "@/components/SEOHead";
 import { MapPin, Clock } from "lucide-react";
 import { getAllLocationSlugs, getLocationData } from "@/data/locationPages";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 
 const AreasIndex = () => {
   const allSlugs = getAllLocationSlugs();
@@ -150,7 +151,7 @@ const AreasIndex = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="tel:+61416037663"
+                  href={BUSINESS_NAP.phone.tel}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors font-semibold"
                 >
                   <MapPin className="w-5 h-5" />
