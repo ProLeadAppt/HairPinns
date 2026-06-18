@@ -130,7 +130,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         quickAnswer: "The Long/Thick Straight Up Smoothing treatment is designed for hair past shoulders or dense texture, delivering exceptional frizz reduction and lasting smoothness for 3–5 months. It uses extended application time and professional heat sealing for complete coverage.",
         duration: "2h 20min",
         price: "A$ 349",
-        description: "Specially designed for long or thick hair, this Straight Up Smoothing treatment delivers exceptional smoothing results that transform your hair from unruly to beautifully manageable.",
+        description: "For hair past your shoulders, or thick hair that eats a straightener in 20 minutes. Longer application time and full-heat coverage. Stays smooth for 3-5 months on most hair types — your morning routine drops to 'wash and walk out'.",
         metaDescription: "Long/thick hair Straight Up Smoothing in Bangor. Natural smoothing for thick or long hair, 2h 20min, $349. Book at Hair Pinns NSW.",
         whatsIncluded: [
           "Extended treatment time for thorough coverage",

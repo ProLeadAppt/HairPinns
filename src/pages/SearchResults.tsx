@@ -60,6 +60,7 @@ const SearchResults = () => {
                 currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
                 image: firstImage?.url || "/placeholder.svg",
                 availableForSale: product.availableForSale,
+                variantId: product.variants?.edges?.[0]?.node?.id,
               };
             });
 

@@ -501,7 +501,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           heading: "Pricing",
-          content: "Teens: $214\nMid-length: $324\nLong: $349\n\nExperience the benefits of a Straight Up and transform your hair care routine. For more information or to book an appointment, reach out!\n\nJena 0416037663\nE: hairpinns1@gmail.com"
+          content: "Teens: $214\nMid-length: $324\nLong: $349\n\nStraight Up Smoothing lasts 12 weeks on most hair. Less wash-day effort, no straightener every morning, no humidity freakout. Book a colour-and-smooth combo and we'll do both in one visit — saves you a return trip.\n\nJena 0416037663\nE: hairpinns1@gmail.com"
         }
       ],
       faqSection: [
