@@ -1,5 +1,4 @@
 // Schema.org JSON-LD utilities for SEO
-import { googleReviews } from '@/data/reviews';
 
 interface BreadcrumbItem {
   name: string;
@@ -145,7 +144,7 @@ export const generateOrganizationSchema = () => ({
   },
 });
 
-export const generateLocalBusinessSchema = (pageUrl?: string) => ({
+export const generateLocalBusinessSchema = (pageUrl?: string, reviews: Array<{ rating: number; author: string; date: string; text: string }> = []) => ({
   '@context': 'https://schema.org',
   '@type': 'HairSalon',
   '@id': `${BASE_URL}/#hairsalon`,
@@ -176,7 +175,7 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   // Individual customer reviews — Google-eligible for review rich results.
   // Sourced from src/data/reviews.ts which is refreshed manually from
   // Google Business Profile. Keep the top 5 most recent 5-star reviews.
-  review: googleReviews.slice(0, 5).map((r) => ({
+  review: reviews.slice(0, 5).map((r) => ({
     '@type': 'Review',
     reviewRating: {
       '@type': 'Rating',

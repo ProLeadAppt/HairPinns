@@ -1,4 +1,5 @@
 import { useParams, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -16,12 +17,11 @@ import AuthorBio from "@/components/blog/AuthorBio";
 import SocialShareBar from "@/components/blog/SocialShareBar";
 import QuickAnswer from "@/components/blog/QuickAnswer";
 import KeyTakeaways from "@/components/blog/KeyTakeaways";
-import { blogPosts } from "@/data/blogPosts";
 import { getOGImage } from "@/lib/sitemap";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForBlogPost } from "@/data/topicMap";
 import { renderInlineLinks } from "@/lib/renderInlineLinks";
-import { shopifyImage } from "@/lib/shopifyImage";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
@@ -32,17 +32,11 @@ import {
   generateJenaPersonSchema,
 } from "@/lib/schema";
 
-const BlogPost = () => {
-  const { slug } = useParams();
-  const post = slug ? blogPosts.find(p => p.slug === slug) : undefined;
+export const BlogPostTemplate = ({ post }: { post: any }) => {
   // Wire the IntersectionObserver that flips `.reveal` → `.reveal.visible`.
   // Without this, every `<div className="reveal">` in this template renders
   // at opacity:0 and never appears — silently hiding every blog body section.
   const revealRef = useScrollReveal();
-
-  if (!post) {
-    return <Navigate to="/404" replace />;
-  }
 
   // Archived posts are 301'd to the live destination (collections page or homepage).
   // Doing it client-side via <Navigate> keeps the URL change observable and avoids
@@ -160,15 +154,35 @@ const BlogPost = () => {
       <main id="main-content" tabIndex={-1} ref={revealRef as any}>
         {/* Hero Section - Overlay Style */}
         <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden">
-          <img
-            src={shopifyImage(post.image, 1600)}
-            alt={post.title}
-            className="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="800"
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={[
+                640,
+                960,
+                1200,
+                1600,
+              ].map((width) => `${shopifyImageWebp(post.image, width)} ${width}w`).join(", ")}
+              sizes="100vw"
             />
+            <img
+              src={shopifyImage(post.image, 1600)}
+              srcSet={[
+                640,
+                960,
+                1200,
+                1600,
+              ].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
+              alt={post.title}
+              className="w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width="1600"
+              height="900"
+              sizes="100vw"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-heading/90 via-heading/50 to-transparent" />
           
           <div className="absolute inset-0 flex items-end">
@@ -329,6 +343,55 @@ const BlogPost = () => {
       <Footer />
     </div>
   );
+};
+
+const blogPostLoaders = import.meta.glob("/src/data/blog-posts/*.tsx");
+
+const BlogPost = () => {
+  const { slug } = useParams();
+  const loaderKey = slug ? `/src/data/blog-posts/${slug}.tsx` : null;
+  const loader = loaderKey ? blogPostLoaders[loaderKey] : null;
+  const [PostComponent, setPostComponent] = useState<null | ((props: any) => JSX.Element)>(null);
+  const [loadError, setLoadError] = useState<unknown>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setPostComponent(null);
+    setLoadError(null);
+
+    if (!loader) return;
+
+    loader()
+      .then((mod: any) => {
+        if (!cancelled) {
+          setPostComponent(() => mod.default);
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          console.error(`[BlogPost] Failed to load post module for ${loaderKey}:`, error);
+          setLoadError(error);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [loader, loaderKey]);
+
+  if (!loader) {
+    return <Navigate to="/404" replace />;
+  }
+
+  if (loadError) {
+    return <Navigate to="/404" replace />;
+  }
+
+  if (!PostComponent) {
+    return <div className="min-h-screen bg-background" aria-label="Loading" />;
+  }
+
+  return <PostComponent />;
 };
 
 export default BlogPost;

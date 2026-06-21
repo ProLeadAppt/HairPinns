@@ -2,6 +2,11 @@ import { projectConfig } from "@/config/projectConfig";
 
 const { domain, storefrontToken, apiVersion, storeUrl } = projectConfig.shopify;
 
+// Deduplicate identical read-only Shopify requests during build/prerender.
+// This is a big win for the 200+ route prerender pass where the same
+// collections/products are fetched repeatedly across pages.
+const shopifyRequestCache = new Map<string, Promise<any>>();
+
 // Get endpoint lazily - only validate when actually needed
 function getEndpoint(): string {
   if (!domain) {
@@ -28,26 +33,43 @@ export async function fetchShopify<T>(
   query: string,
   variables: Record<string, any> = {}
 ): Promise<T> {
-  const endpoint = getEndpoint();
-  const token = storefrontToken || '';
-  
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": token,
-    },
-    body: JSON.stringify({ query, variables }),
-  });
-
-  const json = await res.json();
-  
-  if (json.errors) {
-    console.error("Shopify API errors:", json.errors);
-    throw new Error(JSON.stringify(json.errors));
+  const cacheKey = JSON.stringify({ query, variables });
+  const cached = shopifyRequestCache.get(cacheKey);
+  if (cached) {
+    return cached as Promise<T>;
   }
 
-  return json.data;
+  const request = (async () => {
+    const endpoint = getEndpoint();
+    const token = storefrontToken || '';
+
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": token,
+      },
+      body: JSON.stringify({ query, variables }),
+    });
+
+    const json = await res.json();
+
+    if (json.errors) {
+      console.error("Shopify API errors:", json.errors);
+      throw new Error(JSON.stringify(json.errors));
+    }
+
+    return json.data as T;
+  })();
+
+  shopifyRequestCache.set(cacheKey, request);
+
+  try {
+    return await request;
+  } catch (error) {
+    shopifyRequestCache.delete(cacheKey);
+    throw error;
+  }
 }
 
 /**

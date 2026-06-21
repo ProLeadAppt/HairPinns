@@ -6,11 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import SEOHead from "@/components/SEOHead";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "@/lib/motionShim";
 import { soundEffects } from "@/lib/soundEffects";
 import { haptics } from "@/lib/haptics";
 import { analyzeSentiment } from "@/lib/sentimentAnalysis";
-import { hpCapture } from "@/lib/hpCapture";
+import { getHpCapture } from "@/lib/loadHpCapture";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -151,6 +151,7 @@ const ReviewFeedback = () => {
     };
 
     try {
+      const hpCapture = await getHpCapture();
       await hpCapture.postToGHL({
         form_name: 'review_feedback',
         name: formData.name,

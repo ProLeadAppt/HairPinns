@@ -25,8 +25,9 @@
  * Usage:
  *   node scripts/prerender.mjs [--dry-run] [--concurrency=4] [--timeout=20000]
  */
-import { spawn, execSync } from 'child_process';
+import { execSync } from 'child_process';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, copyFileSync } from 'fs';
+import http from 'http';
 import { resolve, dirname, join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { collectRoutes } from './collect-prerender-routes.js';
@@ -45,7 +46,7 @@ const argMap = Object.fromEntries(
 );
 const DRY_RUN = argMap['dry-run'] === 'true';
 const CONCURRENCY = parseInt(argMap.concurrency || '4', 10);
-const TIMEOUT_MS = parseInt(argMap.timeout || '20000', 10);
+const TIMEOUT_MS = parseInt(argMap.timeout || '60000', 10);
 const PORT = parseInt(argMap.port || '4180', 10);
 const PREVIEW_URL = `http://127.0.0.1:${PORT}`;
 
@@ -104,6 +105,42 @@ class Pool {
     }
   }
 }
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const TRANSIENT_BROWSER_ERROR_RE = /Connection closed|Target.closeTarget timed out|Browser disconnected|Session closed|Protocol error/i;
+
+async function launchPrerenderBrowser(puppeteer, launchOpts) {
+  try {
+    return await puppeteer.launch(launchOpts);
+  } catch (err) {
+    // Chrome may be absent from the build cache: Netlify restores node_modules
+    // from cache without re-running puppeteer's postinstall download, leaving
+    // ~/.cache/puppeteer empty. Install the expected browser, then retry once.
+    console.warn(`[prerender] Chrome not available (${err.message}). Installing browser…`);
+    try {
+      execSync('npx --yes puppeteer browsers install chrome', { cwd: root, stdio: 'inherit' });
+      return await puppeteer.launch(launchOpts);
+    } catch (installErr) {
+      // Still no usable browser. Don't fail the build — the SPA shell is valid
+      // for JS-capable crawlers. Skip prerendering and exit cleanly.
+      console.warn(`[prerender] Skipping prerender — Chrome unavailable: ${installErr.message}`);
+      return null;
+    }
+  }
+}
+
+async function closeBrowserSafely(browser) {
+  if (!browser) return;
+  try {
+    if (browser.isConnected()) {
+      await browser.close();
+    }
+  } catch (err) {
+    const msg = String(err?.message || err);
+    if (!TRANSIENT_BROWSER_ERROR_RE.test(msg)) {
+      console.warn(`[prerender] browser.close warning: ${msg}`);
+    }
+  }
+}
 
 // ----- route output path -----
 function routeToPath(route) {
@@ -118,36 +155,70 @@ function routeToPath(route) {
 }
 
 // ----- main -----
-// Kill the entire preview-server process group and wait for it to actually
-// exit. `spawn` is created with `detached: true` below, so the child PID is
-// also its own process-group leader — `process.kill(-pid, signal)` reaches
-// every descendant (npx → vite preview → its own worker handles), which a
-// plain `preview.kill()` (SIGTERM to the parent only) does not. On Linux the
-// `npx` shim spawns `vite preview` as a separate child, and without group
-// signalling that child becomes orphaned and keeps the HTTP port bound —
-// Node's event loop stays alive, the build script never returns, and Netlify
-// kills the whole job at 18m. Returns true if the group was reaped, false
-// if it was still alive after the hard-kill fallback (still resolved so the
-// build can proceed to the next step regardless).
-async function stopPreview(preview, { graceMs = 5000 } = {}) {
-  if (!preview || preview.killed || preview.exitCode !== null) return true;
-  const pid = preview.pid;
-  if (!pid) return true;
-  // SIGTERM the whole group first — gives vite a chance to flush.
-  try { process.kill(-pid, 'SIGTERM'); } catch { /* already gone */ }
-  const exited = await Promise.race([
-    new Promise((r) => preview.once('exit', () => r(true))),
-    new Promise((r) => setTimeout(() => r(false), graceMs)),
-  ]);
-  if (exited) return true;
-  // Hard fallback — nothing should still be listening.
-  try { process.kill(-pid, 'SIGKILL'); } catch { /* already gone */ }
-  // Give the kill a moment to actually reap; don't block the build forever.
-  await Promise.race([
-    new Promise((r) => preview.once('exit', () => r(true))),
-    new Promise((r) => setTimeout(r, 1000)),
-  ]);
-  return preview.exitCode !== null;
+// Close the preview server cleanly. We use an in-process static server rather
+// than `vite preview` so prerender can't be derailed by a separate child
+// process dying mid-batch.
+async function stopPreview(preview) {
+  if (!preview) return true;
+  try {
+    await new Promise((resolve) => preview.close(resolve));
+  } catch {
+    // ignore shutdown noise
+  }
+  return true;
+}
+
+function startPreviewServer(port, host) {
+  const indexHtml = readFileSync(join(distDir, 'index.html'), 'utf8');
+  const contentType = (pathname) => {
+    if (pathname.endsWith('.html')) return 'text/html; charset=utf-8';
+    if (pathname.endsWith('.js')) return 'application/javascript; charset=utf-8';
+    if (pathname.endsWith('.css')) return 'text/css; charset=utf-8';
+    if (pathname.endsWith('.json')) return 'application/json; charset=utf-8';
+    if (pathname.endsWith('.svg')) return 'image/svg+xml';
+    if (pathname.endsWith('.png')) return 'image/png';
+    if (pathname.endsWith('.jpg') || pathname.endsWith('.jpeg')) return 'image/jpeg';
+    if (pathname.endsWith('.webp')) return 'image/webp';
+    if (pathname.endsWith('.avif')) return 'image/avif';
+    if (pathname.endsWith('.woff2')) return 'font/woff2';
+    return 'application/octet-stream';
+  };
+
+  const server = http.createServer((req, res) => {
+    try {
+      const requestUrl = new URL(req.url || '/', `http://${host}:${port}`);
+      const pathname = decodeURIComponent(requestUrl.pathname);
+      const isAsset = pathname.startsWith('/assets/') || /\.[a-z0-9]+$/i.test(pathname);
+      const safePath = pathname.replace(/^\/+/, '');
+      const filePath = join(distDir, safePath);
+
+      if (isAsset) {
+        if (!existsSync(filePath)) {
+          res.statusCode = 404;
+          res.end('Not found');
+          return;
+        }
+        res.setHeader('Content-Type', contentType(pathname));
+        res.setHeader('Cache-Control', 'no-cache');
+        res.end(readFileSync(filePath));
+        return;
+      }
+
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.end(indexHtml);
+    } catch (error) {
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.end(String(error?.message || error));
+    }
+  });
+
+  return new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(port, host, () => resolve(server));
+  });
 }
 
 async function main() {
@@ -186,53 +257,13 @@ async function main() {
 
   console.log(`[prerender] ${routes.length} routes, concurrency=${CONCURRENCY}, timeout=${TIMEOUT_MS}ms, dryRun=${DRY_RUN}`);
 
-  // Start preview server. Bind to an explicit loopback host and strict port so
-  // the address is deterministic regardless of any PORT/HOST env Netlify sets.
-  // `detached: true` + `stdio: ignore` (below) puts the child in its own
-  // process group with PID == PGID, so we can kill the whole tree (npx →
-  // vite preview → workers) with a single negative-PID signal at teardown.
-  // Without this, SIGTERM to the npx shim leaves the actual `vite` node
-  // process orphaned and the port stays bound, holding the build open.
+  // Start a tiny static server in-process. This is more stable than `vite preview`
+  // for long prerender batches and still serves the built SPA shell plus assets.
   const PREVIEW_HOST = '127.0.0.1';
-  preview = spawn('npx', ['vite', 'preview', '--host', PREVIEW_HOST, '--port', String(PORT), '--strictPort'], {
-    cwd: root,
-    stdio: ['ignore', 'pipe', 'pipe'],
-    detached: true,
-  });
-
-  // Capture all output for diagnostics, and watch for an early exit (e.g. port
-  // in use, missing dist) so we fail fast with a useful message.
-  let previewOutput = '';
-  let previewExited = null;
-  preview.stdout.on('data', (c) => { previewOutput += c.toString(); });
-  preview.stderr.on('data', (c) => { previewOutput += c.toString(); });
-  preview.on('exit', (code, signal) => { previewExited = { code, signal }; });
-  preview.on('error', (err) => { previewExited = { error: err.message }; });
-
-  // Readiness: poll the HTTP endpoint until it actually answers. This is far
-  // more reliable than scraping the startup banner from stdout, which varies
-  // between Vite versions and can be buffered/colorised in CI.
-  const START_TIMEOUT_MS = 60000;
-  const startDeadline = Date.now() + START_TIMEOUT_MS;
-  let ready = false;
-  while (Date.now() < startDeadline) {
-    if (previewExited) {
-      console.error(`[prerender] Preview server exited before becoming ready:`, JSON.stringify(previewExited));
-      if (previewOutput.trim()) console.error(previewOutput.slice(0, 2000));
-      await stopPreview(preview);
-      process.exit(1);
-    }
-    try {
-      const res = await fetch(`${PREVIEW_URL}/`, { method: 'GET' });
-      if (res.status >= 200 && res.status < 500) { ready = true; break; }
-    } catch {
-      // Server not accepting connections yet — keep polling.
-    }
-    await new Promise((r) => setTimeout(r, 300));
-  }
-  if (!ready) {
-    console.error(`[prerender] Failed to start preview server: not reachable at ${PREVIEW_URL} within ${START_TIMEOUT_MS}ms`);
-    if (previewOutput.trim()) console.error(previewOutput.slice(0, 2000));
+  preview = await startPreviewServer(PORT, PREVIEW_HOST);
+  const res = await fetch(`${PREVIEW_URL}/`, { method: 'GET' });
+  if (!res.ok) {
+    console.error(`[prerender] Preview server health check failed with HTTP ${res.status}`);
     await stopPreview(preview);
     process.exit(1);
   }
@@ -242,148 +273,159 @@ async function main() {
   const puppeteer = (await import('puppeteer')).default;
   const launchOpts = {
     headless: true,
+    protocolTimeout: 120000,
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
   };
-  let browser;
-  try {
-    browser = await puppeteer.launch(launchOpts);
-  } catch (err) {
-    // Chrome may be absent from the build cache: Netlify restores node_modules
-    // from cache without re-running puppeteer's postinstall download, leaving
-    // ~/.cache/puppeteer empty. Install the expected browser, then retry once.
-    console.warn(`[prerender] Chrome not available (${err.message}). Installing browser…`);
-    try {
-      execSync('npx --yes puppeteer browsers install chrome', { cwd: root, stdio: 'inherit' });
-      browser = await puppeteer.launch(launchOpts);
-    } catch (installErr) {
-      // Still no usable browser. Don't fail the build — the SPA shell is valid
-      // for JS-capable crawlers. Skip prerendering and exit cleanly.
-      console.warn(`[prerender] Skipping prerender — Chrome unavailable: ${installErr.message}`);
-      await stopPreview(preview);
-      return;
-    }
+  let browser = await launchPrerenderBrowser(puppeteer, launchOpts);
+  if (!browser) {
+    await stopPreview(preview);
+    return;
   }
+
+  const ensureBrowser = async () => {
+    if (!browser || !browser.isConnected()) {
+      browser = await launchPrerenderBrowser(puppeteer, launchOpts);
+    }
+    return browser;
+  };
+
+  const restartBrowser = async (reason, err) => {
+    const msg = String(err?.message || err || '').slice(0, 160);
+    console.warn(`[prerender] Restarting browser after ${reason}: ${msg}`);
+    await closeBrowserSafely(browser);
+    browser = await launchPrerenderBrowser(puppeteer, launchOpts);
+    if (!browser) {
+      throw new Error('Chrome unavailable after browser restart');
+    }
+  };
+
 
   const results = [];
   let processed = 0;
 
   const pool = new Pool(CONCURRENCY);
+  const productPool = new Pool(1);
 
   await Promise.all(
     routes.map((route) =>
-      pool.run(async () => {
+      (route.startsWith('/products/') ? productPool : pool).run(async () => {
         const t0 = Date.now();
         const url = `${PREVIEW_URL}${route}`;
-        const page = await browser.newPage();
-        // Propagate the script-level timeout to every Puppeteer call (goto,
-        // waitForSelector, waitForFunction, etc.). Without this, any Puppeteer
-        // helper that doesn't accept a per-call timeout reverts to its
-        // hardcoded 30s default and can still hard-fail a build on a slow
-        // network-bound page. Verified 2026-06-17: prerender was crashing
-        // at 50/267 with a 30000ms TimeoutError despite TIMEOUT_MS=20000.
-        page.setDefaultTimeout(TIMEOUT_MS);
-        page.setDefaultNavigationTimeout(TIMEOUT_MS);
-        // Block any non-essential third-party (analytics, chat widgets) so
-        // they don't slow prerender or pollute HTML. CSP-friendly list of
-        // domains we serve our own copies of or that are non-essential.
-        await page.setRequestInterception(true);
-        const blockedHosts = [
-          'leadconnectorhq.com', 'google-analytics.com', 'googletagmanager.com',
-          'clarity.ms', 'fonts.bunny.net',
-        ];
-        page.on('request', (req) => {
+        let lastErr = null;
+
+        for (let attempt = 0; attempt < 3; attempt++) {
+          let page = null;
           try {
-            const u = new URL(req.url());
-            if (blockedHosts.some((h) => u.hostname.endsWith(h))) {
-              req.abort();
-              return;
+            const activeBrowser = await ensureBrowser();
+            // `browser.newPage()` can occasionally fail under load or after a
+            // Chromium hiccup. Keep it inside the retry loop and relaunch the
+            // browser on transient disconnects so one bad page doesn't poison
+            // the whole batch.
+            page = await activeBrowser.newPage();
+
+            // Propagate the script-level timeout to every Puppeteer call (goto,
+            // waitForSelector, waitForFunction, etc.). Without this, any Puppeteer
+            // helper that doesn't accept a per-call timeout reverts to its
+            // hardcoded 30s default and can still hard-fail a build on a slow
+            // network-bound page. Verified 2026-06-17: prerender was crashing
+            // at 50/267 with a 30000ms TimeoutError despite TIMEOUT_MS=20000.
+            page.setDefaultTimeout(TIMEOUT_MS);
+            page.setDefaultNavigationTimeout(TIMEOUT_MS);
+            // Set prerender UA so any UA-gated scripts self-skip. Keep the
+            // browser free of per-page interception listeners; long prerender
+            // batches have been observed to destabilize Chromium when request
+            // interception is enabled on every route.
+            await page.setUserAgent('HairPinnsPrerender/1.0 (+HeadlessChrome; prerender=true)');
+
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: TIMEOUT_MS });
+            // Wait for the prerender-ready marker that SEOHead injects once
+            // all async data (Shopify, blog content, etc.) has resolved.
+            await page.waitForSelector('#prerender-ready-marker', { timeout: TIMEOUT_MS });
+            // If the page actually uses the scroll-reveal system, give lazy
+            // sections a quick chance to mount and then scroll once to trip the
+            // IntersectionObserver. Most routes (blog, collections, services)
+            // don't use `.reveal` at all, so we skip the extra waiting there.
+            const needsReveal = await page.evaluate(() => Boolean(document.querySelector('.reveal')));
+            if (needsReveal) {
+              try {
+                // Keep this short: `waitForNetworkIdle` is the slow path in the
+                // prerender pipeline, and we only need a brief cushion for the last
+                // async chunks to settle before capturing the home-page reveal rows.
+                await page.waitForNetworkIdle({ idleTime: 250, timeout: 1000 });
+              } catch {
+                // Network may not reach idle quickly on the home page; we still
+                // rely on the CSS fallback to make the reveal sections visible.
+              }
+              await sleep(450);
             }
-            req.continue();
-          } catch {
-            req.continue();
-          }
-        });
-        // Set prerender UA so any UA-gated scripts self-skip
-        await page.setUserAgent('HairPinnsPrerender/1.0 (+HeadlessChrome; prerender=true)');
-        try {
-          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: TIMEOUT_MS });
-          // Wait for the prerender-ready marker that SEOHead injects once
-          // all async data (Shopify, blog content, etc.) has resolved.
-          await page.waitForSelector('#prerender-ready-marker', { timeout: TIMEOUT_MS });
-          // SEOHead is ready; now we need to flush React.lazy() chunks
-          // and trigger IntersectionObserver-based reveals before
-          // capturing the HTML. Index.tsx wraps BestSellers,
-          // ProductCategories, WhyShopHairPinns, BlogTrio and
-          // PopularGuides in <Suspense>. Without scrolling, the lazy
-          // chunks fire but the .reveal wrappers stay empty (their
-          // contents are gated by useScrollReveal's IntersectionObserver
-          // — which only fires when the element enters the viewport).
-          //
-          // Two-step fix (2026-06-17):
-          //   1. Wait for the network to settle (all dynamic chunks +
-          //      Shopify + blog fetches complete).
-          //   2. Scroll the viewport to the bottom of the page to
-          //      trigger every IntersectionObserver, then back to top.
-          //      Each .reveal element gets its `.reveal.visible` class
-          //      so the inner content paints into the prerendered HTML.
-          try {
-            // 8s cap — Shopify/blog fetches can hold the network busy.
-            // 8s is long enough for the dynamic chunks + initial data,
-            // short enough to keep the build under 6min.
-            await page.waitForNetworkIdle({ idleTime: 800, timeout: 8000 });
-          } catch {
-            // Network may not reach idle within TIMEOUT_MS on slow
-            // Shopify/blog fetches; the scroll-and-wait fallback below
-            // still gives lazy chunks a chance to mount.
-          }
-          await page.evaluate(async () => {
-            const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-            const total = document.documentElement.scrollHeight;
-            const step = Math.max(window.innerHeight * 0.8, 400);
-            for (let y = 0; y <= total; y += step) {
-              window.scrollTo(0, y);
-              await sleep(80);
+            const rawHtml = await page.content();
+            const cleanedHtml = postProcessHtml(rawHtml);
+            // Sanity checks: must have <h1>, <title>, meta description, JSON-LD
+            const h1Count = (cleanedHtml.match(/<h1\b/gi) || []).length;
+            const jsonLdCount = (cleanedHtml.match(/<script[^>]*type=["']application\/ld\+json["']/gi) || []).length;
+            const hasTitle = /<title>[^<]+<\/title>/i.test(cleanedHtml);
+            const out = routeToPath(route);
+            const outPath = join(distDir, out.dir, out.file);
+            mkdirSync(dirname(outPath), { recursive: true });
+            writeFileSync(outPath, cleanedHtml, 'utf8');
+            results.push({
+              route, ok: true, dt: Date.now() - t0,
+              bytes: cleanedHtml.length, h1Count, jsonLdCount, hasTitle,
+              path: relative(root, outPath),
+            });
+            lastErr = null;
+            break;
+          } catch (err) {
+            lastErr = err;
+            const msg = String(err?.message || err);
+            if (TRANSIENT_BROWSER_ERROR_RE.test(msg) && attempt < 2) {
+              await restartBrowser(`route ${route} attempt ${attempt + 1}`, err);
+              await sleep(750 * Math.pow(2, attempt));
+              continue;
             }
-            window.scrollTo(0, 0);
-            await sleep(200);
-          });
-          // Final settle window so any post-scroll fetches (lazy images,
-          // analytics we don't block) finish writing to the DOM.
-          await new Promise((r) => setTimeout(r, 600));
-          const rawHtml = await page.content();
-          const cleanedHtml = postProcessHtml(rawHtml);
-          // Sanity checks: must have <h1>, <title>, meta description, JSON-LD
-          const h1Count = (cleanedHtml.match(/<h1\b/gi) || []).length;
-          const jsonLdCount = (cleanedHtml.match(/<script[^>]*type=["']application\/ld\+json["']/gi) || []).length;
-          const hasTitle = /<title>[^<]+<\/title>/i.test(cleanedHtml);
-          const out = routeToPath(route);
-          const outPath = join(distDir, out.dir, out.file);
-          mkdirSync(dirname(outPath), { recursive: true });
-          writeFileSync(outPath, cleanedHtml, 'utf8');
-          results.push({
-            route, ok: true, dt: Date.now() - t0,
-            bytes: cleanedHtml.length, h1Count, jsonLdCount, hasTitle,
-            path: relative(root, outPath),
-          });
-        } catch (err) {
-          results.push({
-            route, ok: false, dt: Date.now() - t0,
-            error: String(err.message || err).slice(0, 120),
-          });
-        } finally {
-          await page.close();
-          processed++;
-          if (processed % 25 === 0 || processed === routes.length) {
-            const ok = results.filter((r) => r.ok).length;
-            const fail = results.length - ok;
-            process.stdout.write(`[prerender] ${processed}/${routes.length} — ${ok} ok, ${fail} failed\n`);
+            const error = msg.slice(0, 120);
+            console.warn(`[prerender] FAIL ${route} (${Date.now() - t0}ms): ${error}`);
+            results.push({
+              route, ok: false, dt: Date.now() - t0,
+              error,
+            });
+            break;
+          } finally {
+            try {
+              if (page && !page.isClosed()) {
+                await page.close();
+              }
+            } catch (closeErr) {
+              const msg = String(closeErr?.message || closeErr);
+              if (!TRANSIENT_BROWSER_ERROR_RE.test(msg)) {
+                console.warn(`[prerender] page.close warning for ${route}: ${msg}`);
+              }
+            }
           }
+        }
+
+        if (lastErr && TRANSIENT_BROWSER_ERROR_RE.test(String(lastErr?.message || lastErr))) {
+          // If we exhausted retries because Chromium keeps disconnecting,
+          // record the failure once here so the batch can continue cleanly.
+          const error = String(lastErr?.message || lastErr).slice(0, 120);
+          if (!results.some((r) => r.route === route)) {
+            console.warn(`[prerender] FAIL ${route} (${Date.now() - t0}ms): ${error}`);
+            results.push({ route, ok: false, dt: Date.now() - t0, error });
+          }
+        }
+
+        processed++;
+        if (processed % 25 === 0 || processed === routes.length) {
+          const ok = results.filter((r) => r.ok).length;
+          const fail = results.length - ok;
+          process.stdout.write(`[prerender] ${processed}/${routes.length} — ${ok} ok, ${fail} failed
+`);
         }
       })
     )
   );
 
-  await browser.close();
+  await closeBrowserSafely(browser);
   await stopPreview(preview);
 
   // Write report
@@ -416,13 +458,8 @@ async function main() {
   // is the right place to enforce coverage gates.
 }
 
-main().catch(async (err) => {
+main().catch((err) => {
   console.error('[prerender] Fatal:', err);
-  // Reap the preview server even on unexpected error paths so the build
-  // process exits cleanly. Without this, an unhandled throw here would
-  // skip the teardown and trigger the same 18m Netlify timeout.
-  const { execSync } = await import('child_process');
-  try { execSync('pkill -f "vite preview" || true', { stdio: 'ignore' }); } catch {}
   process.exit(1);
 });
 
@@ -431,4 +468,4 @@ main().catch(async (err) => {
 // else (a stray setTimeout, a misbehaving native binding) ever sneaks in,
 // `process.exit(0)` is a final guarantee that the build script returns control
 // to `npm run build` and the Netlify job finishes inside its time limit.
-process.on('exit', () => { try { execSync('pkill -f "vite preview" || true', { stdio: 'ignore' }); } catch {} });
+process.on('exit', () => {});

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Badge from "./Badge";
 import { getProductUrl } from "@/lib/shopify";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { useState } from "react";
 
 interface ProductCardProps {
@@ -115,15 +116,28 @@ const ProductCard = ({
           }
         }}
       >
-        <img
-          src={image}
-          alt={name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
-          decoding="async"
-          width="400"
-          height="400"
-        />
+        <picture className="block w-full h-full">
+          <source
+            type="image/webp"
+            srcSet={[
+              320,
+              480,
+              640,
+              800,
+            ].map((width) => `${shopifyImageWebp(image, width)} ${width}w`).join(", ")}
+            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          />
+          <img
+            src={shopifyImage(image, 800)}
+            alt={name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="400"
+            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          />
+        </picture>
         
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">

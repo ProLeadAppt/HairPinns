@@ -1,29 +1,26 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
+
+const REVIEWS_SCRIPT_SRC = 'https://reputationhub.site/reputation/assets/review-widget.js';
 
 const ReviewCarousel = () => {
   useEffect(() => {
-    // Load the review widget script
+    if (document.querySelector(`script[src="${REVIEWS_SCRIPT_SRC}"]`)) return;
+
     const script = document.createElement('script');
-    script.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
+    script.src = REVIEWS_SCRIPT_SRC;
     script.type = 'text/javascript';
     script.async = true;
-    document.body.appendChild(script);
+    document.head.appendChild(script);
 
     return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
       }
     };
   }, []);
 
   return (
     <div className="bg-accent py-16 md:py-20">
-      <Helmet>
-        <script type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js" />
-      </Helmet>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-h2-lg font-heading font-bold text-heading mb-3">

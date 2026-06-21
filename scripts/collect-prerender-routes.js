@@ -71,7 +71,7 @@ export async function collectRoutes() {
 
   const staticPages = [
     '/', '/about', '/blog', '/contact', '/services', '/booking',
-    '/faq', '/glossary', '/reviews', '/areas', '/collections', '/search',
+    '/faq', '/glossary', '/reviews', '/areas', '/collections', '/collections/jenas-daily-trio', '/search',
     '/privacy', '/terms', '/policies/shipping', '/policies/returns',
     '/sitemap', '/404',
   ];

@@ -1,4 +1,4 @@
-import { hpCapture } from "./hpCapture";
+import { getHpCapture } from "./loadHpCapture";
 
 /**
  * Track add_to_cart event to Zapier (analytics only, no PII)
@@ -12,6 +12,7 @@ export async function trackAddToCart(params: {
   quantity?: number;
 }) {
   try {
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent("add_to_cart", {
       product_id: params.product_id,
       title: params.title,
@@ -34,6 +35,7 @@ export async function trackMicroConversion(
   params: Record<string, any> = {}
 ) {
   try {
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent(`micro_conversion_${eventName}`, {
       ...params,
       timestamp: new Date().toISOString(),
@@ -74,6 +76,7 @@ export async function trackAISEOEvent(
   params: Record<string, any> = {}
 ) {
   try {
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent(`ai_seo_${eventType}`, {
       ...params,
       timestamp: new Date().toISOString(),
@@ -92,6 +95,7 @@ export async function trackFunnelStep(
   params: Record<string, any> = {}
 ) {
   try {
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent(`funnel_${step}`, {
       ...params,
       funnel_step: step,
@@ -111,6 +115,7 @@ export async function trackBeginCheckout(params: {
   currency?: string;
 }) {
   try {
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent("begin_checkout", {
       cart_total: params.cart_total,
       item_count: params.item_count,

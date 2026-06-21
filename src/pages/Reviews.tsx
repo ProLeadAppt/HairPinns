@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SEOHead from "@/components/SEOHead";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "@/lib/motionShim";
 // canvas-confetti is dynamically imported at click time — keeps ~30KB out of
 // the initial bundle on a page that only fires the effect after a star click.
 import { soundEffects } from "@/lib/soundEffects";
@@ -13,6 +13,7 @@ import {
   generateBreadcrumbSchema,
   generateWebPageSchema,
 } from "@/lib/schema";
+import { googleReviews } from "@/data/reviews";
 
 const sentimentLabels = ['Poor', 'Fair', 'Good', 'Great', 'Excellent'];
 
@@ -106,7 +107,8 @@ const Reviews = () => {
   // for "is Hair Pinns Bangor any good" queries even though this page is
   // primarily a feedback-collection form.
   const localBusinessSchema = generateEnhancedLocalBusinessSchema(
-    "https://hairpinns.com/reviews"
+    "https://hairpinns.com/reviews",
+    googleReviews
   );
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: "https://hairpinns.com" },

@@ -24,6 +24,7 @@ const Sitemap = () => {
       icon: ShoppingBag,
       links: [
         { title: "All Collections", url: "/collections" },
+        { title: "Jena's Daily Trio", url: "/collections/jenas-daily-trio" },
         { title: "Juuce", url: "/collections/juuce-botanicals" },
         { title: "QIQI", url: "/collections/qiqi" },
         { title: "Pure Organic", url: "/collections/pure-certified-organic-hair-care" },

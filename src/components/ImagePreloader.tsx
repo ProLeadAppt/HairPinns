@@ -66,13 +66,26 @@ export const PreloadImages = ({ images }: { images: ImagePreloaderProps[] }) => 
  */
 export const useImagePreload = (imageUrls: string[]) => {
   useEffect(() => {
-    imageUrls.forEach((url) => {
+    const urls = Array.from(new Set(imageUrls.filter(Boolean)));
+    if (!urls.length) return;
+
+    const added: HTMLLinkElement[] = [];
+    urls.forEach((url) => {
+      const selector = `link[rel="preload"][as="image"][href="${CSS.escape(url)}"]`;
+      if (document.head.querySelector(selector)) return;
+
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
       link.href = url;
+      link.setAttribute('data-hp-preload', 'true');
       document.head.appendChild(link);
+      added.push(link);
     });
+
+    return () => {
+      added.forEach((link) => link.remove());
+    };
   }, [imageUrls]);
 };
 

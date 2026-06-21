@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-import { BlogPost } from "@/data/blogPosts";
-import { shopifyImage } from "@/lib/shopifyImage";
+import type { BlogSummary } from "@/data/blogSummaries";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 
 interface FeaturedPostProps {
-  post: BlogPost;
+  post: BlogSummary;
 }
 
 const FeaturedPost = ({ post }: FeaturedPostProps) => {
@@ -17,15 +17,37 @@ const FeaturedPost = ({ post }: FeaturedPostProps) => {
         <div className="grid lg:grid-cols-2 gap-0 items-center">
           {/* Image Section */}
           <div className="relative aspect-[21/9] lg:aspect-square overflow-hidden">
-            <img
-              src={shopifyImage(post.image, 1000)}
-              alt={post.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              width="800"
-              height="800"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={[
+                  640,
+                  800,
+                  1000,
+                  1200,
+                  1400,
+                ].map((width) => `${shopifyImageWebp(post.image, width)} ${width}w`).join(", ")}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <img
+                src={shopifyImage(post.image, 1200)}
+                srcSet={[
+                  640,
+                  800,
+                  1000,
+                  1200,
+                  1400,
+                ].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
+                alt={post.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                width="1400"
+                height="600"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-t from-heading/80 via-heading/40 to-transparent lg:hidden" />
             <div className="absolute top-6 left-6">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-brand-500 text-white font-bold text-sm shadow-xl">

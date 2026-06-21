@@ -7,7 +7,6 @@ import { useEffect, useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
-import { hpCapture } from "@/lib/hpCapture";
 import hairPinnsLogo from "@/assets/images/hair-pinns-logo-full.webp";
 
 const Footer = () => {
@@ -86,6 +85,7 @@ const Footer = () => {
     console.log("Newsletter signup:", email);
 
     try {
+      const { hpCapture } = await import("@/lib/hpCapture");
       const success = await hpCapture.postToGHL({
         form_name: 'newsletter_footer',
         email,
@@ -133,8 +133,8 @@ const Footer = () => {
                 className="h-16 w-auto"
               loading="lazy"
               decoding="async"
-              width="800"
-              height="800"
+              width="250"
+              height="160"
             />
             </Link>
             <p className="text-foreground mb-4 text-sm leading-relaxed max-w-md">

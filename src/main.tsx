@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import "./lib/shopifySanityCheck";
 
 // Unregister any leftover service worker from a previous deploy.
 //
@@ -45,6 +44,12 @@ if ('serviceWorker' in navigator) {
     clean.searchParams.delete('__sw_killed');
     window.history.replaceState({}, '', clean.toString());
   }
+}
+
+if (import.meta.env.DEV) {
+  import("./lib/shopifySanityCheck").catch((error) => {
+    console.warn("Shopify sanity check skipped:", error);
+  });
 }
 
 // Error boundary for React render

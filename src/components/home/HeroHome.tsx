@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Star, Sparkles } from "lucide-react";
-import heroBg from "@/assets/images/hero-home-new.webp";
-import jenaPortrait from "@/assets/images/jena-headshot.webp";
+import heroHomeAvif640 from "@/assets/images/hero-home-640w.avif";
+import heroHomeAvif1280 from "@/assets/images/hero-home-1280w.avif";
+import heroHomeAvif1920 from "@/assets/images/hero-home-1920w.avif";
+import heroHomeWebp640 from "@/assets/images/hero-home-640w.webp";
+import heroHomeWebp1280 from "@/assets/images/hero-home-1280w.webp";
+import heroHomeWebp1920 from "@/assets/images/hero-home-1920w.webp";
 
 /**
  * HeroHome — editorial-soft rev.
@@ -13,80 +15,33 @@ import jenaPortrait from "@/assets/images/jena-headshot.webp";
  * stays a single beat: portrait of Jena, one headline, one CTA.
  */
 const HeroHome = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) return;
-
-    const conn = (
-      navigator as Navigator & {
-        connection?: { saveData?: boolean; effectiveType?: string };
-      }
-    ).connection;
-    if (
-      conn?.saveData ||
-      conn?.effectiveType === "slow-2g" ||
-      conn?.effectiveType === "2g"
-    )
-      return;
-
-    const onIdle = () => setShouldLoadVideo(true);
-    type IdleWindow = Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
-      cancelIdleCallback?: (id: number) => number;
-    };
-    const w = window as IdleWindow;
-    if (typeof w.requestIdleCallback === "function") {
-      const id = w.requestIdleCallback(onIdle, { timeout: 2000 });
-      return () => w.cancelIdleCallback?.(id);
-    }
-    const timeoutId = window.setTimeout(onIdle, 1500);
-    return () => window.clearTimeout(timeoutId);
-  }, []);
-
-  useEffect(() => {
-    if (shouldLoadVideo && videoRef.current) {
-      videoRef.current.play().catch(() => undefined);
-    }
-  }, [shouldLoadVideo]);
-
   return (
     <section className="relative min-h-[92vh] flex items-end overflow-hidden">
-      {/* Background — poster is the LCP. AVIF for browsers that support it. */}
+      {/* Background — responsive AVIF/WebP sources keep the LCP lean. */}
       <div className="absolute inset-0">
         <picture>
-          <source srcSet="/hero-poster.avif" type="image/avif" />
+          <source
+            type="image/avif"
+            srcSet={`${heroHomeAvif640} 640w, ${heroHomeAvif1280} 1280w, ${heroHomeAvif1920} 1920w`}
+            sizes="100vw"
+          />
+          <source
+            srcSet={`${heroHomeWebp640} 640w, ${heroHomeWebp1280} 1280w, ${heroHomeWebp1920} 1920w`}
+            sizes="100vw"
+            type="image/webp"
+          />
           <img
-            src={heroBg}
+            src={heroHomeWebp1280}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
             fetchPriority="high"
             decoding="async"
-            width="1600"
-            height="900"
+            loading="eager"
+            width="1920"
+            height="1080"
           />
         </picture>
-        {shouldLoadVideo && (
-          <video
-            ref={videoRef}
-            muted
-            loop
-            playsInline
-            poster={heroBg}
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-            preload="metadata"
-          >
-            <source src="/hero-reel.mp4" type="video/mp4" />
-          </video>
-        )}
         {/* Editorial scrim — softer overall, slightly stronger on the bottom-left
             where the headline sits. 12.4:1 contrast for white text. */}
         <div className="absolute inset-0 bg-gradient-to-tr from-[rgba(24,0,30,0.92)] via-[rgba(24,0,30,0.55)] to-[rgba(24,0,30,0.18)]" />

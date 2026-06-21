@@ -1,29 +1,28 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 
+const REVIEWS_SCRIPT_SRC = 'https://reputationhub.site/reputation/assets/review-widget.js';
+
 const ReviewsHome = () => {
   useEffect(() => {
-    // Load the review widget script
+    if (document.querySelector(`script[src="${REVIEWS_SCRIPT_SRC}"]`)) return;
+
     const script = document.createElement('script');
-    script.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
+    script.src = REVIEWS_SCRIPT_SRC;
     script.type = 'text/javascript';
     script.async = true;
-    document.body.appendChild(script);
+    document.head.appendChild(script);
 
     return () => {
-      // Cleanup script on unmount
-      document.body.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
   return (
     <Section variant="accent" className="content-visibility-auto" style={{ containIntrinsicSize: "0 1200px" }}>
-      <Helmet>
-        <script type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js" />
-      </Helmet>
-      
       <SectionHeader
         title="What Our Clients Say"
         subtitle="Real reviews from real people"

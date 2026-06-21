@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeaturedPost from "@/components/blog/FeaturedPost";
 import BlogCard from "@/components/blog/BlogCard";
-import { blogPosts } from "@/data/blogPosts";
+import { blogSummaries } from "@/data/blogSummaries";
 import { Sparkles } from "lucide-react";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -14,7 +14,7 @@ import SEOHead from "@/components/SEOHead";
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   
-  const visiblePosts = blogPosts.filter((post: any) => !post.archived);
+  const visiblePosts = blogSummaries.filter((post) => !post.archived);
   const categories = [
     "all",
     ...Array.from(new Set(visiblePosts.map(post => post.category)))
@@ -126,8 +126,8 @@ const Blog = () => {
 
         {/* First Row - Large Cards (2 columns) */}
         {firstRowPosts.length > 0 && (
-          <section className="py-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="py-8 content-visibility-auto">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ containIntrinsicSize: "0 1200px" }}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {firstRowPosts.map((post) => (
                   <BlogCard key={post.slug} post={post} size="large" />
@@ -139,8 +139,8 @@ const Blog = () => {
 
         {/* Remaining Posts - 3 Column Grid */}
         {remainingPosts.length > 0 && (
-          <section className="py-8 pb-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="py-8 pb-16 content-visibility-auto">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ containIntrinsicSize: "0 1800px" }}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {remainingPosts.map((post) => (
                   <BlogCard key={post.slug} post={post} />

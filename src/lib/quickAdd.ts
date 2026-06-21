@@ -7,7 +7,7 @@
 import { getCartId, saveCartId } from "./cartManagement";
 import { trackAddToCart } from "./ecommerceTracking";
 import { trackCartCreated } from "./cartAbandonment";
-import { hpCapture } from "./hpCapture";
+import { getHpCapture } from "./loadHpCapture";
 import { toast } from "sonner";
 
 export interface QuickAddProduct {
@@ -56,6 +56,7 @@ export async function quickAddToCart(
     }
 
     // Track quick add clicked
+    const hpCapture = await getHpCapture();
     await hpCapture.trackQuickAddClicked(productId, productTitle, "hero").catch(() => {});
 
     // Track add_to_cart event

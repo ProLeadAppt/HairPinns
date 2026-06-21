@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { hpCapture } from "@/lib/hpCapture";
+import { getHpCapture } from "@/lib/loadHpCapture";
 import { Button } from "@/components/ui/button";
 
 const Confirm = () => {
@@ -23,6 +23,7 @@ const Confirm = () => {
 
       try {
         // Fire confirmation event to Zapier
+        const hpCapture = await getHpCapture();
         const success = await hpCapture.trackEvent('email_confirmed', {
           email,
           confirmation_token: token,

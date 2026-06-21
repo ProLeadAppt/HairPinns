@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ThumbsUp, ThumbsDown, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { hpCapture } from "@/lib/hpCapture";
+import { getHpCapture } from "@/lib/loadHpCapture";
 
 interface FaqFeedbackWidgetProps {
   faqId?: string;  // Optional FAQ ID for tracking
@@ -17,6 +17,7 @@ const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
     
     try {
       // Track with hpCapture (sends to GHL inbound webhook)
+      const hpCapture = await getHpCapture();
       await hpCapture.trackEvent('faq_feedback', {
         faq_id: faqId || 'unknown',
         faq_question: question,

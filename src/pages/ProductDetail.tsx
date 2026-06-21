@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ChevronLeft, ChevronRight, ShoppingBag, Star, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -14,8 +15,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Star, ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { getCartId } from "@/lib/cartManagement";
@@ -34,8 +35,15 @@ import { SilentErrorBoundary } from "@/components/ErrorBoundary";
 import { trackCartCreated } from "@/lib/cartAbandonment";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
+import { useImagePreload } from "@/components/ImagePreloader";
 import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema, generateHowToSchema } from "@/lib/schema";
 import { getProductHowTo } from "@/data/productHowTo";
+
+const buildShopifySrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
+
+const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
 
 const ProductDetail = () => {
   const { handle } = useParams();
@@ -130,6 +138,26 @@ const ProductDetail = () => {
       clearTimeout(timeoutId);
     };
   }, [handle]);
+
+  // Prerender fallback: if Shopify is slow or stalls entirely, inject the
+  // readiness marker after a short grace period so the build can snapshot the
+  // loading shell instead of timing out on the route. The final data render
+  // still replaces this marker when it arrives.
+  useEffect(() => {
+    const ua = navigator.userAgent || "";
+    if (!loading || ua.indexOf("HairPinnsPrerender") === -1) return;
+
+    const fallbackTimer = window.setTimeout(() => {
+      if (document.getElementById("prerender-ready-marker")) return;
+      const marker = document.createElement("div");
+      marker.id = "prerender-ready-marker";
+      marker.style.display = "none";
+      marker.setAttribute("data-prerender-fallback", "loading");
+      document.body.appendChild(marker);
+    }, 6000);
+
+    return () => window.clearTimeout(fallbackTimer);
+  }, [loading]);
 
   // Handle option selection
   const handleOptionChange = (optionName: string, value: string) => {
@@ -333,6 +361,11 @@ const ProductDetail = () => {
     setCurrentImage((prev) => (prev - 1 + edges.length) % edges.length);
   };
 
+  const variantEdges = product?.variants?.edges ?? [];
+  const images = (product?.images?.edges ?? []).map((e: any) => e?.node).filter(Boolean);
+  const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
+  useImagePreload(imageUrls.slice(0, 2));
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
@@ -395,7 +428,6 @@ const ProductDetail = () => {
   }
 
   // Get active variant details (null-safe) - fallback to first variant if activeVariantId doesn't match
-  const variantEdges = product.variants?.edges ?? [];
   let activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
   if (!activeVariant && variantEdges.length > 0) {
     // Selected variant no longer exists - prefer first available variant
@@ -408,7 +440,6 @@ const ProductDetail = () => {
     : null;
   const isAvailable = activeVariant?.availableForSale ?? false;
 
-  const images = (product.images?.edges ?? []).map((e: any) => e?.node).filter(Boolean);
   const currentImg = images[currentImage];
 
   // Get unique option names
@@ -431,7 +462,6 @@ const ProductDetail = () => {
 
   // Build product schemas
   const productDescription = String(product.description ?? "").substring(0, 120);
-  const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
 
   const productSchemas = [
     generateBreadcrumbSchema([
@@ -534,16 +564,26 @@ const ProductDetail = () => {
                   className="relative aspect-square bg-muted rounded-card overflow-hidden group cursor-zoom-in"
                   onClick={() => setLightboxOpen(true)}
                 >
-                  <img
-                    src={currentImg?.url || "/placeholder.svg"}
-                    alt={currentImg?.altText || product.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    width="800"
-                    height="800"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    decoding="async"
-                    fetchPriority="high"
-                  />
+                  <picture className="block w-full h-full">
+                    <source
+                      type="image/webp"
+                      srcSet={buildShopifyWebpSrcSet(currentImg?.url || "/placeholder.svg", [480, 800, 1200, 1600])}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <source
+                      srcSet={buildShopifySrcSet(currentImg?.url || "/placeholder.svg", [480, 800, 1200, 1600])}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <img
+                      src={currentImg?.url || "/placeholder.svg"}
+                      alt={currentImg?.altText || product.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      width={currentImg?.width || 800}
+                      height={currentImg?.height || 800}
+                      decoding="async"
+                      fetchPriority="high"
+                    />
+                  </picture>
                   
                   {/* Navigation Arrows — 44px hit area + always-visible on mobile (no hover) */}
                   {images.length > 1 && (
@@ -605,15 +645,26 @@ const ProductDetail = () => {
                           index === currentImage ? "border-brand-500" : "border-transparent hover:border-border"
                         }`}
                       >
-                        <img
-                          src={image?.url || "/placeholder.svg"}
-                          alt={image?.altText || `${product.title} ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          width="200"
-                          height="200"
-                          loading="lazy"
-                          decoding="async"
-                        />
+                        <picture className="block w-full h-full">
+                          <source
+                            type="image/webp"
+                            srcSet={buildShopifyWebpSrcSet(image?.url || "/placeholder.svg", [160, 240, 320])}
+                            sizes="200px"
+                          />
+                          <source
+                            srcSet={buildShopifySrcSet(image?.url || "/placeholder.svg", [160, 240, 320])}
+                            sizes="200px"
+                          />
+                          <img
+                            src={image?.url || "/placeholder.svg"}
+                            alt={image?.altText || `${product.title} ${index + 1}`}
+                            className="w-full h-full object-cover"
+                            width="200"
+                            height="200"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </picture>
                       </button>
                     ))}
                   </div>
@@ -814,15 +865,27 @@ const ProductDetail = () => {
             >
               &times;
             </button>
-            <img
-              src={currentImg.url}
-              alt={currentImg.altText || product.title}
-              className="max-w-[90vw] max-h-[90vh] object-contain"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="800"
-            />
+            <picture className="block max-w-[90vw] max-h-[90vh]">
+              <source
+                type="image/webp"
+                srcSet={buildShopifyWebpSrcSet(currentImg.url, [960, 1200, 1600])}
+                sizes="90vw"
+              />
+              <source
+                srcSet={buildShopifySrcSet(currentImg.url, [960, 1200, 1600])}
+                sizes="90vw"
+              />
+              <img
+                src={currentImg.url}
+                alt={currentImg.altText || product.title}
+                className="max-w-[90vw] max-h-[90vh] object-contain"
+                loading="lazy"
+                decoding="async"
+                width={currentImg.width || 1600}
+                height={currentImg.height || 1600}
+              />
+
+            </picture>
           </div>
         )}
 

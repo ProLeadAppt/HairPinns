@@ -1,22 +1,22 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroHome from "@/components/home/HeroHome";
 import HeroSocialProofBar from "@/components/home/HeroSocialProofBar";
-import JenaPromise from "@/components/home/JenaPromise";
-import StickyBookBar from "@/components/home/StickyBookBar";
-import BeforeAfterShowcase from "@/components/home/BeforeAfterShowcase";
 import SectionNumber from "@/components/design-system/SectionNumber";
-import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
-import ShampooConditionerPromo from "@/components/home/ShampooConditionerPromo";
+
+const Footer = lazy(() => import("@/components/Footer"));
+const StickyBookBar = lazy(() => import("@/components/home/StickyBookBar"));
+const ShampooConditionerPromo = lazy(() => import("@/components/home/ShampooConditionerPromo"));
 
 // Below-fold sections (lazy-loaded for performance)
 const BestSellers = lazy(() => import("@/components/home/BestSellers"));
 const ReviewsShowcase = lazy(() => import("@/components/home/ReviewsShowcase"));
 const BlogTrio = lazy(() => import("@/components/home/BlogTrio"));
 const BookingBanner = lazy(() => import("@/components/home/BookingBanner"));
+const JenaPromise = lazy(() => import("@/components/home/JenaPromise"));
+const BeforeAfterShowcase = lazy(() => import("@/components/home/BeforeAfterShowcase"));
 
 import {
   generateOrganizationSchema,
@@ -30,13 +30,56 @@ import {
   generateWebSiteSchema,
   generateBlogItemListSchema,
 } from "@/lib/schema";
-import { blogPosts } from "@/data/blogPosts";
+import { homeFeaturedGuides } from "@/data/homeFeaturedGuides";
 import { getOGImage } from "@/lib/sitemap";
+import { googleReviews } from "@/data/reviews";
+
+const isPrerenderOrHeadless = () => {
+  if (typeof navigator === "undefined") return true;
+  return /HeadlessChrome|HairPinnsPrerender/i.test(navigator.userAgent || "");
+};
+
+const DeferredSection = ({
+  children,
+  fallback = null,
+  className = "",
+}: {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+  className?: string;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(isPrerenderOrHeadless());
+
+  useEffect(() => {
+    if (isVisible) return;
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "250px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  return <div ref={ref} className={className}>{isVisible ? children : fallback}</div>;
+};
 
 const Index = () => {
   const mainRef = useScrollReveal();
   const organizationSchema = generateOrganizationSchema();
-  const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com');
+  const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com', googleReviews);
   const knowledgeGraphSchema = generateKnowledgeGraphSchema();
   const storeSchema = generateStoreSchema();
   const authorSchema = generateAuthorSchema();
@@ -62,14 +105,10 @@ const Index = () => {
   });
 
   const popularGuidesSchema = generateBlogItemListSchema(
-    blogPosts
-      .filter((p: any) => !p.archived)
-      .map((post: any) => ({
-        name: post.title,
-        url: `/blog/${post.slug}`,
-        datePublished: post.datePublished,
-      }))
-      .slice(0, 6)
+    homeFeaturedGuides.map((post) => ({
+      name: post.title,
+      url: `/blog/${post.slug}`,
+    }))
   );
 
   const faqSchema = generateFAQPageSchema([
@@ -103,35 +142,49 @@ const Index = () => {
     },
   ]);
 
-  const schemas = [
-    webSiteSchema,
-    organizationSchema,
-    localBusinessSchema,
-    knowledgeGraphSchema,
-    storeSchema,
-    faqSchema,
-    webPageSchema,
-    howToBookSchema,
-    authorSchema,
-    popularGuidesSchema,
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "Hair Pinns — Hair Care from Someone Who Actually Does Hair",
-      "description": "Jena Pinn, Bangor salon owner since 2009, shares the products she uses on clients. Shipped Australia-wide.",
-      "thumbnailUrl": "https://hairpinns.com/hero-home-new.webp",
-      "uploadDate": "2025-01-01",
-      "contentUrl": "https://hairpinns.com/hero-reel.mp4",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Hair Pinns",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://hairpinns.com/logo.png"
+  const schemas = useMemo(
+    () => [
+      webSiteSchema,
+      organizationSchema,
+      localBusinessSchema,
+      knowledgeGraphSchema,
+      storeSchema,
+      faqSchema,
+      webPageSchema,
+      howToBookSchema,
+      authorSchema,
+      popularGuidesSchema,
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Hair Pinns — Hair Care from Someone Who Actually Does Hair",
+        "description": "Jena Pinn, Bangor salon owner since 2009, shares the products she uses on clients. Shipped Australia-wide.",
+        "thumbnailUrl": "https://hairpinns.com/og-default.jpg",
+        "uploadDate": "2025-01-01",
+        "contentUrl": "https://hairpinns.com/hero-reel.mp4",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Hair Pinns",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://hairpinns.com/logo.png"
+          }
         }
-      }
-    }
-  ];
+      },
+    ],
+    [
+      webSiteSchema,
+      organizationSchema,
+      localBusinessSchema,
+      knowledgeGraphSchema,
+      storeSchema,
+      faqSchema,
+      webPageSchema,
+      howToBookSchema,
+      authorSchema,
+      popularGuidesSchema,
+    ]
+  );
 
   return (
     <div className="min-h-screen bg-background font-sans">
@@ -144,7 +197,6 @@ const Index = () => {
         schemaJson={schemas}
       />
       <Header />
-      <GoogleReviewBadge variant="micro" showCTA />
       <main id="main-content" tabIndex={-1} ref={mainRef as any}>
 
         {/* 1. Hero */}
@@ -154,14 +206,21 @@ const Index = () => {
         <HeroSocialProofBar />
 
         {/* 3. Active offer */}
-        <ShampooConditionerPromo />
+        <DeferredSection fallback={null}>
+          <Suspense fallback={null}>
+            <ShampooConditionerPromo />
+          </Suspense>
+        </DeferredSection>
 
         {/* 4. The Jena Promise */}
-        <JenaPromise />
+        <Suspense fallback={null}>
+          <JenaPromise />
+        </Suspense>
 
         {/* 5. Best Sellers */}
-        <div className="reveal">
-          <Suspense fallback={
+        <DeferredSection
+          className="reveal"
+          fallback={
             <section className="py-12 bg-background">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-10">
@@ -170,37 +229,53 @@ const Index = () => {
                 </div>
               </div>
             </section>
-          }>
+          }
+        >
+          <Suspense fallback={null}>
             <BestSellers />
           </Suspense>
-        </div>
+        </DeferredSection>
 
         {/* 6. In the chair — before/after styling showcase */}
-        <BeforeAfterShowcase />
+        <DeferredSection fallback={null}>
+          <Suspense fallback={null}>
+            <BeforeAfterShowcase />
+          </Suspense>
+        </DeferredSection>
 
         {/* 7. Reviews */}
-        <div className="reveal">
+        <DeferredSection className="reveal" fallback={null}>
           <Suspense fallback={null}>
             <ReviewsShowcase />
           </Suspense>
-        </div>
+        </DeferredSection>
 
         {/* 8. From the blog */}
         <SectionNumber index="04" label="read, learn, ask" />
-        <div className="reveal py-12 bg-muted/30">
+        <DeferredSection className="reveal py-12 bg-muted/30" fallback={null}>
           <Suspense fallback={null}>
             <BlogTrio />
           </Suspense>
-        </div>
+        </DeferredSection>
 
         {/* 9. Book with Jena */}
-        <Suspense fallback={null}>
-          <BookingBanner />
-        </Suspense>
+        <DeferredSection fallback={null}>
+          <Suspense fallback={null}>
+            <BookingBanner />
+          </Suspense>
+        </DeferredSection>
 
       </main>
-      <Footer />
-      <StickyBookBar />
+      <DeferredSection fallback={null}>
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+      </DeferredSection>
+      <DeferredSection fallback={null}>
+        <Suspense fallback={null}>
+          <StickyBookBar />
+        </Suspense>
+      </DeferredSection>
     </div>
   );
 };

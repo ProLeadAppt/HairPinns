@@ -2,8 +2,9 @@ import { Menu, Calendar, ShoppingBag, ShoppingCart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
+import { useCart } from "@/contexts/CartContext";
 import {
   isStocktakeActive,
   QIQI_DISCOUNT_ACTIVE,
@@ -13,10 +14,9 @@ import {
   DEFAULT_HEADER_MESSAGE,
   PROMO_COLLECTIONS,
 } from "@/config/promotions";
-import ProductSearch from "@/components/product/ProductSearch";
-import ShopDropdown from "@/components/navigation/ShopDropdown";
-import { useCart } from "@/contexts/CartContext";
-import hairPinnsLogo from "@/assets/images/hair-pinns-logo-full.webp";
+
+import hairPinnsLogoFull from "@/assets/images/hair-pinns-logo-full.webp";
+import hairPinnsLogoCompact from "@/assets/images/hair-pinns-logo-compact.webp";
 
 function getPromoMessage(): string {
   if (isStocktakeActive()) return STOCKTAKE_HEADER_MESSAGE;
@@ -24,6 +24,9 @@ function getPromoMessage(): string {
   if (QIQI_DISCOUNT_ACTIVE) return "20% off QIQI range, shop now";
   return DEFAULT_HEADER_MESSAGE;
 }
+
+const ProductSearch = lazy(() => import("@/components/product/ProductSearch"));
+const ShopDropdown = lazy(() => import("@/components/navigation/ShopDropdown"));
 
 const Header = () => {
   const { openCart, itemCount } = useCart();
@@ -83,17 +86,25 @@ const Header = () => {
           <div className="flex items-center justify-between h-full gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
-              <img src={hairPinnsLogo} alt="Hair Pinns - Happy Hair Specialist" className="h-12 lg:h-14 w-auto"
-              loading="lazy"
-              decoding="async"
-              width="800"
-              height="800"
-            />
+              <picture>
+                <source media="(max-width: 640px)" srcSet={hairPinnsLogoCompact} />
+                <img
+                  src={hairPinnsLogoFull}
+                  alt="Hair Pinns - Happy Hair Specialist"
+                  className="h-12 lg:h-14 w-auto"
+                  loading="eager"
+                  decoding="async"
+                  width="250"
+                  height="160"
+                />
+              </picture>
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6" aria-label="Main navigation">
-              <ShopDropdown />
+              <Suspense fallback={<Link to="/collections" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">Shop</Link>}>
+                <ShopDropdown />
+              </Suspense>
               <Link to="/services" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Services
               </Link>
@@ -113,7 +124,9 @@ const Header = () => {
 
             {/* Desktop Search */}
             <div className="hidden lg:block flex-1 max-w-md mx-8">
-              <ProductSearch placeholder="Search products..." maxResults={6} />
+              <Suspense fallback={<div className="relative w-full"><div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products...</div></div>}>
+                <ProductSearch placeholder="Search products..." maxResults={6} />
+              </Suspense>
             </div>
 
             {/* Desktop CTAs */}
@@ -159,7 +172,9 @@ const Header = () => {
                 <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
                   {/* Mobile Search */}
                   <div className="mb-4">
-                    <ProductSearch placeholder="Search products..." maxResults={5} />
+                    <Suspense fallback={<div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products...</div>}>
+                      <ProductSearch placeholder="Search products..." maxResults={5} />
+                    </Suspense>
                   </div>
                   
                   <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">

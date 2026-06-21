@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Calendar, Clock } from "lucide-react";
-import { BlogPost } from "@/data/blogPosts";
-import { shopifyImage } from "@/lib/shopifyImage";
+import type { BlogSummary } from "@/data/blogSummaries";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: BlogSummary;
   size?: "large" | "regular";
 }
 
@@ -16,17 +16,36 @@ const BlogCard = ({ post, size = "regular" }: BlogCardProps) => {
       to={`/blog/${post.slug}`}
       className="group block h-full"
     >
-      <article className="h-full flex flex-col bg-surface rounded-card overflow-hidden shadow-card hover:shadow-xl transition-all duration-500 border border-accent/20 hover:-translate-y-1">
+      <article className="h-full flex flex-col bg-surface rounded-card overflow-hidden shadow-card hover:shadow-xl transition-all duration-500 border border-accent/20 hover:-translate-y-1 content-visibility-auto" style={{ containIntrinsicSize: isLarge ? "0 620px" : "0 540px" }}>
         <div className="relative aspect-[16/9] overflow-hidden">
-          <img
-            src={shopifyImage(post.image, 720)}
-            alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            loading="lazy"
-            decoding="async"
-            width="640"
-            height="360"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={[
+                480,
+                640,
+                800,
+                960,
+              ].map((width) => `${shopifyImageWebp(post.image, width)} ${width}w`).join(", ")}
+              sizes={isLarge ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+            />
+            <img
+              src={shopifyImage(post.image, isLarge ? 960 : 720)}
+              srcSet={[
+                480,
+                640,
+                800,
+                960,
+              ].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
+              alt={post.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="360"
+              sizes={isLarge ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+            />
+          </picture>
           <div className="absolute top-4 left-4">
             <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-brand-500 text-white font-semibold text-xs shadow-lg">
               {post.category}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { blogPosts } from "@/data/blogPosts";
+import { blogSummaries } from "@/data/blogSummaries";
 import { serviceDetailData } from "@/data/serviceDetails";
 import {
   type TopicSlug,
@@ -59,7 +59,7 @@ const RelatedContent = ({
 
   const blogItems = Array.from(blogSlugs)
     .slice(0, limit)
-    .map((slug) => blogPosts.find((p) => p.slug === slug))
+    .map((slug) => blogSummaries.find((p) => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => !!p && !p.archived);
 
   const serviceItems = Array.from(serviceSlugs)

@@ -3,8 +3,14 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Badge from "@/components/design-system/Badge";
-import { blogPosts } from "@/data/blogPosts";
-import { shopifyImage } from "@/lib/shopifyImage";
+import { homeFeaturedGuides } from "@/data/homeFeaturedGuides";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+
+const buildShopifySrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
+
+const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
 
 // Renders 6 non-archived posts ranked by commercial intent + recency, skipping
 // the same 3 the BlogTrio above already shows so the homepage doesn't surface
@@ -12,36 +18,7 @@ import { shopifyImage } from "@/lib/shopifyImage";
 // Treatments" post is recent, it shows here even if BlogTrio took a different
 // one, but in practice they share the same pool.
 const PopularGuides = () => {
-  const HIGH_INTENT = new Set([
-    "Smoothing",
-    "Colour",
-    "Products",
-    "Treatments",
-  ]);
-
-  const posts = blogPosts
-    .filter((p: any) => !p.archived)
-    .map((post: any, index: number) => {
-      const intentScore = HIGH_INTENT.has(post.category) ? 2 : 1; // every guide is "worth reading" = 1
-      const recency = post.datePublished
-        ? new Date(post.datePublished).getTime()
-        : 0;
-      return { post, intentScore, recency, index };
-    })
-    .sort((a, b) => {
-      if (b.intentScore !== a.intentScore) return b.intentScore - a.intentScore;
-      if (b.recency !== a.recency) return b.recency - a.recency;
-      return a.index - b.index;
-    })
-    .slice(0, 6)
-    .map(({ post }) => ({
-      slug: post.slug,
-      title: post.title,
-      hook: post.excerpt,
-      image: post.image,
-      category: post.category,
-      readTime: post.readTime,
-    }));
+  const posts = homeFeaturedGuides;
 
   return (
     <Section className="content-visibility-auto">
@@ -58,12 +35,23 @@ const PopularGuides = () => {
             className="group flex flex-col bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/40 hover:shadow-md transition-all"
           >
             <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-              <img
-                src={shopifyImage(p.image, 800)}
-                alt={p.title}
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+              <picture className="block w-full h-full">
+                <source
+                  type="image/webp"
+                  srcSet={buildShopifyWebpSrcSet(p.image, [480, 800, 960])}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <source
+                  srcSet={buildShopifySrcSet(p.image, [480, 800, 960])}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <img
+                  src={shopifyImage(p.image, 800)}
+                  alt={p.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </picture>
               <div className="absolute top-3 left-3">
                 <Badge variant="accent">{p.category}</Badge>
               </div>

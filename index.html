@@ -40,8 +40,22 @@
       gtag('config', 'G-N6Y1TJMWGG');
     </script>
 
-    <!-- SearchAtlas dynamic-optimization loader (defer + low priority — not on the critical render path). -->
-    <script defer nowprocket nitro-exclude type="text/javascript" id="sa-dynamic-optimization" data-uuid="50e2273d-d5b2-4ec0-aec8-437be544c65c" src="data:text/javascript;base64,dmFyIHNjcmlwdCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoInNjcmlwdCIpO3NjcmlwdC5zZXRBdHRyaWJ1dGUoIm5vd3Byb2NrZXQiLCAiIik7c2NyaXB0LnNldEF0dHJpYnV0ZSgibml0cm8tZXhjbHVkZSIsICIiKTtzY3JpcHQuc3JjID0gImh0dHBzOi8vZGFzaGJvYXJkLnNlYXJjaGF0bGFzLmNvbS9zY3JpcHRzL2R5bmFtaWNfb3B0aW1pemF0aW9uLmpzIjtzY3JpcHQuZGF0YXNldC51dWlkID0gIjUwZTIyNzNkLWQ1YjItNGVjMC1hZWM4LTQzN2JlNTQ0YzY1YyI7c2NyaXB0LmlkID0gInNhLWR5bmFtaWMtb3B0aW1pemF0aW9uLWxvYWRlciI7ZG9jdW1lbnQuaGVhZC5hcHBlbmRDaGlsZChzY3JpcHQpOw=="></script>
+    <!-- SearchAtlas dynamic-optimization loader only on production hosts. -->
+    <script>
+      (() => {
+        const host = window.location.hostname;
+        if (!(host === 'hairpinns.com' || host === 'www.hairpinns.com' || host.endsWith('.vercel.app'))) return;
+        const script = document.createElement('script');
+        script.defer = true;
+        script.setAttribute('nowprocket', '');
+        script.setAttribute('nitro-exclude', '');
+        script.type = 'text/javascript';
+        script.id = 'sa-dynamic-optimization';
+        script.dataset.uuid = '50e2273d-d5b2-4ec0-aec8-437be544c65c';
+        script.src = 'https://dashboard.searchatlas.com/scripts/dynamic_optimization.js';
+        document.head.appendChild(script);
+      })();
+    </script>
   </head>
 
   <body>

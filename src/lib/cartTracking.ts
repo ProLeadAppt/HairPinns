@@ -5,7 +5,7 @@
  * These events don't collect PII, only behavioral data.
  */
 
-import { hpCapture } from "./hpCapture";
+import { getHpCapture } from "./loadHpCapture";
 
 export interface CartItem {
   product_id: string;
@@ -22,6 +22,7 @@ export interface CartItem {
  */
 export async function trackAddToCart(item: CartItem): Promise<void> {
   try {
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent("add_to_cart", {
       product_id: item.product_id,
       product_title: item.product_title,
@@ -54,6 +55,7 @@ export async function trackBeginCheckout(
       line_total: item.price * item.quantity,
     }));
 
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent("begin_checkout", {
       cart_line_items: lineItemsSummary,
       cart_total: cartTotal,
@@ -76,6 +78,7 @@ export async function trackViewProduct(
   price: number
 ): Promise<void> {
   try {
+    const hpCapture = await getHpCapture();
     await hpCapture.trackEvent("view_product", {
       product_id: productId,
       product_title: productTitle,

@@ -362,7 +362,7 @@ main#main-content:focus-visible {
      crawler doesn't run JS / prerender misses it), force the element
      visible after 1s so content NEVER gets permanently hidden.
      `.reveal.visible` overrides this with its own static opacity:1. */
-  animation: revealFallback 0.6s ease-out 1s forwards;
+  animation: revealFallback 0.55s ease-out 300ms forwards;
 }
 
 @keyframes revealFallback {

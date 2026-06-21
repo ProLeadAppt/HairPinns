@@ -15,6 +15,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { BOOK_URL } from "@/config/bookingConfig";
 import SEOHead from "@/components/SEOHead";
 import { BUSINESS_NAP } from "@/config/businessConfig";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 // All local collection images removed — using Shopify's own collection images and first product images
 
 interface ShopifyCollection {
@@ -66,6 +67,14 @@ const Collections = () => {
     // Final fallback
     return "/placeholder.svg";
   };
+
+  const collectionImageSizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
+  const collectionImageWidths = [480, 640, 800, 960];
+
+  const buildShopifySrcSet = (url: string, webp = false) =>
+    collectionImageWidths
+      .map((width) => `${webp ? shopifyImageWebp(url, width) : shopifyImage(url, width)} ${width}w`)
+      .join(", ");
 
   // Define the exact order from the live site
   const collectionOrder = [
@@ -225,6 +234,66 @@ const Collections = () => {
           </div>
         </section>
 
+        {/* Featured bundle */}
+        <section className="py-10 md:py-14 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-3xl border border-brand-500/20 bg-gradient-to-r from-brand-500/8 via-background to-accent/20 p-6 md:p-8 shadow-lg">
+              <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.9fr] gap-8 items-center">
+                <div>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/10 text-brand-600 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">
+                    Jena's pick · featured bundle
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading mb-3">
+                    Jena's Daily Trio
+                  </h2>
+                  <p className="text-lg text-foreground leading-relaxed max-w-2xl mb-5">
+                    The shampoo, conditioner and leave-in Jena reaches for most often — bundled at 10% off and built for the clients who want a no-fuss routine that actually works.
+                  </p>
+                  <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-6">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">10% bundle saving</span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">Free shipping over $150</span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">Salon-picked routine</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button asChild variant="default" size="lg" className="gap-2">
+                      <Link to="/collections/jenas-daily-trio">
+                        Shop the Daily Trio
+                        <ArrowRight className="w-5 h-5" />
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="lg">
+                      <Link to="/collections">Browse all collections</Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-border p-5 shadow-sm">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">What’s inside</p>
+                      <span className="text-xs font-semibold text-brand-500">Best seller energy</span>
+                    </div>
+                    <div className="space-y-3">
+                      {[
+                        "Juuce Bond Repair Shampoo",
+                        "Aromaganic Smooth Hair Super Silky Conditioner",
+                        "QIQI Bare Repair Oil",
+                      ].map((item) => (
+                        <div key={item} className="flex items-center gap-3 rounded-xl bg-muted/40 px-4 py-3">
+                          <span className="w-2.5 h-2.5 rounded-full bg-brand-500" />
+                          <span className="text-sm text-foreground font-medium">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Fast path to a better at-home routine — and a stronger cart value per customer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Search & Filter */}
         <section className="border-b border-border bg-card sticky top-16 z-30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -307,15 +376,24 @@ const Collections = () => {
                   >
                     {/* Image Container */}
                     <div className="aspect-[4/3] relative overflow-hidden bg-muted">
-                      <img
-                        src={getCollectionImage(collection)}
-                        alt={collection.image?.altText || collection.title}
-                        className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-slow"
-                        loading="lazy"
-                        width="800"
-                        height="600"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
+                      <picture>
+                        <source
+                          type="image/webp"
+                          srcSet={buildShopifySrcSet(getCollectionImage(collection), true)}
+                          sizes={collectionImageSizes}
+                        />
+                        <img
+                          src={shopifyImage(getCollectionImage(collection), 800)}
+                          srcSet={buildShopifySrcSet(getCollectionImage(collection))}
+                          alt={collection.image?.altText || collection.title}
+                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-slow"
+                          loading="lazy"
+                          decoding="async"
+                          width="800"
+                          height="600"
+                          sizes={collectionImageSizes}
+                        />
+                      </picture>
                       <div className="absolute inset-0 bg-gradient-to-t from-heading/70 via-heading/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-slow" />
                       
                       {/* Product Count Badge removed due to inaccurate counts from GraphQL pagination */}

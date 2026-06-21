@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { hpCapture } from "@/lib/hpCapture";
+import { getHpCapture } from "@/lib/loadHpCapture";
 import { pixelTracking } from "@/lib/pixelTracking";
 
 interface ExitIntentModalProps {
@@ -38,11 +38,14 @@ const ExitIntentModal = ({ enabled = true }: ExitIntentModalProps) => {
         setHasShown(true);
 
         // Fire exit_intent_seen event
-        hpCapture.trackEvent("exit_intent_seen", {
-          source_page: window.location.pathname,
-        }).catch((error) => {
-          console.error("Failed to track exit_intent_seen:", error);
-        });
+        void (async () => {
+          const hpCapture = await getHpCapture();
+          await hpCapture.trackEvent("exit_intent_seen", {
+            source_page: window.location.pathname,
+          }).catch((error) => {
+            console.error("Failed to track exit_intent_seen:", error);
+          });
+        })();
       }
     };
 
@@ -65,6 +68,7 @@ const ExitIntentModal = ({ enabled = true }: ExitIntentModalProps) => {
     setIsSubmitting(true);
 
     try {
+      const hpCapture = await getHpCapture();
       const success = await hpCapture.postToZapier(
         {
           form_name: "exit_intent_offer",

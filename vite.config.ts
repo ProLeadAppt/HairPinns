@@ -43,7 +43,11 @@ export default defineConfig(() => {
               if (id.includes('lucide-react')) return 'lucide';
               if (id.includes('sonner') || id.includes('vaul') || id.includes('embla-carousel')) return 'ui-misc';
               if (id.includes('@tanstack/react-query')) return 'tanstack-query';
+              return;
             }
+
+            if (id.includes('/src/lib/utils.ts')) return 'shared-utils';
+            if (id.includes('/src/lib/schema')) return 'schema';
           },
           assetFileNames: (assetInfo) => {
             if (!assetInfo.name) {

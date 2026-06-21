@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ExternalLink, ArrowLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "@/lib/motionShim";
 import confetti from "canvas-confetti";
 import { soundEffects } from "@/lib/soundEffects";
 import { haptics } from "@/lib/haptics";

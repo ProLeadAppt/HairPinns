@@ -3,6 +3,13 @@ import { useState, useEffect } from "react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { getAllCollections } from "@/lib/shopify";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+
+const buildShopifySrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
+
+const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
 
 // Real Shopify product photos — no AI/logo collection images
 const categoryImageOverrides: Record<string, string> = {
@@ -106,15 +113,25 @@ const ProductCategories = () => {
             className="group bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-all duration-base"
           >
             <div className="aspect-[4/3] bg-muted relative overflow-hidden">
-              <img 
-                src={collection.image} 
-                alt={collection.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
-                loading="lazy"
-                width="800"
-                height="600"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
+              <picture className="block w-full h-full">
+                <source
+                  type="image/webp"
+                  srcSet={buildShopifyWebpSrcSet(collection.image, [480, 800, 1200])}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <source
+                  srcSet={buildShopifySrcSet(collection.image, [480, 800, 1200])}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <img 
+                  src={collection.image} 
+                  alt={collection.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h3 className="text-2xl font-heading font-bold text-white mb-2">

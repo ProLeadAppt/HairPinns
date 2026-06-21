@@ -7,20 +7,17 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import TrackingInitializer from "./components/tracking/TrackingInitializer";
-import TrackingScripts from "./components/tracking/TrackingScripts";
-import ScrollTracker from "./components/analytics/ScrollTracker";
+import TrackingGate from "./components/tracking/TrackingGate";
 import { initCartAbandonmentMonitoring } from "@/lib/cartAbandonment";
 import ErrorBoundary, { ProductDetailErrorBoundary } from "./components/ErrorBoundary";
-
-// Homepage loads eagerly so the most common landing page is instant.
 import Index from "./pages/Index";
+const Collections = lazy(() => import("./pages/Collections"));
+const CollectionDetail = lazy(() => import("./pages/CollectionDetail"));
+const JenasDailyTrioPage = lazy(() => import("./pages/JenasDailyTrioPage"));
 
 // All other routes are lazy-loaded to shrink the initial bundle.
 // Prerendered HTML is already served statically, so the JS chunk only
 // needs to download when the user navigates client-side.
-const Collections = lazy(() => import("./pages/Collections"));
-const CollectionDetail = lazy(() => import("./pages/CollectionDetail"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const Services = lazy(() => import("./pages/Services"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
@@ -80,29 +77,53 @@ const queryClient = new QueryClient();
 
 const AppContent = () => {
   useEffect(() => {
-    // Initialize cart abandonment monitoring (non-blocking)
-    try {
-      initCartAbandonmentMonitoring();
-    } catch (error) {
-      console.warn('[App] Failed to initialize cart abandonment monitoring:', error);
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
+      cancelIdleCallback?: (id: number) => number;
+    };
+
+    let cancelled = false;
+    const start = () => {
+      if (cancelled) return;
+      try {
+        initCartAbandonmentMonitoring();
+      } catch (error) {
+        console.warn('[App] Failed to initialize cart abandonment monitoring:', error);
+      }
+    };
+
+    let handle: number | undefined;
+    if (typeof w.requestIdleCallback === 'function') {
+      handle = w.requestIdleCallback(start, { timeout: 5000 });
+    } else {
+      handle = window.setTimeout(start, 5000);
     }
+
+    return () => {
+      cancelled = true;
+      if (typeof handle === 'number' && typeof w.cancelIdleCallback === 'function') {
+        w.cancelIdleCallback(handle);
+      }
+      if (typeof handle === 'number') {
+        window.clearTimeout(handle);
+      }
+    };
   }, []);
 
   return (
     <>
-      <TrackingScripts />
       <Toaster />
       <Sonner />
       <BrowserRouter>
         <CartProvider>
           <ScrollToTop />
           <ScrollToTopButton />
-          <TrackingInitializer />
-          <ScrollTracker />
+          <TrackingGate />
           <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/collections" element={<Collections />} />
+              <Route path="/collections/jenas-daily-trio" element={<JenasDailyTrioPage />} />
               <Route path="/collections/:slug" element={<CollectionRoute />} />
               <Route path="/products/:handle" element={<ProductRoute />} />
               <Route path="/services" element={<Services />} />
@@ -142,7 +163,6 @@ const AppContent = () => {
     </>
   );
 };
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>

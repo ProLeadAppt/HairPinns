@@ -25,6 +25,7 @@ import { getOGImage } from "@/lib/sitemap";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
 import { getCollectionFAQs } from "@/data/collectionFAQs";
 import SEOHead from "@/components/SEOHead";
+import { useImagePreload } from "@/components/ImagePreloader";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 
@@ -239,6 +240,8 @@ const CollectionDetail = () => {
     // Default: maintain original order
     return 0;
   });
+
+  useImagePreload(sortedProducts.slice(0, 2).map((p) => p.image).filter(Boolean));
 
   if (loading) {
     return (

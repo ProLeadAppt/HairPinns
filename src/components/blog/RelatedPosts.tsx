@@ -1,4 +1,4 @@
-import { blogPosts, BlogPost } from "@/data/blogPosts";
+import { blogSummaries } from "@/data/blogSummaries";
 import BlogCard from "./BlogCard";
 
 interface RelatedPostsProps {
@@ -7,12 +7,12 @@ interface RelatedPostsProps {
 }
 
 const RelatedPosts = ({ currentSlug, limit = 3 }: RelatedPostsProps) => {
-  const currentPost = blogPosts.find(post => post.slug === currentSlug);
+  const currentPost = blogSummaries.find(post => post.slug === currentSlug);
   
   if (!currentPost) return null;
 
   // Get posts from same category, excluding current post
-  const relatedPosts = blogPosts
+  const relatedPosts = blogSummaries
     .filter(post => 
       post.slug !== currentSlug && 
       post.category === currentPost.category
@@ -21,7 +21,7 @@ const RelatedPosts = ({ currentSlug, limit = 3 }: RelatedPostsProps) => {
 
   // If not enough same-category posts, fill with recent posts
   if (relatedPosts.length < limit) {
-    const additionalPosts = blogPosts
+    const additionalPosts = blogSummaries
       .filter(post => 
         post.slug !== currentSlug && 
         !relatedPosts.includes(post)

@@ -3,43 +3,17 @@ import { ArrowRight } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import Badge from "@/components/design-system/Badge";
-import { blogPosts } from "@/data/blogPosts";
-import { shopifyImage } from "@/lib/shopifyImage";
+import { homeFeaturedGuides } from "@/data/homeFeaturedGuides";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+
+const buildShopifySrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
+
+const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
 
 const BlogTrio = () => {
-  // Auto-pick 3 non-archived posts by commercial intent.
-  // Score = 2 if category matches a high-intent commercial category
-  // (Smoothing, Colour, Products) + 1 if post has a `datePublished` set.
-  // Tie-break: most recent `datePublished` first, then source-array order.
-  // No hardcoded slugs — adding a new high-intent post automatically promotes
-  // it into the homepage trio.
-  const HIGH_INTENT_CATEGORIES = new Set([
-    "Smoothing",
-    "Colour",
-    "Products",
-    "Treatments",
-  ]);
-
-  const posts = blogPosts
-    .filter((p: any) => !p.archived)
-    .map((post: any, index: number) => {
-      const intentScore = HIGH_INTENT_CATEGORIES.has(post.category) ? 2 : 0;
-      const recency = post.datePublished ? new Date(post.datePublished).getTime() : 0;
-      return { post, intentScore, recency, index };
-    })
-    .sort((a, b) => {
-      if (b.intentScore !== a.intentScore) return b.intentScore - a.intentScore;
-      if (b.recency !== a.recency) return b.recency - a.recency;
-      return a.index - b.index;
-    })
-    .slice(0, 3)
-    .map(({ post }) => ({
-      slug: post.slug,
-      title: post.title,
-      hook: post.excerpt,
-      image: post.image,
-      category: post.category,
-    }));
+  const posts = homeFeaturedGuides.slice(0, 3);
 
   return (
     <Section className="content-visibility-auto">
@@ -57,16 +31,26 @@ const BlogTrio = () => {
           >
             <article className="bg-card border border-border rounded-card overflow-hidden hover:shadow-lg transition-shadow duration-base">
               <div className="aspect-video bg-muted relative overflow-hidden">
-                <img
-                  src={shopifyImage(post.image, 720)}
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="338"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
+                <picture className="block w-full h-full">
+                  <source
+                    type="image/webp"
+                    srcSet={buildShopifyWebpSrcSet(post.image, [480, 720, 960])}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <source
+                    srcSet={buildShopifySrcSet(post.image, [480, 720, 960])}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <img
+                    src={shopifyImage(post.image, 720)}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="338"
+                  />
+                </picture>
               </div>
               
               <div className="p-6">

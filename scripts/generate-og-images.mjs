@@ -2,6 +2,7 @@
  * Generate OG images (1200×630) for Hair Pinns using sharp.
  * Run: node scripts/generate-og-images.mjs
  */
+import fs from 'fs';
 import sharp from 'sharp';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -93,11 +94,12 @@ async function main() {
     const out = resolve(outDir, cfg.file);
     await sharp(svgImage(cfg))
       .resize(1200, 630)
-      .jpeg({ quality: 85 })
+      .jpeg({ quality: 72, progressive: true, mozjpeg: true })
       .toFile(out);
-    const stats = await sharp(out).metadata();
-    console.log(`  \u2713 ${cfg.file}  ${stats.width}\u00D7${stats.height}  (${Math.round(stats.size / 1024)} KB)`);
+    const stats = fs.statSync(out);
+    console.log(`  ✓ ${cfg.file}  1200×630  (${Math.round(stats.size / 1024)} KB)`);
   }
+
   console.log('\nDone! All images saved to public/');
 }
 

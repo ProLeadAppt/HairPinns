@@ -8,6 +8,13 @@ import { getAllCollections, searchProducts } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { useQuickAddToCart } from "@/hooks/useQuickAddToCart";
+import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+
+const buildShopifySrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
+
+const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
+  widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
 
 const BestSellers = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -217,16 +224,26 @@ const ProductCard = ({
         to={`/products/${product.slug}`}
         className={`block ${aspectClass} bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset`}
       >
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
-          loading="lazy"
-          decoding="async"
-          width="600"
-          height="600"
-          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 50vw"
-        />
+        <picture className="block w-full h-full">
+          <source
+            type="image/webp"
+            srcSet={buildShopifyWebpSrcSet(product.image, [480, 800, 1200])}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 50vw"
+          />
+          <source
+            srcSet={buildShopifySrcSet(product.image, [480, 800, 1200])}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 50vw"
+          />
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="600"
+          />
+        </picture>
         {!product.availableForSale && (
           <Badge variant="destructive" className="absolute top-3 left-3">
             Out of Stock

@@ -16,6 +16,7 @@ import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { serviceDetailData } from "@/data/serviceDetails";
+import { googleReviews } from "@/data/reviews";
 
 interface Service {
   title: string;
@@ -479,7 +480,7 @@ const Services = () => {
 
   // Generate schemas
   const organizationSchema = generateOrganizationSchema();
-  const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com/services');
+  const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com/services', googleReviews);
   const faqSchema = generateFAQPageSchema(comprehensiveFAQs.map(faq => ({
     question: faq.question,
     answer: faq.answer
