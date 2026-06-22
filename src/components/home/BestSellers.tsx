@@ -31,12 +31,19 @@ const BestSellers = () => {
 
         let productList: any[] = [];
 
-        // 1. Prefer BEST_SELLERS_PRODUCT_HANDLES when Jena provides the list (from analytics)
+        // 1. Prefer BEST_SELLERS_PRODUCT_HANDLES when Jena provides the list (from analytics).
+        //    Trust Jena's curation: drop the availableForSale filter so that a
+        //    sold-out or paused Juuce product still shows (she picked it for
+        //    a reason). This list is the AUTHORITATIVE source — if it returns
+        //    any products at all, do NOT fall through to the collection.
         if (BEST_SELLERS_PRODUCT_HANDLES?.length > 0) {
           const results = await Promise.all(
             BEST_SELLERS_PRODUCT_HANDLES.slice(0, 6).map((handle) => getProductByHandle(handle))
           );
-          productList = results.filter((p) => p?.handle && p?.availableForSale);
+          productList = results.filter((p) => p?.handle);
+          // If curated list returned ANY products, the `productList.length === 0`
+          // guards below will short-circuit and prevent the Aromaganic-laden
+          // best-sellers-nov collection from being used as a fallback.
         }
 
         // 2. Fallback: dedicated best-sellers collection when configured
