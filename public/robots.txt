@@ -4,7 +4,9 @@
 User-agent: *
 Allow: /
 
-# AI Crawlers — explicitly allowed for AEO/GEO visibility
+# AI Crawlers — explicitly allowed for AEO/GEO visibility.
+# These user-agents are welcome to ingest our content for retrieval,
+# summarisation, and answer-engine use. See /ai.txt for full policy.
 User-agent: GPTBot
 Allow: /
 
@@ -32,7 +34,7 @@ Allow: /
 User-agent: Perplexity-User
 Allow: /
 
-User-agent: CCBot
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: Applebot
@@ -44,10 +46,13 @@ Allow: /
 User-agent: Amazonbot
 Allow: /
 
-User-agent: Bytespider
+User-agent: CCBot
 Allow: /
 
 User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
 Allow: /
 
 User-agent: Diffbot
@@ -70,6 +75,14 @@ Allow: /
 
 User-agent: YouBot
 Allow: /
+
+# Allow the well-known and LLM discovery paths explicitly.
+Allow: /.well-known/
+Allow: /llm.txt
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /ai.txt
+Allow: /humans.txt
 
 # Disallow transactional and internal paths
 Disallow: /cart
@@ -102,5 +115,8 @@ Disallow: /web-pixels*
 Disallow: /customer_authentication/
 Disallow: /apps/
 
-# Sitemaps
+# Sitemap — declared explicitly so every compliant crawler finds it.
 Sitemap: https://hairpinns.com/sitemap.xml
+
+# Host (helps Yandex/Bing pick the canonical).
+Host: https://hairpinns.com

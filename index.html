@@ -30,6 +30,19 @@
 
     <link rel="icon" type="image/png" href="/brand-favicon.png">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://hairpinns.com/sitemap.xml">
+    <!--
+      LLM / AI-crawler discovery.
+      Three aliases (all serve text/plain, the full 22 KB context file):
+        - /llm.txt     — what most blog posts & tooling reference
+        - /llms.txt    — the llms.txt standard (Answer.AI), used by GPTBot/ClaudeBot/Perplexity
+        - /llms-full.txt — the same file, named explicitly for the long-form version
+      Pointing crawlers at the full version means a single fetch gives an
+      LLM the brand, services, products, prices, service areas, FAQs, and
+      a curated 10-post blog index — no follow-up crawl needed to cite us.
+    -->
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Hair Pinns — full context for AI systems" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Hair Pinns — concise AI index (llms.txt standard)" />
+    <link rel="alternate" type="text/plain" href="/llm.txt" title="Hair Pinns — full context for AI systems (alias)" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6Y1TJMWGG"></script>

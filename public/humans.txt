@@ -1,0 +1,25 @@
+/* TEAM */
+Owner & Lead Stylist: Jena Pinn
+Contact: hairpinns1@gmail.com
+Phone: 0468 093 991
+Location: Bangor, NSW, Australia
+Site: https://hairpinns.com
+
+Developer & SEO: Munyal (https://munyal.com.au)
+Contact: hello@munyal.com.au
+From: Newcastle, NSW, Australia
+
+/* SITE */
+Last update: 2026-06-22
+Standards: HTML5, CSS3, ES2022, JSON-LD, Open Graph, Twitter Cards
+Components: React 18, Vite, Tailwind CSS, shadcn/ui, TypeScript
+Performance: AVIF, prefetch, code-split routes, prerendered static HTML
+Standards: en-AU (Australian English)
+Doctype: html
+IDE: VS Code
+
+/* ACCESS */
+Content available in: English (en-AU)
+Currency: AUD ($)
+Shipping: Australia-wide (no international shipping)
+Salon visits: Sutherland Shire, Sydney (Bangor NSW)

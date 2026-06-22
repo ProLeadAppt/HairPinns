@@ -1,0 +1,14 @@
+# security.txt — RFC 9116
+# https://datatracker.ietf.org/doc/html/rfc9116
+# Tells security researchers and crawlers how to disclose vulnerabilities
+# for hairpinns.com. This file is a trust signal, not legal advice.
+
+Contact: mailto:hairpinns1@gmail.com
+Contact: https://hairpinns.com/contact
+Expires: 2027-12-31T23:59:59z
+Preferred-Languages: en
+Canonical: https://hairpinns.com/.well-known/security.txt
+
+# We do not run a formal bug bounty program. Reports are appreciated
+# and acknowledged within 7 days. Please do NOT publicly disclose a
+# vulnerability until we have had a chance to fix it.

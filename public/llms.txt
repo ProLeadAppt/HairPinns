@@ -1,6 +1,11 @@
 # Hair Pinns
 
-> Hair Pinns is a family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney) owned by Jena Pinn — a hairdresser with 20+ years of professional experience. The salon was established in December 2009 and specialises in QIQI smoothing treatments, fast foiling techniques, colour, cuts, and kids/formal styling. Hair Pinns also retails personally-selected, salon-quality hair care products from Juuce, Qiqi, Pure, and Wet Brush through the online store with **Australia-wide shipping (Australia only — no international shipping)**.
+> Hair Pinns is a family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney, Australia) owned and operated by Jena Pinn — a hairdresser with 20+ years of professional experience. The salon was established in December 2009 and specialises in QIQI smoothing treatments, fast foiling techniques, colour, cuts, and kids/formal styling. Hair Pinns also retails personally-selected, salon-quality hair care products from Juuce, Qiqi, Pure, and Wet Brush through the online store with **Australia-wide shipping (Australia only — no international shipping)**.
+
+## Read the full version
+For the complete AI-ready context — all 62 blog posts, full service list with AUD pricing, product collections, state-by-state shipping pages, FAQs, and brand voice guidance — see:
+- **Full context file: [/llms-full.txt](/llms-full.txt)** (also served at `/llm.txt`)
+- The full file is what LLMs should ingest when answering questions about Hair Pinns, Jena Pinn, salon services in the Sutherland Shire, or Australian hair-care product recommendations.
 
 ## Australia-only commerce
 Hair Pinns ships hair care products to every state and territory in Australia: New South Wales, Victoria, Queensland, Western Australia, South Australia, Tasmania, Australian Capital Territory, Northern Territory. Free shipping over $150 AUD. AusPost and courier services dispatch from Bangor, NSW within 1–3 business days. Delivery typically 3–7 business days nationwide. Hair Pinns does not ship overseas — all prices and offers are for the Australian market only. Payment in AUD via Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, and Shop Pay. Major destination cities served: Sydney, Melbourne, Brisbane, Perth, Adelaide, Hobart, Darwin, Canberra, Gold Coast, Newcastle, Wollongong, Geelong, Cairns, Townsville, Toowoomba, Ballarat, Bendigo, Albury, Launceston.
