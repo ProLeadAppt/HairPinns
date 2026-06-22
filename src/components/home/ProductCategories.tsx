@@ -33,12 +33,14 @@ const ProductCategories = () => {
         const allCollections = await getAllCollections(20);
 
         // Filter for main product categories
+        // (Aromaganic dropped from the home grid 2026-06-22 — Jena wants
+        //  Juuce-only on the homepage. The collection still exists in
+        //  Shopify at /collections/aromaganic for anyone linking directly.)
         const mainCategories = [
           'juuce',
           'pure',
           'wet-brush',
           'qiqi',
-          'aromaganic',
           'island-vibes',
         ];
 
