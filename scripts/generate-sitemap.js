@@ -225,6 +225,19 @@ async function main() {
   urls.push(url(`${BASE}/privacy`, 'yearly', 0.3));
   urls.push(url(`${BASE}/terms`, 'yearly', 0.3));
 
+  // Machine-readable / discovery files — the LLM and AI-crawler
+  // surface. Listed here so the master sitemap stays the single source
+  // of truth for what to crawl. Lastmod is `today` on every build so
+  // Google re-crawls them on every deploy.
+  urls.push(url(`${BASE}/llms.txt`,        'weekly', 0.6));
+  urls.push(url(`${BASE}/llms-full.txt`,   'weekly', 0.6));
+  urls.push(url(`${BASE}/llms.json`,       'weekly', 0.6));
+  urls.push(url(`${BASE}/llm.txt`,         'weekly', 0.6));
+  urls.push(url(`${BASE}/humans.txt`,      'monthly', 0.4));
+  urls.push(url(`${BASE}/ai.txt`,          'monthly', 0.4));
+  urls.push(url(`${BASE}/.well-known/security.txt`,      'yearly', 0.3));
+  urls.push(url(`${BASE}/.well-known/change-password`,   'yearly', 0.2));
+
   // Generate XML. Includes the Google image extension namespace so each
   // product <url> can carry up to 5 <image:image> entries, helping Google
   // Image indexing of product photos. Sitemap protocol allows up to 1000

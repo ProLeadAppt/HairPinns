@@ -159,9 +159,18 @@ const Index = () => {
         "@type": "VideoObject",
         "name": "Hair Pinns — Hair Care from Someone Who Actually Does Hair",
         "description": "Jena Pinn, Bangor salon owner since 2009, shares the products she uses on clients. Shipped Australia-wide.",
-        "thumbnailUrl": "https://hairpinns.com/og-default.jpg",
-        "uploadDate": "2025-01-01",
+        "thumbnailUrl": [
+          "https://hairpinns.com/hero-poster.avif",
+          "https://hairpinns.com/og-default.jpg"
+        ],
+        "uploadDate": "2026-06-22",
         "contentUrl": "https://hairpinns.com/hero-reel.mp4",
+        "embedUrl": "https://hairpinns.com/",
+        "duration": "PT10S",
+        "width": 1920,
+        "height": 1080,
+        "isAccessibleForFree": true,
+        "inLanguage": "en-AU",
         "publisher": {
           "@type": "Organization",
           "name": "Hair Pinns",

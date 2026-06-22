@@ -18,6 +18,17 @@ Standards: en-AU (Australian English)
 Doctype: html
 IDE: VS Code
 
+Machine-readable discovery files (all served from the repo root as text/plain or application/json):
+- /llms.txt            → concise LLM index (llms.txt standard, Answer.AI)
+- /llms-full.txt       → long-form LLM reference (22 KB)
+- /llms.json           → machine-readable structured facts (LocalBusiness + OfferCatalog)
+- /llm.txt             → alias of /llms-full.txt
+- /ai.txt              → AI-crawler use-policy + contact
+- /humans.txt          → this file (team + site provenance, Bing parses)
+- /sitemap.xml         → master sitemap (includes all llms/humans/security URLs)
+- /.well-known/security.txt    → RFC 9116 vulnerability disclosure
+- /.well-known/change-password → RFC 8616 password-manager pointer
+
 /* ACCESS */
 Content available in: English (en-AU)
 Currency: AUD ($)

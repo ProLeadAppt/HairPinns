@@ -1,0 +1,115 @@
+{
+  "$schema": "https://schema.org",
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://hairpinns.com/#business",
+  "name": "Hair Pinns",
+  "alternateName": ["Hair Pinns Bangor", "Hair Pinns Salon"],
+  "description": "Family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney, Australia) owned and operated by Jena Pinn. Specialising in QIQI smoothing treatments, fast foiling techniques, colour, cuts, and kids/formal styling. Also retails personally-selected, salon-quality hair care products from Juuce, Qiqi, Pure, Aromaganic and Wet Brush with Australia-wide shipping.",
+  "url": "https://hairpinns.com",
+  "logo": "https://hairpinns.com/logo.png",
+  "image": "https://hairpinns.com/og-default.jpg",
+  "telephone": "+61-468-093-991",
+  "email": "hairpinns1@gmail.com",
+  "priceRange": "$$",
+  "currenciesAccepted": "AUD",
+  "paymentAccepted": "Cash, Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, Shop Pay",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "60 Goorgool Rd",
+    "addressLocality": "Bangor",
+    "addressRegion": "NSW",
+    "postalCode": "2234",
+    "addressCountry": "AU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -34.0186,
+    "longitude": 151.0333
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",    "opens": "10:00", "closes": "17:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday",  "opens": "18:00", "closes": "21:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday",   "opens": "09:00", "closes": "21:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday",     "opens": "09:00", "closes": "17:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday",   "opens": "08:00", "closes": "14:00" }
+  ],
+  "areaServed": [
+    {"@type":"City","name":"Bangor"},{"@type":"City","name":"Menai"},
+    {"@type":"City","name":"Illawong"},{"@type":"City","name":"Alfords Point"},
+    {"@type":"City","name":"Woronora"},{"@type":"City","name":"Sutherland"},
+    {"@type":"City","name":"Kirrawee"},{"@type":"City","name":"Kareela"},
+    {"@type":"City","name":"Como"},{"@type":"City","name":"Gymea"},
+    {"@type":"City","name":"Miranda"},{"@type":"City","name":"Engadine"},
+    {"@type":"City","name":"Heathcote"},
+    {"@type":"Country","name":"Australia"}
+  ],
+  "founder": {"@type":"Person","name":"Jena Pinn"},
+  "foundingDate": "2009-12",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "762",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Hair Pinns Services",
+    "itemListElement": [
+      { "@type":"OfferCatalog","name":"Smoothing Treatments",
+        "itemListElement":[
+          {"@type":"Offer","name":"Straight Up Smoothing — mid-length","price":"324","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Straight Up Smoothing — long/thick","price":"349","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Straight Up Smoothing — teens","price":"234","priceCurrency":"AUD"}
+        ]},
+      { "@type":"OfferCatalog","name":"Foil Packages",
+        "itemListElement":[
+          {"@type":"Offer","name":"Quarter head (incl. cut & blowdry)","price":"202","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Half head (incl. cut & blowdry)","price":"237","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Full head (incl. cut & blowdry)","price":"267","priceCurrency":"AUD"}
+        ]},
+      { "@type":"OfferCatalog","name":"Colouring Packages",
+        "itemListElement":[
+          {"@type":"Offer","name":"Short colour","price":"184","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Mid-length colour","price":"178","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Long colour","price":"205","priceCurrency":"AUD"}
+        ]},
+      { "@type":"OfferCatalog","name":"Cut Packages",
+        "itemListElement":[
+          {"@type":"Offer","name":"Kids cut","price":"54","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Short cut","price":"79","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Mid-length cut","price":"89","priceCurrency":"AUD"},
+          {"@type":"Offer","name":"Long cut","price":"99","priceCurrency":"AUD"}
+        ]}
+    ]
+  },
+  "sameAs": [
+    "https://www.facebook.com/hairpinns",
+    "https://www.instagram.com/hairpinns",
+    "https://www.google.com/maps/place/Hair+Pinns+Bangor"
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://hairpinns.com/booking",
+      "inLanguage": "en-AU"
+    },
+    "name": "Book an appointment at Hair Pinns via Fresha"
+  },
+  "_meta": {
+    "lastUpdated": "2026-06-22",
+    "schemaVersion": "1.0",
+    "relatedDiscoveryFiles": {
+      "llmsTxt": "https://hairpinns.com/llms.txt",
+      "llmsFullTxt": "https://hairpinns.com/llms-full.txt",
+      "llmTxtAlias": "https://hairpinns.com/llm.txt",
+      "humans": "https://hairpinns.com/humans.txt",
+      "aiTxt": "https://hairpinns.com/ai.txt",
+      "security": "https://hairpinns.com/.well-known/security.txt",
+      "sitemap": "https://hairpinns.com/sitemap.xml",
+      "robots": "https://hairpinns.com/robots.txt"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroHomeAvif640 from "@/assets/images/hero-home-640w.avif";
@@ -6,18 +7,72 @@ import heroHomeAvif1920 from "@/assets/images/hero-home-1920w.avif";
 import heroHomeWebp640 from "@/assets/images/hero-home-640w.webp";
 import heroHomeWebp1280 from "@/assets/images/hero-home-1280w.webp";
 import heroHomeWebp1920 from "@/assets/images/hero-home-1920w.webp";
+import heroReelMp4 from "/hero-reel.mp4";
+import heroPosterAvif from "/hero-poster.avif";
 
 /**
- * HeroHome — editorial-soft rev.
+ * HeroHome — premium editorial with optional cinematic video.
  *
- * One clear hero, one clear action, lots of air. Trust signals live in
- * a thin band UNDER the hero (HeroSocialProofBar) so the hero itself
- * stays a single beat: portrait of Jena, one headline, one CTA.
+ * Base layer is the responsive AVIF/WebP still (LCP). On desktop with no
+ * reduced-motion and no save-data, an autoplaying muted-looped <video> is
+ * layered on top, crossfading in once it's actually playing. The video
+ * is decorative — the site works perfectly without it on:
+ *
+ *   - mobile / small tablets (intentionally no autoplay)
+ *   - reduced-motion users (poster + still only)
+ *   - save-data / slow connections (still wins)
+ *   - prerender / headless (always still — keeps the static HTML clean
+ *     and avoids a 2.7 MB video transfer for crawlers)
+ *   - browsers without <video> support (still wins)
+ *
+ * The video has no <source> children besides the MP4 — we keep the
+ * master file in one format (h.264 baseline, plays everywhere
+ * desktop and modern Safari) rather than ship a 3-format set that
+ * would triple the LCP-bandwidth cost. Mobile gets the still.
  */
 const HeroHome = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoActive, setVideoActive] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Don't run in prerender / headless — keeps the static HTML clean
+    // and avoids a 2.7 MB video transfer for crawlers.
+    if (navigator.userAgent?.includes("HeadlessChrome")) return;
+
+    // Mobile / small tablets — still only.
+    if (window.innerWidth < 1024) return;
+
+    // Respect user motion preferences + data-saver.
+    const reducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    )?.matches;
+    if (reducedMotion) return;
+
+    // navigator.connection is not in the TS lib types; cast for the gate.
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean } })
+      .connection;
+    if (conn?.saveData) return;
+
+    // Slow connection (effectiveType 2g/3g) — don't autoplay video.
+    if (conn && ["slow-2g", "2g", "3g"].includes((conn as any).effectiveType)) {
+      return;
+    }
+
+    setVideoActive(true);
+  }, []);
+
+  const handleCanPlay = () => {
+    // Fade video in only once it has a frame to show, so the user never
+    // sees a flicker of black between still and video.
+    setVideoReady(true);
+  };
+
   return (
     <section className="relative min-h-[92vh] flex items-end overflow-hidden">
-      {/* Background — responsive AVIF/WebP sources keep the LCP lean. */}
+      {/* Background — still is always rendered (LCP, fallback, mobile). */}
       <div className="absolute inset-0">
         <picture>
           <source
@@ -42,9 +97,41 @@ const HeroHome = () => {
             height="1080"
           />
         </picture>
-        {/* Editorial scrim — softer overall, slightly stronger on the bottom-left
-            where the headline sits. 12.4:1 contrast for white text. */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-[rgba(24,0,30,0.92)] via-[rgba(24,0,30,0.55)] to-[rgba(24,0,30,0.18)]" />
+
+        {/* Optional video overlay — desktop only, motion-ok, no save-data.
+            Decodes "async" so the first paint is the still, not a video
+            frame. Crossfades in only once canplay fires. */}
+        {videoActive && (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out"
+            style={{ opacity: videoReady ? 1 : 0 }}
+            src={heroReelMp4}
+            poster={heroPosterAvif}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="metadata"
+            aria-hidden="true"
+            onCanPlay={handleCanPlay}
+          />
+        )}
+
+        {/* Editorial scrim — slightly stronger when video is on so the
+            headline stays readable over a moving picture. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: videoReady
+              ? "linear-gradient(110deg, rgba(24,0,30,0.88) 0%, rgba(24,0,30,0.55) 45%, rgba(24,0,30,0.30) 100%)"
+              : undefined,
+          }}
+        >
+          {!videoReady && (
+            <div className="absolute inset-0 bg-gradient-to-tr from-[rgba(24,0,30,0.92)] via-[rgba(24,0,30,0.55)] to-[rgba(24,0,30,0.18)]" />
+          )}
+        </div>
       </div>
 
       {/* Content — single column, max-width, lots of air at the bottom */}

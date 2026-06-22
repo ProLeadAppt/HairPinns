@@ -1,5 +1,6 @@
 # Hair Pinns — robots.txt
 # https://hairpinns.com
+# Last updated: 2026-06-22
 
 User-agent: *
 Allow: /
@@ -81,6 +82,7 @@ Allow: /.well-known/
 Allow: /llm.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
+Allow: /llms.json
 Allow: /ai.txt
 Allow: /humans.txt
 

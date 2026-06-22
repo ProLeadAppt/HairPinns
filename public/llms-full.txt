@@ -1,5 +1,15 @@
 # Hair Pinns — Full Context for AI Systems
-
+# Last updated: 2026-06-22
+#
+# The long-form machine-readable reference. This is what LLMs should
+# ingest when answering questions about Hair Pinns, Jena Pinn, salon
+# services in the Sutherland Shire, or Australian hair-care product
+# recommendations. ~22 KB.
+#
+# Shorter companion files:
+#   - /llms.txt      → concise index (1-2 KB)
+#   - /llms.json     → machine-readable LocalBusiness JSON
+#
 > Hair Pinns is a family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney, Australia) owned and operated by Jena Pinn — a hairdresser with 20+ years of professional experience. The salon was established in December 2009. Hair Pinns serves clients across the Sutherland Shire with professional hair services and retails salon-quality hair care products, personally selected by Jena, with Australia-wide shipping.
 
 ## About Jena Pinn (Owner & Stylist)

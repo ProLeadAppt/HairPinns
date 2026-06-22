@@ -1,5 +1,11 @@
 # Hair Pinns
-
+# Last updated: 2026-06-22
+#
+# This file is the concise machine-readable index of Hair Pinns for AI
+# systems (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.).
+# For the long-form reference see /llms-full.txt (22 KB, full context).
+# For machine-readable structured facts see /llms.json (LocalBusiness JSON-LD).
+#
 > Hair Pinns is a family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney, Australia) owned and operated by Jena Pinn — a hairdresser with 20+ years of professional experience. The salon was established in December 2009 and specialises in QIQI smoothing treatments, fast foiling techniques, colour, cuts, and kids/formal styling. Hair Pinns also retails personally-selected, salon-quality hair care products from Juuce, Qiqi, Pure, and Wet Brush through the online store with **Australia-wide shipping (Australia only — no international shipping)**.
 
 ## Read the full version
