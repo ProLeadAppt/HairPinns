@@ -50,8 +50,11 @@ export default {
         },
         // Brand-specific colors
         brand: {
+          100: "hsl(var(--brand-100))",
+          200: "hsl(var(--brand-200))",
           500: "hsl(var(--brand-500))",
           600: "hsl(var(--brand-600))",
+          700: "hsl(var(--brand-700))",
         },
         // Rose-gold accent — second colour beat (CTAs hover, price, editorial).
         gold: {

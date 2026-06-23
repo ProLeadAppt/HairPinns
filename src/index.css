@@ -13,8 +13,11 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Premium Salon Design Tokens */
-    --brand-500: 300 34% 50%;              /* #8B4A8B */
+    --brand-100: 300 60% 96%;              /* #F8EEF8 — pale lavender (Save 10% badge bg) */
+    --brand-200: 300 50% 88%;              /* #EAD1EA — soft purple border */
+    --brand-500: 300 34% 50%;              /* #8B4A8B — primary brand */
     --brand-600: 300 37% 42%;              /* #733C73 - 8% darker */
+    --brand-700: 300 40% 28%;              /* #5A1E5A — WCAG AA body text on light (~10:1) */
     --text: 302 17% 16%;                   /* #2A2230 */
     --heading: 304 32% 13%;                /* #241327 */
     --muted: 302 9% 56%;                   /* #8E8196 */
