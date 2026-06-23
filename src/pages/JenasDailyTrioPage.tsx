@@ -362,14 +362,14 @@ const JenasDailyTrioPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 relative">
             <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 text-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-5">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 text-white px-4 py-2 text-sm font-bold uppercase tracking-wider mb-5">
                   <Sparkles className="w-3.5 h-3.5" />
                   {trio.eyebrow}
                 </span>
                 <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl leading-[1.05] mb-4">
                   {trio.headline}
                 </h1>
-                <p className="speakable-trio-intro text-lg text-white/90 max-w-2xl mb-8">
+                <p className="speakable-trio-intro text-lg md:text-xl text-white max-w-2xl mb-8 font-medium leading-relaxed">
                   {trio.subheadline}
                 </p>
 
@@ -381,25 +381,25 @@ const JenasDailyTrioPage = () => {
                       key={title}
                       className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 p-4"
                     >
-                      <Icon className="w-5 h-5 text-[hsl(var(--gold))] mb-2" />
+                      <Icon className="w-5 h-5 text-white mb-2" />
                       <p className="text-sm font-semibold text-white mb-1 leading-snug">
                         {title}
                       </p>
-                      <p className="text-xs text-white/85 leading-snug">{body}</p>
+                      <p className="text-sm text-white leading-snug font-medium">{body}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* trust micro-row */}
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/85">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white font-medium">
                   <span className="inline-flex items-center gap-1.5">
-                    <Truck className="w-3.5 h-3.5" /> Free AU shipping over $150
+                    <Truck className="w-4 h-4" /> Free AU shipping over $150
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <RotateCcw className="w-3.5 h-3.5" /> 14-day returns
+                    <RotateCcw className="w-4 h-4" /> 14-day returns
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5" /> Afterpay & Zip
+                    <Shield className="w-4 h-4" /> Afterpay & Zip
                   </span>
                 </div>
               </div>
@@ -410,11 +410,11 @@ const JenasDailyTrioPage = () => {
                 className="bg-white text-foreground rounded-2xl p-6 md:p-7 shadow-2xl ring-1 ring-black/5"
                 aria-label="Bundle summary"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm uppercase tracking-wider text-heading font-bold">
                     The Trio · 3 products
                   </span>
-                  <Badge className="bg-[hsl(var(--gold))]/20 text-heading border-[hsl(var(--gold))]/40 font-semibold">
+                  <Badge className="bg-brand-100 text-brand-700 border-brand-200 font-bold">
                     Save 10%
                   </Badge>
                 </div>
@@ -445,19 +445,19 @@ const JenasDailyTrioPage = () => {
                       </div>
                     )}
                     {subtotal > 0 && bundleRrp && (
-                      <p className="text-sm text-muted-foreground mb-5">
-                        You save <strong className="text-heading">{formatPrice(bundleRrp - bundlePrice, "AUD")}</strong>{" "}
+                      <p className="text-sm text-foreground/85 mb-5 font-medium">
+                        You save <strong className="text-brand-700 font-bold">{formatPrice(bundleRrp - bundlePrice, "AUD")}</strong>{" "}
                         vs buying separately.
                       </p>
                     )}
                     {subtotal > 0 && !bundleRrp && (
-                      <p className="text-sm text-muted-foreground mb-5">
-                        You save <strong className="text-heading">{formatPrice(savings, "AUD")}</strong>{" "}
+                      <p className="text-sm text-foreground/85 mb-5 font-medium">
+                        You save <strong className="text-brand-700 font-bold">{formatPrice(savings, "AUD")}</strong>{" "}
                         vs buying separately.
                       </p>
                     )}
                     {subtotal === 0 && (
-                      <p className="text-sm text-muted-foreground my-4">
+                      <p className="text-sm text-foreground/85 my-4 font-medium">
                         Pricing is loading — add a single product below to get started.
                       </p>
                     )}
@@ -498,7 +498,7 @@ const JenasDailyTrioPage = () => {
                   {BOOK_CTA_LABEL}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
-                <p className="text-xs text-muted-foreground text-center mt-3">
+                <p className="text-sm text-foreground/80 text-center mt-4 font-medium">
                   Free shipping over $150 · 14-day returns · Afterpay & Zip
                 </p>
               </aside>
@@ -574,7 +574,7 @@ const JenasDailyTrioPage = () => {
                         </Link>
                       </h3>
                       {p.vendor && (
-                        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                        <p className="text-sm uppercase tracking-wider text-heading font-bold mb-2">
                           {p.vendor}
                         </p>
                       )}
@@ -590,7 +590,7 @@ const JenasDailyTrioPage = () => {
                           : "";
                         return (
                           <div className="flex items-baseline gap-2 mb-4">
-                            <p className="text-2xl font-bold text-brand-500">
+                            <p className="text-2xl font-bold text-brand-700">
                               {priceText}
                             </p>
                             {compareText && (
@@ -642,13 +642,13 @@ const JenasDailyTrioPage = () => {
               <img
                 src="/assets/images/jena-headshot-4lMGRCmj.webp"
                 alt="Jena Pinn, owner of Hair Pinns Bangor"
-                className="w-16 h-16 rounded-full object-cover ring-2 ring-[hsl(var(--gold))] shrink-0"
+                className="w-16 h-16 rounded-full object-cover ring-2 ring-brand-500 shrink-0"
                 loading="lazy"
                 decoding="async"
                 width="160"
                 height="160"
               />
-              <p className="text-sm font-semibold text-brand-500 uppercase tracking-widest">
+              <p className="text-sm font-bold text-brand-700 uppercase tracking-widest">
                 Jena's note
               </p>
             </div>
@@ -688,7 +688,7 @@ const JenasDailyTrioPage = () => {
                   key={s.step}
                   className="bg-card border border-border rounded-card p-6"
                 >
-                  <span className="block text-4xl font-heading font-bold text-brand-500 mb-2">
+                  <span className="block text-4xl font-heading font-bold text-brand-700 mb-2">
                     {s.step}
                   </span>
                   <h3 className="font-heading text-lg text-heading mb-2">
@@ -712,25 +712,25 @@ const JenasDailyTrioPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* Separately */}
               <div className="bg-white border border-border rounded-card p-6">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-3">
+                <p className="text-sm uppercase tracking-wider text-heading font-bold mb-4">
                   Buying separately
                 </p>
-                <ul className="space-y-2 mb-4">
+                <ul className="space-y-2 mb-5">
                   {products.map((p) => (
                     <li
                       key={p.handle}
                       className="flex items-baseline justify-between text-sm border-b border-border/50 pb-2 last:border-0"
                     >
-                      <span className="text-foreground">{p.title}</span>
-                      <span className="text-muted-foreground">
+                      <span className="text-foreground font-medium">{p.title}</span>
+                      <span className="text-foreground/80 font-medium">
                         {formatPrice(p.price, p.currency)}
                       </span>
                     </li>
                   ))}
                 </ul>
                 <div className="flex items-baseline justify-between border-t border-border pt-3">
-                  <span className="text-sm text-muted-foreground">Subtotal</span>
-                  <span className="text-lg font-semibold text-foreground">
+                  <span className="text-base text-heading font-bold">Subtotal</span>
+                  <span className="text-xl font-bold text-heading">
                     {formatPrice(subtotal, "AUD")}
                   </span>
                 </div>
@@ -738,29 +738,29 @@ const JenasDailyTrioPage = () => {
 
               {/* Bundle */}
               <div className="bg-gradient-to-br from-[hsl(var(--brand-500))] to-[hsl(var(--brand-700))] text-white rounded-card p-6 shadow-xl ring-2 ring-[hsl(var(--gold))]">
-                <p className="text-xs uppercase tracking-widest text-white/80 font-semibold mb-3">
+                <p className="text-sm uppercase tracking-wider text-white font-bold mb-4">
                   The trio bundle · save 10%
                 </p>
-                <ul className="space-y-2 mb-4">
+                <ul className="space-y-2 mb-5">
                   {products.map((p) => (
                     <li
                       key={p.handle}
-                      className="flex items-baseline justify-between text-sm border-b border-white/20 pb-2 last:border-0"
+                      className="flex items-baseline justify-between text-sm border-b border-white/25 pb-2 last:border-0"
                     >
-                      <span className="text-white">{p.title}</span>
-                      <span className="text-white/70 line-through">
+                      <span className="text-white font-medium">{p.title}</span>
+                      <span className="text-white/85 line-through font-medium">
                         {formatPrice(p.price, p.currency)}
                       </span>
                     </li>
                   ))}
                 </ul>
                 <div className="flex items-baseline justify-between border-t border-white/30 pt-3">
-                  <span className="text-sm text-white/80">Bundle price</span>
+                  <span className="text-base text-white font-semibold">Bundle price</span>
                   <span className="text-2xl font-heading font-bold text-white">
                     {formatPrice(bundlePrice, "AUD")}
                   </span>
                 </div>
-                <p className="text-xs text-white/80 mt-2">
+                <p className="text-sm text-white/95 mt-3 font-semibold">
                   You save {formatPrice(savings, "AUD")} · applied automatically at checkout
                 </p>
               </div>
@@ -773,7 +773,7 @@ const JenasDailyTrioPage = () => {
         {/* ======================================================== */}
         <section className="py-14 md:py-20 bg-background">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-1 mb-4 text-[hsl(var(--gold))]">
+            <div className="inline-flex items-center gap-1 mb-4 text-brand-500">
               {[1, 2, 3, 4, 5].map((s) => (
                 <Star key={s} className="w-5 h-5 fill-current" />
               ))}
@@ -783,7 +783,7 @@ const JenasDailyTrioPage = () => {
               honestly the best it's ever been — softer, less frizz, and the
               colour is still holding."
             </blockquote>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80 font-semibold">
               Sarah M. · Google Review
             </p>
           </div>

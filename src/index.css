@@ -60,7 +60,7 @@ All colors MUST be HSL.
     --secondary: 210 20% 97%;
     --secondary-foreground: var(--text);
     --muted-bg: 210 20% 96%;
-    --muted-foreground: 216 7% 35%;
+    --muted-foreground: 216 7% 28%;         /* WCAG-safe on every light bg; visible at 12px */
     --accent-color: var(--accent);
     --accent-foreground: 0 0% 100%;
     --accent-text: 0 0% 100%;
