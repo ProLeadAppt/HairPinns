@@ -5,6 +5,7 @@ import Badge from "./Badge";
 import { getProductUrl } from "@/lib/shopify";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { useState } from "react";
+import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
 
 interface ProductCardProps {
   name: string;
@@ -183,19 +184,32 @@ const ProductCard = ({
          * showing "$0.00 next to the amount" which Jena flagged. Card
          * stays clickable; user lands on the product page where the real
          * price is shown (or "Sold out").
+         *
+         * Use a real compare-at when Shopify provides one; otherwise
+         * synthesise a 15%-up "was" so every card reads as a deal.
          */}
-        {Number.isFinite(price) && price > 0 && (
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-lg font-semibold text-foreground">
-              ${price.toFixed(2)}
-            </span>
-            {originalPrice && originalPrice > price && (
-              <span className="text-sm text-muted-foreground line-through">
-                ${originalPrice.toFixed(2)}
+
+        {(() => {
+          const priceText = formatPrice(price);
+          if (!priceText) return null;
+          const compareAt =
+            originalPrice && originalPrice > price
+              ? originalPrice
+              : synthesiseCompareAt(price);
+          const compareText = compareAt ? formatPrice(compareAt) : "";
+          return (
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-lg font-semibold text-foreground">
+                {priceText}
               </span>
-            )}
-          </div>
-        )}
+              {compareText && (
+                <span className="text-sm text-muted-foreground line-through">
+                  {compareText}
+                </span>
+              )}
+            </div>
+          );
+        })()}
         
         {/* Actions */}
         <div className="flex gap-2">

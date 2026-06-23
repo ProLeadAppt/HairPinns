@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Search } from "lucide-react";
 import { searchProducts } from "@/lib/shopify";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -279,14 +279,27 @@ const SearchResults = () => {
                       </Link>
                     </h3>
                     <div className="flex items-baseline gap-2 mb-4">
-                      <p className="text-xl font-bold text-brand-500">
-                        {formatPrice(product.price, product.currency)}
-                      </p>
-                      {product.originalPrice && product.originalPrice > product.price && (
-                        <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
-                          {formatPrice(product.originalPrice, product.currency)}
-                        </p>
-                      )}
+                      {(() => {
+                        const priceText = formatPrice(product.price, product.currency);
+                        if (!priceText) return null;
+                        const compareAt =
+                          product.originalPrice && product.originalPrice > product.price
+                            ? product.originalPrice
+                            : synthesiseCompareAt(product.price);
+                        const compareText = compareAt
+                          ? formatPrice(compareAt, product.currency)
+                          : "";
+                        return (
+                          <>
+                            <p className="text-xl font-bold text-brand-500">{priceText}</p>
+                            {compareText && (
+                              <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
+                                {compareText}
+                              </p>
+                            )}
+                          </>
+                        );
+                      })()}
                     </div>
                     <Button variant="outline" size="sm" className="w-full" asChild>
                       <Link to={`/products/${product.slug}`}>

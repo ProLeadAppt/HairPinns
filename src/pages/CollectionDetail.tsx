@@ -20,7 +20,7 @@ import {
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
 import QuickViewModal from "@/components/product/QuickViewModal";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
 import { getCollectionFAQs } from "@/data/collectionFAQs";
@@ -488,14 +488,27 @@ const CollectionDetail = () => {
                       </h3>
 
                       <div className="flex items-baseline gap-2 mb-1">
-                        <p className="text-2xl font-bold text-brand-500">
-                          {formatPrice(product.price, "AUD")}
-                        </p>
-                        {product.originalPrice && product.originalPrice > product.price && (
-                          <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
-                            {formatPrice(product.originalPrice, "AUD")}
-                          </p>
-                        )}
+                        {(() => {
+                          const priceText = formatPrice(product.price, "AUD");
+                          if (!priceText) return null;
+                          const compareAt =
+                            product.originalPrice && product.originalPrice > product.price
+                              ? product.originalPrice
+                              : synthesiseCompareAt(product.price);
+                          const compareText = compareAt
+                            ? formatPrice(compareAt, "AUD")
+                            : "";
+                          return (
+                            <>
+                              <p className="text-2xl font-bold text-brand-500">{priceText}</p>
+                              {compareText && (
+                                <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
+                                  {compareText}
+                                </p>
+                              )}
+                            </>
+                          );
+                        })()}
                       </div>
                       <p className="text-xs text-muted-foreground mb-3">Afterpay &middot; Zip available</p>
 

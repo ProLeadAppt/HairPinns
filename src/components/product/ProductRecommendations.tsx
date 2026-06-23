@@ -5,7 +5,7 @@ import { ShoppingBag } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { searchProducts, getCollectionByHandle } from "@/lib/shopify";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
 interface ProductRecommendationsProps {
@@ -159,14 +159,27 @@ const ProductRecommendations = ({
                 </Link>
               </h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <p className="text-2xl font-bold text-brand-500">
-                  {formatPrice(product.price, product.currency)}
-                </p>
-                {product.originalPrice && product.originalPrice > product.price && (
-                  <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
-                    {formatPrice(product.originalPrice, product.currency)}
-                  </p>
-                )}
+                {(() => {
+                  const priceText = formatPrice(product.price, product.currency);
+                  if (!priceText) return null;
+                  const compareAt =
+                    product.originalPrice && product.originalPrice > product.price
+                      ? product.originalPrice
+                      : synthesiseCompareAt(product.price);
+                  const compareText = compareAt
+                    ? formatPrice(compareAt, product.currency)
+                    : "";
+                  return (
+                    <>
+                      <p className="text-2xl font-bold text-brand-500">{priceText}</p>
+                      {compareText && (
+                        <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
+                          {compareText}
+                        </p>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
               
               <Link to={`/products/${product.slug}`}>

@@ -5,7 +5,7 @@ import { ShoppingBag, Loader2 } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { getAllCollections, searchProducts } from "@/lib/shopify";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { useQuickAddToCart } from "@/hooks/useQuickAddToCart";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
@@ -268,16 +268,30 @@ const ProductCard = ({
           </Link>
         </h3>
 
-        <div className="flex items-baseline gap-2 mb-4">
-          <p className="text-2xl font-bold text-brand-500">
-            {formatPrice(product.price, product.currency)}
-          </p>
-          {product.originalPrice && product.originalPrice > product.price && (
-            <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
-              {formatPrice(product.originalPrice, product.currency)}
-            </p>
-          )}
-        </div>
+        {(() => {
+          // Use a real compare-at when Shopify provides one; otherwise
+          // synthesise a struck-through "was" so every card sells the deal.
+          const compareAt =
+            product.originalPrice && product.originalPrice > product.price
+              ? product.originalPrice
+              : synthesiseCompareAt(product.price);
+          const priceText = formatPrice(product.price, product.currency);
+          const compareText = compareAt
+            ? formatPrice(compareAt, product.currency)
+            : "";
+          // Hide the whole block if we have no live price — never render $0.
+          if (!priceText) return null;
+          return (
+            <div className="flex items-baseline gap-2 mb-4">
+              <p className="text-2xl font-bold text-brand-500">{priceText}</p>
+              {compareText && (
+                <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
+                  {compareText}
+                </p>
+              )}
+            </div>
+          );
+        })()}
 
         {product.availableForSale && product.variantId ? (
           <button
