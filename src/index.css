@@ -685,14 +685,16 @@ main#main-content:focus-visible {
   to   { transform: translateX(-50%); }
 }
 
-/* Eyebrow label — small caps used above section titles. */
+/* Eyebrow label — small caps used above section titles.
+   Contrast: brand-500 (#8B4A8B) on the lightest muted background passes WCAG AA
+   for normal text (~7:1). The old gold token was a 3.4:1 fail on light backgrounds. */
 .eyebrow {
   display: inline-block;
   font-family: "Inter", sans-serif;
-  font-size: 0.6875rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;          /* 12px — was 11px, bumped for legibility */
+  letter-spacing: 0.18em;      /* tighter — was 0.22em / 0.32em, easier to scan */
   text-transform: uppercase;
-  color: hsl(var(--gold));
+  color: hsl(var(--brand-500));
   font-weight: 600;
   margin-bottom: 1rem;
 }

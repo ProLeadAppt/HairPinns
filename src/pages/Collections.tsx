@@ -240,53 +240,51 @@ const Collections = () => {
             <div className="rounded-3xl border border-brand-500/20 bg-gradient-to-r from-brand-500/8 via-background to-accent/20 p-6 md:p-8 shadow-lg">
               <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.9fr] gap-8 items-center">
                 <div>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/10 text-brand-600 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">
-                    Jena's pick · featured bundle
-                  </span>
                   <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading mb-3">
                     Jena's Daily Trio
                   </h2>
-                  <p className="text-lg text-foreground leading-relaxed max-w-2xl mb-5">
-                    The shampoo, conditioner and leave-in Jena reaches for most often — bundled at 10% off and built for the clients who want a no-fuss routine that actually works.
+                  <p className="text-base text-foreground max-w-xl mb-5">
+                    The shampoo, conditioner and leave-in Jena uses most —
+                    bundled at 10% off.
+                  </p>
+                  <p className="text-sm font-semibold text-brand-500 mb-5">
+                    Save 10% · Free shipping over $150
                   </p>
                   <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-6">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">10% bundle saving</span>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">Free shipping over $150</span>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">Salon-picked routine</span>
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  {/* Single CTA — once a user is on /collections they
+                      don't need a "browse all" button. One path, one
+                      click. */}
+                  <div>
                     <Button asChild variant="default" size="lg" className="gap-2">
                       <Link to="/collections/jenas-daily-trio">
-                        Shop the Daily Trio
+                        View the trio
                         <ArrowRight className="w-5 h-5" />
                       </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="lg">
-                      <Link to="/collections">Browse all collections</Link>
                     </Button>
                   </div>
                 </div>
                 <div className="bg-white rounded-2xl border border-border p-5 shadow-sm">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">What’s inside</p>
-                      <span className="text-xs font-semibold text-brand-500">Best seller energy</span>
-                    </div>
-                    <div className="space-y-3">
-                      {[
-                        "Juuce Bond Repair Shampoo",
-                        "Aromaganic Smooth Hair Super Silky Conditioner",
-                        "QIQI Bare Repair Oil",
-                      ].map((item) => (
-                        <div key={item} className="flex items-center gap-3 rounded-xl bg-muted/40 px-4 py-3">
-                          <span className="w-2.5 h-2.5 rounded-full bg-brand-500" />
-                          <span className="text-sm text-foreground font-medium">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Fast path to a better at-home routine — and a stronger cart value per customer.
-                    </p>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-3">
+                    Inside
+                  </p>
+                  <div className="space-y-2">
+                    {[
+                      "Juuce Bond Repair Shampoo",
+                      "Aromaganic Smooth Hair Conditioner",
+                      "QIQI Bare Repair Oil",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center gap-3 rounded-lg bg-muted/40 px-3 py-2.5"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-brand-500 shrink-0" />
+                        <span className="text-sm text-foreground">{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

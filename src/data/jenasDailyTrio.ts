@@ -54,12 +54,12 @@ export interface JenasDailyTrio {
 export const JENAS_DAILY_TRIO: JenasDailyTrio = {
   id: "jenas-daily-trio",
   name: "Jena's Daily Trio",
-  eyebrow: "The Hair Pinns shelf · curated by Jena",
-  headline: "Three products. One routine. Every hair type.",
+  eyebrow: "Curated by Jena",
+  headline: "Three products. One routine.",
   subheadline:
-    "The shampoo, conditioner, and leave-in treatment I use on the most clients in the Bangor chair — bundled at 10% off, with free shipping over $150.",
+    "The shampoo, conditioner and leave-in Jena uses on most Bangor clients — bundled at 10% off.",
   jenaStory:
-    "If you've sat in my chair, you've probably left with at least one of these. I built this trio because the questions are always the same: 'What should I actually use at home?' and 'What do you use on me?' The answer is here. One wash, one condition, one leave-in. That's the whole routine for about 90% of the heads that sit in my chair.",
+    "If you've sat in my chair, you've probably left with at least one of these. The questions are always the same: what should I actually use at home, and what do you use on me. One wash, one condition, one leave-in — the routine for most of the heads in my chair.",
   bundlePromise: "Bundle saves you 10% — applied at checkout",
   products: [
     {

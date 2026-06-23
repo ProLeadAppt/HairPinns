@@ -18,9 +18,7 @@ import {
   RotateCcw,
   Clock,
   Scissors,
-  Heart,
   Award,
-  Calendar,
 } from "lucide-react";
 import { toast } from "sonner";
 import { JENAS_DAILY_TRIO, type JenasDailyTrio } from "@/data/jenasDailyTrio";
@@ -33,7 +31,6 @@ import {
   generateWebPageSchema,
   generateProductSchema,
 } from "@/lib/schema";
-import { BUSINESS_NAP } from "@/config/businessConfig";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 
 const fireAddToCart = (data: {
@@ -89,17 +86,17 @@ const TRIO_HERO_PROPS = [
   {
     icon: Clock,
     title: "One routine, every wash day",
-    body: "Stop the 20-minute shelf stare. Wash, condition, leave-in — done.",
+    body: "Wash, condition, leave-in. Done.",
   },
   {
     icon: Scissors,
     title: "What Jena uses in the chair",
-    body: "Same three bottles, on 90% of clients. Built on the Bangor chair, not a marketing deck.",
+    body: "Same three bottles, on 90% of clients.",
   },
   {
     icon: Award,
-    title: "10% off + free shipping over $150",
-    body: "Save the bundle at checkout. Afterpay & Zip available. 14-day returns if it doesn't suit.",
+    title: "10% off when you bundle",
+    body: "Free AU shipping over $150. Afterpay & Zip.",
   },
 ];
 
@@ -365,7 +362,7 @@ const JenasDailyTrioPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 relative">
             <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-5">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 text-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-5">
                   <Sparkles className="w-3.5 h-3.5" />
                   {trio.eyebrow}
                 </span>
@@ -388,13 +385,13 @@ const JenasDailyTrioPage = () => {
                       <p className="text-sm font-semibold text-white mb-1 leading-snug">
                         {title}
                       </p>
-                      <p className="text-xs text-white/80 leading-snug">{body}</p>
+                      <p className="text-xs text-white/85 leading-snug">{body}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* trust micro-row */}
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/80">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/85">
                   <span className="inline-flex items-center gap-1.5">
                     <Truck className="w-3.5 h-3.5" /> Free AU shipping over $150
                   </span>
@@ -510,120 +507,15 @@ const JenasDailyTrioPage = () => {
         </section>
 
         {/* ======================================================== */}
-        {/* SOCIAL PROOF BAR — Google rating + Fresha + review count */}
-        {/* ======================================================== */}
-        <section className="bg-background border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-x-10 gap-y-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className="w-4 h-4 fill-[hsl(var(--gold))] text-[hsl(var(--gold))]" />
-                  ))}
-                </div>
-                <span className="font-semibold text-foreground">4.9 / 5</span>
-                <span>from 762+ Google reviews</span>
-              </div>
-              <span className="hidden sm:inline w-1 h-1 rounded-full bg-border" aria-hidden />
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-foreground">5.0 / 5</span>
-                <span>on Fresha</span>
-                <span className="text-xs text-muted-foreground/80">(verified bookings)</span>
-              </div>
-              <span className="hidden sm:inline w-1 h-1 rounded-full bg-border" aria-hidden />
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-brand-500" />
-                <span>Booked by 100+ clients in the last 30 days</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ======================================================== */}
-        {/* WHY THIS TRIO — benefits, not ticks */}
+        {/* THE 3 PRODUCTS — trio with a "vs RRP" price on each card */}
         {/* ======================================================== */}
         <section className="py-14 md:py-20 bg-muted/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-10">
-              <span className="eyebrow inline-block text-[11px] uppercase tracking-[0.32em] text-[hsl(var(--gold))] mb-3">
-                Built around what works
-              </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading">
-                Why this trio actually sells
-              </h2>
-              <p className="text-muted-foreground mt-3">
-                It's not three random products in a basket. It's the same three Jena reaches for in the Bangor chair — and the routine most clients stay on for years.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: Clock,
-                  title: "Simple enough to stick with",
-                  copy: "One shampoo, one conditioner, one leave-in. Easy to remember, easy to repurchase, easy to get right at home. No 12-step routine, no drawer of backups.",
-                },
-                {
-                  icon: Heart,
-                  title: "Targets the real damage",
-                  copy: "Bond repair, smoothing slip, and frizz control cover what actually shows up in the Bangor chair: colour fade, humidity, and heat damage from the Aussie summer.",
-                },
-                {
-                  icon: Award,
-                  title: "Feels curated, not random",
-                  copy: "Jena picks this trio because it feels like a stylist-built routine — not a basket of unrelated products forced together for the 10% saving.",
-                },
-              ].map((card) => (
-                <div
-                  key={card.title}
-                  className="bg-card border border-border rounded-card p-6 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <card.icon className="w-7 h-7 text-[hsl(var(--gold))] mb-3" />
-                  <h3 className="text-xl font-heading font-semibold text-heading mb-3">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm text-foreground leading-relaxed">{card.copy}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              <div className="bg-white border border-border rounded-card p-5">
-                <p className="text-xs uppercase tracking-widest text-brand-500 font-semibold mb-2">
-                  Best for
-                </p>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Colour-treated hair, humidity-prone hair, heat-styled hair, and anyone who wants one routine that does the job without a drawer full of backups.
-                </p>
-              </div>
-              <div className="bg-white border border-border rounded-card p-5">
-                <p className="text-xs uppercase tracking-widest text-brand-500 font-semibold mb-2">
-                  Not ideal if
-                </p>
-                <p className="text-sm text-foreground leading-relaxed">
-                  Your hair is ultra-fine and oily or very curly — in those cases, Jena will usually tweak the conditioner before she sends you home with it. The trio is the starting point, not the law.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ======================================================== */}
-        {/* THE 3 PRODUCTS — trio with a "vs RRP" price on each card */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-20 bg-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="eyebrow inline-block text-[11px] uppercase tracking-[0.32em] text-[hsl(var(--gold))] mb-3">
-                What's inside
-              </span>
+            <div className="text-center mb-10">
+              <span className="eyebrow">Inside the trio</span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading">
                 The three products
               </h2>
-              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-                Jena's pick of one shampoo, one conditioner, and one leave-in
-                treatment — chosen to cover 90% of the heads that sit in her chair.
-              </p>
             </div>
 
             {loading ? (
@@ -742,97 +634,61 @@ const JenasDailyTrioPage = () => {
         </section>
 
         {/* ======================================================== */}
-        {/* JENA'S STORY — full-bleed editorial section */}
+        {/* JENA'S NOTE — just the quote, no subtitle, no stat tiles */}
         {/* ======================================================== */}
         <section className="py-14 md:py-20 bg-gradient-to-b from-muted/40 to-background">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6 text-center sm:text-left">
+            <div className="flex items-center gap-4 mb-6">
               <img
                 src="/assets/images/jena-headshot-4lMGRCmj.webp"
                 alt="Jena Pinn, owner of Hair Pinns Bangor"
-                className="w-20 h-20 rounded-full object-cover ring-2 ring-[hsl(var(--gold))] shrink-0"
+                className="w-16 h-16 rounded-full object-cover ring-2 ring-[hsl(var(--gold))] shrink-0"
                 loading="lazy"
                 decoding="async"
                 width="160"
                 height="160"
               />
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Jena's note
-                </p>
-                <h2 className="text-2xl md:text-3xl font-heading font-semibold text-heading">
-                  Why these three
-                </h2>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Jena Pinn · owner &amp; senior stylist · Hair Pinns Bangor ·
-                  in the chair since 2009
-                </p>
-              </div>
+              <p className="text-sm font-semibold text-brand-500 uppercase tracking-widest">
+                Jena's note
+              </p>
             </div>
             <blockquote className="text-xl md:text-2xl text-heading font-heading leading-relaxed">
               "{trio.jenaStory}"
             </blockquote>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-              {[
-                { stat: "2009", label: "In the chair" },
-                { stat: "762+", label: "Google reviews" },
-                { stat: "90%", label: "Of clients use this trio" },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="rounded-card border border-border bg-white p-4"
-                >
-                  <p className="text-2xl font-heading font-bold text-brand-500">
-                    {s.stat}
-                  </p>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground mt-1">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
         {/* ======================================================== */}
-        {/* HOW TO USE — three numbered steps with explicit copy */}
+        {/* HOW TO USE — three numbered steps, tight copy */}
         {/* ======================================================== */}
         <section className="py-14 md:py-20 bg-background">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <span className="eyebrow inline-block text-[11px] uppercase tracking-[0.32em] text-[hsl(var(--gold))] mb-3">
-                Wash day, step by step
-              </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading">
-                How to use the trio
-              </h2>
-              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-                Five minutes in the shower, two minutes on towel-dried hair. That's the whole routine.
-              </p>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading text-center mb-10">
+              How to use
+            </h2>
             <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
                   step: "01",
                   title: "Wash twice",
-                  copy: "First wash lifts build-up, second wash actually cleans. Massage into the scalp for 60 seconds, rinse.",
+                  copy: "First wash lifts build-up. Second wash actually cleans. Massage into the scalp for 60 seconds, rinse.",
                 },
                 {
                   step: "02",
                   title: "Condition mid-lengths to ends",
-                  copy: "Leave for 60 seconds. The Aromaganic Smooth detangles in one pass — no need to rake through.",
+                  copy: "Leave for 60 seconds. The Aromaganic Smooth detangles in one pass — no raking.",
                 },
                 {
                   step: "03",
                   title: "Leave-in on towel-dried hair",
-                  copy: "A small amount of QIQI Bare Repair Oil through the ends before styling. Heat protection, frizz control, soft hold.",
+                  copy: "A small amount of QIQI through the ends before styling. Heat protection, frizz control, soft hold.",
                 },
               ].map((s) => (
                 <li
                   key={s.step}
-                  className="bg-card border border-border rounded-card p-6 hover:shadow-md transition-shadow"
+                  className="bg-card border border-border rounded-card p-6"
                 >
-                  <span className="block text-4xl font-heading font-bold text-[hsl(var(--gold))] mb-2">
+                  <span className="block text-4xl font-heading font-bold text-brand-500 mb-2">
                     {s.step}
                   </span>
                   <h3 className="font-heading text-lg text-heading mb-2">
@@ -850,14 +706,9 @@ const JenasDailyTrioPage = () => {
         {/* ======================================================== */}
         <section className="py-14 md:py-20 bg-muted/40">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading">
-                The trio vs. buying separately
-              </h2>
-              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-                Same three products, same formulation. You only save when you bundle.
-              </p>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading text-center mb-10">
+              The trio vs. buying separately
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* Separately */}
               <div className="bg-white border border-border rounded-card p-6">
@@ -927,22 +778,14 @@ const JenasDailyTrioPage = () => {
                 <Star key={s} className="w-5 h-5 fill-current" />
               ))}
             </div>
-            <blockquote className="text-xl md:text-2xl text-heading font-heading leading-relaxed mb-6">
+            <blockquote className="text-xl md:text-2xl text-heading font-heading leading-relaxed mb-4">
               "I bought the trio after my last colour. Six weeks in, my hair is
               honestly the best it's ever been — softer, less frizz, and the
-              colour is still holding. Jena's note in the box was a nice touch."
+              colour is still holding."
             </blockquote>
             <p className="text-sm text-muted-foreground">
-              Sarah M. · Google Review · verified booking
+              Sarah M. · Google Review
             </p>
-            <div className="mt-6 flex items-center justify-center gap-2 text-sm">
-              <a
-                href="/reviews"
-                className="text-brand-500 hover:text-brand-600 font-medium"
-              >
-                Read all 762+ Google reviews →
-              </a>
-            </div>
           </div>
         </section>
 
@@ -1023,21 +866,9 @@ const JenasDailyTrioPage = () => {
         {/* ======================================================== */}
         <section className="py-14 md:py-16 bg-gradient-to-r from-[hsl(var(--brand-500))] to-[hsl(var(--brand-600))] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-1.5 mb-4 text-[hsl(var(--gold))]">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <Star key={s} className="w-4 h-4 fill-current" />
-              ))}
-              <span className="ml-2 text-sm text-white/90">
-                4.9 / 5 from 762+ Google reviews
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-3">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
               Ready to start the trio?
             </h2>
-            <p className="text-white/90 mb-7 max-w-xl mx-auto">
-              The same products Jena uses on her Bangor clients — bundled at
-              10% off, with free shipping over $150.
-            </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
                 variant="primary"
@@ -1064,26 +895,6 @@ const JenasDailyTrioPage = () => {
                 {BOOK_CTA_LABEL}
               </Button>
             </div>
-            <p className="text-sm text-white/75 mt-6">
-              Or talk to Jena first —{" "}
-              <a
-                href={BUSINESS_NAP.phone.tel}
-                className="underline underline-offset-2"
-              >
-                0416 037 663
-              </a>{" "}
-              ·{" "}
-              <a
-                href={`https://wa.me/61416037663?text=${encodeURIComponent(
-                  "Hi Jena, I'd like to ask about the Daily Trio…"
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-2"
-              >
-                WhatsApp
-              </a>
-            </p>
           </div>
         </section>
       </main>
