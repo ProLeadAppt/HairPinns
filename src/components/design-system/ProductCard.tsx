@@ -176,16 +176,26 @@ const ProductCard = ({
           </p>
         )}
         
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-lg font-semibold text-foreground">
-            ${price.toFixed(2)}
-          </span>
-          {originalPrice && originalPrice > price && (
-            <span className="text-sm text-muted-foreground line-through">
-              ${originalPrice.toFixed(2)}
+        {/*
+         * Price — when Shopify returns no parseable amount (uncommon, but
+         * happens for newly-created products with no variant or a
+         * rate-limited / failed fetch), hide the $0 entirely instead of
+         * showing "$0.00 next to the amount" which Jena flagged. Card
+         * stays clickable; user lands on the product page where the real
+         * price is shown (or "Sold out").
+         */}
+        {Number.isFinite(price) && price > 0 && (
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-lg font-semibold text-foreground">
+              ${price.toFixed(2)}
             </span>
-          )}
-        </div>
+            {originalPrice && originalPrice > price && (
+              <span className="text-sm text-muted-foreground line-through">
+                ${originalPrice.toFixed(2)}
+              </span>
+            )}
+          </div>
+        )}
         
         {/* Actions */}
         <div className="flex gap-2">

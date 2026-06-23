@@ -38,9 +38,17 @@ const StickyAddToCart = ({
             <p className="text-sm font-semibold text-heading truncate">
               {productTitle}
             </p>
-            <p className="text-lg font-bold text-brand-500">
-              ${price.toFixed(2)}
-            </p>
+            {/*
+             * Hide the price when Shopify returned no parseable amount.
+             * Otherwise the bar would show "$0.00" next to the product
+             * name on every product detail page that has a failed fetch
+             * or no variant set (Jena's "zero next to the amount" bug).
+             */}
+            {Number.isFinite(price) && price > 0 && (
+              <p className="text-lg font-bold text-brand-500">
+                ${price.toFixed(2)}
+              </p>
+            )}
           </div>
           <Button
             variant="primary"

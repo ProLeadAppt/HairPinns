@@ -289,6 +289,12 @@
     Content-Type = "image/avif"
     Cache-Control = "public, max-age=2592000"
 
+[[headers]]
+  for = "/assets/images/trio/*.svg"
+  [headers.values]
+    Content-Type = "image/svg+xml"
+    Cache-Control = "public, max-age=2592000"
+
 # SPA routing - redirect all other routes to index.html
 [[redirects]]
   from = "/*"

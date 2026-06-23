@@ -16,3 +16,6 @@
 /humans.txt      /humans.txt       200
 /.well-known/security.txt  /.well-known/security.txt  200
 /.well-known/change-password  /.well-known/change-password  200
+/assets/images/trio/wash.svg        /assets/images/trio/wash.svg        200
+/assets/images/trio/condition.svg   /assets/images/trio/condition.svg   200
+/assets/images/trio/treatment.svg   /assets/images/trio/treatment.svg   200

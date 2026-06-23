@@ -22,6 +22,13 @@ export interface TrioProduct {
   pitch: string;
   /** Icon to render next to the product name */
   icon: "🧴" | "💧" | "✨";
+  /**
+   * Curated fallback image (path under /public). Used only if Shopify
+   * returns no image for this handle — which Jena flagged was happening
+   * for the trio in mid-2026. The branded slot-coloured SVGs under
+   * /assets/images/trio/ are the final fallback if this is empty.
+   */
+  fallbackImage?: string;
 }
 
 export interface JenasDailyTrio {
@@ -62,6 +69,8 @@ export const JENAS_DAILY_TRIO: JenasDailyTrio = {
       icon: "🧴",
       pitch:
         "Bond repair from the first wash. Safe on colour, gentle on the scalp, strong on the kind of damage the Aussie sun leaves behind.",
+      // Curated fallback for when Shopify returns no image for this handle.
+      fallbackImage: "/assets/images/trio/wash.svg",
     },
     {
       handle: "aromaganic-smooth-hair-super-silky-conditioner",
@@ -70,6 +79,7 @@ export const JENAS_DAILY_TRIO: JenasDailyTrio = {
       icon: "💧",
       pitch:
         "Detangles in one pass and leaves a finish you can actually run your fingers through. No silicones that weigh fine hair down.",
+      fallbackImage: "/assets/images/trio/condition.svg",
     },
     {
       handle: "qiqi-bare-repair-oil",
@@ -78,6 +88,7 @@ export const JENAS_DAILY_TRIO: JenasDailyTrio = {
       icon: "✨",
       pitch:
         "The one I'd never skip. Heat protection, frizz control, and a soft hold — three jobs in one bottle, zero crunch.",
+      fallbackImage: "/assets/images/trio/treatment.svg",
     },
   ],
   faqItems: [

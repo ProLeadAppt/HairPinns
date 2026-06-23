@@ -95,7 +95,15 @@ const JenasDailyTrioPage = () => {
                 handle: data.handle,
                 id: data.id,
                 title: data.title,
-                image: firstImage?.url || "/placeholder.svg",
+                // Image fallback chain (Jena flagged the trio showing no
+                // image in mid-2026 when Shopify had no image set):
+                //   1. Curated per-handle SVG (looks intentional)
+                //   2. Shopify's first image, if any
+                //   3. Generic placeholder
+                image:
+                  firstImage?.url ||
+                  cfg.fallbackImage ||
+                  "/placeholder.svg",
                 price,
                 currency:
                   data.priceRange?.minVariantPrice?.currencyCode || "AUD",
@@ -349,20 +357,40 @@ const JenasDailyTrioPage = () => {
                   </div>
                 ) : (
                   <>
-                    <div className="flex items-baseline gap-3 my-3">
-                      <span className="text-4xl font-heading font-bold text-heading">
-                        {formatPrice(bundlePrice, "AUD")}
-                      </span>
-                      {savings > 0 && (
-                        <span className="text-base text-muted-foreground line-through decoration-muted-foreground/40">
-                          {formatPrice(subtotal, "AUD")}
+                    {/*
+                     * Hide the whole bundle price block when every
+                     * product returned $0 (Shopify fetch failed or
+                     * no variant set). Otherwise Jena sees "$0"
+                     * next to the (also-$0) individual prices.
+                     */}
+                    {subtotal > 0 && (
+                      <div className="flex items-baseline gap-3 my-3">
+                        <span className="text-4xl font-heading font-bold text-heading">
+                          {formatPrice(bundlePrice, "AUD")}
                         </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-5">
-                      You save <strong className="text-heading">{formatPrice(savings, "AUD")}</strong>{" "}
-                      vs buying separately.
-                    </p>
+                        {savings > 0 && (
+                          <span className="text-base text-muted-foreground line-through decoration-muted-foreground/40">
+                            {formatPrice(subtotal, "AUD")}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    {subtotal > 0 && (
+                      <p className="text-sm text-muted-foreground mb-5">
+                        You save <strong className="text-heading">{formatPrice(savings, "AUD")}</strong>{" "}
+                        vs buying separately.
+                      </p>
+                    )}
+                    {/*
+                     * No subtotal? Add-All has no point either — show
+                     * a one-liner instead of a 10%-off button that
+                     * would do nothing.
+                     */}
+                    {subtotal === 0 && (
+                      <p className="text-sm text-muted-foreground my-4">
+                        Pricing is loading — add a single product below to get started.
+                      </p>
+                    )}
                   </>
                 )}
 
@@ -543,11 +571,19 @@ const JenasDailyTrioPage = () => {
                       <p className="text-sm text-foreground mb-4 flex-1">
                         {p.pitch}
                       </p>
-                      <div className="flex items-baseline gap-2 mb-4">
-                        <p className="text-2xl font-bold text-brand-500">
-                          {formatPrice(p.price, p.currency)}
-                        </p>
-                      </div>
+                      {/*
+                       * Price — only render when Shopify returned a
+                       * real, parseable, non-zero amount. Hides the
+                       * "$0" Jena flagged for products with no variant
+                       * or failed fetch (card stays clickable).
+                       */}
+                      {Number.isFinite(p.price) && p.price > 0 && (
+                        <div className="flex items-baseline gap-2 mb-4">
+                          <p className="text-2xl font-bold text-brand-500">
+                            {formatPrice(p.price, p.currency)}
+                          </p>
+                        </div>
+                      )}
                       <Button
                         variant="primary"
                         size="default"

@@ -76,9 +76,16 @@ const PostPurchaseModule = ({ pairsWith = [] }: PostPurchaseModuleProps) => {
               <h3 className="font-semibold text-heading mb-1 text-sm">
                 {product.title}
               </h3>
-              <p className="text-brand-500 font-bold mb-3">
-                ${product.price.toFixed(2)}
-              </p>
+              {/*
+               * Same price-hide guard as the trio + product card —
+               * post-purchase upsell must never show "$0.00" (Jena
+               * flagged "zero next to the amount" in mid-2026).
+               */}
+              {Number.isFinite(product.price) && product.price > 0 && (
+                <p className="text-brand-500 font-bold mb-3">
+                  ${product.price.toFixed(2)}
+                </p>
+              )}
               <Button variant="outline" size="sm" className="w-full">
                 View Product
               </Button>
