@@ -30,7 +30,7 @@ import blogImg29 from "@/assets/images/hair.pinns_1764061240_3773541646932413211
 import blogImg30 from "@/assets/images/Aromaganic_Organic_Shampoo_Conditoner.webp";
 import blogImg31 from "@/assets/images/Juuce-037.webp";
 import blogImg32 from "@/assets/images/Juuce-038.webp";
-import blogImg33 from "@/assets/images/IMG_0133.webp";
+import blogImg33 from "@/assets/images/happy-woman-singing-into-hairbrush-home.webp";
 import blogImg34 from "@/assets/images/hair.pinns_1772611255_3845264367588032981_2244281067.avif";
 import blogImg35 from "@/assets/images/front-view-man-hair-slugging-night-routine.webp";
 import blogImg36 from "@/assets/images/hair.pinns_1772611255_3845264367739018965_2244281067.avif";
@@ -39,7 +39,7 @@ import blogImg38 from "@/assets/images/Juuce-050.webp";
 import blogImg39 from "@/assets/images/hair.pinns_1767003876_3798226265673657604_2244281067.avif";
 import blogImg40 from "@/assets/images/hair.pinns_1765567383_3786176092718704887_2244281067.avif";
 import blogImg41 from "@/assets/images/hair.pinns_1773039624_3848857784566087942_2244281067.avif";
-import blogImg42 from "@/assets/images/happy-woman-singing-into-hairbrush-home.webp";
+import blogImg42 from "@/assets/images/hair.pinns_1763028594_3764879180668980003_2244281067.avif";
 import blogImg43 from "@/assets/images/hair.pinns_1773039624_3848857785019078760_2244281067.avif";
 import blogImg44 from "@/assets/blog/welcome-hero-1280w.webp";
 import blogImg45 from "@/assets/images/hair.pinns_1765054212_3781871298285872308_2244281067.avif";
