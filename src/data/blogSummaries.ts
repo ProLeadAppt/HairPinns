@@ -1,27 +1,64 @@
-import saunaRoom from "@/assets/blog/infrared-sauna-room.webp";
-import saunaInterior from "@/assets/blog/infrared-sauna-interior.webp";
-import saunaExperience from "@/assets/blog/infrared-sauna-experience.webp";
-import heatProtectionProducts from "@/assets/blog/heat-protection-products.webp";
-import frizzFreeHero from "@/assets/blog/frizz-free-hero-1280w.webp";
-import straightUpSmoothingHero from "@/assets/blog/straight-up-smoothing-hero-1280w.webp";
-import shampooReplacementHero from "@/assets/blog/shampoo-replacement-hero-1280w.webp";
-import qiqiBareRepairOil from "@/assets/blog/qiqi-bare-repair-oil.webp";
-import purePreciousEnds from "@/assets/blog/pure-precious-ends.webp";
-import juuceHairsprayCollection from "@/assets/blog/juuce-hairspray-collection.webp";
-import wetBrushCollection from "@/assets/blog/wet-brush-collection.webp";
-import qiqiVegaComparison from "@/assets/blog/qiqi-vega-comparison.webp";
-import hydrationBundle from "@/assets/blog/hydration-bundle.webp";
-import walnutScrubHero from "@/assets/blog/walnut-scrub-hero-1280w.webp";
-import winterHairCare from "@/assets/blog/winter-hair-care.webp";
-import lamellarVitalityPack from "@/assets/blog/lamellar-vitality-pack.webp";
-import juuceQuizHero from "@/assets/blog/juuce-quiz-hero-1280w.webp";
-import jenaWorking from "@/assets/blog/jena-working.webp";
-import welcomeHero from "@/assets/blog/welcome-hero-1280w.webp";
-import humidityHero from "@/assets/blog/humidity-hero-1280w.webp";
-import blondeCareHero from "@/assets/blog/blonde-care-hero-1280w.webp";
-import hotTowelTreatment from "@/assets/blog/hot-towel-treatment.webp";
-import leaveInProducts from "@/assets/blog/leave-in-products.webp";
-import salonVsSupermarket from "@/assets/blog/salon-vs-supermarket.webp";
+import blogImg01 from "@/assets/images/Juuce-091.webp";
+import blogImg02 from "@/assets/blog/jena-products.webp";
+import blogImg03 from "@/assets/blog/lamellar-vitality-range.webp";
+import blogImg04 from "@/assets/images/brunette-woman-getting-her-hair-washed.webp";
+import blogImg05 from "@/assets/blog/infrared-sauna-room.webp";
+import blogImg06 from "@/assets/blog/heat-protection-lifestyle.webp";
+import blogImg07 from "@/assets/images/hair.pinns_1773039624_3848857784473839298_2244281067.avif";
+import blogImg08 from "@/assets/blog/straight-up-smoothing-hero-1280w.webp";
+import blogImg09 from "@/assets/images/Juuce-118.webp";
+import blogImg10 from "@/assets/blog/infrared-sauna-experience.webp";
+import blogImg11 from "@/assets/blog/hot-towel-treatment.webp";
+import blogImg12 from "@/assets/blog/qiqi-bare-repair-oil.webp";
+import blogImg13 from "@/assets/blog/pure-precious-ends.webp";
+import blogImg14 from "@/assets/blog/juuce-hairspray-collection.webp";
+import blogImg15 from "@/assets/blog/wet-brush-collection.webp";
+import blogImg16 from "@/assets/blog/qiqi-vega-comparison.webp";
+import blogImg17 from "@/assets/blog/hydration-bundle.webp";
+import blogImg18 from "@/assets/blog/walnut-scrub-hero-1280w.webp";
+import blogImg19 from "@/assets/images/hair.pinns_1765910087_3789049150835962518_2244281067.avif";
+import blogImg20 from "@/assets/blog/winter-hair-care.webp";
+import blogImg21 from "@/assets/blog/lamellar-vitality-pack.webp";
+import blogImg22 from "@/assets/blog/heat-protection-products.webp";
+import blogImg23 from "@/assets/blog/wet-brush-glitter.webp";
+import blogImg24 from "@/assets/blog/juuce-quiz-hero-1280w.webp";
+import blogImg25 from "@/assets/blog/infrared-sauna-interior.webp";
+import blogImg26 from "@/assets/images/hair.pinns_1773312619_3851143514822403759_2244281067.avif";
+import blogImg27 from "@/assets/images/hairdresser-taking-care-her-client.webp";
+import blogImg28 from "@/assets/images/jena-headshot.webp";
+import blogImg29 from "@/assets/images/hair.pinns_1764061240_3773541646932413211_2244281067.avif";
+import blogImg30 from "@/assets/images/Aromaganic_Organic_Shampoo_Conditoner.webp";
+import blogImg31 from "@/assets/images/Juuce-037.webp";
+import blogImg32 from "@/assets/images/Juuce-038.webp";
+import blogImg33 from "@/assets/images/IMG_0133.webp";
+import blogImg34 from "@/assets/images/hair.pinns_1772611255_3845264367588032981_2244281067.avif";
+import blogImg35 from "@/assets/images/front-view-man-hair-slugging-night-routine.webp";
+import blogImg36 from "@/assets/images/hair.pinns_1772611255_3845264367739018965_2244281067.avif";
+import blogImg37 from "@/assets/images/hair.pinns_1772611255_3845264368124921991_2244281067.avif";
+import blogImg38 from "@/assets/images/Juuce-050.webp";
+import blogImg39 from "@/assets/images/hair.pinns_1767003876_3798226265673657604_2244281067.avif";
+import blogImg40 from "@/assets/images/hair.pinns_1765567383_3786176092718704887_2244281067.avif";
+import blogImg41 from "@/assets/images/hair.pinns_1773039624_3848857784566087942_2244281067.avif";
+import blogImg42 from "@/assets/images/happy-woman-singing-into-hairbrush-home.webp";
+import blogImg43 from "@/assets/images/hair.pinns_1773039624_3848857785019078760_2244281067.avif";
+import blogImg44 from "@/assets/blog/welcome-hero-1280w.webp";
+import blogImg45 from "@/assets/images/hair.pinns_1765054212_3781871298285872308_2244281067.avif";
+import blogImg46 from "@/assets/images/hair.pinns_1766558568_3794490749802781898_2244281067.avif";
+import blogImg47 from "@/assets/images/hair.pinns_1764579624_3777890155324026767_2244281067.avif";
+import blogImg48 from "@/assets/images/hair.pinns_1766442955_3793520917994535355_2244281067.avif";
+import blogImg49 from "@/assets/images/hair.pinns_1766522746_3794190256418580882_2244281067.avif";
+import blogImg50 from "@/assets/images/hair.pinns_1767331566_3800975130675413617_2244281067.avif";
+import blogImg51 from "@/assets/images/1DA64B8E-CC51-41CF-85AF-226190D5BF4C.webp";
+import blogImg52 from "@/assets/images/hair.pinns_1772611255_3845264368586306528_2244281067.avif";
+import blogImg53 from "@/assets/images/hair.pinns_1764877632_3780390041894992722_2244281067.avif";
+import blogImg54 from "@/assets/images/hair.pinns_1766355936_3792790949849160975_2244281067.avif";
+import blogImg55 from "@/assets/images/hair.pinns_1773039624_3848857785019116769_2244281067.avif";
+import blogImg56 from "@/assets/blog/leave-in-products.webp";
+import blogImg57 from "@/assets/images/hair.pinns_1773039624_3848857785019133819_2244281067.avif";
+import blogImg58 from "@/assets/images/Juuce-064.webp";
+import blogImg59 from "@/assets/images/Juuce-120.webp";
+import blogImg60 from "@/assets/images/hair.pinns_1765702800_3787312369484614778_2244281067.avif";
+
 
 // Slim blog listing dataset extracted from blogPosts.ts
 
@@ -46,7 +83,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'February 25, 2025',
     readTime: '6 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587',
+    image: blogImg01,
     author: 'Jena Pinn',
   },
   {
@@ -56,7 +93,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'February 25, 2025',
     readTime: '4 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560',
+    image: blogImg02,
     author: 'Jena Pinn',
   },
   {
@@ -66,7 +103,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'February 25, 2025',
     readTime: '4 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697',
+    image: blogImg03,
     author: 'Jena Pinn',
   },
   {
@@ -76,7 +113,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'April 20, 2025',
     readTime: '5 min read',
-    image: salonVsSupermarket,
+    image: blogImg04,
     author: 'Jena Pinn',
   },
   {
@@ -86,7 +123,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Wellness',
     date: 'April 11, 2025',
     readTime: '4 min read',
-    image: saunaRoom,
+    image: blogImg05,
     author: 'Jena Pinn',
   },
   {
@@ -96,7 +133,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Hair Care',
     date: 'March 25, 2025',
     readTime: '6 min read',
-    image: heatProtectionProducts,
+    image: blogImg06,
     author: 'Jena Pinn',
   },
   {
@@ -106,7 +143,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'March 21, 2025',
     readTime: '4 min read',
-    image: frizzFreeHero,
+    image: blogImg07,
     author: 'Jena Pinn',
   },
   {
@@ -116,7 +153,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'September 02, 2025',
     readTime: '5 min read',
-    image: straightUpSmoothingHero,
+    image: blogImg08,
     author: 'Jena Pinn',
   },
   {
@@ -126,7 +163,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'September 01, 2025',
     readTime: '3 min read',
-    image: shampooReplacementHero,
+    image: blogImg09,
     author: 'Jena Pinn',
   },
   {
@@ -136,7 +173,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Wellness',
     date: 'August 12, 2025',
     readTime: '5 min read',
-    image: saunaExperience,
+    image: blogImg10,
     author: 'Jena Pinn',
   },
   {
@@ -146,7 +183,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'August 04, 2025',
     readTime: '4 min read',
-    image: hotTowelTreatment,
+    image: blogImg11,
     author: 'Jena Pinn',
   },
   {
@@ -156,7 +193,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'July 27, 2025',
     readTime: '3 min read',
-    image: qiqiBareRepairOil,
+    image: blogImg12,
     author: 'Jena Pinn',
   },
   {
@@ -166,7 +203,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'July 26, 2025',
     readTime: '3 min read',
-    image: purePreciousEnds,
+    image: blogImg13,
     author: 'Jena Pinn',
   },
   {
@@ -176,7 +213,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'July 13, 2025',
     readTime: '5 min read',
-    image: juuceHairsprayCollection,
+    image: blogImg14,
     author: 'Jena Pinn',
   },
   {
@@ -186,7 +223,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'July 13, 2025',
     readTime: '3 min read',
-    image: wetBrushCollection,
+    image: blogImg15,
     author: 'Jena Pinn',
   },
   {
@@ -196,7 +233,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'June 12, 2025',
     readTime: '7 min read',
-    image: qiqiVegaComparison,
+    image: blogImg16,
     author: 'Jena Pinn',
   },
   {
@@ -206,7 +243,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'June 11, 2025',
     readTime: '4 min read',
-    image: hydrationBundle,
+    image: blogImg17,
     author: 'Jena Pinn',
   },
   {
@@ -216,7 +253,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'June 11, 2025',
     readTime: '3 min read',
-    image: walnutScrubHero,
+    image: blogImg18,
     author: 'Jena Pinn',
   },
   {
@@ -226,7 +263,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'May 25, 2025',
     readTime: '5 min read',
-    image: straightUpSmoothingHero,
+    image: blogImg19,
     author: 'Jena Pinn',
   },
   {
@@ -236,7 +273,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Seasonal',
     date: 'May 22, 2025',
     readTime: '6 min read',
-    image: winterHairCare,
+    image: blogImg20,
     author: 'Jena Pinn',
   },
   {
@@ -246,7 +283,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'May 20, 2025',
     readTime: '5 min read',
-    image: lamellarVitalityPack,
+    image: blogImg21,
     author: 'Jena Pinn',
   },
   {
@@ -256,7 +293,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'May 18, 2025',
     readTime: '5 min read',
-    image: heatProtectionProducts,
+    image: blogImg22,
     author: 'Jena Pinn',
   },
   {
@@ -266,7 +303,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'May 09, 2025',
     readTime: '3 min read',
-    image: wetBrushCollection,
+    image: blogImg23,
     author: 'Jena Pinn',
   },
   {
@@ -276,7 +313,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'April 20, 2025',
     readTime: '5 min read',
-    image: juuceQuizHero,
+    image: blogImg24,
     author: 'Jena Pinn',
   },
   {
@@ -286,7 +323,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Wellness',
     date: 'April 20, 2025',
     readTime: '4 min read',
-    image: saunaInterior,
+    image: blogImg25,
     author: 'Jena Pinn',
   },
   {
@@ -296,7 +333,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '8 min read',
-    image: jenaWorking,
+    image: blogImg26,
     author: 'Jena Pinn',
   },
   {
@@ -306,7 +343,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'April 19, 2026',
     readTime: '10 min read',
-    image: straightUpSmoothingHero,
+    image: blogImg27,
     author: 'Jena Pinn',
   },
   {
@@ -316,7 +353,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '5 min read',
-    image: jenaWorking,
+    image: blogImg28,
     author: 'Jena Pinn',
   },
   {
@@ -326,7 +363,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '6 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998',
+    image: blogImg29,
     author: 'Jena Pinn',
   },
   {
@@ -336,7 +373,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '8 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807',
+    image: blogImg30,
     author: 'Jena Pinn',
   },
   {
@@ -346,7 +383,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '9 min read',
-    image: blondeCareHero,
+    image: blogImg31,
     author: 'Jena Pinn',
   },
   {
@@ -356,7 +393,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '7 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807',
+    image: blogImg32,
     author: 'Jena Pinn',
   },
   {
@@ -366,7 +403,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '5 min read',
-    image: wetBrushCollection,
+    image: blogImg33,
     author: 'Jena Pinn',
   },
   {
@@ -376,7 +413,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'April 19, 2026',
     readTime: '8 min read',
-    image: straightUpSmoothingHero,
+    image: blogImg34,
     author: 'Jena Pinn',
   },
   {
@@ -386,7 +423,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'April 19, 2026',
     readTime: '5 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560',
+    image: blogImg35,
     author: 'Jena Pinn',
   },
   {
@@ -396,7 +433,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: straightUpSmoothingHero,
+    image: blogImg36,
     author: 'Jena Pinn',
   },
   {
@@ -406,7 +443,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Colour',
     date: 'April 19, 2026',
     readTime: '5 min read',
-    image: blondeCareHero,
+    image: blogImg37,
     author: 'Jena Pinn',
   },
   {
@@ -416,7 +453,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: blondeCareHero,
+    image: blogImg38,
     author: 'Jena Pinn',
   },
   {
@@ -426,7 +463,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-120.jpg?v=1747030506',
+    image: blogImg39,
     author: 'Jena Pinn',
   },
   {
@@ -436,7 +473,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'About',
     date: 'April 19, 2026',
     readTime: '7 min read',
-    image: jenaWorking,
+    image: blogImg40,
     author: 'Jena Pinn',
   },
   {
@@ -446,7 +483,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Colour',
     date: 'April 19, 2026',
     readTime: '9 min read',
-    image: blondeCareHero,
+    image: blogImg41,
     author: 'Jena Pinn',
   },
   {
@@ -456,7 +493,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'April 19, 2026',
     readTime: '6 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560',
+    image: blogImg42,
     author: 'Jena Pinn',
   },
   {
@@ -466,7 +503,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Colour',
     date: 'April 19, 2026',
     readTime: '9 min read',
-    image: blondeCareHero,
+    image: blogImg43,
     author: 'Jena Pinn',
   },
   {
@@ -476,7 +513,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '5 min read',
-    image: welcomeHero,
+    image: blogImg44,
     author: 'Jena Pinn',
   },
   {
@@ -486,7 +523,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: jenaWorking,
+    image: blogImg45,
     author: 'Jena Pinn',
   },
   {
@@ -496,7 +533,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: jenaWorking,
+    image: blogImg46,
     author: 'Jena Pinn',
   },
   {
@@ -506,7 +543,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: jenaWorking,
+    image: blogImg47,
     author: 'Jena Pinn',
   },
   {
@@ -516,7 +553,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: jenaWorking,
+    image: blogImg48,
     author: 'Jena Pinn',
   },
   {
@@ -526,7 +563,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: jenaWorking,
+    image: blogImg49,
     author: 'Jena Pinn',
   },
   {
@@ -536,7 +573,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
-    image: jenaWorking,
+    image: blogImg50,
     author: 'Jena Pinn',
   },
   {
@@ -546,7 +583,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '7 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-120.jpg?v=1747030506',
+    image: blogImg51,
     author: 'Jena Pinn',
   },
   {
@@ -556,7 +593,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '6 min read',
-    image: winterHairCare,
+    image: blogImg52,
     author: 'Jena Pinn',
   },
   {
@@ -566,7 +603,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '6 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998',
+    image: blogImg53,
     author: 'Jena Pinn',
   },
   {
@@ -576,7 +613,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '5 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560',
+    image: blogImg54,
     author: 'Jena Pinn',
   },
   {
@@ -586,7 +623,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '7 min read',
-    image: humidityHero,
+    image: blogImg55,
     author: 'Jena Pinn',
   },
   {
@@ -596,7 +633,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Education',
     date: 'May 14, 2026',
     readTime: '5 min read',
-    image: leaveInProducts,
+    image: blogImg56,
     author: 'Jena Pinn',
   },
   {
@@ -606,7 +643,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Colour',
     date: 'May 5, 2026',
     readTime: '6 min read',
-    image: blondeCareHero,
+    image: blogImg57,
     author: 'Jena Pinn',
   },
   {
@@ -616,7 +653,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'May 6, 2026',
     readTime: '7 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697',
+    image: blogImg58,
     author: 'Jena Pinn',
   },
   {
@@ -626,7 +663,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Treatments',
     date: 'May 8, 2026',
     readTime: '5 min read',
-    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-064.jpg?v=1744178553',
+    image: blogImg59,
     author: 'Jena Pinn',
   },
   {
@@ -636,7 +673,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Colour',
     date: 'May 12, 2026',
     readTime: '5 min read',
-    image: blondeCareHero,
+    image: blogImg60,
     author: 'Jena Pinn',
   },
 ];
