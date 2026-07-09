@@ -124,8 +124,8 @@ const Header = () => {
 
             {/* Desktop Search */}
             <div className="hidden lg:block flex-1 max-w-md mx-8">
-              <Suspense fallback={<div className="relative w-full"><div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products...</div></div>}>
-                <ProductSearch placeholder="Search products..." maxResults={6} />
+              <Suspense fallback={<div className="relative w-full"><div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products and articles...</div></div>}>
+                <ProductSearch placeholder="Search products and articles..." maxResults={6} />
               </Suspense>
             </div>
 
@@ -172,8 +172,8 @@ const Header = () => {
                 <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
                   {/* Mobile Search */}
                   <div className="mb-4">
-                    <Suspense fallback={<div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products...</div>}>
-                      <ProductSearch placeholder="Search products..." maxResults={5} />
+                    <Suspense fallback={<div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products and articles...</div>}>
+                      <ProductSearch placeholder="Search products and articles..." maxResults={5} />
                     </Suspense>
                   </div>
                   

@@ -1,10 +1,11 @@
 import { useState, useCallback } from "react";
-import { Search, X, Loader2 } from "lucide-react";
+import { Search, X, Loader2, BookOpen } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useNavigate } from "react-router-dom";
 import { searchProducts } from "@/lib/shopify";
+import { searchBlogPosts } from "@/lib/blogSearch";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { formatPrice } from "@/lib/utils";
 
@@ -48,7 +49,7 @@ interface ProductSearchProps {
 
 export default function ProductSearch({ 
   onProductClick,
-  placeholder = "Search products...",
+  placeholder = "Search products and articles...",
   maxResults = 8 
 }: ProductSearchProps) {
   const [query, setQuery] = useState("");
@@ -57,6 +58,7 @@ export default function ProductSearch({
   const [showResults, setShowResults] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const navigate = useNavigate();
+  const articles = query.trim().length >= 2 ? searchBlogPosts(query, Math.min(maxResults, 4)) : [];
 
   const performSearch = useCallback(async (searchQuery: string) => {
     if (!searchQuery.trim()) {
@@ -129,7 +131,7 @@ export default function ProductSearch({
           value={query}
           onChange={handleInputChange}
           onFocus={() => {
-            if (results.length > 0 || hasSearched) {
+            if (results.length > 0 || articles.length > 0 || hasSearched) {
               setShowResults(true);
             }
           }}
@@ -156,55 +158,98 @@ export default function ProductSearch({
                 <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
                 <span className="ml-2 text-sm text-muted-foreground">Searching...</span>
               </div>
-            ) : results.length > 0 ? (
-              <ul className="divide-y divide-border">
-                {results
-                  .filter((product) => product.handle && typeof product.handle === "string")
-                  .map((product) => {
-                  const image = product.images?.edges?.[0]?.node;
-                  return (
-                    <li key={product.id}>
-                      <Link
-                        to={`/products/${product.handle}`}
-                        onClick={() => handleProductClick(product.handle)}
-                        className="flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors"
-                      >
-                        {image && (
-                          <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-muted">
-                            <OptimizedImage
-                              src={image.url}
-                              alt={image.altText || product.title}
-                              width={64}
-                              height={64}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-sm truncate">{product.title}</h3>
-                          <div className="flex items-center gap-2 mt-1">
-                            <p className="text-sm font-semibold text-foreground">
-                              {formatProductPrice(product)}
-                            </p>
-                            {product.compareAtPriceRange && parseFloat(product.compareAtPriceRange.minVariantPrice.amount) > parseFloat(product.priceRange.minVariantPrice.amount) && (
-                              <p className="text-xs font-semibold text-muted-foreground line-through decoration-muted-foreground/50">
-                                {formatPrice(parseFloat(product.compareAtPriceRange.minVariantPrice.amount), product.compareAtPriceRange.minVariantPrice.currencyCode)}
-                              </p>
-                            )}
-                          </div>
-                          {!product.availableForSale && (
-                            <span className="text-xs text-muted-foreground">Out of stock</span>
-                          )}
-                        </div>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+            ) : results.length > 0 || articles.length > 0 ? (
+              <>
+                {articles.length > 0 && (
+                  <div className="border-b border-border">
+                    <p className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Blog articles
+                    </p>
+                    <ul className="divide-y divide-border">
+                      {articles.map((article) => (
+                        <li key={article.slug}>
+                          <Link
+                            to={`/blog/${article.slug}`}
+                            onClick={() => setShowResults(false)}
+                            className="flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors"
+                          >
+                            <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-muted">
+                              <OptimizedImage
+                                src={article.image}
+                                alt={article.title}
+                                width={64}
+                                height={64}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h3 className="font-medium text-sm truncate">{article.title}</h3>
+                              <p className="text-xs text-muted-foreground mt-1">{article.category}</p>
+                            </div>
+                            <BookOpen className="w-4 h-4 text-muted-foreground" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {results.length > 0 && (
+                  <div>
+                    <p className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Products
+                    </p>
+                    <ul className="divide-y divide-border">
+                      {results
+                        .filter((product) => product.handle && typeof product.handle === "string")
+                        .map((product) => {
+                          const image = product.images?.edges?.[0]?.node;
+                          return (
+                            <li key={product.id}>
+                              <Link
+                                to={`/products/${product.handle}`}
+                                onClick={() => handleProductClick(product.handle)}
+                                className="flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors"
+                              >
+                                {image && (
+                                  <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-muted">
+                                    <OptimizedImage
+                                      src={image.url}
+                                      alt={image.altText || product.title}
+                                      width={64}
+                                      height={64}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  </div>
+                                )}
+                                <div className="flex-1 min-w-0">
+                                  <h3 className="font-medium text-sm truncate">{product.title}</h3>
+                                  <div className="flex items-center gap-2 mt-1">
+                                    <p className="text-sm font-semibold text-foreground">
+                                      {formatProductPrice(product)}
+                                    </p>
+                                    {product.compareAtPriceRange && parseFloat(product.compareAtPriceRange.minVariantPrice.amount) > parseFloat(product.priceRange.minVariantPrice.amount) && (
+                                      <p className="text-xs font-semibold text-muted-foreground line-through decoration-muted-foreground/50">
+                                        {formatPrice(parseFloat(product.compareAtPriceRange.minVariantPrice.amount), product.compareAtPriceRange.minVariantPrice.currencyCode)}
+                                      </p>
+                                    )}
+                                  </div>
+                                  {!product.availableForSale && (
+                                    <span className="text-xs text-muted-foreground">Out of stock</span>
+                                  )}
+                                </div>
+                              </Link>
+                            </li>
+                          );
+                        })}
+                    </ul>
+                  </div>
+                )}
+              </>
             ) : hasSearched ? (
               <div className="p-8 text-center">
                 <p className="text-sm text-muted-foreground mb-4">
-                  No products found for "{query}"
+                  No products or articles found for "{query}"
                 </p>
                 <Button
                   variant="outline"
@@ -218,7 +263,7 @@ export default function ProductSearch({
                 </Button>
               </div>
             ) : null}
-            {results.length > 0 && (
+            {(results.length > 0 || articles.length > 0) && (
               <div className="p-2 border-t border-border">
                 <Button
                   variant="outline"
@@ -229,7 +274,7 @@ export default function ProductSearch({
                     setShowResults(false);
                   }}
                 >
-                  View All Results ({results.length}+)
+                  View All Results ({results.length + articles.length}+)
                 </Button>
               </div>
             )}
@@ -239,4 +284,3 @@ export default function ProductSearch({
     </div>
   );
 }
-

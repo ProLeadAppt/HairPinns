@@ -5,8 +5,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Search } from "lucide-react";
+import { BookOpen, ShoppingBag, Search } from "lucide-react";
 import { searchProducts } from "@/lib/shopify";
+import { searchBlogPosts } from "@/lib/blogSearch";
 import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -24,6 +25,8 @@ const SearchResults = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<string>("relevance");
+  const articles = searchBlogPosts(query, 12);
+  const totalResults = products.length + articles.length;
 
   // Track GA4 search event when query changes
   useEffect(() => {
@@ -155,8 +158,10 @@ const SearchResults = () => {
             <h1 className="text-3xl md:text-4xl font-heading font-bold text-heading mb-2">
               {query ? `Results for "${query}"` : "Search"}
             </h1>
-            {!loading && query && products.length > 0 && (
-              <p className="text-sm text-muted-foreground">{products.length} {products.length === 1 ? 'product' : 'products'} found</p>
+            {!loading && query && totalResults > 0 && (
+              <p className="text-sm text-muted-foreground">
+                {products.length} {products.length === 1 ? 'product' : 'products'} and {articles.length} {articles.length === 1 ? 'article' : 'articles'} found
+              </p>
             )}
           </div>
 
@@ -215,27 +220,27 @@ const SearchResults = () => {
                 </div>
               </div>
             </div>
-          ) : products.length === 0 ? (
+          ) : products.length === 0 && articles.length === 0 ? (
             <div className="text-center py-16 max-w-md mx-auto">
               <Search className="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" />
               <h2 className="text-xl font-heading font-semibold text-heading mb-2">
-                No products found for "{query}"
+                No products or articles found for "{query}"
               </h2>
               <p className="text-muted-foreground mb-6">
-                Try a different search or browse our collections
+                Try a different search, browse our collections, or read Jena's blog advice.
               </p>
               <div className="flex gap-3 justify-center mb-8">
                 <Button asChild variant="outline">
                   <Link to="/collections">Browse Collections</Link>
                 </Button>
                 <Button asChild variant="primary">
-                  <Link to="/collections/best-sellers">View Best Sellers</Link>
+                  <Link to="/blog">Read the Blog</Link>
                 </Button>
               </div>
               <div>
                 <p className="text-sm text-muted-foreground mb-3">Popular searches:</p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  {["Juuce", "Smoothing", "Blonde Care", "Gift Sets", "Shampoo"].map((term) => (
+                  {["Sauna", "Smoothing", "Blonde Care", "Foils", "Shampoo"].map((term) => (
                     <Link
                       key={term}
                       to={`/search?q=${encodeURIComponent(term)}`}
@@ -248,7 +253,60 @@ const SearchResults = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="space-y-12">
+              {articles.length > 0 && (
+                <section aria-labelledby="article-results-heading">
+                  <div className="flex items-center gap-2 mb-4">
+                    <BookOpen className="w-5 h-5 text-brand-500" />
+                    <h2 id="article-results-heading" className="text-2xl font-heading font-bold text-heading">
+                      Blog articles
+                    </h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {articles.map((article) => (
+                      <article
+                        key={article.slug}
+                        className="group bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        <Link to={article.url} className="block aspect-[4/3] bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset">
+                          <img
+                            src={article.image}
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </Link>
+                        <div className="p-4">
+                          <p className="text-xs font-semibold uppercase tracking-wide text-brand-500 mb-2">{article.category}</p>
+                          <h3 className="font-semibold text-heading mb-2 line-clamp-2">
+                            <Link to={article.url} className="hover:text-brand-500 transition-colors">
+                              {article.title}
+                            </Link>
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-3 mb-4">{article.excerpt}</p>
+                          <Button variant="outline" size="sm" className="w-full" asChild>
+                            <Link to={article.url}>
+                              <BookOpen className="w-4 h-4 mr-2" />
+                              Read Article
+                            </Link>
+                          </Button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {products.length > 0 && (
+                <section aria-labelledby="product-results-heading">
+                  <div className="flex items-center gap-2 mb-4">
+                    <ShoppingBag className="w-5 h-5 text-brand-500" />
+                    <h2 id="product-results-heading" className="text-2xl font-heading font-bold text-heading">
+                      Products
+                    </h2>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {products
                 .filter((product) => product.slug && typeof product.slug === "string")
                 .map((product) => (
@@ -310,6 +368,9 @@ const SearchResults = () => {
                   </div>
                 </div>
               ))}
+                  </div>
+                </section>
+              )}
             </div>
           )}
         </div>

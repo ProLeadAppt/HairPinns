@@ -1,3 +1,28 @@
+import saunaRoom from "@/assets/blog/infrared-sauna-room.webp";
+import saunaInterior from "@/assets/blog/infrared-sauna-interior.webp";
+import saunaExperience from "@/assets/blog/infrared-sauna-experience.webp";
+import heatProtectionProducts from "@/assets/blog/heat-protection-products.webp";
+import frizzFreeHero from "@/assets/blog/frizz-free-hero-1280w.webp";
+import straightUpSmoothingHero from "@/assets/blog/straight-up-smoothing-hero-1280w.webp";
+import shampooReplacementHero from "@/assets/blog/shampoo-replacement-hero-1280w.webp";
+import qiqiBareRepairOil from "@/assets/blog/qiqi-bare-repair-oil.webp";
+import purePreciousEnds from "@/assets/blog/pure-precious-ends.webp";
+import juuceHairsprayCollection from "@/assets/blog/juuce-hairspray-collection.webp";
+import wetBrushCollection from "@/assets/blog/wet-brush-collection.webp";
+import qiqiVegaComparison from "@/assets/blog/qiqi-vega-comparison.webp";
+import hydrationBundle from "@/assets/blog/hydration-bundle.webp";
+import walnutScrubHero from "@/assets/blog/walnut-scrub-hero-1280w.webp";
+import winterHairCare from "@/assets/blog/winter-hair-care.webp";
+import lamellarVitalityPack from "@/assets/blog/lamellar-vitality-pack.webp";
+import juuceQuizHero from "@/assets/blog/juuce-quiz-hero-1280w.webp";
+import jenaWorking from "@/assets/blog/jena-working.webp";
+import welcomeHero from "@/assets/blog/welcome-hero-1280w.webp";
+import humidityHero from "@/assets/blog/humidity-hero-1280w.webp";
+import blondeCareHero from "@/assets/blog/blonde-care-hero-1280w.webp";
+import hotTowelTreatment from "@/assets/blog/hot-towel-treatment.webp";
+import leaveInProducts from "@/assets/blog/leave-in-products.webp";
+import salonVsSupermarket from "@/assets/blog/salon-vs-supermarket.webp";
+
 // All blog hero images now use Shopify CDN URLs, same real product photos as the store
 const juuce037 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-037.jpg?v=1744178272";
 const juuce038 = "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-038.jpg?v=1744178300";
@@ -282,7 +307,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "April 20, 2025",
     readTime: "5 min read",
-    image: juuce064,
+    image: salonVsSupermarket,
     author: "Jena Pinn",
     content: {
       introduction: "Let's be honest, we've all grabbed a $6 shampoo bottle from the supermarket thinking we scored a bargain. But what if we told you that \"cheap\" product might be costing you more in the long run? Here's the lowdown on why salon products from Hair Pinns (like Juuce and Pure) are a smarter, healthier choice for your hair.",
@@ -363,7 +388,7 @@ export const blogPosts: BlogPost[] = [
     category: "Wellness",
     date: "April 11, 2025",
     readTime: "4 min read",
-    image: img0133,
+    image: saunaRoom,
     author: "Jena Pinn",
     content: {
       introduction: "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out. This isn't your average sauna session. It's a full-body, soul-soothing recharge that will leave you glowing from the inside out.",
@@ -416,7 +441,7 @@ export const blogPosts: BlogPost[] = [
     category: "Hair Care",
     date: "March 25, 2025",
     readTime: "6 min read",
-    image: juuce091,
+    image: heatProtectionProducts,
     author: "Jena Pinn",
     content: {
       introduction: "We all love a good styling session, whether it's a sleek blowout, bouncy curls, or just taming frizz before heading out the door. But if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
@@ -490,7 +515,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "March 21, 2025",
     readTime: "4 min read",
-    image: juuce050,
+    image: frizzFreeHero,
     author: "Jena Pinn",
     content: {
       introduction: "An all-natural, permanent hair straightening treatment designed to give you sleek, smooth locks without compromising hair health. Unlike traditional methods that often rely on harsh chemicals, Straight Up utilizes organic compounds, including citric acid, to achieve long lasting straightness safely.",
@@ -611,7 +636,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "September 02, 2025",
     readTime: "5 min read",
-    image: juuce050,
+    image: straightUpSmoothingHero,
     author: "Jena Pinn",
     content: {
       introduction: "If you've ever wished your hair would just behave — no frizz, no puff, no morning wrestling match — our Straight Up Smoothing Treatment might be the answer you've been dreaming of. We use QIQI Vega, one of the most advanced and hair-friendly smoothing systems in the world. QIQI Vega is the ideal entry-level smoothing for frizz-prone hair in Sydney's climate — gentle enough for colour-treated and blonde hair, but powerful enough to keep you sleek through humidity for months.",
@@ -665,7 +690,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "September 01, 2025",
     readTime: "3 min read",
-    image: aromaganicShampoo,
+    image: shampooReplacementHero,
     author: "Jena Pinn",
     content: {
       introduction: "Shampoo isn't a \"forever\" product. Using the right amount keeps your hair clean and healthy without wasting product (or money). Plus, knowing when to replace it helps you plan ahead so you're never caught with an empty bottle in the shower!",
@@ -738,7 +763,7 @@ export const blogPosts: BlogPost[] = [
     category: "Wellness",
     date: "August 12, 2025",
     readTime: "5 min read",
-    image: img0136,
+    image: saunaExperience,
     author: "Jena Pinn",
     content: {
       introduction: "When was the last time you gave your hair and skin the deep care they truly deserve? In today's fast paced world, stress, pollution, and product buildup can leave your strands dull and your skin feeling tired. At Hairpinns, our infrared sauna experience is more than just a way to relax it's a beauty and wellness treatment that works from the inside out. Whether you're looking for smoother hair, clearer skin, or an all over glow, here's how regular sauna sessions can transform your self care routine.",
@@ -803,7 +828,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "August 04, 2025",
     readTime: "4 min read",
-    image: bamchaTowel,
+    image: hotTowelTreatment,
     author: "Jena Pinn",
     content: {
       introduction: "If you've ever had a hot towel wrapped around your hair or neck during a salon treatment, you'll know it's heavenly. That moment when the warmth hits? Instant exhale. But beyond the spa-like feels, there's real hair and scalp science happening under that steamy towel. So let's break it down. Why is everyone loving hot towel treatments, and should you be saying yes please at your next appointment?",
@@ -864,7 +889,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 27, 2025",
     readTime: "3 min read",
-    image: juuce050,
+    image: qiqiBareRepairOil,
     author: "Jena Pinn",
     content: {
       introduction: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel QIQI Bare Repair Oil is the answer. This luxe, dry-touch oil is designed to repair, smooth, and strengthen all hair types (yes, even fine or chemically treated strands). It's powered by performance-driven plant oils that hydrate and restore, while keeping your hair light, bouncy, and full of shine.",
@@ -933,7 +958,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 26, 2025",
     readTime: "3 min read",
-    image: juuce118,
+    image: purePreciousEnds,
     author: "Jena Pinn",
     content: {
       introduction: "If your hair feels dry at the ends, breaks easily, or looks a bit frazzled no matter how much you trim. Pure Precious Ends is your new secret weapon. Designed to rescue and protect your ends, this lightweight leave-in is a must-have in your routine (especially if you style with heat or colour your hair).",
@@ -1006,7 +1031,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 13, 2025",
     readTime: "5 min read",
-    image: juuce064,
+    image: juuceHairsprayCollection,
     author: "Jena Pinn",
     content: {
       introduction: "When it comes to styling, hairspray is a must-have, but not all sprays are created equal. At Hair Pinns, we only recommend styling products that deliver results without compromising hair health. Today, we're breaking down the three go-to hairsprays we use behind the chair and sell in our salon, so you can choose the right one for your hair goals!",
@@ -1079,7 +1104,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "July 13, 2025",
     readTime: "3 min read",
-    image: accessories016,
+    image: wetBrushCollection,
     author: "Jena Pinn",
     content: {
       introduction: "Did you know your hair is at its most fragile when it's wet? That's why tugging a regular brush through wet hair can lead to unnecessary breakage, split ends, and hair fall, especially if your hair is fine, coloured, curly, or damaged.",
@@ -1152,7 +1177,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "June 12, 2025",
     readTime: "7 min read",
-    image: juuce064,
+    image: qiqiVegaComparison,
     author: "Jena Pinn",
     content: {
       introduction: "If you're looking for smoother, frizz-free hair that lasts, you've probably come across both QIQI Vega and nanoplasty treatments. While they may seem similar at first glance, these treatments are very different in how they work, how they affect your hair, and the kind of results you can expect. At Hair Pinns, we offer QIQI Vega treatments because we believe in giving our clients reliable, safe, and long-lasting results without compromising the health of your hair.",
@@ -1214,7 +1239,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "June 11, 2025",
     readTime: "4 min read",
-    image: juuce120,
+    image: hydrationBundle,
     author: "Jena Pinn",
     content: {
       introduction: "Dry, dull, or brittle hair? It might be dehydrated, and there's a difference between dryness and dehydration. Dry hair lacks oil, while dehydrated hair lacks moisture. This season, it's time to deeply hydrate from root to tip with our Hydration Bundle, featuring some of our favourite moisture-rich must-haves from Juuce.",
@@ -1287,7 +1312,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "June 11, 2025",
     readTime: "3 min read",
-    image: juuce050,
+    image: walnutScrubHero,
     author: "Jena Pinn",
     content: {
       introduction: "When was the last time you gave your scalp a proper detox? If your answer is \"never\" or \"I don't remember,\" it's time to meet the Pure Walnut Scrub Hair & Scalp Pre-Wash Treatment.",
@@ -1360,7 +1385,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "May 25, 2025",
     readTime: "5 min read",
-    image: aromaganicShampoo,
+    image: straightUpSmoothingHero,
     author: "Jena Pinn",
     content: {
       introduction: "I genuinely want my clients to get the best, longest-lasting results from their QIQI Straight Up Treatment. As a stylist, I never want to overwhelm my clients with product rules, but when it comes to QIQI Vega (Straight Up Treatment), aftercare really does matter. I recommend this treatment because it transforms your hair. Soft, smooth, frizz-free, and I want you to enjoy those results for as long as possible. But here's the thing: the wrong shampoo can undo it fast. And I've seen it happen more than once.",
@@ -1433,7 +1458,7 @@ export const blogPosts: BlogPost[] = [
     category: "Seasonal",
     date: "May 22, 2025",
     readTime: "6 min read",
-    image: juuce119,
+    image: winterHairCare,
     author: "Jena Pinn",
     content: {
       introduction: "As the chilly winds and heavy rains roll into Sydney, our hair often bears the brunt of the season. Winter can leave strands dry, frizzy, and lacking shine, but with the right care (and products), your hair can stay healthy, hydrated, and looking fabulous all season long.",
@@ -1506,7 +1531,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "May 20, 2025",
     readTime: "5 min read",
-    image: juuce118,
+    image: lamellarVitalityPack,
     author: "Jena Pinn",
     content: {
       introduction: "If you've been hearing about lamellar technology and wondering what it actually does for your hair, you're not alone. This cutting-edge innovation is changing the way we treat dry, damaged, or stressed-out hair, offering instant results without the heavy feeling some treatments leave behind.",
@@ -1579,7 +1604,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "May 18, 2025",
     readTime: "5 min read",
-    image: juuce118,
+    image: heatProtectionProducts,
     author: "Jena Pinn",
     content: {
       introduction: "If you love your hair tools, whether it's your trusty blow dryer, straightener, or curling wand, then a heat protectant needs to be your hair's best friend. High heat can cause irreversible damage to the hair shaft, leading to dryness, split ends, and breakage. The good news? Using the right heat protection products can make all the difference.",
@@ -1656,7 +1681,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "May 09, 2025",
     readTime: "3 min read",
-    image: accessories016,
+    image: wetBrushCollection,
     author: "Jena Pinn",
     content: {
       introduction: "Did you know your choice of hair brush can completely change the health and look of your hair? Many people spend money on good shampoos, conditioners, and treatments, but forget the daily tool that touches their hair the most: the brush.",
@@ -1725,7 +1750,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "April 20, 2025",
     readTime: "5 min read",
-    image: juuce091,
+    image: juuceQuizHero,
     author: "Jena Pinn",
     content: {
       introduction: "Your dream hair is one quiz away. Answer these 7 quick questions and find your perfect Juuce match, made to suit your hair type, vibe, and lifestyle.",
@@ -1789,7 +1814,7 @@ export const blogPosts: BlogPost[] = [
     category: "Wellness",
     date: "April 20, 2025",
     readTime: "4 min read",
-    image: img0133,
+    image: saunaInterior,
     author: "Jena Pinn",
     content: {
       introduction: "At Hair Pinns, we're all about combining luxury with wellness, and that's exactly why we've introduced infrared sauna sessions to our salon experience. You've probably heard about infrared for detox and relaxation, but did you know it can also work wonders for your hair and scalp health?",
@@ -1857,7 +1882,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "8 min read",
-    image: juuce050,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After [20+ years behind the chair in Bangor](/blog/meet-jena-15-years-sutherland-shire), I've heard every version of 'my last hairdresser didn't listen' — and I've seen what separates a good appointment from a great one. This is an honest guide to what to look for, what to avoid, and how to know you've found the right salon before you sit down.",
@@ -1933,7 +1958,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "April 19, 2026",
     readTime: "10 min read",
-    image: juuce064,
+    image: straightUpSmoothingHero,
     author: "Jena Pinn",
     content: {
       introduction: "If you've searched 'keratin smoothing Sydney price' you've seen a range from $150 to $900 and a dozen brand names. Most blog posts tell you the price without telling you what actually changes between them. After [a decade of running smoothing services at Hair Pinns in Bangor](/blog/meet-jena-15-years-sutherland-shire), here's the honest breakdown — what you're paying for, what's worth the premium, and what to avoid.",
@@ -2018,7 +2043,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "5 min read",
-    image: juuce120,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Menai and searching for a hair salon, you've got options — but the consistent feedback we hear from Menai locals who've become Hair Pinns regulars is the same: 'Wish I'd found you sooner.' Here's what matters when you're picking a salon close to Menai, and honest answers about whether we're the right fit.",
@@ -2255,7 +2280,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "April 19, 2026",
     readTime: "9 min read",
-    image: juuce050,
+    image: blondeCareHero,
     author: "Jena Pinn",
     content: {
       introduction: "If you spend $300+ on colour every 8 weeks, your shampoo is the single biggest factor in whether that investment lasts. I've seen beautiful balayage fade to brass in 3 weeks because of the wrong shampoo — and I've seen $25 colour jobs hold up for months with the right routine. Here's what actually works in the Australian climate and water, based on what [my colour clients](/blog/meet-jena-15-years-sutherland-shire) use.",
@@ -2429,7 +2454,7 @@ export const blogPosts: BlogPost[] = [
     category: "Products",
     date: "April 19, 2026",
     readTime: "5 min read",
-    image: accessories016,
+    image: wetBrushCollection,
     author: "Jena Pinn",
     content: {
       introduction: "Wet Brush and Tangle Teezer are the two most-asked-about detangling brushes I hear about from clients. Both promise gentler detangling, less breakage, better hair days. Only one of them actually delivers on all three, [in my experience](/blog/meet-jena-15-years-sutherland-shire). Here's the direct comparison — no affiliate, no sponsorship.",
@@ -2518,7 +2543,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "April 19, 2026",
     readTime: "8 min read",
-    image: juuce119,
+    image: straightUpSmoothingHero,
     author: "Jena Pinn",
     content: {
       introduction: "People use 'keratin', 'Brazilian blowout', and 'smoothing' interchangeably — but they're not the same treatment. The differences matter: formaldehyde content, durability, effect on curl pattern, and aftercare requirements are all different. Here's an honest breakdown from someone who offers the amino-acid version (Straight Up Smoothing) and has referred clients out for the other two.",
@@ -2688,7 +2713,7 @@ export const blogPosts: BlogPost[] = [
     category: "Treatments",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: juuce064,
+    image: straightUpSmoothingHero,
     author: "Jena Pinn",
     content: {
       introduction: "'How long does keratin smoothing last?' is asked before almost every booking. The honest answer: anywhere from 4 weeks to 5 months — it varies more than any other treatment category. Here's what actually controls it, and how to maximise your result.",
@@ -2761,7 +2786,7 @@ export const blogPosts: BlogPost[] = [
     category: "Colour",
     date: "April 19, 2026",
     readTime: "5 min read",
-    image: juuce091,
+    image: blondeCareHero,
     author: "Jena Pinn",
     content: {
       introduction: "'How much does a full head of foils cost in Sydney?' The range is wider than most people realise — $180 at budget salons to $700+ at premium ones. Here's what actually drives the price and what to expect at each tier.",
@@ -2834,7 +2859,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: juuce038,
+    image: blondeCareHero,
     author: "Jena Pinn",
     content: {
       introduction: "'Can I use purple shampoo every day?' is one of the most common blonde-care questions I hear. Short answer: no, you shouldn't — and most people using it daily are making their hair ashy, dull, or damaged without realising it. Here's when to use it, how often, and what to do instead.",
@@ -2988,7 +3013,7 @@ export const blogPosts: BlogPost[] = [
     category: "About",
     date: "April 19, 2026",
     readTime: "7 min read",
-    image: juuce091,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "I'm Jena Pinn, founder of Hair Pinns in Bangor. I've been behind the chair for over 20 years, mostly in the Sutherland Shire, and I opened Hair Pinns because I wanted a salon that worked the way I'd always wished salons worked — honest, consistent, and built around the client's long-term hair health, not this week's upsell. Here's a bit about how I got here, what I specialise in, and why I do it the way I do.",
@@ -3064,7 +3089,7 @@ export const blogPosts: BlogPost[] = [
     category: "Colour",
     date: "April 19, 2026",
     readTime: "9 min read",
-    image: aromaganicShampoo,
+    image: blondeCareHero,
     author: "Jena Pinn",
     content: {
       introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), these are the seven hair-colouring mistakes I see every single week — some from home dye jobs, some from other salons, some from clients following advice they read online. Every one of them is avoidable, and every one of them makes the next appointment harder (and more expensive). Here's what they are and how to stop making them.",
@@ -3238,7 +3263,7 @@ export const blogPosts: BlogPost[] = [
     category: "Colour",
     date: "April 19, 2026",
     readTime: "9 min read",
-    image: juuce050,
+    image: blondeCareHero,
     author: "Jena Pinn",
     content: {
       introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), box-dye recovery is the single most common consultation I take. You've dyed your hair at home, it's gone wrong — wrong colour, uneven, damaged, or all three — and now you're looking for help. Here's the honest version: what's actually achievable, how long it takes, how much it costs, and what to do in the meantime.",
@@ -3331,7 +3356,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "5 min read",
-    image: juuce119,
+    image: welcomeHero,
     author: "Jena Pinn",
     content: {
       introduction: "If you live in Bangor and you're looking for a hair salon, you don't have to drive out of the suburb. Hair Pinns is right here — and we've built the salon around what Bangor locals actually want from their stylist: continuity, honest pricing, and hair that still looks good three months after the appointment. Here's a bit about who we are and what we do.",
@@ -3403,7 +3428,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: juuce120,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Illawong and searching for a hair salon, you have options — but the feedback we hear from Illawong locals who've become Hair Pinns regulars tends to be the same: 'Wish I'd found you sooner.' Here's what matters when you're picking a salon close to Illawong, and honest answers about whether we're the right fit.",
@@ -3475,7 +3500,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: juuce091,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Sutherland and searching for a hair salon, you have plenty of options in town — but a lot of Sutherland locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Sutherland, and honest answers about whether we're worth the drive.",
@@ -3547,7 +3572,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: accessories016,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Cronulla and searching for a hair salon, you've got choices up and down the beach — but several Cronulla locals make the drive to Bangor because Hair Pinns specialises in the exact problems beach-and-sun hair faces. Here's what matters when you're picking a salon close to Cronulla, and honest answers about whether we're the right fit.",
@@ -3619,7 +3644,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: img0133,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Como and searching for a hair salon, the options nearest you are limited — which is why a lot of Como locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Como, and honest answers about whether we're the right fit.",
@@ -3691,7 +3716,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: juuce091,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Miranda and searching for a hair salon, you have no shortage of options in and around Westfield. But many Miranda locals — especially families with school-age kids — make the drive to Bangor for Hair Pinns because we do family appointments well. Here's what matters when you're picking a salon close to Miranda, and honest answers about whether we're the right fit.",
@@ -3763,7 +3788,7 @@ export const blogPosts: BlogPost[] = [
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
-    image: juuce064,
+    image: jenaWorking,
     author: "Jena Pinn",
     content: {
       introduction: "If you're in Engadine and searching for a hair salon, the local options work for most people — but a lot of Engadine clients drive to Bangor for Hair Pinns because of the combination of consistency, honest pricing, and services that cover the whole family. Here's what matters when you're picking a salon close to Engadine, and honest answers about whether we're the right fit.",
@@ -3924,7 +3949,7 @@ export const blogPosts: BlogPost[] = [
     category: "Seasonal",
     date: "April 19, 2026",
     readTime: "6 min read",
-    image: juuce091,
+    image: winterHairCare,
     author: "Jena Pinn",
     content: {
       introduction: "Sydney winter is milder than most Australian cities, but it still does damage — just differently from summer. Cold wind, low humidity, indoor heating, and more frequent hot-water washes all conspire to dry hair out by late August. Here's what actually happens to hair in Sydney winter and the routine I recommend to clients to keep hair in condition through to spring.",
@@ -4179,7 +4204,7 @@ export const blogPosts: BlogPost[] = [
     category: "Seasonal",
     date: "April 19, 2026",
     readTime: "7 min read",
-    image: juuce050,
+    image: humidityHero,
     author: "Jena Pinn",
     content: {
       introduction: "Sydney humidity turns smooth hair into frizz within minutes of stepping outside, and a lot of the advice online doesn't work — or works for 20 minutes then falls apart. After 20+ years doing hair in the Sutherland Shire I've tested every approach, and here's the version that actually holds up through a real Sydney summer or spring day. Causes, at-home fixes, and when it's time to consider a salon treatment.",
@@ -4272,7 +4297,7 @@ export const blogPosts: BlogPost[] = [
     category: "Education",
     date: "May 14, 2026",
     readTime: "5 min read",
-    image: juuce118,
+    image: leaveInProducts,
     author: "Jena Pinn",
     content: {
       introduction: "If you've ever stood in the haircare aisle wondering whether you actually need a leave-in conditioner — or when you're supposed to use one — you're not alone. After [20+ years behind the chair at Hair Pinns](/blog/meet-jena-15-years-sutherland-shire), it's one of the questions I get every week. Short answer: most people benefit from a leave-in, but it's about *when* and *how* you use it. Here's the honest version.",
@@ -4360,7 +4385,7 @@ export const blogPosts: BlogPost[] = [
     category: "Colour",
     date: "May 5, 2026",
     readTime: "6 min read",
-    image: juuce091,
+    image: blondeCareHero,
     author: "Jena Pinn",
     content: {
       introduction: "I get a steady flow of clients in my chair after a box-dye disaster. They wanted highlights, spent thirty bucks at the chemist, and now they're sitting in front of me with patchy bands, brassy roots, or hair that won't take colour properly. So let me be straight with you about what box-dye highlights actually do at home, and when paying for foils is worth it.",
@@ -4587,7 +4612,7 @@ export const blogPosts: BlogPost[] = [
     category: "Colour",
     date: "May 12, 2026",
     readTime: "5 min read",
-    image: juuce120,
+    image: blondeCareHero,
     author: "Jena Pinn",
     content: {
       introduction: "Colour terminology is a mess. Permanent, semi-permanent, demi-permanent, gloss, toner, glaze. All different things, all do different jobs, all last different amounts of time. If you don't know which one you're getting at your appointment, you don't know how long it'll last, what it'll do to your hair, or whether it'll cover your greys. Here's the plain English version.",
