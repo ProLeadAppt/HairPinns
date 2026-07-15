@@ -161,7 +161,7 @@ const LocationPage = () => {
     <>
       <SEOHead
         title={`Hairdresser ${locationData.name} | Hair Salon near ${locationData.name} – Hair Pinns`}
-        description={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call +61 468 093 991.`}
+        description={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call 0416 037 663.`}
         canonical={`https://hairpinns.com/areas/${locationData.slug}`}
         ogImage={getOGImage('default')}
         ogType="website"
@@ -239,7 +239,7 @@ const LocationPage = () => {
                 >
                   <a href={BUSINESS_NAP.phone.tel} className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
-                    Call +61 468 093 991
+                    Call 0416 037 663
                   </a>
                 </Button>
               </div>
@@ -483,7 +483,7 @@ const LocationPage = () => {
                 >
                   <a href={BUSINESS_NAP.phone.tel} className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
-                    Call +61 468 093 991
+                    Call 0416 037 663
                   </a>
                 </Button>
               </div>

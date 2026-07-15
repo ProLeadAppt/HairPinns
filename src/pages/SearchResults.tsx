@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, ShoppingBag, Search } from "lucide-react";
 import { searchProducts } from "@/lib/shopify";
 import { searchBlogPosts } from "@/lib/blogSearch";
-import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -135,6 +135,7 @@ const SearchResults = () => {
         hrefLang="en-AU"
         ogImage="https://hairpinns.com/og-default.jpg"
         schemaJson={schemas}
+        noIndex={true}
       />
 
       <Header />
@@ -343,7 +344,7 @@ const SearchResults = () => {
                         const compareAt =
                           product.originalPrice && product.originalPrice > product.price
                             ? product.originalPrice
-                            : synthesiseCompareAt(product.price);
+                            : undefined;
                         const compareText = compareAt
                           ? formatPrice(compareAt, product.currency)
                           : "";

@@ -17,8 +17,8 @@ const street = content.match(/street:\s*"([^"]*)"/)?.[1] ?? '60 Goorgool Rd';
 const locality = content.match(/locality:\s*"([^"]*)"/)?.[1] ?? 'Bangor';
 const region = content.match(/region:\s*"([^"]*)"/)?.[1] ?? 'NSW';
 const postcode = content.match(/postcode:\s*"([^"]*)"/)?.[1] ?? '2234';
-const raw = content.match(/raw:\s*"([^"]*)"/)?.[1] ?? '+61468093991';
-// Schema.org telephone format: +61-468-093-991
+const raw = content.match(/raw:\s*"([^"]*)"/)?.[1] ?? '+61416037663';
+// Schema.org telephone format: +61-416-037-663
 const phoneFormatted = raw.replace(/^\+61(\d{3})(\d{3})(\d{3})$/, '+61-$1-$2-$3');
 
 let html = readFileSync(indexPath, 'utf8');

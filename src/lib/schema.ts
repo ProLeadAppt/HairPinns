@@ -337,6 +337,44 @@ export const generateProductSchema = (product: ProductData) => {
       )
         .toISOString()
         .split('T')[0],
+      eligibleRegion: {
+        '@type': 'Country',
+        name: 'Australia',
+      },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'AU',
+        },
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '9.95',
+          currency: 'AUD',
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 1,
+            maxValue: 2,
+            unitCode: 'DAY',
+          },
+          transitTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 3,
+            maxValue: 5,
+            unitCode: 'DAY',
+          },
+        },
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'AU',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 14,
+        returnMethod: 'https://schema.org/ReturnByMail',
+      },
     },
   };
 
@@ -824,7 +862,7 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
       // not ship overseas so this is the truthful, deliberate signal.
       eligibleRegion: {
         '@type': 'Country',
-        name: 'AU',
+        name: 'Australia',
       },
       areaServed: {
         '@type': 'Country',
@@ -839,7 +877,7 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
         '@type': 'OfferShippingDetails',
         shippingRate: {
           '@type': 'MonetaryAmount',
-          value: '0',
+          value: '9.95',
           currency: 'AUD',
         },
         shippingDestination: {
@@ -851,16 +889,23 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
           handlingTime: {
             '@type': 'QuantitativeValue',
             minValue: 1,
-            maxValue: 3,
+            maxValue: 2,
             unitCode: 'DAY',
           },
           transitTime: {
             '@type': 'QuantitativeValue',
             minValue: 3,
-            maxValue: 7,
+            maxValue: 5,
             unitCode: 'DAY',
           },
         },
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'AU',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 14,
+        returnMethod: 'https://schema.org/ReturnByMail',
       },
       seller: {
         '@type': 'Organization',
@@ -1002,7 +1047,7 @@ export const generateEnhancedServiceSchema = (service: EnhancedServiceData) => {
       availability: 'https://schema.org/InStock',
       eligibleRegion: {
         '@type': 'Country',
-        name: 'AU',
+        name: 'Australia',
       },
       areaServed: {
         '@type': 'Country',

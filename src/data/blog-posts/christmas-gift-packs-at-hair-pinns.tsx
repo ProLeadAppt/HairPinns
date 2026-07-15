@@ -4,7 +4,7 @@ const post = {
     slug: "christmas-gift-packs-at-hair-pinns",
     title: "🎁 Gift Packs at Hair Pinns 🎁",
     archived: true, // Jena doesn't currently offer gift packs
-    redirectTo: "/products", // Send seasonal traffic to the live product catalogue
+    redirectTo: "/collections", // Send seasonal traffic to the live product catalogue
     excerpt: "Spoil someone special with our Juuce and Pure gift packs loaded with hair-loving products.",
     category: "Products",
     date: "September 20, 2025",

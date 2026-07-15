@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useMemo } from "react";
+import { SITE_URL, canonicalSiteUrl } from "@/config/businessConfig";
 
 interface SEOHeadProps {
   /** Page title (used for <title> and og:title) */
@@ -13,6 +14,8 @@ interface SEOHeadProps {
   ogType?: string;
   /** Whether to add robots noindex meta tag */
   noIndex?: boolean;
+  /** Whether a noindex page should also block link following */
+  noFollow?: boolean;
   /** Alternate language link (hrefLang) */
   hrefLang?: string;
   /** JSON-LD schema markup */
@@ -55,19 +58,32 @@ export const SEOHead = ({
   ogImage = "https://hairpinns.com/og-default.jpg",
   ogType = "website",
   noIndex = false,
+  noFollow = false,
   hrefLang = "en-AU",
   schemaJson,
   prerenderReady = true,
 }: SEOHeadProps) => {
   // Normalise inputs to absolute URLs
-  const cleanCanonical = canonical.startsWith("http")
-    ? canonical
-    : `https://hairpinns.com${canonical}`;
+  const cleanCanonical = canonicalSiteUrl(canonical);
   const cleanOgImage = ogImage.startsWith("http")
     ? ogImage
     : `https://hairpinns.com${ogImage}`;
 
-  const schemas = Array.isArray(schemaJson) ? schemaJson : schemaJson ? [schemaJson] : [];
+  const canonicalizeSchemaUrls = (value: unknown): unknown => {
+    if (typeof value === 'string' && value.startsWith(SITE_URL)) {
+      return canonicalSiteUrl(value);
+    }
+    if (Array.isArray(value)) return value.map(canonicalizeSchemaUrls);
+    if (value && typeof value === 'object') {
+      return Object.fromEntries(
+        Object.entries(value as Record<string, unknown>).map(([key, child]) => [key, canonicalizeSchemaUrls(child)]),
+      );
+    }
+    return value;
+  };
+
+  const rawSchemas = Array.isArray(schemaJson) ? schemaJson : schemaJson ? [schemaJson] : [];
+  const schemas = rawSchemas.map((schema) => canonicalizeSchemaUrls(schema) as Record<string, any>);
   const schemaJSON = useMemo(() => schemas.map((s) => JSON.stringify(s)), [schemas]);
 
   useEffect(() => {
@@ -133,7 +149,7 @@ export const SEOHead = ({
 
     // Robots
     if (noIndex) {
-      addMeta({ name: 'robots', content: 'noindex, nofollow' });
+      addMeta({ name: 'robots', content: noFollow ? 'noindex, nofollow' : 'noindex, follow' });
     }
 
     // Open Graph
@@ -182,6 +198,7 @@ export const SEOHead = ({
     cleanOgImage,
     ogType,
     noIndex,
+    noFollow,
     hrefLang,
     schemaJSON,
     prerenderReady,

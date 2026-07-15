@@ -5,7 +5,7 @@ import Badge from "./Badge";
 import { getProductUrl } from "@/lib/shopify";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { useState } from "react";
-import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 
 interface ProductCardProps {
   name: string;
@@ -185,8 +185,7 @@ const ProductCard = ({
          * stays clickable; user lands on the product page where the real
          * price is shown (or "Sold out").
          *
-         * Use a real compare-at when Shopify provides one; otherwise
-         * synthesise a 15%-up "was" so every card reads as a deal.
+         * Only use a previous price when Shopify provides a genuine compare-at.
          */}
 
         {(() => {
@@ -195,7 +194,7 @@ const ProductCard = ({
           const compareAt =
             originalPrice && originalPrice > price
               ? originalPrice
-              : synthesiseCompareAt(price);
+              : undefined;
           const compareText = compareAt ? formatPrice(compareAt) : "";
           return (
             <div className="flex items-center gap-2 mb-4">

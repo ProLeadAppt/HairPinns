@@ -410,7 +410,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "Can I book online?",
-        answer: "Yes, book 24/7 via Fresha. You'll get instant confirmation. You can also text +61 468 093 991 for a personalised quote or to ask questions.",
+        answer: "Yes, book 24/7 via Fresha. You'll get instant confirmation. You can also text 0416 037 663 for a personalised quote or to ask questions.",
       },
     ],
     nearbySuburbs: ["miranda", "sutherland", "gymea"],
@@ -458,7 +458,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "Can you fix a colour I'm not happy with?",
-        answer: "Yes, colour correction is one of Jena's specialisations. Bring a clear photo of where you are now and where you want to be, and we'll quote honestly — including whether it's a one-visit fix or needs to be staged over multiple sessions. We don't promise miracles, but with 20+ years of correction work we can usually get there safely. Text +61 468 093 991 with photos for the fastest quote.",
+        answer: "Yes, colour correction is one of Jena's specialisations. Bring a clear photo of where you are now and where you want to be, and we'll quote honestly — including whether it's a one-visit fix or needs to be staged over multiple sessions. We don't promise miracles, but with 20+ years of correction work we can usually get there safely. Text 0416 037 663 with photos for the fastest quote.",
       },
       {
         question: "How do I maintain my hair in Caringbah's salt-air climate?",
@@ -514,7 +514,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "Is colour worth the upkeep if I'm in the water often?",
-        answer: "Yes — full head foils are our most popular colour service for water-heavy lifestyles because regrowth is clean and easy to maintain. You can go 6–8 weeks between appointments with a toner refresh in between, and we'll customise the placement so the lighter pieces frame your face while the back stays lower-maintenance. Our sulphate-free aftercare range extends the life of your colour in chlorine and river water. Text +61 468 093 991 with a photo for a quote.",
+        answer: "Yes — full head foils are our most popular colour service for water-heavy lifestyles because regrowth is clean and easy to maintain. You can go 6–8 weeks between appointments with a toner refresh in between, and we'll customise the placement so the lighter pieces frame your face while the back stays lower-maintenance. Our sulphate-free aftercare range extends the life of your colour in chlorine and river water. Text 0416 037 663 with a photo for a quote.",
       },
     ],
     nearbySuburbs: ["como", "sylvania", "gymea"],
@@ -536,7 +536,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "Can you do colour for an event with short notice?",
-        answer: "Same-week colour bookings are usually possible if you can come Tuesday, Thursday or Friday. Same-day is harder but worth a text to +61 468 093 991 — we can often slot in a toner or gloss refresh. For full-head colour ahead of an event, give us at least 5–7 days so the colour has time to settle properly. We don't recommend major colour changes within 48 hours of an important event.",
+        answer: "Same-week colour bookings are usually possible if you can come Tuesday, Thursday or Friday. Same-day is harder but worth a text to 0416 037 663 — we can often slot in a toner or gloss refresh. For full-head colour ahead of an event, give us at least 5–7 days so the colour has time to settle properly. We don't recommend major colour changes within 48 hours of an important event.",
       },
       {
         question: "Do you sell hair care products I can pick up after my appointment?",
@@ -566,7 +566,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "Can I get a colour quote without coming in for a consultation?",
-        answer: "Yes — text a clear photo of your hair in natural light to +61 468 093 991, plus a photo of the result you're after. Jena will reply with a price range and let you know if it's a one-visit job or needs to be staged. We don't quote without seeing the hair because too much depends on starting condition, but the photo + text method works well and saves you a trip if the price isn't right.",
+        answer: "Yes — text a clear photo of your hair in natural light to 0416 037 663, plus a photo of the result you're after. Jena will reply with a price range and let you know if it's a one-visit job or needs to be staged. We don't quote without seeing the hair because too much depends on starting condition, but the photo + text method works well and saves you a trip if the price isn't right.",
       },
     ],
     nearbySuburbs: ["miranda", "gymea", "oyster-bay"],

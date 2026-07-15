@@ -25,8 +25,8 @@ const post = {
           content: "The most-booked services for Cronulla clients: full head foils (blonde beach hair is the brief), beach-recovery smoothing treatments (Straight Up Smoothing keeps frizz down for 8–12 weeks despite salt water), and deep-conditioning or bond-repair treatments for sun-damaged ends. We stock heat protection and sulfate-free ranges that beach-hair clients especially benefit from. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from a Cronulla Client",
-          content: "'I surf year-round and my hair used to fry by January. Jena put me on a smoothing and bond-repair schedule and now my hair survives summer — even my colour. Worth every minute of the drive.' — J. L., Cronulla. (Composite of client feedback — real quote to be added before publish.) This captures the Cronulla-specific approach: we plan around the lifestyle, not just the appointment."
+          heading: "Why the Cronulla Trip Works",
+          content: "Cronulla hair is regularly exposed to salt, chlorine, UV and humidity. Hair Pinns builds colour, smoothing and bond-repair plans around that lifestyle, with practical aftercare and transparent booking information before the appointment."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -47,11 +47,11 @@ const post = {
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",

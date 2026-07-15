@@ -32,9 +32,9 @@ function gitLastMod(relativePath) {
 if (existsSync(resolve(root, '.env'))) {
   const { readFileSync } = await import('fs');
   const env = readFileSync(resolve(root, '.env'), 'utf8');
-  env.split('\n').forEach((line) => {
+  env.split(/\r?\n/).forEach((line) => {
     const match = line.match(/^([^#=]+)=(.*)$/);
-    if (match && process.env[match[1].trim()] === undefined) {
+    if (match && !process.env[match[1].trim()]) {
       const val = match[2].trim().replace(/^["']|["']$/g, '');
       process.env[match[1].trim()] = val;
     }
@@ -44,8 +44,16 @@ if (existsSync(resolve(root, '.env'))) {
 const BASE = 'https://hairpinns.com';
 const today = new Date().toISOString().split('T')[0];
 
+function canonicalSiteUrl(value) {
+  const parsed = new URL(value, `${BASE}/`);
+  const lastSegment = parsed.pathname.split('/').filter(Boolean).at(-1) || '';
+  const isStaticFile = /\.[a-z0-9]{2,8}$/i.test(lastSegment);
+  if (!isStaticFile && !parsed.pathname.endsWith('/')) parsed.pathname += '/';
+  return parsed.toString();
+}
+
 function url(loc, changefreq = 'weekly', priority = 0.8, lastmod = today, images = []) {
-  return { loc, changefreq, priority, lastmod, images };
+  return { loc: canonicalSiteUrl(loc), changefreq, priority, lastmod, images };
 }
 
 /**
@@ -66,7 +74,7 @@ async function fetchShopify(query, variables = {}) {
   const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
   const token = process.env.VITE_SF_STOREFRONT_TOKEN || '';
   const version = process.env.VITE_SF_API_VERSION || '2025-01';
-  if (!token) return null;
+  if (!token) throw new Error('[sitemap] Missing Shopify Storefront token');
   const endpoint = `https://${domain}/api/${version}/graphql.json`;
   const res = await fetch(endpoint, {
     method: 'POST',
@@ -76,10 +84,10 @@ async function fetchShopify(query, variables = {}) {
     },
     body: JSON.stringify({ query, variables }),
   });
+  if (!res.ok) throw new Error(`[sitemap] Shopify request failed with HTTP ${res.status}`);
   const json = await res.json();
   if (json.errors) {
-    console.warn('[sitemap] Shopify API errors:', json.errors);
-    return null;
+    throw new Error(`[sitemap] Shopify API errors: ${json.errors.map((error) => error.message).join('; ')}`);
   }
   return json.data;
 }
@@ -89,7 +97,7 @@ async function getShopifyProducts() {
   // <image:image> entries in the sitemap. Google uses these for Image
   // search discovery and faster indexing of product photos.
   const data = await fetchShopify(`
-    query { products(first: 250, query: "available_for_sale:true") {
+    query { products(first: 250) {
       edges { node {
         handle
         title
@@ -99,13 +107,15 @@ async function getShopifyProducts() {
       }}
     }}
   `);
-  return (data?.products?.edges || []).map((e) => ({
+  const products = (data?.products?.edges || []).map((e) => ({
     handle: e.node.handle,
     title: e.node.title,
     images: (e.node.images?.edges || [])
       .map((ie) => ({ url: ie.node.url, altText: ie.node.altText || e.node.title }))
       .filter((img) => img.url),
   })).filter((p) => p.handle);
+  if (products.length === 0) throw new Error('[sitemap] Shopify returned no products; refusing an incomplete sitemap');
+  return products;
 }
 
 async function getShopifyCollections() {
@@ -114,7 +124,9 @@ async function getShopifyCollections() {
       edges { node { handle } }
     }}
   `);
-  return data?.collections?.edges?.map((e) => e.node.handle).filter(Boolean) || [];
+  const handles = data?.collections?.edges?.map((e) => e.node.handle).filter(Boolean) || [];
+  if (handles.length === 0) throw new Error('[sitemap] Shopify returned no collections; refusing an incomplete sitemap');
+  return handles;
 }
 
 async function main() {
@@ -141,7 +153,7 @@ async function main() {
   urls.push(url(`${BASE}/contact`, 'monthly', 0.8, contactMod));
   urls.push(url(`${BASE}/collections`, 'weekly', 0.9, colMod));
   urls.push(url(`${BASE}/blog`, 'weekly', 0.8, blogIdxMod));
-  urls.push(url(`${BASE}/search`, 'weekly', 0.7));
+
   urls.push(url(`${BASE}/areas`, 'monthly', 0.9, areasIdxMod));
   urls.push(url(`${BASE}/sitemap`, 'monthly', 0.5));
   urls.push(url(`${BASE}/reviews`, 'monthly', 0.7, reviewsMod));
@@ -155,11 +167,9 @@ async function main() {
     urls.push(url(`${BASE}/services/${cat}/${svc}`, 'monthly', 0.8, svcMod2));
   });
 
-  // Collections - from Shopify or fallback to known
+  // Collections come from live Shopify. Incomplete API responses fail the build.
   let collectionHandles = await getShopifyCollections();
-  if (collectionHandles.length === 0) {
-    collectionHandles = ['juuce', 'qiqi', 'pure', 'wet-brush', 'treatments', 'styling', 'best-sellers-nov'];
-  }
+  collectionHandles = [...new Set([...collectionHandles, 'jenas-daily-trio'])];
   collectionHandles.forEach((h) => {
     urls.push(url(`${BASE}/collections/${h}`, 'weekly', 0.8));
   });
@@ -191,7 +201,8 @@ async function main() {
   const blogContent = existsSync(blogPath) ? readFileSync(blogPath, 'utf8') : '';
   const blogMod = gitLastMod('src/data/blogPosts.ts');
   const blogSlugs = [...(blogContent.match(/slug:\s*["']([^"']+)["']/g) || [])].map((m) => m.replace(/slug:\s*["']([^"']+)["']/, '$1'));
-  [...new Set(blogSlugs)].filter((s) => s.length > 2).forEach((slug) => {
+  const excludedBlogSlugs = new Set(['christmas-gift-packs-at-hair-pinns']);
+  [...new Set(blogSlugs)].filter((s) => s.length > 2 && !excludedBlogSlugs.has(s)).forEach((slug) => {
     urls.push(url(`${BASE}/blog/${slug}`, 'monthly', 0.6, blogMod));
   });
 
@@ -225,18 +236,6 @@ async function main() {
   urls.push(url(`${BASE}/privacy`, 'yearly', 0.3));
   urls.push(url(`${BASE}/terms`, 'yearly', 0.3));
 
-  // Machine-readable / discovery files — the LLM and AI-crawler
-  // surface. Listed here so the master sitemap stays the single source
-  // of truth for what to crawl. Lastmod is `today` on every build so
-  // Google re-crawls them on every deploy.
-  urls.push(url(`${BASE}/llms.txt`,        'weekly', 0.6));
-  urls.push(url(`${BASE}/llms-full.txt`,   'weekly', 0.6));
-  urls.push(url(`${BASE}/llms.json`,       'weekly', 0.6));
-  urls.push(url(`${BASE}/llm.txt`,         'weekly', 0.6));
-  urls.push(url(`${BASE}/humans.txt`,      'monthly', 0.4));
-  urls.push(url(`${BASE}/ai.txt`,          'monthly', 0.4));
-  urls.push(url(`${BASE}/.well-known/security.txt`,      'yearly', 0.3));
-  urls.push(url(`${BASE}/.well-known/change-password`,   'yearly', 0.2));
 
   // Generate XML. Includes the Google image extension namespace so each
   // product <url> can carry up to 5 <image:image> entries, helping Google

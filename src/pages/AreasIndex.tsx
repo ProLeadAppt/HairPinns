@@ -155,7 +155,7 @@ const AreasIndex = () => {
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors font-semibold"
                 >
                   <MapPin className="w-5 h-5" />
-                  Call +61 468 093 991
+                  Call 0416 037 663
                 </a>
                 <Link 
                   to="/contact"

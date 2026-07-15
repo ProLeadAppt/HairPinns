@@ -29,6 +29,7 @@ const NotFound = () => {
         description="This page could not be found. Shop hair products Australia-wide, visit our Bangor salon, or contact us."
         canonical="https://hairpinns.com/404"
         noIndex={true}
+        noFollow={true}
       />
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-accent/30 to-background">
         <main id="main-content" tabIndex={-1} className="text-center px-4 py-12 max-w-lg">

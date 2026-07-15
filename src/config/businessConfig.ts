@@ -6,6 +6,24 @@
 /** Canonical site URL — single source of truth for all SEO references */
 export const SITE_URL = 'https://hairpinns.com';
 
+/** Return the final public URL form used by Netlify and every SEO surface. */
+export const canonicalSiteUrl = (value: string = SITE_URL): string => {
+  const absolute = value.startsWith('http')
+    ? value
+    : `${SITE_URL}${value.startsWith('/') ? value : `/${value}`}`;
+  const parsed = new URL(absolute);
+
+  if (parsed.origin === SITE_URL) {
+    const lastSegment = parsed.pathname.split('/').filter(Boolean).at(-1) || '';
+    const isStaticFile = /\.[a-z0-9]{2,8}$/i.test(lastSegment);
+    if (!isStaticFile && !parsed.pathname.endsWith('/')) {
+      parsed.pathname = `${parsed.pathname}/`;
+    }
+  }
+
+  return parsed.toString();
+};
+
 export const BUSINESS_NAP = {
   name: "Hair Pinns",
   address: {

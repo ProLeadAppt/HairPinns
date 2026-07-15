@@ -14,9 +14,9 @@ const root = resolve(__dirname, '..');
 // Load .env if present
 if (existsSync(resolve(root, '.env'))) {
   const env = readFileSync(resolve(root, '.env'), 'utf8');
-  env.split('\n').forEach((line) => {
+  env.split(/\r?\n/).forEach((line) => {
     const match = line.match(/^([^#=]+)=(.*)$/);
-    if (match && process.env[match[1].trim()] === undefined) {
+    if (match && !process.env[match[1].trim()]) {
       const val = match[2].trim().replace(/^["']|["']$/g, '');
       process.env[match[1].trim()] = val;
     }
@@ -39,31 +39,62 @@ function extractBlogSlugs(filePath) {
     .filter((s) => s.length > 2);
 }
 
+const CURRENT_COLLECTION_HANDLES = [
+  'juuce-botanicals',
+  'pure-certified-organic-hair-care',
+  'wet-brush-detanglers',
+  'hair-pinns-accessories',
+  'aromaganic',
+  'island-vibes-tanning',
+  'poppet-locks-reuseable-hair-extension-ponytails',
+  'qiqi',
+  'the-perfect-pony-hair',
+  'heat-protection',
+  'blonde-bombshells',
+  'curly-girlys',
+  'pump-up-the-volume',
+  'frizz-free-must-haves',
+  'hair-care-must-haves-sale-items',
+  'haircare-bundles-gift-sets',
+  'shampoo-conditioners',
+  'hair-treatments-masks',
+  'scalp-health-care',
+  'colour-treated-hair',
+  'hair-tools-brushes',
+  'hair-styling-products',
+];
+
 async function fetchShopifyHandles(type) {
   const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
   const token = process.env.VITE_SF_STOREFRONT_TOKEN || '';
   const version = process.env.VITE_SF_API_VERSION || '2025-01';
-  if (!token) return [];
+  if (!token) {
+    const configuredKeys = Object.keys(process.env).filter((key) => key.startsWith('VITE_SF_') || key.startsWith('VITE_SHOPIFY_'));
+    throw new Error(`[prerender] Missing Shopify Storefront token while collecting ${type}. Configured keys: ${configuredKeys.join(', ') || 'none'}`);
+  }
 
   const query = type === 'products'
-    ? `query { products(first: 250, query: "available_for_sale:true") { edges { node { handle } } } }`
+    ? `query { products(first: 250) { edges { node { handle } } } }`
     : `query { collections(first: 50) { edges { node { handle } } } }`;
 
-  try {
-    const res = await fetch(`https://${domain}/api/${version}/graphql.json`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': token,
-      },
-      body: JSON.stringify({ query }),
-    });
-    const json = await res.json();
-    const edges = type === 'products' ? json.data?.products?.edges : json.data?.collections?.edges;
-    return (edges || []).map((e) => e.node.handle).filter(Boolean);
-  } catch {
-    return [];
+  const res = await fetch(`https://${domain}/api/${version}/graphql.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': token,
+    },
+    body: JSON.stringify({ query }),
+  });
+  if (!res.ok) throw new Error(`[prerender] Shopify ${type} request failed with HTTP ${res.status}`);
+
+  const json = await res.json();
+  if (json.errors?.length) {
+    throw new Error(`[prerender] Shopify ${type} query failed: ${json.errors.map((error) => error.message).join('; ')}`);
   }
+  const edges = type === 'products' ? json.data?.products?.edges : json.data?.collections?.edges;
+  const handles = (edges || []).map((edge) => edge.node.handle).filter(Boolean);
+  if (handles.length === 0) throw new Error(`[prerender] Shopify returned no ${type}; refusing an incomplete build`);
+  return handles;
 }
 
 export async function collectRoutes() {
@@ -102,9 +133,10 @@ export async function collectRoutes() {
 
   SERVICE_ROUTES.forEach(([cat, svc]) => routes.push(`/services/${cat}/${svc}`));
 
-  let collectionHandles = await fetchShopifyHandles('collections');
-  if (collectionHandles.length === 0) {
-    collectionHandles = ['juuce', 'qiqi', 'pure', 'wet-brush', 'treatments', 'styling', 'best-sellers-nov'];
+  const collectionHandles = await fetchShopifyHandles('collections');
+  const missingRequiredCollections = CURRENT_COLLECTION_HANDLES.filter((handle) => !collectionHandles.includes(handle));
+  if (missingRequiredCollections.length > 0) {
+    throw new Error(`[prerender] Required Shopify collections are missing: ${missingRequiredCollections.join(', ')}`);
   }
   collectionHandles.forEach((h) => routes.push(`/collections/${h}`));
 

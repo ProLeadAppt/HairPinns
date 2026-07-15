@@ -5,7 +5,7 @@ import { ShoppingBag } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { searchProducts, getCollectionByHandle } from "@/lib/shopify";
-import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
 interface ProductRecommendationsProps {
@@ -165,7 +165,7 @@ const ProductRecommendations = ({
                   const compareAt =
                     product.originalPrice && product.originalPrice > product.price
                       ? product.originalPrice
-                      : synthesiseCompareAt(product.price);
+                      : undefined;
                   const compareText = compareAt
                     ? formatPrice(compareAt, product.currency)
                     : "";

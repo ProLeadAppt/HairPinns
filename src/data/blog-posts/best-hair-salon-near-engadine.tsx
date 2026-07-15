@@ -25,8 +25,8 @@ const post = {
           content: "The most-booked services for Engadine clients: family cut appointments, kids cut-and-blowdry bundles, seniors' colour and styling (we do gentle colour suited to mature hair very well), and mid-length cut packages. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from an Engadine Client",
-          content: "'My mum, my daughter, and I all go to Jena now. Three generations, same stylist. My mum used to dread hair appointments and now looks forward to them.' — D. P., Engadine. (Composite of client feedback — real quote to be added before publish.) This captures the Engadine-specific appeal: a salon that genuinely works across ages."
+          heading: "Why the Engadine Trip Works",
+          content: "For Engadine households, Hair Pinns combines children's cuts, adult colour and styling services in one Bangor location. Current services, prices and availability are published through the live booking menu so families can plan before travelling."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -47,11 +47,11 @@ const post = {
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
