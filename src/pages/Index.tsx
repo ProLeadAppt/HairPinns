@@ -10,12 +10,11 @@ const Footer = lazy(() => import("@/components/Footer"));
 const StickyBookBar = lazy(() => import("@/components/home/StickyBookBar"));
 
 // Below-fold sections (lazy-loaded for performance)
+const ShopByConcern = lazy(() => import("@/components/home/ShopByConcern"));
 const BestSellers = lazy(() => import("@/components/home/BestSellers"));
-const ReviewsShowcase = lazy(() => import("@/components/home/ReviewsShowcase"));
 const BlogTrio = lazy(() => import("@/components/home/BlogTrio"));
 const BookingBanner = lazy(() => import("@/components/home/BookingBanner"));
 const JenaPromise = lazy(() => import("@/components/home/JenaPromise"));
-const BeforeAfterShowcase = lazy(() => import("@/components/home/BeforeAfterShowcase"));
 
 import {
   generateOrganizationSchema,
@@ -42,10 +41,12 @@ const DeferredSection = ({
   children,
   fallback = null,
   className = "",
+  rootMargin = "250px 0px",
 }: {
   children: React.ReactNode;
   fallback?: React.ReactNode;
   className?: string;
+  rootMargin?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(isPrerenderOrHeadless());
@@ -65,12 +66,12 @@ const DeferredSection = ({
           observer.disconnect();
         }
       },
-      { rootMargin: "250px 0px" }
+      { rootMargin }
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [isVisible]);
+  }, [isVisible, rootMargin]);
 
   return <div ref={ref} className={className}>{isVisible ? children : fallback}</div>;
 };
@@ -213,12 +214,17 @@ const Index = () => {
         {/* 2. Trust bar — 3 quiet signals, lots of air */}
         <HeroSocialProofBar />
 
-        {/* 3. The Jena Promise */}
-        <Suspense fallback={null}>
-          <JenaPromise />
-        </Suspense>
+        {/* 3. Shop by concern — fast intent routing before the product grid */}
+        <DeferredSection
+          rootMargin="0px"
+          fallback={<div className="h-24" aria-hidden="true" />}
+        >
+          <Suspense fallback={null}>
+            <ShopByConcern />
+          </Suspense>
+        </DeferredSection>
 
-        {/* 4. Best Sellers */}
+        {/* 4. Best Sellers — live Shopify inventory and quick add */}
         <DeferredSection
           className="reveal"
           fallback={
@@ -237,21 +243,14 @@ const Index = () => {
           </Suspense>
         </DeferredSection>
 
-        {/* 5. In the chair — before/after styling showcase */}
-        <DeferredSection fallback={null}>
-          <Suspense fallback={null}>
-            <BeforeAfterShowcase />
-          </Suspense>
-        </DeferredSection>
-
-        {/* 6. Reviews */}
+        {/* 5. Product selection credibility */}
         <DeferredSection className="reveal" fallback={null}>
           <Suspense fallback={null}>
-            <ReviewsShowcase />
+            <JenaPromise />
           </Suspense>
         </DeferredSection>
 
-        {/* 7. From the blog */}
+        {/* 6. Product advice and education */}
         <SectionNumber index="04" label="read, learn, ask" />
         <DeferredSection className="reveal py-12 bg-muted/30" fallback={null}>
           <Suspense fallback={null}>
@@ -259,7 +258,7 @@ const Index = () => {
           </Suspense>
         </DeferredSection>
 
-        {/* 8. Book with Jena */}
+        {/* 7. Contained salon path — kept deliberately near the close */}
         <DeferredSection fallback={null}>
           <Suspense fallback={null}>
             <BookingBanner />
@@ -272,11 +271,9 @@ const Index = () => {
           <Footer />
         </Suspense>
       </DeferredSection>
-      <DeferredSection fallback={null}>
-        <Suspense fallback={null}>
-          <StickyBookBar />
-        </Suspense>
-      </DeferredSection>
+      <Suspense fallback={null}>
+        <StickyBookBar />
+      </Suspense>
     </div>
   );
 };

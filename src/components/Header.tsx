@@ -1,10 +1,11 @@
-import { Menu, Calendar, ShoppingBag, ShoppingCart, X } from "lucide-react";
+import { Menu, Calendar, ShoppingCart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { lazy, Suspense, useRef, useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
 import { useCart } from "@/contexts/CartContext";
+import { SHOP_BY_CONCERN } from "@/config/commerceNavigation";
 import {
   isStocktakeActive,
   QIQI_DISCOUNT_ACTIVE,
@@ -100,17 +101,14 @@ const Header = () => {
               <Suspense fallback={<Link to="/collections" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">Shop</Link>}>
                 <ShopDropdown />
               </Suspense>
-              <Link to="/services" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
-                Services
-              </Link>
-              <Link to="/areas" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
-                Areas We Serve
+              <Link to="/blog" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+                Hair Care Guides
               </Link>
               <Link to="/about" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
-                About
+                About Jena
               </Link>
-              <Link to="/blog" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
-                Blog
+              <Link to="/services" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
+                Salon
               </Link>
               <Link to="/contact" className="nav-link-animated text-foreground hover:text-brand-500 transition-colors duration-fast font-medium">
                 Contact
@@ -142,12 +140,6 @@ const Header = () => {
                 )}
               </Button>
               <Button asChild variant="ghost" size="sm">
-                <Link to="/collections">
-                  <ShoppingBag className="w-4 h-4" />
-                  Shop
-                </Link>
-              </Button>
-              <Button asChild variant="primary" size="sm">
                 <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_desktop", window.location.pathname)}>
                   <Calendar className="w-4 h-4" />
                   {BOOK_CTA_LABEL}
@@ -182,22 +174,32 @@ const Header = () => {
                     ) : null}
                   </div>
                   
-                  <Link ref={mobileMenuFirstLinkRef} to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                    Shop
+                  <Link ref={mobileMenuFirstLinkRef} to="/collections" onClick={() => setMobileMenuOpen(false)} className="text-lg font-semibold text-heading hover:text-brand-500 transition-colors duration-fast">
+                    Shop all products
                   </Link>
-                  <Link to="/services" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                    Services
+                  <div className="grid grid-cols-2 gap-2" aria-label="Shop by concern">
+                    {SHOP_BY_CONCERN.slice(0, 4).map((concern) => (
+                      <Link
+                        key={concern.handle}
+                        to={concern.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        aria-label={`Shop ${concern.name.toLowerCase()}`}
+                        className="min-h-11 rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm font-medium text-foreground hover:border-brand-500 hover:text-brand-600"
+                      >
+                        {concern.shortName}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    Hair Care Guides
                   </Link>
-                  <Link to="/areas" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                    Areas We Serve
+                  <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    About Jena
                   </Link>
-                  <Link to="/about" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                    About
+                  <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                    Salon services
                   </Link>
-                  <Link to="/blog" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
-                    Blog
-                  </Link>
-                  <Link to="/contact" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     Contact
                   </Link>
 
@@ -215,13 +217,7 @@ const Header = () => {
                       <ShoppingCart className="w-5 h-5" />
                       Cart
                     </Button>
-                    <Button asChild variant="ghost" size="lg" className="w-full justify-start">
-                      <Link to="/collections" onClick={() => setMobileMenuOpen(false)}>
-                        <ShoppingBag className="w-5 h-5" />
-                        Shop
-                      </Link>
-                    </Button>
-                    <Button asChild variant="primary" size="lg" className="w-full">
+                    <Button asChild variant="ghost" size="lg" className="w-full">
                       <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_mobile", window.location.pathname)}>
                         <Calendar className="w-5 h-5" />
                         {BOOK_CTA_LABEL}

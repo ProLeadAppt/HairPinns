@@ -39,7 +39,7 @@ for (const viewport of viewports) {
       level: 1,
       name: 'Hair care from someone who actually does hair.',
     })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Book a chair at Hair Pinns/ })).toBeVisible();
+    await expect(page.getByRole('link', { name: "Shop Jena's product shelf" })).toBeVisible();
 
     if (viewport.width < 500) {
       const skipLink = page.getByRole('link', { name: 'Skip to main content' });
@@ -54,6 +54,15 @@ for (const viewport of viewports) {
       await expect(skipLink).toBeVisible();
     }
 
+    // Mount the live product shelf before racing through the rest of the page.
+    // This prevents fast automated scrolling from outrunning Shopify data and
+    // producing misleading blank full-page screenshots.
+    await page.evaluate(() => window.scrollTo(0, Math.max(1000, window.innerHeight)));
+    const sellerHeading = page.getByRole('heading', { name: /what's selling right now/i });
+    await expect(sellerHeading).toBeVisible({ timeout: 15_000 });
+    await sellerHeading.scrollIntoViewIfNeeded();
+    await expect(page.getByRole('button', { name: /add to bag/i }).first()).toBeVisible({ timeout: 20_000 });
+
     // Exercise IntersectionObserver and native lazy-loading boundaries the
     // same way a real reader does. Full-page screenshots alone do not scroll
     // in Firefox/WebKit, which can leave valid lazy images uncaptured.
@@ -62,13 +71,29 @@ for (const viewport of viewports) {
       for (let sweep = 0; sweep < 2; sweep += 1) {
         for (let y = 0, passes = 0; y < document.documentElement.scrollHeight && passes < 80; y += step, passes += 1) {
           window.scrollTo(0, y);
-          await new Promise(resolve => window.setTimeout(resolve, 75));
+          await new Promise(resolve => window.setTimeout(resolve, 140));
         }
-        await new Promise(resolve => window.setTimeout(resolve, 500));
+        await new Promise(resolve => window.setTimeout(resolve, 900));
       }
       window.scrollTo(0, 0);
     });
-    await page.waitForTimeout(700);
+    for (const heading of [
+      /a short shelf, chosen by a working hairdresser/i,
+      /hair care guides/i,
+      /come in and see me/i,
+    ]) {
+      const sectionHeading = page.getByRole('heading', { name: heading }).first();
+      await sectionHeading.scrollIntoViewIfNeeded();
+      await expect(sectionHeading).toBeVisible({ timeout: 15_000 });
+    }
+    // Full-page screenshots capture offscreen pixels without re-entering each
+    // viewport. Disable paint skipping only for evidence so every already-
+    // verified section appears in the composite image.
+    await page.addStyleTag({
+      content: '.content-visibility-auto, [style*="content-visibility"] { content-visibility: visible !important; }',
+    });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(900);
 
     const brokenImages = await page.evaluate(() =>
       Array.from(document.images)
