@@ -119,6 +119,43 @@ assert.match(schemaSource, /applicableCountry:\s*'AU'/, 'Merchant return policy 
 
 const indexHtml = await readFile(path.join(ROOT, 'index.html'), 'utf8');
 assert.doesNotMatch(indexHtml, /searchatlas|sa\.searchatlas\.com|dashboard\.searchatlas\.com/i, 'SearchAtlas loader remains in index.html');
+assert.doesNotMatch(indexHtml, /fonts\.googleapis\.com|fonts\.gstatic\.com/, 'Critical fonts must be self-hosted');
+assert.doesNotMatch(indexHtml, /googletagmanager\.com\/gtag\/js/, 'GA4 must not compete with first paint');
+assert.match(indexHtml, /gtag\(['"]config['"],\s*['"]G-N6Y1TJMWGG['"]\)/, 'GA4 config must be queued before deferred events');
+assert.doesNotMatch(indexHtml, /rel="preload"[^>]+hero-poster\.avif/, 'Do not preload the desktop video poster as the mobile LCP image');
+assert.match(indexHtml, /rel="preload"[^>]+hero-home-1280w\.avif/, 'Preload the actual responsive hero LCP image');
+
+const trackingScripts = await readFile(path.join(ROOT, 'src/components/tracking/TrackingScripts.tsx'), 'utf8');
+assert.match(trackingScripts, /googletagmanager\.com\/gtag\/js/, 'Deferred tracking must still load GA4');
+assert.doesNotMatch(trackingScripts, /gtag\?\.\(['"]config['"]/, 'Deferred loader must not queue a duplicate GA4 config/page view');
+
+const heroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
+assert.match(heroSource, /aria-label="Book a chair[^\"]*"/, 'Hero CTA accessible name must contain its visible label');
+
+const socialProofSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
+assert.doesNotMatch(socialProofSource, /text-foreground\/60/, 'Trust-strip supporting text must meet WCAG AA contrast');
+
+const jenaPromiseSource = await readFile(path.join(ROOT, 'src/components/home/JenaPromise.tsx'), 'utf8');
+assert.match(jenaPromiseSource, /jena-headshot-640w\.avif[\s\S]*?srcSet=/, 'Jena portrait must offer a mobile-sized AVIF source');
+
+const beforeAfterSource = await readFile(path.join(ROOT, 'src/components/home/BeforeAfterShowcase.tsx'), 'utf8');
+assert.match(beforeAfterSource, /hairdresser-taking-care-her-client-1280w\.avif/, 'Salon comparison must use the optimized finish image');
+assert.match(beforeAfterSource, /brunette-woman-getting-her-hair-washed-1280w\.avif/, 'Salon comparison must use the optimized basin image');
+
+const bestSellersSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
+assert.doesNotMatch(bestSellersSource, /aria-label=\{`Add \$\{product\.title\} to bag`\}/, 'Quick-add accessible name must include the visible button label');
+assert.match(bestSellersSource, /h-11/, 'Mobile quick-add target must be at least 44px tall');
+
+const globalCss = await readFile(path.join(ROOT, 'src/index.css'), 'utf8');
+assert.match(globalCss, /@font-face[\s\S]*?font-family:\s*"Inter"/, 'Inter must be self-hosted');
+assert.match(globalCss, /@font-face[\s\S]*?font-family:\s*"Playfair Display"/, 'Playfair Display must be self-hosted');
+assert.match(globalCss, /\.section-number-label[\s\S]*?var\(--muted-foreground\)/, 'Editorial divider labels must use the WCAG-safe muted foreground');
+assert.match(globalCss, /\.section-number-index[\s\S]*?var\(--brand-700\)/, 'Editorial divider numbers must use a WCAG-safe brand colour');
+
+const trackingGateSource = await readFile(path.join(ROOT, 'src/components/tracking/TrackingGate.tsx'), 'utf8');
+assert.doesNotMatch(trackingGateSource, /requestIdleCallback\(run/, 'Tracking must not load during an early idle slot before LCP');
+assert.match(trackingGateSource, /addEventListener\(["']load["']/, 'Tracking must wait until the page load event');
+assert.match(trackingGateSource, /addEventListener\(["']pointerdown["']/, 'User interaction must still activate tracking immediately');
 
 const netlify = await readFile(path.join(ROOT, 'netlify.toml'), 'utf8');
 assert.doesNotMatch(netlify, /searchatlas|sa\.searchatlas\.com|dashboard\.searchatlas\.com/i, 'SearchAtlas remains in CSP');

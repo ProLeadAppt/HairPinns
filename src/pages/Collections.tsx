@@ -301,6 +301,7 @@ const Collections = () => {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   type="text"
+                  aria-label="Search collections"
                   placeholder="Search collections..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -310,7 +311,7 @@ const Collections = () => {
 
               {/* Sort */}
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-[200px]" aria-label="Sort collections">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>

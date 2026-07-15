@@ -170,7 +170,7 @@ const SearchResults = () => {
           {products.length > 0 && (
             <div className="mb-6 flex justify-end">
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-[200px]" aria-label="Sort search results">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -276,6 +276,8 @@ const SearchResults = () => {
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy"
                             decoding="async"
+                            width="600"
+                            height="450"
                           />
                         </Link>
                         <div className="p-4">

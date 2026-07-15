@@ -69,6 +69,10 @@ const STRIPPERS = [
   { name: 'leadconnector-script', re: /<script[^>]*leadconnectorhq\.com[^>]*>[\s\S]*?<\/script>/gi },
   { name: 'leadconnector-link', re: /<link[^>]*leadconnectorhq\.com[^>]*>/gi },
   { name: 'bunny-fonts', re: /<link[^>]*fonts\.bunny\.net[^>]*>/gi },
+  // Chromium adds these for every dynamic import executed during capture.
+  // Shipping them would eagerly preload route and below-fold chunks for real
+  // visitors, undoing the application's lazy-loading boundaries.
+  { name: 'captured-dynamic-modulepreloads', re: /<link\b(?=[^>]*\brel=["']modulepreload["'])(?=[^>]*\bas=["']script["'])[^>]*>/gi },
   // Ionic class on <html>
   { name: 'ionic-html-class', re: /<html([^>]*?)class="plt-[^"]*"([^>]*?)mode="md"([^>]*)>/gi, replace: '<html$1$2$3>' },
   { name: 'ionic-html-mode', re: /<html([^>]*?)mode="md"([^>]*)>/gi, replace: '<html$1$2>' },

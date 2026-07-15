@@ -31,35 +31,36 @@ const TrackingGate = () => {
       });
     };
 
-    const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
-      cancelIdleCallback?: (id: number) => number;
-    };
-
     let cancelled = false;
+    let started = false;
+    let delayHandle: number | undefined;
     const run = () => {
-      if (!cancelled) {
-        void loadTracking().catch((error) => {
-          console.warn("[TrackingGate] Failed to load tracking modules:", error);
-        });
-      }
+      if (cancelled || started) return;
+      started = true;
+      if (typeof delayHandle === "number") window.clearTimeout(delayHandle);
+      void loadTracking().catch((error) => {
+        console.warn("[TrackingGate] Failed to load tracking modules:", error);
+      });
     };
 
-    let handle: number | undefined;
-    if (typeof w.requestIdleCallback === "function") {
-      handle = w.requestIdleCallback(run, { timeout: 3500 });
+    const scheduleAfterLoad = () => {
+      delayHandle = window.setTimeout(run, 4000);
+    };
+
+    if (document.readyState === "complete") {
+      scheduleAfterLoad();
     } else {
-      handle = window.setTimeout(run, 3500);
+      window.addEventListener("load", scheduleAfterLoad, { once: true });
     }
+    window.addEventListener("pointerdown", run, { once: true, passive: true });
+    window.addEventListener("keydown", run, { once: true });
 
     return () => {
       cancelled = true;
-      if (typeof handle === "number" && typeof w.cancelIdleCallback === "function") {
-        w.cancelIdleCallback(handle);
-      }
-      if (typeof handle === "number") {
-        window.clearTimeout(handle);
-      }
+      window.removeEventListener("load", scheduleAfterLoad);
+      window.removeEventListener("pointerdown", run);
+      window.removeEventListener("keydown", run);
+      if (typeof delayHandle === "number") window.clearTimeout(delayHandle);
     };
   }, []);
 

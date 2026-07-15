@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ShoppingBag, Star, Zap } from "lucide-react";
 import Header from "@/components/Header";
@@ -8,6 +8,7 @@ import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -55,6 +56,7 @@ const ProductDetail = () => {
   const [addingToCart, setAddingToCart] = useState(false);
   const [buyingNow, setBuyingNow] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const zoomButtonRef = useRef<HTMLButtonElement>(null);
 
   // Fetch product from Shopify (with 8s timeout to avoid perpetual loading)
   useEffect(() => {
@@ -559,11 +561,15 @@ const ProductDetail = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Left: Gallery */}
               <div className="space-y-4">
-                {/* Main Image - Clickable */}
-                <div
-                  className="relative aspect-square bg-muted rounded-card overflow-hidden group cursor-zoom-in"
-                  onClick={() => setLightboxOpen(true)}
-                >
+                {/* Main image and dedicated zoom control */}
+                <div className="relative aspect-square bg-muted rounded-card overflow-hidden group cursor-zoom-in">
+                  <button
+                    ref={zoomButtonRef}
+                    type="button"
+                    className="block w-full h-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset"
+                    onClick={() => setLightboxOpen(true)}
+                    aria-label={`Open ${product.title} image ${currentImage + 1} full screen`}
+                  >
                   <picture className="block w-full h-full">
                     <source
                       type="image/webp"
@@ -584,8 +590,9 @@ const ProductDetail = () => {
                       fetchPriority="high"
                     />
                   </picture>
+                  </button>
                   
-                  {/* Navigation Arrows — 44px hit area + always-visible on mobile (no hover) */}
+                  {/* Navigation arrows: 44px targets, visible on touch devices. */}
                   {images.length > 1 && (
                     <>
                       <button
@@ -706,14 +713,22 @@ const ProductDetail = () => {
                 {/* Variant Selector */}
                 {Array.from(uniqueOptionNames).map((optionName) => (
                   <div key={optionName} className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">
+                    <label
+                      id={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}-label`}
+                      htmlFor={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}`}
+                      className="text-sm font-medium text-foreground"
+                    >
                       {optionName}
                     </label>
                     <Select 
                       value={selectedOptions[optionName] || ""}
                       onValueChange={(value) => handleOptionChange(optionName, value)}
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger
+                        id={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}`}
+                        aria-labelledby={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}-label`}
+                        className="w-full"
+                      >
                         <SelectValue placeholder={`Select ${optionName}`} />
                       </SelectTrigger>
                       <SelectContent>
@@ -852,19 +867,20 @@ const ProductDetail = () => {
           </div>
         </section>
 
-        {/* Image Lightbox */}
-        {lightboxOpen && currentImg?.url && (
-          <div
-            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center cursor-zoom-out"
-            onClick={() => setLightboxOpen(false)}
+        {/* Radix supplies focus trapping, Escape handling, and focus restoration. */}
+        <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+          {currentImg?.url ? (
+          <DialogContent
+            aria-describedby={undefined}
+            onCloseAutoFocus={(event) => {
+              event.preventDefault();
+              zoomButtonRef.current?.focus();
+            }}
+            className="max-w-[96vw] border-0 bg-black/90 p-4 shadow-none sm:rounded-lg [&>button]:text-white [&>button]:opacity-100"
           >
-            <button
-              className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light z-10"
-              onClick={() => setLightboxOpen(false)}
-              aria-label="Close"
-            >
-              &times;
-            </button>
+            <DialogTitle className="sr-only">
+              Expanded product image: {currentImg.altText || product.title}
+            </DialogTitle>
             <picture className="block max-w-[90vw] max-h-[90vh]">
               <source
                 type="image/webp"
@@ -886,8 +902,9 @@ const ProductDetail = () => {
               />
 
             </picture>
-          </div>
-        )}
+          </DialogContent>
+          ) : null}
+        </Dialog>
 
         {/* Frequently Bought Together Section - wrapped so failures don't break product page */}
         {product && (

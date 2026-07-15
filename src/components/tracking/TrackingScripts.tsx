@@ -1,23 +1,30 @@
 import { useEffect } from "react";
 
 /**
- * Meta Pixel and Microsoft Clarity initialization scripts
+ * GA4, Meta Pixel and Microsoft Clarity initialization scripts
  * Loaded after idle so they don't compete with first paint.
  *
- * GA4 is intentionally loaded in index.html so Google Tag Assistant and GA
- * Realtime can see the tag immediately on first paint. SPA route-change
- * page_view events are sent by TrackingInitializer.
+ * The lightweight GA queue is created in index.html. The provider script is
+ * loaded here after idle so analytics cannot compete with first paint.
  */
 
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || "";
 const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID || "wdl274809i";
+const GA4_MEASUREMENT_ID = "G-N6Y1TJMWGG";
 
+const GA4_SCRIPT_ID = "hp-ga4-script";
 const META_PIXEL_SCRIPT_ID = "hp-meta-pixel-inline";
 const CLARITY_SCRIPT_ID = "hp-clarity-inline";
 
 const TrackingScripts = () => {
   useEffect(() => {
-    if (!META_PIXEL_ID && !CLARITY_PROJECT_ID) return;
+    if (!document.getElementById(GA4_SCRIPT_ID)) {
+      const script = document.createElement("script");
+      script.id = GA4_SCRIPT_ID;
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`;
+      document.head.appendChild(script);
+    }
 
     if (META_PIXEL_ID && !document.getElementById(META_PIXEL_SCRIPT_ID)) {
       const script = document.createElement("script");

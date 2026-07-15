@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useId } from "react";
 import { Search, X, Loader2, BookOpen } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -57,6 +57,7 @@ export default function ProductSearch({
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const inputId = useId();
   const navigate = useNavigate();
   const articles = query.trim().length >= 2 ? searchBlogPosts(query, Math.min(maxResults, 4)) : [];
 
@@ -124,9 +125,11 @@ export default function ProductSearch({
   return (
     <div className="relative w-full">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
+        <label htmlFor={inputId} className="sr-only">Search products and articles</label>
         <Input
-          type="text"
+          id={inputId}
+          type="search"
           placeholder={placeholder}
           value={query}
           onChange={handleInputChange}
@@ -135,14 +138,14 @@ export default function ProductSearch({
               setShowResults(true);
             }
           }}
-          className="pl-10 pr-10"
+          className="pl-10 pr-12"
         />
         {query && (
           <Button
             variant="ghost"
             size="sm"
             onClick={handleClear}
-            className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 p-0"
+            className="absolute right-0 top-1/2 -translate-y-1/2 h-11 w-11 p-0"
             aria-label="Clear search"
           >
             <X className="w-4 h-4" />
@@ -151,7 +154,11 @@ export default function ProductSearch({
       </div>
 
       {showResults && (
-        <Card className="absolute top-full left-0 right-0 z-50 mt-2 max-h-96 overflow-y-auto shadow-lg">
+        <Card
+          role="region"
+          aria-label="Search suggestions"
+          className="absolute top-full left-0 right-0 z-50 mt-2 max-h-96 overflow-y-auto shadow-lg"
+        >
           <CardContent className="p-0">
             {isSearching ? (
               <div className="flex items-center justify-center p-8">
@@ -281,6 +288,13 @@ export default function ProductSearch({
           </CardContent>
         </Card>
       )}
+      <span className="sr-only" role="status" aria-live="polite">
+        {isSearching
+          ? "Searching"
+          : hasSearched
+            ? `${results.length + articles.length} search suggestions available`
+            : ""}
+      </span>
     </div>
   );
 }

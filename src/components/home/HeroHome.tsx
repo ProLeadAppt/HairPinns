@@ -169,7 +169,7 @@ const HeroHome = () => {
                   href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Book a salon appointment at Hair Pinns (opens in new tab)"
+                  aria-label="Book a chair at Hair Pinns (opens in new tab)"
                   onClick={() => {
                     if (typeof window !== "undefined" && (window as any).dataLayer) {
                       (window as any).dataLayer.push({
