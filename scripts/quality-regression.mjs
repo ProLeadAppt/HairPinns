@@ -130,7 +130,7 @@ assert.match(trackingScripts, /googletagmanager\.com\/gtag\/js/, 'Deferred track
 assert.doesNotMatch(trackingScripts, /gtag\?\.\(['"]config['"]/, 'Deferred loader must not queue a duplicate GA4 config/page view');
 
 const heroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
-assert.match(heroSource, /aria-label="Book a chair[^\"]*"/, 'Hero CTA accessible name must contain its visible label');
+assert.match(heroSource, /aria-label="Shop Jena's product shelf"/, 'Hero CTA accessible name must contain its visible shopping label');
 
 const socialProofSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
 assert.doesNotMatch(socialProofSource, /text-foreground\/60/, 'Trust-strip supporting text must meet WCAG AA contrast');
@@ -145,6 +145,31 @@ assert.match(beforeAfterSource, /brunette-woman-getting-her-hair-washed-1280w\.a
 const bestSellersSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
 assert.doesNotMatch(bestSellersSource, /aria-label=\{`Add \$\{product\.title\} to bag`\}/, 'Quick-add accessible name must include the visible button label');
 assert.match(bestSellersSource, /h-11/, 'Mobile quick-add target must be at least 44px tall');
+
+const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
+for (const component of ['ShopByConcern', 'BestSellers', 'JenaPromise', 'BlogTrio', 'BookingBanner']) {
+  assert.match(homeSource, new RegExp(`<${component}\\s*\\/>`), `Product-first homepage is missing ${component}`);
+}
+assert.ok(
+  homeSource.indexOf('<ShopByConcern />') < homeSource.indexOf('<BestSellers />') &&
+  homeSource.indexOf('<BestSellers />') < homeSource.indexOf('<JenaPromise />') &&
+  homeSource.indexOf('<JenaPromise />') < homeSource.indexOf('<BookingBanner />'),
+  'Homepage must route product discovery before founder credibility and salon booking',
+);
+assert.doesNotMatch(homeSource, /<BeforeAfterShowcase\s*\/>|<ReviewsShowcase\s*\/>/, 'Salon-heavy showcases must not displace product discovery on the homepage');
+
+const homeHeroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
+assert.ok(homeHeroSource.indexOf('to="/collections"') < homeHeroSource.indexOf('fresha.com/book-now'), 'Homepage hero must present shopping before booking');
+assert.match(homeHeroSource, /Shop Jena's shelf/, 'Homepage hero needs a clear product-first CTA');
+
+const stickyActionSource = await readFile(path.join(ROOT, 'src/components/home/StickyBookBar.tsx'), 'utf8');
+assert.match(stickyActionSource, /aria-label="Quick shop bar"/, 'Mobile sticky action must remain commerce-first');
+assert.ok(stickyActionSource.indexOf('to="/collections"') < stickyActionSource.indexOf('href={BOOK_URL}'), 'Mobile sticky action must present shopping before salon booking');
+
+const commerceNavigationSource = await readFile(path.join(ROOT, 'src/config/commerceNavigation.ts'), 'utf8');
+for (const handle of ['frizz-free-must-haves', 'heat-protection', 'blonde-bombshells', 'pump-up-the-volume', 'curly-girlys']) {
+  assert.match(commerceNavigationSource, new RegExp(handle), `Shop-by-concern destination missing: ${handle}`);
+}
 
 const globalCss = await readFile(path.join(ROOT, 'src/index.css'), 'utf8');
 assert.match(globalCss, /@font-face[\s\S]*?font-family:\s*"Inter"/, 'Inter must be self-hosted');

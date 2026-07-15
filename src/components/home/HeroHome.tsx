@@ -129,7 +129,7 @@ const HeroHome = () => {
           }}
         >
           {!videoReady && (
-            <div className="absolute inset-0 bg-gradient-to-tr from-[rgba(24,0,30,0.92)] via-[rgba(24,0,30,0.55)] to-[rgba(24,0,30,0.18)]" />
+            <div className="absolute inset-0 bg-[rgba(24,0,30,0.82)] lg:bg-gradient-to-tr lg:from-[rgba(24,0,30,0.92)] lg:via-[rgba(24,0,30,0.55)] lg:to-[rgba(24,0,30,0.18)]" />
           )}
         </div>
       </div>
@@ -142,7 +142,7 @@ const HeroHome = () => {
             <span
               className="eyebrow inline-block text-[11px] uppercase tracking-[0.32em] text-[hsl(var(--gold))] mb-8"
             >
-              Hair Pinns · Bangor NSW
+              Salon-picked hair care · Shipped Australia-wide
             </span>
 
             {/* Headline — large, one strong line + a soft second line */}
@@ -155,8 +155,8 @@ const HeroHome = () => {
               does hair.
             </h1>
 
-            {/* Single primary action. Secondary goes subtle under it as a
-                text link, not a competing button. */}
+            {/* Commerce is the primary action. Salon booking stays available
+                as a quieter secondary path. */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7">
               <Button
                 asChild
@@ -165,31 +165,40 @@ const HeroHome = () => {
                 className="btn-lift text-white font-semibold"
                 style={{ borderRadius: "999px", padding: "1rem 2.75rem" }}
               >
-                <a
-                  href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Book a chair at Hair Pinns (opens in new tab)"
+                <Link
+                  to="/collections"
+                  aria-label="Shop Jena's product shelf"
                   onClick={() => {
                     if (typeof window !== "undefined" && (window as any).dataLayer) {
                       (window as any).dataLayer.push({
-                        event: "booking_click",
+                        event: "shop_click",
                         location: "hero_home",
-                        cta: "book_now",
+                        cta: "shop_jenas_shelf",
                       });
                     }
                   }}
                 >
-                  Book a chair
+                  Shop Jena's shelf
                   <span className="btn-arrow ml-2" aria-hidden="true">→</span>
-                </a>
+                </Link>
               </Button>
-              <Link
-                to="/collections"
+              <a
+                href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/80 hover:text-white text-sm underline-offset-4 hover:underline transition"
+                onClick={() => {
+                  if (typeof window !== "undefined" && (window as any).dataLayer) {
+                    (window as any).dataLayer.push({
+                      event: "booking_click",
+                      location: "hero_home_secondary",
+                      cta: "book_now",
+                    });
+                  }
+                }}
               >
-                or browse the product shelf →
-              </Link>
+                Book the Bangor salon →
+              </a>
             </div>
           </div>
         </div>

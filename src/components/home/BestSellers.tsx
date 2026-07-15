@@ -142,7 +142,7 @@ const BestSellers = () => {
 
   if (loading) {
     return (
-      <Section className="content-visibility-auto">
+      <Section className="content-visibility-auto" number={{ index: "02", label: "most reordered" }}>
         <SectionHeader
           title="What's selling right now"
           subtitle="Loading the good stuff..."
@@ -163,7 +163,7 @@ const BestSellers = () => {
   const bottomProducts = validProducts.slice(3, 6);
 
   return (
-    <Section className="content-visibility-auto">
+    <Section className="content-visibility-auto" number={{ index: "02", label: "most reordered" }}>
       <SectionHeader
         title="What's selling right now"
         subtitle="The products my clients keep reordering"

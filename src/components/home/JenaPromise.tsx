@@ -37,7 +37,7 @@ const promises = [
   {
     icon: Heart,
     title: "Packed at the salon",
-    body: "Your order is picked, packed and posted by me. Same-day dispatch on weekdays. Free shipping over $150 anywhere in Australia.",
+    body: "Your order is picked, packed and posted from the salon. Free shipping over $150 anywhere in Australia.",
   },
 ];
 
@@ -46,7 +46,7 @@ const JenaPromise = () => {
     <Section
       variant="gold"
       padding="editorial"
-      number={{ index: "01", label: "the jena promise" }}
+      number={{ index: "03", label: "why this shelf" }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
 
@@ -83,9 +83,9 @@ const JenaPromise = () => {
         <div>
           <SectionHeader
             align="left"
-            tagline="Hair care from someone who actually does hair."
-            title="I started Hair Pinns in 2009, and I still do the colour."
-            subtitle="Three things haven't changed since the first cut. The products I trust, the way I treat a client, and the salon I work from. The site is just a way to ship those products to you."
+            tagline="The same products I use on clients, packed at the salon."
+            title="A short shelf, chosen by a working hairdresser."
+            subtitle="I've worked behind the chair since 2009. Every product here earns its place on real hair before it reaches the online shelf."
             display
           />
 
@@ -117,8 +117,8 @@ const JenaPromise = () => {
               className="btn-lift font-semibold"
               style={{ borderRadius: "999px", padding: "0.875rem 2.5rem" }}
             >
-              <Link to="/about">
-                <span>Read my story</span>
+              <Link to="/collections">
+                <span>Shop the shelf</span>
                 <span className="btn-arrow ml-2" aria-hidden="true">→</span>
               </Link>
             </Button>
@@ -129,7 +129,7 @@ const JenaPromise = () => {
               className="btn-lift font-semibold border-heading/20"
               style={{ borderRadius: "999px", padding: "0.875rem 2.5rem" }}
             >
-              <Link to="/booking">Book a chair</Link>
+              <Link to="/about">Meet Jena</Link>
             </Button>
           </div>
         </div>

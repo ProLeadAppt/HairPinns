@@ -250,29 +250,32 @@ const Footer = () => {
             <div>
               <h4 className="text-sm font-semibold text-heading mb-3 uppercase tracking-wide">Quick Links</h4>
               <nav className="grid grid-cols-2 gap-x-4 gap-y-2" aria-label="Footer navigation">
-                <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors text-sm">
-                  Services & Pricing
-                </Link>
                 <Link to="/collections" className="text-foreground hover:text-brand-500 transition-colors text-sm">
                   Shop Products
                 </Link>
-                <Link to="/areas" className="text-foreground hover:text-brand-500 transition-colors text-sm">
-                  Areas We Serve
+                <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors text-sm">
+                  Hair Care Guides
+                </Link>
+                <Link to="/policies/shipping" className="text-foreground hover:text-brand-500 transition-colors text-sm">
+                  Shipping
+                </Link>
+                <Link to="/policies/returns" className="text-foreground hover:text-brand-500 transition-colors text-sm">
+                  Returns
+                </Link>
+                <Link to="/services" className="text-foreground hover:text-brand-500 transition-colors text-sm">
+                  Services & Pricing
+                </Link>
+                <Link to="/booking" className="text-foreground hover:text-brand-500 transition-colors text-sm">
+                  {BOOK_CTA_LABEL}
                 </Link>
                 <Link to="/about" className="text-foreground hover:text-brand-500 transition-colors text-sm">
                   About Jena
                 </Link>
-                <Link to="/blog" className="text-foreground hover:text-brand-500 transition-colors text-sm">
-                  Blog & Tips
+                <Link to="/areas" className="text-foreground hover:text-brand-500 transition-colors text-sm">
+                  Areas We Serve
                 </Link>
                 <Link to="/faq" className="text-foreground hover:text-brand-500 transition-colors text-sm">
                   FAQ
-                </Link>
-                <Link to="/glossary" className="text-foreground hover:text-brand-500 transition-colors text-sm">
-                  Glossary
-                </Link>
-                <Link to="/booking" className="text-foreground hover:text-brand-500 transition-colors text-sm">
-                  {BOOK_CTA_LABEL}
                 </Link>
                 <Link to="/contact" className="text-foreground hover:text-brand-500 transition-colors text-sm">
                   Contact

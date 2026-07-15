@@ -9,7 +9,7 @@ const BookingBanner = () => {
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
           {/* Left: CTA */}
           <div>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-3">
               Come in and see me.
             </h2>
             <p className="text-white/95 mb-6 max-w-md">
@@ -38,7 +38,7 @@ const BookingBanner = () => {
           <div className="text-white/90 text-sm space-y-1 md:text-right">
             <p>60 Goorgool Rd, Bangor NSW</p>
             <p>0416 037 663</p>
-            <p>Tue–Sat · Walk-ins welcome</p>
+            <p>Bookings managed through Fresha</p>
           </div>
         </div>
       </div>
