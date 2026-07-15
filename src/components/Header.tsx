@@ -8,8 +8,6 @@ import { useCart } from "@/contexts/CartContext";
 import {
   isStocktakeActive,
   QIQI_DISCOUNT_ACTIVE,
-  SHAMPOO_CONDITIONER_OFFER_ACTIVE,
-  SHAMPOO_CONDITIONER_HEADER_MESSAGE,
   STOCKTAKE_HEADER_MESSAGE,
   DEFAULT_HEADER_MESSAGE,
   PROMO_COLLECTIONS,
@@ -20,7 +18,6 @@ import hairPinnsLogoCompact from "@/assets/images/hair-pinns-logo-compact.webp";
 
 function getPromoMessage(): string {
   if (isStocktakeActive()) return STOCKTAKE_HEADER_MESSAGE;
-  if (SHAMPOO_CONDITIONER_OFFER_ACTIVE) return SHAMPOO_CONDITIONER_HEADER_MESSAGE;
   if (QIQI_DISCOUNT_ACTIVE) return "20% off QIQI range, shop now";
   return DEFAULT_HEADER_MESSAGE;
 }
@@ -35,17 +32,12 @@ const Header = () => {
   // Highest-priority offer drives the link target
   const promoLink = isStocktakeActive()
     ? "/collections"
-    : SHAMPOO_CONDITIONER_OFFER_ACTIVE
-      ? `/collections/${PROMO_COLLECTIONS.shampoos}`
-      : QIQI_DISCOUNT_ACTIVE
-        ? `/collections/${PROMO_COLLECTIONS.qiqi}`
-        : "/collections";
-  // Highlight the headline offer with a subtle emoji
-  const isHeadlineOffer = SHAMPOO_CONDITIONER_OFFER_ACTIVE && !isStocktakeActive();
+    : QIQI_DISCOUNT_ACTIVE
+      ? `/collections/${PROMO_COLLECTIONS.qiqi}`
+      : "/collections";
   // Track which offer the strip is currently advertising (for analytics)
   const headerPromoOfferId = (() => {
     if (isStocktakeActive()) return "stocktake_2025";
-    if (SHAMPOO_CONDITIONER_OFFER_ACTIVE) return "shampoo_conditioner_50_off";
     if (QIQI_DISCOUNT_ACTIVE) return "qiqi_20_off";
     return "none";
   })();
@@ -63,10 +55,10 @@ const Header = () => {
               trackPromoClick("header_promo_strip", typeof window !== "undefined" ? window.location.pathname : "/")
             }
             className="block py-2.5 px-4 pr-12 text-center text-sm sm:text-base font-semibold text-white hover:bg-brand-500 transition-colors duration-fast"
-            aria-label="Shop the buy any shampoo, get 50% off conditioner offer"
+            aria-label={`Shop the current Hair Pinns offer: ${promoMessage}`}
           >
             <p className="text-white">
-              {(isStocktakeActive() || isHeadlineOffer) ? "✨ " : ""}{promoMessage}
+              {isStocktakeActive() ? "✨ " : ""}{promoMessage}
             </p>
           </Link>
           <button
