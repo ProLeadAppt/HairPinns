@@ -310,6 +310,21 @@
     Content-Type = "application/xml"
     Cache-Control = "public, max-age=3600, must-revalidate"
 
+# Operational routes are client-rendered because they depend on query or
+# navigation state. Keep them out of search results at the HTTP layer too.
+[[headers]]
+  for = "/confirm"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+[[headers]]
+  for = "/order-confirmation"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+[[headers]]
+  for = "/reviews/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # AI crawler discovery files (AEO/GEO)
 [[headers]]
   for = "/llms.txt"

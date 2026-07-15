@@ -142,6 +142,14 @@ for (const operationalPath of ['/confirm', '/order-confirmation', '/reviews/feed
     `Operational route needs an SPA rewrite: ${operationalPath}`,
   );
 }
+for (const noindexPath of ['/confirm', '/order-confirmation', '/reviews/*']) {
+  const escaped = noindexPath.replaceAll('/', '\\/').replace('*', '\\*');
+  assert.match(
+    netlify,
+    new RegExp(`\\[\\[headers\\]\\]\\s+for\\s*=\\s*"${escaped}"\\s+\\[headers\\.values\\]\\s+X-Robots-Tag\\s*=\\s*"noindex, nofollow"`),
+    `Operational route needs an HTTP noindex policy: ${noindexPath}`,
+  );
+}
 assert.match(
   netlify,
   /from\s*=\s*"\/\*"[\s\S]*?to\s*=\s*"\/404\.html"[\s\S]*?status\s*=\s*404/,
