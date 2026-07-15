@@ -13,34 +13,12 @@ export function isStocktakeActive(): boolean {
 /** QIQI 20% off — permanent (for now) */
 export const QIQI_DISCOUNT_ACTIVE = true;
 
-/**
- * Shampoo + 50% off Conditioner offer — site-wide headline promotion.
- * Set SHAMPOO_CONDITIONER_OFFER_ACTIVE = false to hide it.
- * Shop link should point to a collection that actually shows both
- * shampoo and conditioner options.
- */
-export const SHAMPOO_CONDITIONER_OFFER_ACTIVE = true;
-
-export const SHAMPOO_CONDITIONER_HEADLINE = "Buy any Shampoo — get 50% off Conditioner";
-
-export const SHAMPOO_CONDITIONER_HEADER_MESSAGE =
-  "💧 Buy any Shampoo — get 50% off Conditioner | Sitewide";
-
-/**
- * Target a collection that actually shows both shampoo and conditioner options.
- * The `shampoos` collection handle is NOT valid in Shopify (404s) — Juuce Botanical
- * is the broadest hair-care collection with both, so it’s the right destination
- * for the "buy any shampoo, get 50% off conditioner" CTA.
- */
-export const SHAMPOO_COLLECTION_HANDLE = "juuce-botanicals";
-
 /** Collection handles for promo links — must match Shopify collection handles exactly */
 export const PROMO_COLLECTIONS = {
   /** Pure Lamellar — do not change; must match Shopify & what Jena uses */
   pureLamellar: "pure-lamellar",
   wetBrush: "wet-brush",
   qiqi: "qiqi",
-  shampoos: SHAMPOO_COLLECTION_HANDLE,
 } as const;
 
 /** Header promo strip message when stocktake is active (legacy) */

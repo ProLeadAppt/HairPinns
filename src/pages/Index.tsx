@@ -8,7 +8,6 @@ import SEOHead from "@/components/SEOHead";
 
 const Footer = lazy(() => import("@/components/Footer"));
 const StickyBookBar = lazy(() => import("@/components/home/StickyBookBar"));
-const ShampooConditionerPromo = lazy(() => import("@/components/home/ShampooConditionerPromo"));
 
 // Below-fold sections (lazy-loaded for performance)
 const BestSellers = lazy(() => import("@/components/home/BestSellers"));
@@ -214,19 +213,12 @@ const Index = () => {
         {/* 2. Trust bar — 3 quiet signals, lots of air */}
         <HeroSocialProofBar />
 
-        {/* 3. Active offer */}
-        <DeferredSection fallback={null}>
-          <Suspense fallback={null}>
-            <ShampooConditionerPromo />
-          </Suspense>
-        </DeferredSection>
-
-        {/* 4. The Jena Promise */}
+        {/* 3. The Jena Promise */}
         <Suspense fallback={null}>
           <JenaPromise />
         </Suspense>
 
-        {/* 5. Best Sellers */}
+        {/* 4. Best Sellers */}
         <DeferredSection
           className="reveal"
           fallback={
@@ -245,21 +237,21 @@ const Index = () => {
           </Suspense>
         </DeferredSection>
 
-        {/* 6. In the chair — before/after styling showcase */}
+        {/* 5. In the chair — before/after styling showcase */}
         <DeferredSection fallback={null}>
           <Suspense fallback={null}>
             <BeforeAfterShowcase />
           </Suspense>
         </DeferredSection>
 
-        {/* 7. Reviews */}
+        {/* 6. Reviews */}
         <DeferredSection className="reveal" fallback={null}>
           <Suspense fallback={null}>
             <ReviewsShowcase />
           </Suspense>
         </DeferredSection>
 
-        {/* 8. From the blog */}
+        {/* 7. From the blog */}
         <SectionNumber index="04" label="read, learn, ask" />
         <DeferredSection className="reveal py-12 bg-muted/30" fallback={null}>
           <Suspense fallback={null}>
@@ -267,7 +259,7 @@ const Index = () => {
           </Suspense>
         </DeferredSection>
 
-        {/* 9. Book with Jena */}
+        {/* 8. Book with Jena */}
         <DeferredSection fallback={null}>
           <Suspense fallback={null}>
             <BookingBanner />
