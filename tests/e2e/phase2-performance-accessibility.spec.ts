@@ -57,7 +57,10 @@ for (const viewport of viewports) {
     // Mount the live product shelf before racing through the rest of the page.
     // This prevents fast automated scrolling from outrunning Shopify data and
     // producing misleading blank full-page screenshots.
-    await page.getByRole('heading', { name: /what's selling right now/i }).scrollIntoViewIfNeeded();
+    await page.evaluate(() => window.scrollTo(0, Math.max(1000, window.innerHeight)));
+    const sellerHeading = page.getByRole('heading', { name: /what's selling right now/i });
+    await expect(sellerHeading).toBeVisible({ timeout: 15_000 });
+    await sellerHeading.scrollIntoViewIfNeeded();
     await expect(page.getByRole('button', { name: /add to bag/i }).first()).toBeVisible({ timeout: 20_000 });
 
     // Exercise IntersectionObserver and native lazy-loading boundaries the
