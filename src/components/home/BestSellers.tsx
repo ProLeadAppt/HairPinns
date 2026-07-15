@@ -142,10 +142,10 @@ const BestSellers = () => {
 
   if (loading) {
     return (
-      <Section className="content-visibility-auto" number={{ index: "02", label: "most reordered" }}>
+      <Section className="content-visibility-auto" number={{ index: "02", label: "popular picks" }}>
         <SectionHeader
-          title="What's selling right now"
-          subtitle="Loading the good stuff..."
+          title="Popular picks from the shelf"
+          subtitle="Loading Jena's current selection..."
         />
         <div className="flex justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
@@ -163,10 +163,10 @@ const BestSellers = () => {
   const bottomProducts = validProducts.slice(3, 6);
 
   return (
-    <Section className="content-visibility-auto" number={{ index: "02", label: "most reordered" }}>
+    <Section className="content-visibility-auto" number={{ index: "02", label: "popular picks" }}>
       <SectionHeader
-        title="What's selling right now"
-        subtitle="The products my clients keep reordering"
+        title="Popular picks from the shelf"
+        subtitle="Salon-tested hair care selected by Jena"
       />
 
       {/* Editorial asymmetric layout — top row */}

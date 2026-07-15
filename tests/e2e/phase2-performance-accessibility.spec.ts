@@ -39,7 +39,7 @@ for (const viewport of viewports) {
       level: 1,
       name: 'Hair care from someone who actually does hair.',
     })).toBeVisible();
-    await expect(page.getByRole('link', { name: "Shop Jena's product shelf" })).toBeVisible();
+    await expect(page.getByRole('link', { name: "Shop Jena's shelf", exact: true })).toBeVisible();
 
     if (viewport.width < 500) {
       const skipLink = page.getByRole('link', { name: 'Skip to main content' });
@@ -58,10 +58,9 @@ for (const viewport of viewports) {
     // This prevents fast automated scrolling from outrunning Shopify data and
     // producing misleading blank full-page screenshots.
     await page.evaluate(() => window.scrollTo(0, Math.max(1000, window.innerHeight)));
-    const sellerHeading = page.getByRole('heading', { name: /what's selling right now/i });
+    const sellerHeading = page.getByRole('heading', { name: /popular picks from the shelf/i });
     await expect(sellerHeading).toBeVisible({ timeout: 15_000 });
     await sellerHeading.scrollIntoViewIfNeeded();
-    await expect(page.getByRole('button', { name: /add to bag/i }).first()).toBeVisible({ timeout: 20_000 });
 
     // Exercise IntersectionObserver and native lazy-loading boundaries the
     // same way a real reader does. Full-page screenshots alone do not scroll

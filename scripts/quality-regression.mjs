@@ -123,14 +123,19 @@ assert.doesNotMatch(indexHtml, /fonts\.googleapis\.com|fonts\.gstatic\.com/, 'Cr
 assert.doesNotMatch(indexHtml, /googletagmanager\.com\/gtag\/js/, 'GA4 must not compete with first paint');
 assert.match(indexHtml, /gtag\(['"]config['"],\s*['"]G-N6Y1TJMWGG['"]\)/, 'GA4 config must be queued before deferred events');
 assert.doesNotMatch(indexHtml, /rel="preload"[^>]+hero-poster\.avif/, 'Do not preload the desktop video poster as the mobile LCP image');
-assert.match(indexHtml, /rel="preload"[^>]+hero-home-1280w\.avif/, 'Preload the actual responsive hero LCP image');
+assert.match(indexHtml, /rel="preload"[^>]+href="[^"]*hero-home-640w\.avif"/, 'Preload the mobile hero LCP fallback');
+const responsiveHeroPreload = indexHtml.match(/imagesrcset="([^"]+)"/)?.[1] ?? '';
+for (const candidate of ['hero-home-640w.avif', 'hero-home-1280w.avif', 'hero-home-1920w.avif']) {
+  assert.ok(responsiveHeroPreload.includes(candidate), `Responsive hero preload is missing ${candidate}`);
+}
 
 const trackingScripts = await readFile(path.join(ROOT, 'src/components/tracking/TrackingScripts.tsx'), 'utf8');
 assert.match(trackingScripts, /googletagmanager\.com\/gtag\/js/, 'Deferred tracking must still load GA4');
 assert.doesNotMatch(trackingScripts, /gtag\?\.\(['"]config['"]/, 'Deferred loader must not queue a duplicate GA4 config/page view');
 
 const heroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
-assert.match(heroSource, /aria-label="Shop Jena's product shelf"/, 'Hero CTA accessible name must contain its visible shopping label');
+assert.match(heroSource, /Shop Jena's shelf/, 'Hero CTA must expose its visible shopping label');
+assert.doesNotMatch(heroSource, /aria-label="Shop Jena's product shelf"/, 'Hero CTA accessible name must exactly preserve its visible label');
 
 const socialProofSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
 assert.doesNotMatch(socialProofSource, /text-foreground\/60/, 'Trust-strip supporting text must meet WCAG AA contrast');
@@ -145,6 +150,7 @@ assert.match(beforeAfterSource, /brunette-woman-getting-her-hair-washed-1280w\.a
 const bestSellersSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
 assert.doesNotMatch(bestSellersSource, /aria-label=\{`Add \$\{product\.title\} to bag`\}/, 'Quick-add accessible name must include the visible button label');
 assert.match(bestSellersSource, /h-11/, 'Mobile quick-add target must be at least 44px tall');
+assert.doesNotMatch(bestSellersSource, /most reordered|keep reordering/i, 'Curated product picks must not claim unsupported reorder data');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 for (const component of ['ShopByConcern', 'BestSellers', 'JenaPromise', 'BlogTrio', 'BookingBanner']) {
@@ -159,12 +165,14 @@ assert.ok(
 assert.doesNotMatch(homeSource, /<BeforeAfterShowcase\s*\/>|<ReviewsShowcase\s*\/>/, 'Salon-heavy showcases must not displace product discovery on the homepage');
 
 const homeHeroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
-assert.ok(homeHeroSource.indexOf('to="/collections"') < homeHeroSource.indexOf('fresha.com/book-now'), 'Homepage hero must present shopping before booking');
+assert.ok(homeHeroSource.indexOf('to="/collections"') < homeHeroSource.indexOf('href={BOOK_URL}'), 'Homepage hero must present shopping before booking');
+assert.match(homeHeroSource, /trackBookingClick\("hero_home_secondary"/, 'Homepage booking must use the central booking tracker and URL');
 assert.match(homeHeroSource, /Shop Jena's shelf/, 'Homepage hero needs a clear product-first CTA');
 
 const stickyActionSource = await readFile(path.join(ROOT, 'src/components/home/StickyBookBar.tsx'), 'utf8');
 assert.match(stickyActionSource, /aria-label="Quick shop bar"/, 'Mobile sticky action must remain commerce-first');
 assert.ok(stickyActionSource.indexOf('to="/collections"') < stickyActionSource.indexOf('href={BOOK_URL}'), 'Mobile sticky action must present shopping before salon booking');
+assert.match(stickyActionSource, /if \(!visible\) return null;/, 'Hidden mobile sticky actions must be removed from keyboard navigation');
 
 const commerceNavigationSource = await readFile(path.join(ROOT, 'src/config/commerceNavigation.ts'), 'utf8');
 for (const handle of ['frizz-free-must-haves', 'heat-protection', 'blonde-bombshells', 'pump-up-the-volume', 'curly-girlys']) {
