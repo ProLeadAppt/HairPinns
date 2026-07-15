@@ -91,7 +91,12 @@ for (const viewport of viewports) {
     });
 
     expect(malformedRequests).toEqual([]);
-    expect(consoleErrors).toEqual([]);
+    const actionableConsoleErrors = consoleErrors.filter(message => !(
+      process.env.PLAYWRIGHT_BASE_URL?.includes('deploy-preview-') &&
+      message.includes('app.netlify.com') &&
+      (message.includes('Content Security Policy') || message.includes('Content-Security-Policy') || message.includes('frame-src'))
+    ));
+    expect(actionableConsoleErrors).toEqual([]);
   });
 }
 
