@@ -107,6 +107,68 @@
   status = 301
   force = true
 
+# Older /suburbs/ backlinks map directly to the same canonical /areas/ pages.
+[[redirects]]
+  from = "/suburbs/bangor"
+  to = "/areas/bangor-2234/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/menai"
+  to = "/areas/menai-2234/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/illawong"
+  to = "/areas/illawong-2234/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/alfords-point"
+  to = "/areas/alfords-point-2234/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/sutherland"
+  to = "/areas/sutherland-2232/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/kirrawee"
+  to = "/areas/kirrawee-2232/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/kareela"
+  to = "/areas/kareela-2232/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/como"
+  to = "/areas/como-2226/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/gymea"
+  to = "/areas/gymea-2227/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/miranda"
+  to = "/areas/miranda-2228/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/cronulla"
+  to = "/areas/cronulla-2230/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/*"
+  to = "/areas/"
+  status = 301
+  force = true
+
 # Retired seasonal article. Preserve historic links and send shoppers to the
 # live product catalogue rather than rendering stale gift-pack claims.
 [[redirects]]
@@ -302,6 +364,29 @@
   [headers.values]
     Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=2592000"
+
+# Query/state-dependent operational pages must reach the React application on
+# direct visits and refreshes. They remain noindex at the component level.
+[[redirects]]
+  from = "/confirm"
+  to = "/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/order-confirmation"
+  to = "/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/reviews/feedback"
+  to = "/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/reviews/google"
+  to = "/index.html"
+  status = 200
+  force = true
 
 # Unknown routes must return a real HTTP 404. Every public route is
 # prerendered, so valid documents are served before this final fallback.

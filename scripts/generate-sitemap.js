@@ -97,7 +97,7 @@ async function getShopifyProducts() {
   // <image:image> entries in the sitemap. Google uses these for Image
   // search discovery and faster indexing of product photos.
   const data = await fetchShopify(`
-    query { products(first: 250, query: "available_for_sale:true") {
+    query { products(first: 250) {
       edges { node {
         handle
         title

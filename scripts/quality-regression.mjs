@@ -93,6 +93,24 @@ assert.match(prerender, /throw new Error\(`Prerender failed/, 'Any missing prere
 const routeCollector = await readFile(path.join(ROOT, 'scripts/collect-prerender-routes.js'), 'utf8');
 assert.doesNotMatch(routeCollector, /collectionHandles = \['juuce', 'qiqi', 'pure'/, 'Stale collection fallbacks must not be prerendered');
 assert.match(routeCollector, /juuce-botanicals/, 'Current Shopify collection handles must be guarded');
+assert.doesNotMatch(routeCollector, /available_for_sale:true/, 'Sold-out Shopify products must remain routable');
+
+const sitemapXml = await readFile(path.join(ROOT, 'public/sitemap.xml'), 'utf8');
+for (const handle of [
+  'aromaganic-curly-curl-hair-curly-hair-conditioner',
+  'aromaganic-curly-curl-hair-curly-hair-shampoo',
+  'juuce-sea-air-mist-beachy',
+]) {
+  assert.match(sitemapXml, new RegExp(`/products/${handle}/`), `Sold-out product missing from sitemap: ${handle}`);
+}
+
+const appSource = await readFile(path.join(ROOT, 'src/App.tsx'), 'utf8');
+const exactRouterPaths = [...appSource.matchAll(/<Route\s+path="(\/[^"]*)"/g)]
+  .map((match) => match[1])
+  .filter((route) => !route.includes(':') && route !== '/*');
+const staticPageBlock = routeCollector.match(/const staticPages = \[([\s\S]*?)\];/)?.[1] || '';
+const prerenderedExactPaths = new Set([...staticPageBlock.matchAll(/['"](\/[^'"]*)['"]/g)].map((match) => match[1]));
+const intentionallyPrivatePaths = new Set(['/dev/collections', '/dev/shopify', '/500']);
 
 const schemaSource = await readFile(path.join(ROOT, 'src/lib/schema.ts'), 'utf8');
 assert.match(schemaSource, /shippingDestination:[\s\S]*?addressCountry:\s*'AU'/, 'Product schema must restrict shipping to Australia');
@@ -104,6 +122,26 @@ assert.doesNotMatch(indexHtml, /searchatlas|sa\.searchatlas\.com|dashboard\.sear
 
 const netlify = await readFile(path.join(ROOT, 'netlify.toml'), 'utf8');
 assert.doesNotMatch(netlify, /searchatlas|sa\.searchatlas\.com|dashboard\.searchatlas\.com/i, 'SearchAtlas remains in CSP');
+const netlifyExactFromPaths = new Set(
+  [...netlify.matchAll(/from\s*=\s*"(\/[^"]+)"/g)]
+    .map((match) => match[1])
+    .filter((route) => !route.includes('*') && !route.includes(':')),
+);
+for (const route of exactRouterPaths) {
+  assert.ok(
+    prerenderedExactPaths.has(route) || netlifyExactFromPaths.has(route) || intentionallyPrivatePaths.has(route),
+    `Public router path is neither prerendered nor explicitly rewritten: ${route}`,
+  );
+}
+assert.match(netlify, /from\s*=\s*"\/suburbs\/\*"[\s\S]*?status\s*=\s*301/, 'Legacy suburb routes need an edge redirect');
+for (const operationalPath of ['/confirm', '/order-confirmation', '/reviews/feedback', '/reviews/google']) {
+  const escaped = operationalPath.replaceAll('/', '\\/');
+  assert.match(
+    netlify,
+    new RegExp(`from\\s*=\\s*"${escaped}"[\\s\\S]*?to\\s*=\\s*"\\/index\\.html"[\\s\\S]*?status\\s*=\\s*200`),
+    `Operational route needs an SPA rewrite: ${operationalPath}`,
+  );
+}
 assert.match(
   netlify,
   /from\s*=\s*"\/\*"[\s\S]*?to\s*=\s*"\/404\.html"[\s\S]*?status\s*=\s*404/,

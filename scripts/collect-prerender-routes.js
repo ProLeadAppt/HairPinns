@@ -74,7 +74,7 @@ async function fetchShopifyHandles(type) {
   }
 
   const query = type === 'products'
-    ? `query { products(first: 250, query: "available_for_sale:true") { edges { node { handle } } } }`
+    ? `query { products(first: 250) { edges { node { handle } } } }`
     : `query { collections(first: 50) { edges { node { handle } } } }`;
 
   const res = await fetch(`https://${domain}/api/${version}/graphql.json`, {
