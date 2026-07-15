@@ -74,6 +74,7 @@ for (const file of htmlFiles) {
   const hasDescription = /<meta\s+name=["']description["']\s+content=["'][^"']+["']/i.test(html);
   const hasCanonical = /<link\s+rel=["']canonical["']\s+href=["']https?:[^"']+["']/i.test(html);
   const jsonLdCount = (html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>/gi) || []).length;
+  const hasCapturedDynamicPreloads = /<link\b(?=[^>]*\brel=["']modulepreload["'])(?=[^>]*\bas=["']script["'])[^>]*>/i.test(html);
 
   const issues = [];
   if (h1Count === 0) issues.push('no <h1>');
@@ -82,6 +83,7 @@ for (const file of htmlFiles) {
   if (!hasDescription) issues.push('no meta description');
   if (!hasCanonical && !noIndex) issues.push('no canonical');
   if (jsonLdCount === 0 && !noIndex) issues.push('no JSON-LD');
+  if (hasCapturedDynamicPreloads) issues.push('captured dynamic modulepreloads');
 
   findings.push({
     route: normalisedRoute,

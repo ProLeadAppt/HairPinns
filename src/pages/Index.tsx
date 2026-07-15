@@ -35,7 +35,7 @@ import { googleReviews } from "@/data/reviews";
 
 const isPrerenderOrHeadless = () => {
   if (typeof navigator === "undefined") return true;
-  return /HeadlessChrome|HairPinnsPrerender/i.test(navigator.userAgent || "");
+  return /HairPinnsPrerender/i.test(navigator.userAgent || "");
 };
 
 const DeferredSection = ({

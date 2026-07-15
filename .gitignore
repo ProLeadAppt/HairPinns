@@ -31,6 +31,10 @@ dist-ssr
 .netlify
 img-audit/
 
+# Browser test output
+playwright-report/
+test-results/
+
 # Google service account keys (GSC pulse)
 gsc-service-account.json
 *-service-account.json

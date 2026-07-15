@@ -1,8 +1,8 @@
 import { Menu, Calendar, ShoppingBag, ShoppingCart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
 import { useCart } from "@/contexts/CartContext";
 import {
@@ -28,6 +28,9 @@ const ShopDropdown = lazy(() => import("@/components/navigation/ShopDropdown"));
 const Header = () => {
   const { openCart, itemCount } = useCart();
   const [showPromo, setShowPromo] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuFirstLinkRef = useRef<HTMLAnchorElement>(null);
   const promoMessage = getPromoMessage();
   // Highest-priority offer drives the link target
   const promoLink = isStocktakeActive()
@@ -64,7 +67,7 @@ const Header = () => {
           <button
             type="button"
             onClick={() => setShowPromo(false)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded text-white hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-1 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex items-center justify-center rounded text-white hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Dismiss promo banner"
           >
             <X className="w-4 h-4" />
@@ -126,7 +129,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={openCart}
+                onClick={(event) => openCart(event.currentTarget)}
                 aria-label={itemCount > 0 ? `View cart, ${itemCount} item${itemCount === 1 ? "" : "s"}` : "View cart"}
                 className="relative"
               >
@@ -138,38 +141,48 @@ const Header = () => {
                   </span>
                 )}
               </Button>
-              <Link to="/collections">
-                <Button variant="ghost" size="sm">
+              <Button asChild variant="ghost" size="sm">
+                <Link to="/collections">
                   <ShoppingBag className="w-4 h-4" />
                   Shop
-                </Button>
-              </Link>
-              <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_desktop", window.location.pathname)}>
-                <Button variant="primary" size="sm" aria-label="Book an appointment">
+                </Link>
+              </Button>
+              <Button asChild variant="primary" size="sm">
+                <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_desktop", window.location.pathname)}>
                   <Calendar className="w-4 h-4" />
                   {BOOK_CTA_LABEL}
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
 
             {/* Mobile Menu */}
-            <Sheet>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden flex-shrink-0">
+                <Button ref={mobileMenuTriggerRef} variant="ghost" size="icon" className="lg:hidden flex-shrink-0 h-11 w-11">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px]">
+              <SheetContent
+                side="right"
+                className="w-[300px]"
+                onOpenAutoFocus={(event) => {
+                  event.preventDefault();
+                  mobileMenuFirstLinkRef.current?.focus();
+                }}
+              >
+                <SheetTitle className="sr-only">Mobile menu</SheetTitle>
                 <nav className="flex flex-col space-y-6 mt-8" aria-label="Mobile navigation">
                   {/* Mobile Search */}
                   <div className="mb-4">
-                    <Suspense fallback={<div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products and articles...</div>}>
-                      <ProductSearch placeholder="Search products and articles..." maxResults={5} />
-                    </Suspense>
+                    {mobileMenuOpen ? (
+                      <Suspense fallback={<div className="h-10 rounded-md border border-input bg-muted/40 px-3 py-2 text-sm text-muted-foreground flex items-center">Search products and articles...</div>}>
+                        <ProductSearch placeholder="Search products and articles..." maxResults={5} />
+                      </Suspense>
+                    ) : null}
                   </div>
                   
-                  <Link to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
+                  <Link ref={mobileMenuFirstLinkRef} to="/collections" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
                     Shop
                   </Link>
                   <Link to="/services" className="text-lg font-medium text-foreground hover:text-brand-500 transition-colors duration-fast">
@@ -189,22 +202,31 @@ const Header = () => {
                   </Link>
 
                   <div className="pt-6 border-t border-border space-y-3">
-                    <Button variant="ghost" size="lg" className="w-full justify-start" onClick={openCart}>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      className="w-full justify-start"
+                      onClick={() => {
+                        const returnTarget = mobileMenuTriggerRef.current || undefined;
+                        setMobileMenuOpen(false);
+                        window.setTimeout(() => openCart(returnTarget), 0);
+                      }}
+                    >
                       <ShoppingCart className="w-5 h-5" />
                       Cart
                     </Button>
-                    <Link to="/collections" className="block">
-                      <Button variant="ghost" size="lg" className="w-full justify-start">
+                    <Button asChild variant="ghost" size="lg" className="w-full justify-start">
+                      <Link to="/collections" onClick={() => setMobileMenuOpen(false)}>
                         <ShoppingBag className="w-5 h-5" />
                         Shop
-                      </Button>
-                    </Link>
-                    <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" className="block" onClick={() => trackBookingClick("header_mobile", window.location.pathname)}>
-                      <Button variant="primary" size="lg" className="w-full" aria-label="Book an appointment">
+                      </Link>
+                    </Button>
+                    <Button asChild variant="primary" size="lg" className="w-full">
+                      <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_mobile", window.location.pathname)}>
                         <Calendar className="w-5 h-5" />
                         {BOOK_CTA_LABEL}
-                      </Button>
-                    </a>
+                      </a>
+                    </Button>
                   </div>
                 </nav>
               </SheetContent>

@@ -9,8 +9,10 @@ import { Link } from "react-router-dom";
 // reveals a basin wash vs an in-chair finish, both shot at the Bangor salon.
 // Honest framing: "styling reference", not "transformation proof".
 
-import brunetteAtBasin from "@/assets/images/brunette-woman-getting-her-hair-washed.webp";
-import hairdresserWithClient from "@/assets/images/hairdresser-taking-care-her-client.webp";
+import brunetteAtBasinAvif from "@/assets/images/brunette-woman-getting-her-hair-washed-1280w.avif";
+import brunetteAtBasinWebp from "@/assets/images/brunette-woman-getting-her-hair-washed-1280w.webp";
+import hairdresserWithClientAvif from "@/assets/images/hairdresser-taking-care-her-client-1280w.avif";
+import hairdresserWithClientWebp from "@/assets/images/hairdresser-taking-care-her-client-1280w.webp";
 
 interface ComparisonPair {
   id: string;
@@ -18,6 +20,8 @@ interface ComparisonPair {
   caption: string;
   before: string;
   after: string;
+  beforeFallback: string;
+  afterFallback: string;
   beforeAlt: string;
   afterAlt: string;
 }
@@ -27,8 +31,10 @@ const PAIRS: ComparisonPair[] = [
     id: "bouncy-blow-dry",
     label: "Bouncy blow-dry",
     caption: "Same chair. Different moment.",
-    before: brunetteAtBasin,
-    after: hairdresserWithClient,
+    before: brunetteAtBasinAvif,
+    after: hairdresserWithClientAvif,
+    beforeFallback: brunetteAtBasinWebp,
+    afterFallback: hairdresserWithClientWebp,
     beforeAlt: "Brunette client at the basin, post-shampoo, ready to style",
     afterAlt: "Hairdresser styling a client in the chair, mid-finish",
   },
@@ -172,28 +178,38 @@ const BeforeAfterShowcase = () => {
                   aria-label={`${pair.label} — use the slider to compare natural hair with the finished style`}
                 >
                   {/* "After" — full bleed */}
-                  <img
-                    src={pair.after}
-                    alt={pair.afterAlt}
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover"
-                    draggable={false}
-                  />
+                  <picture className="absolute inset-0">
+                    <source srcSet={pair.after} type="image/avif" />
+                    <img
+                      src={pair.afterFallback}
+                      alt={pair.afterAlt}
+                      width={1280}
+                      height={853}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                      draggable={false}
+                    />
+                  </picture>
 
                   {/* "Before" — clipped from the left */}
                   <div
                     className="absolute inset-0 overflow-hidden"
                     style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
                   >
-                    <img
-                      src={pair.before}
-                      alt={pair.beforeAlt}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover"
-                      draggable={false}
-                    />
+                    <picture className="absolute inset-0">
+                      <source srcSet={pair.before} type="image/avif" />
+                      <img
+                        src={pair.beforeFallback}
+                        alt={pair.beforeAlt}
+                        width={1280}
+                        height={854}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                        draggable={false}
+                      />
+                    </picture>
                   </div>
 
                   {/* Labels */}

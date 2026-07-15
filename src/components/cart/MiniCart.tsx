@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, ShoppingBag, ArrowRight, Shield, Lock, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
 import FreeShippingBar from "@/components/conversion/FreeShippingBar";
 import { Link } from "react-router-dom";
@@ -188,16 +189,12 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
   if (!open) return null;
 
   return (
-    <>
-      {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-foreground/60 backdrop-blur-sm z-[60] transition-opacity"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      
-      {/* Drawer */}
-      <aside className="fixed right-0 top-0 h-full w-full sm:w-[480px] bg-background shadow-2xl z-[61] flex flex-col animate-in slide-in-from-right duration-300">
+    <Sheet open={open} onOpenChange={(nextOpen) => !nextOpen && onClose()}>
+      <SheetContent
+        side="right"
+        aria-describedby={undefined}
+        className="w-full sm:max-w-[480px] p-0 gap-0 flex flex-col [&>button]:hidden"
+      >
         {/* Header */}
         <header className="flex items-center justify-between p-6 border-b border-border bg-accent">
           <div className="flex items-center gap-3">
@@ -205,7 +202,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
               <ShoppingBag className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-heading font-bold text-heading">Your Bag</h2>
+              <SheetTitle className="text-lg font-heading font-bold text-heading">Your Bag</SheetTitle>
             </div>
           </div>
           <Button
@@ -424,7 +421,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
             Continue Shopping
           </Button>
         </div>
-      </aside>
-    </>
+      </SheetContent>
+    </Sheet>
   );
 }

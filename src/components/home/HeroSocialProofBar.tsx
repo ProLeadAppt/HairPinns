@@ -17,21 +17,21 @@ const HeroSocialProofBar = () => {
             <Star className="h-4 w-4 text-[hsl(var(--gold))] fill-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
             <span className="whitespace-nowrap">
               <span className="font-semibold text-foreground">4.9 / 5</span>{" "}
-              <span className="text-foreground/60">from 762+ reviews</span>
+              <span className="text-muted-foreground">from 762+ reviews</span>
             </span>
           </li>
           <li className="flex items-center gap-3 justify-center sm:justify-start">
             <Truck className="h-4 w-4 text-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
             <span className="whitespace-nowrap">
               <span className="font-semibold text-foreground">Free shipping</span>{" "}
-              <span className="text-foreground/60">over $150</span>
+              <span className="text-muted-foreground">over $150</span>
             </span>
           </li>
           <li className="flex items-center gap-3 justify-center sm:justify-start">
             <Shield className="h-4 w-4 text-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
             <span className="whitespace-nowrap">
               <span className="font-semibold text-foreground">14-day returns</span>{" "}
-              <span className="text-foreground/60">no drama</span>
+              <span className="text-muted-foreground">no drama</span>
             </span>
           </li>
         </ul>

@@ -192,11 +192,11 @@ const BestSellers = () => {
       )}
 
       <div className="text-center mt-12">
-        <Link to="/collections">
-          <Button variant="accent" size="lg">
+        <Button asChild variant="accent" size="lg">
+          <Link to="/collections">
             Shop All Products
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </Section>
   );
@@ -298,22 +298,22 @@ const ProductCard = ({
             type="button"
             onClick={handleQuickAdd}
             disabled={busy}
-            aria-label={`Add ${product.title} to bag`}
-            className="inline-flex items-center justify-center gap-2 w-full whitespace-nowrap font-semibold rounded-btn h-8 rounded-md px-3 text-sm bg-[hsl(var(--brand-500))] !text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center gap-2 w-full whitespace-nowrap font-semibold rounded-btn h-11 px-3 text-sm bg-[hsl(var(--brand-500))] !text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-[background-color,box-shadow,opacity] duration-base disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {busy ? (
-              <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+              <Loader2 className="w-4 h-4 mr-1 animate-spin" aria-hidden="true" />
             ) : (
-              <ShoppingBag className="w-4 h-4 mr-1" />
+              <ShoppingBag className="w-4 h-4 mr-1" aria-hidden="true" />
             )}
             {busy ? "Adding…" : "Add to Bag"}
+            <span className="sr-only"> {product.title}</span>
           </button>
         ) : (
-          <Link to={`/products/${product.slug}`} className="flex-1">
-            <Button variant="primary" size="sm" className="w-full">
+          <Button asChild variant="primary" size="sm" className="w-full">
+            <Link to={`/products/${product.slug}`} className="flex-1">
               View Details
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         )}
       </div>
     </div>

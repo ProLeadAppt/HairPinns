@@ -8,6 +8,8 @@ import { Award, Heart, Sparkles } from "lucide-react";
 // ALWAYS use jena-headshot.avif / jena-headshot.webp from src/assets/images.
 // Do NOT swap this for any other portrait asset without Tyson's explicit sign-off.
 import jenaHeadshotAvif from "@/assets/images/jena-headshot.avif";
+import jenaHeadshotAvif640 from "@/assets/images/jena-headshot-640w.avif";
+import jenaHeadshotAvif800 from "@/assets/images/jena-headshot-800w.avif";
 import jenaHeadshotWebp from "@/assets/images/jena-headshot.webp";
 
 /**
@@ -56,7 +58,11 @@ const JenaPromise = () => {
             aria-hidden="true"
           />
           <picture className="relative block rounded-2xl overflow-hidden shadow-lg">
-            <source srcSet={jenaHeadshotAvif} type="image/avif" />
+            <source
+              srcSet={`${jenaHeadshotAvif640} 640w, ${jenaHeadshotAvif800} 800w, ${jenaHeadshotAvif} 1080w`}
+              sizes="(max-width: 767px) calc(100vw - 2rem), 384px"
+              type="image/avif"
+            />
             <img
               src={jenaHeadshotWebp}
               alt="Jena, owner and hairdresser at Hair Pinns Bangor"

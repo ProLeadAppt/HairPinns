@@ -1,9 +1,9 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { getCartId, normalizeCartId } from "@/lib/cartManagement";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 
 interface CartContextValue {
-  openCart: () => void;
+  openCart: (trigger?: HTMLElement) => void;
   closeCart: () => void;
   itemCount: number;
 }
@@ -19,12 +19,30 @@ export function useCart() {
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [itemCount, setItemCount] = useState(0);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
 
-  const openCart = () => setOpen(true);
-  const closeCart = () => setOpen(false);
+  const rememberTrigger = () => {
+    returnFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+  };
+  const openCart = (trigger?: HTMLElement) => {
+    if (trigger) returnFocusRef.current = trigger;
+    else rememberTrigger();
+    setOpen(true);
+  };
+  const closeCart = () => {
+    setOpen(false);
+    window.setTimeout(() => returnFocusRef.current?.focus(), 100);
+  };
 
   useEffect(() => {
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+      returnFocusRef.current = document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+      setOpen(true);
+    };
     window.addEventListener("hp:openMiniCart", handleOpen);
     return () => window.removeEventListener("hp:openMiniCart", handleOpen);
   }, []);

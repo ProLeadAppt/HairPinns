@@ -1,6 +1,8 @@
 // Project-wide configuration
 // Modify these settings to control global behavior
 
+import { normalizeExternalWebhookUrl } from '@/lib/externalUrl';
+
 export const projectConfig = {
   /**
    * Double Opt-In Configuration
@@ -30,7 +32,7 @@ export const projectConfig = {
    * Loaded from environment variable for security
    */
   ghl: {
-    inboundWebhookUrl: import.meta.env.VITE_GHL_INBOUND_WEBHOOK_URL || '',
+    inboundWebhookUrl: normalizeExternalWebhookUrl(import.meta.env.VITE_GHL_INBOUND_WEBHOOK_URL),
   },
   
   /**
