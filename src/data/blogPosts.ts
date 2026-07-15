@@ -599,7 +599,7 @@ export const blogPosts: BlogPost[] = [
     slug: "christmas-gift-packs-at-hair-pinns",
     title: "🎁 Gift Packs at Hair Pinns 🎁",
     archived: true, // Jena doesn't currently offer gift packs
-    redirectTo: "/products", // Send seasonal traffic to the live product catalogue
+    redirectTo: "/collections", // Send seasonal traffic to the live product catalogue
     excerpt: "Spoil someone special with our Juuce and Pure gift packs loaded with hair-loving products.",
     category: "Products",
     date: "September 20, 2025",
@@ -3433,11 +3433,11 @@ export const blogPosts: BlogPost[] = [
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for the current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
@@ -3483,8 +3483,8 @@ export const blogPosts: BlogPost[] = [
           content: "The most-booked services for Illawong clients: Straight Up Smoothing (keeps frizz down through Sydney humidity for 8–12 weeks), full head foils for blonde maintenance, and weekend appointments — we know the Illawong commute is tighter on weekdays. We also do kids cuts and formal styling. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from an Illawong Client",
-          content: "'Honest pricing, same stylist every visit, and I walk out with hair that still looks right in three weeks. That's all I wanted and it took years to find it.' — K. R., Illawong. (Composite of client feedback — real quote to be added before publish.) This captures the Hair Pinns approach: we don't promise miracles, we deliver what we say we'll deliver, and we charge for exactly that."
+          heading: "Why the Illawong Trip Works",
+          content: "For Illawong clients, the practical advantage is simple: a short route to Bangor, local parking, transparent online pricing and continuity with the same stylist. Hair Pinns focuses on realistic service plans and long-term hair condition rather than promising a one-visit miracle."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -3505,11 +3505,11 @@ export const blogPosts: BlogPost[] = [
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for the current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
@@ -3555,8 +3555,8 @@ export const blogPosts: BlogPost[] = [
           content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined) and Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair). We also do colour correction and toner refreshes. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from a Sutherland Client",
-          content: "'Jena priced my colour correction upfront, delivered the result over three visits exactly as she said she would, and my hair has been in better condition ever since. I used to drive into the city. Now I drive to Bangor.' — M. T., Sutherland. (Composite of client feedback — real quote to be added before publish.) This captures our approach: honest timelines, honest pricing, long-term results."
+          heading: "Why the Sutherland Trip Works",
+          content: "For Sutherland clients, Hair Pinns offers a quieter Bangor setting, local parking, transparent online pricing and continuity with Jena. Colour correction is planned around hair condition and may be staged over multiple visits when that is the safer approach."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -3577,11 +3577,11 @@ export const blogPosts: BlogPost[] = [
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for the current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
@@ -3627,8 +3627,8 @@ export const blogPosts: BlogPost[] = [
           content: "The most-booked services for Cronulla clients: full head foils (blonde beach hair is the brief), beach-recovery smoothing treatments (Straight Up Smoothing keeps frizz down for 8–12 weeks despite salt water), and deep-conditioning or bond-repair treatments for sun-damaged ends. We stock heat protection and sulfate-free ranges that beach-hair clients especially benefit from. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from a Cronulla Client",
-          content: "'I surf year-round and my hair used to fry by January. Jena put me on a smoothing and bond-repair schedule and now my hair survives summer — even my colour. Worth every minute of the drive.' — J. L., Cronulla. (Composite of client feedback — real quote to be added before publish.) This captures the Cronulla-specific approach: we plan around the lifestyle, not just the appointment."
+          heading: "Why the Cronulla Trip Works",
+          content: "Cronulla hair is regularly exposed to salt, chlorine, UV and humidity. Hair Pinns builds colour, smoothing and bond-repair plans around that lifestyle, with practical aftercare and transparent booking information before the appointment."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -3649,11 +3649,11 @@ export const blogPosts: BlogPost[] = [
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for the current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
@@ -3699,8 +3699,8 @@ export const blogPosts: BlogPost[] = [
           content: "The most-booked services for Como clients: full head foils with toner refreshes, mid-length cut-and-blowdry packages, and Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from a Como Client",
-          content: "'Jena gave me full head foils that genuinely look good at 12 weeks — I've never had that from another salon. Honest pricing, same stylist every time, and the short drive from Como is a non-issue.' — S. B., Como. (Composite of client feedback — real quote to be added before publish.) This captures the Como-specific appeal: long-lasting results that justify the drive."
+          heading: "Why the Como Trip Works",
+          content: "For Como clients, the short trip to Bangor provides local parking, one-to-one service and colour plans designed to grow out cleanly. Current prices and appointment availability remain visible through the live booking menu."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -3721,11 +3721,11 @@ export const blogPosts: BlogPost[] = [
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for the current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
@@ -3771,8 +3771,8 @@ export const blogPosts: BlogPost[] = [
           content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from a Miranda Client",
-          content: "'I bring both kids and book myself for the same session. The kids actually look forward to it now — the stylist knows them by name. Parking out the front with two under five is the difference between possible and not.' — R. G., Miranda. (Composite of client feedback — real quote to be added before publish.) This captures what Miranda families specifically come for."
+          heading: "Why the Miranda Trip Works",
+          content: "For Miranda families, the Bangor location offers straightforward parking, online booking and a quieter appointment setting. Hair Pinns provides children's cuts, adult services and formal styling, with current prices and age brackets kept in the live Fresha menu."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -3793,11 +3793,11 @@ export const blogPosts: BlogPost[] = [
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for the current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
@@ -3843,8 +3843,8 @@ export const blogPosts: BlogPost[] = [
           content: "The most-booked services for Engadine clients: family cut appointments, kids cut-and-blowdry bundles, seniors' colour and styling (we do gentle colour suited to mature hair very well), and mid-length cut packages. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from an Engadine Client",
-          content: "'My mum, my daughter, and I all go to Jena now. Three generations, same stylist. My mum used to dread hair appointments and now looks forward to them.' — D. P., Engadine. (Composite of client feedback — real quote to be added before publish.) This captures the Engadine-specific appeal: a salon that genuinely works across ages."
+          heading: "Why the Engadine Trip Works",
+          content: "For Engadine households, Hair Pinns combines children's cuts, adult colour and styling services in one Bangor location. Current services, prices and availability are published through the live booking menu so families can plan before travelling."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -3865,11 +3865,11 @@ export const blogPosts: BlogPost[] = [
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for the current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",

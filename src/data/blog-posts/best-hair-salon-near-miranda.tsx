@@ -25,8 +25,8 @@ const post = {
           content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from a Miranda Client",
-          content: "'I bring both kids and book myself for the same session. The kids actually look forward to it now — the stylist knows them by name. Parking out the front with two under five is the difference between possible and not.' — R. G., Miranda. (Composite of client feedback — real quote to be added before publish.) This captures what Miranda families specifically come for."
+          heading: "Why the Miranda Trip Works",
+          content: "For Miranda families, the Bangor location offers straightforward parking, online booking and a quieter appointment setting. Hair Pinns provides children's cuts, adult services and formal styling, with current prices and age brackets kept in the live Fresha menu."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -47,11 +47,11 @@ const post = {
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",

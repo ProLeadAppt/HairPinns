@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -23,7 +23,7 @@ import {
 import { toast } from "sonner";
 import { JENAS_DAILY_TRIO, type JenasDailyTrio } from "@/data/jenasDailyTrio";
 import { getProductByHandle } from "@/lib/shopify";
-import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
 import {
   generateBreadcrumbSchema,
@@ -183,10 +183,8 @@ const JenasDailyTrioPage = () => {
   const allAvailable = products.length === 3 && products.every((p) => p.availableForSale);
   const bundleReady = !loading && allAvailable;
 
-  // Synthesised "RRP" for the trio bundle — what it would cost at
-  // full price across the three products (15% markup on the trio subtotal)
-  // so the bundle saving reads as a real deal.
-  const bundleRrp = useMemo(() => synthesiseCompareAt(subtotal, 0.15), [subtotal]);
+  // The honest bundle comparison is the sum of the three live Shopify prices.
+  const bundleRrp = subtotal;
 
   const addOne = async (p: TrioProductLive) => {
     if (!p.variantId) {
@@ -584,7 +582,7 @@ const JenasDailyTrioPage = () => {
                       {(() => {
                         const priceText = formatPrice(p.price, p.currency);
                         if (!priceText) return null;
-                        const compareAt = synthesiseCompareAt(p.price, 0.12);
+                        const compareAt = undefined;
                         const compareText = compareAt
                           ? formatPrice(compareAt, p.currency)
                           : "";

@@ -43,7 +43,7 @@ export const comprehensiveFAQs: FAQ[] = [
     answer: "Use a gentle, colour-safe cleanser, hydrate weekly, and apply a violet or blue-violet treatment every 1–2 weeks (short dwell time of 3–5 minutes). If water is mineral-rich (common around the Shire), chelate once a fortnight to keep brass at bay. In-salon glosses every 6–8 weeks will keep the tone fresher for longer.",
     category: 'colour',
     relatedLinks: [
-      { text: 'Book Toning Service', url: '/services#colour' },
+      { text: 'Book Toning Service', url: '/services#colouring-packages' },
       { text: 'Shop Hair Care', url: '/collections' },
     ]
   },
@@ -63,7 +63,7 @@ export const comprehensiveFAQs: FAQ[] = [
     answer: "Cleanse 2–3 times per week with sulphate-free shampoo, deep condition with a mask weekly, protect hair with heat and UV products before styling, and finish with a pH-balanced leave-in conditioner. This routine will extend your colour vibrancy and keep hair healthy between appointments.",
     category: 'colour',
     relatedLinks: [
-      { text: 'Book Colour Service', url: '/services#colour' },
+      { text: 'Book Colour Service', url: '/services#colouring-packages' },
       { text: 'Treatment Products', url: '/collections' },
     ]
   },
@@ -74,7 +74,7 @@ export const comprehensiveFAQs: FAQ[] = [
     category: 'products',
     relatedLinks: [
       { text: 'Shop Blonde Care', url: '/collections' },
-      { text: 'Toning Services', url: '/services#colour' },
+      { text: 'Toning Services', url: '/services#colouring-packages' },
     ]
   },
   {
@@ -83,7 +83,7 @@ export const comprehensiveFAQs: FAQ[] = [
     answer: "Wait 24–48 hours for the cuticle to fully close and the colour to set. When you do wash, use cool water and a gentle, sulphate-free cleanser. Protect from heat styling during the first week to maximize colour longevity.",
     category: 'colour',
     relatedLinks: [
-      { text: 'Colour Services', url: '/services#colour' },
+      { text: 'Colour Services', url: '/services#colouring-packages' },
       { text: 'Aftercare Products', url: '/collections' },
     ]
   },
@@ -103,7 +103,7 @@ export const comprehensiveFAQs: FAQ[] = [
     answer: "Use a medium round brush for tension and volume. Start with airflow to dry 80%, then apply brief heat for smoothing. Avoid maximum heat on fine or colour-treated hair. Medium heat (150-180°C) is sufficient. Always use heat protectant before blow-drying.",
     category: 'care',
     relatedLinks: [
-      { text: 'Book Blow Dry', url: '/services#cuts' },
+      { text: 'Book Blow Dry', url: '/services#cut-packages' },
       { text: 'Heat Protection Products', url: '/collections/heat-protection' },
     ]
   },
@@ -113,7 +113,7 @@ export const comprehensiveFAQs: FAQ[] = [
     answer: "Every 8–12 weeks to prevent split ends from migrating up the hair shaft. If you're growing hair out, trim every 12–16 weeks with 'dusting' (minimal length removal). Regular trims actually help hair grow healthier and longer by preventing breakage.",
     category: 'general',
     relatedLinks: [
-      { text: 'Book a Cut', url: '/services#cuts' },
+      { text: 'Book a Cut', url: '/services#cut-packages' },
       { text: 'View Services', url: '/services' },
     ]
   },

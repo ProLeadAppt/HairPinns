@@ -25,8 +25,8 @@ const post = {
           content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined) and Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair). We also do colour correction and toner refreshes. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
         },
         {
-          heading: "Real Review from a Sutherland Client",
-          content: "'Jena priced my colour correction upfront, delivered the result over three visits exactly as she said she would, and my hair has been in better condition ever since. I used to drive into the city. Now I drive to Bangor.' — M. T., Sutherland. (Composite of client feedback — real quote to be added before publish.) This captures our approach: honest timelines, honest pricing, long-term results."
+          heading: "Why the Sutherland Trip Works",
+          content: "For Sutherland clients, Hair Pinns offers a quieter Bangor setting, local parking, transparent online pricing and continuity with Jena. Colour correction is planned around hair condition and may be staged over multiple visits when that is the safer approach."
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
@@ -47,11 +47,11 @@ const post = {
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns — 15 minutes from Bangor, free parking, Jena's been cutting Bangor clients' hair for 15 years. Online booking available, no waitlist for most services.",
+          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes — $30 for under-12s with a senior stylist, $25 with a junior. First haircut experience includes a polaroid and a lollipop, no charge for the wobbles.",
+          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",

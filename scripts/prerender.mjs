@@ -76,11 +76,27 @@ const STRIPPERS = [
   { name: 'prerender-marker', re: /<div id="prerender-ready-marker"[^>]*><\/div>/gi },
 ];
 
+function canonicalizeInternalHref(href) {
+  if (!href.startsWith('/') || href.startsWith('//')) return href;
+  const match = href.match(/^([^?#]*)([?#].*)?$/);
+  if (!match) return href;
+  const pathname = match[1];
+  const suffix = match[2] || '';
+  const lastSegment = pathname.split('/').filter(Boolean).at(-1) || '';
+  const isStaticFile = /\.[a-z0-9]{2,8}$/i.test(lastSegment);
+  const isNonDocument = /^\/(?:api|cart|discount)(?:\/|$)/.test(pathname);
+  if (pathname === '/' || pathname.endsWith('/') || isStaticFile || isNonDocument) return href;
+  return `${pathname}/${suffix}`;
+}
+
 function postProcessHtml(html) {
   let out = html;
   for (const { name, re, replace = '' } of STRIPPERS) {
     out = out.replace(re, replace);
   }
+  out = out.replace(/\bhref=(['"])(\/[^'"]*)\1/gi, (match, quote, href) => {
+    return `href=${quote}${canonicalizeInternalHref(href)}${quote}`;
+  });
   return out;
 }
 
@@ -120,10 +136,7 @@ async function launchPrerenderBrowser(puppeteer, launchOpts) {
       execSync('npx --yes puppeteer browsers install chrome', { cwd: root, stdio: 'inherit' });
       return await puppeteer.launch(launchOpts);
     } catch (installErr) {
-      // Still no usable browser. Don't fail the build — the SPA shell is valid
-      // for JS-capable crawlers. Skip prerendering and exit cleanly.
-      console.warn(`[prerender] Skipping prerender — Chrome unavailable: ${installErr.message}`);
-      return null;
+      throw new Error(`[prerender] Chrome unavailable after install attempt: ${installErr.message}`);
     }
   }
 }
@@ -453,9 +466,9 @@ async function main() {
     slow.forEach((r) => console.log(`  ${r.route.padEnd(50)} ${String(r.dt).padStart(6)}ms  ${r.jsonLdCount} schemas`));
   }
 
-  // Don't fail the build on prerender errors — the SPA shell is fine for
-  // crawlers that run JS. The IndexNow submit will skip 404s. seo-smoke-test
-  // is the right place to enforce coverage gates.
+  if (report.failed > 0) {
+    throw new Error(`Prerender failed for ${report.failed} of ${report.total} routes`);
+  }
 }
 
 main().catch((err) => {

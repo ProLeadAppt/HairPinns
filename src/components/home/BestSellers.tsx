@@ -5,7 +5,7 @@ import { ShoppingBag, Loader2 } from "lucide-react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { getAllCollections, searchProducts } from "@/lib/shopify";
-import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { useQuickAddToCart } from "@/hooks/useQuickAddToCart";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
@@ -269,17 +269,17 @@ const ProductCard = ({
         </h3>
 
         {(() => {
-          // Use a real compare-at when Shopify provides one; otherwise
-          // synthesise a struck-through "was" so every card sells the deal.
+          // Only show a previous price when Shopify supplies a genuine
+          // compare-at price that is higher than the current price.
           const compareAt =
             product.originalPrice && product.originalPrice > product.price
               ? product.originalPrice
-              : synthesiseCompareAt(product.price);
+              : undefined;
           const priceText = formatPrice(product.price, product.currency);
           const compareText = compareAt
             ? formatPrice(compareAt, product.currency)
             : "";
-          // Hide the whole block if we have no live price — never render $0.
+
           if (!priceText) return null;
           return (
             <div className="flex items-baseline gap-2 mb-4">

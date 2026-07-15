@@ -20,7 +20,7 @@ import {
 import TrustStrip from "@/components/conversion/TrustStrip";
 import ProductBadges from "@/components/conversion/ProductBadges";
 import QuickViewModal from "@/components/product/QuickViewModal";
-import { formatPrice, synthesiseCompareAt } from "@/lib/utils";
+import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
 import { getCollectionFAQs } from "@/data/collectionFAQs";
@@ -494,7 +494,7 @@ const CollectionDetail = () => {
                           const compareAt =
                             product.originalPrice && product.originalPrice > product.price
                               ? product.originalPrice
-                              : synthesiseCompareAt(product.price);
+                              : undefined;
                           const compareText = compareAt
                             ? formatPrice(compareAt, "AUD")
                             : "";

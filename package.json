@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-sitemap.js && vite build && node scripts/prerender.mjs && node scripts/seo-smoke-test.js && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
+    "build": "npm run quality && node scripts/generate-sitemap.js && vite build && node scripts/prerender.mjs && node scripts/seo-smoke-test.js && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
+    "quality": "node scripts/quality-regression.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "prerender": "node scripts/prerender.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.js",
