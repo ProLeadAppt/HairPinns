@@ -9,11 +9,13 @@
     <meta name="theme-color" content="#8B4A8B" />
     <link rel="manifest" href="/manifest.json" />
     
-    <!-- Match the hero picture's responsive candidates so mobile does not
-         download both the 1280px preload and the selected 640px image. -->
-    <link rel="preload" as="image" href="/src/assets/images/hero-home-640w.avif" type="image/avif" fetchpriority="high"
-      imagesrcset="/src/assets/images/hero-home-640w.avif 640w, /src/assets/images/hero-home-1280w.avif 1280w, /src/assets/images/hero-home-1920w.avif 1920w"
-      imagesizes="100vw">
+    <!-- Mobile uses a deliberately fixed 640px source. It remains sharp at
+         412px CSS width without paying for an unnecessary 1280px transfer. -->
+    <link rel="preload" as="image" href="/src/assets/images/hero-journal-mobile-640w.avif" type="image/avif" fetchpriority="high" media="(max-width: 767px)">
+    <!-- Desktop keeps responsive candidates for its wider image panel. -->
+    <link rel="preload" as="image" href="/src/assets/images/hero-journal-1280w.avif" type="image/avif" fetchpriority="high" media="(min-width: 768px)"
+      imagesrcset="/src/assets/images/hero-journal-640w.avif 640w, /src/assets/images/hero-journal-1280w.avif 1280w, /src/assets/images/hero-journal-1440w.avif 1440w"
+      imagesizes="53vw">
     <link rel="preload" as="font" href="/src/assets/fonts/inter-latin.woff2" type="font/woff2" crossorigin>
     <link rel="preload" as="font" href="/src/assets/fonts/playfair-display-latin.woff2" type="font/woff2" crossorigin>
 
