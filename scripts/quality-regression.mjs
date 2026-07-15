@@ -123,9 +123,9 @@ assert.doesNotMatch(indexHtml, /fonts\.googleapis\.com|fonts\.gstatic\.com/, 'Cr
 assert.doesNotMatch(indexHtml, /googletagmanager\.com\/gtag\/js/, 'GA4 must not compete with first paint');
 assert.match(indexHtml, /gtag\(['"]config['"],\s*['"]G-N6Y1TJMWGG['"]\)/, 'GA4 config must be queued before deferred events');
 assert.doesNotMatch(indexHtml, /rel="preload"[^>]+hero-poster\.avif/, 'Do not preload the desktop video poster as the mobile LCP image');
-assert.match(indexHtml, /rel="preload"[^>]+href="[^"]*hero-home-640w\.avif"/, 'Preload the mobile hero LCP fallback');
+assert.match(indexHtml, /rel="preload"[^>]+href="[^"]*hero-journal-mobile-640w\.avif"/, 'Preload the cropped mobile hero LCP image');
 const responsiveHeroPreload = indexHtml.match(/imagesrcset="([^"]+)"/)?.[1] ?? '';
-for (const candidate of ['hero-home-640w.avif', 'hero-home-1280w.avif', 'hero-home-1920w.avif']) {
+for (const candidate of ['hero-journal-640w.avif', 'hero-journal-1280w.avif', 'hero-journal-1440w.avif']) {
   assert.ok(responsiveHeroPreload.includes(candidate), `Responsive hero preload is missing ${candidate}`);
 }
 
@@ -136,6 +136,11 @@ assert.doesNotMatch(trackingScripts, /gtag\?\.\(['"]config['"]/, 'Deferred loade
 const heroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
 assert.match(heroSource, /Shop Jena's shelf/, 'Hero CTA must expose its visible shopping label');
 assert.doesNotMatch(heroSource, /aria-label="Shop Jena's product shelf"/, 'Hero CTA accessible name must exactly preserve its visible label');
+assert.match(heroSource, /hero-journal-640w\.avif[\s\S]*?srcSet=/, 'Hero must use the approved responsive first-party finish image');
+assert.match(heroSource, /hero-journal-mobile-640w\.avif/, 'Mobile hero must avoid decoding pixels that CSS immediately crops away');
+assert.match(heroSource, /Selected by Jena/, 'Hero must preserve Jena as the human trust signature');
+assert.doesNotMatch(heroSource, /hero-reel|<video/, 'Hero art direction must not be replaced after LCP by unrelated video footage');
+assert.doesNotMatch(heroSource, /["']Fraunces["']/, 'Hero must not pull the optional Fraunces family into the critical path');
 
 const socialProofSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
 assert.doesNotMatch(socialProofSource, /text-foreground\/60/, 'Trust-strip supporting text must meet WCAG AA contrast');
@@ -153,6 +158,8 @@ assert.match(bestSellersSource, /h-11/, 'Mobile quick-add target must be at leas
 assert.doesNotMatch(bestSellersSource, /most reordered|keep reordering/i, 'Curated product picks must not claim unsupported reorder data');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
+assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
+assert.doesNotMatch(homeSource, /"@type":\s*"VideoObject"/, 'Homepage schema must not advertise a video that is no longer embedded');
 for (const component of ['ShopByConcern', 'BestSellers', 'JenaPromise', 'BlogTrio', 'BookingBanner']) {
   assert.match(homeSource, new RegExp(`<${component}\\s*\\/>`), `Product-first homepage is missing ${component}`);
 }
