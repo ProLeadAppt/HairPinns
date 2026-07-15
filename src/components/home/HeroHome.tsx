@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import heroHomeAvif640 from "@/assets/images/hero-home-640w.avif";
 import heroHomeAvif1280 from "@/assets/images/hero-home-1280w.avif";
 import heroHomeAvif1920 from "@/assets/images/hero-home-1920w.avif";
@@ -167,7 +168,7 @@ const HeroHome = () => {
               >
                 <Link
                   to="/collections"
-                  aria-label="Shop Jena's product shelf"
+
                   onClick={() => {
                     if (typeof window !== "undefined" && (window as any).dataLayer) {
                       (window as any).dataLayer.push({
@@ -183,19 +184,11 @@ const HeroHome = () => {
                 </Link>
               </Button>
               <a
-                href="https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer"
+                href={BOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-white text-sm underline-offset-4 hover:underline transition"
-                onClick={() => {
-                  if (typeof window !== "undefined" && (window as any).dataLayer) {
-                    (window as any).dataLayer.push({
-                      event: "booking_click",
-                      location: "hero_home_secondary",
-                      cta: "book_now",
-                    });
-                  }
-                }}
+                onClick={() => trackBookingClick("hero_home_secondary", window.location.pathname)}
               >
                 Book the Bangor salon →
               </a>

@@ -14,19 +14,22 @@ const StickyBookBar = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const onScroll = () => {
-      const y = window.scrollY;
-      setVisible(y > 400 && y < document.body.scrollHeight - 1200);
+      const footer = document.querySelector("footer");
+      const footerIsVisible = footer
+        ? footer.getBoundingClientRect().top <= window.innerHeight - 40
+        : false;
+      setVisible(window.scrollY > 400 && !footerIsVisible);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  if (!visible) return null;
+
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-40 lg:hidden transition-transform duration-300 ${
-        visible ? "translate-y-0" : "translate-y-full"
-      }`}
+      className="fixed inset-x-0 bottom-0 z-40 lg:hidden"
       role="region"
       aria-label="Quick shop bar"
     >
