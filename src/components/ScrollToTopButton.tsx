@@ -35,8 +35,8 @@ const ScrollToTopButton = () => {
         const productRecommendationsAreVisible = Boolean(
           productRecommendationsRect && productRecommendationsRect.bottom > 0 && productRecommendationsRect.top < window.innerHeight,
         );
-        const aboutPageIsActive = Boolean(document.querySelector("[data-about-page]"));
-        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible && !productShareIsVisible && !productRecommendationsAreVisible && !aboutPageIsActive);
+        const editorialPageIsActive = Boolean(document.querySelector("[data-about-page], [data-services-page]"));
+        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible && !productShareIsVisible && !productRecommendationsAreVisible && !editorialPageIsActive);
       });
     };
 
