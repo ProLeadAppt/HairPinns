@@ -683,3 +683,57 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
     expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
   }
 });
+
+test('after-hours booking handoff keeps Fresha and direct help truthful at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/booking');
+
+  const booking = page.locator('[data-booking-page]');
+  await expect(booking.getByRole('heading', { level: 1, name: 'Your appointment starts here.' })).toBeVisible();
+
+  const freshaLinks = booking.locator('a[href="https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb"]');
+  await expect(freshaLinks).toHaveCount(2);
+  for (const link of await freshaLinks.all()) {
+    await expect(link).toHaveAttribute('target', '_blank');
+    await expect(link).toHaveAttribute('rel', /noopener/);
+    expect((await link.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+  }
+
+  await expect(page.locator('[data-booking-hero]').getByRole('link', { name: 'Browse the service menu' })).toHaveAttribute('href', '/services');
+  await expect(page.locator('[data-booking-steps] li')).toHaveCount(3);
+  await expect(page.locator('[data-booking-notes] ol > li')).toHaveCount(4);
+
+  const faqs = page.locator('[data-booking-faq] details');
+  await expect(faqs).toHaveCount(5);
+  await faqs.nth(1).locator('summary').click();
+  await expect(faqs.nth(1)).toHaveAttribute('open', '');
+  await expect(faqs.nth(1).getByText('Fresha shows live appointment availability')).toBeVisible();
+
+  for (const unsupportedClaim of ['762+ five-star reviews', 'Same-day available', 'Klarna', 'Afterpay', '50% fee', 'Takes about 2 minutes']) {
+    await expect(booking).not.toContainText(unsupportedClaim);
+  }
+
+  const close = page.locator('[data-booking-close]');
+  await expect(close.locator('a[href="tel:+61416037663"]')).toContainText('0416 037 663');
+  await expect(close.locator('a[href^="https://wa.me/61416037663"]')).toHaveAttribute('target', '_blank');
+  await expect(close.getByRole('link', { name: 'Privacy' })).toHaveAttribute('href', '/privacy');
+  await expect(close.getByRole('link', { name: 'Terms' })).toHaveAttribute('href', '/terms');
+
+  const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+    nodes.flatMap((node) => {
+      try {
+        const parsed = JSON.parse(node.textContent || '{}');
+        return Array.isArray(parsed) ? parsed : [parsed];
+      } catch {
+        return [];
+      }
+    }),
+  );
+  expect(schemas.some((schema) => schema['@type'] === 'FAQPage' && schema.mainEntity?.length === 5)).toBe(true);
+  expect(schemas.some((schema) => schema['@type'] === 'BreadcrumbList')).toBe(true);
+
+  await close.scrollIntoViewIfNeeded();
+  await expect(page.getByRole('button', { name: /scroll to top/i })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(6_000);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});

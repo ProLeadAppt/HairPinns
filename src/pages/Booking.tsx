@@ -1,9 +1,8 @@
-import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Calendar, Check } from "lucide-react";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { getOGImage } from "@/lib/sitemap";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
@@ -12,225 +11,180 @@ import { BUSINESS_NAP } from "@/config/businessConfig";
 const bookingFaqs = [
   {
     question: "How do I book an appointment online?",
-    answer: "Click the Book Now button on this page or visit hairpinns.com/booking. You'll be taken to Fresha where you pick your service, date, and time. Booking takes about 2 minutes and you'll get instant confirmation by email."
+    answer: "Open the Hair Pinns Fresha page, choose your service, then select from the dates and times currently available. Fresha handles your booking confirmation.",
   },
   {
-    question: "Can I book a same-day appointment?",
-    answer: "Same-day appointments are sometimes available depending on the day — check Fresha for live availability, or call 0416 037 663 to ask directly."
+    question: "How can I see the next available appointment?",
+    answer: "Fresha shows live appointment availability for each service. If the available times do not suit, call or text Jena on 0416 037 663.",
   },
   {
-    question: "Do I have to pay a deposit to book?",
-    answer: "Deposits are only required for longer services like full-head foils and smoothing treatments. Short appointments like trims and blowouts don't need a deposit."
+    question: "Will I need to pay a deposit?",
+    answer: "If a deposit or other booking condition applies to your selected service, Fresha will show it before you confirm the appointment.",
   },
   {
-    question: "How do I cancel or reschedule?",
-    answer: "You can cancel or reschedule for free up to 24 hours before your appointment through the link in your confirmation email. For last-minute changes, call 0416 037 663."
+    question: "How do I change or cancel a booking?",
+    answer: "Use the booking-management link in your Fresha confirmation, or contact Hair Pinns directly if you need help. Any applicable terms are shown during booking.",
   },
   {
     question: "What should I bring to my first appointment?",
-    answer: "Come with clean, product-free hair if possible. If you have photos of the look you want or hair you like, bring those — they're the best way to communicate colour and cut ideas."
-  }
+    answer: "Reference photos are useful for discussing cut, colour, and styling ideas. If you are unsure which service to choose, call Jena before booking.",
+  },
 ];
 
+const bookingSteps = [
+  { title: "Choose the service", text: "Start with the appointment that best matches what you need." },
+  { title: "Pick an available time", text: "Fresha shows the current appointment options for that service." },
+  { title: "Confirm in Fresha", text: "Review the booking details and any applicable conditions before confirming." },
+];
+
+const bookingNotes = [
+  ["Live menu", "Service names, prices, durations, and availability are shown in Fresha."],
+  ["Before confirming", "Any deposit or booking condition is displayed before you complete the booking."],
+  ["After booking", "Fresha sends your confirmation and booking-management link."],
+  ["Need a second opinion?", "Call or text Jena before choosing if you are not sure which service fits."],
+];
 
 const Booking = () => {
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[hsl(var(--after-hours-cream))]">
       <SEOHead
-        title="Book Appointment Online | Hair Pinns Bangor | 24/7 Booking"
-        description="Book your hair appointment online 24/7 via Fresha. Colour, treatments, cuts & styling. Instant confirmation. Same-day available."
+        title="Book a Hair Appointment | Hair Pinns Bangor"
+        description="Choose your Hair Pinns service and view live appointment availability through Fresha. Need help choosing? Call Jena on 0416 037 663."
         canonical="https://hairpinns.com/booking"
-        ogImage={getOGImage('service')}
+        ogImage={getOGImage("service")}
         ogType="website"
         hrefLang="en-AU"
         schemaJson={[
           generateFAQPageSchema(bookingFaqs),
           generateBreadcrumbSchema([
-            { name: 'Home', url: 'https://hairpinns.com' },
-            { name: 'Booking', url: 'https://hairpinns.com/booking' },
+            { name: "Home", url: "https://hairpinns.com" },
+            { name: "Booking", url: "https://hairpinns.com/booking" },
           ]),
         ]}
       />
       <Header />
-      <main id="main-content" tabIndex={-1}>
-        {/* Hero */}
-        <section className="bg-accent py-12 md:py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
-              Book Your Appointment
-            </h1>
-            <p className="text-lg text-foreground mb-8 leading-relaxed">
-              Book whenever suits you. Pick your service, pick your time, and you're sorted.
-              Takes about 2 minutes.
-            </p>
-            <p className="text-foreground mb-8">
-              Need help choosing? <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 font-semibold hover:text-brand-600 underline">Call Jena</a> or chat with Isabella for instant help.
-            </p>
-            
-            <a
-              href={BOOK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackBookingClick("booking_hero", "/booking")}
-            >
-              <Button variant="primary" size="xl" aria-label="Book an appointment">
-                <Calendar className="w-5 h-5" />
+
+      <main id="main-content" tabIndex={-1} data-booking-page="">
+        <div className="border-b border-[hsl(var(--after-hours-cream)/0.14)] bg-[hsl(var(--after-hours-plum))] px-4 pt-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[78rem]">
+            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Booking" }]} variant="dark" />
+          </div>
+        </div>
+
+        <section data-booking-hero="" className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
+          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-[minmax(0,0.67fr)_minmax(19rem,0.33fr)] lg:gap-20 lg:px-8 lg:pb-24 lg:pt-20">
+            <div>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.76)]">Hair Pinns / Bangor</p>
+              <h1 className="mt-5 max-w-[12ch] font-heading text-[clamp(3.4rem,7vw,7.2rem)] font-semibold leading-[0.89] tracking-[-0.06em] text-[hsl(var(--after-hours-cream))]">
+                Your appointment starts here.
+              </h1>
+              <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.82)] sm:text-lg sm:leading-8">
+                Choose your service and see Hair Pinns’ live appointment availability in Fresha. You review the details there before anything is confirmed.
+              </p>
+            </div>
+
+            <aside className="self-end border-t border-[hsl(var(--after-hours-cream)/0.3)] pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Booking actions">
+              <a
+                href={BOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBookingClick("booking_hero", "/booking")}
+                className="flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 py-3 text-sm font-semibold"
+                style={{ color: "hsl(var(--after-hours-plum))" }}
+              >
                 {BOOK_CTA_LABEL}
-              </Button>
-            </a>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <Link to="/services" className="mt-3 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-cream)/0.34)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+                Browse the service menu
+                <span aria-hidden="true">→</span>
+              </Link>
+              <p className="mt-5 text-xs leading-5 text-[hsl(var(--after-hours-cream)/0.66)]">Fresha opens in a new tab. No booking is made until you confirm there.</p>
+            </aside>
           </div>
         </section>
 
-        {/* How it works */}
-        <section className="py-8 bg-background">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-3 gap-4 text-center">
-              {[
-                { step: "1", label: "Pick your service" },
-                { step: "2", label: "Choose a time" },
-                { step: "3", label: "You're booked" },
-              ].map((s) => (
-                <div key={s.step} className="flex flex-col items-center gap-2">
-                  <div className="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-lg">{s.step}</div>
-                  <p className="text-sm font-medium text-heading">{s.label}</p>
-                </div>
+        <section data-booking-steps="" className="bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]">
+          <div className="mx-auto max-w-[78rem] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+            <div className="grid gap-8 border-b border-[hsl(var(--after-hours-plum)/0.3)] pb-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-20">
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.74)]">01 / The handoff</p>
+              <h2 className="max-w-[13ch] font-heading text-[clamp(2.8rem,5vw,5.5rem)] font-semibold leading-[0.94] tracking-[-0.05em]">Three steps, all in Fresha.</h2>
+            </div>
+            <ol className="grid md:grid-cols-3">
+              {bookingSteps.map((step, index) => (
+                <li key={step.title} className="border-b border-[hsl(var(--after-hours-plum)/0.2)] py-9 md:min-h-64 md:border-b-0 md:border-r md:px-8 md:py-12 first:md:pl-0 last:md:border-r-0 last:md:pr-0">
+                  <p className="font-mono text-xs text-[hsl(var(--after-hours-plum)/0.72)]">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-7 max-w-[13ch] font-heading text-3xl font-semibold leading-[1.05]">{step.title}</h3>
+                  <p className="mt-5 max-w-[26rem] text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.76)]">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section data-booking-notes="" className="border-y border-[hsl(var(--after-hours-plum)/0.22)] bg-[#efe5df] text-[hsl(var(--after-hours-plum))]">
+          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.34fr_0.66fr] lg:gap-20 lg:px-8 lg:py-24">
+            <header>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.74)]">02 / Before you confirm</p>
+              <h2 className="mt-4 max-w-[10ch] font-heading text-[clamp(2.7rem,4.5vw,5rem)] font-semibold leading-[0.94] tracking-[-0.05em]">Know what happens next.</h2>
+            </header>
+            <ol className="border-t border-[hsl(var(--after-hours-plum)/0.3)]">
+              {bookingNotes.map(([term, description], index) => (
+                <li key={term} className="grid grid-cols-[2rem_1fr] gap-3 border-b border-[hsl(var(--after-hours-plum)/0.22)] py-6 sm:grid-cols-[2.5rem_12rem_1fr] sm:gap-5">
+                  <span className="font-mono text-[0.67rem] text-[hsl(var(--after-hours-plum)/0.72)]">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="font-heading text-xl font-semibold leading-tight">{term}</h3>
+                  <p className="col-start-2 mt-2 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.78)] sm:col-start-3 sm:mt-0">{description}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section data-booking-faq="" className="bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]">
+          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.34fr_0.66fr] lg:gap-20 lg:px-8 lg:py-24">
+            <header>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.74)]">03 / Questions</p>
+              <h2 className="mt-4 max-w-[10ch] font-heading text-[clamp(2.7rem,4.5vw,5rem)] font-semibold leading-[0.94] tracking-[-0.05em]">Before you book.</h2>
+            </header>
+            <div className="border-t border-[hsl(var(--after-hours-plum)/0.3)]">
+              {bookingFaqs.map((faq, index) => (
+                <details key={faq.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.22)]">
+                  <summary className="grid min-h-16 cursor-pointer list-none grid-cols-[2rem_1fr_auto] items-center gap-3 py-4 font-semibold [&::-webkit-details-marker]:hidden">
+                    <span className="font-mono text-[0.67rem] text-[hsl(var(--after-hours-plum)/0.72)]">{String(index + 1).padStart(2, "0")}</span>
+                    <span>{faq.question}</span>
+                    <span aria-hidden="true" className="text-lg">+</span>
+                  </summary>
+                  <p className="max-w-[44rem] pb-7 pl-11 text-sm leading-7 text-[hsl(var(--after-hours-plum)/0.78)]">{faq.answer}</p>
+                </details>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Fresha Embed */}
-        <section className="py-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
-              Book Online Now
-            </h2>
-
-            <div className="bg-card border border-border rounded-card p-8 md:p-12 text-center">
-              <p className="text-lg text-foreground mb-6">
-                Pick your service, choose a time that works, and you're sorted. Takes about 2 minutes.
-              </p>
+        <section data-booking-close="" className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
+          <div className="mx-auto grid max-w-[78rem] gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.64fr_0.36fr] lg:gap-20 lg:px-8 lg:py-24">
+            <div>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.74)]">Ready when you are</p>
+              <h2 className="mt-5 max-w-[12ch] font-heading text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.92] tracking-[-0.05em]" style={{ color: "hsl(var(--after-hours-cream))" }}>See what times are available.</h2>
+            </div>
+            <div className="self-end border-t border-[hsl(var(--after-hours-cream)/0.3)] pt-6">
               <a
                 href={BOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackBookingClick("booking_widget", "/booking")}
-                className="inline-block"
+                onClick={() => trackBookingClick("booking_close", "/booking")}
+                className="flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 py-3 text-sm font-semibold"
+                style={{ color: "hsl(var(--after-hours-plum))" }}
               >
-                <Button variant="primary" size="xl" aria-label="Book an appointment via Fresha">
-                  <Calendar className="w-5 h-5" />
-                  {BOOK_CTA_LABEL}
-                </Button>
+                {BOOK_CTA_LABEL}
+                <span aria-hidden="true">↗</span>
               </a>
-
-              <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1">Instant confirmation</span>
-                <span className="flex items-center gap-1">Free rescheduling</span>
-                <span className="flex items-center gap-1">762+ five-star reviews</span>
+              <a href={BUSINESS_NAP.phone.tel} className="mt-3 flex min-h-11 items-center border-b border-[hsl(var(--after-hours-cream)/0.26)] py-2 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>{BUSINESS_NAP.phone.display}</a>
+              <a href="https://wa.me/61416037663?text=Hi%20Jena%2C%20I%27d%20like%20help%20choosing%20a%20service" target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center border-b border-[hsl(var(--after-hours-cream)/0.26)] py-2 text-sm" style={{ color: "hsl(var(--after-hours-cream))" }}>WhatsApp Jena ↗</a>
+              <div className="mt-6 flex flex-wrap gap-5 text-xs text-[hsl(var(--after-hours-cream)/0.7)]">
+                <Link to="/privacy" style={{ color: "hsl(var(--after-hours-cream))" }}>Privacy</Link>
+                <Link to="/terms" style={{ color: "hsl(var(--after-hours-cream))" }}>Terms</Link>
               </div>
-
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm">
-                <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 font-semibold hover:text-brand-600 transition-colors">
-                  Call 0416 037 663
-                </a>
-                <span className="hidden sm:inline text-muted-foreground">or</span>
-                <a
-                  href="https://wa.me/61416037663?text=Hi%20Jena%2C%20I%27d%20like%20to%20book%20an%20appointment"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-500 font-semibold hover:text-brand-600 transition-colors"
-                >
-                  WhatsApp us
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Policies & Info */}
-        <section className="py-16 bg-muted">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2-lg font-heading font-bold text-heading mb-8 text-center">
-              Heads Up Before You Book
-            </h2>
-            
-            <div className="bg-card border border-border rounded-card p-8 mb-8">
-              <h3 className="text-xl font-heading font-semibold text-heading mb-4">
-                Important Information
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">
-                    <strong>Cancellation Policy:</strong> Please give us 24 hours notice if you need to reschedule.
-                    Late cancellations will need to be charged a 50% fee.
-                  </span>
-                </div>
-                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">
-                    <strong>Late Arrivals:</strong> If you're more than 15 minutes late, you might need to reschedule
-                    so we can look after everyone properly.
-                  </span>
-                </div>
-                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">
-                    <strong>First-Time Clients:</strong> We'll discuss your hair goals and recommend the best service for you during your appointment.
-                  </span>
-                </div>
-                <div className="bg-card border border-border rounded-card p-4 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-foreground">
-                    <strong>Payment:</strong> We accept cash, card, and digital payments.
-                    Klarna & Afterpay available for services over $100.
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-4">
-                By booking, you agree to our terms and policies.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <Link to="/policies/returns" className="text-brand-500 hover:text-brand-600 transition-colors">
-                  Cancellation Policy
-                </Link>
-                <span className="text-muted-foreground">•</span>
-                <Link to="/privacy" className="text-brand-500 hover:text-brand-600 transition-colors">
-                  Privacy Policy
-                </Link>
-                <span className="text-muted-foreground">•</span>
-                <Link to="/terms" className="text-brand-500 hover:text-brand-600 transition-colors">
-                  Terms of Service
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Alternative */}
-        <section className="py-12 bg-brand-500 text-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-h2-lg font-heading font-bold mb-4">
-              Questions About Booking?
-            </h2>
-            <p className="text-lg mb-6 opacity-90">
-              We're here to help! Call or text us, or visit our FAQ page.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={BUSINESS_NAP.phone.tel}>
-                <Button variant="secondary" size="lg" className="bg-white text-brand-500 hover:bg-white/90">
-                  Call: 0416 037 663
-                </Button>
-              </a>
-              <Link to="/services#faqs">
-                <Button variant="secondary" size="lg" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-500">
-                  View FAQs
-                </Button>
-              </Link>
             </div>
           </div>
         </section>
