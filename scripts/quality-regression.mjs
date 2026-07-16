@@ -188,6 +188,20 @@ assert.match(bookingBannerSource, /tel:\+61416037663/, 'Salon close must retain 
 assert.match(bookingBannerSource, /jena-working-480w\.avif[\s\S]*srcSet[\s\S]*sizes=/, 'Salon close must use responsive first-party working imagery');
 assert.doesNotMatch(bookingBannerSource, /aria-label="Book an appointment"|rounded-full|999px|bg-gradient|contentVisibility/, 'Salon close must not regress to mismatched labels, pills, gradients, or double deferral');
 
+const stickyBarSource = await readFile(path.join(ROOT, 'src/components/home/StickyBookBar.tsx'), 'utf8');
+assert.match(stickyBarSource, /querySelector<HTMLElement>\("\[data-home-booking-close\]"\)/, 'Sticky commerce bar must detect the contained salon close');
+assert.match(stickyBarSource, /salonRect\.bottom > 0 && salonRect\.top < window\.innerHeight/, 'Sticky commerce bar must hide for the full visible salon-close interval');
+assert.match(stickyBarSource, /new MutationObserver\(updateVisibility\)[\s\S]*childList: true, subtree: true/, 'Sticky commerce bar must handle deferred salon and footer mounting');
+assert.match(stickyBarSource, /requestAnimationFrame[\s\S]*cancelAnimationFrame/, 'Sticky commerce geometry checks must be frame-throttled and cleaned up');
+assert.match(stickyBarSource, /window\.scrollY > 400 && !salonIsVisible && !footerIsVisible/, 'Sticky commerce bar must retain threshold, salon, and footer suppression');
+assert.match(stickyBarSource, /to="\/collections"[\s\S]*href=\{BOOK_URL\}/, 'Sticky commerce bar must retain product-first and secondary salon actions');
+
+const scrollTopSource = await readFile(path.join(ROOT, 'src/components/ScrollToTopButton.tsx'), 'utf8');
+assert.match(scrollTopSource, /querySelector<HTMLElement>\("\[data-home-booking-close\]"\)/, 'Scroll-to-top control must detect the salon close');
+assert.match(scrollTopSource, /window\.pageYOffset > 300 && !salonIsVisible/, 'Scroll-to-top control must yield to the salon close while retaining its threshold');
+assert.match(scrollTopSource, /new MutationObserver\(toggleVisibility\)[\s\S]*childList: true, subtree: true/, 'Scroll-to-top control must handle deferred salon mounting');
+assert.match(scrollTopSource, /prefers-reduced-motion: reduce[\s\S]*behavior: reduceMotion \? "auto" : "smooth"/, 'Scroll-to-top control must retain reduced-motion behavior');
+
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
 assert.doesNotMatch(homeSource, /"@type":\s*"VideoObject"/, 'Homepage schema must not advertise a video that is no longer embedded');

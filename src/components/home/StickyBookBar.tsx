@@ -13,16 +13,43 @@ const StickyBookBar = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const onScroll = () => {
-      const footer = document.querySelector("footer");
-      const footerIsVisible = footer
-        ? footer.getBoundingClientRect().top <= window.innerHeight - 40
-        : false;
-      setVisible(window.scrollY > 400 && !footerIsVisible);
+
+    let frame = 0;
+    const updateVisibility = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const salonClose = document.querySelector<HTMLElement>("[data-home-booking-close]");
+        const salonRect = salonClose?.getBoundingClientRect();
+        const salonIsVisible = Boolean(
+          salonRect && salonRect.bottom > 0 && salonRect.top < window.innerHeight,
+        );
+
+        const footer = document.querySelector<HTMLElement>("footer");
+        const footerRect = footer?.getBoundingClientRect();
+        const footerIsVisible = Boolean(
+          footerRect && footerRect.bottom > 0 && footerRect.top <= window.innerHeight - 40,
+        );
+
+        setVisible(window.scrollY > 400 && !salonIsVisible && !footerIsVisible);
+      });
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility);
+
+    // The salon close and footer are deferred. Recalculate as soon as either is
+    // inserted so the bar cannot remain over newly mounted conversion content.
+    const mountObserver = new MutationObserver(updateVisibility);
+    mountObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      window.removeEventListener("scroll", updateVisibility);
+      window.removeEventListener("resize", updateVisibility);
+      mountObserver.disconnect();
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   if (!visible) return null;

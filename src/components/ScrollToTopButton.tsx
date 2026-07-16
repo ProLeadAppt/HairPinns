@@ -1,23 +1,36 @@
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let frame = 0;
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const salonClose = document.querySelector<HTMLElement>("[data-home-booking-close]");
+        const salonRect = salonClose?.getBoundingClientRect();
+        const salonIsVisible = Boolean(
+          salonRect && salonRect.bottom > 0 && salonRect.top < window.innerHeight,
+        );
+        setIsVisible(window.pageYOffset > 300 && !salonIsVisible);
+      });
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    toggleVisibility();
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+    window.addEventListener("resize", toggleVisibility);
+
+    const mountObserver = new MutationObserver(toggleVisibility);
+    mountObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       window.removeEventListener("scroll", toggleVisibility);
+      window.removeEventListener("resize", toggleVisibility);
+      mountObserver.disconnect();
+      if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 
