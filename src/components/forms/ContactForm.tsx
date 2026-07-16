@@ -17,6 +17,7 @@ interface ContactFormProps {
   description?: string;
   showTopic?: boolean;
   className?: string;
+  variant?: "default" | "editorial";
 }
 // Validation schema
 const contactSchema = z.object({
@@ -33,7 +34,8 @@ const ContactForm = ({
   title = "Send Us a Message",
   description,
   showTopic = true,
-  className = ""
+  className = "",
+  variant = "default"
 }: ContactFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -142,7 +144,7 @@ const ContactForm = ({
       setIsSuccess(true);
       toast({
         title: "Message Sent!",
-        description: "We'll get back to you within 24 hours."
+        description: "Jena has received your message."
       });
     } catch (error) {
       console.error("Contact form error:", error);
@@ -156,8 +158,14 @@ const ContactForm = ({
       setIsSubmitting(false);
     }
   };
+  const shellClass = variant === "editorial"
+    ? "border-y border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-8"
+    : "bg-card border border-border rounded-card p-8";
+  const stateShellClass = variant === "editorial"
+    ? "border-y border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-10 text-center"
+    : "rounded-card p-8 text-center";
   if (hasError) {
-    return <div className={`bg-destructive/10 border border-destructive/20 rounded-card p-8 text-center ${className}`}>
+    return <div className={`${stateShellClass} bg-destructive/10 border-destructive/20 ${className}`}>
         <AlertCircle className="w-16 h-16 text-destructive mx-auto mb-4" />
         <h3 className="text-h2 font-heading text-heading mb-3">
           Submission Failed
@@ -179,13 +187,13 @@ const ContactForm = ({
       </div>;
   }
   if (isSuccess) {
-    return <div className={`bg-accent/10 border border-accent/20 rounded-card p-8 text-center ${className}`}>
+    return <div className={`${stateShellClass} bg-accent/10 border-accent/20 ${className}`}>
         <CheckCircle2 className="w-16 h-16 text-accent mx-auto mb-4" />
         <h3 className="text-h2 font-heading text-heading mb-3">
           Message Received!
         </h3>
         <p className="text-foreground mb-6">
-          {formData.topic === "order_help" ? "Jena has been notified about your order issue and will respond within 2 hours." : "We'll get back to you within 24 hours. Check your inbox for confirmation."}
+          Jena has received your message and will reply using the contact details you provided.
         </p>
         <div className="space-y-3">
           <Button variant="outline" size="lg" onClick={() => {
@@ -202,7 +210,7 @@ const ContactForm = ({
             Send Another Message
           </Button>
           <p className="text-sm text-muted-foreground">
-            Need immediate help? Call us at{" "}
+            Prefer to call? Reach Hair Pinns at{" "}
                         <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline">
                           {BUSINESS_NAP.phone.display}
                         </a>
@@ -210,7 +218,7 @@ const ContactForm = ({
         </div>
       </div>;
   }
-  return <div className={`bg-card border border-border rounded-card p-8 ${className}`}>
+  return <div className={`${shellClass} ${className}`}>
       {(title || description) && <div className="mb-6">
           {title && <h3 className="text-h2 font-heading text-heading mb-2">{title}</h3>}
           {description && <p className="text-foreground">{description}</p>}
@@ -321,7 +329,7 @@ const ContactForm = ({
         </Button>
 
         <p className="text-xs text-muted-foreground text-center">
-          For urgent matters, call us at{" "}
+          Prefer to call? Reach Hair Pinns at{" "}
                     <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline font-semibold">
                       {BUSINESS_NAP.phone.display}
                     </a>

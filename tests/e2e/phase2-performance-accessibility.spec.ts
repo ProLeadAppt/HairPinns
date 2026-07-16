@@ -737,3 +737,59 @@ test('after-hours booking handoff keeps Fresha and direct help truthful at Fold 
   expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(6_000);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 });
+
+test('after-hours contact journey preserves canonical visit details and the live form at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/contact');
+
+  const contact = page.locator('[data-contact-page]');
+  await expect(contact.getByRole('heading', { level: 1, name: 'Come by. Call. Or leave a note.' })).toBeVisible();
+  await expect(page.locator('[data-contact-hero] a[href="tel:+61416037663"]')).toContainText('0416 037 663');
+  await expect(page.locator('[data-contact-hero] a[href="sms:+61416037663"]')).toContainText('Send a text');
+  await expect(page.locator('[data-contact-hero] a[href="mailto:hairpinns1@gmail.com"]')).toContainText('Email Jena');
+
+  const visit = page.locator('[data-contact-visit]');
+  await expect(visit).toContainText('60 Goorgool Rd, Bangor NSW 2234');
+  await expect(visit.locator('li')).toHaveCount(6);
+  await expect(visit.locator('iframe')).toHaveAttribute('loading', 'lazy');
+  await expect(visit.locator('iframe')).toHaveAttribute('title', 'Hair Pinns at 60 Goorgool Rd, Bangor');
+  await expect(visit.getByRole('link', { name: 'Open directions' })).toHaveAttribute('target', '_blank');
+
+  const form = page.locator('[data-contact-message] form');
+  await expect(form.getByLabel('Your Name *')).toBeVisible();
+  await expect(form.getByLabel('Email Address *')).toBeVisible();
+  await expect(form.getByLabel('Phone Number')).toBeVisible();
+  await expect(form.getByLabel('Your Message *')).toBeVisible();
+  const topic = form.getByRole('combobox', { name: 'What can we help you with? *' });
+  await topic.click();
+  await page.getByRole('option', { name: 'Service Question' }).click();
+  await expect(topic).toContainText('Service Question');
+  await expect(form.getByText('I agree to receive updates from Hair Pinns.')).toBeVisible();
+  expect((await form.getByRole('button', { name: 'Send Message' }).boundingBox())?.height).toBeGreaterThanOrEqual(44);
+
+  const faqs = page.locator('[data-contact-faq] details');
+  await expect(faqs).toHaveCount(4);
+  await faqs.last().locator('summary').click();
+  await expect(faqs.last()).toContainText('60 Goorgool Rd, Bangor NSW 2234');
+
+  for (const unsupportedClaim of ['within 24 hours', 'within 2 hours', 'rear entrance', 'Wheelchair accessible', 'available 24/7', 'Open now']) {
+    await expect(contact).not.toContainText(unsupportedClaim);
+  }
+
+  const close = page.locator('[data-contact-close]');
+  await expect(close.getByRole('link', { name: 'Book now' })).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+  await expect(close.getByRole('link', { name: 'Browse services' })).toHaveAttribute('href', '/services');
+
+  const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) => nodes.map((node) => JSON.parse(node.textContent || '{}')));
+  const salonSchema = schemas.find((schema) => schema['@type'] === 'HairSalon');
+  expect(salonSchema?.telephone).toBe('+61416037663');
+  expect(salonSchema?.address?.streetAddress).toBe('60 Goorgool Rd');
+  expect(salonSchema?.openingHoursSpecification).toHaveLength(5);
+  expect(schemas.some((schema) => schema['@type'] === 'FAQPage' && schema.mainEntity?.length === 4)).toBe(true);
+  expect(schemas.some((schema) => schema['@type'] === 'BreadcrumbList')).toBe(true);
+
+  await close.scrollIntoViewIfNeeded();
+  await expect(page.getByRole('button', { name: /scroll to top/i })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(6_500);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});
