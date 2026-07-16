@@ -146,7 +146,12 @@ const socialProofSource = await readFile(path.join(ROOT, 'src/components/home/He
 assert.doesNotMatch(socialProofSource, /text-foreground\/60/, 'Trust-strip supporting text must meet WCAG AA contrast');
 
 const jenaPromiseSource = await readFile(path.join(ROOT, 'src/components/home/JenaPromise.tsx'), 'utf8');
-assert.match(jenaPromiseSource, /jena-headshot-640w\.avif[\s\S]*?srcSet=/, 'Jena portrait must offer a mobile-sized AVIF source');
+assert.match(jenaPromiseSource, /jena-founder-540w\.avif[\s\S]*?srcSet=/, 'Founder proof must offer a mobile-sized clean AVIF portrait');
+assert.match(jenaPromiseSource, /jena-founder-1080w\.webp/, 'Founder proof must retain a WebP fallback');
+assert.doesNotMatch(jenaPromiseSource, /jena-headshot|MEET JENA/, 'Founder proof must not restore the portrait with baked campaign text');
+assert.match(jenaPromiseSource, /Behind the chair since 2009/, 'Founder proof must retain Jena’s working-hairdresser context');
+assert.match(jenaPromiseSource, /Shop the shelf[\s\S]*Read Jena’s story/, 'Founder proof must keep commerce primary and biography secondary');
+assert.doesNotMatch(jenaPromiseSource, /Award|Heart|Sparkles|rounded-full|999px/, 'Founder proof must not regress to generic icon-list or pill-card styling');
 
 const beforeAfterSource = await readFile(path.join(ROOT, 'src/components/home/BeforeAfterShowcase.tsx'), 'utf8');
 assert.match(beforeAfterSource, /hairdresser-taking-care-her-client-1280w\.avif/, 'Salon comparison must use the optimized finish image');
@@ -160,11 +165,13 @@ assert.match(bestSellersSource, /02 \/ Jena’s shelf/, 'Product shelf must reta
 assert.match(bestSellersSource, /object-contain/, 'Product packaging must not be cropped inside the editorial plates');
 assert.match(bestSellersSource, /\(max-width: 1023px\) 50vw, 30vw/, 'Secondary product images must request candidates sized for the two-column mobile shelf');
 assert.match(bestSellersSource, /Shop all products/, 'Product shelf must close with a route to the full catalogue');
+assert.doesNotMatch(bestSellersSource, /text-\[0\.66rem\][^\n]*after-hours-copper/, 'Small shelf labels need stronger than decorative copper contrast on paper');
 assert.doesNotMatch(bestSellersSource, /rounded-card|hover:shadow-lg/, 'Product shelf must not regress to generic floating card chrome');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
 assert.doesNotMatch(homeSource, /"@type":\s*"VideoObject"/, 'Homepage schema must not advertise a video that is no longer embedded');
+assert.doesNotMatch(homeSource, /<DeferredSection className="reveal" fallback=\{null\}>\s*<Suspense fallback=\{null\}>\s*<JenaPromise/, 'Deferred founder proof must not depend on a reveal observer that ran before it mounted');
 for (const component of ['ShopByConcern', 'BestSellers', 'JenaPromise', 'BlogTrio', 'BookingBanner']) {
   assert.match(homeSource, new RegExp(`<${component}\\s*\\/>`), `Product-first homepage is missing ${component}`);
 }
