@@ -277,6 +277,93 @@ test('cart drawer is a keyboard-contained named dialog', async ({ page }) => {
   await expect(cartButton).toBeFocused();
 });
 
+test('after-hours cart preserves Shopify lines, removal and truthful checkout handoff at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.addInitScript(() => localStorage.setItem('hp_cart_id', 'gid://shopify/Cart/after-hours-test'));
+
+  const lineOne = {
+    node: {
+      id: 'line-1',
+      quantity: 2,
+      merchandise: {
+        id: 'variant-1',
+        title: '250ml',
+        price: { amount: '34.95', currencyCode: 'AUD' },
+        product: { id: 'product-1', title: 'Juuce Bond Repair Shampoo', handle: 'juuce-bond-repair-shampoo' },
+        image: { url: '/placeholder.svg', altText: 'Juuce Bond Repair Shampoo bottle' },
+      },
+    },
+  };
+  const lineTwo = {
+    node: {
+      id: 'line-2',
+      quantity: 1,
+      merchandise: {
+        id: 'variant-2',
+        title: 'Default Title',
+        price: { amount: '49.95', currencyCode: 'AUD' },
+        product: { id: 'product-2', title: 'Pure Precious Ends', handle: 'pure-precious-ends' },
+        image: { url: '/placeholder.svg', altText: 'Pure Precious Ends bottle' },
+      },
+    },
+  };
+  const makeCart = (edges: typeof lineOne[]) => ({
+    id: 'gid://shopify/Cart/after-hours-test',
+    checkoutUrl: 'https://checkout.example.test',
+    lines: { edges },
+    cost: {
+      subtotalAmount: { amount: edges.length === 2 ? '119.85' : '49.95', currencyCode: 'AUD' },
+      totalAmount: { amount: edges.length === 2 ? '119.85' : '49.95', currencyCode: 'AUD' },
+    },
+  });
+  let removalBody: Record<string, unknown> | null = null;
+
+  await page.route('**/graphql.json', async (route) => {
+    const body = route.request().postDataJSON();
+    if (body.query.includes('query getCart')) {
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: { cart: makeCart([lineOne, lineTwo]) } }) });
+      return;
+    }
+    await route.continue();
+  });
+  await page.route('**/api/checkout', async (route) => {
+    removalBody = route.request().postDataJSON();
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: makeCart([lineTwo]) }) });
+  });
+
+  await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: /^View cart/ }).click();
+
+  const drawer = page.locator('[data-mini-cart]');
+  await expect(drawer).toBeVisible();
+  await expect(drawer.getByRole('heading', { name: 'Your bag / 3' })).toBeVisible();
+  await expect(drawer.locator('[data-cart-lines] li')).toHaveCount(2);
+  await expect(drawer.getByText('Juuce Bond Repair Shampoo')).toBeVisible();
+  await expect(drawer.getByText('250ml')).toBeVisible();
+  await expect(drawer.getByText('Default Title')).toHaveCount(0);
+  await expect(drawer.getByText('$30.15 until free standard shipping')).toBeVisible();
+  await expect(drawer.getByRole('progressbar', { name: 'Free standard shipping progress' })).toHaveAttribute('aria-valuenow', '119.85');
+  await expect(drawer.getByRole('link', { name: 'Shipping details' })).toHaveAttribute('href', '/policies/shipping');
+  await expect(drawer.getByRole('link', { name: '14-day returns on unopened products' })).toHaveAttribute('href', '/policies/returns');
+  await expect(drawer.getByText('You might also like')).toHaveCount(0);
+  await expect(drawer.getByText(/Estimated delivery/)).toHaveCount(0);
+
+  const removeFirst = drawer.getByRole('button', { name: 'Remove Juuce Bond Repair Shampoo from bag' });
+  const removeBox = await removeFirst.boundingBox();
+  expect(removeBox?.width).toBeGreaterThanOrEqual(44);
+  expect(removeBox?.height).toBeGreaterThanOrEqual(44);
+  await removeFirst.click();
+  await expect(drawer.locator('[data-cart-lines] li')).toHaveCount(1);
+  expect(removalBody).toEqual({ cartId: 'gid://shopify/Cart/after-hours-test', removeLineIds: ['line-1'] });
+  await expect(drawer.getByRole('heading', { name: 'Your bag / 1' })).toBeVisible();
+
+  const checkout = drawer.getByRole('button', { name: 'Checkout' });
+  await expect(checkout).toBeEnabled();
+  const checkoutBox = await checkout.boundingBox();
+  expect(checkoutBox?.height).toBeGreaterThanOrEqual(44);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});
+
 test('search and collection controls have persistent accessible names', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
