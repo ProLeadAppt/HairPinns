@@ -157,6 +157,61 @@ test('editorial guide desk restores advice content and routes at Fold width', as
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
 });
 
+test('contained salon close preserves Fresha booking at mobile and landscape widths', async ({ page }) => {
+  const openSalonClose = async () => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    for (let y = 0; y <= 15_000; y += 350) {
+      await page.evaluate(scrollY => window.scrollTo(0, scrollY), y);
+      await page.waitForTimeout(80);
+      if (await page.getByRole('heading', { name: /come in and see me/i }).count()) break;
+    }
+    const heading = page.getByRole('heading', { name: /come in and see me/i });
+    await expect(heading).toBeVisible({ timeout: 20_000 });
+    return heading.locator('xpath=ancestor::section[1]');
+  };
+
+  await page.setViewportSize({ width: 344, height: 882 });
+  let salonClose = await openSalonClose();
+  await expect(salonClose).toHaveAttribute('data-home-booking-close', '');
+  await expect(salonClose).toContainText('05 / Visit the salon');
+  await expect(salonClose).toContainText('60 Goorgool Rd, Bangor NSW');
+  await expect(salonClose.getByRole('link', { name: '0416 037 663' })).toHaveAttribute('href', 'tel:+61416037663');
+
+  const booking = salonClose.getByRole('link', { name: 'Book now', exact: true });
+  await expect(booking).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+  await expect(booking).toHaveAttribute('target', '_blank');
+  await expect(booking).toHaveAttribute('rel', 'noopener noreferrer');
+  expect((await booking.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+
+  const workingImage = salonClose.getByRole('img', { name: /Jena styling a client’s hair/i });
+  await workingImage.scrollIntoViewIfNeeded();
+  await expect.poll(
+    () => workingImage.evaluate(node => node.complete && node.naturalWidth > 0),
+    { timeout: 10_000 },
+  ).toBe(true);
+
+  const mobileBounds = await salonClose.evaluate(section => {
+    const panes = [section.querySelector('figure'), section.querySelector('h2')?.parentElement];
+    return panes.map(pane => pane?.getBoundingClientRect()).map(rect => ({ left: rect?.left ?? -1, right: rect?.right ?? 9999 }));
+  });
+  expect(mobileBounds.every(bound => bound.left >= 0 && bound.right <= 344)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
+
+  await page.setViewportSize({ width: 844, height: 390 });
+  salonClose = await openSalonClose();
+  const landscape = await salonClose.evaluate(section => {
+    const imagePane = section.querySelector('figure')?.getBoundingClientRect();
+    const copyPane = section.querySelector('h2')?.parentElement?.getBoundingClientRect();
+    return {
+      height: section.getBoundingClientRect().height,
+      sideBySide: Boolean(imagePane && copyPane && copyPane.left >= imagePane.right - 1),
+    };
+  });
+  expect(landscape.sideBySide).toBe(true);
+  expect(landscape.height).toBeLessThan(1000);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(844);
+});
+
 test('mobile menu and sticky action remain commerce first', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
