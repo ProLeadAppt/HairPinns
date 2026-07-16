@@ -159,6 +159,80 @@ test('mobile navigation is a named dialog without nested controls', async ({ pag
   await expect(page.getByRole('button', { name: 'Open menu' })).toBeFocused();
 });
 
+test('after-hours header preserves commerce paths across tablet and desktop navigation', async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 768 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const promo = page.locator('[data-cta="header-promo-strip"]');
+  await expect(promo).toHaveAttribute('href', '/collections/qiqi');
+  await expect(promo).toContainText('20% off QIQI range, shop now');
+  expect(await promo.evaluate(element => getComputedStyle(element.parentElement!).backgroundColor)).toBe('rgb(24, 0, 31)');
+
+  const directCart = page.getByRole('button', { name: 'View cart' });
+  const menuTrigger = page.getByRole('button', { name: 'Open menu' });
+  await expect(directCart).toBeVisible();
+  await expect(menuTrigger).toBeVisible();
+  expect((await directCart.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+  await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeHidden();
+
+  await menuTrigger.click();
+  const drawer = page.getByRole('dialog', { name: 'Mobile menu' });
+  await expect(drawer).toBeVisible();
+  const close = drawer.getByRole('button', { name: 'Close' });
+  expect((await close.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+  const drawerTargets = await drawer.locator('a, button, input').evaluateAll(elements =>
+    elements.filter(element => element.getBoundingClientRect().height > 0).map(element => element.getBoundingClientRect().height),
+  );
+  expect(Math.min(...drawerTargets)).toBeGreaterThanOrEqual(44);
+  const drawerHrefs = await drawer.getByRole('navigation', { name: 'Mobile navigation' }).locator('a').evaluateAll(links =>
+    links.map(link => link.getAttribute('href')),
+  );
+  expect(drawerHrefs).toEqual([
+    '/collections',
+    '/collections/frizz-free-must-haves',
+    '/collections/heat-protection',
+    '/collections/blonde-bombshells',
+    '/collections/pump-up-the-volume',
+    '/blog', '/about', '/services', '/contact',
+    'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb',
+  ]);
+  await close.click();
+  await expect(menuTrigger).toBeFocused();
+
+  await directCart.click();
+  const cart = page.getByRole('dialog', { name: 'Your Bag' });
+  await expect(cart).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(directCart).toBeFocused();
+
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  const desktopNav = page.getByRole('navigation', { name: 'Main navigation' });
+  await expect(desktopNav).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Open menu' })).toHaveCount(0);
+  await expect(page.getByRole('searchbox', { name: 'Search products and articles' })).toBeVisible();
+  await desktopNav.getByRole('button', { name: 'Shop', exact: true }).click();
+  const shopMenu = page.getByRole('menu');
+  await expect(shopMenu).toBeVisible();
+  await page.waitForTimeout(250);
+  const shopHrefs = await shopMenu.locator('a').evaluateAll(links => links.map(link => link.getAttribute('href')));
+  expect(shopHrefs).toEqual([
+    '/collections/frizz-free-must-haves',
+    '/collections/heat-protection',
+    '/collections/blonde-bombshells',
+    '/collections/pump-up-the-volume',
+    '/collections/curly-girlys',
+    '/collections/juuce-botanicals',
+    '/collections/qiqi',
+    '/collections/pure-certified-organic-hair-care',
+    '/collections/wet-brush-detanglers',
+    '/collections',
+  ]);
+  const shopTargets = await shopMenu.locator('a').evaluateAll(links => links.map(link => link.getBoundingClientRect().height));
+  expect(Math.min(...shopTargets)).toBeGreaterThanOrEqual(44);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(1440);
+});
+
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   const configEntries = await page.evaluate(() =>
@@ -204,6 +278,7 @@ test('cart drawer is a keyboard-contained named dialog', async ({ page }) => {
 });
 
 test('search and collection controls have persistent accessible names', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.getByRole('searchbox', { name: 'Search products and articles' })).toBeVisible();
 

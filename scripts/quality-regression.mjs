@@ -222,6 +222,23 @@ assert.match(footerSource, /min-h-11[\s\S]*aria-label="Footer navigation"[\s\S]*
 assert.match(footerSource, /munyal\.com\.au[\s\S]*Visa[\s\S]*Mastercard[\s\S]*Afterpay[\s\S]*Zip/, 'Footer must retain Munyal credit and accepted payment labels');
 assert.doesNotMatch(footerSource, /bg-muted|rounded-xl|rounded-full|<Instagram|<Facebook|<MapPin|<Phone/, 'After-Hours footer must not regress to pale template cards or generic icon circles');
 
+const headerSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
+assert.match(headerSource, /isStocktakeActive\(\)[\s\S]*QIQI_DISCOUNT_ACTIVE[\s\S]*DEFAULT_HEADER_MESSAGE/, 'Header must retain promotion priority and fallback copy');
+assert.match(headerSource, /data-cta-offer=\{headerPromoOfferId\}[\s\S]*trackPromoClick\("header_promo_strip"/, 'Header promo must retain click attribution and offer identity');
+assert.match(headerSource, /hidden items-center gap-5 xl:flex[\s\S]*xl:hidden/, 'Full desktop navigation must wait until xl while tablet keeps the stable drawer');
+assert.match(headerSource, /aria-label="Main navigation"[\s\S]*to="\/blog"[\s\S]*to="\/about"[\s\S]*to="\/services"[\s\S]*to="\/contact"/, 'Desktop navigation must retain guides, founder, salon, and contact routes');
+assert.match(headerSource, /SHOP_BY_CONCERN\.slice\(0, 4\)[\s\S]*aria-label="Mobile navigation"|aria-label="Mobile navigation"[\s\S]*SHOP_BY_CONCERN\.slice\(0, 4\)/, 'Mobile navigation must retain centralized concern routes');
+assert.match(headerSource, /aria-label=\{itemCount > 0 \? `View cart[\s\S]*xl:hidden[\s\S]*<Sheet/, 'Mobile header must expose direct cart access before the menu');
+assert.match(headerSource, /openCart\(returnTarget\)[\s\S]*trackBookingClick\("header_mobile"/, 'Mobile drawer must retain cart handoff and booking attribution');
+assert.match(headerSource, /mobileMenuFirstLinkRef\.current\?\.focus\(\)[\s\S]*min-h-11/, 'Mobile drawer must retain deterministic opening focus and 44px targets');
+assert.match(headerSource, /after-hours-near-black[\s\S]*after-hours-cream[\s\S]*after-hours-copper/, 'Header must use the semantic After-Hours palette');
+assert.doesNotMatch(headerSource, /rounded-lg border border-border bg-muted\/30/, 'Mobile concerns must not regress to generic rounded tiles');
+
+const shopDropdownSource = await readFile(path.join(ROOT, 'src/components/navigation/ShopDropdown.tsx'), 'utf8');
+assert.match(shopDropdownSource, /SHOP_BY_CONCERN\.map[\s\S]*FEATURED_BRANDS\.map[\s\S]*to="\/collections"/, 'Desktop shop ledger must retain all centralized concerns, brands, and catalogue route');
+assert.match(shopDropdownSource, /w-\[34rem\][\s\S]*min-h-11[\s\S]*rounded-none/, 'Desktop shop ledger must retain editorial geometry and 44px targets');
+assert.doesNotMatch(shopDropdownSource, /w-56|rounded-md|shadow-lg/, 'Desktop shop menu must not regress to the generic narrow dropdown');
+
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
 assert.doesNotMatch(homeSource, /"@type":\s*"VideoObject"/, 'Homepage schema must not advertise a video that is no longer embedded');
