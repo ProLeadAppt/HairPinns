@@ -259,6 +259,25 @@ assert.match(collectionDetailSource, /aria-label="Filter by price"[\s\S]*aria-la
 assert.match(collectionDetailSource, /min-h-11[\s\S]*Quick View[\s\S]*min-h-11[\s\S]*Add to Bag/, 'Collection product actions must remain at least 44px tall');
 assert.doesNotMatch(collectionDetailSource, /TrustStrip|762\+ five-star|Newest First|sortBy === "newest"/, 'Collection detail must not expose unsourced review proof or a no-op newest sort');
 
+const productDetailSource = await readFile(path.join(ROOT, 'src/pages/ProductDetail.tsx'), 'utf8');
+const stickyProductSource = await readFile(path.join(ROOT, 'src/components/conversion/StickyAddToCart.tsx'), 'utf8');
+const scrollToTopSource = await readFile(path.join(ROOT, 'src/components/ScrollToTopButton.tsx'), 'utf8');
+const productRecommendationsSource = await readFile(path.join(ROOT, 'src/components/product/ProductRecommendations.tsx'), 'utf8');
+assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
+assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
+assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
+assert.match(productDetailSource, /Standard<\/dt><dd>\$9\.95 · 3–5 business days/, 'Product detail must use the published standard shipping facts');
+assert.match(productDetailSource, /Express<\/dt><dd>\$14\.95 · 1–2 business days/, 'Product detail must use the published express shipping facts');
+assert.match(productDetailSource, /FREE_SHIPPING_THRESHOLD_DISPLAY/, 'Product detail must use the canonical free-shipping threshold');
+assert.match(productDetailSource, /visibleOptionNames[\s\S]*?Default Title/, 'Product detail must hide Shopify default-only option chrome');
+assert.doesNotMatch(productDetailSource, /TrustStrip|ShippingCalculator|EstimatedDelivery|UrgencyIndicator|FrequentlyBoughtTogether/, 'Product detail must not expose unsourced proof, simulated delivery, or arbitrary bundles');
+assert.match(stickyProductSource, /querySelector\('\[data-product-purchase-actions\]'\)/, 'Sticky product action must yield over the real purchase controls');
+assert.match(stickyProductSource, /data-home-footer|querySelector\('footer'\)/, 'Sticky product action must yield over the footer');
+assert.match(stickyProductSource, /requestAnimationFrame|cancelAnimationFrame/, 'Sticky product visibility must be frame-throttled and cleaned up');
+assert.match(stickyProductSource, /data-product-sticky-purchase=""/, 'Sticky product action needs a stable test marker');
+assert.match(scrollToTopSource, /\[data-product-detail-core\]/, 'Scroll-to-top control must yield throughout the core product detail');
+assert.doesNotMatch(productRecommendationsSource, /content-visibility-auto/, 'Async product recommendations must remain scrollable in WebKit');
+
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
 assert.doesNotMatch(homeSource, /"@type":\s*"VideoObject"/, 'Homepage schema must not advertise a video that is no longer embedded');

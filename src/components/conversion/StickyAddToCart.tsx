@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 
 interface StickyAddToCartProps {
   productTitle: string;
@@ -9,6 +9,12 @@ interface StickyAddToCartProps {
   onAddToCart: () => void;
   threshold?: number;
 }
+
+const overlapsViewport = (element: Element | null) => {
+  if (!element) return false;
+  const rect = element.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
+};
 
 const StickyAddToCart = ({
   productTitle,
@@ -20,47 +26,59 @@ const StickyAddToCart = ({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > threshold);
+    let frame: number | null = null;
+
+    const updateVisibility = () => {
+      frame = null;
+      const primaryActions = document.querySelector('[data-product-purchase-actions]');
+      const footer = document.querySelector('[data-home-footer]') || document.querySelector('footer');
+      setIsVisible(
+        window.scrollY > threshold &&
+        !overlapsViewport(primaryActions) &&
+        !overlapsViewport(footer),
+      );
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const scheduleUpdate = () => {
+      if (frame !== null) return;
+      frame = window.requestAnimationFrame(updateVisibility);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (frame !== null) window.cancelAnimationFrame(frame);
+    };
   }, [threshold]);
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border shadow-lg animate-slide-in-bottom md:hidden">
-      <div className="max-w-7xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-heading truncate">
-              {productTitle}
-            </p>
-            {/*
-             * Hide the price when Shopify returned no parseable amount.
-             * Otherwise the bar would show "$0.00" next to the product
-             * name on every product detail page that has a failed fetch
-             * or no variant set (Jena's "zero next to the amount" bug).
-             */}
-            {Number.isFinite(price) && price > 0 && (
-              <p className="text-lg font-bold text-brand-500">
-                ${price.toFixed(2)}
-              </p>
-            )}
-          </div>
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={onAddToCart}
-            disabled={!inStock}
-            className="shrink-0"
-          >
-            <ShoppingCart className="w-5 h-5" />
-            Add to Cart
-          </Button>
+    <div
+      data-product-sticky-purchase=""
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-[hsl(var(--after-hours-copper)/0.55)] bg-[hsl(var(--after-hours-cream)/0.98)] pb-[env(safe-area-inset-bottom)] md:hidden"
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-semibold text-[hsl(var(--after-hours-plum))]">{productTitle}</p>
+          {Number.isFinite(price) && price > 0 && (
+            <p className="font-heading text-lg text-[hsl(var(--after-hours-plum))]">${price.toFixed(2)}</p>
+          )}
         </div>
+        <Button
+          variant="primary"
+          size="lg"
+          onClick={onAddToCart}
+          disabled={!inStock}
+          className="min-h-12 shrink-0 rounded-none bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))] shadow-none"
+        >
+          <ShoppingBag className="h-5 w-5" />
+          Add to bag
+        </Button>
       </div>
     </div>
   );

@@ -20,7 +20,12 @@ const ScrollToTopButton = () => {
         const footerIsVisible = Boolean(
           footerRect && footerRect.bottom > 0 && footerRect.top < window.innerHeight,
         );
-        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible);
+        const productCore = document.querySelector<HTMLElement>("[data-product-detail-core]");
+        const productCoreRect = productCore?.getBoundingClientRect();
+        const productCoreIsVisible = Boolean(
+          productCoreRect && productCoreRect.bottom > 0 && productCoreRect.top < window.innerHeight,
+        );
+        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible);
       });
     };
 
