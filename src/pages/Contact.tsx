@@ -1,425 +1,226 @@
-import { useState } from "react";
-import { getOGImage } from "@/lib/sitemap";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Section from "@/components/design-system/Section";
-import SectionHeader from "@/components/design-system/SectionHeader";
-import Input from "@/components/design-system/Input";
-import SEOHead from "@/components/SEOHead";
-import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Clock, MessageSquare, Car, CheckCircle2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import ConsentRow from "@/components/forms/ConsentRow";
-import ContactForm from "@/components/forms/ContactForm";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ContactForm from "@/components/forms/ContactForm";
+import SEOHead from "@/components/SEOHead";
+import { getOGImage } from "@/lib/sitemap";
 import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
-import { BUSINESS_NAP } from "@/config/businessConfig";
+import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BUSINESS_HOURS, BUSINESS_HOURS_DISPLAY, BUSINESS_NAP } from "@/config/businessConfig";
+
+const MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BUSINESS_NAP.address.fullForMaps)}`;
+const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d151.0333!3d-34.0186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12c4d1c7b3c3b3%3A0xe36f79e949fabda0!2s60%20Goorgool%20Rd%2C%20Bangor%20NSW%202234!5e0!3m2!1sen!2sau!4v1234567890";
 
 const contactFaqs = [
   {
-    question: "What's the fastest way to contact Hair Pinns?",
-    answer: "Call or SMS Jena directly on 0416 037 663 for immediate replies during opening hours. You can also chat with our AI assistant Isabella 24/7 via the chat widget, or send a message through the contact form and we'll respond within one business day."
+    question: "What is the best way to contact Hair Pinns?",
+    answer: `Call or text Jena on ${BUSINESS_NAP.phone.display}, email ${BUSINESS_NAP.email}, or use the contact form on this page.`,
   },
   {
-    question: "Can I book an appointment by phone?",
-    answer: "Yes — call 0416 037 663. For after-hours bookings, use the 24/7 online booking system via Fresha at hairpinns.com/booking."
+    question: "Can I book an appointment from this page?",
+    answer: "Use the Book now link to open Hair Pinns in Fresha and view live appointment availability. You can also call Jena if you need help choosing a service.",
   },
   {
-    question: "What are your opening hours?",
-    answer: "Tuesday 10am–5pm, Wednesday 6pm–9pm, Thursday 9am–9pm, Friday 9am–5:30pm, Saturday 8am–2pm. Closed Sunday and Monday."
+    question: "What are the salon opening hours?",
+    answer: BUSINESS_HOURS_DISPLAY.join("; "),
   },
   {
-    question: "Is there parking at the salon?",
-    answer: "Yes, there's free on-street parking directly outside the salon on Goorgool Rd, Bangor."
-  }
+    question: "Where is Hair Pinns located?",
+    answer: `Hair Pinns is at ${BUSINESS_NAP.address.full}. Open the map on this page for directions or call before visiting if you have an access or parking question.`,
+  },
 ];
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  name: BUSINESS_NAP.name,
+  image: "https://hairpinns.com/logo.png",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: BUSINESS_NAP.address.street,
+    addressLocality: BUSINESS_NAP.address.locality,
+    addressRegion: BUSINESS_NAP.address.region,
+    postalCode: BUSINESS_NAP.address.postcode,
+    addressCountry: BUSINESS_NAP.address.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -34.0186,
+    longitude: 151.0367,
+  },
+  telephone: BUSINESS_NAP.phone.raw,
+  email: BUSINESS_NAP.email,
+  openingHoursSpecification: BUSINESS_HOURS.map((hours) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: hours.day,
+    opens: hours.opens,
+    closes: hours.closes,
+  })),
+  priceRange: "$$",
+  url: "https://hairpinns.com",
+  hasMap: MAP_URL,
+  sameAs: ["https://www.facebook.com/Hair.Pinns", "https://www.instagram.com/hair.pinns/"],
+};
+
 const Contact = () => {
-  const {
-    toast
-  } = useToast();
-  const [smsPhone, setSmsPhone] = useState("");
-  const [smsConsent, setSmsConsent] = useState(false);
-  const [smsSubmitted, setSmsSubmitted] = useState(false);
-  const businessInfo = {
-    name: "Hair Pinns",
-    address: "60 Goorgool Rd, Bangor NSW 2234",
-    phone: "0416 037 663",
-    phoneRaw: "+61416037663",
-    email: "hairpinns1@gmail.com",
-    hours: [{
-      day: "Monday",
-      hours: "Closed",
-      isOpen: false
-    }, {
-      day: "Tuesday",
-      hours: "10:00 AM - 5:00 PM",
-      isOpen: true
-    }, {
-      day: "Wednesday",
-      hours: "6:00 PM - 9:00 PM",
-      isOpen: true
-    }, {
-      day: "Thursday",
-      hours: "9:00 AM - 9:00 PM",
-      isOpen: true
-    }, {
-      day: "Friday",
-      hours: "9:00 AM - 5:30 PM",
-      isOpen: true
-    }, {
-      day: "Saturday",
-      hours: "8:00 AM - 2:00 PM",
-      isOpen: true
-    }, {
-      day: "Sunday",
-      hours: "Closed",
-      isOpen: false
-    }]
-  };
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "HairSalon",
-    "name": businessInfo.name,
-    "image": "https://hairpinns.com/logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "60 Goorgool Rd",
-      "addressLocality": "Bangor",
-      "addressRegion": "NSW",
-      "postalCode": "2234",
-      "addressCountry": "AU"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -34.0186,
-      "longitude": 151.0367
-    },
-    "telephone": businessInfo.phoneRaw,
-    "email": businessInfo.email,
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Tuesday",
-      "opens": "10:00",
-      "closes": "17:00"
-    }, {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Wednesday",
-      "opens": "18:00",
-      "closes": "21:00"
-    }, {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Thursday",
-      "opens": "09:00",
-      "closes": "21:00"
-    }, {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday",
-      "opens": "09:00",
-      "closes": "17:30"
-    }, {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "08:00",
-      "closes": "14:00"
-    }],
-    "priceRange": "$$",
-    "url": "https://hairpinns.com",
-    "sameAs": ["https://www.facebook.com/Hair.Pinns", "https://www.instagram.com/hair.pinns/"]
-  };
-  const handleSmsSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!smsConsent) {
-      toast({
-        title: "Consent Required",
-        description: "Please agree to receive SMS updates to continue.",
-        variant: "destructive"
-      });
-      return;
-    }
-    const hpCaptureModule = await import("@/lib/hpCapture");
-    const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
-    const success = await hpCapture.postToZapier({
-      form_name: "sms_optin",
-      phone: smsPhone,
-      consent_marketing: smsConsent
-    }, {
-      event: "sms_subscription"
-    });
-    if (success) {
-      setSmsSubmitted(true);
-      toast({
-        title: "Success!",
-        description: "You're subscribed to our SMS updates."
-      });
-    } else {
-      toast({
-        title: "Submission Error",
-        description: "We couldn't process your subscription. Please try again.",
-        variant: "destructive"
-      });
-    }
-  };
-  return <div className="min-h-screen flex flex-col">
+  return (
+    <div className="min-h-screen bg-[hsl(var(--after-hours-cream))]">
       <SEOHead
-        title="Contact Hair Pinns Bangor | Call 0416 037 663"
-        description="Visit Hair Pinns in Bangor, Sutherland Shire NSW. Call 0416 037 663. Free parking, easy access. Open Tue-Sat. Shop hair products Australia-wide online."
+        title="Contact Hair Pinns | Bangor Hair Salon"
+        description={`Contact Hair Pinns at ${BUSINESS_NAP.address.full}. Call or text ${BUSINESS_NAP.phone.display}, email Jena, open directions, or leave a message.`}
         canonical="https://hairpinns.com/contact"
-        ogImage={getOGImage('default')}
+        ogImage={getOGImage("default")}
         ogType="website"
         hrefLang="en-AU"
         schemaJson={[
           localBusinessSchema,
           generateFAQPageSchema(contactFaqs),
           generateBreadcrumbSchema([
-            { name: 'Home', url: 'https://hairpinns.com' },
-            { name: 'Contact', url: 'https://hairpinns.com/contact' },
+            { name: "Home", url: "https://hairpinns.com" },
+            { name: "Contact", url: "https://hairpinns.com/contact" },
           ]),
         ]}
       />
-
       <Header />
 
-      <div className="bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs items={[
-            { label: "Home", href: "/" },
-            { label: "Contact" }
-          ]} />
+      <main id="main-content" tabIndex={-1} data-contact-page="">
+        <div className="border-b border-[hsl(var(--after-hours-cream)/0.14)] bg-[hsl(var(--after-hours-plum))] px-4 pt-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[78rem]">
+            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} variant="dark" />
+          </div>
         </div>
-      </div>
 
-      <main id="main-content" tabIndex={-1} className="flex-grow">
-        {/* Hero Section */}
-        <Section className="pt-xl pb-lg">
-          <SectionHeader as="h1" title="Visit Hair Pinns Bangor" subtitle="Easy parking, friendly welcome, honest service." />
-        </Section>
-
-        {/* NAP Block & Map */}
-        <Section variant="muted" padding="lg">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
+        <section data-contact-hero="" className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
+          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-[minmax(0,0.67fr)_minmax(19rem,0.33fr)] lg:gap-20 lg:px-8 lg:pb-24 lg:pt-20">
             <div>
-              <div className="bg-card border border-border border-l-4 border-l-brand-500 rounded-card p-8 mb-8">
-                <h2 className="text-h2 font-heading text-heading mb-6">Get In Touch</h2>
-                
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-semibold text-heading mb-1">Address</h3>
-                      <a href="https://maps.google.com/?q=60+Goorgool+Rd+Bangor+NSW+2234" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-brand-500 transition-colors">
-                        60 Goorgool Rd<br />Bangor NSW 2234
-                      </a>
-                    </div>
-                  </div>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.76)]">Hair Pinns / Bangor</p>
+              <h1 className="mt-5 max-w-[11ch] font-heading text-[clamp(3.4rem,7vw,7.2rem)] font-semibold leading-[0.89] tracking-[-0.06em] text-[hsl(var(--after-hours-cream))]">
+                Come by. Call. Or leave a note.
+              </h1>
+              <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.82)] sm:text-lg sm:leading-8">
+                Find the Bangor studio, contact Jena directly, or send a message through the form below.
+              </p>
+            </div>
 
-                  <div className="flex items-start gap-4">
-                    <Phone className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-semibold text-heading mb-1">Phone</h3>
-                      <div className="flex flex-col gap-2">
-                        <a href={`tel:${businessInfo.phoneRaw}`} className="text-foreground hover:text-brand-500 transition-colors">
-                          {businessInfo.phone}
-                        </a>
-                        <a href={`sms:${businessInfo.phoneRaw}`} className="text-sm text-brand-500 hover:text-brand-600 transition-colors inline-flex items-center gap-1">
-                          <MessageSquare className="w-4 h-4" />
-                          Send SMS
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+            <aside className="self-end border-t border-[hsl(var(--after-hours-cream)/0.3)] pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Primary contact actions">
+              <a href={BUSINESS_NAP.phone.tel} className="flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-plum))" }}>
+                Call {BUSINESS_NAP.phone.display}
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a href={`sms:${BUSINESS_NAP.phone.raw}`} className="mt-3 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-cream)/0.34)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+                Send a text
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href={`mailto:${BUSINESS_NAP.email}`} className="mt-3 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-cream)/0.34)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+                Email Jena
+                <span aria-hidden="true">→</span>
+              </a>
+            </aside>
+          </div>
+        </section>
 
-                  <div className="flex items-start gap-4">
-                    <Mail className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-semibold text-heading mb-1">Email</h3>
-                      <a href={`mailto:${businessInfo.email}`} className="text-foreground hover:text-brand-500 transition-colors">
-                        {businessInfo.email}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <section data-contact-visit="" className="bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]">
+          <div className="mx-auto max-w-[78rem] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+            <div className="grid gap-8 border-b border-[hsl(var(--after-hours-plum)/0.3)] pb-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-20">
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.74)]">01 / Visit</p>
+              <h2 className="max-w-[12ch] font-heading text-[clamp(2.8rem,5vw,5.5rem)] font-semibold leading-[0.94] tracking-[-0.05em]">The Bangor studio.</h2>
+            </div>
 
-              {/* Opening Hours */}
-              <div className="bg-card border border-border border-l-4 border-l-green-500 rounded-card p-8 mb-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <Clock className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-4">
-                      <h3 className="font-semibold text-heading">Opening Hours</h3>
-                      {(() => {
-                        const now = new Date();
-                        const day = now.getDay();
-                        const hour = now.getHours();
-                        const isOpen = (day === 2 && hour >= 10 && hour < 17) ||
-                          (day === 3 && hour >= 18 && hour < 21) ||
-                          (day === 4 && hour >= 9 && hour < 21) ||
-                          (day === 5 && hour >= 9 && hour < 17) ||
-                          (day === 6 && hour >= 8 && hour < 14);
-                        return (
-                          <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded-full ${isOpen ? 'bg-green-100 text-green-700' : 'bg-muted text-muted-foreground'}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-green-500' : 'bg-muted-foreground'}`} />
-                            {isOpen ? "Open now" : "Currently closed"}
-                          </span>
-                        );
-                      })()}
-                    </div>
-                    <div className="space-y-2">
-                      {businessInfo.hours.map(item => <div key={item.day} className="flex justify-between items-center py-2 border-b border-border last:border-0">
-                          <span className="text-foreground font-medium">{item.day}</span>
-                          <span className={item.isOpen ? "text-foreground" : "text-muted-foreground"}>
-                            {item.hours}
-                          </span>
-                        </div>)}
-                    </div>
+            <div className="grid gap-12 pt-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
+              <div>
+                <div className="border-t border-[hsl(var(--after-hours-plum)/0.28)]">
+                  <div className="border-b border-[hsl(var(--after-hours-plum)/0.22)] py-6">
+                    <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.7)]">Address</p>
+                    <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="mt-3 block max-w-[18ch] font-heading text-3xl font-semibold leading-tight">
+                      {BUSINESS_NAP.address.full}
+                    </a>
                   </div>
-                </div>
-              </div>
-
-              {/* Parking Tips */}
-              <div className="bg-accent/10 border border-accent/20 border-l-4 border-l-blue-500 rounded-card p-6">
-                <div className="flex items-start gap-4">
-                  <Car className="w-6 h-6 text-brand-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-heading mb-2">Parking Tips</h3>
-                    <ul className="space-y-2 text-foreground text-sm">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
-                        <span>Free street parking directly in front of salon</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
-                        <span>Additional parking behind building (rear entrance)</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
-                        <span>Wheelchair accessible entrance and facilities</span>
-                      </li>
+                  <div className="border-b border-[hsl(var(--after-hours-plum)/0.22)] py-6">
+                    <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.7)]">Salon hours</p>
+                    <ul className="mt-4 space-y-2 text-sm">
+                      {BUSINESS_HOURS_DISPLAY.map((hours) => <li key={hours}>{hours}</li>)}
                     </ul>
                   </div>
+                  <p className="py-6 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.76)]">For parking or access questions, call before visiting.</p>
                 </div>
+                <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="mt-6 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-plum)/0.45)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-plum))" }}>
+                  Open directions
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+
+              <div className="min-h-[22rem] overflow-hidden border border-[hsl(var(--after-hours-plum)/0.28)] sm:min-h-[30rem]">
+                <iframe
+                  src={MAP_EMBED_URL}
+                  width="100%"
+                  height="100%"
+                  className="min-h-[22rem] sm:min-h-[30rem]"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Hair Pinns at 60 Goorgool Rd, Bangor"
+                />
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Map */}
+        <section data-contact-message="" className="border-y border-[hsl(var(--after-hours-plum)/0.22)] bg-[#efe5df] text-[hsl(var(--after-hours-plum))]">
+          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.34fr_0.66fr] lg:gap-20 lg:px-8 lg:py-24">
+            <header>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.74)]">02 / Leave a note</p>
+              <h2 className="mt-4 max-w-[10ch] font-heading text-[clamp(2.7rem,4.5vw,5rem)] font-semibold leading-[0.94] tracking-[-0.05em]">Tell Jena what you need.</h2>
+              <p className="mt-6 max-w-[24rem] text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.76)]">Use this form for product questions, service questions, order help, or anything else that needs a written reply.</p>
+            </header>
+            <ContactForm formName="contact_page" title="" description="" showTopic variant="editorial" className="[&_a]:!text-[hsl(var(--after-hours-plum))]" />
+          </div>
+        </section>
+
+        <section data-contact-faq="" className="bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]">
+          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.34fr_0.66fr] lg:gap-20 lg:px-8 lg:py-24">
+            <header>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.74)]">03 / Before you visit</p>
+              <h2 className="mt-4 max-w-[10ch] font-heading text-[clamp(2.7rem,4.5vw,5rem)] font-semibold leading-[0.94] tracking-[-0.05em]">Useful details.</h2>
+            </header>
+            <div className="border-t border-[hsl(var(--after-hours-plum)/0.3)]">
+              {contactFaqs.map((faq, index) => (
+                <details key={faq.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.22)]">
+                  <summary className="grid min-h-16 cursor-pointer list-none grid-cols-[2rem_1fr_auto] items-center gap-3 py-4 font-semibold [&::-webkit-details-marker]:hidden">
+                    <span className="font-mono text-[0.67rem] text-[hsl(var(--after-hours-plum)/0.72)]">{String(index + 1).padStart(2, "0")}</span>
+                    <span>{faq.question}</span>
+                    <span aria-hidden="true">+</span>
+                  </summary>
+                  <p className="max-w-[44rem] pb-7 pl-11 text-sm leading-7 text-[hsl(var(--after-hours-plum)/0.78)]">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section data-contact-close="" className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
+          <div className="mx-auto grid max-w-[78rem] gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.64fr_0.36fr] lg:gap-20 lg:px-8 lg:py-24">
             <div>
-              <div className="aspect-square bg-muted rounded-card overflow-hidden sticky top-4">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d151.0333!3d-34.0186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12c4d1c7b3c3b3%3A0xe36f79e949fabda0!2s60%20Goorgool%20Rd%2C%20Bangor%20NSW%202234!5e0!3m2!1sen!2sau!4v1234567890" width="100%" height="100%" style={{
-                border: 0
-              }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Hair Pinns Bangor Location" />
-              </div>
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.74)]">For an appointment</p>
+              <h2 className="mt-5 max-w-[12ch] font-heading text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.92] tracking-[-0.05em]" style={{ color: "hsl(var(--after-hours-cream))" }}>See live times in Fresha.</h2>
+            </div>
+            <div className="self-end border-t border-[hsl(var(--after-hours-cream)/0.3)] pt-6">
+              <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("contact_close", "/contact")} className="flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-plum))" }}>
+                Book now
+                <span aria-hidden="true">↗</span>
+              </a>
+              <Link to="/services" className="mt-3 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-cream)/0.34)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+                Browse services
+                <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
-        </Section>
-
-        {/* SMS Opt-in — removed until form is implemented */}
-
-        {/* AI Agents CTA Section */}
-        <Section variant="muted" padding="lg">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-h2 font-heading text-heading mb-4">Need Help? We're Here 24/7</h2>
-              <p className="text-lg text-foreground mb-8">
-                Jena and Isabella are available 24/7 to answer your questions, help with bookings, and provide product recommendations. For detailed inquiries that need Jena's expertise, you can leave a message and she'll call you back within 24 hours.
-              </p>
-            </div>
-
-            {/* Primary Contact Options */}
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              <div className="bg-card border border-border rounded-card p-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
-                  <Phone className="w-8 h-8 text-brand-500" />
-                </div>
-                <h3 className="text-xl font-heading font-bold text-heading mb-3">Call Jena</h3>
-                <p className="text-foreground mb-6">
-                  Speak directly with Jena for instant answers to your hair questions and booking assistance.
-                </p>
-                <Button 
-                  asChild
-                  size="lg"
-                  variant="primary"
-                  className="w-full bg-brand-500 hover:bg-brand-600"
-                >
-                  <a href={BUSINESS_NAP.phone.tel} className="no-link-color">
-                    <Phone className="w-5 h-5" />
-                    Call: 0416 037 663
-                  </a>
-                </Button>
-              </div>
-
-              <div className="bg-card border border-border rounded-card p-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-brand-500/10 flex items-center justify-center mx-auto mb-4">
-                  <MessageSquare className="w-8 h-8 text-brand-500" />
-                </div>
-                <h3 className="text-xl font-heading font-bold text-heading mb-3">Chat with Isabella</h3>
-                <p className="text-foreground mb-6">
-                  Get instant help from Isabella, available 24/7 for product advice and booking.
-                </p>
-                <Button 
-                  onClick={() => {
-                    const selectors = [
-                      'div[id*="chat-widget"]',
-                      'div[class*="chat-widget"]',
-                      '[data-chat-bubble]',
-                      'button[aria-label*="chat"]'
-                    ];
-                    
-                    for (const selector of selectors) {
-                      const element = document.querySelector(selector) as HTMLElement | null;
-                      if (element && element.tagName !== 'IFRAME') {
-                        element.style.outline = '3px solid rgba(139,74,139,0.9)';
-                        element.style.outlineOffset = '3px';
-                        element.style.transition = 'outline-color 300ms ease';
-                        setTimeout(() => {
-                          element.style.outline = '';
-                          element.style.outlineOffset = '';
-                        }, 2500);
-                        break;
-                      }
-                    }
-
-                    toast({
-                      title: "Chat with Isabella",
-                      description: "Look for the chat bubble at the bottom-right to start chatting.",
-                    });
-                  }}
-                  size="lg"
-                  variant="primary"
-                  className="w-full bg-brand-500 hover:bg-brand-600"
-                >
-                  <MessageSquare className="w-5 h-5" />
-                  Chat Now
-                </Button>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="relative my-12">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-border"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-muted text-muted-foreground">Or leave a message for Jena</span>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="text-center mb-8">
-              <h3 className="text-h3 font-heading font-bold text-heading mb-3">Leave a Message for Jena</h3>
-              <p className="text-foreground">
-                For detailed inquiries that need Jena's personal expertise, leave a message below. 
-                She'll review it and call you back within 24 hours.
-              </p>
-            </div>
-
-            <ContactForm formName="contact_page" title="" description="" showTopic={true} />
-          </div>
-        </Section>
+        </section>
       </main>
-      
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Contact;

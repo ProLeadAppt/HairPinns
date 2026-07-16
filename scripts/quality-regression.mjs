@@ -273,6 +273,8 @@ const serviceDetailSource = await readFile(path.join(ROOT, 'src/pages/ServiceDet
 const serviceDetailExperienceSource = await readFile(path.join(ROOT, 'src/components/services/ServiceDetailExperience.tsx'), 'utf8');
 const serviceDetailDataSource = await readFile(path.join(ROOT, 'src/data/serviceDetails.ts'), 'utf8');
 const bookingSource = await readFile(path.join(ROOT, 'src/pages/Booking.tsx'), 'utf8');
+const contactSource = await readFile(path.join(ROOT, 'src/pages/Contact.tsx'), 'utf8');
+const contactFormSource = await readFile(path.join(ROOT, 'src/components/forms/ContactForm.tsx'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -360,6 +362,25 @@ assert.match(scrollToTopSource, /\[data-booking-page\]/, 'Booking journey must s
 for (const unsupportedClaim of ['762+ five-star reviews', 'Same-day available', 'Klarna', 'Afterpay', '50% fee', 'free up to 24 hours', 'chat with Isabella', 'Takes about 2 minutes']) {
   assert.ok(!bookingSource.includes(unsupportedClaim), `Booking page must not restore unsupported claim: ${unsupportedClaim}`);
 }
+
+// After-Hours contact and visit invariants.
+for (const marker of ['data-contact-page', 'data-contact-hero', 'data-contact-visit', 'data-contact-message', 'data-contact-faq', 'data-contact-close']) {
+  assert.match(contactSource, new RegExp(marker), `Contact page must preserve ${marker}`);
+}
+assert.match(contactSource, /BUSINESS_NAP\.address\.fullForMaps[\s\S]*BUSINESS_HOURS_DISPLAY[\s\S]*BUSINESS_NAP\.phone\.raw/, 'Contact page must derive map, display hours, and schema phone from canonical config');
+assert.match(contactSource, /openingHoursSpecification: BUSINESS_HOURS\.map/, 'Contact HairSalon schema must derive opening hours from canonical config');
+assert.match(contactSource, /<iframe[\s\S]*loading="lazy"[\s\S]*title="Hair Pinns at 60 Goorgool Rd, Bangor"/, 'Contact map must remain lazy and named');
+assert.match(contactSource, /<ContactForm formName="contact_page"[\s\S]*variant="editorial"/, 'Contact page must preserve the live contact form with the route-specific editorial shell');
+assert.equal((contactSource.match(/question: "/g) || []).length, 4, 'Contact page must expose four schema-matched FAQs');
+assert.match(contactSource, /generateFAQPageSchema\(contactFaqs\)/, 'Contact FAQ schema must use the visible FAQ source');
+assert.match(contactSource, /trackBookingClick\("contact_close", "\/contact"\)/, 'Contact booking close must preserve attribution');
+assert.match(scrollToTopSource, /\[data-contact-page\]/, 'Contact journey must suppress the floating scroll-to-top control');
+assert.doesNotMatch(contactSource, /new Date\(|businessInfo|Open now|Currently closed|rear entrance|Wheelchair accessible|available 24\/7|within 24 hours/, 'Contact page must not restore browser-time status, duplicate business data, or unsupported access and response claims');
+for (const formContract of ['postToZapier', 'contact_form_submit', "window.gtag('event', 'generate_lead'", 'pixelTracking.trackFormSubmission', 'contactSchema.safeParse', 'Send Another Message']) {
+  assert.ok(contactFormSource.includes(formContract), `Contact form must preserve operational contract: ${formContract}`);
+}
+assert.match(contactFormSource, /variant\?: "default" \| "editorial"[\s\S]*variant === "editorial"/, 'Contact form must preserve default styling and expose the editorial shell');
+assert.doesNotMatch(contactFormSource, /within 24 hours|within 2 hours|Need immediate help|For urgent matters/, 'Contact form states must not promise unsupported response timing or urgency');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
