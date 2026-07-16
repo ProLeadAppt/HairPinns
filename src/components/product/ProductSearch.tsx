@@ -1,12 +1,8 @@
-import { useState, useCallback, useId } from "react";
-import { Search, X, Loader2, BookOpen } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { useEffect, useId, useRef, useState } from "react";
+import { BookOpen, Search, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { searchProducts } from "@/lib/shopify";
 import { searchBlogPosts } from "@/lib/blogSearch";
-import { OptimizedImage } from "@/components/OptimizedImage";
 import { formatPrice } from "@/lib/utils";
 
 interface Product {
@@ -15,29 +11,14 @@ interface Product {
   handle: string;
   availableForSale: boolean;
   priceRange: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
-    maxVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
+    minVariantPrice: { amount: string; currencyCode: string };
+    maxVariantPrice: { amount: string; currencyCode: string };
   };
   compareAtPriceRange?: {
-    minVariantPrice: {
-      amount: string;
-      currencyCode: string;
-    };
+    minVariantPrice: { amount: string; currencyCode: string };
   };
   images: {
-    edges: Array<{
-      node: {
-        id: string;
-        url: string;
-        altText: string | null;
-      };
-    }>;
+    edges: Array<{ node: { id: string; url: string; altText: string | null } }>;
   };
 }
 
@@ -47,253 +28,205 @@ interface ProductSearchProps {
   maxResults?: number;
 }
 
-export default function ProductSearch({ 
+export default function ProductSearch({
   onProductClick,
   placeholder = "Search products and articles...",
-  maxResults = 8 
+  maxResults = 8,
 }: ProductSearchProps) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [searchError, setSearchError] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const requestSequence = useRef(0);
   const inputId = useId();
+  const suggestionsId = useId();
   const navigate = useNavigate();
-  const articles = query.trim().length >= 2 ? searchBlogPosts(query, Math.min(maxResults, 4)) : [];
+  const trimmedQuery = query.trim();
+  const articles = trimmedQuery.length >= 2 ? searchBlogPosts(trimmedQuery, Math.min(maxResults, 3)) : [];
 
-  const performSearch = useCallback(async (searchQuery: string) => {
-    if (!searchQuery.trim()) {
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) setShowResults(false);
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, []);
+
+  useEffect(() => {
+    const sequence = ++requestSequence.current;
+    if (trimmedQuery.length < 2) {
       setResults([]);
-      setShowResults(false);
       setHasSearched(false);
+      setSearchError(false);
+      setIsSearching(false);
+      setShowResults(false);
       return;
     }
 
     setIsSearching(true);
-    setHasSearched(true);
-
-    try {
-      const { products } = await searchProducts(searchQuery, maxResults);
-      setResults(products);
-      setShowResults(true);
-    } catch (error) {
-      console.error("Product search error:", error);
-      setResults([]);
-      setShowResults(true);
-    } finally {
-      setIsSearching(false);
-    }
-  }, [maxResults]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setQuery(value);
-    
-    // Debounce search
-    const timeoutId = setTimeout(() => {
-      performSearch(value);
+    setSearchError(false);
+    setShowResults(true);
+    const timeout = window.setTimeout(async () => {
+      try {
+        const response = await searchProducts(trimmedQuery, maxResults);
+        if (sequence !== requestSequence.current) return;
+        setResults((response?.products || []).filter((product: Product) => product.availableForSale && product.handle));
+      } catch (error) {
+        if (sequence !== requestSequence.current) return;
+        console.error("Product search error:", error);
+        setResults([]);
+        setSearchError(true);
+      } finally {
+        if (sequence === requestSequence.current) {
+          setHasSearched(true);
+          setIsSearching(false);
+        }
+      }
     }, 300);
 
-    return () => clearTimeout(timeoutId);
+    return () => window.clearTimeout(timeout);
+  }, [trimmedQuery, maxResults]);
+
+  const closeSuggestions = () => setShowResults(false);
+
+  const submitSearch = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!trimmedQuery) return;
+    navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
+    closeSuggestions();
   };
 
-  const handleClear = () => {
+  const clearSearch = () => {
+    requestSequence.current += 1;
     setQuery("");
     setResults([]);
-    setShowResults(false);
     setHasSearched(false);
-  };
-
-  const handleProductClick = (handle: string) => {
-    if (onProductClick) {
-      onProductClick(handle);
-    }
+    setSearchError(false);
     setShowResults(false);
+    document.getElementById(inputId)?.focus();
   };
 
-  const formatProductPrice = (product: Product) => {
-    const min = parseFloat(product.priceRange.minVariantPrice.amount);
-    const max = parseFloat(product.priceRange.maxVariantPrice.amount);
+  const productPrice = (product: Product) => {
+    const minimum = parseFloat(product.priceRange.minVariantPrice.amount);
+    const maximum = parseFloat(product.priceRange.maxVariantPrice.amount);
     const currency = product.priceRange.minVariantPrice.currencyCode;
-    
-    if (min === max) {
-      return formatPrice(min, currency);
-    }
-    return `${formatPrice(min, currency)} - ${formatPrice(max, currency)}`;
+    return minimum === maximum
+      ? formatPrice(minimum, currency)
+      : `${formatPrice(minimum, currency)} – ${formatPrice(maximum, currency)}`;
   };
+
+  const suggestionCount = results.length + articles.length;
+  const panelVisible = showResults && trimmedQuery.length >= 2;
 
   return (
-    <div className="relative w-full">
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
+    <div ref={searchRef} data-predictive-search="" className="relative w-full">
+      <form role="search" onSubmit={submitSearch} className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[hsl(var(--after-hours-plum)/0.62)]" aria-hidden="true" />
         <label htmlFor={inputId} className="sr-only">Search products and articles</label>
-        <Input
+        <input
           id={inputId}
-          type="search"
+          type="text"
+          role="searchbox"
           placeholder={placeholder}
           value={query}
-          onChange={handleInputChange}
-          onFocus={() => {
-            if (results.length > 0 || articles.length > 0 || hasSearched) {
-              setShowResults(true);
+          onChange={(event) => setQuery(event.target.value)}
+          onFocus={() => trimmedQuery.length >= 2 && setShowResults(true)}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              event.preventDefault();
+              setShowResults(false);
+              event.currentTarget.focus();
             }
           }}
-          className="pl-10 pr-12"
+          aria-expanded={panelVisible}
+          aria-controls={panelVisible ? suggestionsId : undefined}
+          aria-describedby={`${inputId}-hint`}
+          autoComplete="off"
+          className="h-11 w-full border border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-2 pl-10 pr-12 text-sm text-[hsl(var(--after-hours-plum))] outline-none placeholder:text-[hsl(var(--after-hours-plum)/0.54)] focus:border-[hsl(var(--after-hours-plum))] focus:ring-2 focus:ring-[hsl(var(--after-hours-copper)/0.45)]"
         />
+        <span id={`${inputId}-hint`} className="sr-only">Enter at least two characters. Press Enter for all results.</span>
         {query && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleClear}
-            className="absolute right-0 top-1/2 -translate-y-1/2 h-11 w-11 p-0"
-            aria-label="Clear search"
-          >
-            <X className="w-4 h-4" />
-          </Button>
+          <button type="button" onClick={clearSearch} className="absolute right-0 top-0 flex h-11 w-11 items-center justify-center text-[hsl(var(--after-hours-plum)/0.66)] hover:text-[hsl(var(--after-hours-plum))]" aria-label="Clear search">
+            <X className="h-4 w-4" aria-hidden="true" />
+          </button>
         )}
-      </div>
+      </form>
 
-      {showResults && (
-        <Card
-          role="region"
-          aria-label="Search suggestions"
-          className="absolute top-full left-0 right-0 z-50 mt-2 max-h-96 overflow-y-auto shadow-lg"
-        >
-          <CardContent className="p-0">
-            {isSearching ? (
-              <div className="flex items-center justify-center p-8">
-                <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
-                <span className="ml-2 text-sm text-muted-foreground">Searching...</span>
-              </div>
-            ) : results.length > 0 || articles.length > 0 ? (
-              <>
-                {articles.length > 0 && (
-                  <div className="border-b border-border">
-                    <p className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      Blog articles
-                    </p>
-                    <ul className="divide-y divide-border">
-                      {articles.map((article) => (
-                        <li key={article.slug}>
-                          <Link
-                            to={`/blog/${article.slug}`}
-                            onClick={() => setShowResults(false)}
-                            className="flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors"
-                          >
-                            <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-muted">
-                              <OptimizedImage
-                                src={article.image}
-                                alt={article.title}
-                                width={64}
-                                height={64}
-                                className="w-full h-full object-cover"
-                              />
+      {panelVisible && (
+        <section id={suggestionsId} data-search-suggestions="" aria-label="Search suggestions" className="absolute right-0 top-full z-50 mt-2 max-h-[min(32rem,70vh)] w-[min(26rem,calc(100vw-2rem))] overflow-y-auto border border-[hsl(var(--after-hours-plum)/0.3)] bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))] shadow-[0_1rem_3rem_hsl(var(--after-hours-plum)/0.18)]">
+          <div className="flex items-center justify-between border-b border-[hsl(var(--after-hours-plum)/0.16)] px-4 py-3">
+            <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.65)]">Search / {trimmedQuery}</p>
+            {!isSearching && hasSearched && !searchError && <span className="font-mono text-[0.64rem]">{suggestionCount} found</span>}
+          </div>
+
+          {isSearching ? (
+            <div data-search-loading="" className="px-4 py-8 text-sm" role="status">Searching products…</div>
+          ) : searchError ? (
+            <div data-search-error="" className="px-4 py-7">
+              <p className="font-heading text-lg font-semibold">Products could not load.</p>
+              <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.7)]">Press Enter to open the full search page, or try again.</p>
+            </div>
+          ) : results.length > 0 || articles.length > 0 ? (
+            <div>
+              {results.length > 0 && (
+                <div data-search-products="">
+                  <p className="border-b border-[hsl(var(--after-hours-plum)/0.14)] px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.64)]">Products</p>
+                  <ul>
+                    {results.map((product, index) => {
+                      const image = product.images?.edges?.[0]?.node;
+                      return (
+                        <li key={product.id} className="border-b border-[hsl(var(--after-hours-plum)/0.14)]">
+                          <Link to={`/products/${product.handle}`} onClick={() => { onProductClick?.(product.handle); closeSuggestions(); }} className="grid min-h-20 grid-cols-[3.25rem_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3" style={{ color: "hsl(var(--after-hours-plum))" }}>
+                            <div className="aspect-square bg-white p-1">
+                              <img src={image?.url || "/placeholder.svg"} alt={image?.altText || product.title} width="104" height="104" loading="lazy" decoding="async" className="h-full w-full object-contain" />
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <h3 className="font-medium text-sm truncate">{article.title}</h3>
-                              <p className="text-xs text-muted-foreground mt-1">{article.category}</p>
+                            <div className="min-w-0">
+                              <span className="font-mono text-[0.58rem] text-[hsl(var(--after-hours-plum)/0.55)]">{String(index + 1).padStart(2, "0")}</span>
+                              <p className="line-clamp-2 font-heading text-sm font-semibold leading-tight">{product.title}</p>
                             </div>
-                            <BookOpen className="w-4 h-4 text-muted-foreground" />
+                            <span className="text-xs font-semibold">{productPrice(product)}</span>
                           </Link>
                         </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
 
-                {results.length > 0 && (
-                  <div>
-                    <p className="px-4 pt-3 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      Products
-                    </p>
-                    <ul className="divide-y divide-border">
-                      {results
-                        .filter((product) => product.handle && typeof product.handle === "string")
-                        .map((product) => {
-                          const image = product.images?.edges?.[0]?.node;
-                          return (
-                            <li key={product.id}>
-                              <Link
-                                to={`/products/${product.handle}`}
-                                onClick={() => handleProductClick(product.handle)}
-                                className="flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors"
-                              >
-                                {image && (
-                                  <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-muted">
-                                    <OptimizedImage
-                                      src={image.url}
-                                      alt={image.altText || product.title}
-                                      width={64}
-                                      height={64}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  </div>
-                                )}
-                                <div className="flex-1 min-w-0">
-                                  <h3 className="font-medium text-sm truncate">{product.title}</h3>
-                                  <div className="flex items-center gap-2 mt-1">
-                                    <p className="text-sm font-semibold text-foreground">
-                                      {formatProductPrice(product)}
-                                    </p>
-                                    {product.compareAtPriceRange && parseFloat(product.compareAtPriceRange.minVariantPrice.amount) > parseFloat(product.priceRange.minVariantPrice.amount) && (
-                                      <p className="text-xs font-semibold text-muted-foreground line-through decoration-muted-foreground/50">
-                                        {formatPrice(parseFloat(product.compareAtPriceRange.minVariantPrice.amount), product.compareAtPriceRange.minVariantPrice.currencyCode)}
-                                      </p>
-                                    )}
-                                  </div>
-                                  {!product.availableForSale && (
-                                    <span className="text-xs text-muted-foreground">Out of stock</span>
-                                  )}
-                                </div>
-                              </Link>
-                            </li>
-                          );
-                        })}
-                    </ul>
-                  </div>
-                )}
-              </>
-            ) : hasSearched ? (
-              <div className="p-8 text-center">
-                <p className="text-sm text-muted-foreground mb-4">
-                  No products or articles found for "{query}"
-                </p>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    navigate(`/search?q=${encodeURIComponent(query)}`);
-                    setShowResults(false);
-                  }}
-                >
-                  View All Results
-                </Button>
-              </div>
-            ) : null}
-            {(results.length > 0 || articles.length > 0) && (
-              <div className="p-2 border-t border-border">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full"
-                  onClick={() => {
-                    navigate(`/search?q=${encodeURIComponent(query)}`);
-                    setShowResults(false);
-                  }}
-                >
-                  View All Results ({results.length + articles.length}+)
-                </Button>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+              {articles.length > 0 && (
+                <div data-search-articles="">
+                  <p className="border-b border-[hsl(var(--after-hours-plum)/0.14)] px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.64)]">Jena’s guides</p>
+                  <ul>
+                    {articles.map((article) => (
+                      <li key={article.slug} className="border-b border-[hsl(var(--after-hours-plum)/0.14)]">
+                        <Link to={article.url} onClick={closeSuggestions} className="flex min-h-14 items-center justify-between gap-3 px-4 py-3 text-sm" style={{ color: "hsl(var(--after-hours-plum))" }}>
+                          <span className="line-clamp-2">{article.title}</span>
+                          <BookOpen className="h-4 w-4 flex-none" aria-hidden="true" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ) : hasSearched ? (
+            <div data-search-empty="" className="px-4 py-8">
+              <p className="font-heading text-xl font-semibold">No matching products or guides.</p>
+              <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.7)]">Check the spelling or press Enter to continue.</p>
+            </div>
+          ) : null}
+
+          <button type="button" onClick={() => { navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`); closeSuggestions(); }} className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-plum))] px-4 py-3 text-sm font-semibold text-[hsl(var(--after-hours-cream))]">
+            <span>All results for “{trimmedQuery}”</span><span aria-hidden="true">→</span>
+          </button>
+        </section>
       )}
+
       <span className="sr-only" role="status" aria-live="polite">
-        {isSearching
-          ? "Searching"
-          : hasSearched
-            ? `${results.length + articles.length} search suggestions available`
-            : ""}
+        {isSearching ? "Searching products" : hasSearched ? (searchError ? "Product search failed" : `${suggestionCount} search suggestions available`) : ""}
       </span>
     </div>
   );
