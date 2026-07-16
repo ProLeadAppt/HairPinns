@@ -5,9 +5,10 @@ import { toast } from "sonner";
 interface SocialShareBarProps {
   url: string;
   title: string;
+  variant?: "fixed" | "inline";
 }
 
-const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
+const SocialShareBar = ({ url, title, variant = "fixed" }: SocialShareBarProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyLink = async () => {
@@ -16,7 +17,7 @@ const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
       setCopied(true);
       toast.success("Link copied to clipboard!");
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       toast.error("Failed to copy link");
     }
   };
@@ -25,18 +26,25 @@ const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-    email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`
+    email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`,
   };
 
   const shareButtons = [
-    { icon: Facebook, href: shareLinks.facebook, label: "Share on Facebook", color: "hover:text-[#1877f2]" },
-    { icon: Twitter, href: shareLinks.twitter, label: "Share on Twitter", color: "hover:text-[#1da1f2]" },
-    { icon: Linkedin, href: shareLinks.linkedin, label: "Share on LinkedIn", color: "hover:text-[#0077b5]" },
-    { icon: Mail, href: shareLinks.email, label: "Share via Email", color: "hover:text-brand-500" }
+    { icon: Facebook, href: shareLinks.facebook, label: "Share on Facebook", fixedColor: "hover:text-[#1877f2]" },
+    { icon: Twitter, href: shareLinks.twitter, label: "Share on Twitter", fixedColor: "hover:text-[#1da1f2]" },
+    { icon: Linkedin, href: shareLinks.linkedin, label: "Share on LinkedIn", fixedColor: "hover:text-[#0077b5]" },
+    { icon: Mail, href: shareLinks.email, label: "Share via Email", fixedColor: "hover:text-brand-500" },
   ];
 
+  const wrapperClass = variant === "inline"
+    ? "flex flex-wrap gap-2"
+    : "fixed bottom-8 right-8 z-40 hidden flex-col gap-3 lg:flex";
+  const controlClass = variant === "inline"
+    ? "flex h-11 w-11 items-center justify-center border border-[hsl(var(--after-hours-copper)/0.55)] text-[hsl(var(--after-hours-cream))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]"
+    : "flex h-12 w-12 items-center justify-center rounded-full border border-accent/20 bg-surface text-muted-foreground shadow-card transition-all hover:scale-110 hover:shadow-lg";
+
   return (
-    <div className="fixed bottom-8 right-8 z-40 hidden lg:flex flex-col gap-3">
+    <div className={wrapperClass} data-share-variant={variant}>
       {shareButtons.map((button) => {
         const Icon = button.icon;
         return (
@@ -46,19 +54,19 @@ const SocialShareBar = ({ url, title }: SocialShareBarProps) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={button.label}
-            className={`w-12 h-12 rounded-full bg-surface shadow-card border border-accent/20 flex items-center justify-center text-muted-foreground transition-all hover:shadow-lg hover:scale-110 ${button.color}`}
+            className={`${controlClass} ${variant === "fixed" ? button.fixedColor : ""}`}
           >
-            <Icon className="w-5 h-5" />
+            <Icon className="h-5 w-5" />
           </a>
         );
       })}
-      
+
       <button
         onClick={handleCopyLink}
-        aria-label="Copy link"
-        className="w-12 h-12 rounded-full bg-surface shadow-card border border-accent/20 flex items-center justify-center text-muted-foreground hover:text-brand-500 transition-all hover:shadow-lg hover:scale-110"
+        aria-label={copied ? "Link copied" : "Copy link"}
+        className={`${controlClass} ${variant === "fixed" ? "hover:text-brand-500" : ""}`}
       >
-        {copied ? <Check className="w-5 h-5" /> : <Link2 className="w-5 h-5" />}
+        {copied ? <Check className="h-5 w-5" /> : <Link2 className="h-5 w-5" />}
       </button>
     </div>
   );

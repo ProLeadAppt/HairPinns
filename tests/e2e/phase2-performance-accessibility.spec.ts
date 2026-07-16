@@ -406,12 +406,52 @@ test('after-hours product detail keeps the Fold purchase path truthful and unobs
   await core.getByRole('tab', { name: 'Description' }).scrollIntoViewIfNeeded();
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
 
-  const recommendations = page.getByRole('heading', { name: 'Complete the Set' });
-  await expect(recommendations).toBeVisible({ timeout: 30_000 });
+  const recommendations = page.locator('[data-product-recommendations]');
+  await expect(recommendations.getByRole('heading', { name: 'More to browse' })).toBeVisible({ timeout: 30_000 });
   await recommendations.scrollIntoViewIfNeeded();
+  const recommendedProducts = recommendations.locator('[data-recommended-product]');
+  await expect(recommendedProducts).toHaveCount(3);
+  const firstRecommendationBox = await recommendedProducts.nth(0).boundingBox();
+  const secondRecommendationBox = await recommendedProducts.nth(1).boundingBox();
+  expect(firstRecommendationBox).not.toBeNull();
+  expect(secondRecommendationBox).not.toBeNull();
+  expect(Math.abs(firstRecommendationBox!.y - secondRecommendationBox!.y)).toBeLessThan(2);
+  expect(secondRecommendationBox!.x).toBeGreaterThan(firstRecommendationBox!.x + firstRecommendationBox!.width - 2);
+  for (let index = 0; index < 2; index++) {
+    const image = recommendedProducts.nth(index).locator('img');
+    await expect.poll(async () => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0), { timeout: 15_000 }).toBe(true);
+    expect(await image.evaluate(element => getComputedStyle(element).objectFit)).toBe('contain');
+  }
+  await expect(recommendedProducts.getByRole('link', { name: 'View product' })).toHaveCount(3);
+  await expect(recommendations.locator('[data-recommendation-catalogue]')).toBeVisible();
+  await expect(recommendations.getByRole('link', { name: 'Browse catalogue' })).toHaveAttribute('href', '/collections');
+  const recommendationTitleColor = await recommendedProducts.first().locator('h3 a').evaluate(element => getComputedStyle(element).color);
+  const recommendationHeadingColor = await recommendations.locator('h2').evaluate(element => getComputedStyle(element).color);
+  expect(recommendationTitleColor).toBe(recommendationHeadingColor);
   await expect(page.locator('[data-product-sticky-purchase]')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
 
-  await page.locator('[data-home-footer]').scrollIntoViewIfNeeded();
+  const shareClose = page.locator('[data-product-share-close]');
+  await shareClose.scrollIntoViewIfNeeded();
+  await expect(shareClose.getByRole('heading', { name: 'Send this shelf find' })).toBeVisible();
+  await expect(shareClose.locator('[data-share-variant="inline"]')).toBeVisible();
+  const shareControls = shareClose.locator('a, button');
+  await expect(shareControls).toHaveCount(5);
+  for (let index = 0; index < 5; index++) {
+    const box = await shareControls.nth(index).boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+    expect(box!.width).toBeGreaterThanOrEqual(44);
+  }
+  await expect(shareClose.getByRole('link', { name: 'Share on Facebook' })).toHaveAttribute('href', /facebook\.com\/sharer\/sharer\.php\?u=https%3A%2F%2Fhairpinns\.com%2Fproducts%2Fjuuce-bond-repair-shampoo/);
+  await expect(shareClose.getByRole('link', { name: 'Share via Email' })).toHaveAttribute('href', /^mailto:/);
+  await expect(page.locator('[data-product-sticky-purchase]')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+  const footer = page.locator('[data-home-footer]');
+  expect(await shareClose.evaluate(element => Boolean(element.compareDocumentPosition(document.querySelector('[data-home-footer]')!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  expect(await shareClose.evaluate(element => getComputedStyle(element).backgroundColor)).toBe(await footer.evaluate(element => getComputedStyle(element).backgroundColor));
+
+  await footer.scrollIntoViewIfNeeded();
   await expect(page.locator('[data-product-sticky-purchase]')).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 

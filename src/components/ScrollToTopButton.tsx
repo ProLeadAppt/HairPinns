@@ -25,7 +25,17 @@ const ScrollToTopButton = () => {
         const productCoreIsVisible = Boolean(
           productCoreRect && productCoreRect.bottom > 0 && productCoreRect.top < window.innerHeight,
         );
-        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible);
+        const productShareClose = document.querySelector<HTMLElement>("[data-product-share-close]");
+        const productShareRect = productShareClose?.getBoundingClientRect();
+        const productShareIsVisible = Boolean(
+          productShareRect && productShareRect.bottom > 0 && productShareRect.top < window.innerHeight,
+        );
+        const productRecommendations = document.querySelector<HTMLElement>("[data-product-recommendations]");
+        const productRecommendationsRect = productRecommendations?.getBoundingClientRect();
+        const productRecommendationsAreVisible = Boolean(
+          productRecommendationsRect && productRecommendationsRect.bottom > 0 && productRecommendationsRect.top < window.innerHeight,
+        );
+        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible && !productShareIsVisible && !productRecommendationsAreVisible);
       });
     };
 
