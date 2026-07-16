@@ -464,3 +464,74 @@ test('after-hours product detail keeps the Fold purchase path truthful and unobs
   expect(payload.lines[0].quantity).toBe(1);
   expect(payload.lines[0].merchandiseId).toBeTruthy();
 });
+
+test('after-hours About journey keeps founder proof truthful and bookable at Fold width', async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/about');
+
+  const main = page.locator('[data-about-page]');
+  await expect(main.getByRole('heading', { level: 1, name: 'Hair care, without the hard sell.' })).toBeVisible();
+  const hero = page.locator('[data-about-hero]');
+  const heroPortrait = hero.getByRole('img', { name: 'Jena, founder and hairdresser at Hair Pinns in Bangor' });
+  await expect.poll(async () => heroPortrait.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0), { timeout: 15_000 }).toBe(true);
+  expect(await heroPortrait.getAttribute('src')).not.toContain('jena-headshot');
+
+  const heroBooking = hero.getByRole('link', { name: /Book now/ });
+  await expect(heroBooking).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+  await expect(heroBooking).toHaveAttribute('target', '_blank');
+  await expect(heroBooking).toHaveAttribute('rel', /noopener/);
+  await expect(hero.getByRole('link', { name: /Shop Jena’s shelf/ })).toHaveAttribute('href', '/collections');
+  const heroBookingBox = await heroBooking.boundingBox();
+  expect(heroBookingBox).not.toBeNull();
+  expect(heroBookingBox!.height).toBeGreaterThanOrEqual(44);
+
+  const work = page.locator('[data-about-work]');
+  await work.scrollIntoViewIfNeeded();
+  const gallery = work.locator('[data-gallery-variant="editorial"]');
+  const galleryButtons = gallery.getByRole('button');
+  await expect(galleryButtons).toHaveCount(6);
+  for (let index = 0; index < 2; index++) {
+    const image = galleryButtons.nth(index).locator('img');
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(async () => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0), { timeout: 15_000 }).toBe(true);
+  }
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+
+  const firstGalleryButton = galleryButtons.first();
+  await firstGalleryButton.click();
+  const lightbox = page.getByRole('dialog', { name: 'Expanded work image' });
+  await expect(lightbox).toBeVisible();
+  await expect(lightbox.getByRole('button', { name: 'Close image gallery' })).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(lightbox).toHaveCount(0);
+  await expect(firstGalleryButton).toBeFocused();
+
+  const close = page.locator('[data-about-close]');
+  await close.scrollIntoViewIfNeeded();
+  const closeBooking = close.getByRole('link', { name: /Book now/ });
+  const phone = close.getByRole('link', { name: '0416 037 663' });
+  await expect(closeBooking).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+  await expect(phone).toHaveAttribute('href', /^tel:\+614\d+7663$/);
+  await expect(close.getByText('60 Goorgool Rd, Bangor NSW 2234', { exact: true })).toBeVisible();
+  await expect(close.locator('details')).toHaveCount(5);
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+
+  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const parsedSchemas = schemas.flatMap(text => {
+    try {
+      const value = JSON.parse(text);
+      return Array.isArray(value) ? value : [value];
+    } catch {
+      return [];
+    }
+  });
+  const faqSchema = parsedSchemas.find(schema => schema['@type'] === 'FAQPage');
+  const personSchema = parsedSchemas.find(schema => schema['@type'] === 'Person' && schema.name === 'Jena Pinn');
+  expect(faqSchema?.mainEntity).toHaveLength(5);
+  expect(personSchema?.image).toContain('jena-founder-1080w');
+  expect(personSchema?.image).not.toContain('jena-headshot');
+
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(9_000);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});

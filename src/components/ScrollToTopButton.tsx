@@ -35,7 +35,8 @@ const ScrollToTopButton = () => {
         const productRecommendationsAreVisible = Boolean(
           productRecommendationsRect && productRecommendationsRect.bottom > 0 && productRecommendationsRect.top < window.innerHeight,
         );
-        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible && !productShareIsVisible && !productRecommendationsAreVisible);
+        const aboutPageIsActive = Boolean(document.querySelector("[data-about-page]"));
+        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible && !productShareIsVisible && !productRecommendationsAreVisible && !aboutPageIsActive);
       });
     };
 

@@ -265,6 +265,8 @@ const scrollToTopSource = await readFile(path.join(ROOT, 'src/components/ScrollT
 const productRecommendationsSource = await readFile(path.join(ROOT, 'src/components/product/ProductRecommendations.tsx'), 'utf8');
 const socialShareSource = await readFile(path.join(ROOT, 'src/components/blog/SocialShareBar.tsx'), 'utf8');
 const relatedContentSource = await readFile(path.join(ROOT, 'src/components/RelatedContent.tsx'), 'utf8');
+const aboutSource = await readFile(path.join(ROOT, 'src/pages/About.tsx'), 'utf8');
+const imageGallerySource = await readFile(path.join(ROOT, 'src/components/gallery/ImageGallery.tsx'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -292,6 +294,20 @@ assert.match(stickyProductSource, /\[data-product-share-close\]/, 'Sticky purcha
 assert.match(scrollToTopSource, /\[data-product-share-close\]/, 'Scroll-to-top control must yield over the product share close');
 assert.match(scrollToTopSource, /\[data-product-recommendations\]/, 'Scroll-to-top control must not cover recommendation products');
 assert.match(relatedContentSource, /variant\?: "default" \| "editorial"[\s\S]*variant = "default"/, 'Related content must preserve existing routes while allowing the PDP editorial variant');
+assert.match(aboutSource, /data-about-page=""[\s\S]*data-about-hero=""[\s\S]*data-about-work=""[\s\S]*data-about-close=""/, 'About route needs stable founder, proof, and close markers');
+assert.match(aboutSource, /jena-founder-540w\.avif[\s\S]*jena-founder-1080w\.webp[\s\S]*jena-working-480w\.avif[\s\S]*jena-working-1170w\.webp/, 'About route must use approved responsive founder and working imagery');
+assert.match(aboutSource, /trackBookingClick\("about_hero"[\s\S]*to="\/collections"[\s\S]*trackBookingClick\("about_close"[\s\S]*BUSINESS_NAP\.phone\.tel/, 'About route must preserve tracked Fresha, commerce, and canonical phone paths');
+assert.match(aboutSource, /generateFAQPageSchema\(aboutFaqs\)[\s\S]*schemaJson=\{\[jenaPersonSchema, breadcrumbSchema, faqSchema\]\}/, 'About FAQ content and schema must share one source');
+assert.match(aboutSource, /image: `\$\{SITE_URL\}\$\{jenaFounderWebp1080\}`/, 'About Person schema must use the clean founder portrait');
+assert.match(aboutSource, /ImageGallery columns=\{3\} images=\{galleryImages\} variant="editorial"/, 'About work proof must use the editorial gallery variant');
+assert.doesNotMatch(aboutSource, /Sarah M\.|Emma L\.|Michelle T\.|Foiling Master|Vidal Sassoon Advanced Cutting ABC|Same-day appointments|No filters, no stock photos|jena-headshot\.webp/, 'About route must not restore unsupported testimonials, credentials, availability, media, or campaign-headshot claims');
+assert.match(imageGallerySource, /variant\?: "default" \| "editorial"[\s\S]*variant = "default"/, 'Shared gallery must preserve its existing default while exposing the About editorial variant');
+assert.match(imageGallerySource, /role="dialog"[\s\S]*aria-modal="true"/, 'Shared gallery lightbox must expose modal dialog semantics');
+assert.match(imageGallerySource, /event\.key === "Escape"/, 'Shared gallery lightbox must close on Escape');
+assert.match(imageGallerySource, /triggerRefs\.current\[returnIndex\]\?\.focus/, 'Shared gallery lightbox must restore trigger focus');
+assert.match(imageGallerySource, /fallbackSrc\?: string[\s\S]*type="image\/avif"[\s\S]*img\.fallbackSrc \|\| img\.src/, 'Shared gallery must support AVIF sources with WebP image fallbacks');
+assert.match(aboutSource, /fallbackSrc: salonInteriorWebp[\s\S]*fallbackSrc: bobResultWebp/, 'About work proof must provide WebP fallbacks for every AVIF gallery image');
+assert.match(scrollToTopSource, /\[data-about-page\]/, 'Scroll-to-top control must not cover the About founder journey');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
