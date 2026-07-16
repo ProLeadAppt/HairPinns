@@ -272,6 +272,7 @@ const serviceDirectorySource = await readFile(path.join(ROOT, 'src/components/se
 const serviceDetailSource = await readFile(path.join(ROOT, 'src/pages/ServiceDetail.tsx'), 'utf8');
 const serviceDetailExperienceSource = await readFile(path.join(ROOT, 'src/components/services/ServiceDetailExperience.tsx'), 'utf8');
 const serviceDetailDataSource = await readFile(path.join(ROOT, 'src/data/serviceDetails.ts'), 'utf8');
+const bookingSource = await readFile(path.join(ROOT, 'src/pages/Booking.tsx'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -341,6 +342,24 @@ assert.match(serviceDetailExperienceSource, /data-service-detail-related[\s\S]*r
 assert.match(serviceDetailExperienceSource, /BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.address\.full[\s\S]*Back to the service menu/, 'Service-detail close must preserve canonical phone, address, and directory return');
 assert.doesNotMatch(serviceDetailExperienceSource, /same-day appointments|Starting from|rounded-card|hover:scale|shadow-lg/, 'Service-detail renderer must not restore unsupported availability, inexact pricing, or generic conversion-card styling');
 assert.match(breadcrumbsSource, /variant\?: "default" \| "dark"[\s\S]*isDark[\s\S]*after-hours-cream/, 'Shared breadcrumbs must preserve the default and expose an explicit dark-hero variant');
+
+// After-Hours booking handoff invariants.
+for (const marker of ['data-booking-page', 'data-booking-hero', 'data-booking-steps', 'data-booking-notes', 'data-booking-faq', 'data-booking-close']) {
+  assert.match(bookingSource, new RegExp(marker), `Booking page must preserve ${marker}`);
+}
+assert.equal((bookingSource.match(/href=\{BOOK_URL\}/g) || []).length, 2, 'Booking page must keep one Fresha action at the hero and one at the close');
+assert.match(bookingSource, /trackBookingClick\("booking_hero", "\/booking"\)/, 'Booking hero must preserve tracking');
+assert.match(bookingSource, /trackBookingClick\("booking_close", "\/booking"\)/, 'Booking close must preserve tracking');
+assert.match(bookingSource, /BUSINESS_NAP\.phone\.tel/, 'Booking help must use the canonical phone target');
+assert.match(bookingSource, /generateFAQPageSchema\(bookingFaqs\)/, 'Booking FAQ schema must use the visible FAQ source');
+assert.match(bookingSource, /generateBreadcrumbSchema/, 'Booking breadcrumb schema must remain present');
+assert.equal((bookingSource.match(/question: "/g) || []).length, 5, 'Booking page must preserve five visible schema-matched FAQs');
+assert.match(bookingSource, /<details key=\{faq\.question\}/, 'Booking FAQs must use native disclosures');
+assert.match(bookingSource, /<Breadcrumbs[\s\S]*variant="dark"/, 'Booking hero must use the explicit dark breadcrumb variant');
+assert.match(scrollToTopSource, /\[data-booking-page\]/, 'Booking journey must suppress the floating scroll-to-top control');
+for (const unsupportedClaim of ['762+ five-star reviews', 'Same-day available', 'Klarna', 'Afterpay', '50% fee', 'free up to 24 hours', 'chat with Isabella', 'Takes about 2 minutes']) {
+  assert.ok(!bookingSource.includes(unsupportedClaim), `Booking page must not restore unsupported claim: ${unsupportedClaim}`);
+}
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
