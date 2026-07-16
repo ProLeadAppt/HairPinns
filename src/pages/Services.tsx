@@ -1,20 +1,12 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import ServiceDirectory from "@/components/services/ServiceDirectory";
 import SEOHead from "@/components/SEOHead";
-import { Button } from "@/components/ui/button";
-import { Calendar, Clock, Layers } from "lucide-react";
-import StickyBooking from "@/components/conversion/StickyBooking";
-import TrustStrip from "@/components/conversion/TrustStrip";
-import FAQSection from "@/components/FAQSection";
-import ReviewStrip from "@/components/reviews/ReviewStrip";
-import GoogleReviewBadge from "@/components/reviews/GoogleReviewBadge";
-import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, generateEnhancedServiceSchema, generateFAQPageSchema, generateBreadcrumbSchema, generateServiceItemListSchema } from "@/lib/schema";
+
+import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, generateFAQPageSchema, generateBreadcrumbSchema, generateServiceItemListSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
-import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { serviceDetailData } from "@/data/serviceDetails";
 import { googleReviews } from "@/data/reviews";
 
@@ -32,6 +24,24 @@ interface ServiceCategory {
   title: string;
   services: Service[];
 }
+
+const serviceSlugMap: Record<string, string> = {
+  "Mid-Length Straight Up Smoothing Treatment": "mid-length-straight-up-smoothing",
+  "Long/Thick Straight Up Smoothing Treatment": "long-thick-straight-up-smoothing",
+  "Straight Up Smoothing for Teens": "straight-up-smoothing-teens",
+  "Full Head of Foils Package": "full-head-foils-package",
+  "1/2 Head of Foils, cut & blowdry": "half-head-foils-cut-blowdry",
+  "1/4 Head Foils, cut and blowdry": "quarter-head-foils-cut-blowdry",
+  "Long Hair Colour Package": "long-hair-colour-package",
+  "Mid-Length Colour Package": "mid-length-colour-package",
+  "Short Hair Colour Package": "short-hair-colour-package",
+  "Long Hair wash/cut/blow-dry": "long-hair-wash-cut-blowdry",
+  "Mid-length wash/cut/blow-dry": "mid-length-wash-cut-blowdry",
+  "Short wash/cut/blow-dry": "short-wash-cut-blowdry",
+  "Kids cut & blowdry bundle": "kids-cut-blowdry-bundle",
+  "Primary Formal Hairstyle": "primary-formal-hairstyle",
+  "High School Formal Hairstyle": "high-school-formal-hairstyle",
+};
 
 const Services = () => {
   const [activeSection, setActiveSection] = useState("smoothing");
@@ -456,6 +466,8 @@ const Services = () => {
     }
   ];
 
+  const totalServices = serviceCategories.reduce((total, category) => total + category.services.length, 0);
+
   // Scroll spy for sticky nav
   useEffect(() => {
     const handleScroll = () => {
@@ -520,233 +532,12 @@ const Services = () => {
       />
 
       <Header />
-      <GoogleReviewBadge variant="micro" showCTA />
-      <TrustStrip />
-      <StickyBooking />
-
-      <main id="main-content" tabIndex={-1}>
-        {/* Breadcrumbs */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
-        </div>
-
-        {/* Hero - Compact Premium */}
-        <section className="relative py-12 md:py-16 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-bg via-[#FBF7FD] to-bg"></div>
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-sm font-medium text-brand-500 tracking-wide uppercase mb-3">
-              Our Services
-            </p>
-            <h1 className="text-h1-lg font-heading font-bold text-heading mb-4" style={{ letterSpacing: '-0.2px' }}>
-              Colour, Smoothing & Cuts
-            </h1>
-            <p className="text-lg text-foreground leading-relaxed" style={{ lineHeight: '1.5' }}>
-              Prices shown are what you'll pay. No hidden fees. Book online or call.
-            </p>
-          </div>
-        </section>
-
-        {/* Sticky Sub-Nav */}
-        <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[rgba(139,74,139,0.10)] shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-hide">
-              <span className="text-sm whitespace-nowrap mr-2 text-muted-foreground">Jump to:</span>
-              {[
-                { id: 'smoothing', label: 'Smoothing' },
-                { id: 'foil-packages', label: 'Foil Packages' },
-                { id: 'colouring-packages', label: 'Colour' },
-                { id: 'cut-packages', label: 'Cuts' },
-                { id: 'braids', label: 'Braids' },
-                { id: 'styling', label: 'Styling' }
-              ].map(nav => (
-                <a
-                  key={nav.id}
-                  href={`#${nav.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById(nav.id);
-                    if (element) {
-                      const offset = 120;
-                      const top = element.offsetTop - offset;
-                      window.scrollTo({ top, behavior: 'smooth' });
-                    }
-                  }}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                    activeSection === nav.id
-                      ? 'bg-brand-500 text-white shadow-sm'
-                      : 'hover:bg-accent'
-                  }`}
-                  style={activeSection !== nav.id ? { color: 'hsl(var(--text))', opacity: 0.8 } : {}}
-                >
-                  {nav.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <ReviewStrip variant="compact" />
-
-        {/* Service Categories */}
-        {serviceCategories.map((category, catIndex) => (
-          <section
-            key={category.id}
-            id={category.id}
-            className={`py-16 scroll-mt-32 ${catIndex % 2 === 1 ? 'bg-muted' : ''}`}
-          >
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-h2-lg font-heading font-bold text-heading mb-8" style={{ letterSpacing: '-0.2px', lineHeight: '1.5' }}>
-                {category.title}
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.services.map((service, idx) => (
-                  <div
-                    key={idx}
-                    className="group bg-white rounded-card p-6 border border-[rgba(139,74,139,0.10)] hover:shadow-[var(--shadow-hover)] hover:-translate-y-0.5 transition-all duration-300"
-                    style={{ 
-                      boxShadow: 'var(--shadow)',
-                      borderRadius: 'var(--radius-card)'
-                    }}
-                  >
-                    {/* Title */}
-                    <h3 className="text-xl font-heading font-bold mb-2" style={{ color: 'hsl(var(--heading))', lineHeight: '1.5' }}>
-                      {service.title}
-                    </h3>
-
-                    {/* Subtitle */}
-                    {service.subtitle && (
-                      <p className="text-sm mb-3" style={{ color: 'hsl(var(--text))', lineHeight: '1.5', opacity: 0.9 }}>
-                        {service.subtitle}
-                      </p>
-                    )}
-
-                    {/* Meta chips */}
-                    {(service.duration || service.serviceCount) && (
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {service.duration && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
-                            <Clock className="w-3 h-3" />
-                            {service.duration}
-                          </span>
-                        )}
-                        {service.serviceCount && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(139,74,139,0.25)', color: 'hsl(var(--text))', opacity: 0.8 }}>
-                            <Layers className="w-3 h-3" />
-                            {service.serviceCount}
-                          </span>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Description */}
-                    {service.description && (
-                      <p className="text-sm mb-4 whitespace-pre-line" style={{ color: 'hsl(var(--text))', lineHeight: '1.5', opacity: 0.9 }}>
-                        {service.description}
-                      </p>
-                    )}
-
-                    {/* Price */}
-                    <div className="mb-4">
-                      <span 
-                        className="inline-block px-4 py-1.5 rounded-full bg-brand-500 text-white text-sm font-bold"
-                        style={{ borderRadius: '999px' }}
-                      >
-                        {service.price}
-                      </span>
-                    </div>
-
-                    {/* CTAs */}
-                    <div className="space-y-2">
-                      <a 
-                        href={BOOK_URL} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        onClick={() => trackBookingClick(`services_${category.id}_card`, "/services")}
-                        aria-label={`Book now, ${service.title}`}
-                      >
-                        <Button 
-                          variant="primary" 
-                          size="sm" 
-                          className="w-full transition-all duration-300 hover:scale-[1.02]"
-                          style={{ borderRadius: 'var(--radius-btn)' }}
-                        >
-                          <Calendar className="w-4 h-4 group-hover:animate-pulse" />
-                          Book now
-                        </Button>
-                      </a>
-                      {/* Learn more link */}
-                      {(() => {
-                        // Map service titles to their actual slugs in serviceDetails.ts
-                        const serviceSlugMap: Record<string, string> = {
-                          "Mid-Length Straight Up Smoothing Treatment": "mid-length-straight-up-smoothing",
-                          "Long/Thick Straight Up Smoothing Treatment": "long-thick-straight-up-smoothing",
-                          "Straight Up Smoothing for Teens": "straight-up-smoothing-teens",
-                          "Full Head of Foils Package": "full-head-foils-package",
-                          "1/2 Head of Foils, cut & blowdry": "half-head-foils-cut-blowdry",
-                          "1/4 Head Foils, cut and blowdry": "quarter-head-foils-cut-blowdry",
-                          "Long Hair Colour Package": "long-hair-colour-package",
-                          "Mid-Length Colour Package": "mid-length-colour-package",
-                          "Short Hair Colour Package": "short-hair-colour-package",
-                          "Long Hair wash/cut/blow-dry": "long-hair-wash-cut-blowdry",
-                          "Mid-length wash/cut/blow-dry": "mid-length-wash-cut-blowdry",
-                          "Short wash/cut/blow-dry": "short-wash-cut-blowdry",
-                          "Kids cut & blowdry bundle": "kids-cut-blowdry-bundle",
-                          "Primary Formal Hairstyle": "primary-formal-hairstyle",
-                          "High School Formal Hairstyle": "high-school-formal-hairstyle"
-                        };
-                        
-                        const serviceSlug = serviceSlugMap[service.title];
-
-                        if (serviceSlug) {
-                          return (
-                            <div className="text-center">
-                              <Link
-                                to={`/services/${category.id}/${serviceSlug}`}
-                                className="inline-flex items-center gap-2 text-sm font-medium transition-colors group"
-                                style={{ color: 'hsl(var(--brand-500))' }}
-                              >
-                                Learn more
-                                <span className="group-hover:translate-x-1 transition-transform">→</span>
-                              </Link>
-                            </div>
-                          );
-                        }
-                        return null;
-                      })()}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        ))}
-
-        {/* FAQ Section */}
-        <FAQSection 
-          faqs={comprehensiveFAQs} 
-          title="Frequently Asked Questions" 
-          subtitle="Answers to your hair care questions from Jena and the Hair Pinns team." 
-          showFeedback={true} 
-        />
-
-        {/* Areas We Serve */}
-        <section className="py-12 bg-muted/30 border-t border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-muted-foreground">
-              Based in Bangor, serving all of Sutherland Shire.{" "}
-              <Link to="/areas" className="text-brand-500 hover:text-brand-600 font-medium">See all areas</Link>
-            </p>
-          </div>
-        </section>
-
-        {/* Footer Note */}
-        <div className="py-6 text-center bg-white">
-          <p className="text-sm text-muted-foreground">
-            All services, durations and prices shown exactly as listed in our booking system.
-          </p>
-        </div>
-      </main>
+      <ServiceDirectory
+        categories={serviceCategories}
+        activeSection={activeSection}
+        totalServices={totalServices}
+        serviceSlugMap={serviceSlugMap}
+      />
 
       <Footer />
     </div>

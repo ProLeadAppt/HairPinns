@@ -267,6 +267,8 @@ const socialShareSource = await readFile(path.join(ROOT, 'src/components/blog/So
 const relatedContentSource = await readFile(path.join(ROOT, 'src/components/RelatedContent.tsx'), 'utf8');
 const aboutSource = await readFile(path.join(ROOT, 'src/pages/About.tsx'), 'utf8');
 const imageGallerySource = await readFile(path.join(ROOT, 'src/components/gallery/ImageGallery.tsx'), 'utf8');
+const servicesSource = await readFile(path.join(ROOT, 'src/pages/Services.tsx'), 'utf8');
+const serviceDirectorySource = await readFile(path.join(ROOT, 'src/components/services/ServiceDirectory.tsx'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -308,6 +310,22 @@ assert.match(imageGallerySource, /triggerRefs\.current\[returnIndex\]\?\.focus/,
 assert.match(imageGallerySource, /fallbackSrc\?: string[\s\S]*type="image\/avif"[\s\S]*img\.fallbackSrc \|\| img\.src/, 'Shared gallery must support AVIF sources with WebP image fallbacks');
 assert.match(aboutSource, /fallbackSrc: salonInteriorWebp[\s\S]*fallbackSrc: bobResultWebp/, 'About work proof must provide WebP fallbacks for every AVIF gallery image');
 assert.match(scrollToTopSource, /\[data-about-page\]/, 'Scroll-to-top control must not cover the About founder journey');
+const servicesDataBlock = servicesSource.slice(servicesSource.indexOf('const serviceCategories'), servicesSource.indexOf('// Scroll spy'));
+assert.equal((servicesDataBlock.match(/\n\s+id: "/g) || []).length, 14, 'Services directory must preserve all 14 Fresha categories');
+assert.equal((servicesDataBlock.match(/\n\s+price: /g) || []).length, 59, 'Services directory must preserve all 59 Fresha entries');
+const serviceMapBlock = servicesSource.slice(servicesSource.indexOf('const serviceSlugMap'), servicesSource.indexOf('const Services'));
+assert.equal((serviceMapBlock.match(/: "/g) || []).length, 15, 'Services directory must preserve all 15 detail-page mappings');
+assert.match(servicesSource, /generateOrganizationSchema[\s\S]*generateEnhancedLocalBusinessSchema[\s\S]*generateFAQPageSchema[\s\S]*generateBreadcrumbSchema[\s\S]*generateServiceItemListSchema/, 'Services route must preserve its five schema sources');
+assert.doesNotMatch(servicesSource, /GoogleReviewBadge|TrustStrip|ReviewStrip|StickyBooking/, 'Services directory must not restore stacked proof strips or overlapping booking controls');
+assert.match(serviceDirectorySource, /data-services-page=""[\s\S]*data-services-hero=""[\s\S]*data-services-nav=""[\s\S]*data-services-directory=""[\s\S]*data-services-close=""/, 'Services directory needs stable journey markers');
+assert.match(serviceDirectorySource, /categories\.map\([\s\S]*category\.services\.map\([\s\S]*aria-label=\{`Book now, \$\{service\.title\} on Fresha`\}/, 'Every category and service must retain a tracked Fresha action with visible text in its accessible name');
+assert.doesNotMatch(serviceDirectorySource, /after-hours-plum\)\/0\.(?:46|58|6)\)|opacity-60/, 'Small service-directory labels must retain AA contrast');
+assert.match(serviceDirectorySource, /serviceSlugMap\[service\.title\][\s\S]*to=\{`\/services\/\$\{category\.id\}\/\$\{serviceSlug\}`\}/, 'Mapped services must preserve their detail routes');
+assert.match(serviceDirectorySource, /<details[\s\S]*Service details[\s\S]*service\.description/, 'Optional service copy must remain available through native disclosure');
+assert.match(serviceDirectorySource, /BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.address\.full[\s\S]*to="\/areas"/, 'Services close must use canonical phone, address, and area routes');
+assert.doesNotMatch(serviceDirectorySource, /`tel:\$\{BUSINESS_NAP\.phone\.tel\}`/, 'Services close must not duplicate the tel protocol');
+assert.match(serviceDirectorySource, /min-h-11[\s\S]*Book now[\s\S]*min-h-11[\s\S]*Service guide/, 'Service actions must retain 44px targets');
+assert.match(scrollToTopSource, /\[data-about-page\], \[data-services-page\]/, 'Scroll-to-top control must not cover editorial About or Services journeys');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');

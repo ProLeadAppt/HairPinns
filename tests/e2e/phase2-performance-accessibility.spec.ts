@@ -535,3 +535,76 @@ test('after-hours About journey keeps founder proof truthful and bookable at Fol
   expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(9_000);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 });
+
+test('after-hours service directory preserves the complete Fresha menu at Fold width', async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/services');
+
+  const main = page.locator('[data-services-page]');
+  await expect(main.getByRole('heading', { level: 1, name: 'Find the right time in Jena’s chair.' })).toBeVisible();
+  await expect(page.locator('[data-services-hero]').getByText('59', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-services-hero]').getByText('14', { exact: true })).toBeVisible();
+
+  const categoryNav = page.locator('[data-services-nav]');
+  const categoryLinks = categoryNav.getByRole('link');
+  await expect(categoryLinks).toHaveCount(14);
+  await expect(categoryLinks.first()).toHaveAttribute('href', '#smoothing');
+  await expect(categoryLinks.last()).toHaveAttribute('href', '#blow-dry');
+  for (const link of await categoryLinks.all()) {
+    const box = await link.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+  }
+
+  const directory = page.locator('[data-services-directory]');
+  await expect(directory.locator(':scope > section')).toHaveCount(14);
+  const serviceRows = directory.locator('article');
+  await expect(serviceRows).toHaveCount(59);
+  const bookingLinks = directory.locator('a[aria-label^="Book "]');
+  await expect(bookingLinks).toHaveCount(59);
+  await expect(directory.getByRole('link', { name: 'Service guide' })).toHaveCount(15);
+
+  const firstBooking = bookingLinks.first();
+  await expect(firstBooking).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+  await expect(firstBooking).toHaveAttribute('target', '_blank');
+  await expect(firstBooking).toHaveAttribute('rel', /noopener/);
+  const firstBookingBox = await firstBooking.boundingBox();
+  expect(firstBookingBox).not.toBeNull();
+  expect(firstBookingBox!.height).toBeGreaterThanOrEqual(44);
+
+  const detailedService = serviceRows.filter({ hasText: 'Long/Thick Straight Up Smoothing Treatment' }).first();
+  await detailedService.scrollIntoViewIfNeeded();
+  const disclosure = detailedService.locator('details');
+  await expect(disclosure).not.toHaveAttribute('open', '');
+  await disclosure.locator('summary').click();
+  await expect(disclosure).toHaveAttribute('open', '');
+  await expect(disclosure.getByText('Straight Up is the first natural hair smoothing treatment', { exact: false })).toBeVisible();
+  await expect(detailedService.getByText('A$ 349', { exact: true })).toBeVisible();
+  await expect(detailedService.getByText('2h 20min · 2 services', { exact: true })).toBeVisible();
+
+  const close = page.locator('[data-services-close]');
+  await close.scrollIntoViewIfNeeded();
+  await expect(close.getByRole('link', { name: /Book now/ })).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+  await expect(close.getByRole('link', { name: '0416 037 663' })).toHaveAttribute('href', /^tel:\+614\d+7663$/);
+  await expect(close.getByText('60 Goorgool Rd, Bangor NSW 2234', { exact: true })).toBeVisible();
+  await expect(close.getByRole('link', { name: /See service areas/ })).toHaveAttribute('href', '/areas');
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+
+  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const parsedSchemas = schemas.flatMap(text => {
+    try {
+      const value = JSON.parse(text);
+      return Array.isArray(value) ? value : [value];
+    } catch {
+      return [];
+    }
+  });
+  const itemListSchema = parsedSchemas.find(schema => schema['@type'] === 'ItemList');
+  const faqSchema = parsedSchemas.find(schema => schema['@type'] === 'FAQPage');
+  expect(itemListSchema?.itemListElement).toHaveLength(15);
+  expect(faqSchema?.mainEntity?.length).toBeGreaterThan(0);
+
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(22_500);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});
