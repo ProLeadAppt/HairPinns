@@ -904,16 +904,6 @@ const ProductDetail = () => {
             />
           </SilentErrorBoundary>
         )}
-        {/* Share this product */}
-        {product && (
-          <section className="py-8 border-t border-border">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <p className="text-sm text-muted-foreground mb-3">Share this product</p>
-              <SocialShareBar url={`https://hairpinns.com/products/${handle}`} title={product.title} />
-            </div>
-          </section>
-        )}
-
         {/* Topic cluster: services and blog posts that use/apply this product */}
         {product?.collections?.edges?.[0]?.node?.handle && (
           <RelatedContent
@@ -922,7 +912,24 @@ const ProductDetail = () => {
             ).map((t) => t.slug)}
             show={["service", "blog"]}
             heading="Services & reading that pair with this"
+            variant="editorial"
           />
+        )}
+
+        {/* Inline product share close */}
+        {product && (
+          <section data-product-share-close="" className="border-b border-[hsl(var(--after-hours-cream)/0.14)] bg-[hsl(var(--after-hours-near-black))] py-12 text-[hsl(var(--after-hours-cream))] lg:py-16">
+            <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-[1.2fr_0.8fr] md:items-end lg:px-8">
+              <div>
+                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">Share / Product</p>
+                <h2 className="mt-3 max-w-[15ch] font-heading text-[clamp(2.35rem,4vw,4.5rem)] leading-[0.95] tracking-[-0.035em] text-[hsl(var(--after-hours-cream))]">Send this shelf find</h2>
+                <p className="mt-4 max-w-xl text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.72)]">Share {product.title} or keep the link for later.</p>
+              </div>
+              <div className="md:justify-self-end">
+                <SocialShareBar variant="inline" url={`https://hairpinns.com/products/${handle}`} title={product.title} />
+              </div>
+            </div>
+          </section>
         )}
       </main>
 

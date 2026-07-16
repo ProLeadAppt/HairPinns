@@ -31,10 +31,12 @@ const StickyAddToCart = ({
     const updateVisibility = () => {
       frame = null;
       const primaryActions = document.querySelector('[data-product-purchase-actions]');
+      const shareClose = document.querySelector('[data-product-share-close]');
       const footer = document.querySelector('[data-home-footer]') || document.querySelector('footer');
       setIsVisible(
         window.scrollY > threshold &&
         !overlapsViewport(primaryActions) &&
+        !overlapsViewport(shareClose) &&
         !overlapsViewport(footer),
       );
     };

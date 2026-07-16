@@ -263,6 +263,8 @@ const productDetailSource = await readFile(path.join(ROOT, 'src/pages/ProductDet
 const stickyProductSource = await readFile(path.join(ROOT, 'src/components/conversion/StickyAddToCart.tsx'), 'utf8');
 const scrollToTopSource = await readFile(path.join(ROOT, 'src/components/ScrollToTopButton.tsx'), 'utf8');
 const productRecommendationsSource = await readFile(path.join(ROOT, 'src/components/product/ProductRecommendations.tsx'), 'utf8');
+const socialShareSource = await readFile(path.join(ROOT, 'src/components/blog/SocialShareBar.tsx'), 'utf8');
+const relatedContentSource = await readFile(path.join(ROOT, 'src/components/RelatedContent.tsx'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -277,6 +279,19 @@ assert.match(stickyProductSource, /requestAnimationFrame|cancelAnimationFrame/, 
 assert.match(stickyProductSource, /data-product-sticky-purchase=""/, 'Sticky product action needs a stable test marker');
 assert.match(scrollToTopSource, /\[data-product-detail-core\]/, 'Scroll-to-top control must yield throughout the core product detail');
 assert.doesNotMatch(productRecommendationsSource, /content-visibility-auto/, 'Async product recommendations must remain scrollable in WebKit');
+assert.match(productRecommendationsSource, /RecommendationContext = "collection" \| "catalogue" \| "curated"/, 'Recommendation copy must reflect its actual data relationship');
+assert.match(productRecommendationsSource, /More from this range[\s\S]*More to browse/, 'Recommendation shelf needs truthful collection and catalogue headings');
+assert.match(productRecommendationsSource, /grid-cols-2[\s\S]*object-contain[\s\S]*View product/, 'Recommendation shelf must stay compact, identifiable, and honest on mobile');
+assert.match(productRecommendationsSource, /!text-\[hsl\(var\(--after-hours-plum\)\)\][\s\S]*data-recommendation-catalogue=""[\s\S]*Browse catalogue/, 'Recommendation shelf must resist global link colour overrides and balance the mobile final row');
+assert.match(productRecommendationsSource, /text-xs text-\[hsl\(var\(--after-hours-plum\)\/0\.72\)\] line-through/, 'Recommendation compare-at prices must retain AA contrast');
+assert.doesNotMatch(productRecommendationsSource, /Complete the Set|Add to Bag|hover:shadow|rounded-card/, 'Recommendations must not imply a set, fake add-to-cart, or regress to template cards');
+assert.match(socialShareSource, /variant\?: "fixed" \| "inline"[\s\S]*variant = "fixed"/, 'Shared social controls must preserve the BlogPost fixed default and expose the PDP inline variant');
+assert.match(productDetailSource, /variant="editorial"[\s\S]*data-product-share-close=""[\s\S]*variant="inline"/, 'PDP must route conditional related content into the inline share close');
+assert.ok(productDetailSource.indexOf('<ProductRecommendations') < productDetailSource.indexOf('data-product-share-close=""'), 'Recommendation shelf must precede the terminal share close');
+assert.match(stickyProductSource, /\[data-product-share-close\]/, 'Sticky purchase action must yield over the product share close');
+assert.match(scrollToTopSource, /\[data-product-share-close\]/, 'Scroll-to-top control must yield over the product share close');
+assert.match(scrollToTopSource, /\[data-product-recommendations\]/, 'Scroll-to-top control must not cover recommendation products');
+assert.match(relatedContentSource, /variant\?: "default" \| "editorial"[\s\S]*variant = "default"/, 'Related content must preserve existing routes while allowing the PDP editorial variant');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
