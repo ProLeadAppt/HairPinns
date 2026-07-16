@@ -276,6 +276,8 @@ const bookingSource = await readFile(path.join(ROOT, 'src/pages/Booking.tsx'), '
 const contactSource = await readFile(path.join(ROOT, 'src/pages/Contact.tsx'), 'utf8');
 const contactFormSource = await readFile(path.join(ROOT, 'src/components/forms/ContactForm.tsx'), 'utf8');
 const miniCartSource = await readFile(path.join(ROOT, 'src/components/cart/MiniCart.tsx'), 'utf8');
+const productSearchSource = await readFile(path.join(ROOT, 'src/components/product/ProductSearch.tsx'), 'utf8');
+const searchResultsSource = await readFile(path.join(ROOT, 'src/pages/SearchResults.tsx'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -397,6 +399,27 @@ assert.match(miniCartSource, /h-11 w-11[\s\S]*Remove \$\{merchandise/, 'Cart lin
 assert.match(miniCartSource, /disabled=\{isCheckingOut \|\| !hasItems\}/, 'Checkout must remain unavailable for empty or expired carts');
 assert.match(miniCartSource, /merchandise\.title !== "Default Title"/, 'Cart must not display Shopify Default Title');
 assert.doesNotMatch(miniCartSource, /searchProducts|upsellProducts|EstimatedDelivery|FreeShippingBar|You might also like|Estimated delivery|businessDays|hover:scale|rounded-card|shadow-lg/, 'Cart must not restore arbitrary upsells, simulated delivery, or generic conversion-card styling');
+
+// After-Hours search and discovery invariants.
+for (const marker of ['data-predictive-search', 'data-search-suggestions', 'data-search-loading', 'data-search-error', 'data-search-products', 'data-search-articles', 'data-search-empty']) {
+  assert.match(productSearchSource, new RegExp(marker), `Predictive search must preserve ${marker}`);
+}
+for (const predictiveContract of ['searchProducts(trimmedQuery, maxResults)', 'searchBlogPosts(trimmedQuery', 'window.setTimeout', 'window.clearTimeout(timeout)', 'requestSequence.current', 'navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`)', 'role="searchbox"', 'event.preventDefault()', 'aria-controls', 'aria-live="polite"']) {
+  assert.ok(productSearchSource.includes(predictiveContract), `Predictive search must preserve contract: ${predictiveContract}`);
+}
+assert.match(productSearchSource, /trimmedQuery\.length < 2/, 'Predictive search must wait for two meaningful characters');
+assert.match(productSearchSource, /document\.addEventListener\("pointerdown"[\s\S]*document\.removeEventListener\("pointerdown"/, 'Predictive search must close outside and clean up its listener');
+assert.doesNotMatch(productSearchSource, /Card|CardContent|rounded-lg|rounded-md|hover:-translate|hover:shadow|object-cover/, 'Predictive search must retain flat editorial styling and contained product imagery');
+
+for (const marker of ['data-search-page', 'data-search-hero', 'data-search-desk', 'data-search-page-loading', 'data-search-start', 'data-search-page-error', 'data-search-page-empty', 'data-search-page-results', 'data-search-product-results', 'data-search-article-results']) {
+  assert.match(searchResultsSource, new RegExp(marker), `Search results must preserve ${marker}`);
+}
+for (const searchContract of ['useSearchParams', 'searchProducts(query, 50)', 'searchBlogPosts(query, 12)', 'window.gtag("event", "search"', 'generateSearchResultsItemListSchema', 'generateBreadcrumbSchema', 'noIndex={true}', 'navigate(`/search?q=${encodeURIComponent(nextQuery)}`)']) {
+  assert.ok(searchResultsSource.includes(searchContract), `Search results must preserve contract: ${searchContract}`);
+}
+assert.match(searchResultsSource, /useMemo\(\(\) => \{[\s\S]*sortBy === "price-low"[\s\S]*\}, \[rawProducts, sortBy\]\)/, 'Search sorting must be local and must not refetch Shopify');
+assert.match(searchResultsSource, /productError && articles\.length === 0[\s\S]*data-search-partial-error/, 'Search must distinguish total and partial Shopify failures');
+assert.doesNotMatch(searchResultsSource, /generateFAQPageSchema|FAQPage|Where can I buy|Does Hair Pinns ship|rounded-lg|hover:-translate|hover:shadow-lg|object-cover group-hover/, 'Search must not restore fabricated dynamic FAQ schema or generic hover-card styling');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');

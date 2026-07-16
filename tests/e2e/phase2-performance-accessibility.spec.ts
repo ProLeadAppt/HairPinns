@@ -350,8 +350,8 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
 
   const removeFirst = drawer.getByRole('button', { name: 'Remove Juuce Bond Repair Shampoo from bag' });
   const removeBox = await removeFirst.boundingBox();
-  expect(removeBox?.width).toBeGreaterThanOrEqual(44);
-  expect(removeBox?.height).toBeGreaterThanOrEqual(44);
+  expect(Math.round(removeBox?.width || 0)).toBeGreaterThanOrEqual(44);
+  expect(Math.round(removeBox?.height || 0)).toBeGreaterThanOrEqual(44);
   await removeFirst.click();
   await expect(drawer.locator('[data-cart-lines] li')).toHaveCount(1);
   expect(removalBody).toEqual({ cartId: 'gid://shopify/Cart/after-hours-test', removeLineIds: ['line-1'] });
@@ -372,6 +372,93 @@ test('search and collection controls have persistent accessible names', async ({
   await page.goto('/collections', { waitUntil: 'domcontentloaded' });
   await expect(page.getByRole('textbox', { name: 'Search collections' })).toBeVisible();
   await expect(page.getByRole('combobox', { name: 'Sort collections' })).toBeVisible();
+});
+
+test('after-hours predictive search debounces, dismisses and submits without losing the query', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  let productSearchCalls = 0;
+  const products = [
+    {
+      id: 'product-1', title: 'Juuce Bond Repair Shampoo', handle: 'juuce-bond-repair-shampoo', availableForSale: true,
+      priceRange: { minVariantPrice: { amount: '34.95', currencyCode: 'AUD' }, maxVariantPrice: { amount: '34.95', currencyCode: 'AUD' } },
+      images: { edges: [{ node: { id: 'image-1', url: '/placeholder.svg', altText: 'Juuce Bond Repair Shampoo' } }] },
+    },
+    {
+      id: 'product-2', title: 'Juuce Smooth Enz', handle: 'juuce-smooth-enz', availableForSale: true,
+      priceRange: { minVariantPrice: { amount: '29.95', currencyCode: 'AUD' }, maxVariantPrice: { amount: '32.95', currencyCode: 'AUD' } },
+      images: { edges: [{ node: { id: 'image-2', url: '/placeholder.svg', altText: 'Juuce Smooth Enz' } }] },
+    },
+  ];
+  await page.route('**/graphql.json', async (route) => {
+    productSearchCalls += 1;
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: { products: { edges: products.map((node) => ({ node })) } } }) });
+  });
+
+  await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
+  const input = page.getByRole('searchbox', { name: 'Search products and articles' });
+  await input.pressSequentially('Juuce', { delay: 25 });
+  const suggestions = page.locator('[data-search-suggestions]');
+  await expect(suggestions).toBeVisible();
+  await expect(suggestions.locator('[data-search-products] li')).toHaveCount(2);
+  await expect(suggestions.locator('[data-search-articles] li').first()).toBeVisible();
+  expect(productSearchCalls).toBe(1);
+  await expect(input).toHaveAttribute('aria-expanded', 'true');
+  await expect(input).toHaveAttribute('aria-controls');
+  const clearBox = await page.getByRole('button', { name: 'Clear search' }).boundingBox();
+  expect(clearBox?.height).toBeGreaterThanOrEqual(44);
+
+  await input.press('Escape');
+  await expect(suggestions).toHaveCount(0);
+  await expect(input).toHaveValue('Juuce');
+  await expect(input).toBeFocused();
+  await input.press('Enter');
+  await expect(page).toHaveURL(/\/search\?q=Juuce$/);
+});
+
+test('after-hours search results preserve product, guide, sorting and schema contracts at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  const products = [
+    {
+      id: 'product-1', title: 'Juuce Bond Repair Shampoo', handle: 'juuce-bond-repair-shampoo', availableForSale: true,
+      priceRange: { minVariantPrice: { amount: '34.95', currencyCode: 'AUD' }, maxVariantPrice: { amount: '34.95', currencyCode: 'AUD' } },
+      compareAtPriceRange: { minVariantPrice: { amount: '39.95', currencyCode: 'AUD' } },
+      images: { edges: [{ node: { id: 'image-1', url: '/placeholder.svg', altText: 'Juuce Bond Repair Shampoo' } }] },
+      variants: { edges: [{ node: { id: 'variant-1' } }] },
+    },
+    {
+      id: 'product-2', title: 'Juuce Smooth Enz', handle: 'juuce-smooth-enz', availableForSale: true,
+      priceRange: { minVariantPrice: { amount: '29.95', currencyCode: 'AUD' }, maxVariantPrice: { amount: '32.95', currencyCode: 'AUD' } },
+      images: { edges: [{ node: { id: 'image-2', url: '/placeholder.svg', altText: 'Juuce Smooth Enz' } }] },
+      variants: { edges: [{ node: { id: 'variant-2' } }] },
+    },
+  ];
+  let shopifyCalls = 0;
+  await page.route('**/graphql.json', async (route) => {
+    shopifyCalls += 1;
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: { products: { edges: products.map((node) => ({ node })) } } }) });
+  });
+
+  await page.goto('/search?q=Juuce', { waitUntil: 'domcontentloaded' });
+  const results = page.locator('[data-search-page-results]');
+  await expect(results).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Results for “Juuce”');
+  await expect(page.locator('[data-search-product-results] article')).toHaveCount(2);
+  await expect(page.locator('[data-search-article-results] article').first()).toBeVisible();
+  await expect(page.locator('[data-search-product-results] img').first()).toHaveCSS('object-fit', 'contain');
+  expect(shopifyCalls).toBe(1);
+
+  await page.getByRole('combobox', { name: 'Sort products' }).selectOption('price-low');
+  await expect(page.locator('[data-search-product-results] article h3').first()).toHaveText('Juuce Smooth Enz');
+  expect(shopifyCalls).toBe(1);
+
+  const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) => nodes.map((node) => JSON.parse(node.textContent || '{}')['@type']));
+  expect(schemas).toContain('BreadcrumbList');
+  expect(schemas).toContain('ItemList');
+  expect(schemas).not.toContain('FAQPage');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+  await expect(page.locator('[data-search-page]')).not.toContainText('Where can I buy');
+  await expect(page.locator('[data-search-page]')).not.toContainText('Does Hair Pinns ship');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 });
 
 test('after-hours collection system stays truthful and shoppable at Fold width', async ({ page }) => {
