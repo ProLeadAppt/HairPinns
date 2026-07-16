@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ChevronLeft, ChevronRight, ShoppingBag, Star, Zap } from "lucide-react";
+import { ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
@@ -23,14 +23,10 @@ import { topicsForCollection } from "@/data/topicMap";
 import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { toast } from "sonner";
-import TrustStrip from "@/components/conversion/TrustStrip";
+
 import SocialShareBar from "@/components/blog/SocialShareBar";
 import PaymentBadges from "@/components/product/PaymentBadges";
-import ShippingCalculator from "@/components/product/ShippingCalculator";
-import EstimatedDelivery from "@/components/product/EstimatedDelivery";
-import UrgencyIndicator from "@/components/conversion/UrgencyIndicator";
 import StickyAddToCart from "@/components/conversion/StickyAddToCart";
-import FrequentlyBoughtTogether from "@/components/product/FrequentlyBoughtTogether";
 import ProductRecommendations from "@/components/product/ProductRecommendations";
 import { SilentErrorBoundary } from "@/components/ErrorBoundary";
 import { trackCartCreated } from "@/lib/cartAbandonment";
@@ -39,6 +35,7 @@ import { getOGImage } from "@/lib/sitemap";
 import { useImagePreload } from "@/components/ImagePreloader";
 import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema, generateHowToSchema } from "@/lib/schema";
 import { getProductHowTo } from "@/data/productHowTo";
+import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -462,6 +459,11 @@ const ProductDetail = () => {
     return Array.from(values);
   };
 
+  const visibleOptionNames = Array.from(uniqueOptionNames).filter((optionName) => {
+    const values = getOptionValues(optionName);
+    return !(optionName === "Title" && values.length === 1 && values[0] === "Default Title");
+  });
+
   // Build product schemas
   const productDescription = String(product.description ?? "").substring(0, 120);
 
@@ -537,9 +539,7 @@ const ProductDetail = () => {
       
       <Header />
       
-      {/* Trust Strip */}
-      <TrustStrip />
-      
+
       {/* Exit Intent Modal */}
       {/* ExitIntentModal removed */}
       
@@ -556,13 +556,13 @@ const ProductDetail = () => {
         </div>
         
         {/* Product Section */}
-        <section className="py-8 md:py-12">
+        <section data-product-detail-core="" className="border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper))] py-6 md:py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid grid-cols-1 gap-9 lg:grid-cols-[minmax(0,1.08fr)_minmax(26rem,0.92fr)] lg:gap-16">
               {/* Left: Gallery */}
-              <div className="space-y-4">
+              <div className="min-w-0 space-y-3">
                 {/* Main image and dedicated zoom control */}
-                <div className="relative aspect-square bg-muted rounded-card overflow-hidden group cursor-zoom-in">
+                <div className="group relative aspect-square overflow-hidden border-y border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-cream))] cursor-zoom-in">
                   <button
                     ref={zoomButtonRef}
                     type="button"
@@ -583,7 +583,7 @@ const ProductDetail = () => {
                     <img
                       src={currentImg?.url || "/placeholder.svg"}
                       alt={currentImg?.altText || product.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      className="h-full w-full object-contain"
                       width={currentImg?.width || 800}
                       height={currentImg?.height || 800}
                       decoding="async"
@@ -598,7 +598,7 @@ const ProductDetail = () => {
                       <button
                         type="button"
                         onClick={prevImage}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 flex items-center justify-center md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-white focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                        className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--after-hours-plum))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Previous image"
                       >
                         <ChevronLeft className="w-5 h-5" />
@@ -606,7 +606,7 @@ const ProductDetail = () => {
                       <button
                         type="button"
                         onClick={nextImage}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 flex items-center justify-center md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-white focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                        className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--after-hours-plum))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Next image"
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -630,8 +630,8 @@ const ProductDetail = () => {
                         >
                           <span
                             aria-hidden="true"
-                            className={`block h-2 rounded-full transition-all group-focus-visible/dot:ring-2 group-focus-visible/dot:ring-brand-500 ${
-                              index === currentImage ? "bg-white w-6" : "bg-white/60 w-2 group-hover/dot:bg-white/90"
+                            className={`block h-1.5 transition-all group-focus-visible/dot:ring-2 group-focus-visible/dot:ring-brand-500 ${
+                              index === currentImage ? "w-6 bg-[hsl(var(--after-hours-plum))]" : "w-2 bg-[hsl(var(--after-hours-plum)/0.32)]"
                             }`}
                           />
                         </button>
@@ -642,14 +642,14 @@ const ProductDetail = () => {
 
                 {/* Thumbnail Grid */}
                 {images.length > 1 && (
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-4 gap-2 sm:gap-3">
                     {images.map((image: any, index: number) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImage(index)}
                         aria-label={`View thumbnail ${index + 1}`}
-                        className={`aspect-square rounded-card overflow-hidden border-2 transition-all ${
-                          index === currentImage ? "border-brand-500" : "border-transparent hover:border-border"
+                        className={`aspect-square overflow-hidden border transition-all ${
+                          index === currentImage ? "border-[hsl(var(--after-hours-plum))]" : "border-[hsl(var(--after-hours-plum)/0.14)] hover:border-[hsl(var(--after-hours-plum)/0.4)]"
                         }`}
                       >
                         <picture className="block w-full h-full">
@@ -665,7 +665,7 @@ const ProductDetail = () => {
                           <img
                             src={image?.url || "/placeholder.svg"}
                             alt={image?.altText || `${product.title} ${index + 1}`}
-                            className="w-full h-full object-cover"
+                            className="h-full w-full bg-[hsl(var(--after-hours-cream))] object-contain"
                             width="200"
                             height="200"
                             loading="lazy"
@@ -679,127 +679,115 @@ const ProductDetail = () => {
               </div>
 
               {/* Right: Product Info */}
-              <div className="space-y-6">
-                {/* Title */}
-                <h1 className="text-h1-lg font-heading font-bold text-heading">
-                  {product.title}
-                </h1>
-
-                {/* Availability & Urgency */}
-                <SilentErrorBoundary>
-                  <UrgencyIndicator
-                    productId={product.id}
-                    inStock={product.availableForSale}
-                    showRecentPurchases={false}
-                    className="mb-4"
-                  />
-                </SilentErrorBoundary>
-
-                {/* Price */}
-                <div className="space-y-2">
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-3xl font-bold text-brand-500">
-                      {formatPrice(Number.isFinite(price) ? price : 0, "AUD")}
-                    </span>
-                    {compareAtPrice && compareAtPrice > price && (
-                      <span className="text-xl text-muted-foreground line-through">
-                        {formatPrice(compareAtPrice, "AUD")}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm text-muted-foreground">All prices in Australian Dollars (AUD)</p>
+              <div className="min-w-0 space-y-6 lg:pt-2">
+                <div>
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
+                    Product / {product.vendor || "Hair Pinns"}
+                  </p>
+                  <h1 className="mt-4 max-w-[13ch] font-heading text-[clamp(3rem,7vw,5.8rem)] leading-[0.91] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
+                    {product.title}
+                  </h1>
                 </div>
 
-                {/* Variant Selector */}
-                {Array.from(uniqueOptionNames).map((optionName) => (
+                <div className="border-y border-[hsl(var(--after-hours-plum)/0.18)] py-4">
+                  <div className="flex items-end justify-between gap-4">
+                    <div className="flex flex-wrap items-baseline gap-3">
+                      <span className="font-heading text-3xl text-[hsl(var(--after-hours-plum))]">
+                        {formatPrice(Number.isFinite(price) ? price : 0, "AUD")}
+                      </span>
+                      {compareAtPrice && compareAtPrice > price && (
+                        <span className="text-sm text-[hsl(var(--after-hours-plum)/0.58)] line-through">
+                          {formatPrice(compareAtPrice, "AUD")}
+                        </span>
+                      )}
+                    </div>
+                    <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${isAvailable ? "text-[hsl(var(--after-hours-plum)/0.72)]" : "text-destructive"}`}>
+                      {isAvailable ? "Available online" : "Sold out"}
+                    </p>
+                  </div>
+                  <p className="mt-2 text-xs text-[hsl(var(--after-hours-plum)/0.62)]">Australian dollars. Tax included.</p>
+                </div>
+
+                {visibleOptionNames.map((optionName) => (
                   <div key={optionName} className="space-y-2">
                     <label
                       id={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}-label`}
                       htmlFor={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}`}
-                      className="text-sm font-medium text-foreground"
+                      className="text-sm font-medium text-[hsl(var(--after-hours-plum))]"
                     >
                       {optionName}
                     </label>
-                    <Select 
+                    <Select
                       value={selectedOptions[optionName] || ""}
                       onValueChange={(value) => handleOptionChange(optionName, value)}
                     >
                       <SelectTrigger
                         id={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}`}
                         aria-labelledby={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}-label`}
-                        className="w-full"
+                        className="h-11 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.25)] bg-transparent"
                       >
                         <SelectValue placeholder={`Select ${optionName}`} />
                       </SelectTrigger>
                       <SelectContent>
                         {getOptionValues(optionName).map((value) => (
-                          <SelectItem key={value} value={value}>
-                            {value}
-                          </SelectItem>
+                          <SelectItem key={value} value={value}>{value}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                   </div>
                 ))}
 
-                {/* Add to Bag / Buy Now */}
-                <div className="space-y-3">
+                <div data-product-purchase-actions="" className="space-y-3">
                   <Button
                     variant="primary"
                     size="lg"
-                    className="w-full"
+                    className="min-h-12 w-full rounded-none bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))] shadow-none hover:bg-[hsl(var(--after-hours-plum)/0.9)]"
                     onClick={handleAddToBag}
                     disabled={!isAvailable || addingToCart}
                   >
-                    <ShoppingBag className="w-5 h-5 mr-2" />
+                    <ShoppingBag className="mr-2 h-5 w-5" />
                     {addingToCart ? "Adding..." : "Add to Bag"}
                   </Button>
-                  
+
                   <Button
                     variant="outline"
                     size="lg"
-                    className="w-full"
+                    className="min-h-12 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.35)] bg-transparent text-[hsl(var(--after-hours-plum))] shadow-none"
                     onClick={handleBuyNow}
                     disabled={!isAvailable || buyingNow}
                   >
-                    <Zap className="w-5 h-5 mr-2" />
+                    <Zap className="mr-2 h-5 w-5" />
                     {buyingNow ? "Processing..." : "Buy Now"}
                   </Button>
+                </div>
 
-                  {/* Shipping Calculator */}
-                  <div className="pt-2">
-                    <SilentErrorBoundary fallback={<p className="text-sm text-muted-foreground">Free shipping on orders over $150 Australia-wide</p>}>
-                      <ShippingCalculator cartTotal={price} />
-                    </SilentErrorBoundary>
-                  </div>
+                <div className="border-y border-[hsl(var(--after-hours-plum)/0.18)] py-3">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Shipping across Australia</p>
+                  <dl className="mt-2 text-sm text-[hsl(var(--after-hours-plum)/0.72)]">
+                    <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Standard</dt><dd>$9.95 · 3–5 business days</dd></div>
+                    <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Express</dt><dd>$14.95 · 1–2 business days</dd></div>
+                    <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</dt><dd>Free standard</dd></div>
+                  </dl>
+                  <Link to="/policies/shipping" className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--after-hours-plum))] underline underline-offset-4">Read shipping policy</Link>
+                </div>
 
-                  {/* Estimated Delivery */}
-                  <div className="pt-2">
-                    <SilentErrorBoundary fallback={<p className="text-sm text-muted-foreground">Ships in 1-2 business days &middot; 3-7 day delivery</p>}>
-                      <EstimatedDelivery cartTotal={price} />
-                    </SilentErrorBoundary>
-                  </div>
-
-                  {/* Payment Options */}
-                  <div className="pt-4 border-t border-border">
-                    <p className="text-sm font-medium mb-3 text-foreground">Payment Options:</p>
-                    <SilentErrorBoundary>
-                      <PaymentBadges variant="stacked" />
-                    </SilentErrorBoundary>
-                  </div>
-
+                <div>
+                  <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Payment options</p>
+                  <SilentErrorBoundary>
+                    <PaymentBadges compact />
+                  </SilentErrorBoundary>
                 </div>
 
                 {/* Product Tabs */}
-                <Tabs defaultValue="description" className="w-full">
-                  <TabsList className="w-full justify-start border-b rounded-none bg-transparent h-auto p-0 gap-6">
-                    <TabsTrigger value="description" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brand-500 data-[state=active]:bg-transparent px-0 pb-2 text-sm font-medium">
+                <Tabs defaultValue="description" className="w-full border-t border-[hsl(var(--after-hours-plum)/0.18)] pt-3">
+                  <TabsList className="h-auto w-full justify-start gap-6 border-b border-[hsl(var(--after-hours-plum)/0.16)] rounded-none bg-transparent p-0">
+                    <TabsTrigger value="description" className="min-h-11 rounded-none border-b-2 border-transparent px-0 text-sm font-medium data-[state=active]:border-[hsl(var(--after-hours-plum))] data-[state=active]:bg-transparent">
                       Description
                     </TabsTrigger>
                     {(() => {
                       const howTo = getProductHowTo(handle, product.title);
                       return howTo ? (
-                        <TabsTrigger value="how-to-use" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brand-500 data-[state=active]:bg-transparent px-0 pb-2 text-sm font-medium">
+                        <TabsTrigger value="how-to-use" className="min-h-11 rounded-none border-b-2 border-transparent px-0 text-sm font-medium data-[state=active]:border-[hsl(var(--after-hours-plum))] data-[state=active]:bg-transparent">
                           How to Use
                         </TabsTrigger>
                       ) : null;
@@ -843,7 +831,7 @@ const ProductDetail = () => {
                           <ol className="space-y-3">
                             {howTo.step.map((step, i) => (
                               <li key={i} className="flex gap-3">
-                                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-500 text-white text-xs flex items-center justify-center font-semibold">{i + 1}</span>
+                                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.3)] text-xs font-semibold text-[hsl(var(--after-hours-plum))]">{i + 1}</span>
                                 <div>
                                   <p className="text-sm font-medium text-heading">{step.name}</p>
                                   <p className="text-sm text-muted-foreground">{step.text}</p>
@@ -906,15 +894,6 @@ const ProductDetail = () => {
           ) : null}
         </Dialog>
 
-        {/* Frequently Bought Together Section - wrapped so failures don't break product page */}
-        {product && (
-          <SilentErrorBoundary>
-            <FrequentlyBoughtTogether
-              currentProductId={product.id}
-              currentProductHandle={product.handle}
-            />
-          </SilentErrorBoundary>
-        )}
 
         {/* Product Recommendations - wrapped so failures don't break product page */}
         {product && (

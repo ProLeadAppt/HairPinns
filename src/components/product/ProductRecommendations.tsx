@@ -123,7 +123,7 @@ const ProductRecommendations = ({
   }
 
   return (
-    <Section className="content-visibility-auto">
+    <Section className="bg-[hsl(var(--after-hours-paper))]">
       <SectionHeader 
         title={pairsWith ? "Frequently Bought Together" : "Complete the Set"}
         subtitle={pairsWith ? "These items pair perfectly" : "You might also like"}

@@ -354,3 +354,73 @@ test('after-hours collection system stays truthful and shoppable at Fold width',
   await expect(page.getByRole('dialog', { name: 'Quick View' })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 });
+
+test('after-hours product detail keeps the Fold purchase path truthful and unobscured', async ({ page }) => {
+  test.setTimeout(75_000);
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.route('**/api/checkout', async route => {
+    if (route.request().method() !== 'POST') return route.continue();
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ checkoutUrl: 'https://checkout.example.test/cart', cartId: 'test-cart-id' }),
+    });
+  });
+
+  await page.goto('/products/juuce-bond-repair-shampoo', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('heading', { name: 'Juuce Bond Repair Shampoo', level: 1 })).toBeVisible({ timeout: 30_000 });
+
+  const core = page.locator('[data-product-detail-core]');
+  const actions = page.locator('[data-product-purchase-actions]');
+  const productImage = core.locator('picture img').first();
+  await expect.poll(async () => productImage.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0), { timeout: 15_000 }).toBe(true);
+  expect(await productImage.evaluate(image => getComputedStyle(image).objectFit)).toBe('contain');
+
+  await expect(core).not.toContainText('Default Title');
+  await expect(page.getByText('762+ five-star reviews')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Calculate Shipping' })).toHaveCount(0);
+  await expect(page.getByText(/Estimated delivery:/)).toHaveCount(0);
+  await expect(core.getByText('$9.95 · 3–5 business days')).toBeVisible();
+  await expect(core.getByText('$14.95 · 1–2 business days')).toBeVisible();
+  await expect(core.getByText('Orders $150+')).toBeVisible();
+  await expect(core.getByRole('link', { name: 'Read shipping policy' })).toHaveAttribute('href', '/policies/shipping');
+
+  const addToBag = actions.getByRole('button', { name: 'Add to Bag' });
+  const buyNow = actions.getByRole('button', { name: 'Buy Now' });
+  for (const button of [addToBag, buyNow]) {
+    const box = await button.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+  }
+
+  const zoom = core.getByRole('button', { name: /Open Juuce Bond Repair Shampoo image 1 full screen/ });
+  await zoom.click();
+  await expect(page.getByRole('dialog', { name: /Expanded product image/ })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(zoom).toBeFocused();
+
+  await actions.scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-product-sticky-purchase]')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+
+  await core.getByRole('tab', { name: 'Description' }).scrollIntoViewIfNeeded();
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+
+  const recommendations = page.getByRole('heading', { name: 'Complete the Set' });
+  await expect(recommendations).toBeVisible({ timeout: 30_000 });
+  await recommendations.scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-product-sticky-purchase]')).toBeVisible();
+
+  await page.locator('[data-home-footer]').scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-product-sticky-purchase]')).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+
+  await actions.scrollIntoViewIfNeeded();
+  const checkoutRequest = page.waitForRequest(request => request.url().includes('/api/checkout') && request.method() === 'POST');
+  await addToBag.click();
+  const request = await checkoutRequest;
+  const payload = request.postDataJSON();
+  expect(payload.lines).toHaveLength(1);
+  expect(payload.lines[0].quantity).toBe(1);
+  expect(payload.lines[0].merchandiseId).toBeTruthy();
+});
