@@ -251,3 +251,51 @@ test('mobile menu and sticky action remain commerce first', async ({ page }) => 
   });
   await expect(bar).toHaveCount(0);
 });
+
+test('sticky commerce bar yields to the contained salon close and restores above it', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const bar = page.getByRole('region', { name: 'Quick shop bar' });
+  const scrollTop = page.getByRole('button', { name: 'Scroll to top' });
+  await page.evaluate(async () => {
+    for (let y = 100; y <= 900; y += 100) {
+      window.scrollTo(0, y);
+      await new Promise(resolve => window.setTimeout(resolve, 80));
+    }
+  });
+  await expect(bar).toBeVisible();
+  await expect(scrollTop).toBeVisible();
+
+  for (let y = 900; y <= 15_000; y += 350) {
+    await page.evaluate(scrollY => window.scrollTo(0, scrollY), y);
+    await page.waitForTimeout(80);
+    if (await page.getByRole('heading', { name: /come in and see me/i }).count()) break;
+  }
+
+  const salonHeading = page.getByRole('heading', { name: /come in and see me/i });
+  await salonHeading.scrollIntoViewIfNeeded();
+  await expect(salonHeading).toBeVisible();
+  await expect(bar).toHaveCount(0);
+  await expect(scrollTop).toHaveCount(0);
+
+  const salonClose = salonHeading.locator('xpath=ancestor::section[1]');
+  const booking = salonClose.getByRole('link', { name: 'Book now', exact: true });
+  await booking.scrollIntoViewIfNeeded();
+  await expect(booking).toBeVisible();
+  const bookingBox = await booking.boundingBox();
+  expect(bookingBox ? bookingBox.y + bookingBox.height : Number.POSITIVE_INFINITY).toBeLessThanOrEqual(844);
+  await expect(bar).toHaveCount(0);
+  await expect(scrollTop).toHaveCount(0);
+
+  const guideHeading = page.getByRole('heading', { name: /notes from behind the chair/i });
+  await guideHeading.scrollIntoViewIfNeeded();
+  await expect(guideHeading).toBeVisible();
+  await expect(bar).toBeVisible();
+  await expect(scrollTop).toBeVisible();
+  await expect(bar.getByRole('link', { name: 'Shop all products' })).toHaveAttribute('href', '/collections');
+
+  await salonHeading.scrollIntoViewIfNeeded();
+  await expect(bar).toHaveCount(0);
+  await expect(scrollTop).toHaveCount(0);
+});
