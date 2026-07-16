@@ -220,6 +220,7 @@ for (const route of ['/collections', '/blog', '/policies/shipping', '/policies/r
 assert.match(footerSource, /Mon", "Closed[\s\S]*Tue", "10am–5pm[\s\S]*Wed", "6pm–9pm[\s\S]*Thu", "9am–9pm[\s\S]*Fri", "9am–5:30pm[\s\S]*Sat", "8am–2pm[\s\S]*Sun", "Closed/, 'Footer must retain published salon hours');
 assert.match(footerSource, /min-h-11[\s\S]*aria-label="Footer navigation"[\s\S]*aria-label="Legal links"/, 'Footer navigation and legal links must retain 44px touch targets and named regions');
 assert.match(footerSource, /munyal\.com\.au[\s\S]*Visa[\s\S]*Mastercard[\s\S]*Afterpay[\s\S]*Zip/, 'Footer must retain Munyal credit and accepted payment labels');
+assert.match(footerSource, /aria-label="Accepted payment methods"[\s\S]*after-hours-cream\)\/0\.68|after-hours-cream\)\/0\.68[^\n]*aria-label="Accepted payment methods"/, 'Small footer payment labels need accessible cream contrast');
 assert.doesNotMatch(footerSource, /bg-muted|rounded-xl|rounded-full|<Instagram|<Facebook|<MapPin|<Phone/, 'After-Hours footer must not regress to pale template cards or generic icon circles');
 
 const headerSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
@@ -238,6 +239,25 @@ const shopDropdownSource = await readFile(path.join(ROOT, 'src/components/naviga
 assert.match(shopDropdownSource, /SHOP_BY_CONCERN\.map[\s\S]*FEATURED_BRANDS\.map[\s\S]*to="\/collections"/, 'Desktop shop ledger must retain all centralized concerns, brands, and catalogue route');
 assert.match(shopDropdownSource, /w-\[34rem\][\s\S]*min-h-11[\s\S]*rounded-none/, 'Desktop shop ledger must retain editorial geometry and 44px targets');
 assert.doesNotMatch(shopDropdownSource, /w-56|rounded-md|shadow-lg/, 'Desktop shop menu must not regress to the generic narrow dropdown');
+
+const collectionsSource = await readFile(path.join(ROOT, 'src/pages/Collections.tsx'), 'utf8');
+const collectionDetailSource = await readFile(path.join(ROOT, 'src/pages/CollectionDetail.tsx'), 'utf8');
+const breadcrumbsSource = await readFile(path.join(ROOT, 'src/components/Breadcrumbs.tsx'), 'utf8');
+assert.match(breadcrumbsSource, /<Fragment[\s\S]*<BreadcrumbItem>[\s\S]*<BreadcrumbSeparator/, 'Breadcrumbs must keep valid ordered-list semantics without div wrappers');
+assert.doesNotMatch(breadcrumbsSource, /<div key=\{index\}/, 'Breadcrumb lists must not wrap list items in direct div children');
+assert.match(indexCss, /--after-hours-paper:\s*270 67% 99%/, 'After-Hours paper must remain the approved #FCFAFE semantic token');
+assert.match(collectionsSource, /grid grid-cols-2[\s\S]*filteredAndSortedCollections\.map/, 'Collection index must remain a two-column mobile catalogue');
+assert.match(collectionsSource, /collectionImageSizes = "\(max-width: 767px\) 50vw/, 'Collection index must request mobile half-width Shopify image candidates');
+assert.match(collectionsSource, /Jena’s routine \/ 10% saving[\s\S]*\/collections\/jenas-daily-trio/, 'Jena daily trio ledger and destination must remain intact');
+assert.match(collectionsSource, /collections_cta[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*BOOK_URL/, 'Collection advice close must preserve chat attribution, phone, and booking routes');
+assert.doesNotMatch(collectionsSource, /product-count|Most Products/, 'Collection index must not rank by incomplete GraphQL product counts');
+assert.doesNotMatch(collectionsSource, /bg-gradient-to|radial-gradient|rounded-3xl|rounded-2xl/, 'Collection index must not regress to gradient or rounded template panels');
+assert.doesNotMatch(collectionsSource, /text-\[(?:0\.62|0\.66)rem\][^\n]*after-hours-copper/, 'Small collection labels need stronger than decorative copper contrast');
+assert.match(collectionDetailSource, /grid grid-cols-2[\s\S]*sortedProducts\.map/, 'Collection detail must remain a two-column mobile product catalogue');
+assert.match(collectionDetailSource, /object-contain[\s\S]*Quick View[\s\S]*Add to Bag/, 'Collection product plates must preserve full-image containment and both commerce actions');
+assert.match(collectionDetailSource, /aria-label="Filter by price"[\s\S]*aria-label="Sort products"/, 'Collection controls must keep persistent accessible names');
+assert.match(collectionDetailSource, /min-h-11[\s\S]*Quick View[\s\S]*min-h-11[\s\S]*Add to Bag/, 'Collection product actions must remain at least 44px tall');
+assert.doesNotMatch(collectionDetailSource, /TrustStrip|762\+ five-star|Newest First|sortBy === "newest"/, 'Collection detail must not expose unsourced review proof or a no-op newest sort');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');

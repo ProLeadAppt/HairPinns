@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Fragment } from "react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -23,18 +24,18 @@ const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
     <Breadcrumb className={className}>
       <BreadcrumbList>
         {items.map((item, index) => (
-          <div key={index} className="flex items-center">
-            {index > 0 && <BreadcrumbSeparator />}
+          <Fragment key={`${item.label}-${index}`}>
             <BreadcrumbItem>
               {item.href && index !== items.length - 1 ? (
                 <BreadcrumbLink asChild>
-                  <Link to={item.href}>{item.label}</Link>
+                  <Link to={item.href} className="text-foreground/80 hover:text-foreground">{item.label}</Link>
                 </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                <BreadcrumbPage className="text-foreground">{item.label}</BreadcrumbPage>
               )}
             </BreadcrumbItem>
-          </div>
+            {index < items.length - 1 && <BreadcrumbSeparator />}
+          </Fragment>
         ))}
       </BreadcrumbList>
     </Breadcrumb>

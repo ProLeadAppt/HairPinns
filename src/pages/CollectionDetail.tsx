@@ -17,8 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 // ExitIntentModal removed
-import TrustStrip from "@/components/conversion/TrustStrip";
-import ProductBadges from "@/components/conversion/ProductBadges";
+
 import QuickViewModal from "@/components/product/QuickViewModal";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
@@ -32,7 +31,7 @@ import { topicsForCollection } from "@/data/topicMap";
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
   const handle = slug; // But we'll use "handle" internally for clarity
-  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+
   const [priceRange, setPriceRange] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("default");
   const [collection, setCollection] = useState<any>(null);
@@ -233,11 +232,7 @@ const CollectionDetail = () => {
     if (sortBy === "price-high") return b.price - a.price;
     if (sortBy === "name-asc") return a.title.localeCompare(b.title);
     if (sortBy === "name-desc") return b.title.localeCompare(a.title);
-    if (sortBy === "newest") {
-      // In production, sort by created date from Shopify
-      return 0; // Default order for now
-    }
-    // Default: maintain original order
+
     return 0;
   });
 
@@ -359,9 +354,7 @@ const CollectionDetail = () => {
       />
       <Header />
       
-      {/* Trust Strip */}
-      <TrustStrip />
-      
+
       {/* Exit Intent Modal */}
       {/* ExitIntentModal removed */}
       
@@ -378,21 +371,22 @@ const CollectionDetail = () => {
         </div>
         
         {/* Collection Header */}
-        <section className="bg-accent py-12 md:py-16">
+        <section className="border-y border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-10 md:py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-start justify-between gap-6 mb-6">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_10rem] lg:items-end">
               <div className="flex-1">
-                <h1 className="text-h1-lg font-heading font-bold text-heading mb-4">
+                <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">Collection / Hair Pinns</p>
+                <h1 className="font-heading text-[clamp(3rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.04em] text-[hsl(var(--after-hours-plum))] mb-4">
                   {collectionTitle}
                 </h1>
-                <p className="speakable-collection-intro text-lg text-foreground max-w-3xl leading-relaxed">
+                <p className="speakable-collection-intro max-w-3xl text-base leading-7 text-[hsl(var(--after-hours-plum)/0.72)] md:text-lg">
                   {collectionDescription}
                 </p>
               </div>
               {sortedProducts.length > 0 && (
-                <div className="text-right">
-                  <p className="text-sm text-muted-foreground mb-1">Products</p>
-                  <p className="text-3xl font-bold text-heading">{sortedProducts.length}</p>
+                <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-3 lg:text-right">
+                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Products</p>
+                  <p className="font-heading text-3xl text-[hsl(var(--after-hours-plum))]">{sortedProducts.length}</p>
                 </div>
               )}
             </div>
@@ -401,13 +395,13 @@ const CollectionDetail = () => {
         </section>
 
         {/* Filters & Sort */}
-        <section className="border-b border-border bg-card sticky top-16 z-30">
+        <section className="sticky top-16 z-30 border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper)/0.97)] backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
               {/* Price & Sort */}
               <div className="flex gap-3 flex-wrap">
                 <Select value={priceRange} onValueChange={setPriceRange}>
-                  <SelectTrigger className="w-[160px] h-9">
+                  <SelectTrigger aria-label="Filter by price" className="h-11 w-[calc(50%-0.375rem)] min-w-0 rounded-none border-[hsl(var(--after-hours-plum)/0.25)] bg-transparent sm:w-[180px]">
                     <SelectValue placeholder="Price Range" />
                   </SelectTrigger>
                   <SelectContent>
@@ -419,7 +413,7 @@ const CollectionDetail = () => {
                 </Select>
 
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-[160px] h-9">
+                  <SelectTrigger aria-label="Sort products" className="h-11 w-[calc(50%-0.375rem)] min-w-0 rounded-none border-[hsl(var(--after-hours-plum)/0.25)] bg-transparent sm:w-[180px]">
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>
@@ -428,7 +422,7 @@ const CollectionDetail = () => {
                     <SelectItem value="price-high">Price: High to Low</SelectItem>
                     <SelectItem value="name-asc">Name: A-Z</SelectItem>
                     <SelectItem value="name-desc">Name: Z-A</SelectItem>
-                    <SelectItem value="newest">Newest First</SelectItem>
+
                   </SelectContent>
                 </Select>
               </div>
@@ -437,7 +431,7 @@ const CollectionDetail = () => {
         </section>
 
         {/* Products Grid */}
-        <section className="py-12">
+        <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {sortedProducts.length === 0 ? (
               <div className="text-center py-12">
@@ -446,21 +440,21 @@ const CollectionDetail = () => {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:gap-x-8 lg:grid-cols-3">
                 {sortedProducts.map((product) => (
                   <article 
                     key={product.id} 
-                    className="bg-card border border-border rounded-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
+                    className="group flex min-w-0 flex-col border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-3"
                   >
                     {/* Image - clickable to product page */}
                     <Link
                       to={`/products/${product.handle}`}
-                      className="block aspect-square bg-muted relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset"
+                      className="relative block aspect-square overflow-hidden bg-[hsl(var(--after-hours-cream))] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset"
                     >
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-slow"
+                        className="h-full w-full object-contain transition-opacity duration-slow group-hover:opacity-90"
                         loading="lazy"
                         width="600"
                         height="600"
@@ -477,8 +471,8 @@ const CollectionDetail = () => {
                     </Link>
 
                     {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-lg font-heading font-semibold text-heading mb-2 line-clamp-2">
+                    <div className="flex flex-1 flex-col pt-4">
+                      <h3 className="mb-2 line-clamp-3 font-heading text-base leading-tight text-[hsl(var(--after-hours-plum))] sm:text-lg">
                         <Link
                           to={`/products/${product.handle}`}
                           className="hover:text-brand-500 transition-colors"
@@ -500,7 +494,7 @@ const CollectionDetail = () => {
                             : "";
                           return (
                             <>
-                              <p className="text-2xl font-bold text-brand-500">{priceText}</p>
+                              <p className="text-lg font-semibold text-[hsl(var(--after-hours-plum))] sm:text-2xl">{priceText}</p>
                               {compareText && (
                                 <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
                                   {compareText}
@@ -510,14 +504,14 @@ const CollectionDetail = () => {
                           );
                         })()}
                       </div>
-                      <p className="text-xs text-muted-foreground mb-3">Afterpay &middot; Zip available</p>
+                      <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--after-hours-plum)/0.62)]">Afterpay &middot; Zip available</p>
 
                       {/* Actions */}
-                      <div className="flex gap-2">
+                      <div className="mt-auto flex flex-col gap-2 border-t border-[hsl(var(--after-hours-plum)/0.14)] pt-3 sm:flex-row">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="flex-1"
+                          className="min-h-11 flex-1 rounded-none border-[hsl(var(--after-hours-plum)/0.28)] px-2 text-xs sm:text-sm"
                           onClick={() => setQuickViewHandle(product.handle)}
                         >
                           Quick View
@@ -525,11 +519,11 @@ const CollectionDetail = () => {
                         <Button
                           variant="primary"
                           size="sm"
-                          className="flex-1"
+                          className="min-h-11 flex-1 rounded-none bg-[hsl(var(--after-hours-plum))] px-2 text-xs text-[hsl(var(--after-hours-cream))] sm:text-sm"
                           onClick={() => handleAddToBag(product.handle, product.firstVariantId)}
                           disabled={!product.availableForSale || addingToCart === product.handle}
                         >
-                          <ShoppingBag className="w-4 h-4 mr-1" />
+                          <ShoppingBag className="mr-1 hidden h-4 w-4 sm:block" />
                           {addingToCart === product.handle ? "Adding..." : "Add to Bag"}
                         </Button>
                       </div>

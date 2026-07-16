@@ -68,7 +68,7 @@ const Collections = () => {
     return "/placeholder.svg";
   };
 
-  const collectionImageSizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
+  const collectionImageSizes = "(max-width: 767px) 50vw, (max-width: 1023px) 50vw, 33vw";
   const collectionImageWidths = [480, 640, 800, 960];
 
   const buildShopifySrcSet = (url: string, webp = false) =>
@@ -168,13 +168,7 @@ const Collections = () => {
       case "name-desc":
         sorted.sort((a, b) => b.title.localeCompare(a.title));
         break;
-      case "product-count":
-        sorted.sort((a, b) => {
-          const aCount = a.products?.edges?.length || 0;
-          const bCount = b.products?.edges?.length || 0;
-          return bCount - aCount;
-        });
-        break;
+
       default:
         // Keep default order (already sorted by collectionOrder)
         break;
@@ -214,52 +208,40 @@ const Collections = () => {
       </div>
 
       <main id="main-content" tabIndex={-1}>
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-accent/40 via-background to-accent/30 py-20 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,74,139,0.15),transparent_50%)]" />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-heading font-heading tracking-tight leading-tight">
-                Shop Collections
+        <section className="border-b border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-14 sm:py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">Shop / Hair Pinns</p>
+            <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1fr)_30rem] lg:items-end lg:gap-16">
+              <h1 className="max-w-[10ch] font-heading text-[clamp(3.4rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
+                Shop collections.
               </h1>
-              <div className="inline-block bg-background/80 backdrop-blur-sm px-8 py-6 rounded-2xl shadow-lg">
-                <p className="text-xl md:text-2xl text-heading font-semibold max-w-2xl leading-relaxed mb-4">
-                  I ship hair care anywhere in Australia. Free shipping over $150.
-                </p>
-                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                  Browse by brand: Juuce, QIQI, Pure, Wet Brush and more. From daily essentials to treatments, everything your hair needs.
-                </p>
+              <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-5">
+                <p className="text-lg font-semibold leading-7 text-[hsl(var(--after-hours-plum))]">Hair care selected behind the chair and shipped across Australia.</p>
+                <p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.72)]">Browse Juuce, QIQI, Pure, Wet Brush and more. Free shipping over $150.</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Featured bundle */}
-        <section className="py-10 md:py-14 bg-background">
+        <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-3xl border border-brand-500/20 bg-gradient-to-r from-brand-500/8 via-background to-accent/20 p-6 md:p-8 shadow-lg">
+            <div className="border-y border-[hsl(var(--after-hours-plum)/0.2)] py-8 md:py-10">
               <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.9fr] gap-8 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading mb-3">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">Jena’s routine / 10% saving</p>
+                  <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[hsl(var(--after-hours-plum))] mb-3">
                     Jena's Daily Trio
                   </h2>
-                  <p className="text-base text-foreground max-w-xl mb-5">
+                  <p className="text-base text-[hsl(var(--after-hours-plum)/0.76)] max-w-xl mb-5">
                     The shampoo, conditioner and leave-in Jena uses most —
                     bundled at 10% off.
                   </p>
-                  <p className="text-sm font-semibold text-brand-500 mb-5">
-                    Save 10% · Free shipping over $150
-                  </p>
-                  <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-6">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">10% bundle saving</span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">Free shipping over $150</span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border">Salon-picked routine</span>
-                  </div>
                   {/* Single CTA — once a user is on /collections they
                       don't need a "browse all" button. One path, one
                       click. */}
                   <div>
-                    <Button asChild variant="default" size="lg" className="gap-2">
+                    <Button asChild variant="default" size="lg" className="min-h-11 rounded-none gap-2 bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
                       <Link to="/collections/jenas-daily-trio">
                         View the trio
                         <ArrowRight className="w-5 h-5" />
@@ -267,25 +249,25 @@ const Collections = () => {
                     </Button>
                   </div>
                 </div>
-                <div className="bg-white rounded-2xl border border-border p-5 shadow-sm">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-3">
+                <div className="border-t border-[hsl(var(--after-hours-plum)/0.2)] pt-4 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                  <p className="text-xs uppercase tracking-widest text-[hsl(var(--after-hours-plum)/0.76)] font-semibold mb-3">
                     Inside
                   </p>
-                  <div className="space-y-2">
+                  <ol>
                     {[
                       "Juuce Bond Repair Shampoo",
                       "Aromaganic Smooth Hair Conditioner",
                       "QIQI Bare Repair Oil",
-                    ].map((item) => (
-                      <div
+                    ].map((item, index) => (
+                      <li
                         key={item}
-                        className="flex items-center gap-3 rounded-lg bg-muted/40 px-3 py-2.5"
+                        className="flex min-h-11 items-center border-t border-[hsl(var(--after-hours-plum)/0.16)] text-sm text-[hsl(var(--after-hours-plum))]"
                       >
-                        <span className="w-2 h-2 rounded-full bg-brand-500 shrink-0" />
-                        <span className="text-sm text-foreground">{item}</span>
-                      </div>
+                        <span className="mr-3 text-[0.62rem] text-[hsl(var(--after-hours-plum)/0.76)]">0{index + 1}</span>
+                        <span>{item}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ol>
                 </div>
               </div>
             </div>
@@ -293,7 +275,7 @@ const Collections = () => {
         </section>
 
         {/* Search & Filter */}
-        <section className="border-b border-border bg-card sticky top-16 z-30">
+        <section className="sticky top-16 z-30 border-y border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper)/0.97)] backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               {/* Search */}
@@ -305,20 +287,20 @@ const Collections = () => {
                   placeholder="Search collections..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="h-11 rounded-none border-[hsl(var(--after-hours-plum)/0.25)] bg-transparent pl-10"
                 />
               </div>
 
               {/* Sort */}
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[200px]" aria-label="Sort collections">
+                <SelectTrigger className="h-11 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.25)] bg-transparent md:w-[200px]" aria-label="Sort collections">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="default">Default Order</SelectItem>
                   <SelectItem value="name-asc">Name: A-Z</SelectItem>
                   <SelectItem value="name-desc">Name: Z-A</SelectItem>
-                  <SelectItem value="product-count">Most Products</SelectItem>
+
                 </SelectContent>
               </Select>
             </div>
@@ -326,13 +308,13 @@ const Collections = () => {
         </section>
 
         {/* Collections Grid */}
-        <section className="py-20 md:py-32">
+        <section className="bg-[hsl(var(--after-hours-paper))] py-12 md:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-2 md:gap-x-8 lg:grid-cols-3">
                 {[...Array(6)].map((_, i) => (
                   <div key={i} className="space-y-4 animate-fade-in" style={{ animationDelay: `${i * 100}ms` }}>
-                    <Skeleton className="aspect-[4/3] w-full rounded-card" />
+                    <Skeleton className="aspect-[4/3] w-full rounded-none" />
                     <Skeleton className="h-8 w-3/4" />
                     <Skeleton className="h-4 w-full" />
                     <Skeleton className="h-4 w-2/3" />
@@ -365,16 +347,16 @@ const Collections = () => {
                 </Button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-2 md:gap-x-8 lg:grid-cols-3">
                 {filteredAndSortedCollections.map((collection, index) => (
                   <Link
                     key={collection.id}
                     to={`/collections/${collection.handle}`}
-                    className="group relative bg-card rounded-card overflow-hidden border border-border hover:border-brand-500/30 hover:shadow-2xl transition-all duration-slow animate-fade-in hover:-translate-y-1"
+                    className="group relative min-w-0 border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-3 text-[hsl(var(--after-hours-plum))] animate-fade-in"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     {/* Image Container */}
-                    <div className="aspect-[4/3] relative overflow-hidden bg-muted">
+                    <div className="aspect-[4/3] relative overflow-hidden bg-[hsl(var(--after-hours-cream))]">
                       <picture>
                         <source
                           type="image/webp"
@@ -385,7 +367,7 @@ const Collections = () => {
                           src={shopifyImage(getCollectionImage(collection), 800)}
                           srcSet={buildShopifySrcSet(getCollectionImage(collection))}
                           alt={collection.image?.altText || collection.title}
-                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-slow"
+                          className="w-full h-full object-cover transition-opacity duration-slow group-hover:opacity-90"
                           loading="lazy"
                           decoding="async"
                           width="800"
@@ -393,27 +375,25 @@ const Collections = () => {
                           sizes={collectionImageSizes}
                         />
                       </picture>
-                      <div className="absolute inset-0 bg-gradient-to-t from-heading/70 via-heading/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-slow" />
-                      
                       {/* Product Count Badge removed due to inaccurate counts from GraphQL pagination */}
                     </div>
 
                     {/* Content */}
-                    <div className="p-6 space-y-3">
-                      <h2 className="text-3xl font-semibold text-heading font-heading group-hover:text-brand-500 transition-colors leading-tight">
+                    <div className="pt-4">
+                      <h2 className="font-heading text-xl leading-tight text-[hsl(var(--after-hours-plum))] transition-colors group-hover:text-brand-600 sm:text-2xl">
                         {collection.title}
                       </h2>
                       
                       {collection.description && (
-                        <p className="text-muted-foreground leading-relaxed line-clamp-2">
+                        <p className="mt-2 line-clamp-3 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.66)] sm:text-sm">
                           {collection.description}
                         </p>
                       )}
 
                       {/* CTA */}
-                      <div className="pt-2 flex items-center gap-2 text-brand-500 font-medium group-hover:gap-3 transition-all">
-                        <span>Shop Collection</span>
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <div className="mt-3 flex min-h-11 items-center gap-2 border-t border-[hsl(var(--after-hours-plum)/0.16)] text-sm font-medium text-[hsl(var(--after-hours-plum))]">
+                        <span>Shop collection</span>
+                        <ArrowRight className="h-4 w-4" />
                       </div>
                     </div>
                   </Link>
@@ -423,51 +403,45 @@ const Collections = () => {
           </div>
         </section>
 
-        {/* AI Agents CTA Banner */}
-        <section className="relative bg-gradient-to-br from-brand-500/5 via-accent/30 to-brand-500/5 py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(139,74,139,0.15),transparent_60%)]" />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-3xl mx-auto text-center space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-heading font-heading leading-tight">
-                Not Sure What's Right for Your Hair?
-              </h2>
-              <p className="text-lg md:text-xl text-heading font-semibold leading-relaxed inline-block bg-background/90 backdrop-blur-sm px-6 py-3 rounded-xl shadow-md">
-                Chat with Isabella for instant product recommendations or call Jena for personalized advice.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button 
-                  variant="default" 
-                  size="lg"
-                  onClick={() => {
-                    const bubble = document.querySelector('[data-chat-bubble]') as HTMLElement;
-                    if (bubble) {
-                      bubble.style.animation = 'pulse 0.5s ease-in-out 3';
-                      bubble.click();
-                    }
-                    if (typeof window.hpCapture === 'function') {
-                      window.hpCapture('chat_clicked', { source: 'collections_cta' });
-                    }
-                  }}
-                  className="w-full sm:w-auto text-lg px-8 py-6 shadow-lg hover:shadow-xl"
-                >
-                  Chat with Isabella
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  asChild
-                  className="w-full sm:w-auto text-lg px-8 py-6"
-                >
-                  <a href={BUSINESS_NAP.phone.tel}>Call Jena Now</a>
-                </Button>
-                <a 
-                  href={BOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-500 hover:text-brand-600 font-medium underline"
-                >
-                  Or Book Direct
-                </a>
+        <section className="border-t border-[hsl(var(--after-hours-plum)/0.2)] bg-[hsl(var(--after-hours-cream))] py-14 md:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_30rem] lg:items-end lg:gap-16">
+              <div>
+                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">Need a second opinion?</p>
+                <h2 className="mt-4 max-w-[12ch] font-heading text-4xl leading-[0.98] text-[hsl(var(--after-hours-plum))] md:text-5xl">Not Sure What's Right for Your Hair?</h2>
+              </div>
+              <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-5">
+                <p className="text-base leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">Chat with Isabella for product recommendations or call Jena for personalised advice.</p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                  <Button
+                    variant="default"
+                    size="lg"
+                    onClick={() => {
+                      const bubble = document.querySelector('[data-chat-bubble]') as HTMLElement;
+                      if (bubble) {
+                        bubble.style.animation = 'pulse 0.5s ease-in-out 3';
+                        bubble.click();
+                      }
+                      if (typeof window.hpCapture === 'function') {
+                        window.hpCapture('chat_clicked', { source: 'collections_cta' });
+                      }
+                    }}
+                    className="min-h-11 w-full rounded-none bg-[hsl(var(--after-hours-plum))] px-8 text-[hsl(var(--after-hours-cream))] sm:w-auto"
+                  >
+                    Chat with Isabella
+                  </Button>
+                  <Button variant="outline" size="lg" asChild className="min-h-11 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.35)] px-8 sm:w-auto">
+                    <a href={BUSINESS_NAP.phone.tel}>Call Jena now</a>
+                  </Button>
+                  <a
+                    href={BOOK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--after-hours-plum))] underline underline-offset-4"
+                  >
+                    Or book direct
+                  </a>
+                </div>
               </div>
             </div>
           </div>
