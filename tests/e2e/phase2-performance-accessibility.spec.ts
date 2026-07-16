@@ -608,3 +608,78 @@ test('after-hours service directory preserves the complete Fresha menu at Fold w
   expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(22_500);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 });
+
+test('after-hours service detail keeps booking, guidance and schemas intact at Fold width', async ({ page }) => {
+  test.setTimeout(90_000);
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/services/smoothing/mid-length-straight-up-smoothing');
+
+  const detail = page.locator('[data-service-detail]');
+  await expect(detail.getByRole('heading', { level: 1, name: 'Mid-Length Straight Up Smoothing Treatment' })).toBeVisible();
+  await expect(page.locator('[data-service-detail-hero]').getByText('A$ 324', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-service-detail-hero]').getByText('2h 20min', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-service-detail-hero] .speakable-quick-answer')).toBeVisible();
+
+  const heroBooking = page.locator('[data-service-detail-hero]').getByRole('link', { name: 'Book now' });
+  const closeBooking = page.locator('[data-service-detail-close]').getByRole('link', { name: 'Book now' });
+  for (const booking of [heroBooking, closeBooking]) {
+    await expect(booking).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+    await expect(booking).toHaveAttribute('target', '_blank');
+    await expect(booking).toHaveAttribute('rel', /noopener/);
+    const box = await booking.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+  }
+
+  await expect(page.locator('[data-service-detail-overview] h3')).toHaveCount(2);
+  await expect(page.locator('[data-service-detail-process] li')).toHaveCount(3);
+  await expect(page.locator('[data-service-detail-benefits] li')).toHaveCount(6);
+  await expect(page.locator('[data-service-detail-homecare] a')).toHaveCount(4);
+  await expect(page.locator('[data-service-detail-related] a')).toHaveCount(3);
+
+  const faq = page.locator('[data-service-detail-faq]');
+  await expect(faq.locator('details')).toHaveCount(4);
+  const firstFaq = faq.locator('details').first();
+  await firstFaq.locator('summary').click();
+  await expect(firstFaq).toHaveAttribute('open', '');
+  await expect(firstFaq.getByText('Typically 3-5 months', { exact: false })).toBeVisible();
+
+  const close = page.locator('[data-service-detail-close]');
+  await close.scrollIntoViewIfNeeded();
+  await expect(close.getByRole('link', { name: '0416 037 663' })).toHaveAttribute('href', /^tel:\+614\d+7663$/);
+  await expect(close.getByText('60 Goorgool Rd, Bangor NSW 2234', { exact: true })).toBeVisible();
+  await expect(close.getByRole('link', { name: /Back to the service menu/ })).toHaveAttribute('href', '/services');
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+  await expect(detail.getByText(/same-day appointments/i)).toHaveCount(0);
+  await expect(detail.getByText(/starting from/i)).toHaveCount(0);
+
+  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const parsedSchemas = schemas.flatMap(text => {
+    try {
+      const value = JSON.parse(text);
+      return Array.isArray(value) ? value : [value];
+    } catch {
+      return [];
+    }
+  });
+  for (const type of ['Service', 'BreadcrumbList', 'FAQPage', 'HowTo', 'WebPage']) {
+    expect(parsedSchemas.some(schema => schema['@type'] === type)).toBe(true);
+  }
+  const serviceSchema = parsedSchemas.find(schema => schema['@type'] === 'Service');
+  expect(serviceSchema?.offers?.price).toBe('324');
+  expect(serviceSchema?.offers?.priceCurrency).toBe('AUD');
+
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(11_000);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+
+  for (const variant of [
+    { path: '/services/foil-packages/full-head-foils-package', heading: 'Full Head of Foils Package' },
+    { path: '/services/kids-formal/primary-formal-hairstyle', heading: 'Primary Formal Hairstyle' },
+  ]) {
+    await page.goto(variant.path);
+    await expect(page.locator('[data-service-detail]').getByRole('heading', { level: 1, name: variant.heading })).toBeVisible();
+    await expect(page.locator('[data-service-detail-hero]').getByRole('link', { name: 'Book now' })).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
+    await expect(page.locator('[data-service-detail-faq] details')).toHaveCount(3);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+  }
+});

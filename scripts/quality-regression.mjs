@@ -269,6 +269,9 @@ const aboutSource = await readFile(path.join(ROOT, 'src/pages/About.tsx'), 'utf8
 const imageGallerySource = await readFile(path.join(ROOT, 'src/components/gallery/ImageGallery.tsx'), 'utf8');
 const servicesSource = await readFile(path.join(ROOT, 'src/pages/Services.tsx'), 'utf8');
 const serviceDirectorySource = await readFile(path.join(ROOT, 'src/components/services/ServiceDirectory.tsx'), 'utf8');
+const serviceDetailSource = await readFile(path.join(ROOT, 'src/pages/ServiceDetail.tsx'), 'utf8');
+const serviceDetailExperienceSource = await readFile(path.join(ROOT, 'src/components/services/ServiceDetailExperience.tsx'), 'utf8');
+const serviceDetailDataSource = await readFile(path.join(ROOT, 'src/data/serviceDetails.ts'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -325,7 +328,19 @@ assert.match(serviceDirectorySource, /<details[\s\S]*Service details[\s\S]*servi
 assert.match(serviceDirectorySource, /BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.address\.full[\s\S]*to="\/areas"/, 'Services close must use canonical phone, address, and area routes');
 assert.doesNotMatch(serviceDirectorySource, /`tel:\$\{BUSINESS_NAP\.phone\.tel\}`/, 'Services close must not duplicate the tel protocol');
 assert.match(serviceDirectorySource, /min-h-11[\s\S]*Book now[\s\S]*min-h-11[\s\S]*Service guide/, 'Service actions must retain 44px targets');
-assert.match(scrollToTopSource, /\[data-about-page\], \[data-services-page\]/, 'Scroll-to-top control must not cover editorial About or Services journeys');
+assert.match(scrollToTopSource, /\[data-about-page\], \[data-services-page\], \[data-service-detail\]/, 'Scroll-to-top control must not cover editorial About, Services, or service-detail journeys');
+assert.equal((serviceDetailDataSource.match(/metaDescription:\s*"/g) || []).length, 15, 'Service-detail data must preserve all 15 dedicated service routes');
+assert.equal((serviceDetailDataSource.match(/\n\s+services: \[/g) || []).length, 5, 'Service-detail data must preserve all five routed categories');
+assert.match(serviceDetailSource, /generateEnhancedServiceSchema[\s\S]*generateBreadcrumbSchema[\s\S]*generateFAQPageSchema[\s\S]*generateHowToSchema[\s\S]*generateWebPageSchema/, 'Service-detail controller must preserve all five schema sources');
+assert.match(serviceDetailSource, /<Navigate to="\/services" replace \/>[\s\S]*ServiceDetailExperience/, 'Unknown service routes must preserve their redirect and valid routes must use the shared renderer');
+assert.doesNotMatch(serviceDetailSource, /GoogleReviewBadge|TrustStrip|ReviewStrip|StickyBooking|same-day appointments|Starting from/, 'Service-detail controller must not restore stacked proof, floating booking, unsupported availability, or inexact price labels');
+assert.match(serviceDetailExperienceSource, /data-service-detail=""[\s\S]*data-service-detail-hero=""[\s\S]*data-service-detail-overview=""[\s\S]*data-service-detail-process=""[\s\S]*data-service-detail-close=""/, 'Service-detail renderer needs stable hero, appointment, process, and close markers');
+assert.match(serviceDetailExperienceSource, /trackBookingClick\(`service_detail_hero_[\s\S]*trackBookingClick\(`service_detail_close_/, 'Service-detail renderer must preserve tracked Fresha actions at the hero and close');
+assert.match(serviceDetailExperienceSource, /data-service-detail-homecare[\s\S]*homeCareBundles\.products\.map[\s\S]*data-service-detail-faq[\s\S]*<details/, 'Service-detail renderer must preserve home-care links and native FAQ disclosure');
+assert.match(serviceDetailExperienceSource, /data-service-detail-related[\s\S]*relatedServices\.map[\s\S]*<RelatedContent/, 'Service-detail renderer must preserve related services and editorial guidance');
+assert.match(serviceDetailExperienceSource, /BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.address\.full[\s\S]*Back to the service menu/, 'Service-detail close must preserve canonical phone, address, and directory return');
+assert.doesNotMatch(serviceDetailExperienceSource, /same-day appointments|Starting from|rounded-card|hover:scale|shadow-lg/, 'Service-detail renderer must not restore unsupported availability, inexact pricing, or generic conversion-card styling');
+assert.match(breadcrumbsSource, /variant\?: "default" \| "dark"[\s\S]*isDark[\s\S]*after-hours-cream/, 'Shared breadcrumbs must preserve the default and expose an explicit dark-hero variant');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
