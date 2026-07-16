@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import Header from "@/components/Header";
 import HeroHome from "@/components/home/HeroHome";
 import HeroSocialProofBar from "@/components/home/HeroSocialProofBar";
-import SectionNumber from "@/components/design-system/SectionNumber";
+
 import useScrollReveal from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
 
@@ -237,8 +237,7 @@ const Index = () => {
         </DeferredSection>
 
         {/* 6. Product advice and education */}
-        <SectionNumber index="04" label="read, learn, ask" />
-        <DeferredSection className="reveal py-12 bg-muted/30" fallback={null}>
+        <DeferredSection fallback={null}>
           <Suspense fallback={null}>
             <BlogTrio />
           </Suspense>

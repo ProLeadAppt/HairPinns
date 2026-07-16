@@ -111,6 +111,52 @@ test('founder proof mounts visibly and stays concise at Fold width', async ({ pa
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
 });
 
+test('editorial guide desk restores advice content and routes at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  for (let y = 0; y <= 12_000; y += 350) {
+    await page.evaluate(scrollY => window.scrollTo(0, scrollY), y);
+    await page.waitForTimeout(80);
+    if (await page.getByRole('heading', { name: /notes from behind the chair/i }).count()) break;
+  }
+
+  const heading = page.getByRole('heading', { name: /notes from behind the chair/i });
+  await expect(heading).toBeVisible({ timeout: 20_000 });
+  const guides = heading.locator('xpath=ancestor::section[1]');
+  const articles = guides.locator('article');
+  await expect(articles).toHaveCount(3);
+
+  const expectedHrefs = [
+    '/blog/best-hair-products-australia-2025',
+    '/blog/where-to-buy-salon-hair-products-australia',
+    '/blog/hair-products-melbourne-brisbane-perth-australia',
+  ];
+  await expect(guides.locator('a:has(article)')).toHaveCount(3);
+  expect(await guides.locator('a:has(article)').evaluateAll(links => links.map(link => link.getAttribute('href')))).toEqual(expectedHrefs);
+
+  const excerpts = await articles.locator('p:not(:first-child)').evaluateAll(nodes => nodes.map(node => node.textContent?.trim() ?? ''));
+  expect(excerpts).toHaveLength(3);
+  expect(excerpts.every(excerpt => excerpt.length > 20)).toBe(true);
+
+  for (const image of await guides.locator('img').all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect(image).toBeVisible();
+    await expect.poll(
+      () => image.evaluate(node => node.complete && node.naturalWidth > 0),
+      { timeout: 10_000 },
+    ).toBe(true);
+  }
+
+  const catalogue = guides.getByRole('link', { name: 'View all guides' });
+  await expect(catalogue).toHaveAttribute('href', '/blog');
+  expect((await catalogue.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+
+  const sectionBox = await guides.boundingBox();
+  expect(sectionBox?.height ?? Number.POSITIVE_INFINITY).toBeLessThan(1600);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
+});
+
 test('mobile menu and sticky action remain commerce first', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });

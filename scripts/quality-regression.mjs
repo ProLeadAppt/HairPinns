@@ -168,17 +168,29 @@ assert.match(bestSellersSource, /Shop all products/, 'Product shelf must close w
 assert.doesNotMatch(bestSellersSource, /text-\[0\.66rem\][^\n]*after-hours-copper/, 'Small shelf labels need stronger than decorative copper contrast on paper');
 assert.doesNotMatch(bestSellersSource, /rounded-card|hover:shadow-lg/, 'Product shelf must not regress to generic floating card chrome');
 
+const blogTrioSource = await readFile(path.join(ROOT, 'src/components/home/BlogTrio.tsx'), 'utf8');
+assert.match(blogTrioSource, /homeFeaturedGuides\.slice\(0, 3\)/, 'Homepage advice desk must retain the first three curated guides');
+assert.match(blogTrioSource, /post\.excerpt/, 'Homepage guides must render their descriptive excerpt');
+assert.doesNotMatch(blogTrioSource, /post\.hook/, 'Homepage guides must not reference the nonexistent hook field');
+assert.match(blogTrioSource, /04 \/ Read, learn, ask/, 'Advice desk must own its editorial sequence label');
+assert.match(blogTrioSource, /`\/blog\/\$\{[^}]+\.slug\}`[\s\S]*to="\/blog"/, 'Advice desk must preserve article and guide-catalogue routes');
+assert.match(blogTrioSource, /shopifyImageWebp[\s\S]*srcSet[\s\S]*sizes=/, 'Homepage guide images must retain responsive Shopify sources');
+assert.doesNotMatch(blogTrioSource, /content-visibility-auto/, 'Deferred advice desk must not double-defer lazy images in WebKit');
+assert.doesNotMatch(blogTrioSource, /rounded-card|hover:shadow-lg|<SectionHeader|<Badge/, 'Advice desk must not regress to generic floating card chrome');
+
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
 assert.doesNotMatch(homeSource, /"@type":\s*"VideoObject"/, 'Homepage schema must not advertise a video that is no longer embedded');
 assert.doesNotMatch(homeSource, /<DeferredSection className="reveal" fallback=\{null\}>\s*<Suspense fallback=\{null\}>\s*<JenaPromise/, 'Deferred founder proof must not depend on a reveal observer that ran before it mounted');
+assert.doesNotMatch(homeSource, /<SectionNumber index="04"|<DeferredSection className="reveal py-12 bg-muted\/30"/, 'Advice desk must not retain a duplicate divider or reveal-dependent wrapper');
 for (const component of ['ShopByConcern', 'BestSellers', 'JenaPromise', 'BlogTrio', 'BookingBanner']) {
   assert.match(homeSource, new RegExp(`<${component}\\s*\\/>`), `Product-first homepage is missing ${component}`);
 }
 assert.ok(
   homeSource.indexOf('<ShopByConcern />') < homeSource.indexOf('<BestSellers />') &&
   homeSource.indexOf('<BestSellers />') < homeSource.indexOf('<JenaPromise />') &&
-  homeSource.indexOf('<JenaPromise />') < homeSource.indexOf('<BookingBanner />'),
+  homeSource.indexOf('<JenaPromise />') < homeSource.indexOf('<BlogTrio />') &&
+  homeSource.indexOf('<BlogTrio />') < homeSource.indexOf('<BookingBanner />'),
   'Homepage must route product discovery before founder credibility and salon booking',
 );
 assert.doesNotMatch(homeSource, /<BeforeAfterShowcase\s*\/>|<ReviewsShowcase\s*\/>/, 'Salon-heavy showcases must not displace product discovery on the homepage');

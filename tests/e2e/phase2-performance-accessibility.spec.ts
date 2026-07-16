@@ -78,7 +78,7 @@ for (const viewport of viewports) {
     });
     for (const heading of [
       /a short shelf, chosen by a working hairdresser/i,
-      /hair care guides/i,
+      /notes from behind the chair/i,
       /come in and see me/i,
     ]) {
       const sectionHeading = page.getByRole('heading', { name: heading }).first();
