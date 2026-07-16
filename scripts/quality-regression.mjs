@@ -154,8 +154,13 @@ assert.match(beforeAfterSource, /brunette-woman-getting-her-hair-washed-1280w\.a
 
 const bestSellersSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
 assert.doesNotMatch(bestSellersSource, /aria-label=\{`Add \$\{product\.title\} to bag`\}/, 'Quick-add accessible name must include the visible button label');
-assert.match(bestSellersSource, /h-11/, 'Mobile quick-add target must be at least 44px tall');
+assert.match(bestSellersSource, /min-h-11/, 'Mobile quick-add target must be at least 44px tall');
 assert.doesNotMatch(bestSellersSource, /most reordered|keep reordering/i, 'Curated product picks must not claim unsupported reorder data');
+assert.match(bestSellersSource, /02 \/ Jena’s shelf/, 'Product shelf must retain its editorial sequence label');
+assert.match(bestSellersSource, /object-contain/, 'Product packaging must not be cropped inside the editorial plates');
+assert.match(bestSellersSource, /\(max-width: 1023px\) 50vw, 30vw/, 'Secondary product images must request candidates sized for the two-column mobile shelf');
+assert.match(bestSellersSource, /Shop all products/, 'Product shelf must close with a route to the full catalogue');
+assert.doesNotMatch(bestSellersSource, /rounded-card|hover:shadow-lg/, 'Product shelf must not regress to generic floating card chrome');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');

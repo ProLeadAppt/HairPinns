@@ -209,11 +209,16 @@ const Index = () => {
         <DeferredSection
           className="reveal"
           fallback={
-            <section className="py-12 bg-background">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-10">
-                  <h2 className="text-h2-lg font-heading font-bold text-heading mb-4">Best Sellers</h2>
-                  <p className="text-lg text-muted-foreground">Loading...</p>
+            <section
+              className="bg-[hsl(var(--after-hours-paper))] py-16 sm:py-20 lg:py-28"
+              aria-label="Loading Jena’s product shelf"
+            >
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="border-t border-[hsl(var(--after-hours-plum)/0.18)] pt-6">
+                  <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
+                    02 / Jena’s shelf
+                  </p>
+                  <div className="h-12 w-3/4 max-w-xl animate-pulse bg-[hsl(var(--after-hours-plum)/0.1)]" />
                 </div>
               </div>
             </section>

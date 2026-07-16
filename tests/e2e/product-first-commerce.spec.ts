@@ -61,6 +61,30 @@ test('product discovery appears before founder and salon content', async ({ page
   expect(positions.salon).toBeGreaterThan(positions.founder);
 });
 
+test('editorial product shelf remains shoppable at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  for (let y = 0; y <= 5000; y += 400) {
+    await page.evaluate(scrollY => window.scrollTo(0, scrollY), y);
+    await page.waitForTimeout(80);
+    if (await page.getByRole('heading', { name: /popular picks from the shelf/i }).count()) break;
+  }
+
+  const heading = page.getByRole('heading', { name: /popular picks from the shelf/i });
+  await expect(heading).toBeVisible({ timeout: 20_000 });
+  const shelf = heading.locator('xpath=ancestor::section[1]');
+  await expect(shelf.locator('article')).toHaveCount(6, { timeout: 30_000 });
+
+  const quickAdds = shelf.getByRole('button', { name: /add to bag/i });
+  expect(await quickAdds.count()).toBeGreaterThan(0);
+  const firstQuickAddBox = await quickAdds.first().boundingBox();
+  expect(firstQuickAddBox?.height ?? 0).toBeGreaterThanOrEqual(44);
+
+  await expect(shelf.getByRole('link', { name: /shop all products/i })).toHaveAttribute('href', '/collections');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
+});
+
 test('mobile menu and sticky action remain commerce first', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
