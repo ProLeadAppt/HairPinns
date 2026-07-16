@@ -315,7 +315,7 @@ const Footer = () => {
               <Link to="/terms" className={linkClass}>Terms</Link>
             </nav>
           </div>
-          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 uppercase tracking-[0.16em] text-[0.62rem] text-[hsl(var(--after-hours-cream)/0.38)]" aria-label="Accepted payment methods">
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 uppercase tracking-[0.16em] text-[0.62rem] text-[hsl(var(--after-hours-cream)/0.68)]" aria-label="Accepted payment methods">
             <span>Visa</span>
             <span>Mastercard</span>
             <span>Afterpay</span>

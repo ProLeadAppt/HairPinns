@@ -286,3 +286,71 @@ test('search and collection controls have persistent accessible names', async ({
   await expect(page.getByRole('textbox', { name: 'Search collections' })).toBeVisible();
   await expect(page.getByRole('combobox', { name: 'Sort collections' })).toBeVisible();
 });
+
+test('after-hours collection system stays truthful and shoppable at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/collections', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('heading', { name: /Shop collections/i })).toBeVisible();
+
+  const collectionPlates = page.locator('main a[href^="/collections/"]').filter({ has: page.locator('img') });
+  await expect(collectionPlates.first()).toBeVisible({ timeout: 30_000 });
+  expect(await collectionPlates.count()).toBeGreaterThanOrEqual(8);
+
+  const firstCollectionBox = await collectionPlates.nth(0).boundingBox();
+  const secondCollectionBox = await collectionPlates.nth(1).boundingBox();
+  expect(firstCollectionBox).not.toBeNull();
+  expect(secondCollectionBox).not.toBeNull();
+  expect(Math.abs(firstCollectionBox!.y - secondCollectionBox!.y)).toBeLessThan(2);
+  expect(secondCollectionBox!.x).toBeGreaterThan(firstCollectionBox!.x + firstCollectionBox!.width - 2);
+
+  const collectionSearch = page.getByRole('textbox', { name: 'Search collections' });
+  const collectionSort = page.getByRole('combobox', { name: 'Sort collections' });
+  for (const control of [collectionSearch, collectionSort]) {
+    const box = await control.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+  }
+  await collectionSort.click();
+  await expect(page.getByRole('option', { name: 'Most Products' })).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+
+  await page.goto('/collections/qiqi', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('heading', { name: 'QIQI', exact: true })).toBeVisible({ timeout: 30_000 });
+  const products = page.locator('article');
+  await expect(products.first()).toBeVisible({ timeout: 30_000 });
+  expect(await products.count()).toBe(7);
+
+  const firstProductBox = await products.nth(0).boundingBox();
+  const secondProductBox = await products.nth(1).boundingBox();
+  expect(firstProductBox).not.toBeNull();
+  expect(secondProductBox).not.toBeNull();
+  expect(Math.abs(firstProductBox!.y - secondProductBox!.y)).toBeLessThan(2);
+  expect(secondProductBox!.x).toBeGreaterThan(firstProductBox!.x + firstProductBox!.width - 2);
+
+  await products.first().scrollIntoViewIfNeeded();
+  await expect.poll(async () => products.locator('img').nth(0).evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0), { timeout: 15_000 }).toBe(true);
+  await expect.poll(async () => products.locator('img').nth(1).evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0), { timeout: 15_000 }).toBe(true);
+  await expect(products.first()).toContainText('$');
+
+  for (const control of [
+    page.getByRole('combobox', { name: 'Filter by price' }),
+    page.getByRole('combobox', { name: 'Sort products' }),
+    products.first().getByRole('button', { name: 'Quick View' }),
+    products.first().getByRole('button', { name: 'Add to Bag' }),
+  ]) {
+    const box = await control.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+  }
+
+  await page.getByRole('combobox', { name: 'Sort products' }).click();
+  await expect(page.getByRole('option', { name: 'Newest First' })).toHaveCount(0);
+  await page.keyboard.press('Escape');
+
+  await products.first().getByRole('button', { name: 'Quick View' }).click();
+  await expect(page.getByRole('dialog', { name: 'Quick View' })).toBeVisible({ timeout: 30_000 });
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog', { name: 'Quick View' })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});
