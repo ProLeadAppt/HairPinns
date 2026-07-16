@@ -178,6 +178,16 @@ assert.match(blogTrioSource, /shopifyImageWebp[\s\S]*srcSet[\s\S]*sizes=/, 'Home
 assert.doesNotMatch(blogTrioSource, /content-visibility-auto/, 'Deferred advice desk must not double-defer lazy images in WebKit');
 assert.doesNotMatch(blogTrioSource, /rounded-card|hover:shadow-lg|<SectionHeader|<Badge/, 'Advice desk must not regress to generic floating card chrome');
 
+const bookingBannerSource = await readFile(path.join(ROOT, 'src/components/home/BookingBanner.tsx'), 'utf8');
+assert.match(bookingBannerSource, /05 \/ Visit the salon/, 'Salon close must own the final numbered homepage marker');
+assert.match(bookingBannerSource, /data-home-booking-close/, 'Salon close must expose a stable marker for sticky-bar suppression');
+assert.match(bookingBannerSource, /BOOK_CTA_LABEL[\s\S]*href=\{BOOK_URL\}/, 'Salon close must retain the centralized visible booking label and destination');
+assert.match(bookingBannerSource, /trackBookingClick\("booking_banner", window\.location\.pathname\)/, 'Salon close must preserve booking attribution');
+assert.match(bookingBannerSource, /target="_blank"[\s\S]*rel="noopener noreferrer"/, 'External Fresha booking must open safely in a new tab');
+assert.match(bookingBannerSource, /tel:\+61416037663/, 'Salon close must retain the canonical Hair Pinns mobile number');
+assert.match(bookingBannerSource, /jena-working-480w\.avif[\s\S]*srcSet[\s\S]*sizes=/, 'Salon close must use responsive first-party working imagery');
+assert.doesNotMatch(bookingBannerSource, /aria-label="Book an appointment"|rounded-full|999px|bg-gradient|contentVisibility/, 'Salon close must not regress to mismatched labels, pills, gradients, or double deferral');
+
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
 assert.doesNotMatch(homeSource, /"@type":\s*"VideoObject"/, 'Homepage schema must not advertise a video that is no longer embedded');
