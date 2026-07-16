@@ -299,3 +299,65 @@ test('sticky commerce bar yields to the contained salon close and restores above
   await expect(bar).toHaveCount(0);
   await expect(scrollTop).toHaveCount(0);
 });
+
+test('after-hours footer closes with complete commerce, salon, and legal paths', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  for (let y = 0; y <= 18_000; y += 400) {
+    await page.evaluate(scrollY => window.scrollTo(0, scrollY), y);
+    await page.waitForTimeout(80);
+    if (await page.locator('footer[data-home-footer]').count()) break;
+  }
+
+  const footer = page.locator('footer[data-home-footer]');
+  await expect(footer).toBeVisible({ timeout: 20_000 });
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await page.waitForTimeout(100);
+
+  await expect(footer.getByRole('heading', { name: 'Take 10% off your first order.' })).toBeVisible();
+  const newsletter = footer.getByRole('textbox', { name: 'Email address for 10% off newsletter signup' });
+  const subscribe = footer.getByRole('button', { name: 'Send my code' });
+  await expect(newsletter).toHaveAttribute('aria-describedby', 'footer-newsletter-note');
+  expect((await newsletter.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+  expect((await subscribe.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+
+  const footerNav = footer.getByRole('navigation', { name: 'Footer navigation' });
+  const expectedFooterRoutes = [
+    '/collections', '/blog', '/policies/shipping', '/policies/returns', '/faq', '/glossary',
+    '/services', '/booking', '/about', '/areas', '/contact',
+  ];
+  const footerHrefs = await footerNav.getByRole('link').evaluateAll(links => links.map(link => link.getAttribute('href')));
+  expect(footerHrefs).toEqual(expectedFooterRoutes);
+
+  const legal = footer.getByRole('navigation', { name: 'Legal links' });
+  const legalHrefs = await legal.getByRole('link').evaluateAll(links => links.map(link => link.getAttribute('href')));
+  expect(legalHrefs).toEqual(['/policies/shipping', '/policies/returns', '/privacy', '/terms']);
+
+  await expect(footer.getByRole('link', { name: '0416 037 663' })).toHaveAttribute('href', 'tel:+61416037663');
+  await expect(footer.getByRole('link', { name: 'Text us' })).toHaveAttribute('href', /^sms:\+61416037663/);
+  await expect(footer.getByRole('link', { name: /WhatsApp/i })).toHaveAttribute('href', /^https:\/\/wa\.me\/61416037663/);
+  await expect(footer.getByRole('link', { name: /Instagram/i })).toHaveAttribute('href', 'https://www.instagram.com/hair.pinns/');
+  await expect(footer.getByRole('link', { name: /Facebook/i })).toHaveAttribute('href', 'https://www.facebook.com/Hair.Pinns');
+  await expect(footer).toContainText('60 Goorgool Rd');
+  await expect(footer).toContainText('Bangor NSW 2234');
+  await expect(footer).toContainText('Visa');
+  await expect(footer.getByRole('link', { name: 'Munyal' })).toHaveAttribute('href', 'https://munyal.com.au');
+
+  const metrics = await footer.evaluate(element => {
+    const targets = Array.from(element.querySelectorAll<HTMLElement>('a, button, input'));
+    return {
+      height: element.getBoundingClientRect().height,
+      background: getComputedStyle(element).backgroundColor,
+      minTarget: Math.min(...targets.map(target => target.getBoundingClientRect().height)),
+      linkCount: element.querySelectorAll('a').length,
+    };
+  });
+  expect(metrics.height).toBeLessThan(1750);
+  expect(metrics.background).toBe('rgb(24, 0, 31)');
+  expect(metrics.minTarget).toBeGreaterThanOrEqual(44);
+  expect(metrics.linkCount).toBe(22);
+  await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Quick shop bar' })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
+});
