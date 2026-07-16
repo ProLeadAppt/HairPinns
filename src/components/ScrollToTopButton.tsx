@@ -15,7 +15,12 @@ const ScrollToTopButton = () => {
         const salonIsVisible = Boolean(
           salonRect && salonRect.bottom > 0 && salonRect.top < window.innerHeight,
         );
-        setIsVisible(window.pageYOffset > 300 && !salonIsVisible);
+        const footer = document.querySelector<HTMLElement>("[data-home-footer]");
+        const footerRect = footer?.getBoundingClientRect();
+        const footerIsVisible = Boolean(
+          footerRect && footerRect.bottom > 0 && footerRect.top < window.innerHeight,
+        );
+        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible);
       });
     };
 

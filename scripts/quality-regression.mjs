@@ -133,6 +133,9 @@ const trackingScripts = await readFile(path.join(ROOT, 'src/components/tracking/
 assert.match(trackingScripts, /googletagmanager\.com\/gtag\/js/, 'Deferred tracking must still load GA4');
 assert.doesNotMatch(trackingScripts, /gtag\?\.\(['"]config['"]/, 'Deferred loader must not queue a duplicate GA4 config/page view');
 
+const indexCss = await readFile(path.join(ROOT, 'src/index.css'), 'utf8');
+assert.match(indexCss, /--after-hours-near-black:\s*288 100% 6%;\s*\/\* #18001E \*\//, 'After-Hours footer near-black must remain a semantic token');
+
 const heroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
 assert.match(heroSource, /Shop Jena's shelf/, 'Hero CTA must expose its visible shopping label');
 assert.doesNotMatch(heroSource, /aria-label="Shop Jena's product shelf"/, 'Hero CTA accessible name must exactly preserve its visible label');
@@ -198,9 +201,26 @@ assert.match(stickyBarSource, /to="\/collections"[\s\S]*href=\{BOOK_URL\}/, 'Sti
 
 const scrollTopSource = await readFile(path.join(ROOT, 'src/components/ScrollToTopButton.tsx'), 'utf8');
 assert.match(scrollTopSource, /querySelector<HTMLElement>\("\[data-home-booking-close\]"\)/, 'Scroll-to-top control must detect the salon close');
-assert.match(scrollTopSource, /window\.pageYOffset > 300 && !salonIsVisible/, 'Scroll-to-top control must yield to the salon close while retaining its threshold');
+assert.match(scrollTopSource, /querySelector<HTMLElement>\("\[data-home-footer\]"\)/, 'Scroll-to-top control must detect the final footer');
+assert.match(scrollTopSource, /window\.pageYOffset > 300 && !salonIsVisible && !footerIsVisible/, 'Scroll-to-top control must yield to the salon close and footer while retaining its threshold');
 assert.match(scrollTopSource, /new MutationObserver\(toggleVisibility\)[\s\S]*childList: true, subtree: true/, 'Scroll-to-top control must handle deferred salon mounting');
 assert.match(scrollTopSource, /prefers-reduced-motion: reduce[\s\S]*behavior: reduceMotion \? "auto" : "smooth"/, 'Scroll-to-top control must retain reduced-motion behavior');
+
+const footerSource = await readFile(path.join(ROOT, 'src/components/Footer.tsx'), 'utf8');
+assert.match(footerSource, /data-home-footer=""/, 'Footer must expose a stable marker for floating-control suppression');
+assert.match(footerSource, /after-hours-near-black[\s\S]*after-hours-copper[\s\S]*after-hours-cream/, 'Footer must continue the semantic After-Hours palette');
+assert.match(footerSource, /hairPinnsLogo[\s\S]*brightness-0 invert/, 'Footer must retain the real Hair Pinns logo with dark-background treatment');
+assert.match(footerSource, /form_name: 'newsletter_footer'[\s\S]*consent_marketing: true[\s\S]*event: 'newsletter_subscription'/, 'Footer newsletter must retain GHL capture, consent, and attribution');
+assert.match(footerSource, /leadconnector-widget[\s\S]*data-widget-id[\s\S]*setTimeout\(load, 8000\)/, 'Footer must retain the deferred LeadConnector facade');
+assert.match(footerSource, /instagram\.com\/hair\.pinns[\s\S]*facebook\.com\/Hair\.Pinns/, 'Footer must retain first-party social destinations');
+assert.match(footerSource, /BUSINESS_NAP\.address\.street[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*sms:\$\{BUSINESS_NAP\.phone\.raw\}[\s\S]*wa\.me\/61416037663/, 'Footer must retain canonical address, phone, SMS, and WhatsApp contacts');
+for (const route of ['/collections', '/blog', '/policies/shipping', '/policies/returns', '/faq', '/glossary', '/services', '/booking', '/about', '/areas', '/contact', '/privacy', '/terms']) {
+  assert.match(footerSource, new RegExp(route.replaceAll('/', '\\/')), `Footer must retain route ${route}`);
+}
+assert.match(footerSource, /Mon", "Closed[\s\S]*Tue", "10am–5pm[\s\S]*Wed", "6pm–9pm[\s\S]*Thu", "9am–9pm[\s\S]*Fri", "9am–5:30pm[\s\S]*Sat", "8am–2pm[\s\S]*Sun", "Closed/, 'Footer must retain published salon hours');
+assert.match(footerSource, /min-h-11[\s\S]*aria-label="Footer navigation"[\s\S]*aria-label="Legal links"/, 'Footer navigation and legal links must retain 44px touch targets and named regions');
+assert.match(footerSource, /munyal\.com\.au[\s\S]*Visa[\s\S]*Mastercard[\s\S]*Afterpay[\s\S]*Zip/, 'Footer must retain Munyal credit and accepted payment labels');
+assert.doesNotMatch(footerSource, /bg-muted|rounded-xl|rounded-full|<Instagram|<Facebook|<MapPin|<Phone/, 'After-Hours footer must not regress to pale template cards or generic icon circles');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
