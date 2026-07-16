@@ -231,7 +231,7 @@ const BestSellers = () => {
 const ShelfHeader = () => (
   <header className="mb-12 grid gap-6 border-t border-[hsl(var(--after-hours-plum)/0.18)] pt-6 sm:mb-14 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-12">
     <div>
-      <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
+      <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
         02 / Jena’s shelf
       </p>
       <h2

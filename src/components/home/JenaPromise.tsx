@@ -1,141 +1,127 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import Section from "@/components/design-system/Section";
-import SectionHeader from "@/components/design-system/SectionHeader";
-import { Award, Heart, Sparkles } from "lucide-react";
+import jenaFounderAvif540 from "@/assets/images/jena-founder-540w.avif";
+import jenaFounderAvif1080 from "@/assets/images/jena-founder-1080w.avif";
+import jenaFounderWebp540 from "@/assets/images/jena-founder-540w.webp";
+import jenaFounderWebp1080 from "@/assets/images/jena-founder-1080w.webp";
 
-// ── Canonical Jena portrait ──────────────────────────────────────────────────
-// ALWAYS use jena-headshot.avif / jena-headshot.webp from src/assets/images.
-// Do NOT swap this for any other portrait asset without Tyson's explicit sign-off.
-import jenaHeadshotAvif from "@/assets/images/jena-headshot.avif";
-import jenaHeadshotAvif640 from "@/assets/images/jena-headshot-640w.avif";
-import jenaHeadshotAvif800 from "@/assets/images/jena-headshot-800w.avif";
-import jenaHeadshotWebp from "@/assets/images/jena-headshot.webp";
-
-/**
- * The Jena Promise — editorial "about the owner" section.
- *
- * Layout: 2-column on md+, stacked on mobile.
- *   Left  → Jena's headshot (jena-headshot.avif / .webp — canonical, never swap)
- *   Right → headline, tagline, 3 promises, CTAs
- *
- * Round-7 fix: portrait restored using the correct canonical jena-headshot
- * (the previous jena-promise-portrait files were the wrong image and have
- * been deleted from the repo).
- */
-const promises = [
+const standards = [
   {
-    icon: Award,
-    title: "In the chair since 2009",
-    body: "Over fifteen years of cutting, colouring and treating real hair in a real Bangor salon. Not a dropshipper, not a brand rep.",
+    index: "01",
+    title: "Behind the chair since 2009",
+    body: "More than fifteen years of cutting, colouring, and treating real hair in a Bangor salon.",
   },
   {
-    icon: Sparkles,
-    title: "I only stock what I use",
-    body: "Every product on this site is something I have personally used on a client and would use on you. If it doesn't perform, it doesn't make the shelf.",
+    index: "02",
+    title: "Only what I use",
+    body: "Every product earns its place on client hair before it reaches the online shelf.",
   },
   {
-    icon: Heart,
-    title: "Packed at the salon",
-    body: "Your order is picked, packed and posted from the salon. Free shipping over $150 anywhere in Australia.",
+    index: "03",
+    title: "Packed at Hair Pinns",
+    body: "Your order is picked, packed, and posted from the salon in Bangor.",
   },
 ];
 
 const JenaPromise = () => {
   return (
-    <Section
-      variant="gold"
-      padding="editorial"
-      number={{ index: "03", label: "why this shelf" }}
+    <section
+      className="content-visibility-auto overflow-hidden bg-[hsl(var(--after-hours-plum))] py-16 text-[hsl(var(--after-hours-cream))] sm:py-20 lg:py-28"
+      aria-labelledby="jena-proof-title"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-x-12 lg:gap-y-16">
+          <header className="lg:col-span-7 lg:pb-4">
+            <p className="mb-6 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
+              03 / Why this shelf
+            </p>
+            <h2
+              id="jena-proof-title"
+              className="max-w-[12ch] font-heading text-[clamp(2.8rem,11vw,6.4rem)] font-normal leading-[0.93] tracking-[-0.05em] text-[hsl(var(--after-hours-cream))]"
+            >
+              A short shelf, chosen by a working hairdresser.
+            </h2>
+            <p className="mt-7 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.74)] sm:text-lg sm:leading-8">
+              I’ve worked behind the chair since 2009. Everything here has to make real hair easier to understand, care for, or style before I recommend it to you.
+            </p>
+          </header>
 
-        {/* ── Left: Jena portrait ── */}
-        <div className="relative w-full max-w-sm mx-auto md:mx-0">
-          {/* Offset shadow card for visual weight */}
-          <div
-            className="absolute inset-0 rounded-2xl bg-gold/30 translate-x-3 translate-y-3"
-            aria-hidden="true"
-          />
-          <picture className="relative block rounded-2xl overflow-hidden shadow-lg">
-            <source
-              srcSet={`${jenaHeadshotAvif640} 640w, ${jenaHeadshotAvif800} 800w, ${jenaHeadshotAvif} 1080w`}
-              sizes="(max-width: 767px) calc(100vw - 2rem), 384px"
-              type="image/avif"
-            />
-            <img
-              src={jenaHeadshotWebp}
-              alt="Jena, owner and hairdresser at Hair Pinns Bangor"
-              width={1080}
-              height={1350}
-              className="w-full h-auto object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-          {/* Name badge */}
-          <div className="absolute bottom-4 left-4 right-4 bg-heading/90 text-white text-center py-2 px-4 rounded-xl text-sm font-heading tracking-widest uppercase">
-            Jena · Hair Pinns Bangor
-          </div>
-        </div>
+          <figure className="lg:col-span-5">
+            <div className="relative border border-[hsl(var(--after-hours-cream)/0.28)] p-2 sm:p-3">
+              <picture className="block aspect-square overflow-hidden bg-[hsl(var(--after-hours-cream)/0.08)]">
+                <source
+                  type="image/avif"
+                  srcSet={`${jenaFounderAvif540} 540w, ${jenaFounderAvif1080} 1080w`}
+                  sizes="(max-width: 1023px) calc(100vw - 3rem), 36vw"
+                />
+                <source
+                  type="image/webp"
+                  srcSet={`${jenaFounderWebp540} 540w, ${jenaFounderWebp1080} 1080w`}
+                  sizes="(max-width: 1023px) calc(100vw - 3rem), 36vw"
+                />
+                <img
+                  src={jenaFounderWebp1080}
+                  alt="Jena, owner and hairdresser at Hair Pinns in Bangor"
+                  width="1080"
+                  height="1080"
+                  className="h-full w-full object-cover object-[center_42%]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <span
+                className="absolute right-0 top-0 bg-[hsl(var(--after-hours-copper))] px-3 py-2 text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum))]"
+                aria-hidden="true"
+              >
+                Founder / hairdresser
+              </span>
+            </div>
+            <figcaption className="mt-4 flex items-center justify-between gap-4 border-b border-[hsl(var(--after-hours-cream)/0.22)] pb-4">
+              <span className="font-heading text-xl text-[hsl(var(--after-hours-cream))]">Jena</span>
+              <span className="text-right text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-copper))]">
+                Hair Pinns · Bangor
+              </span>
+            </figcaption>
+          </figure>
 
-        {/* ── Right: copy + promises + CTAs ── */}
-        <div>
-          <SectionHeader
-            align="left"
-            tagline="The same products I use on clients, packed at the salon."
-            title="A short shelf, chosen by a working hairdresser."
-            subtitle="I've worked behind the chair since 2009. Every product here earns its place on real hair before it reaches the online shelf."
-            display
-          />
-
-          <div className="space-y-6 mt-8 reveal-stagger-slow">
-            {promises.map((p) => {
-              const Icon = p.icon;
-              return (
-                <div key={p.title} className="reveal flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/70 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg text-heading mb-1">
-                      {p.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {p.body}
-                    </p>
-                  </div>
+          <ol className="grid gap-8 border-t border-[hsl(var(--after-hours-cream)/0.22)] pt-8 sm:grid-cols-3 sm:gap-6 lg:col-span-12 lg:gap-10">
+            {standards.map((standard) => (
+              <li key={standard.index} className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-3 sm:block">
+                <span className="pt-1 text-[0.61rem] font-semibold tracking-[0.18em] text-[hsl(var(--after-hours-copper))]">
+                  {standard.index}
+                </span>
+                <div className="sm:mt-5">
+                  <h3 className="font-heading text-xl font-semibold leading-tight text-[hsl(var(--after-hours-cream))]">
+                    {standard.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.68)] sm:text-[0.95rem]">
+                    {standard.body}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
+              </li>
+            ))}
+          </ol>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <Button
-              asChild
-              size="lg"
-              className="btn-lift font-semibold"
-              style={{ borderRadius: "999px", padding: "0.875rem 2.5rem" }}
+          <nav
+            className="flex flex-col gap-5 border-t border-[hsl(var(--after-hours-cream)/0.22)] pt-8 sm:flex-row sm:items-center sm:gap-8 lg:col-span-12"
+            aria-label="Jena’s shelf links"
+          >
+            <Link
+              to="/collections"
+              className="inline-flex min-h-12 items-center justify-between gap-6 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--after-hours-plum))] transition-colors hover:bg-[hsl(var(--after-hours-copper))] sm:min-w-56"
             >
-              <Link to="/collections">
-                <span>Shop the shelf</span>
-                <span className="btn-arrow ml-2" aria-hidden="true">→</span>
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="btn-lift font-semibold border-heading/20"
-              style={{ borderRadius: "999px", padding: "0.875rem 2.5rem" }}
+              <span>Shop the shelf</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              to="/about"
+              className="inline-flex min-h-11 items-center gap-3 border-b border-[hsl(var(--after-hours-cream)/0.5)] text-sm font-semibold !text-[hsl(var(--after-hours-cream))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] sm:min-h-0"
             >
-              <Link to="/about">Meet Jena</Link>
-            </Button>
-          </div>
+              Read Jena’s story <span aria-hidden="true">↗</span>
+            </Link>
+          </nav>
         </div>
-
       </div>
-    </Section>
+    </section>
   );
 };
 

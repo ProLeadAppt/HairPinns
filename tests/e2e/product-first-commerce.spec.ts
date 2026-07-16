@@ -85,6 +85,32 @@ test('editorial product shelf remains shoppable at Fold width', async ({ page })
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
 });
 
+test('founder proof mounts visibly and stays concise at Fold width', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  for (let y = 0; y <= 9000; y += 350) {
+    await page.evaluate(scrollY => window.scrollTo(0, scrollY), y);
+    await page.waitForTimeout(80);
+    if (await page.getByRole('heading', { name: /a short shelf, chosen by a working hairdresser/i }).count()) break;
+  }
+
+  const heading = page.getByRole('heading', { name: /a short shelf, chosen by a working hairdresser/i });
+  await expect(heading).toBeVisible({ timeout: 20_000 });
+  const proof = heading.locator('xpath=ancestor::section[1]');
+  await expect(proof.getByRole('img', { name: /Jena, owner and hairdresser/i })).toBeVisible();
+  await expect(proof.locator('ol > li')).toHaveCount(3);
+
+  const links = proof.getByRole('link');
+  await expect(links.first()).toHaveAccessibleName('Shop the shelf');
+  await expect(links.first()).toHaveAttribute('href', '/collections');
+  await expect(proof.getByRole('link', { name: /read Jena’s story/i })).toHaveAttribute('href', '/about');
+
+  const proofBox = await proof.boundingBox();
+  expect(proofBox?.height ?? Number.POSITIVE_INFINITY).toBeLessThan(1600);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
+});
+
 test('mobile menu and sticky action remain commerce first', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
