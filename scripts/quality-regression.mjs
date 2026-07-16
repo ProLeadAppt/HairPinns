@@ -275,6 +275,7 @@ const serviceDetailDataSource = await readFile(path.join(ROOT, 'src/data/service
 const bookingSource = await readFile(path.join(ROOT, 'src/pages/Booking.tsx'), 'utf8');
 const contactSource = await readFile(path.join(ROOT, 'src/pages/Contact.tsx'), 'utf8');
 const contactFormSource = await readFile(path.join(ROOT, 'src/components/forms/ContactForm.tsx'), 'utf8');
+const miniCartSource = await readFile(path.join(ROOT, 'src/components/cart/MiniCart.tsx'), 'utf8');
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
@@ -381,6 +382,21 @@ for (const formContract of ['postToZapier', 'contact_form_submit', "window.gtag(
 }
 assert.match(contactFormSource, /variant\?: "default" \| "editorial"[\s\S]*variant === "editorial"/, 'Contact form must preserve default styling and expose the editorial shell');
 assert.doesNotMatch(contactFormSource, /within 24 hours|within 2 hours|Need immediate help|For urgent matters/, 'Contact form states must not promise unsupported response timing or urgency');
+
+// After-Hours cart and checkout handoff invariants.
+for (const marker of ['data-mini-cart', 'data-cart-loading', 'data-cart-error', 'data-cart-lines', 'data-cart-shipping', 'data-cart-empty', 'data-cart-checkout']) {
+  assert.match(miniCartSource, new RegExp(marker), `Mini cart must preserve ${marker}`);
+}
+for (const cartContract of ['getCart(cartId)', 'clearCartId()', 'hp:cartCountUpdate', 'removeLineIds: [lineId]', 'trackBeginCheckout', '/.netlify/functions/checkout?redirect=true', 'cartIdInput.name = "cartId"', 'linesInput.name = "lines"', 'form.submit()']) {
+  assert.ok(miniCartSource.includes(cartContract), `Mini cart must preserve operational contract: ${cartContract}`);
+}
+assert.match(miniCartSource, /FREE_STANDARD_SHIPPING = 150[\s\S]*Standard shipping is \$9\.95[\s\S]*Free standard shipping applies from \$150/, 'Cart shipping handoff must preserve the published $9.95 and $150 facts');
+assert.match(miniCartSource, /to="\/policies\/shipping"[\s\S]*to="\/policies\/returns"/, 'Cart must preserve shipping and returns policy routes');
+assert.match(miniCartSource, /14-day returns on unopened products/, 'Cart returns language must preserve the published unopened-product condition');
+assert.match(miniCartSource, /h-11 w-11[\s\S]*Remove \$\{merchandise/, 'Cart line removal must retain a 44px named target');
+assert.match(miniCartSource, /disabled=\{isCheckingOut \|\| !hasItems\}/, 'Checkout must remain unavailable for empty or expired carts');
+assert.match(miniCartSource, /merchandise\.title !== "Default Title"/, 'Cart must not display Shopify Default Title');
+assert.doesNotMatch(miniCartSource, /searchProducts|upsellProducts|EstimatedDelivery|FreeShippingBar|You might also like|Estimated delivery|businessDays|hover:scale|rounded-card|shadow-lg/, 'Cart must not restore arbitrary upsells, simulated delivery, or generic conversion-card styling');
 
 const homeSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 assert.match(homeSource, /isVisible \? "" : "min-h-px"/, 'Deferred sections need a physical sentinel so WebKit cannot skip lazy mounting');
