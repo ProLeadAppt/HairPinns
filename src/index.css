@@ -751,3 +751,12 @@ main#main-content:focus-visible {
 .hairline-gold-left {
   margin: 0 0 2rem 0;
 }
+
+/* LeadConnector leaves its custom element mounted while hidden. In Firefox
+   and WebKit that transparent host can otherwise sit above product dialogs
+   and swallow clicks before the widget is opened. */
+chat-widget[aria-hidden="true"],
+chat-widget[data-aria-hidden="true"],
+chat-widget[data-active="false"] {
+  pointer-events: none !important;
+}
