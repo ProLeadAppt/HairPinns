@@ -54,6 +54,10 @@ const packageManifestSource = await readFile(path.join(ROOT, 'package.json'), 'u
 const packageLockSource = await readFile(path.join(ROOT, 'package-lock.json'), 'utf8');
 const bunLockSource = await readFile(path.join(ROOT, 'bun.lockb'), 'utf8');
 const denoLockSource = await readFile(path.join(ROOT, 'deno.lock'), 'utf8');
+const viewportImageGateSource = await readFile(path.join(ROOT, 'src/hooks/useViewportImageGate.ts'), 'utf8');
+const bestSellersSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
+const shopByConcernSource = await readFile(path.join(ROOT, 'src/components/home/ShopByConcern.tsx'), 'utf8');
+const blogTrioSource = await readFile(path.join(ROOT, 'src/components/home/BlogTrio.tsx'), 'utf8');
 assert.doesNotMatch(truthSchemaSource, /reviewCount:\s*["']762["']/);
 assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
 assert.doesNotMatch(truthSchemaSource, /\baggregateRating\s*:/);
@@ -77,6 +81,17 @@ assert.doesNotMatch(packageLockSource, /@tanstack\/(?:react-query|query-core)/, 
 assert.doesNotMatch(bunLockSource, /@tanstack\/(?:react-query|query-core)/, 'Bun lock state must not restore the unused React Query dependency');
 assert.doesNotMatch(denoLockSource, /@tanstack\/(?:react-query|query-core)/, 'Deno lock state must not restore the unused React Query dependency');
 assert.doesNotMatch(criticalViteConfigSource, /tanstack-query|@tanstack\/react-query/, 'Vite must not restore a dead React Query chunk rule');
+assert.match(viewportImageGateSource, /HairPinnsPrerender/, 'Lower-homepage images must stay inert while prerender HTML is captured');
+assert.match(viewportImageGateSource, /IntersectionObserver/, 'Lower-homepage image URLs must wait for viewport intent');
+for (const [name, source] of [
+  ['product shelf', bestSellersSource],
+  ['shop-by-concern', shopByConcernSource],
+  ['guide desk', blogTrioSource],
+]) {
+  assert.match(source, /useViewportImageGate/, `${name} must use the shared viewport image gate`);
+  assert.match(source, /imagesEnabled\s*\?/, `${name} must not serialize active image URLs during prerender`);
+}
+assert.doesNotMatch(bestSellersSource, /content-visibility-auto/, 'The observer-mounted product shelf must not double-defer rendering in WebKit');
 
 assert.deepEqual(
   occurrences(/(?:\+61[-\s]*468[-\s]*093[-\s]*991|0468\s*093\s*991|61468093991)/),
@@ -196,26 +211,26 @@ const beforeAfterSource = await readFile(path.join(ROOT, 'src/components/home/Be
 assert.match(beforeAfterSource, /hairdresser-taking-care-her-client-1280w\.avif/, 'Salon comparison must use the optimized finish image');
 assert.match(beforeAfterSource, /brunette-woman-getting-her-hair-washed-1280w\.avif/, 'Salon comparison must use the optimized basin image');
 
-const bestSellersSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
-assert.doesNotMatch(bestSellersSource, /aria-label=\{`Add \$\{product\.title\} to bag`\}/, 'Quick-add accessible name must include the visible button label');
-assert.match(bestSellersSource, /min-h-11/, 'Mobile quick-add target must be at least 44px tall');
-assert.doesNotMatch(bestSellersSource, /most reordered|keep reordering/i, 'Curated product picks must not claim unsupported reorder data');
-assert.match(bestSellersSource, /02 \/ Jena’s shelf/, 'Product shelf must retain its editorial sequence label');
-assert.match(bestSellersSource, /object-contain/, 'Product packaging must not be cropped inside the editorial plates');
-assert.match(bestSellersSource, /\(max-width: 1023px\) 50vw, 30vw/, 'Secondary product images must request candidates sized for the two-column mobile shelf');
-assert.match(bestSellersSource, /Shop all products/, 'Product shelf must close with a route to the full catalogue');
-assert.doesNotMatch(bestSellersSource, /text-\[0\.66rem\][^\n]*after-hours-copper/, 'Small shelf labels need stronger than decorative copper contrast on paper');
-assert.doesNotMatch(bestSellersSource, /rounded-card|hover:shadow-lg/, 'Product shelf must not regress to generic floating card chrome');
+const productShelfSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
+assert.doesNotMatch(productShelfSource, /aria-label=\{`Add \$\{product\.title\} to bag`\}/, 'Quick-add accessible name must include the visible button label');
+assert.match(productShelfSource, /min-h-11/, 'Mobile quick-add target must be at least 44px tall');
+assert.doesNotMatch(productShelfSource, /most reordered|keep reordering/i, 'Curated product picks must not claim unsupported reorder data');
+assert.match(productShelfSource, /02 \/ Jena’s shelf/, 'Product shelf must retain its editorial sequence label');
+assert.match(productShelfSource, /object-contain/, 'Product packaging must not be cropped inside the editorial plates');
+assert.match(productShelfSource, /\(max-width: 1023px\) 50vw, 30vw/, 'Secondary product images must request candidates sized for the two-column mobile shelf');
+assert.match(productShelfSource, /Shop all products/, 'Product shelf must close with a route to the full catalogue');
+assert.doesNotMatch(productShelfSource, /text-\[0\.66rem\][^\n]*after-hours-copper/, 'Small shelf labels need stronger than decorative copper contrast on paper');
+assert.doesNotMatch(productShelfSource, /rounded-card|hover:shadow-lg/, 'Product shelf must not regress to generic floating card chrome');
 
-const blogTrioSource = await readFile(path.join(ROOT, 'src/components/home/BlogTrio.tsx'), 'utf8');
-assert.match(blogTrioSource, /homeFeaturedGuides\.slice\(0, 3\)/, 'Homepage advice desk must retain the first three curated guides');
-assert.match(blogTrioSource, /post\.excerpt/, 'Homepage guides must render their descriptive excerpt');
-assert.doesNotMatch(blogTrioSource, /post\.hook/, 'Homepage guides must not reference the nonexistent hook field');
-assert.match(blogTrioSource, /04 \/ Read, learn, ask/, 'Advice desk must own its editorial sequence label');
-assert.match(blogTrioSource, /`\/blog\/\$\{[^}]+\.slug\}`[\s\S]*to="\/blog"/, 'Advice desk must preserve article and guide-catalogue routes');
-assert.match(blogTrioSource, /shopifyImageWebp[\s\S]*srcSet[\s\S]*sizes=/, 'Homepage guide images must retain responsive Shopify sources');
-assert.doesNotMatch(blogTrioSource, /content-visibility-auto/, 'Deferred advice desk must not double-defer lazy images in WebKit');
-assert.doesNotMatch(blogTrioSource, /rounded-card|hover:shadow-lg|<SectionHeader|<Badge/, 'Advice desk must not regress to generic floating card chrome');
+const guideDeskSource = await readFile(path.join(ROOT, 'src/components/home/BlogTrio.tsx'), 'utf8');
+assert.match(guideDeskSource, /homeFeaturedGuides\.slice\(0, 3\)/, 'Homepage advice desk must retain the first three curated guides');
+assert.match(guideDeskSource, /post\.excerpt/, 'Homepage guides must render their descriptive excerpt');
+assert.doesNotMatch(guideDeskSource, /post\.hook/, 'Homepage guides must not reference the nonexistent hook field');
+assert.match(guideDeskSource, /04 \/ Read, learn, ask/, 'Advice desk must own its editorial sequence label');
+assert.match(guideDeskSource, /`\/blog\/\$\{[^}]+\.slug\}`[\s\S]*to="\/blog"/, 'Advice desk must preserve article and guide-catalogue routes');
+assert.match(guideDeskSource, /shopifyImageWebp[\s\S]*srcSet[\s\S]*sizes=/, 'Homepage guide images must retain responsive Shopify sources');
+assert.doesNotMatch(guideDeskSource, /content-visibility-auto/, 'Deferred advice desk must not double-defer lazy images in WebKit');
+assert.doesNotMatch(guideDeskSource, /rounded-card|hover:shadow-lg|<SectionHeader|<Badge/, 'Advice desk must not regress to generic floating card chrome');
 
 const bookingBannerSource = await readFile(path.join(ROOT, 'src/components/home/BookingBanner.tsx'), 'utf8');
 assert.match(bookingBannerSource, /05 \/ Visit the salon/, 'Salon close must own the final numbered homepage marker');

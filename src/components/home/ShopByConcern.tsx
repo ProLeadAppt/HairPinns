@@ -4,8 +4,12 @@ import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
 import { SHOP_BY_CONCERN } from "@/config/commerceNavigation";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+import useViewportImageGate from "@/hooks/useViewportImageGate";
 
-const ShopByConcern = () => (
+const ShopByConcern = () => {
+  const { targetRef: listRef, imagesEnabled } = useViewportImageGate<HTMLUListElement>();
+
+  return (
   <Section
     number={{ index: "01", label: "find your shelf" }}
     padding="editorial"
@@ -19,7 +23,7 @@ const ShopByConcern = () => (
       display
     />
 
-    <ul className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-5">
+    <ul ref={listRef} className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-5">
       {SHOP_BY_CONCERN.map((concern) => (
         <li key={concern.handle} className="min-w-[78%] snap-start sm:min-w-0">
           <Link
@@ -31,11 +35,11 @@ const ShopByConcern = () => (
               <picture>
                 <source
                   type="image/webp"
-                  srcSet={`${shopifyImageWebp(concern.image, 480)} 480w, ${shopifyImageWebp(concern.image, 720)} 720w`}
+                  srcSet={imagesEnabled ? `${shopifyImageWebp(concern.image, 480)} 480w, ${shopifyImageWebp(concern.image, 720)} 720w` : undefined}
                   sizes="(max-width: 639px) 78vw, (max-width: 1023px) 50vw, 20vw"
                 />
                 <img
-                  src={shopifyImage(concern.image, 720)}
+                  src={imagesEnabled ? shopifyImage(concern.image, 720) : undefined}
                   alt=""
                   aria-hidden="true"
                   width="720"
@@ -43,6 +47,7 @@ const ShopByConcern = () => (
                   loading="lazy"
                   decoding="async"
                   fetchPriority="low"
+                  data-image-pending={imagesEnabled ? undefined : "true"}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
               </picture>
@@ -69,6 +74,7 @@ const ShopByConcern = () => (
       </Link>
     </div>
   </Section>
-);
+  );
+};
 
 export default ShopByConcern;

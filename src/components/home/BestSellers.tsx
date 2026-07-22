@@ -6,6 +6,7 @@ import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { useQuickAddToCart } from "@/hooks/useQuickAddToCart";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+import useViewportImageGate from "@/hooks/useViewportImageGate";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -16,6 +17,7 @@ const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
 const BestSellers = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const { targetRef: sectionRef, imagesEnabled } = useViewportImageGate<HTMLElement>();
 
   useEffect(() => {
     let isMounted = true;
@@ -140,7 +142,8 @@ const BestSellers = () => {
   if (loading) {
     return (
       <section
-        className="content-visibility-auto bg-[hsl(var(--after-hours-paper))] py-16 sm:py-20 lg:py-28"
+        ref={sectionRef}
+        className="bg-[hsl(var(--after-hours-paper))] py-16 sm:py-20 lg:py-28"
         aria-labelledby="popular-picks-title"
         aria-busy="true"
       >
@@ -170,14 +173,15 @@ const BestSellers = () => {
 
   return (
     <section
-      className="content-visibility-auto bg-[hsl(var(--after-hours-paper))] py-16 sm:py-20 lg:py-28"
+      ref={sectionRef}
+      className="bg-[hsl(var(--after-hours-paper))] py-16 sm:py-20 lg:py-28"
       aria-labelledby="popular-picks-title"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ShelfHeader />
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(20rem,0.75fr)] lg:gap-6">
-          <ProductCard product={leadProduct} index={1} aspectClass="aspect-[5/6] sm:aspect-[4/5] lg:aspect-[6/7]" lead />
+          <ProductCard product={leadProduct} index={1} aspectClass="aspect-[5/6] sm:aspect-[4/5] lg:aspect-[6/7]" lead imagesEnabled={imagesEnabled} />
 
           <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 lg:grid-cols-1 lg:gap-6">
             {sideProducts.map((product, index) => (
@@ -186,6 +190,7 @@ const BestSellers = () => {
                 product={product}
                 index={index + 2}
                 aspectClass="aspect-square"
+                imagesEnabled={imagesEnabled}
               />
             ))}
           </div>
@@ -199,6 +204,7 @@ const BestSellers = () => {
                 product={product}
                 index={index + 4}
                 aspectClass="aspect-square"
+                imagesEnabled={imagesEnabled}
               />
             ))}
             <Link
@@ -252,11 +258,13 @@ const ProductCard = ({
   index,
   aspectClass,
   lead = false,
+  imagesEnabled,
 }: {
   product: any;
   index: number;
   aspectClass: string;
   lead?: boolean;
+  imagesEnabled: boolean;
 }) => {
   const { addToCart, busy } = useQuickAddToCart();
   const canQuickAdd = product.availableForSale && product.variantId && !busy;
@@ -287,21 +295,22 @@ const ProductCard = ({
         <picture className="block h-full w-full">
           <source
             type="image/webp"
-            srcSet={buildShopifyWebpSrcSet(product.image, [480, 800, 1200])}
+            srcSet={imagesEnabled ? buildShopifyWebpSrcSet(product.image, [480, 800, 1200]) : undefined}
             sizes={imageSizes}
           />
           <source
-            srcSet={buildShopifySrcSet(product.image, [480, 800, 1200])}
+            srcSet={imagesEnabled ? buildShopifySrcSet(product.image, [480, 800, 1200]) : undefined}
             sizes={imageSizes}
           />
           <img
-            src={product.image}
+            src={imagesEnabled ? product.image : undefined}
             alt={product.title}
             className="h-full w-full object-contain p-3 transition-transform duration-slow group-hover:scale-[1.025] sm:p-5"
             loading="lazy"
             decoding="async"
             width="600"
             height="600"
+            data-image-pending={imagesEnabled ? undefined : "true"}
           />
         </picture>
         <span className="absolute left-3 top-3 bg-[hsl(var(--after-hours-paper)/0.94)] px-2.5 py-1.5 text-[0.58rem] font-semibold tracking-[0.16em] text-[hsl(var(--after-hours-plum))] backdrop-blur-sm sm:left-4 sm:top-4">
