@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { getCartId, normalizeCartId } from "@/lib/cartManagement";
+import { getCart } from "@/lib/shopify";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
 
 interface CartContextValue {
@@ -20,6 +21,33 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [itemCount, setItemCount] = useState(0);
   const returnFocusRef = useRef<HTMLElement | null>(null);
+  const countRevisionRef = useRef(0);
+
+  // Hydrate the persisted cart count immediately so the header is truthful
+  // after a reload, before the shopper opens the drawer.
+  useEffect(() => {
+    const persistedCartId = normalizeCartId(getCartId()) || getCartId();
+    if (!persistedCartId) return;
+
+    let cancelled = false;
+    const hydrationRevision = countRevisionRef.current;
+    getCart(persistedCartId)
+      .then((cart) => {
+        if (cancelled || !cart || countRevisionRef.current !== hydrationRevision) return;
+        const count = cart.lines?.edges?.reduce(
+          (total: number, edge: { node?: { quantity?: number } }) => total + (edge.node?.quantity || 0),
+          0,
+        ) || 0;
+        setItemCount(count);
+      })
+      .catch((error) => {
+        if (!cancelled) console.warn("[Cart] Could not hydrate persisted cart count", error);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const rememberTrigger = () => {
     returnFocusRef.current = document.activeElement instanceof HTMLElement
@@ -38,6 +66,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const handleOpen = () => {
+      // An add-to-cart event means any in-flight hydration snapshot is stale.
+      countRevisionRef.current += 1;
       returnFocusRef.current = document.activeElement instanceof HTMLElement
         ? document.activeElement
         : null;
@@ -51,6 +81,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const handleCountUpdate = (e: Event) => {
       const count = (e as CustomEvent).detail?.count ?? 0;
+      countRevisionRef.current += 1;
       setItemCount(count);
     };
     window.addEventListener("hp:cartCountUpdate", handleCountUpdate);

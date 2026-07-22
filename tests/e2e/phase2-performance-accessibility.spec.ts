@@ -297,6 +297,106 @@ test('product gallery zoom is keyboard accessible and modal', async ({ page }) =
   }
 });
 
+test('persisted cart count hydrates before the drawer opens and mutable cart reads stay fresh', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => localStorage.setItem('hp_cart_id', 'gid://shopify/Cart/hydration-test'));
+
+  let cartReads = 0;
+  const makeCart = (quantity: number) => ({
+    id: 'gid://shopify/Cart/hydration-test',
+    checkoutUrl: 'https://checkout.example.test',
+    lines: {
+      edges: [{
+        node: {
+          id: 'hydration-line',
+          quantity,
+          merchandise: {
+            id: 'variant-hydration',
+            title: 'Default Title',
+            price: { amount: '34.95', currencyCode: 'AUD' },
+            product: { id: 'product-hydration', title: 'Juuce Bond Repair Shampoo', handle: 'juuce-bond-repair-shampoo' },
+            image: { url: '/placeholder.svg', altText: 'Juuce Bond Repair Shampoo bottle' },
+          },
+        },
+      }],
+    },
+    cost: {
+      subtotalAmount: { amount: String(34.95 * quantity), currencyCode: 'AUD' },
+      totalAmount: { amount: String(34.95 * quantity), currencyCode: 'AUD' },
+    },
+  });
+
+  await page.route('**/graphql.json', async (route) => {
+    const body = route.request().postDataJSON();
+    if (body.query.includes('query getCart')) {
+      cartReads += 1;
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ data: { cart: makeCart(cartReads) } }),
+      });
+      return;
+    }
+    await route.continue();
+  });
+
+  await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
+  const cartButton = page.getByRole('button', { name: 'View cart, 1 item' });
+  await expect(cartButton).toBeVisible();
+  await cartButton.click();
+
+  const drawer = page.locator('[data-mini-cart]');
+  await expect(drawer.getByRole('heading', { name: 'Your bag / 2' })).toBeVisible();
+  expect(cartReads).toBe(2);
+});
+
+test('late cart hydration cannot overwrite a newer cart count event', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => localStorage.setItem('hp_cart_id', 'gid://shopify/Cart/race-test'));
+
+  let releaseHydration: (() => void) | undefined;
+  await page.route('**/graphql.json', async (route) => {
+    const body = route.request().postDataJSON();
+    if (!body.query.includes('query getCart')) {
+      await route.continue();
+      return;
+    }
+
+    await new Promise<void>((resolve) => {
+      releaseHydration = resolve;
+    });
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        data: {
+          cart: {
+            id: 'gid://shopify/Cart/race-test',
+            checkoutUrl: 'https://checkout.example.test',
+            lines: { edges: [{ node: { id: 'stale-line', quantity: 1 } }] },
+            cost: {
+              subtotalAmount: { amount: '34.95', currencyCode: 'AUD' },
+              totalAmount: { amount: '34.95', currencyCode: 'AUD' },
+            },
+          },
+        },
+      }),
+    });
+  });
+
+  await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('button', { name: 'View cart' })).toBeVisible();
+  await expect.poll(() => Boolean(releaseHydration)).toBe(true);
+  await page.evaluate(() => {
+    window.dispatchEvent(new CustomEvent('hp:cartCountUpdate', { detail: { count: 3 } }));
+  });
+  await expect(page.getByRole('button', { name: 'View cart, 3 items' })).toBeVisible();
+
+  releaseHydration?.();
+  await page.waitForTimeout(200);
+  await expect(page.getByRole('button', { name: 'View cart, 3 items' })).toBeVisible();
+});
+
 test('cart drawer is a keyboard-contained named dialog', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
