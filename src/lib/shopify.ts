@@ -31,12 +31,16 @@ function getEndpoint(): string {
  */
 export async function fetchShopify<T>(
   query: string,
-  variables: Record<string, any> = {}
+  variables: Record<string, any> = {},
+  options: { cache?: boolean } = {}
 ): Promise<T> {
+  const shouldCache = options.cache !== false;
   const cacheKey = JSON.stringify({ query, variables });
-  const cached = shopifyRequestCache.get(cacheKey);
-  if (cached) {
-    return cached as Promise<T>;
+  if (shouldCache) {
+    const cached = shopifyRequestCache.get(cacheKey);
+    if (cached) {
+      return cached as Promise<T>;
+    }
   }
 
   const request = (async () => {
@@ -62,12 +66,12 @@ export async function fetchShopify<T>(
     return json.data as T;
   })();
 
-  shopifyRequestCache.set(cacheKey, request);
+  if (shouldCache) shopifyRequestCache.set(cacheKey, request);
 
   try {
     return await request;
   } catch (error) {
-    shopifyRequestCache.delete(cacheKey);
+    if (shouldCache) shopifyRequestCache.delete(cacheKey);
     throw error;
   }
 }
@@ -522,7 +526,8 @@ export async function getCart(cartId: string) {
       }
     }
   `;
-  const data = await fetchShopify<{ cart: any }>(query, { cartId });
+  // Carts are mutable. Never serve cart reads from the product/catalogue cache.
+  const data = await fetchShopify<{ cart: any }>(query, { cartId }, { cache: false });
   return data.cart;
 }
 
