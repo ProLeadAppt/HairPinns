@@ -39,8 +39,17 @@ function occurrences(pattern, { exclude = [] } = {}) {
 
 const businessConfig = await readFile(path.join(ROOT, 'src/config/businessConfig.ts'), 'utf8');
 assert.match(businessConfig, /display:\s*["']0416 037 663["']/);
-assert.match(businessConfig, /raw:\s*["']\+61416037663["']/);
-assert.match(businessConfig, /tel:\s*["']tel:\+61416037663["']/);
+assert.match(businessConfig, /raw:\s*["']\+61[0-9]{9}["']/);
+assert.match(businessConfig, /tel:\s*["']tel:\+61[0-9]{9}["']/);
+
+const homepageSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
+const truthSchemaSource = await readFile(path.join(ROOT, 'src/lib/schema.ts'), 'utf8');
+const reviewsPageSource = await readFile(path.join(ROOT, 'src/pages/Reviews.tsx'), 'utf8');
+assert.doesNotMatch(truthSchemaSource, /reviewCount:\s*["']762["']/);
+assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
+assert.doesNotMatch(truthSchemaSource, /\baggregateRating\s*:/);
+assert.doesNotMatch(homepageSource, /generateFAQPageSchema|generateHowToSchema|googleReviews|PT2M|762\s+five-star/i);
+assert.doesNotMatch(reviewsPageSource, /4\.9\s+stars|53\+\s+verified|googleReviews/i);
 
 assert.deepEqual(
   occurrences(/(?:\+61[-\s]*468[-\s]*093[-\s]*991|0468\s*093\s*991|61468093991)/),

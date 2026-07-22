@@ -144,7 +144,7 @@ export const generateOrganizationSchema = () => ({
   },
 });
 
-export const generateLocalBusinessSchema = (pageUrl?: string, reviews: Array<{ rating: number; author: string; date: string; text: string }> = []) => ({
+export const generateLocalBusinessSchema = (pageUrl?: string) => ({
   '@context': 'https://schema.org',
   '@type': 'HairSalon',
   '@id': `${BASE_URL}/#hairsalon`,
@@ -164,36 +164,6 @@ export const generateLocalBusinessSchema = (pageUrl?: string, reviews: Array<{ r
   url: pageUrl || BASE_URL,
   telephone: SALON_PHONE,
   priceRange: '$$',
-  // AggregateRating for Google Reviews
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '762',
-    bestRating: '5',
-    worstRating: '1',
-  },
-  // Individual customer reviews — Google-eligible for review rich results.
-  // Sourced from src/data/reviews.ts which is refreshed manually from
-  // Google Business Profile. Keep the top 5 most recent 5-star reviews.
-  review: reviews.slice(0, 5).map((r) => ({
-    '@type': 'Review',
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: String(r.rating),
-      bestRating: '5',
-      worstRating: '1',
-    },
-    author: {
-      '@type': 'Person',
-      name: r.author,
-    },
-    datePublished: r.date,
-    reviewBody: r.text,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Google',
-    },
-  })),
   foundingDate: '2009',
   foundingLocation: {
     '@type': 'City',
@@ -306,15 +276,6 @@ export const generateServiceSchema = (service: ServiceData) => ({
     name: area,
   })),
   url: service.url,
-  // AggregateRating: 4.9/762 from Hair Pinns' Google Business Profile
-  // (single salon-wide rating, applies to all services rendered from this provider).
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '762',
-    bestRating: '5',
-    worstRating: '1',
-  },
 });
 
 export const generateProductSchema = (product: ProductData) => {
@@ -720,14 +681,7 @@ export const generateKnowledgeGraphSchema = () => ({
     'https://www.instagram.com/hair.pinns/',
     'https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer',
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '762',
-    bestRating: '5',
-    worstRating: '1',
-  },
-  // Key services for AI understanding
+
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Hair Services & Products',
@@ -793,13 +747,6 @@ export const generateStoreSchema = () => ({
     ],
   },
   priceRange: '$$',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '762',
-    bestRating: '5',
-    worstRating: '1',
-  },
 });
 
 /**
@@ -1019,13 +966,6 @@ export const generateEnhancedServiceSchema = (service: EnhancedServiceData) => {
       },
       telephone: SALON_PHONE,
       priceRange: '$$',
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '762',
-        bestRating: '5',
-        worstRating: '1',
-      },
     },
     areaServed: AREA_SERVED.map((area) => ({
       '@type': 'City',
@@ -1257,14 +1197,6 @@ export const generateServiceItemListSchema = (items: Array<{
         name: 'Hair Pinns',
         url: BASE_URL,
       },
-      // Provider-level rating carries through to every list item.
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '762',
-        bestRating: '5',
-        worstRating: '1',
-      },
       ...(item.price && {
         offers: {
           '@type': 'Offer',
@@ -1283,8 +1215,7 @@ export const generateServiceItemListSchema = (items: Array<{
  */
 /**
  * Place schema for local/geo pages - optimizes for "near me" and map pack.
- * Suburb pages re-state the salon-wide rating + offer catalog so the
- * provider's Google review score and price range appear in geo-targeted SERPs.
+ * Suburb pages restate the salon offer catalogue for geo-targeted context.
  */
 export const generatePlaceSchema = (data: {
   name: string;
@@ -1311,14 +1242,6 @@ export const generatePlaceSchema = (data: {
     name: 'Sutherland Shire',
     addressRegion: 'NSW',
     addressCountry: 'AU',
-  },
-  // Provider-level rating (Google Business Profile) — same salon, every suburb.
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '762',
-    bestRating: '5',
-    worstRating: '1',
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -1393,14 +1316,6 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
     },
     currenciesAccepted: 'AUD',
     paymentAccepted: 'Cash, Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, Shop Pay',
-    // AggregateRating — Google Reviews only (verifiable source)
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '762',
-      bestRating: '5',
-      worstRating: '1',
-    },
   };
 };
 
