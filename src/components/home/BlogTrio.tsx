@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { homeFeaturedGuides, type HomeFeaturedGuide } from "@/data/homeFeaturedGuides";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+import useViewportImageGate from "@/hooks/useViewportImageGate";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -11,9 +12,11 @@ const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
 const GuideImage = ({
   post,
   lead = false,
+  imagesEnabled,
 }: {
   post: HomeFeaturedGuide;
   lead?: boolean;
+  imagesEnabled: boolean;
 }) => {
   const widths = lead ? [480, 720, 960] : [240, 360, 480];
   const sizes = lead
@@ -24,18 +27,19 @@ const GuideImage = ({
     <picture className="block h-full w-full overflow-hidden bg-[hsl(var(--after-hours-plum)/0.08)]">
       <source
         type="image/webp"
-        srcSet={buildShopifyWebpSrcSet(post.image, widths)}
+        srcSet={imagesEnabled ? buildShopifyWebpSrcSet(post.image, widths) : undefined}
         sizes={sizes}
       />
-      <source srcSet={buildShopifySrcSet(post.image, widths)} sizes={sizes} />
+      <source srcSet={imagesEnabled ? buildShopifySrcSet(post.image, widths) : undefined} sizes={sizes} />
       <img
-        src={shopifyImage(post.image, lead ? 720 : 360)}
+        src={imagesEnabled ? shopifyImage(post.image, lead ? 720 : 360) : undefined}
         alt={post.title}
         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         loading="lazy"
         decoding="async"
         width={lead ? 960 : 480}
         height={lead ? 600 : 480}
+        data-image-pending={imagesEnabled ? undefined : "true"}
       />
     </picture>
   );
@@ -49,9 +53,11 @@ const GuideMeta = ({ post }: { post: HomeFeaturedGuide }) => (
 
 const BlogTrio = () => {
   const [leadPost, ...supportingPosts] = homeFeaturedGuides.slice(0, 3);
+  const { targetRef: sectionRef, imagesEnabled } = useViewportImageGate<HTMLElement>();
 
   return (
     <section
+      ref={sectionRef}
       className="bg-[hsl(var(--after-hours-paper))] py-16 text-[hsl(var(--after-hours-plum))] sm:py-20 lg:py-28"
       aria-labelledby="guide-desk-title"
     >
@@ -89,7 +95,7 @@ const BlogTrio = () => {
           >
             <article>
               <div className="aspect-[8/5] overflow-hidden border border-[hsl(var(--after-hours-plum)/0.18)] p-2 sm:p-3">
-                <GuideImage post={leadPost} lead />
+                <GuideImage post={leadPost} lead imagesEnabled={imagesEnabled} />
               </div>
               <div className="border-b border-[hsl(var(--after-hours-plum)/0.22)] pb-7 pt-6">
                 <GuideMeta post={leadPost} />
@@ -115,7 +121,7 @@ const BlogTrio = () => {
               >
                 <article className="grid grid-cols-[7rem_minmax(0,1fr)] gap-4 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6 lg:grid-cols-[11rem_minmax(0,1fr)]">
                   <div className="aspect-square overflow-hidden border border-[hsl(var(--after-hours-plum)/0.18)] p-1.5">
-                    <GuideImage post={post} />
+                    <GuideImage post={post} imagesEnabled={imagesEnabled} />
                   </div>
                   <div className="min-w-0 py-1">
                     <div className="flex items-start justify-between gap-3">

@@ -61,6 +61,46 @@ test('product discovery appears before founder and salon content', async ({ page
   expect(positions.salon).toBeGreaterThan(positions.founder);
 });
 
+test('lower-homepage Shopify images wait for viewport intent before loading', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 882 });
+  const lowerHomepageImageRequests: string[] = [];
+
+  page.on('request', request => {
+    if (
+      request.resourceType() === 'image' &&
+      request.url().startsWith('https://cdn.shopify.com/')
+    ) {
+      lowerHomepageImageRequests.push(request.url());
+    }
+  });
+
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(1_000);
+  expect(lowerHomepageImageRequests).toEqual([]);
+
+  for (let y = 0; y <= 5000; y += 250) {
+    await page.evaluate(scrollY => window.scrollTo(0, scrollY), y);
+    await page.waitForTimeout(80);
+    if (await page.getByRole('heading', { name: /popular picks from the shelf/i }).isVisible().catch(() => false)) break;
+  }
+
+  const heading = page.getByRole('heading', { name: /popular picks from the shelf/i });
+  await expect(heading).toBeVisible({ timeout: 20_000 });
+  const shelf = heading.locator('xpath=ancestor::section[1]');
+  await expect(shelf.locator('article')).toHaveCount(6, { timeout: 30_000 });
+
+  const images = shelf.locator('article img');
+  await expect(images).toHaveCount(6);
+  for (const image of await images.all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(
+      () => image.evaluate(node => node.complete && node.naturalWidth > 0),
+      { timeout: 15_000 },
+    ).toBe(true);
+  }
+  expect(lowerHomepageImageRequests.length).toBeGreaterThan(0);
+});
+
 test('editorial product shelf remains shoppable at Fold width', async ({ page }) => {
   await page.setViewportSize({ width: 344, height: 882 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
