@@ -643,6 +643,14 @@ test('after-hours search results preserve product, guide, sorting and schema con
 
 test('after-hours collection system stays truthful and shoppable at Fold width', async ({ page }) => {
   await page.setViewportSize({ width: 344, height: 882 });
+  await page.route('**/api/checkout', async route => {
+    if (route.request().method() !== 'POST') return route.continue();
+    await route.fulfill({
+      status: 500,
+      contentType: 'application/json',
+      body: JSON.stringify({ error: 'Checkout unavailable' }),
+    });
+  });
   await page.goto('/collections', { waitUntil: 'domcontentloaded' });
   await expect(page.getByRole('heading', { name: /Shop collections/i })).toBeVisible();
 
@@ -704,6 +712,10 @@ test('after-hours collection system stays truthful and shoppable at Fold width',
 
   await products.first().getByRole('button', { name: 'Quick View' }).click();
   await expect(page.getByRole('dialog', { name: 'Quick View' })).toBeVisible({ timeout: 30_000 });
+  await page.getByRole('dialog', { name: 'Quick View' }).getByRole('button', { name: 'Add to Cart' }).click();
+  await expect(page.getByRole('dialog', { name: 'Quick View' })).toBeVisible();
+  await expect(page.getByText("Couldn't add to bag")).toBeVisible();
+  await expect(page.getByText('Added to cart!')).toHaveCount(0);
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog', { name: 'Quick View' })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
@@ -817,6 +829,38 @@ test('after-hours product detail keeps the Fold purchase path truthful and unobs
   expect(payload.lines).toHaveLength(1);
   expect(payload.lines[0].quantity).toBe(1);
   expect(payload.lines[0].merchandiseId).toBeTruthy();
+});
+
+test('Buy Now uses a top-level form POST so Shopify can receive the shopper', async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  await page.route('**/.netlify/functions/checkout?redirect=true', async route => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'text/html',
+      body: '<title>Checkout handoff</title><h1>Top-level checkout request received</h1>',
+    });
+  });
+
+  await page.goto('/products/juuce-bond-repair-shampoo', { waitUntil: 'domcontentloaded' });
+  const buyNow = page.locator('[data-product-purchase-actions]').getByRole('button', { name: 'Buy Now' });
+  await expect(buyNow).toBeVisible({ timeout: 30_000 });
+
+  const navigationPost = page.waitForRequest(request =>
+    request.isNavigationRequest()
+      && request.method() === 'POST'
+      && request.url().includes('/.netlify/functions/checkout?redirect=true')
+  );
+  await buyNow.click();
+  const request = await navigationPost;
+  const form = new URLSearchParams(request.postData() || '');
+  const lines = JSON.parse(form.get('lines') || '[]');
+  expect(lines).toHaveLength(1);
+  expect(lines[0].merchandiseId).toBeTruthy();
+  expect(lines[0].quantity).toBe(1);
+  await expect(page).toHaveURL(/\/\.netlify\/functions\/checkout\?redirect=true$/);
+  await expect(page.getByRole('heading', { name: 'Top-level checkout request received' })).toBeVisible();
 });
 
 test('after-hours About journey keeps founder proof truthful and bookable at Fold width', async ({ page }) => {

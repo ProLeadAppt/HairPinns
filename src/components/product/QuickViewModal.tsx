@@ -55,7 +55,7 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
       )?.node;
 
       if (firstVariant) {
-        await quickAddToCart(
+        const result = await quickAddToCart(
           {
             variantId: selectedVariantId,
             productId: product.id,
@@ -66,8 +66,7 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
           },
           true
         );
-        toast.success("Added to cart!");
-        onClose();
+        if (result) onClose();
       }
     } catch (error) {
       console.error("Failed to add to cart:", error);
