@@ -351,7 +351,7 @@ async function cartGet(cartId) {
 /**
  * Netlify Function Handler (v1 format - no package required)
  */
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
     return {

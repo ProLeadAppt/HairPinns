@@ -1,7 +1,7 @@
 /**
  * Simple test function to verify Netlify Dev is working
  */
-exports.handler = async function(event, context) {
+export const handler = async function(event, context) {
   return {
     statusCode: 200,
     headers: {
