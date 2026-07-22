@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "npm run quality && npm test && node scripts/generate-sitemap.js && vite build && node scripts/prerender.mjs && node scripts/seo-smoke-test.js && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
     "quality": "node scripts/quality-regression.mjs",
-    "test": "vitest run src",
+    "test": "vitest run src tests/functions/functions-runtime.test.js",
     "test:e2e": "playwright test",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "prerender": "node scripts/prerender.mjs",
