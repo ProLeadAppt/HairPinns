@@ -51,6 +51,8 @@ const criticalViteConfigSource = await readFile(path.join(ROOT, 'vite.config.ts'
 const notificationAppSource = await readFile(path.join(ROOT, 'src/App.tsx'), 'utf8');
 const notificationAdapterSource = await readFile(path.join(ROOT, 'src/hooks/use-toast.ts'), 'utf8');
 const packageManifestSource = await readFile(path.join(ROOT, 'package.json'), 'utf8');
+const packageLockSource = await readFile(path.join(ROOT, 'package-lock.json'), 'utf8');
+const bunLockSource = await readFile(path.join(ROOT, 'bun.lockb'), 'utf8');
 const denoLockSource = await readFile(path.join(ROOT, 'deno.lock'), 'utf8');
 assert.doesNotMatch(truthSchemaSource, /reviewCount:\s*["']762["']/);
 assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
@@ -69,6 +71,12 @@ assert.match(notificationAppSource, /<Sonner\s*\/>/, 'The shared Sonner notifica
 assert.match(notificationAdapterSource, /from ["']sonner["']/, 'Legacy form notifications must route through Sonner');
 assert.doesNotMatch(packageManifestSource, /@radix-ui\/react-toast/, 'The unused Radix toast dependency must not return');
 assert.doesNotMatch(denoLockSource, /@radix-ui\/react-toast/, 'Deno lock state must not restore the unused Radix toast dependency');
+assert.doesNotMatch(notificationAppSource, /QueryClient(?:Provider)?/, 'The app shell must not restore an unused global React Query provider');
+assert.doesNotMatch(packageManifestSource, /@tanstack\/react-query/, 'The unused React Query dependency must not return without a real consumer');
+assert.doesNotMatch(packageLockSource, /@tanstack\/(?:react-query|query-core)/, 'npm lock state must not restore the unused React Query dependency');
+assert.doesNotMatch(bunLockSource, /@tanstack\/(?:react-query|query-core)/, 'Bun lock state must not restore the unused React Query dependency');
+assert.doesNotMatch(denoLockSource, /@tanstack\/(?:react-query|query-core)/, 'Deno lock state must not restore the unused React Query dependency');
+assert.doesNotMatch(criticalViteConfigSource, /tanstack-query|@tanstack\/react-query/, 'Vite must not restore a dead React Query chunk rule');
 
 assert.deepEqual(
   occurrences(/(?:\+61[-\s]*468[-\s]*093[-\s]*991|0468\s*093\s*991|61468093991)/),

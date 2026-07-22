@@ -39,7 +39,6 @@ export default defineConfig(() => {
               if (/[/\\]node_modules[/\\](?:react|react-dom|react-router|react-router-dom)(?:[/\\]|$)/.test(id)) return 'react-vendor';
               if (id.includes('framer-motion')) return 'framer-motion';
               if (id.includes('recharts')) return 'recharts';
-              if (id.includes('@tanstack/react-query')) return 'tanstack-query';
               return;
             }
 

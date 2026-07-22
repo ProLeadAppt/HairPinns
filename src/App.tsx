@@ -1,7 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
@@ -71,8 +70,6 @@ const ProductRoute = () => {
     </ProductDetailErrorBoundary>
   );
 };
-
-const queryClient = new QueryClient();
 
 const AppContent = () => {
   useEffect(() => {
@@ -162,11 +159,9 @@ const AppContent = () => {
   );
 };
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AppContent />
-    </TooltipProvider>
-  </QueryClientProvider>
+  <TooltipProvider>
+    <AppContent />
+  </TooltipProvider>
 );
 
 export default App;
