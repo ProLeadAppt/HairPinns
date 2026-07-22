@@ -48,6 +48,10 @@ const reviewsPageSource = await readFile(path.join(ROOT, 'src/pages/Reviews.tsx'
 const homepageTrustSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
 const criticalHeaderSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
 const criticalViteConfigSource = await readFile(path.join(ROOT, 'vite.config.ts'), 'utf8');
+const notificationAppSource = await readFile(path.join(ROOT, 'src/App.tsx'), 'utf8');
+const notificationAdapterSource = await readFile(path.join(ROOT, 'src/hooks/use-toast.ts'), 'utf8');
+const packageManifestSource = await readFile(path.join(ROOT, 'package.json'), 'utf8');
+const denoLockSource = await readFile(path.join(ROOT, 'deno.lock'), 'utf8');
 assert.doesNotMatch(truthSchemaSource, /reviewCount:\s*["']762["']/);
 assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
 assert.doesNotMatch(truthSchemaSource, /\baggregateRating\s*:/);
@@ -60,6 +64,11 @@ assert.match(criticalViteConfigSource, /react\|react-dom\|react-router\|react-ro
 assert.match(criticalHeaderSource, /matchMedia\(["']\(min-width: 1280px\)["']\)/, 'Desktop header enhancements must follow the xl breakpoint');
 assert.match(criticalHeaderSource, /showDesktopEnhancements[\s\S]*?<ShopDropdown \/>/, 'Mobile must not mount the desktop shop dropdown');
 assert.match(criticalHeaderSource, /showDesktopEnhancements[\s\S]*?<ProductSearch placeholder=["']Search products and articles/, 'Mobile must not mount desktop search');
+assert.doesNotMatch(notificationAppSource, /components\/ui\/toaster|<Toaster\s*\/>/, 'The duplicate Radix toast renderer must not return');
+assert.match(notificationAppSource, /<Sonner\s*\/>/, 'The shared Sonner notification surface must remain mounted');
+assert.match(notificationAdapterSource, /from ["']sonner["']/, 'Legacy form notifications must route through Sonner');
+assert.doesNotMatch(packageManifestSource, /@radix-ui\/react-toast/, 'The unused Radix toast dependency must not return');
+assert.doesNotMatch(denoLockSource, /@radix-ui\/react-toast/, 'Deno lock state must not restore the unused Radix toast dependency');
 
 assert.deepEqual(
   occurrences(/(?:\+61[-\s]*468[-\s]*093[-\s]*991|0468\s*093\s*991|61468093991)/),
