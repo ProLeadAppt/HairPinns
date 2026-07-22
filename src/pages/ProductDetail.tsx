@@ -301,44 +301,22 @@ const ProductDetail = () => {
         currency: "AUD",
       });
       
-      // Call server-side checkout endpoint with redirect=true
-      // The server will create/update cart and redirect to Shopify checkout
-      const existingCartId = getCartId();
-      let useCartId = existingCartId;
+      // A top-level form navigation lets the browser follow Netlify's 303 to
+      // Shopify. A fetch() request follows cross-origin redirects under CORS
+      // and can fail before JavaScript ever receives the checkout URL.
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = `${window.location.origin}/.netlify/functions/checkout?redirect=true`;
+      form.style.display = 'none';
 
-      // Retry once without cart ID if stale
-      let response: Response | null = null;
-      for (let attempt = 0; attempt < 2; attempt++) {
-        response = await fetch('/api/checkout?redirect=true', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
-            ...(useCartId && { cartId: useCartId }),
-          }),
-        });
-        if (response.ok || response.redirected || response.status === 303) break;
-        if (attempt === 0 && existingCartId) {
-          useCartId = null;
-          localStorage.removeItem('hp_cart_id');
-        }
-      }
+      const linesInput = document.createElement('input');
+      linesInput.type = 'hidden';
+      linesInput.name = 'lines';
+      linesInput.value = JSON.stringify([{ merchandiseId: activeVariantId, quantity: 1 }]);
+      form.appendChild(linesInput);
 
-      if (!response) {
-        throw new Error('Checkout failed');
-      }
-
-      // If redirect fails, follow the redirect manually
-      if (response.redirected) {
-        window.location.href = response.url;
-      } else if (response.status === 303) {
-        const location = response.headers.get('Location');
-        if (location) {
-          window.location.href = location;
-        }
-      } else if (!response.ok) {
-        throw new Error('Checkout failed');
-      }
+      document.body.appendChild(form);
+      form.submit();
     } catch (error) {
       console.error("Buy now failed:", error);
       toast.error("Unable to proceed to checkout. Please try again.");
