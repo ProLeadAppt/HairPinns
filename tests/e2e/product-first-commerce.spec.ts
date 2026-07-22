@@ -324,7 +324,13 @@ test('sticky commerce bar yields to the contained salon close and restores above
   await booking.scrollIntoViewIfNeeded();
   await expect(booking).toBeVisible();
   const bookingBox = await booking.boundingBox();
-  expect(bookingBox ? bookingBox.y + bookingBox.height : Number.POSITIVE_INFINITY).toBeLessThanOrEqual(844);
+  // Chromium can resolve font/layout geometry to a fractional device-pixel edge
+  // on remote builds. Keep the tolerance subpixel while separately proving that
+  // both fixed controls are absent over the booking action.
+  const viewportEdgeEpsilon = 0.5;
+  expect(bookingBox ? bookingBox.y + bookingBox.height : Number.POSITIVE_INFINITY).toBeLessThanOrEqual(
+    844 + viewportEdgeEpsilon,
+  );
   await expect(bar).toHaveCount(0);
   await expect(scrollTop).toHaveCount(0);
 
