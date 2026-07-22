@@ -139,6 +139,40 @@ test('operational routes still render the React application', async ({ page }) =
   }
 });
 
+test('shared typography and motion policy respects user preferences', async ({ page }) => {
+  await page.addInitScript(() => {
+    (window as any).__scrollBehaviors = [];
+    window.scrollTo = ((...args: any[]) => {
+      const options = typeof args[0] === 'object' ? args[0] : undefined;
+      (window as any).__scrollBehaviors.push(options?.behavior);
+    }) as typeof window.scrollTo;
+  });
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/services');
+  await page.locator('[data-services-nav] a').nth(1).click();
+  expect(await page.evaluate(() => (window as any).__scrollBehaviors.at(-1))).toBe('auto');
+
+  await page.goto('/');
+  const reducedReveal = page.locator('main .reveal').first();
+  await expect(reducedReveal).toHaveClass(/visible/);
+  const reducedAnimationSeconds = await reducedReveal.evaluate((element) =>
+    Number.parseFloat(getComputedStyle(element).animationDuration),
+  );
+  expect(reducedAnimationSeconds).toBeLessThanOrEqual(0.00001);
+
+  await page.goto('/privacy');
+  const editorialHeading = page.locator('main h1').first();
+  await expect(editorialHeading).toBeVisible();
+  expect(await editorialHeading.evaluate((element) => getComputedStyle(element).fontFamily)).toContain('Playfair Display');
+  expect(await page.evaluate(() => performance.getEntriesByType('resource').some((entry) => /fraunces/i.test(entry.name)))).toBe(false);
+
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/services');
+  await page.locator('[data-services-nav] a').nth(1).click();
+  expect(await page.evaluate(() => (window as any).__scrollBehaviors.at(-1))).toBe('smooth');
+});
+
 test('mobile navigation is a named dialog without nested controls', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });

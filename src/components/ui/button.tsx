@@ -15,9 +15,9 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-btn",
         ghost: "hover:bg-muted text-foreground hover:text-foreground rounded-btn",
         link: "text-link underline-offset-4 hover:underline",
-        primary: "bg-[hsl(var(--brand-500))] !text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
-        accent: "border-2 border-[hsl(var(--brand-500))] !text-[hsl(var(--brand-600))] bg-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-500))] hover:!text-[hsl(0,0%,100%)] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
-        inverted: "border-2 border-[hsl(0,0%,100%)] !text-[hsl(0,0%,100%)] bg-transparent hover:bg-[hsl(0,0%,100%)] hover:!text-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-all duration-base rounded-btn",
+        primary: "bg-[hsl(var(--brand-500))] !text-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-[background-color,color,box-shadow] duration-base rounded-btn",
+        accent: "border-2 border-[hsl(var(--brand-500))] !text-[hsl(var(--brand-600))] bg-[hsl(0,0%,100%)] hover:bg-[hsl(var(--brand-500))] hover:!text-[hsl(0,0%,100%)] shadow-lg hover:shadow-xl transition-[background-color,color,border-color,box-shadow] duration-base rounded-btn",
+        inverted: "border-2 border-[hsl(0,0%,100%)] !text-[hsl(0,0%,100%)] bg-transparent hover:bg-[hsl(0,0%,100%)] hover:!text-[hsl(var(--brand-600))] shadow-lg hover:shadow-xl transition-[background-color,color,border-color,box-shadow] duration-base rounded-btn",
       },
       size: {
         default: "h-10 px-4 py-2 text-[length:var(--text-button)]",

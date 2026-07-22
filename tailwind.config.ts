@@ -112,9 +112,7 @@ export default {
         'body': ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
         'sans': ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
         'serif': ["Playfair Display", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
-        // Fraunces — display serif with true italics + optical sizing.
-        // Used for the brand tagline, .h-display headings, and .pull-quote.
-        'display': ["Fraunces", "Playfair Display", "system-ui", "serif"],
+        'display': ["Playfair Display", "Georgia", "serif"],
       },
       keyframes: {
         "accordion-down": {

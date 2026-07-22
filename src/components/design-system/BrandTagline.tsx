@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Italic Fraunces tagline — the warm, human sentence that lives at the top
+ * Italic Playfair tagline — the warm, human sentence that lives at the top
  * of the hero or above section titles. Renders as `<p>` by default but can
  * be promoted to a `<div>` via `as` for layout contexts.
  */

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { preferredScrollBehavior } from "@/lib/motion";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,10 +57,9 @@ const ScrollToTopButton = () => {
   }, []);
 
   const scrollToTop = () => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({
       top: 0,
-      behavior: reduceMotion ? "auto" : "smooth",
+      behavior: preferredScrollBehavior(),
     });
   };
 
@@ -68,10 +68,10 @@ const ScrollToTopButton = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-24 left-4 z-40 w-12 h-12 rounded-full bg-brand-500 !text-white shadow-2xl hover:bg-brand-600 hover:scale-110 transition-all duration-300 flex items-center justify-center group"
+          className="group fixed bottom-24 left-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-brand-500 !text-white shadow-2xl transition-[background-color,transform,box-shadow] duration-300 hover:scale-110 hover:bg-brand-600 motion-reduce:hover:scale-100"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+          <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-1 motion-reduce:group-hover:translate-y-0" />
         </button>
       )}
     </>

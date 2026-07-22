@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { List } from "lucide-react";
+import { preferredScrollBehavior } from "@/lib/motion";
 
 interface Heading {
   id: string;
@@ -37,7 +38,7 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
   const handleClick = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: preferredScrollBehavior() });
     }
   };
 

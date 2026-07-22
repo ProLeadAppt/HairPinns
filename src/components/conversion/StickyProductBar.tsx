@@ -155,7 +155,7 @@ const StickyProductBar = ({ threshold = 300 }: StickyProductBarProps) => {
                 </p>
                 <div className="w-full h-2 bg-muted rounded-full overflow-hidden mt-1">
                   <div
-                    className="h-full bg-brand-500 transition-all duration-300"
+                    className="h-full bg-brand-500 transition-[width] duration-300"
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>

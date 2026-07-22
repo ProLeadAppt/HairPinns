@@ -4,6 +4,7 @@ import FAQSection from "@/components/FAQSection";
 import { comprehensiveFAQs } from "@/data/faqs";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
+import { preferredScrollBehavior } from "@/lib/motion";
 
 interface DirectoryService {
   title: string;
@@ -94,7 +95,7 @@ const ServiceDirectory = ({ categories, activeSection, totalServices, serviceSlu
                 const element = document.getElementById(category.id);
                 if (!element) return;
                 const top = element.offsetTop - 84;
-                window.scrollTo({ top, behavior: "smooth" });
+                window.scrollTo({ top, behavior: preferredScrollBehavior() });
               }}
               className="inline-flex min-h-11 shrink-0 items-center gap-2 border px-4 py-2 text-xs font-semibold tracking-[0.04em] transition-colors"
               style={active

@@ -101,7 +101,7 @@ const ProductCard = ({
 
   return (
     <div className={cn(
-      "group relative bg-card border border-border rounded-lg overflow-hidden hover:shadow-xl transition-all duration-base",
+      "group relative bg-card border border-border rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-base",
       !inStock && "opacity-75",
       className
     )}>
@@ -131,7 +131,7 @@ const ProductCard = ({
           <img
             src={shopifyImage(image, 800)}
             alt={name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 motion-reduce:group-hover:scale-100"
             loading="lazy"
             decoding="async"
             width="400"
