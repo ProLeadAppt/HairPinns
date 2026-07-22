@@ -31,6 +31,7 @@ import http from 'http';
 import { resolve, dirname, join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { collectRoutes } from './collect-prerender-routes.js';
+import { isTransientBrowserError, isTransientPrerenderRouteError } from './prerender-retry.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -126,7 +127,6 @@ class Pool {
   }
 }
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const TRANSIENT_BROWSER_ERROR_RE = /Connection closed|Target.closeTarget timed out|Browser disconnected|Session closed|Protocol error/i;
 
 async function launchPrerenderBrowser(puppeteer, launchOpts) {
   try {
@@ -153,7 +153,7 @@ async function closeBrowserSafely(browser) {
     }
   } catch (err) {
     const msg = String(err?.message || err);
-    if (!TRANSIENT_BROWSER_ERROR_RE.test(msg)) {
+    if (!isTransientBrowserError(msg)) {
       console.warn(`[prerender] browser.close warning: ${msg}`);
     }
   }
@@ -395,8 +395,12 @@ async function main() {
           } catch (err) {
             lastErr = err;
             const msg = String(err?.message || err);
-            if (TRANSIENT_BROWSER_ERROR_RE.test(msg) && attempt < 2) {
-              await restartBrowser(`route ${route} attempt ${attempt + 1}`, err);
+            if (isTransientPrerenderRouteError(msg) && attempt < 2) {
+              if (isTransientBrowserError(msg)) {
+                await restartBrowser(`route ${route} attempt ${attempt + 1}`, err);
+              } else {
+                console.warn(`[prerender] Retrying route ${route} after navigation timeout (attempt ${attempt + 1})`);
+              }
               await sleep(750 * Math.pow(2, attempt));
               continue;
             }
@@ -414,14 +418,14 @@ async function main() {
               }
             } catch (closeErr) {
               const msg = String(closeErr?.message || closeErr);
-              if (!TRANSIENT_BROWSER_ERROR_RE.test(msg)) {
+              if (!isTransientBrowserError(msg)) {
                 console.warn(`[prerender] page.close warning for ${route}: ${msg}`);
               }
             }
           }
         }
 
-        if (lastErr && TRANSIENT_BROWSER_ERROR_RE.test(String(lastErr?.message || lastErr))) {
+        if (lastErr && isTransientBrowserError(lastErr)) {
           // If we exhausted retries because Chromium keeps disconnecting,
           // record the failure once here so the batch can continue cleanly.
           const error = String(lastErr?.message || lastErr).slice(0, 120);
