@@ -710,6 +710,50 @@ test('after-hours collection system stays truthful and shoppable at Fold width',
   await expect(page.getByRole('option', { name: 'Newest First' })).toHaveCount(0);
   await page.keyboard.press('Escape');
 
+  const hiddenPointerStates = await page.evaluate(() => {
+    const states = [
+      ['aria-hidden', 'true'],
+      ['data-aria-hidden', 'true'],
+      ['data-active', 'false'],
+    ];
+    return states.map(([name, value]) => {
+      const widget = document.createElement('chat-widget');
+      widget.setAttribute(name, value);
+      document.body.appendChild(widget);
+      const pointerEvents = getComputedStyle(widget).pointerEvents;
+      widget.remove();
+      return { name, pointerEvents };
+    });
+  });
+  expect(hiddenPointerStates).toEqual([
+    { name: 'aria-hidden', pointerEvents: 'none' },
+    { name: 'data-aria-hidden', pointerEvents: 'none' },
+    { name: 'data-active', pointerEvents: 'none' },
+  ]);
+
+  await page.evaluate(() => {
+    const activeWidget = document.createElement('chat-widget');
+    activeWidget.setAttribute('data-active', 'true');
+    activeWidget.setAttribute('data-testid', 'active-chat-widget');
+    activeWidget.setAttribute('style', 'position:fixed;inset:0;z-index:2147483647;display:block;');
+    activeWidget.addEventListener('click', () => activeWidget.setAttribute('data-clicked', 'true'));
+    document.body.appendChild(activeWidget);
+  });
+  const activeWidget = page.getByTestId('active-chat-widget');
+  await expect(activeWidget).toHaveCSS('pointer-events', 'auto');
+  await activeWidget.click({ position: { x: 5, y: 5 } });
+  await expect(activeWidget).toHaveAttribute('data-clicked', 'true');
+  await activeWidget.evaluate((element) => element.remove());
+
+  await page.evaluate(() => {
+    const hiddenWidget = document.createElement('chat-widget');
+    hiddenWidget.setAttribute('data-active', 'false');
+    hiddenWidget.setAttribute(
+      'style',
+      'position:fixed;inset:0;z-index:2147483647;display:block;',
+    );
+    document.body.appendChild(hiddenWidget);
+  });
   await products.first().getByRole('button', { name: 'Quick View' }).click();
   await expect(page.getByRole('dialog', { name: 'Quick View' })).toBeVisible({ timeout: 30_000 });
   await page.getByRole('dialog', { name: 'Quick View' }).getByRole('button', { name: 'Add to Cart' }).click();
