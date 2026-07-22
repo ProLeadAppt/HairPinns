@@ -1209,6 +1209,11 @@ test('after-hours contact journey preserves canonical visit details and the live
   await expect(form.getByText('I agree to receive updates from Hair Pinns.')).toBeVisible();
   expect((await form.getByRole('button', { name: 'Send Message' }).boundingBox())?.height).toBeGreaterThanOrEqual(44);
 
+  await form.evaluate((node) => node.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })));
+  await expect(page.getByText('Validation Error', { exact: true })).toBeVisible();
+  await expect(page.getByText('Please check the form and fix any errors.', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-sonner-toaster]')).toHaveCount(1);
+
   const faqs = page.locator('[data-contact-faq] details');
   await expect(faqs).toHaveCount(4);
   await faqs.last().locator('summary').click();
