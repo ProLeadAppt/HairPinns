@@ -2,7 +2,7 @@ import { Menu, Calendar, ShoppingCart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
 import { useCart } from "@/contexts/CartContext";
 import { SHOP_BY_CONCERN } from "@/config/commerceNavigation";
@@ -33,6 +33,9 @@ const Header = () => {
   const { openCart, itemCount } = useCart();
   const [showPromo, setShowPromo] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showDesktopEnhancements, setShowDesktopEnhancements] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 1280px)").matches
+  );
   const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
   const mobileMenuFirstLinkRef = useRef<HTMLAnchorElement>(null);
   const promoMessage = getPromoMessage();
@@ -46,6 +49,14 @@ const Header = () => {
     if (QIQI_DISCOUNT_ACTIVE) return "qiqi_20_off";
     return "none";
   })();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    const updateDesktopEnhancements = () => setShowDesktopEnhancements(mediaQuery.matches);
+    updateDesktopEnhancements();
+    mediaQuery.addEventListener("change", updateDesktopEnhancements);
+    return () => mediaQuery.removeEventListener("change", updateDesktopEnhancements);
+  }, []);
 
   return (
     <>
@@ -94,9 +105,13 @@ const Header = () => {
             </Link>
 
             <nav className="hidden items-center gap-5 xl:flex" aria-label="Main navigation">
-              <Suspense fallback={<Link to="/collections" className={navLinkClass}>Shop</Link>}>
-                <ShopDropdown />
-              </Suspense>
+              {showDesktopEnhancements ? (
+                <Suspense fallback={<Link to="/collections" className={navLinkClass}>Shop</Link>}>
+                  <ShopDropdown />
+                </Suspense>
+              ) : (
+                <Link to="/collections" className={navLinkClass}>Shop</Link>
+              )}
               <Link to="/blog" className={navLinkClass}>Hair care guides</Link>
               <Link to="/about" className={navLinkClass}>About Jena</Link>
               <Link to="/services" className={navLinkClass}>Salon</Link>
@@ -104,9 +119,11 @@ const Header = () => {
             </nav>
 
             <div className="mx-3 hidden min-w-0 max-w-[18rem] flex-1 xl:block 2xl:max-w-sm [&_input]:h-11 [&_input]:rounded-none [&_input]:border-[hsl(var(--after-hours-plum)/0.28)] [&_input]:bg-transparent [&_input]:text-[hsl(var(--after-hours-plum))]">
-              <Suspense fallback={<div className="flex h-11 items-center border border-[hsl(var(--after-hours-plum)/0.28)] px-3 text-sm text-[hsl(var(--after-hours-plum)/0.58)]">Search products and articles...</div>}>
-                <ProductSearch placeholder="Search products and articles..." maxResults={6} />
-              </Suspense>
+              {showDesktopEnhancements ? (
+                <Suspense fallback={<div className="flex h-11 items-center border border-[hsl(var(--after-hours-plum)/0.28)] px-3 text-sm text-[hsl(var(--after-hours-plum)/0.58)]">Search products and articles...</div>}>
+                  <ProductSearch placeholder="Search products and articles..." maxResults={6} />
+                </Suspense>
+              ) : null}
             </div>
 
             <div className="ml-auto hidden flex-shrink-0 items-center gap-2 xl:flex">
