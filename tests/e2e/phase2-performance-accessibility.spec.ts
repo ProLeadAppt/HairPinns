@@ -139,6 +139,27 @@ test('operational routes still render the React application', async ({ page }) =
   }
 });
 
+test('shared business claims and schemas stay truthful', async ({ page }) => {
+  for (const route of ['/', '/services', '/reviews']) {
+    await page.goto(route);
+    const schemaPayloads = await page.locator('script[type="application/ld+json"]').allTextContents();
+    const serialized = schemaPayloads.join('\n');
+
+    expect(serialized).not.toContain('"reviewCount":"762"');
+    expect(serialized).not.toContain('"ratingValue":"4.9"');
+    expect(serialized).not.toContain('Over 762 five-star reviews');
+    expect(serialized).not.toContain('Available 24/7 via Fresha');
+    expect(serialized).not.toContain('"totalTime":"PT2M"');
+
+    if (route === '/') {
+      expect(serialized).not.toContain('"@type":"FAQPage"');
+      expect(serialized).not.toContain('"@type":"HowTo"');
+      await expect(page.getByText(/762\+? reviews/i)).toHaveCount(0);
+      await expect(page.getByText('unopened products', { exact: true })).toBeVisible();
+    }
+  }
+});
+
 test('shared typography and motion policy respects user preferences', async ({ page }) => {
   await page.addInitScript(() => {
     (window as any).__scrollBehaviors = [];

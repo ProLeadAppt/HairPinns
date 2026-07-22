@@ -8,7 +8,7 @@ import { generateOrganizationSchema, generateEnhancedLocalBusinessSchema, genera
 import { getOGImage } from "@/lib/sitemap";
 import { comprehensiveFAQs } from "@/data/faqs";
 import { serviceDetailData } from "@/data/serviceDetails";
-import { googleReviews } from "@/data/reviews";
+
 
 interface Service {
   title: string;
@@ -492,7 +492,7 @@ const Services = () => {
 
   // Generate schemas
   const organizationSchema = generateOrganizationSchema();
-  const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com/services', googleReviews);
+  const localBusinessSchema = generateEnhancedLocalBusinessSchema("https://hairpinns.com/services");
   const faqSchema = generateFAQPageSchema(comprehensiveFAQs.map(faq => ({
     question: faq.question,
     answer: faq.answer
