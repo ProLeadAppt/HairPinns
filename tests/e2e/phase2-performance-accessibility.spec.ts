@@ -288,6 +288,31 @@ test('after-hours header preserves commerce paths across tablet and desktop navi
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(1440);
 });
 
+test('mobile header defers desktop-only enhancement chunks until they are needed', async ({ page }) => {
+  const requestedChunks: string[] = [];
+  page.on('request', (request) => {
+    const url = request.url();
+    if (/\/(?:ProductSearch|ShopDropdown)-[^/]+\.js(?:\?|$)/.test(url)) requestedChunks.push(url);
+  });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.waitForLoadState('networkidle');
+
+  expect(requestedChunks.some((url) => url.includes('/ProductSearch-'))).toBe(false);
+  expect(requestedChunks.some((url) => url.includes('/ShopDropdown-'))).toBe(false);
+
+  await page.getByRole('button', { name: 'Open menu' }).click();
+  await expect(page.getByRole('searchbox', { name: 'Search products and articles' })).toBeVisible();
+  await expect.poll(() => requestedChunks.some((url) => url.includes('/ProductSearch-'))).toBe(true);
+  expect(requestedChunks.some((url) => url.includes('/ShopDropdown-'))).toBe(false);
+
+  await page.keyboard.press('Escape');
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect(page.getByRole('searchbox', { name: 'Search products and articles' })).toBeVisible();
+  await expect.poll(() => requestedChunks.some((url) => url.includes('/ShopDropdown-'))).toBe(true);
+});
+
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   const configEntries = await page.evaluate(() =>

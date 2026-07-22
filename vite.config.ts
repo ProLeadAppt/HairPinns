@@ -36,12 +36,9 @@ export default defineConfig(() => {
         output: {
           manualChunks: (id) => {
             if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) return 'react-vendor';
+              if (/[/\\]node_modules[/\\](?:react|react-dom|react-router|react-router-dom)(?:[/\\]|$)/.test(id)) return 'react-vendor';
               if (id.includes('framer-motion')) return 'framer-motion';
-              if (id.includes('@radix-ui')) return 'ui-vendor';
               if (id.includes('recharts')) return 'recharts';
-              if (id.includes('lucide-react')) return 'lucide';
-              if (id.includes('sonner') || id.includes('vaul') || id.includes('embla-carousel')) return 'ui-misc';
               if (id.includes('@tanstack/react-query')) return 'tanstack-query';
               return;
             }

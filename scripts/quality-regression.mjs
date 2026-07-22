@@ -46,6 +46,8 @@ const homepageSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'u
 const truthSchemaSource = await readFile(path.join(ROOT, 'src/lib/schema.ts'), 'utf8');
 const reviewsPageSource = await readFile(path.join(ROOT, 'src/pages/Reviews.tsx'), 'utf8');
 const homepageTrustSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
+const criticalHeaderSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
+const criticalViteConfigSource = await readFile(path.join(ROOT, 'vite.config.ts'), 'utf8');
 assert.doesNotMatch(truthSchemaSource, /reviewCount:\s*["']762["']/);
 assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
 assert.doesNotMatch(truthSchemaSource, /\baggregateRating\s*:/);
@@ -53,6 +55,11 @@ assert.doesNotMatch(homepageSource, /generateFAQPageSchema|generateHowToSchema|g
 assert.doesNotMatch(reviewsPageSource, /4\.9\s+stars|53\+\s+verified|googleReviews/i);
 assert.doesNotMatch(homepageTrustSource, /762|4\.9\s*\/\s*5|no drama/i);
 assert.match(homepageTrustSource, /14-day returns[\s\S]*unopened products/);
+assert.doesNotMatch(criticalViteConfigSource, /id\.includes\(['"]react['"]\)/, 'React vendor matching must not capture every package containing “react”');
+assert.match(criticalViteConfigSource, /react\|react-dom\|react-router\|react-router-dom/, 'React vendor matching must remain limited to core packages');
+assert.match(criticalHeaderSource, /matchMedia\(["']\(min-width: 1280px\)["']\)/, 'Desktop header enhancements must follow the xl breakpoint');
+assert.match(criticalHeaderSource, /showDesktopEnhancements[\s\S]*?<ShopDropdown \/>/, 'Mobile must not mount the desktop shop dropdown');
+assert.match(criticalHeaderSource, /showDesktopEnhancements[\s\S]*?<ProductSearch placeholder=["']Search products and articles/, 'Mobile must not mount desktop search');
 
 assert.deepEqual(
   occurrences(/(?:\+61[-\s]*468[-\s]*093[-\s]*991|0468\s*093\s*991|61468093991)/),
