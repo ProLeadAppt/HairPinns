@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { prefersReducedMotion } from "@/lib/motion";
 
 /**
  * Adds the 'visible' class to elements with the 'reveal' class
@@ -12,6 +13,13 @@ export function useScrollReveal() {
     const container = ref.current;
     if (!container) return;
 
+    const elements = container.querySelectorAll(".reveal");
+
+    if (prefersReducedMotion() || typeof IntersectionObserver === "undefined") {
+      elements.forEach((element) => element.classList.add("visible"));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -24,7 +32,6 @@ export function useScrollReveal() {
       { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
     );
 
-    const elements = container.querySelectorAll(".reveal");
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();

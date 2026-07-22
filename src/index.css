@@ -1,6 +1,6 @@
-/* Self-hosted Latin variable fonts remove the external Google Fonts CSS and
-   connection chain. Inter and Playfair are used above the fold; Fraunces is
-   editorial and optional on constrained connections. */
+/* Self-hosted Latin fonts remove the external Google Fonts CSS and connection
+   chain. Inter handles interface/body copy; Playfair is the single editorial
+   display face across every route. */
 @font-face {
   font-family: "Inter";
   src: url("./assets/fonts/inter-latin.woff2") format("woff2");
@@ -19,23 +19,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-@font-face {
-  font-family: "Fraunces";
-  src: url("./assets/fonts/fraunces-latin.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: optional;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: "Fraunces";
-  src: url("./assets/fonts/fraunces-italic-latin.woff2") format("woff2");
-  font-style: italic;
-  font-weight: 400 500;
-  font-display: optional;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 @tailwind base;
 @tailwind components;
@@ -132,7 +115,7 @@ All colors MUST be HSL.
     --text-button-lg: 1.125rem; /* 18px */
     /* Editorial display sizes — used on hero / section openers. */
     --text-display: clamp(3rem, 2rem + 4vw, 5.5rem);       /* 48 → 88 */
-    --text-tagline: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);/* 18 → 22, italic Fraunces */
+    --text-tagline: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);/* 18 → 22, italic Playfair */
 
     /* Spacing scale - compressed for mobile, generous for editorial sections */
     --space-xs: 0.25rem;
@@ -313,11 +296,9 @@ main#main-content:focus-visible {
     line-height: 1.5;
   }
 
-  /* Editorial display heading — only for hero / section openers. Fraunces
-     with optical-size axis gives a wider, more confident feel at large sizes. */
+  /* Editorial display heading — only for hero / section openers. */
   .h-display {
-    font-family: "Fraunces", "Playfair Display", serif;
-    font-variation-settings: "opsz" 144;
+    font-family: "Playfair Display", Georgia, serif;
     font-size: var(--text-display);
     font-weight: 500;
     line-height: 1.02;
@@ -326,15 +307,12 @@ main#main-content:focus-visible {
   .h-display em,
   .h-display i {
     font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 100;
   }
 
-  /* Italic editorial tagline — the warm, human sentence under a hero or
-     at the top of a section. Pairs Fraunces italics with the brand purple. */
+  /* Italic editorial tagline — the warm, human sentence under a hero. */
   .tagline {
-    font-family: "Fraunces", "Playfair Display", serif;
+    font-family: "Playfair Display", Georgia, serif;
     font-style: italic;
-    font-variation-settings: "opsz" 14;
     font-size: var(--text-tagline);
     line-height: 1.5;
     color: hsl(var(--brand-600));
@@ -550,7 +528,7 @@ main#main-content:focus-visible {
    All classes here are ADDITIVE — every existing class/utility still works
    the same. We use this layer for:
      - Section-numbered hairline dividers ("01 — what we make")
-     - Editorial pull-quotes (large italic Fraunces, rose-gold mark)
+     - Editorial pull-quotes (large italic Playfair, rose-gold mark)
      - Generous section-level vertical rhythm (96 / 128 / 160px)
      - Subtle button micro-interactions (lift + shadow grow + arrow slide)
      - Image cross-fade on hover (a quiet luxury signal)
@@ -635,13 +613,12 @@ main#main-content:focus-visible {
   margin-right: 0.5rem;
 }
 
-/* Pull-quote — large italic Fraunces with a subtle rose-gold ornament.
+/* Pull-quote — large italic Playfair with a subtle rose-gold ornament.
    Used as a 1-per-page editorial beat. */
 .pull-quote {
   position: relative;
-  font-family: "Fraunces", "Playfair Display", serif;
+  font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-variation-settings: "opsz" 144, "SOFT" 100;
   font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem);
   line-height: 1.3;
   letter-spacing: -0.015em;
@@ -656,7 +633,7 @@ main#main-content:focus-visible {
   top: -1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", Georgia, serif;
   font-size: 4rem;
   color: hsl(var(--gold) / 0.35);
   line-height: 1;

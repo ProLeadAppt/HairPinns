@@ -35,7 +35,7 @@ const PriceRow = ({
 }: PriceRowProps) => {
   return (
     <div className={cn(
-      "relative p-6 bg-card border border-border rounded-lg transition-all duration-base",
+      "relative p-6 bg-card border border-border rounded-lg transition-[border-color,box-shadow,transform] duration-base",
       highlighted && "border-brand-500 shadow-lg scale-105",
       className
     )}>
@@ -102,7 +102,7 @@ const PriceRow = ({
         <button
           onClick={onSelect}
           className={cn(
-            "w-full py-3 px-4 rounded-md font-medium transition-all duration-base",
+            "w-full py-3 px-4 rounded-md font-medium transition-[background-color,color,border-color,box-shadow] duration-base",
             highlighted
               ? "bg-brand-500 text-primary-foreground hover:bg-brand-500/92 shadow-sm hover:shadow-md"
               : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"

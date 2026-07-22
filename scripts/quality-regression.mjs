@@ -200,11 +200,21 @@ assert.match(stickyBarSource, /window\.scrollY > 400 && !salonIsVisible && !foot
 assert.match(stickyBarSource, /to="\/collections"[\s\S]*href=\{BOOK_URL\}/, 'Sticky commerce bar must retain product-first and secondary salon actions');
 
 const scrollTopSource = await readFile(path.join(ROOT, 'src/components/ScrollToTopButton.tsx'), 'utf8');
+const motionSource = await readFile(path.join(ROOT, 'src/lib/motion.ts'), 'utf8');
+const scrollRevealSource = await readFile(path.join(ROOT, 'src/hooks/useScrollReveal.ts'), 'utf8');
+const tableOfContentsSource = await readFile(path.join(ROOT, 'src/components/blog/TableOfContents.tsx'), 'utf8');
+const serviceDirectoryMotionSource = await readFile(path.join(ROOT, 'src/components/services/ServiceDirectory.tsx'), 'utf8');
 assert.match(scrollTopSource, /querySelector<HTMLElement>\("\[data-home-booking-close\]"\)/, 'Scroll-to-top control must detect the salon close');
 assert.match(scrollTopSource, /querySelector<HTMLElement>\("\[data-home-footer\]"\)/, 'Scroll-to-top control must detect the final footer');
 assert.match(scrollTopSource, /window\.pageYOffset > 300 && !salonIsVisible && !footerIsVisible/, 'Scroll-to-top control must yield to the salon close and footer while retaining its threshold');
 assert.match(scrollTopSource, /new MutationObserver\(toggleVisibility\)[\s\S]*childList: true, subtree: true/, 'Scroll-to-top control must handle deferred salon mounting');
-assert.match(scrollTopSource, /prefers-reduced-motion: reduce[\s\S]*behavior: reduceMotion \? "auto" : "smooth"/, 'Scroll-to-top control must retain reduced-motion behavior');
+assert.match(motionSource, /prefers-reduced-motion: reduce[\s\S]*matches[\s\S]*\? "auto" : "smooth"/, 'Shared motion policy must map reduced motion to instant scrolling');
+assert.match(scrollTopSource, /preferredScrollBehavior\(\)/, 'Scroll-to-top control must use the shared reduced-motion policy');
+assert.match(scrollRevealSource, /prefersReducedMotion\(\)[\s\S]*classList\.add\("visible"\)/, 'Reduced-motion users must receive revealed content without an observer animation');
+assert.match(tableOfContentsSource, /scrollIntoView\(\{ behavior: preferredScrollBehavior\(\) \}\)/, 'Blog table-of-contents scrolling must respect the shared motion policy');
+assert.match(serviceDirectoryMotionSource, /window\.scrollTo\(\{ top, behavior: preferredScrollBehavior\(\) \}\)/, 'Service navigation scrolling must respect the shared motion policy');
+assert.doesNotMatch(scrollTopSource, /transition-all/, 'Scroll-to-top control must not animate unrelated geometry');
+assert.doesNotMatch(indexCss, /font-family:\s*"Fraunces"|fraunces-(?:italic-)?latin\.woff2/, 'Global typography must use one Playfair editorial face without loading legacy Fraunces');
 
 const footerSource = await readFile(path.join(ROOT, 'src/components/Footer.tsx'), 'utf8');
 assert.match(footerSource, /data-home-footer=""/, 'Footer must expose a stable marker for floating-control suppression');

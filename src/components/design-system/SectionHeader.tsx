@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
-  /** Optional italic Fraunces tagline that appears between eyebrow and title.
+  /** Optional italic Playfair tagline that appears between eyebrow and title.
    *  The hero/brand uses this for "Hair care from someone who actually does hair." */
   tagline?: string;
   /** Small-caps gold label above the title. e.g. "01 — what we make" */
@@ -12,7 +12,7 @@ interface SectionHeaderProps {
   className?: string;
   /** Heading level. Use "h1" for the top-of-page hero on policy/contact pages. Defaults to "h2". */
   as?: "h1" | "h2";
-  /** Use the big editorial Fraunces display size for h1/h2 instead of the
+  /** Use the big editorial Playfair display size for h1/h2 instead of the
    *  default Playfair scale. Default false. */
   display?: boolean;
 }
