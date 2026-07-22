@@ -76,6 +76,7 @@ assert.match(notificationAdapterSource, /from ["']sonner["']/, 'Legacy form noti
 assert.doesNotMatch(packageManifestSource, /@radix-ui\/react-toast/, 'The unused Radix toast dependency must not return');
 assert.doesNotMatch(denoLockSource, /@radix-ui\/react-toast/, 'Deno lock state must not restore the unused Radix toast dependency');
 assert.doesNotMatch(notificationAppSource, /QueryClient(?:Provider)?/, 'The app shell must not restore an unused global React Query provider');
+assert.doesNotMatch(notificationAppSource, /TooltipProvider/, 'The app shell must not restore an unused global Tooltip provider without a real consumer');
 assert.doesNotMatch(packageManifestSource, /@tanstack\/react-query/, 'The unused React Query dependency must not return without a real consumer');
 assert.doesNotMatch(packageLockSource, /@tanstack\/(?:react-query|query-core)/, 'npm lock state must not restore the unused React Query dependency');
 assert.doesNotMatch(bunLockSource, /@tanstack\/(?:react-query|query-core)/, 'Bun lock state must not restore the unused React Query dependency');
