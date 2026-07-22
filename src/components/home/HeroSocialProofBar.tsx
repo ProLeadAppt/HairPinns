@@ -1,4 +1,4 @@
-import { Star, Truck, Shield } from "lucide-react";
+import { Scissors, Truck, Shield } from "lucide-react";
 
 /**
  * HeroSocialProofBar — editorial-soft rev.
@@ -14,10 +14,10 @@ const HeroSocialProofBar = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 py-5 text-sm text-foreground/80">
           <li className="flex items-center gap-3 justify-center sm:justify-start">
-            <Star className="h-4 w-4 text-[hsl(var(--gold))] fill-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
+            <Scissors className="h-4 w-4 text-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
             <span className="whitespace-nowrap">
-              <span className="font-semibold text-foreground">4.9 / 5</span>{" "}
-              <span className="text-muted-foreground">from 762+ reviews</span>
+              <span className="font-semibold text-foreground">Salon-picked</span>{" "}
+              <span className="text-muted-foreground">by Jena</span>
             </span>
           </li>
           <li className="flex items-center gap-3 justify-center sm:justify-start">
@@ -31,7 +31,7 @@ const HeroSocialProofBar = () => {
             <Shield className="h-4 w-4 text-[hsl(var(--gold))]" strokeWidth={1.5} aria-hidden="true" />
             <span className="whitespace-nowrap">
               <span className="font-semibold text-foreground">14-day returns</span>{" "}
-              <span className="text-muted-foreground">no drama</span>
+              <span className="text-muted-foreground">unopened products</span>
             </span>
           </li>
         </ul>

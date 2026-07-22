@@ -45,11 +45,14 @@ assert.match(businessConfig, /tel:\s*["']tel:\+61[0-9]{9}["']/);
 const homepageSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 const truthSchemaSource = await readFile(path.join(ROOT, 'src/lib/schema.ts'), 'utf8');
 const reviewsPageSource = await readFile(path.join(ROOT, 'src/pages/Reviews.tsx'), 'utf8');
+const homepageTrustSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
 assert.doesNotMatch(truthSchemaSource, /reviewCount:\s*["']762["']/);
 assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
 assert.doesNotMatch(truthSchemaSource, /\baggregateRating\s*:/);
 assert.doesNotMatch(homepageSource, /generateFAQPageSchema|generateHowToSchema|googleReviews|PT2M|762\s+five-star/i);
 assert.doesNotMatch(reviewsPageSource, /4\.9\s+stars|53\+\s+verified|googleReviews/i);
+assert.doesNotMatch(homepageTrustSource, /762|4\.9\s*\/\s*5|no drama/i);
+assert.match(homepageTrustSource, /14-day returns[\s\S]*unopened products/);
 
 assert.deepEqual(
   occurrences(/(?:\+61[-\s]*468[-\s]*093[-\s]*991|0468\s*093\s*991|61468093991)/),

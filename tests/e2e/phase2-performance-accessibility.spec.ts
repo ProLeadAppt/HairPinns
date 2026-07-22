@@ -139,7 +139,7 @@ test('operational routes still render the React application', async ({ page }) =
   }
 });
 
-test('shared business schemas do not publish unsupported ratings or invisible homepage claims', async ({ page }) => {
+test('shared business claims and schemas stay truthful', async ({ page }) => {
   for (const route of ['/', '/services', '/reviews']) {
     await page.goto(route);
     const schemaPayloads = await page.locator('script[type="application/ld+json"]').allTextContents();
@@ -154,6 +154,8 @@ test('shared business schemas do not publish unsupported ratings or invisible ho
     if (route === '/') {
       expect(serialized).not.toContain('"@type":"FAQPage"');
       expect(serialized).not.toContain('"@type":"HowTo"');
+      await expect(page.getByText(/762\+? reviews/i)).toHaveCount(0);
+      await expect(page.getByText('unopened products', { exact: true })).toBeVisible();
     }
   }
 });
