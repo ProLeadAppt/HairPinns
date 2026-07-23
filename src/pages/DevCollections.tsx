@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Copy, ExternalLink } from "lucide-react";
 import { fetchShopify } from "@/lib/shopify";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const DevCollections = () => {
@@ -45,7 +45,7 @@ const DevCollections = () => {
 
   const copyHandle = (handle: string) => {
     navigator.clipboard.writeText(handle);
-    toast.success(`Copied: ${handle}`);
+    notify.success(`Copied: ${handle}`);
   };
 
   return (

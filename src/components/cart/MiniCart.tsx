@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { clearCartId } from "@/lib/cartManagement";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
@@ -91,9 +91,9 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
       setCart(updatedCart);
       const count = updatedCart?.lines?.edges?.reduce((sum: number, edge: any) => sum + edge.node.quantity, 0) ?? 0;
       window.dispatchEvent(new CustomEvent("hp:cartCountUpdate", { detail: { count } }));
-      toast.success("Item removed");
+      notify.success("Item removed");
     } catch {
-      toast.error("Could not remove item");
+      notify.error("Could not remove item");
     } finally {
       setRemovingLineId(null);
     }
@@ -111,7 +111,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
 
   const handleCheckout = async () => {
     if (!cartId || !hasItems) {
-      toast.error("Your bag is empty");
+      notify.error("Your bag is empty");
       return;
     }
     setIsCheckingOut(true);
@@ -144,7 +144,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
       form.submit();
     } catch (error) {
       console.error("Checkout error:", error);
-      toast.error("Unable to proceed to checkout. Please try again.");
+      notify.error("Unable to proceed to checkout. Please try again.");
       setIsCheckingOut(false);
     }
   };

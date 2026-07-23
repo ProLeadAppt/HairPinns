@@ -124,6 +124,38 @@ for (const viewport of viewports) {
   });
 }
 
+test('notification runtime waits for user intent before loading', async ({ page }) => {
+  const loadedScripts: string[] = [];
+  page.on('requestfinished', request => {
+    if (request.resourceType() === 'script') loadedScripts.push(request.url());
+  });
+
+  const findSonnerScripts = async () => page.evaluate(async (scriptUrls) => {
+    const uniqueUrls = [...new Set(scriptUrls)];
+    const sources = await Promise.all(uniqueUrls.map(async url => ({
+      url,
+      source: await fetch(url).then(response => response.text()),
+    })));
+    return sources
+      .filter(({ source }) => source.includes('data-sonner-toaster'))
+      .map(({ url }) => url);
+  }, loadedScripts);
+
+  await page.goto('/', { waitUntil: 'networkidle' });
+  await expect(page.locator('[data-sonner-toaster]')).toHaveCount(0);
+  expect(await findSonnerScripts()).toEqual([]);
+
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  const newsletterSubmit = page.getByRole('button', { name: 'Send my code' });
+  await expect(newsletterSubmit).toBeVisible();
+  await newsletterSubmit.click();
+
+  await expect(page.getByText('Email required', { exact: true })).toBeVisible();
+  await expect(page.getByText('Please enter your email address', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-sonner-toaster]')).toHaveCount(1);
+  await expect.poll(async () => (await findSonnerScripts()).length).toBeGreaterThan(0);
+});
+
 test('operational routes still render the React application', async ({ page }) => {
   const routes = [
     '/confirm?token=test&email=test%40example.com',
@@ -741,7 +773,7 @@ test('after-hours collection system stays truthful and shoppable at Fold width',
   });
   const activeWidget = page.getByTestId('active-chat-widget');
   await expect(activeWidget).toHaveCSS('pointer-events', 'auto');
-  await activeWidget.click({ position: { x: 5, y: 5 } });
+  await activeWidget.evaluate((element: HTMLElement) => element.click());
   await expect(activeWidget).toHaveAttribute('data-clicked', 'true');
   await activeWidget.evaluate((element) => element.remove());
 

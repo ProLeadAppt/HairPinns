@@ -1,13 +1,19 @@
-import { lazy, Suspense, useEffect } from "react";
-import { Toaster as Sonner } from "@/components/ui/sonner";
+import { lazy, Suspense, useEffect, useState, useSyncExternalStore } from "react";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import TrackingGate from "./components/tracking/TrackingGate";
 import { initCartAbandonmentMonitoring } from "@/lib/cartAbandonment";
+import {
+  markNotificationRendererReady,
+  NOTIFICATION_RENDERER_EVENT,
+  subscribeNotificationRendererRequest,
+  wasNotificationRendererRequested,
+} from "@/hooks/use-toast";
 import ErrorBoundary, { ProductDetailErrorBoundary } from "./components/ErrorBoundary";
 import Index from "./pages/Index";
+const Sonner = lazy(() => import("@/components/ui/sonner").then(({ Toaster }) => ({ default: Toaster })));
 const Collections = lazy(() => import("./pages/Collections"));
 const CollectionDetail = lazy(() => import("./pages/CollectionDetail"));
 const JenasDailyTrioPage = lazy(() => import("./pages/JenasDailyTrioPage"));
@@ -51,6 +57,14 @@ const RouteFallback = () => (
   <div className="min-h-screen bg-background" aria-label="Loading" />
 );
 
+const NotificationRenderer = () => {
+  useEffect(() => {
+    markNotificationRendererReady();
+  }, []);
+
+  return <Sonner />;
+};
+
 // Wrapper components that reset ErrorBoundary on route change
 const CollectionRoute = () => {
   const { slug } = useParams();
@@ -71,6 +85,31 @@ const ProductRoute = () => {
 };
 
 const AppContent = () => {
+  const notificationWasRequested = useSyncExternalStore(
+    subscribeNotificationRendererRequest,
+    wasNotificationRendererRequested,
+    () => false,
+  );
+  const [notificationIntentReady, setNotificationIntentReady] = useState(false);
+  const notificationsReady = notificationWasRequested || notificationIntentReady;
+
+  useEffect(() => {
+    if (notificationsReady) return;
+
+    const activateNotifications = () => setNotificationIntentReady(true);
+    const intentEvents = ["pointerdown", "keydown", "focusin", NOTIFICATION_RENDERER_EVENT] as const;
+
+    intentEvents.forEach((eventName) => {
+      document.addEventListener(eventName, activateNotifications, { capture: true, once: true });
+    });
+
+    return () => {
+      intentEvents.forEach((eventName) => {
+        document.removeEventListener(eventName, activateNotifications, { capture: true });
+      });
+    };
+  }, [notificationsReady]);
+
   useEffect(() => {
     const w = window as Window & {
       requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
@@ -107,7 +146,11 @@ const AppContent = () => {
 
   return (
     <>
-      <Sonner />
+      {notificationsReady ? (
+        <Suspense fallback={null}>
+          <NotificationRenderer />
+        </Suspense>
+      ) : null}
       <BrowserRouter>
         <CartProvider>
           <ScrollToTop />

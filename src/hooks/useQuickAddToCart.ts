@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart } from "@/lib/ecommerceTracking";
 
@@ -66,11 +66,11 @@ export function useQuickAddToCart() {
           quantity: 1,
         });
 
-        toast.success("Added to bag!");
+        notify.success("Added to bag!");
         window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
       } catch (err) {
         console.error("[useQuickAddToCart] add failed:", err);
-        toast.error("Couldn't add to bag — please try again.");
+        notify.error("Couldn't add to bag — please try again.");
       } finally {
         setBusy(false);
       }

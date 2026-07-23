@@ -1,6 +1,6 @@
 import { Facebook, Twitter, Linkedin, Mail, Link2, Check } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 
 interface SocialShareBarProps {
   url: string;
@@ -15,10 +15,10 @@ const SocialShareBar = ({ url, title, variant = "fixed" }: SocialShareBarProps) 
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
-      toast.success("Link copied to clipboard!");
+      notify.success("Link copied to clipboard!");
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      toast.error("Failed to copy link");
+      notify.error("Failed to copy link");
     }
   };
 
