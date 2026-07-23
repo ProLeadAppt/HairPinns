@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { fetchShopify, cartCreate } from "@/lib/shopify";
 import { Copy, ShoppingCart, ExternalLink, AlertCircle } from "lucide-react";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface ShopInfo {
@@ -118,7 +118,7 @@ const DevShopify = () => {
       // Check if checkoutUrl exists
       if (cart.checkoutUrl) {
         console.log("✅ Redirecting to checkout:", cart.checkoutUrl);
-        toast.success("Cart created! Redirecting to checkout...");
+        notify.success("Cart created! Redirecting to checkout...");
         setTimeout(() => {
           window.location.href = cart.checkoutUrl;
         }, 1000);
@@ -127,14 +127,14 @@ const DevShopify = () => {
         const cleanVariantId = testProduct.firstVariantId.split("/").pop();
         const fallbackUrl = `https://hairpinns.com/cart/${cleanVariantId}:1`;
         console.warn("⚠️ No checkoutUrl, using fallback:", fallbackUrl);
-        toast.warning("Using native cart fallback...");
+        notify.warning("Using native cart fallback...");
         setTimeout(() => {
           window.location.href = fallbackUrl;
         }, 1000);
       }
     } catch (err: any) {
       console.error("❌ Test buy error:", err);
-      toast.error(`Test buy failed: ${err.message}`);
+      notify.error(`Test buy failed: ${err.message}`);
     } finally {
       setTestingBuy(false);
     }
@@ -142,7 +142,7 @@ const DevShopify = () => {
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
-    toast.success(`Copied: ${label}`);
+    notify.success(`Copied: ${label}`);
   };
 
   return (

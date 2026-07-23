@@ -8,7 +8,7 @@ import { searchProducts, getProductByHandle } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { quickAddToCart, QuickAddProduct } from "@/lib/quickAdd";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 
 interface FrequentlyBoughtTogetherProps {
   currentProductId: string;
@@ -110,11 +110,11 @@ const FrequentlyBoughtTogether = ({
         }
       }
       
-      toast.success(`Added ${productsToAdd.length} item(s) to cart!`);
+      notify.success(`Added ${productsToAdd.length} item(s) to cart!`);
       setSelectedProducts(new Set([currentProductId])); // Reset selection
     } catch (error) {
       console.error("Failed to add bundle to cart:", error);
-      toast.error("Failed to add items to cart");
+      notify.error("Failed to add items to cart");
     } finally {
       setAddingToCart(false);
     }

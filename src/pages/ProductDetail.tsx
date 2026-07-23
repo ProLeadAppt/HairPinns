@@ -22,7 +22,7 @@ import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { getCartId } from "@/lib/cartManagement";
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 
 import SocialShareBar from "@/components/blog/SocialShareBar";
 import PaymentBadges from "@/components/product/PaymentBadges";
@@ -122,7 +122,7 @@ const ProductDetail = () => {
       } catch (error) {
         if (!isMounted) return;
         console.error("Failed to fetch product:", error);
-        toast.error("Failed to load product");
+        notify.error("Failed to load product");
         setProduct(null);
       } finally {
         if (isMounted) {
@@ -264,11 +264,11 @@ const ProductDetail = () => {
         quantity: 1,
       });
       
-      toast.success("Added to bag!");
+      notify.success("Added to bag!");
       window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
     } catch (error: any) {
       console.error("Add to bag failed:", error);
-      toast.error("We couldn't add this to your bag. Please try again or contact us.");
+      notify.error("We couldn't add this to your bag. Please try again or contact us.");
     } finally {
       setAddingToCart(false);
     }
@@ -319,7 +319,7 @@ const ProductDetail = () => {
       form.submit();
     } catch (error) {
       console.error("Buy now failed:", error);
-      toast.error("Unable to proceed to checkout. Please try again.");
+      notify.error("Unable to proceed to checkout. Please try again.");
       setBuyingNow(false);
     }
     // Don't reset setBuyingNow(false) if redirect succeeds - page will navigate away

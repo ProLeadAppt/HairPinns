@@ -20,7 +20,7 @@ import {
   Scissors,
   Award,
 } from "lucide-react";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 import { JENAS_DAILY_TRIO, type JenasDailyTrio } from "@/data/jenasDailyTrio";
 import { getProductByHandle } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
@@ -188,7 +188,7 @@ const JenasDailyTrioPage = () => {
 
   const addOne = async (p: TrioProductLive) => {
     if (!p.variantId) {
-      toast.error("Sorry, that one's temporarily out of stock.");
+      notify.error("Sorry, that one's temporarily out of stock.");
       return;
     }
     setAddingOne(p.handle);
@@ -206,7 +206,7 @@ const JenasDailyTrioPage = () => {
       const { cartId } = await res.json();
       if (cartId) localStorage.setItem("hp_cart_id", cartId);
       window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cartId } }));
-      toast.success(`${p.title} added to bag`);
+      notify.success(`${p.title} added to bag`);
       fireAddToCart({
         currency: p.currency,
         value: p.price,
@@ -214,7 +214,7 @@ const JenasDailyTrioPage = () => {
       });
     } catch (e) {
       console.error(e);
-      toast.error("Couldn't add to bag — try again or visit the product page.");
+      notify.error("Couldn't add to bag — try again or visit the product page.");
     } finally {
       setAddingOne(null);
     }
@@ -222,7 +222,7 @@ const JenasDailyTrioPage = () => {
 
   const addAll = async () => {
     if (!allAvailable) {
-      toast.error("One of the trio is unavailable right now.");
+      notify.error("One of the trio is unavailable right now.");
       return;
     }
     setAddingAll(true);
@@ -261,10 +261,10 @@ const JenasDailyTrioPage = () => {
       window.dispatchEvent(
         new CustomEvent("hp:openMiniCart", { detail: { cartId, checkoutUrl } })
       );
-      toast.success("Trio added to bag — 10% saving applied.");
+      notify.success("Trio added to bag — 10% saving applied.");
     } catch (e) {
       console.error(e);
-      toast.error("Couldn't add the trio — try again or add each separately.");
+      notify.error("Couldn't add the trio — try again or add each separately.");
     } finally {
       setAddingAll(false);
     }

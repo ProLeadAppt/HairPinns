@@ -50,6 +50,7 @@ const criticalHeaderSource = await readFile(path.join(ROOT, 'src/components/Head
 const criticalViteConfigSource = await readFile(path.join(ROOT, 'vite.config.ts'), 'utf8');
 const notificationAppSource = await readFile(path.join(ROOT, 'src/App.tsx'), 'utf8');
 const notificationAdapterSource = await readFile(path.join(ROOT, 'src/hooks/use-toast.ts'), 'utf8');
+const notificationMiniCartSource = await readFile(path.join(ROOT, 'src/components/cart/MiniCart.tsx'), 'utf8');
 const packageManifestSource = await readFile(path.join(ROOT, 'package.json'), 'utf8');
 const packageLockSource = await readFile(path.join(ROOT, 'package-lock.json'), 'utf8');
 const bunLockSource = await readFile(path.join(ROOT, 'bun.lockb'), 'utf8');
@@ -71,12 +72,25 @@ assert.match(criticalHeaderSource, /matchMedia\(["']\(min-width: 1280px\)["']\)/
 assert.match(criticalHeaderSource, /showDesktopEnhancements[\s\S]*?<ShopDropdown \/>/, 'Mobile must not mount the desktop shop dropdown');
 assert.match(criticalHeaderSource, /showDesktopEnhancements[\s\S]*?<ProductSearch placeholder=["']Search products and articles/, 'Mobile must not mount desktop search');
 assert.doesNotMatch(notificationAppSource, /components\/ui\/toaster|<Toaster\s*\/>/, 'The duplicate Radix toast renderer must not return');
-assert.match(notificationAppSource, /<Sonner\s*\/>/, 'The shared Sonner notification surface must remain mounted');
-assert.match(notificationAdapterSource, /from ["']sonner["']/, 'Legacy form notifications must route through Sonner');
+assert.match(notificationAppSource, /<Sonner\s*\/>/, 'The shared Sonner notification surface must remain available');
+assert.doesNotMatch(notificationAdapterSource, /import\s+\{[^}]*toast[^}]*\}\s+from\s+["']sonner["']/, 'The notification adapter must not statically load Sonner');
+assert.match(notificationAdapterSource, /import\(["']sonner["']\)/, 'Legacy form notifications must dynamically route through Sonner');
+assert.match(notificationAdapterSource, /hp:notification-intent/, 'Programmatic notifications must activate the deferred renderer');
+assert.match(notificationAppSource, /useSyncExternalStore\([\s\S]*subscribeNotificationRendererRequest[\s\S]*wasNotificationRendererRequested/, 'Notification requests must use a race-safe external-store subscription');
+assert.deepEqual(
+  occurrences(/from\s+["']sonner["']/, { exclude: ['src/components/ui/sonner.tsx'] }),
+  [],
+  'All notification producers must use the activation-aware deferred adapter',
+);
+assert.doesNotMatch(notificationMiniCartSource, /from\s+["']sonner["']/, 'The global mini cart must use the deferred notification adapter');
 assert.doesNotMatch(packageManifestSource, /@radix-ui\/react-toast/, 'The unused Radix toast dependency must not return');
 assert.doesNotMatch(denoLockSource, /@radix-ui\/react-toast/, 'Deno lock state must not restore the unused Radix toast dependency');
 assert.doesNotMatch(notificationAppSource, /QueryClient(?:Provider)?/, 'The app shell must not restore an unused global React Query provider');
 assert.doesNotMatch(notificationAppSource, /TooltipProvider/, 'The app shell must not restore an unused global Tooltip provider without a real consumer');
+assert.doesNotMatch(notificationAppSource, /import\s+\{\s*Toaster\s+as\s+Sonner\s*\}\s+from\s+["']@\/components\/ui\/sonner["']/, 'The notification renderer must not return to the startup graph');
+assert.match(notificationAppSource, /lazy\(\(\)\s*=>\s*import\(["']@\/components\/ui\/sonner["']\)/, 'The notification renderer must stay interaction-deferred');
+assert.match(notificationAppSource, /['"]pointerdown['"][\s\S]*['"]keydown['"][\s\S]*['"]focusin['"]/, 'The deferred notification renderer must activate for pointer, keyboard, and focus intent');
+assert.match(notificationAppSource, /markNotificationRendererReady\(\)/, 'Queued notifications must wait for the renderer to commit');
 assert.doesNotMatch(packageManifestSource, /@tanstack\/react-query/, 'The unused React Query dependency must not return without a real consumer');
 assert.doesNotMatch(packageLockSource, /@tanstack\/(?:react-query|query-core)/, 'npm lock state must not restore the unused React Query dependency');
 assert.doesNotMatch(bunLockSource, /@tanstack\/(?:react-query|query-core)/, 'Bun lock state must not restore the unused React Query dependency');

@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { toast as sonnerToast } from "sonner";
 
 type ToastOptions = {
   title?: ReactNode;
@@ -8,18 +7,83 @@ type ToastOptions = {
   duration?: number;
 };
 
+const NOTIFICATION_RENDERER_EVENT = "hp:notification-intent";
+let nextToastId = 0;
+let sonnerPromise: Promise<typeof import("sonner").toast> | null = null;
+let resolveNotificationRendererReady: () => void = () => undefined;
+let notificationRendererIsReady = false;
+let notificationRendererWasRequested = false;
+const notificationRendererRequestListeners = new Set<() => void>();
+const notificationRendererReady = new Promise<void>((resolve) => {
+  resolveNotificationRendererReady = resolve;
+});
+
+const requestNotificationRenderer = () => {
+  if (!notificationRendererWasRequested) {
+    notificationRendererWasRequested = true;
+    notificationRendererRequestListeners.forEach((listener) => listener());
+  }
+  if (typeof document !== "undefined") {
+    document.dispatchEvent(new CustomEvent(NOTIFICATION_RENDERER_EVENT));
+  }
+};
+
+const subscribeNotificationRendererRequest = (listener: () => void) => {
+  notificationRendererRequestListeners.add(listener);
+  return () => notificationRendererRequestListeners.delete(listener);
+};
+
+const wasNotificationRendererRequested = () => notificationRendererWasRequested;
+
+const loadSonner = () => {
+  sonnerPromise ??= import("sonner").then(({ toast }) => toast);
+  return sonnerPromise;
+};
+
+const markNotificationRendererReady = () => {
+  if (notificationRendererIsReady) return;
+  notificationRendererIsReady = true;
+  resolveNotificationRendererReady();
+};
+
+const withNotificationRenderer = async (
+  operation: (sonnerToast: typeof import("sonner").toast) => void,
+) => {
+  requestNotificationRenderer();
+  const sonnerToast = await loadSonner();
+  await notificationRendererReady;
+  operation(sonnerToast);
+};
+
+const createToastId = () => `hp-toast-${++nextToastId}`;
+
+type NotificationTone = "success" | "warning";
+type NotifyOptions = Omit<ToastOptions, "title" | "variant">;
+
 const showToast = ({
   title,
   description,
   variant = "default",
   duration,
-}: ToastOptions, id?: string | number) => {
+}: ToastOptions, id = createToastId(), tone: NotificationTone = "success") => {
   const message = title ?? (variant === "destructive" ? "Something went wrong" : "Success");
-  const options = { description, duration, id };
 
-  return variant === "destructive"
-    ? sonnerToast.error(message, options)
-    : sonnerToast.success(message, options);
+  void withNotificationRenderer((sonnerToast) => {
+    const options = { description, duration, id };
+    if (variant === "destructive") {
+      sonnerToast.error(message, options);
+    } else if (tone === "warning") {
+      sonnerToast.warning(message, options);
+    } else {
+      sonnerToast.success(message, options);
+    }
+  });
+
+  return id;
+};
+
+const dismissToast = (id?: string | number) => {
+  void withNotificationRenderer((sonnerToast) => sonnerToast.dismiss(id));
 };
 
 function toast(options: ToastOptions) {
@@ -28,7 +92,7 @@ function toast(options: ToastOptions) {
 
   return {
     id,
-    dismiss: () => sonnerToast.dismiss(id),
+    dismiss: () => dismissToast(id),
     update: (nextOptions: Partial<ToastOptions>) => {
       currentOptions = { ...currentOptions, ...nextOptions };
       return showToast(currentOptions, id);
@@ -36,12 +100,27 @@ function toast(options: ToastOptions) {
   };
 }
 
+const notify = {
+  success: (message: ReactNode, options: NotifyOptions = {}) => showToast({ ...options, title: message }),
+  error: (message: ReactNode, options: NotifyOptions = {}) => showToast({ ...options, title: message, variant: "destructive" }),
+  warning: (message: ReactNode, options: NotifyOptions = {}) => showToast({ ...options, title: message }, undefined, "warning"),
+  dismiss: dismissToast,
+};
+
 function useToast() {
   return {
     toasts: [],
     toast,
-    dismiss: (id?: string | number) => sonnerToast.dismiss(id),
+    dismiss: dismissToast,
   };
 }
 
-export { useToast, toast };
+export {
+  NOTIFICATION_RENDERER_EVENT,
+  markNotificationRendererReady,
+  notify,
+  subscribeNotificationRendererRequest,
+  toast,
+  useToast,
+  wasNotificationRendererRequested,
+};

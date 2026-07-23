@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ExternalLink } from "lucide-react";
 import { getCollectionByHandle, getProductUrl, storeUrl } from "@/lib/shopify";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -174,7 +174,7 @@ const CollectionDetail = () => {
   // Handle add to bag - use server-side Edge Function
   const handleAddToBag = async (productHandle: string, variantId: string) => {
     if (!variantId) {
-      toast.error("Product variant unavailable. Please try again.");
+      notify.error("Product variant unavailable. Please try again.");
       return;
     }
 
@@ -202,10 +202,10 @@ const CollectionDetail = () => {
       }
       
       window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
-      toast.success("Added to bag!");
+      notify.success("Added to bag!");
     } catch (error: any) {
       console.error("Add to bag failed:", error);
-      toast.error("We couldn't add this to your bag. Please try again or contact us.");
+      notify.error("We couldn't add this to your bag. Please try again or contact us.");
       
       // Fallback: redirect to product page on hairpinns.com after 2s
       setTimeout(() => {

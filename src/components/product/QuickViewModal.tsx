@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { formatPrice } from "@/lib/utils";
 import { quickAddToCart, QuickAddProduct } from "@/lib/quickAdd";
 import { getProductByHandle } from "@/lib/shopify";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 import EstimatedDelivery from "./EstimatedDelivery";
 
 interface QuickViewModalProps {
@@ -37,7 +37,7 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
         })
         .catch((error) => {
           console.error("Failed to load product:", error);
-          toast.error("Failed to load product details");
+          notify.error("Failed to load product details");
         })
         .finally(() => {
           setLoading(false);
@@ -70,7 +70,7 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
       }
     } catch (error) {
       console.error("Failed to add to cart:", error);
-      toast.error("Failed to add to cart");
+      notify.error("Failed to add to cart");
     } finally {
       setAddingToCart(false);
     }

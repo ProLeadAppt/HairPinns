@@ -8,7 +8,7 @@ import { getCartId, saveCartId } from "./cartManagement";
 import { trackAddToCart } from "./ecommerceTracking";
 import { trackCartCreated } from "./cartAbandonment";
 import { getHpCapture } from "./loadHpCapture";
-import { toast } from "sonner";
+import { notify } from "@/hooks/use-toast";
 
 export interface QuickAddProduct {
   variantId: string;
@@ -86,7 +86,7 @@ export async function quickAddToCart(
     }
 
     // Show success toast
-    toast.success(`${productTitle} added to bag!`, {
+    notify.success(`${productTitle} added to bag!`, {
       description: openMiniCart ? "Opening cart..." : "Continue shopping",
       duration: 2000,
     });
@@ -99,7 +99,7 @@ export async function quickAddToCart(
     return { cartId, checkoutUrl };
   } catch (error) {
     console.error('Quick add failed:', error);
-    toast.error("Couldn't add to bag", {
+    notify.error("Couldn't add to bag", {
       description: "Please try again or visit the product page",
       duration: 3000,
     });
