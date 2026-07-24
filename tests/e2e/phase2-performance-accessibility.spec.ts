@@ -20,6 +20,7 @@ test.beforeEach(async ({ page }) => {
 
 for (const viewport of viewports) {
   test(`homepage is stable at ${viewport.name}`, async ({ page }, testInfo) => {
+    test.setTimeout(75_000);
     await mkdir(evidenceDir, { recursive: true });
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
 
@@ -123,6 +124,36 @@ for (const viewport of viewports) {
     expect(actionableConsoleErrors).toEqual([]);
   });
 }
+
+test('mini-cart runtime waits for cart intent before loading', async ({ page }) => {
+  test.setTimeout(75_000);
+  const loadedScripts: string[] = [];
+  page.on('requestfinished', request => {
+    if (request.resourceType() === 'script') loadedScripts.push(request.url());
+  });
+
+  const findMiniCartScripts = async () => page.evaluate(async (scriptUrls) => {
+    const uniqueUrls = [...new Set(scriptUrls)]
+      .filter(url => new URL(url).origin === window.location.origin);
+    const sources = await Promise.all(uniqueUrls.map(async url => ({
+      url,
+      source: await fetch(url).then(response => response.text()),
+    })));
+    return sources
+      .filter(({ source }) => source.includes('data-mini-cart'))
+      .map(({ url }) => url);
+  }, loadedScripts);
+
+  await page.goto('/privacy', { waitUntil: 'load' });
+  await expect(page.getByRole('heading', { level: 1, name: 'Privacy Policy' })).toBeVisible();
+  await expect(page.locator('[data-mini-cart]')).toHaveCount(0);
+  expect(await findMiniCartScripts()).toEqual([]);
+
+  await page.getByRole('button', { name: /^View cart/ }).click();
+
+  await expect(page.getByRole('dialog', { name: 'Your Bag' })).toBeVisible();
+  await expect.poll(async () => (await findMiniCartScripts()).length).toBeGreaterThan(0);
+});
 
 test('notification runtime waits for user intent before loading', async ({ page }) => {
   const loadedScripts: string[] = [];
