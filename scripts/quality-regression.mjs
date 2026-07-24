@@ -52,6 +52,7 @@ const notificationAppSource = await readFile(path.join(ROOT, 'src/App.tsx'), 'ut
 const notificationAdapterSource = await readFile(path.join(ROOT, 'src/hooks/use-toast.ts'), 'utf8');
 const notificationMiniCartSource = await readFile(path.join(ROOT, 'src/components/cart/MiniCart.tsx'), 'utf8');
 const cartProviderSource = await readFile(path.join(ROOT, 'src/contexts/CartContext.tsx'), 'utf8');
+const errorBoundarySource = await readFile(path.join(ROOT, 'src/components/ErrorBoundary.tsx'), 'utf8');
 const packageManifestSource = await readFile(path.join(ROOT, 'package.json'), 'utf8');
 const packageLockSource = await readFile(path.join(ROOT, 'package-lock.json'), 'utf8');
 const bunLockSource = await readFile(path.join(ROOT, 'bun.lockb'), 'utf8');
@@ -97,6 +98,9 @@ assert.doesNotMatch(cartProviderSource, /import\s+\{[^}]*getCart[^}]*\}\s+from\s
 assert.match(cartProviderSource, /lazy\(loadMiniCartDrawer\)/, 'The mini-cart drawer must remain interaction-deferred');
 assert.match(cartProviderSource, /import\(["']@\/lib\/shopify["']\)/, 'Persisted cart count hydration must retain the Shopify read path');
 assert.match(cartProviderSource, /drawerRequested\s*\?[\s\S]*<Suspense fallback=\{null\}>[\s\S]*<MiniCartDrawer/, 'The deferred drawer must mount only after cart intent');
+assert.doesNotMatch(errorBoundarySource, /import\s+Footer\s+from/, 'The recovery footer must not return to the startup graph');
+assert.match(errorBoundarySource, /lazy\(\(\)\s*=>\s*import\(["']@\/components\/Footer["']\)\)/, 'The recovery footer must remain failure-deferred');
+assert.match(errorBoundarySource, /<SilentErrorBoundary>\s*<Suspense fallback=\{null\}>\s*<Footer\s*\/>\s*<\/Suspense>\s*<\/SilentErrorBoundary>/, 'The recovery footer must retain its guarded local Suspense boundary');
 assert.doesNotMatch(packageManifestSource, /@tanstack\/react-query/, 'The unused React Query dependency must not return without a real consumer');
 assert.doesNotMatch(packageLockSource, /@tanstack\/(?:react-query|query-core)/, 'npm lock state must not restore the unused React Query dependency');
 assert.doesNotMatch(bunLockSource, /@tanstack\/(?:react-query|query-core)/, 'Bun lock state must not restore the unused React Query dependency');

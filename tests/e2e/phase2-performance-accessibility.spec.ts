@@ -125,6 +125,53 @@ for (const viewport of viewports) {
   });
 }
 
+test('recovery footer waits outside the startup graph and renders after a route failure', async ({ page }) => {
+  test.setTimeout(75_000);
+  const loadedScripts: string[] = [];
+  page.on('requestfinished', request => {
+    if (request.resourceType() === 'script') loadedScripts.push(request.url());
+  });
+
+  const findFooterScripts = async () => page.evaluate(async (scriptUrls) => {
+    const uniqueUrls = [...new Set(scriptUrls)]
+      .filter(url => new URL(url).origin === window.location.origin);
+    const sources = await Promise.all(uniqueUrls.map(async url => ({
+      url,
+      source: await fetch(url).then(response => response.text()),
+    })));
+    return sources
+      .filter(({ source }) => source.includes('newsletter_footer'))
+      .map(({ url }) => url);
+  }, loadedScripts);
+
+  await page.goto('/', { waitUntil: 'load' });
+  await expect(page.getByRole('heading', { level: 1, name: /Hair care from someone who/ })).toBeVisible();
+  await expect(page.locator('[data-home-footer]')).toHaveCount(0);
+  expect(await findFooterScripts()).toEqual([]);
+
+  await page.route(/\/assets\/js\/CollectionDetail-[^/]+\.js(?:\?.*)?$/, route => route.abort('failed'));
+  await page.goto('/collections/test-recovery-boundary', { waitUntil: 'load' });
+  await expect(page.getByRole('heading', { level: 2, name: 'Something went wrong' })).toBeVisible();
+  await expect(page.locator('[data-home-footer]')).toBeVisible();
+  await expect.poll(async () => (await findFooterScripts()).length).toBeGreaterThan(0);
+});
+
+test('recovery shell survives a deferred footer chunk failure', async ({ page }) => {
+  const abortedChunks: string[] = [];
+  await page.route(/\/assets\/js\/(?:CollectionDetail|Footer)-[^/]+\.js(?:\?.*)?$/, route => {
+    abortedChunks.push(route.request().url());
+    return route.abort('failed');
+  });
+  await page.goto('/collections/test-recovery-boundary', { waitUntil: 'load' });
+
+  await expect(page.getByRole('heading', { level: 2, name: 'Something went wrong' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Browse Collections' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Back to Home' })).toBeVisible();
+  await expect(page.locator('[data-home-footer]')).toHaveCount(0);
+  expect(abortedChunks.some(url => /\/CollectionDetail-[^/]+\.js/.test(url))).toBe(true);
+  expect(abortedChunks.some(url => /\/Footer-[^/]+\.js/.test(url))).toBe(true);
+});
+
 test('mini-cart runtime waits for cart intent before loading', async ({ page }) => {
   test.setTimeout(75_000);
   const loadedScripts: string[] = [];

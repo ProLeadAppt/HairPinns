@@ -1,8 +1,17 @@
-import { Component, ReactNode } from "react";
+import { Component, lazy, ReactNode, Suspense } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+
+const Footer = lazy(() => import("@/components/Footer"));
+
+const RecoveryFooter = () => (
+  <SilentErrorBoundary>
+    <Suspense fallback={null}>
+      <Footer />
+    </Suspense>
+  </SilentErrorBoundary>
+);
 
 interface Props {
   children: ReactNode;
@@ -54,7 +63,7 @@ class ErrorBoundary extends Component<Props, State> {
               </div>
             </div>
           </main>
-          <Footer />
+          <RecoveryFooter />
         </div>
       );
     }
@@ -105,7 +114,7 @@ export class ProductDetailErrorBoundary extends Component<Props, State> {
               </div>
             </div>
           </main>
-          <Footer />
+          <RecoveryFooter />
         </div>
       );
     }
