@@ -149,7 +149,7 @@ const OrderConfirmation = () => {
   }, [searchParams, orderTracked]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title="Order Confirmed - Hair Pinns"
         description="Your Hair Pinns order has been confirmed. Thank you for your purchase!"

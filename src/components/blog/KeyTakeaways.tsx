@@ -1,27 +1,24 @@
-import { CheckCircle2 } from "lucide-react";
-
 interface KeyTakeawaysProps {
   items: string[];
   title?: string;
 }
 
-const KeyTakeaways = ({ items, title = "Key Takeaways" }: KeyTakeawaysProps) => {
-  if (!items || items.length === 0) return null;
+const KeyTakeaways = ({ items, title = "What to remember" }: KeyTakeawaysProps) => {
+  if (!items?.length) return null;
 
   return (
-    <div className="bg-accent/30 border border-border rounded-lg p-6 my-8">
-      <h3 className="text-2xl font-heading font-bold text-heading mb-4">
-        {title}
-      </h3>
-      <ul className="space-y-3">
+    <aside className="my-14 bg-[hsl(var(--after-hours-plum))] px-5 py-8 text-[hsl(var(--after-hours-cream))] sm:px-8 sm:py-10" aria-labelledby="takeaways-title">
+      <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">The short version</p>
+      <h2 id="takeaways-title" className="mt-4 max-w-[14ch] font-heading text-3xl font-normal leading-tight text-[hsl(var(--after-hours-cream))]">{title}</h2>
+      <ol className="mt-8 border-t border-[hsl(var(--after-hours-cream)/0.24)]">
         {items.map((item, index) => (
-          <li key={index} className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" />
-            <span className="text-text leading-relaxed">{item}</span>
+          <li key={item} className="grid grid-cols-[2.4rem_minmax(0,1fr)] gap-3 border-b border-[hsl(var(--after-hours-cream)/0.18)] py-4">
+            <span className="font-mono text-[0.62rem] tracking-[0.14em] text-[hsl(var(--after-hours-copper))]">{String(index + 1).padStart(2, "0")}</span>
+            <span className="text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.78)]">{item}</span>
           </li>
         ))}
-      </ul>
-    </div>
+      </ol>
+    </aside>
   );
 };
 

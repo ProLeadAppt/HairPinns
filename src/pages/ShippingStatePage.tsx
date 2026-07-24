@@ -134,7 +134,7 @@ const ShippingStatePage = () => {
       ...Object.values(shippingStates).map((s) => ({ slug: s.slug, name: s.name })),
     ];
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="editorial-route min-h-screen flex flex-col">
         <SEOHead
           title="Destination not found | Hair Pinns"
           description="Hair Pinns ships hair care products to every Australian state, territory, and major city."
@@ -206,7 +206,7 @@ const ShippingStatePage = () => {
   breadcrumbItems.push({ name: data.name, url: `/shipping-to/${data.slug}` });
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title={pageTitle}
         description={pageDescription}

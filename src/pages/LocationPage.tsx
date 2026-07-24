@@ -169,7 +169,7 @@ const LocationPage = () => {
         schemaJson={schemas}
       />
 
-      <div className="min-h-screen flex flex-col">
+      <div className="editorial-route min-h-screen flex flex-col">
         <Header />
         
         <main className="flex-grow">

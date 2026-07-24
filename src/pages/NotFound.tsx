@@ -31,7 +31,7 @@ const NotFound = () => {
         noIndex={true}
         noFollow={true}
       />
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-accent/30 to-background">
+      <div className="editorial-route flex min-h-screen items-center justify-center bg-gradient-to-b from-accent/30 to-background">
         <main id="main-content" tabIndex={-1} className="text-center px-4 py-12 max-w-lg">
           <h1 className="mb-2 text-4xl font-heading font-bold text-heading">Hmm, that page doesn't exist</h1>
           <p className="mb-6 text-muted-foreground">

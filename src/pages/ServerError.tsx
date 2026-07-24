@@ -12,7 +12,7 @@ const ServerError = () => {
         canonical="https://hairpinns.com/500"
         noIndex={true}
       />
-      <div className="min-h-screen flex items-center justify-center bg-muted px-4">
+      <div className="editorial-route min-h-screen flex items-center justify-center bg-muted px-4">
         <div className="text-center max-w-md">
           <AlertCircle className="w-16 h-16 text-muted-foreground mx-auto mb-6" />
           <h1 className="text-4xl font-heading font-bold text-heading mb-4">500</h1>

@@ -1,34 +1,29 @@
 import { useState } from "react";
-import { ThumbsUp, ThumbsDown, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CheckCircle2 } from "lucide-react";
 import { getHpCapture } from "@/lib/loadHpCapture";
 
 interface FaqFeedbackWidgetProps {
-  faqId?: string;  // Optional FAQ ID for tracking
+  faqId?: string;
   question: string;
 }
 
 const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
-  const [feedback, setFeedback] = useState<'yes' | 'no' | null>(null);
+  const [feedback, setFeedback] = useState<"yes" | "no" | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFeedback = async (helpful: boolean) => {
     setIsSubmitting(true);
-    
     try {
-      // Track with hpCapture (sends to GHL inbound webhook)
       const hpCapture = await getHpCapture();
-      await hpCapture.trackEvent('faq_feedback', {
-        faq_id: faqId || 'unknown',
+      await hpCapture.trackEvent("faq_feedback", {
+        faq_id: faqId || "unknown",
         faq_question: question,
-        helpful: helpful,
+        helpful,
       });
-      
-      setFeedback(helpful ? 'yes' : 'no');
+      setFeedback(helpful ? "yes" : "no");
     } catch (error) {
-      console.error('Failed to submit FAQ feedback:', error);
-      // Still show success to user even if tracking fails
-      setFeedback(helpful ? 'yes' : 'no');
+      console.error("Failed to submit FAQ feedback:", error);
+      setFeedback(helpful ? "yes" : "no");
     } finally {
       setIsSubmitting(false);
     }
@@ -36,39 +31,28 @@ const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
 
   if (feedback) {
     return (
-      <div className="flex items-center gap-2 text-sm text-muted-foreground mt-4 pt-4 border-t border-border">
-        <CheckCircle2 className="w-4 h-4 text-green-600 dark:text-green-500" />
-        <span>Thanks for your feedback!</span>
+      <div className="mt-4 flex items-center gap-2 border-t border-[hsl(var(--after-hours-plum)/0.16)] pt-4 text-xs text-[hsl(var(--after-hours-plum)/0.58)]">
+        <CheckCircle2 className="h-4 w-4 text-[hsl(var(--after-hours-copper))]" aria-hidden="true" />
+        <span>Thank you for the feedback.</span>
       </div>
     );
   }
 
   return (
-    <div className="mt-4 pt-4 border-t border-border">
-      <div className="flex items-center gap-3">
-        <span className="text-sm text-muted-foreground">Did this help?</span>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleFeedback(true)}
+    <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[hsl(var(--after-hours-plum)/0.16)] pt-4">
+      <span className="text-xs text-[hsl(var(--after-hours-plum)/0.58)]">Was this useful?</span>
+      <div className="flex gap-4">
+        {[{ label: "Yes", value: true }, { label: "Not quite", value: false }].map((option) => (
+          <button
+            key={option.label}
+            type="button"
+            onClick={() => handleFeedback(option.value)}
             disabled={isSubmitting}
-            className="h-8 px-3 hover:bg-green-50 dark:hover:bg-green-950 hover:border-green-500 hover:text-green-700 dark:hover:text-green-400"
+            className="min-h-11 border-b border-[hsl(var(--after-hours-plum)/0.32)] text-xs font-semibold uppercase tracking-[0.1em] text-[hsl(var(--after-hours-plum)/0.72)] hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-plum))] disabled:opacity-50"
           >
-            <ThumbsUp className="w-4 h-4" />
-            <span className="ml-1.5">Yes</span>
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleFeedback(false)}
-            disabled={isSubmitting}
-            className="h-8 px-3 hover:bg-red-50 dark:hover:bg-red-950 hover:border-red-500 hover:text-red-700 dark:hover:text-red-400"
-          >
-            <ThumbsDown className="w-4 h-4" />
-            <span className="ml-1.5">No</span>
-          </Button>
-        </div>
+            {option.label}
+          </button>
+        ))}
       </div>
     </div>
   );

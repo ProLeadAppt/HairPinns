@@ -18,7 +18,7 @@ const Terms = () => {
     ]),
   ];
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title="Terms of Service | Hair Pinns"
         description="Hair Pinns terms of service for salon services and online purchases."

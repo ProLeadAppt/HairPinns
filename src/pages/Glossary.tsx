@@ -57,7 +57,7 @@ const Glossary = () => {
   });
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="editorial-route min-h-screen flex flex-col bg-background">
       <SEOHead
         title="Hair Care Glossary | Plain-English Hair Terms | Hair Pinns"
         description="Hair-care terms explained simply by a 20-year salon owner. Keratin, full head foils, bond repair, toner, sulphate-free, lamellar treatment and more — what they actually mean and when to use them."

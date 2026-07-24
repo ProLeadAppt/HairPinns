@@ -41,7 +41,7 @@ const SocialShareBar = ({ url, title, variant = "fixed" }: SocialShareBarProps) 
     : "fixed bottom-8 right-8 z-40 hidden flex-col gap-3 lg:flex";
   const controlClass = variant === "inline"
     ? "flex h-11 w-11 items-center justify-center border border-[hsl(var(--after-hours-copper)/0.55)] text-[hsl(var(--after-hours-cream))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]"
-    : "flex h-12 w-12 items-center justify-center rounded-full border border-accent/20 bg-surface text-muted-foreground shadow-card transition-all hover:scale-110 hover:shadow-lg";
+    : "flex h-11 w-11 items-center justify-center border border-[hsl(var(--after-hours-cream)/0.24)] bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream)/0.72)] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))]";
 
   return (
     <div className={wrapperClass} data-share-variant={variant}>

@@ -760,3 +760,66 @@ chat-widget[data-aria-hidden="true"],
 chat-widget[data-active="false"] {
   pointer-events: none !important;
 }
+
+/* Shared editorial eyebrow used across After-Hours surfaces. */
+.after-hours-kicker {
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Route-scoped bridge for public templates that predate the After-Hours
+   system. Applied only to legacy utility/SEO route families so upgraded
+   commerce and salon surfaces remain untouched. */
+.editorial-route {
+  background: hsl(var(--after-hours-paper));
+  color: hsl(var(--after-hours-plum));
+}
+.editorial-route[class*="bg-gradient"] {
+  background-color: hsl(var(--after-hours-paper)) !important;
+  background-image: none !important;
+}
+.editorial-route > [class*="rounded"],
+.editorial-route > [class*="shadow"] {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.editorial-route main {
+  background: hsl(var(--after-hours-paper));
+  color: hsl(var(--after-hours-plum));
+}
+.editorial-route main [class*="bg-gradient"] {
+  background: hsl(var(--after-hours-plum)) !important;
+}
+.editorial-route main [class*="rounded-card"],
+.editorial-route main [class*="rounded-lg"],
+.editorial-route main [class*="rounded-xl"],
+.editorial-route main [class*="rounded-2xl"],
+.editorial-route main [class*="rounded-3xl"],
+.editorial-route main [class*="rounded-full"] {
+  border-radius: 0 !important;
+}
+.editorial-route main [class*="shadow"] {
+  box-shadow: none !important;
+}
+.editorial-route main button[class*="rounded"],
+.editorial-route main a[class*="rounded"] {
+  min-height: 2.75rem;
+  border-radius: 0 !important;
+}
+.editorial-route main button[class*="bg-brand"],
+.editorial-route main a[class*="bg-brand"] {
+  background: hsl(var(--after-hours-plum)) !important;
+}
+.editorial-route main h1,
+.editorial-route main h2,
+.editorial-route main h3 {
+  color: hsl(var(--after-hours-plum));
+}
+.editorial-route main [class*="bg-gradient"] h1,
+.editorial-route main [class*="bg-gradient"] h2,
+.editorial-route main [class*="bg-gradient"] h3 {
+  color: hsl(var(--after-hours-cream));
+}

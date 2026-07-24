@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import ProductModule from "@/components/blog/ProductModule";
 import LeadMagnetBox from "@/components/blog/LeadMagnetBox";
@@ -137,7 +137,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[hsl(var(--after-hours-paper))]">
       <SEOHead
         title={`${post.title} | Hair Pinns Blog`}
         description={post.excerpt}
@@ -151,10 +151,40 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
       <ProgressBar />
       <Header />
       
-      <main id="main-content" tabIndex={-1} ref={revealRef as any}>
-        {/* Hero Section - Overlay Style */}
-        <div className="relative h-[60vh] lg:h-[70vh] overflow-hidden">
-          <picture>
+      <main id="main-content" tabIndex={-1} ref={revealRef as any} data-blog-article="">
+        <div className="border-b border-[hsl(var(--after-hours-cream)/0.16)] bg-[hsl(var(--after-hours-plum))] px-4 pt-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[78rem]">
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Journal', href: '/blog' },
+                { label: post.title }
+              ]}
+              variant="dark"
+            />
+          </div>
+        </div>
+
+        <section className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]" aria-labelledby="article-title">
+          <div className="mx-auto grid max-w-[78rem] lg:min-h-[44rem] lg:grid-cols-[0.53fr_0.47fr]">
+            <div className="flex flex-col justify-between px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 xl:pr-16">
+              <div>
+                <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Journal / {post.category}</p>
+                <h1 id="article-title" className="mt-6 max-w-[13ch] font-heading text-[clamp(3.1rem,7vw,6.8rem)] font-semibold leading-[0.89] tracking-[-0.055em] text-[hsl(var(--after-hours-cream))]">
+                  {post.title}
+                </h1>
+                <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.74)]">
+                  {post.excerpt}
+                </p>
+              </div>
+              <dl className="mt-12 grid grid-cols-3 border-y border-[hsl(var(--after-hours-cream)/0.22)] py-5 text-[hsl(var(--after-hours-cream))]">
+                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.55)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
+                <div className="border-l border-[hsl(var(--after-hours-cream)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.55)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd></div>
+                <div className="border-l border-[hsl(var(--after-hours-cream)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.55)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
+              </dl>
+            </div>
+
+            <picture className="block min-h-[26rem] overflow-hidden border-t border-[hsl(var(--after-hours-cream)/0.18)] bg-[hsl(var(--after-hours-cream)/0.08)] lg:border-l lg:border-t-0">
             <source
               type="image/webp"
               srcSet={[
@@ -163,7 +193,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
                 1200,
                 1600,
               ].map((width) => `${shopifyImageWebp(post.image, width)} ${width}w`).join(", ")}
-              sizes="100vw"
+              sizes="(max-width: 1023px) 100vw, 47vw"
             />
             <img
               src={shopifyImage(post.image, 1600)}
@@ -174,58 +204,20 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
                 1600,
               ].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
               alt={post.title}
-              className="w-full h-full object-cover"
+              className="h-full min-h-[26rem] w-full object-cover lg:min-h-[44rem]"
               loading="eager"
               fetchPriority="high"
               decoding="async"
               width="1600"
               height="900"
-              sizes="100vw"
+              sizes="(max-width: 1023px) 100vw, 47vw"
             />
           </picture>
-          <div className="absolute inset-0 bg-gradient-to-t from-heading/90 via-heading/50 to-transparent" />
-          
-          <div className="absolute inset-0 flex items-end">
-            <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 lg:pb-16">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm shadow-sm text-brand-600 font-bold text-sm mb-4">
-                {post.category}
-              </div>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight max-w-4xl">
-                {post.title}
-              </h1>
-              
-              <div className="flex items-center gap-6 text-sm text-white/90">
-                <span className="flex items-center gap-2">
-                  <User className="w-4 h-4" />
-                  {post.author}
-                </span>
-                <span className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  {post.date}
-                </span>
-                <span className="flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
-                  {post.readTime}
-                </span>
-              </div>
-            </div>
           </div>
-        </div>
-
-        {/* Breadcrumbs */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <Breadcrumbs 
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Blog', href: '/blog' },
-              { label: post.title }
-            ]}
-          />
-        </div>
+        </section>
 
         {/* Article Content */}
-        <article className="max-w-[720px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article className="mx-auto max-w-[48rem] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
           {/* Quick Answer Box - AI SEO Optimization */}
           {post.content.quickAnswer && (
             <div className="quick-answer">
@@ -237,19 +229,18 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           )}
 
           {/* Introduction with drop cap effect */}
-          <p className="post-intro text-xl leading-relaxed text-text mb-8 first-letter:text-5xl first-letter:font-heading first-letter:font-bold first-letter:text-brand-500 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+          <p className="post-intro mb-12 border-b border-[hsl(var(--after-hours-plum)/0.22)] pb-10 font-heading text-[clamp(1.5rem,3vw,2.15rem)] leading-[1.35] text-[hsl(var(--after-hours-plum))] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-6xl first-letter:text-[hsl(var(--after-hours-copper))]">
             {renderInlineLinks(post.content.introduction)}
           </p>
 
           {/* Content Sections */}
           {post.content.sections.map((section, index) => (
-            <div key={index} className="reveal mb-12">
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading mb-6 mt-12">
+            <div key={index} className="reveal mb-16">
+              <p className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.52)]">{String(index + 1).padStart(2, "0")} /</p>
+              <h2 className="mb-6 mt-4 max-w-[17ch] font-heading text-[clamp(2.2rem,5vw,4rem)] font-normal leading-[0.98] tracking-[-0.04em] text-[hsl(var(--after-hours-plum))]">
                 {section.heading}
               </h2>
-              <div className="h-1 w-20 bg-brand-500 mb-6" />
-              
-              <p className="text-lg leading-relaxed text-text">
+              <p className="max-w-[65ch] text-[1.06rem] leading-8 text-[hsl(var(--after-hours-plum)/0.78)]">
                 {renderInlineLinks(section.content)}
               </p>
 
@@ -292,17 +283,18 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           )}
 
           {/* FAQ Section */}
-          <div className="reveal mt-16 pt-12 border-t border-border">
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-heading mb-8">
+          <div className="reveal mt-20 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-10">
+            <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.62)]">Questions from the chair</p>
+            <h2 className="mb-8 mt-4 max-w-[12ch] font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
               Frequently Asked Questions
             </h2>
-            <div className="space-y-6">
+            <div className="border-t border-[hsl(var(--after-hours-plum)/0.24)]">
               {visibleFaqs.map((faq, index) => (
-                <div key={index} className="bg-accent/5 rounded-card p-6 border border-accent/20">
-                  <h3 className="font-heading font-semibold text-xl text-heading mb-3">
+                <div key={index} className="border-b border-[hsl(var(--after-hours-plum)/0.2)] py-7">
+                  <h3 className="font-heading text-xl font-normal text-[hsl(var(--after-hours-plum))]">
                     {faq.question}
                   </h3>
-                  <p className="text-text leading-relaxed mb-4">
+                  <p className="mb-4 mt-3 leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">
                     {faq.answer}
                   </p>
                   <FaqFeedbackWidget question={faq.question} />
@@ -336,6 +328,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           topics={topicsForBlogPost(post.slug).map((t) => t.slug)}
           show={["service", "collection"]}
           heading="Related services & products"
+          variant="editorial"
         />
       </main>
 

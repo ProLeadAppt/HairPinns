@@ -4,22 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import {
-  ShoppingBag,
-  Sparkles,
-  Check,
-  ArrowRight,
-  Star,
-  Truck,
-  Shield,
-  RotateCcw,
-  Clock,
-  Scissors,
-  Award,
-} from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { notify } from "@/hooks/use-toast";
 import { JENAS_DAILY_TRIO, type JenasDailyTrio } from "@/data/jenasDailyTrio";
 import { getProductByHandle } from "@/lib/shopify";
@@ -74,31 +59,28 @@ interface TrioProductLive {
   icon: string;
 }
 
-const BUNDLE_DISCOUNT = 0.1; // 10% off when all 3 are added
+const BUNDLE_DISCOUNT = 0.1;
 
-/**
- * Trio hero value-props — three real benefits, not three ticks.
- * Jena flagged the original strip (10% off / Free shipping / Same
- * products Jena uses) as feeling like filler. Replaced with benefits
- * that each answer a different buying objection.
- */
-const TRIO_HERO_PROPS = [
+const routineSteps = [
   {
-    icon: Clock,
-    title: "One routine, every wash day",
-    body: "Wash, condition, leave-in. Done.",
+    step: "01",
+    title: "Wash twice",
+    copy: "The first wash lifts build-up. The second cleans. Massage the scalp for 60 seconds, then rinse.",
   },
   {
-    icon: Scissors,
-    title: "What Jena uses in the chair",
-    body: "Same three bottles, on 90% of clients.",
+    step: "02",
+    title: "Condition the lengths",
+    copy: "Work through mid-lengths and ends, leave for 60 seconds, then rinse without overworking the hair.",
   },
   {
-    icon: Award,
-    title: "10% off when you bundle",
-    body: "Free AU shipping over $150. Afterpay & Zip.",
+    step: "03",
+    title: "Finish with leave-in",
+    copy: "Use a small amount on towel-dried ends before styling for heat protection, frizz control, and softness.",
   },
 ];
+
+const primaryActionClass = "flex min-h-12 w-full items-center justify-between gap-5 bg-[hsl(var(--after-hours-plum))] px-5 text-sm font-semibold text-[hsl(var(--after-hours-cream))] transition-colors hover:bg-[hsl(var(--after-hours-copper))] disabled:cursor-not-allowed disabled:opacity-45";
+const inverseActionClass = "flex min-h-12 w-full items-center justify-between gap-5 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold text-[hsl(var(--after-hours-plum))] transition-colors hover:bg-[hsl(var(--after-hours-copper))] disabled:cursor-not-allowed disabled:opacity-45";
 
 const JenasDailyTrioPage = () => {
   const trio = JENAS_DAILY_TRIO;
@@ -115,50 +97,36 @@ const JenasDailyTrioPage = () => {
       setLoading(true);
       try {
         const live = await Promise.all(
-          trio.products.map(async (cfg) => {
+          trio.products.map(async (config) => {
             try {
-              const data: any = await getProductByHandle(cfg.handle);
+              const data: any = await getProductByHandle(config.handle);
               if (!data) return null;
               const firstImage = data.images?.edges?.[0]?.node;
-              const firstVariant = data.variants?.edges?.find(
-                (v: any) => v.node.availableForSale
-              )?.node || data.variants?.edges?.[0]?.node;
-              const price = parseFloat(
-                data.priceRange?.minVariantPrice?.amount || "0"
-              );
+              const firstVariant = data.variants?.edges?.find((variant: any) => variant.node.availableForSale)?.node
+                || data.variants?.edges?.[0]?.node;
               return {
                 handle: data.handle,
                 id: data.id,
                 title: data.title,
-                // Image fallback chain (Jena flagged the trio showing no
-                // image in mid-2026 when Shopify had no image set):
-                //   1. Curated per-handle SVG (looks intentional)
-                //   2. Shopify's first image, if any
-                //   3. Generic placeholder
-                image:
-                  firstImage?.url ||
-                  cfg.fallbackImage ||
-                  "/placeholder.svg",
-                price,
-                currency:
-                  data.priceRange?.minVariantPrice?.currencyCode || "AUD",
+                image: firstImage?.url || config.fallbackImage || "/placeholder.svg",
+                price: parseFloat(data.priceRange?.minVariantPrice?.amount || "0"),
+                currency: data.priceRange?.minVariantPrice?.currencyCode || "AUD",
                 variantId: firstVariant?.id || "",
                 vendor: data.vendor || "",
                 availableForSale: !!data.availableForSale,
                 url: `https://hairpinns.com/products/${data.handle}`,
-                pitch: cfg.pitch,
-                slot: cfg.slot,
-                badge: cfg.badge,
-                icon: cfg.icon,
+                pitch: config.pitch,
+                slot: config.slot,
+                badge: config.badge,
+                icon: config.icon,
               } as TrioProductLive;
-            } catch (e) {
-              console.warn(`[Trio] failed to load ${cfg.handle}`, e);
+            } catch (error) {
+              console.warn(`[Trio] failed to load ${config.handle}`, error);
               return null;
             }
-          })
+          }),
         );
-        if (cancelled) return;
-        setProducts(live.filter((p): p is TrioProductLive => !!p));
+        if (!cancelled) setProducts(live.filter((product): product is TrioProductLive => !!product));
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -177,44 +145,41 @@ const JenasDailyTrioPage = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const subtotal = products.reduce((s, p) => s + p.price, 0);
+  const subtotal = products.reduce((sum, product) => sum + product.price, 0);
   const bundlePrice = subtotal * (1 - BUNDLE_DISCOUNT);
   const savings = subtotal - bundlePrice;
-  const allAvailable = products.length === 3 && products.every((p) => p.availableForSale);
+  const allAvailable = products.length === 3 && products.every((product) => product.availableForSale);
   const bundleReady = !loading && allAvailable;
 
-  // The honest bundle comparison is the sum of the three live Shopify prices.
-  const bundleRrp = subtotal;
-
-  const addOne = async (p: TrioProductLive) => {
-    if (!p.variantId) {
-      notify.error("Sorry, that one's temporarily out of stock.");
+  const addOne = async (product: TrioProductLive) => {
+    if (!product.variantId) {
+      notify.error("Sorry, that one’s temporarily out of stock.");
       return;
     }
-    setAddingOne(p.handle);
+    setAddingOne(product.handle);
     try {
       const existingCartId = localStorage.getItem("hp_cart_id");
-      const res = await fetch("/api/checkout", {
+      const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          lines: [{ merchandiseId: p.variantId, quantity: 1 }],
+          lines: [{ merchandiseId: product.variantId, quantity: 1 }],
           ...(existingCartId && { cartId: existingCartId }),
         }),
       });
-      if (!res.ok) throw new Error("add failed");
-      const { cartId } = await res.json();
+      if (!response.ok) throw new Error("add failed");
+      const { cartId } = await response.json();
       if (cartId) localStorage.setItem("hp_cart_id", cartId);
       window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cartId } }));
-      notify.success(`${p.title} added to bag`);
+      notify.success(`${product.title} added to bag`);
       fireAddToCart({
-        currency: p.currency,
-        value: p.price,
-        items: [{ item_id: p.id, item_name: p.title, price: p.price, quantity: 1 }],
+        currency: product.currency,
+        value: product.price,
+        items: [{ item_id: product.id, item_name: product.title, price: product.price, quantity: 1 }],
       });
-    } catch (e) {
-      console.error(e);
-      notify.error("Couldn't add to bag — try again or visit the product page.");
+    } catch (error) {
+      console.error(error);
+      notify.error("Couldn’t add to bag. Try again or visit the product page.");
     } finally {
       setAddingOne(null);
     }
@@ -228,11 +193,8 @@ const JenasDailyTrioPage = () => {
     setAddingAll(true);
     try {
       const existingCartId = localStorage.getItem("hp_cart_id");
-      const lines = products.map((p) => ({
-        merchandiseId: p.variantId,
-        quantity: 1,
-      }));
-      const res = await fetch("/api/checkout", {
+      const lines = products.map((product) => ({ merchandiseId: product.variantId, quantity: 1 }));
+      const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -244,61 +206,49 @@ const JenasDailyTrioPage = () => {
           ],
         }),
       });
-      if (!res.ok) throw new Error("bundle add failed");
-      const { cartId, checkoutUrl } = await res.json();
+      if (!response.ok) throw new Error("bundle add failed");
+      const { cartId, checkoutUrl } = await response.json();
       if (cartId) localStorage.setItem("hp_cart_id", cartId);
-
-      // Fire conversion signals
-      const gaItems = products.map((p) => ({
-        item_id: p.id,
-        item_name: p.title,
-        price: p.price,
+      const gaItems = products.map((product) => ({
+        item_id: product.id,
+        item_name: product.title,
+        price: product.price,
         quantity: 1,
       }));
       fireAddToCart({ currency: "AUD", value: bundlePrice, items: gaItems });
       fireViewCart({ currency: "AUD", value: bundlePrice, items: gaItems });
-
-      window.dispatchEvent(
-        new CustomEvent("hp:openMiniCart", { detail: { cartId, checkoutUrl } })
-      );
-      notify.success("Trio added to bag — 10% saving applied.");
-    } catch (e) {
-      console.error(e);
-      notify.error("Couldn't add the trio — try again or add each separately.");
+      window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cartId, checkoutUrl } }));
+      notify.success("Trio added to bag. Your 10% saving is included.");
+    } catch (error) {
+      console.error(error);
+      notify.error("Couldn’t add the trio. Try again or add each product separately.");
     } finally {
       setAddingAll(false);
     }
   };
 
-  // Schema
   const breadcrumb = generateBreadcrumbSchema([
     { name: "Home", url: "https://hairpinns.com/" },
     { name: "Collections", url: "https://hairpinns.com/collections" },
     { name: trio.name, url: "https://hairpinns.com/collections/jenas-daily-trio" },
   ]);
-
   const webPage = generateWebPageSchema({
     name: `${trio.name} — Curated by Jena | Hair Pinns`,
     description: trio.subheadline,
     url: "https://hairpinns.com/collections/jenas-daily-trio",
     speakable: { cssSelector: [".speakable-trio-intro"] },
   });
-
   const faq = generateFAQPageSchema(trio.faqItems);
-
-  const productSchemas = products.map((p) =>
-    generateProductSchema({
-      name: p.title,
-      description: p.pitch,
-      image: p.image,
-      price: p.price.toString(),
-      currency: p.currency,
-      sku: p.handle,
-      brand: p.vendor,
-      availability: p.availableForSale ? "InStock" : "OutOfStock",
-    })
-  );
-
+  const productSchemas = products.map((product) => generateProductSchema({
+    name: product.title,
+    description: product.pitch,
+    image: product.image,
+    price: product.price.toString(),
+    currency: product.currency,
+    sku: product.handle,
+    brand: product.vendor,
+    availability: product.availableForSale ? "InStock" : "OutOfStock",
+  }));
   const bundleOffer = {
     "@context": "https://schema.org",
     "@type": "Offer",
@@ -307,20 +257,13 @@ const JenasDailyTrioPage = () => {
     url: "https://hairpinns.com/collections/jenas-daily-trio",
     priceCurrency: "AUD",
     price: bundlePrice.toFixed(2),
-    availability:
-      allAvailable
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
-    priceValidUntil: new Date(new Date().setMonth(new Date().getMonth() + 6))
-      .toISOString()
-      .split("T")[0],
+    availability: allAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    priceValidUntil: new Date(new Date().setMonth(new Date().getMonth() + 6)).toISOString().split("T")[0],
     seller: { "@type": "Organization", name: "Hair Pinns" },
   };
 
-  const schemas = [breadcrumb, webPage, faq, ...productSchemas, bundleOffer];
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[hsl(var(--after-hours-paper))]">
       <SEOHead
         title={`${trio.name} | 10% off the three Jena uses most | Hair Pinns`}
         description={trio.subheadline}
@@ -328,301 +271,95 @@ const JenasDailyTrioPage = () => {
         ogImage={getOGImage("collection")}
         ogType="product"
         hrefLang="en-AU"
-        schemaJson={schemas}
+        schemaJson={[breadcrumb, webPage, faq, ...productSchemas, bundleOffer]}
       />
       <Header />
 
-      <main id="main-content" tabIndex={-1}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Collections", href: "/collections" },
-              { label: trio.name },
-            ]}
-          />
+      <main id="main-content" tabIndex={-1} data-trio-page="">
+        <div className="border-b border-[hsl(var(--after-hours-cream)/0.16)] bg-[hsl(var(--after-hours-plum))] px-4 pt-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[78rem]">
+            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Collections", href: "/collections" }, { label: trio.name }]} variant="dark" />
+          </div>
         </div>
 
-        {/* ======================================================== */}
-        {/* HERO — benefit-first, with a sticky price card on the side */}
-        {/* ======================================================== */}
-        <section className="bg-gradient-to-br from-[hsl(var(--brand-500))] to-[hsl(var(--brand-700))] text-white relative overflow-hidden">
-          {/* subtle decorative blur */}
-          <div
-            aria-hidden
-            className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-[hsl(var(--gold))]/15 blur-3xl pointer-events-none"
-          />
-          <div
-            aria-hidden
-            className="absolute -bottom-32 -left-32 w-[24rem] h-[24rem] rounded-full bg-white/10 blur-3xl pointer-events-none"
-          />
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 relative">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
+        <section className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]" aria-labelledby="trio-title">
+          <div className="mx-auto grid max-w-[78rem] lg:min-h-[45rem] lg:grid-cols-[0.62fr_0.38fr]">
+            <div className="flex flex-col justify-between px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 xl:pr-16">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 text-white px-4 py-2 text-sm font-bold uppercase tracking-wider mb-5">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  {trio.eyebrow}
-                </span>
-                <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl leading-[1.05] mb-4">
+                <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Jena’s shelf / Daily routine</p>
+                <h1 id="trio-title" className="mt-6 max-w-[9ch] font-heading text-[clamp(3.6rem,9vw,8rem)] font-semibold leading-[0.87] tracking-[-0.06em] text-[hsl(var(--after-hours-cream))]">
                   {trio.headline}
                 </h1>
-                <p className="speakable-trio-intro text-lg md:text-xl text-white max-w-2xl mb-8 font-medium leading-relaxed">
+                <p className="speakable-trio-intro mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.76)] sm:text-lg sm:leading-8">
                   {trio.subheadline}
                 </p>
+              </div>
+              <dl className="mt-12 grid grid-cols-3 border-y border-[hsl(var(--after-hours-cream)/0.22)] py-5">
+                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.52)]">Routine</dt><dd className="mt-2 font-heading text-xl">3 steps</dd></div>
+                <div className="border-l border-[hsl(var(--after-hours-cream)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.52)]">Bundle</dt><dd className="mt-2 font-heading text-xl">10% off</dd></div>
+                <div className="border-l border-[hsl(var(--after-hours-cream)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.52)]">Chosen by</dt><dd className="mt-2 font-heading text-xl">Jena</dd></div>
+              </dl>
+            </div>
 
-                {/* 3 real benefits, not 3 ticks — answers 3 different
-                    buying objections: complexity, trust, value. */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                  {TRIO_HERO_PROPS.map(({ icon: Icon, title, body }) => (
-                    <div
-                      key={title}
-                      className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 p-4"
-                    >
-                      <Icon className="w-5 h-5 text-white mb-2" />
-                      <p className="text-sm font-semibold text-white mb-1 leading-snug">
-                        {title}
-                      </p>
-                      <p className="text-sm text-white leading-snug font-medium">{body}</p>
+            <aside className="flex flex-col justify-between border-t border-[hsl(var(--after-hours-cream)/0.18)] bg-[hsl(var(--after-hours-cream))] p-6 text-[hsl(var(--after-hours-plum))] sm:p-10 lg:border-l lg:border-t-0 lg:p-12" aria-label="Bundle summary">
+              <div>
+                <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.62)]">The complete set</p>
+                <div className="mt-6 border-t border-[hsl(var(--after-hours-plum)/0.22)]">
+                  {trio.products.map((product, index) => (
+                    <div key={product.handle} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3 border-b border-[hsl(var(--after-hours-plum)/0.18)] py-4">
+                      <span className="font-mono text-[0.62rem] text-[hsl(var(--after-hours-plum)/0.52)]">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="text-sm font-semibold">{product.badge}</span>
                     </div>
                   ))}
                 </div>
-
-                {/* trust micro-row */}
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white font-medium">
-                  <span className="inline-flex items-center gap-1.5">
-                    <Truck className="w-4 h-4" /> Free AU shipping over $150
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <RotateCcw className="w-4 h-4" /> 14-day returns
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <Shield className="w-4 h-4" /> Afterpay & Zip
-                  </span>
-                </div>
               </div>
 
-              {/* Sticky price card — shows the bundle deal, not a bare
-                  price. Renders only when Shopify returned live data. */}
-              <aside
-                className="bg-white text-foreground rounded-2xl p-6 md:p-7 shadow-2xl ring-1 ring-black/5"
-                aria-label="Bundle summary"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm uppercase tracking-wider text-heading font-bold">
-                    The Trio · 3 products
-                  </span>
-                  <Badge className="bg-brand-100 text-brand-700 border-brand-200 font-bold">
-                    Save 10%
-                  </Badge>
-                </div>
-
-                {loading ? (
-                  <div className="space-y-2 my-4">
-                    <Skeleton className="h-8 w-32" />
-                    <Skeleton className="h-4 w-24" />
-                  </div>
-                ) : (
+              <div className="mt-10">
+                {loading ? <div className="h-12 w-40 animate-pulse bg-[hsl(var(--after-hours-plum)/0.1)]" /> : subtotal > 0 ? (
                   <>
-                    {/*
-                     * Hide the whole bundle price block when every
-                     * product returned $0 (Shopify fetch failed or
-                     * no variant set). Otherwise Jena sees "$0"
-                     * next to the (also-$0) individual prices.
-                     */}
-                    {subtotal > 0 && (
-                      <div className="flex items-baseline gap-3 my-3">
-                        <span className="text-4xl font-heading font-bold text-heading">
-                          {formatPrice(bundlePrice, "AUD")}
-                        </span>
-                        {bundleRrp && bundleRrp > bundlePrice && (
-                          <span className="text-base text-muted-foreground line-through decoration-muted-foreground/40">
-                            {formatPrice(bundleRrp, "AUD")}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    {subtotal > 0 && bundleRrp && (
-                      <p className="text-sm text-foreground/85 mb-5 font-medium">
-                        You save <strong className="text-brand-700 font-bold">{formatPrice(bundleRrp - bundlePrice, "AUD")}</strong>{" "}
-                        vs buying separately.
-                      </p>
-                    )}
-                    {subtotal > 0 && !bundleRrp && (
-                      <p className="text-sm text-foreground/85 mb-5 font-medium">
-                        You save <strong className="text-brand-700 font-bold">{formatPrice(savings, "AUD")}</strong>{" "}
-                        vs buying separately.
-                      </p>
-                    )}
-                    {subtotal === 0 && (
-                      <p className="text-sm text-foreground/85 my-4 font-medium">
-                        Pricing is loading — add a single product below to get started.
-                      </p>
-                    )}
+                    <div className="flex items-end justify-between gap-4 border-b border-[hsl(var(--after-hours-plum)/0.22)] pb-5">
+                      <div><p className="text-[0.61rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.56)]">Bundle price</p><p className="mt-2 font-heading text-4xl">{formatPrice(bundlePrice, "AUD")}</p></div>
+                      <p className="pb-1 text-sm text-[hsl(var(--after-hours-plum)/0.6)] line-through">{formatPrice(subtotal, "AUD")}</p>
+                    </div>
+                    <p className="mt-4 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.68)]">You save {formatPrice(savings, "AUD")} against the three individual prices.</p>
                   </>
-                )}
+                ) : <p className="text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.68)]">Live pricing is loading. You can still view each product below.</p>}
 
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="w-full mb-3 gap-2"
-                  onClick={addAll}
-                  disabled={loading || addingAll || !allAvailable}
-                  data-cta="jenas-trio-add-all"
-                  data-cta-placement="trio_hero"
-                  data-cta-offer="jenas_daily_trio_10_off"
-                >
-                  {addingAll ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Adding trio…
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingBag className="w-5 h-5" />
-                      Add all 3 to bag — save 10%
-                    </>
-                  )}
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full gap-2"
-                  onClick={() => {
-                    trackBookingClick("jenas_trio_hero", "/collections/jenas-daily-trio");
-                    window.open(BOOK_URL, "_blank");
-                  }}
-                >
-                  {BOOK_CTA_LABEL}
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-                <p className="text-sm text-foreground/80 text-center mt-4 font-medium">
-                  Free shipping over $150 · 14-day returns · Afterpay & Zip
-                </p>
-              </aside>
-            </div>
+                <button type="button" onClick={addAll} disabled={!bundleReady || addingAll} className={`${primaryActionClass} mt-7`} data-cta="jenas-trio-add-all" data-cta-placement="trio_hero" data-cta-offer="jenas_daily_trio_10_off">
+                  <span>{addingAll ? "Adding trio…" : "Add all three to bag"}</span><ShoppingBag className="h-4 w-4" aria-hidden="true" />
+                </button>
+                <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("jenas_trio_hero", "/collections/jenas-daily-trio")} className="mt-3 flex min-h-12 items-center justify-between border border-[hsl(var(--after-hours-plum)/0.34)] px-5 text-sm font-semibold !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">
+                  {BOOK_CTA_LABEL}<span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </aside>
           </div>
         </section>
 
-        {/* ======================================================== */}
-        {/* THE 3 PRODUCTS — trio with a "vs RRP" price on each card */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-20 bg-muted/40">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <span className="eyebrow">Inside the trio</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading">
-                The three products
-              </h2>
+        <section className="border-b border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] py-16 lg:py-24" aria-labelledby="trio-products-title">
+          <div className="mx-auto max-w-[78rem] px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-6 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-5 md:grid-cols-[0.75fr_1.25fr] md:items-end">
+              <div><p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.66)]">01 / Inside the trio</p><h2 id="trio-products-title" className="mt-4 max-w-[9ch] font-heading text-[clamp(2.8rem,7vw,6rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--after-hours-plum))]">Three bottles. Three jobs.</h2></div>
+              <p className="max-w-[40rem] text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.66)] md:justify-self-end">A complete wash-day sequence without a crowded shelf. Each product has one clear role and earns its place in the routine.</p>
             </div>
 
             {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[1, 2, 3].map((n) => (
-                  <div
-                    key={n}
-                    className="bg-card border border-border rounded-card overflow-hidden"
-                  >
-                    <Skeleton className="aspect-square w-full" />
-                    <div className="p-6 space-y-3">
-                      <Skeleton className="h-5 w-24" />
-                      <Skeleton className="h-6 w-3/4" />
-                      <Skeleton className="h-4 w-full" />
-                      <Skeleton className="h-4 w-2/3" />
-                      <Skeleton className="h-10 w-full" />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <div className="mt-12 grid gap-px bg-[hsl(var(--after-hours-plum)/0.2)] md:grid-cols-3">{[1, 2, 3].map((item) => <div key={item} className="bg-[hsl(var(--after-hours-paper))] p-5"><div className="aspect-[4/5] animate-pulse bg-[hsl(var(--after-hours-plum)/0.08)]" /><div className="mt-5 h-8 animate-pulse bg-[hsl(var(--after-hours-plum)/0.08)]" /></div>)}</div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {products.map((p, i) => (
-                  <article
-                    key={p.handle}
-                    className="bg-card border border-border rounded-card overflow-hidden hover:shadow-xl transition-shadow duration-base flex flex-col"
-                  >
-                    <div className="relative aspect-square bg-muted">
-                      <Link
-                        to={`/products/${p.handle}`}
-                        className="block w-full h-full"
-                        aria-label={`View ${p.title}`}
-                      >
-                        <img
-                          src={p.image}
-                          alt={p.title}
-                          className="w-full h-full object-cover"
-                          loading={i === 0 ? "eager" : "lazy"}
-                          decoding="async"
-                          width="800"
-                          height="800"
-                        />
-                      </Link>
-                      <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur text-heading px-3 py-1 text-xs font-semibold shadow-sm">
-                        <span aria-hidden="true">{p.icon}</span>
-                        {p.badge}
-                      </span>
-                    </div>
-                    <div className="p-6 flex flex-col flex-1">
-                      <h3 className="text-xl font-heading font-semibold text-heading mb-2">
-                        <Link
-                          to={`/products/${p.handle}`}
-                          className="hover:text-brand-500 transition-colors"
-                        >
-                          {p.title}
-                        </Link>
-                      </h3>
-                      {p.vendor && (
-                        <p className="text-sm uppercase tracking-wider text-heading font-bold mb-2">
-                          {p.vendor}
-                        </p>
-                      )}
-                      <p className="text-sm text-foreground mb-4 flex-1">
-                        {p.pitch}
-                      </p>
-                      {(() => {
-                        const priceText = formatPrice(p.price, p.currency);
-                        if (!priceText) return null;
-                        const compareAt = undefined;
-                        const compareText = compareAt
-                          ? formatPrice(compareAt, p.currency)
-                          : "";
-                        return (
-                          <div className="flex items-baseline gap-2 mb-4">
-                            <p className="text-2xl font-bold text-brand-700">
-                              {priceText}
-                            </p>
-                            {compareText && (
-                              <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
-                                {compareText}
-                              </p>
-                            )}
-                          </div>
-                        );
-                      })()}
-                      <Button
-                        variant="primary"
-                        size="default"
-                        className="w-full gap-2"
-                        onClick={() => addOne(p)}
-                        disabled={!p.availableForSale || addingOne === p.handle}
-                        data-cta="jenas-trio-add-one"
-                        data-cta-placement="trio_product_card"
-                        data-cta-product={p.handle}
-                      >
-                        {addingOne === p.handle ? (
-                          <>
-                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                            Adding…
-                          </>
-                        ) : p.availableForSale ? (
-                          <>
-                            <ShoppingBag className="w-4 h-4" />
-                            Add to bag
-                          </>
-                        ) : (
-                          "Out of stock"
-                        )}
-                      </Button>
+              <div className="mt-12 grid gap-px bg-[hsl(var(--after-hours-plum)/0.22)] md:grid-cols-3">
+                {products.map((product, index) => (
+                  <article key={product.handle} className="flex flex-col bg-[hsl(var(--after-hours-paper))] p-4 sm:p-6">
+                    <Link to={`/products/${product.handle}`} className="group block overflow-hidden hover:no-underline" aria-label={`View ${product.title}`}>
+                      <img src={product.image} alt={product.title} className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" loading={index === 0 ? "eager" : "lazy"} decoding="async" width="800" height="1000" />
+                    </Link>
+                    <div className="flex flex-1 flex-col border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-5">
+                      <div className="flex items-center justify-between gap-4 text-[0.61rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.58)]"><span>{String(index + 1).padStart(2, "0")} / {product.badge}</span><span>{product.vendor}</span></div>
+                      <h3 className="mt-4 max-w-[15ch] font-heading text-2xl font-normal leading-tight text-[hsl(var(--after-hours-plum))]"><Link to={`/products/${product.handle}`} className="!text-[hsl(var(--after-hours-plum))] hover:!text-[hsl(var(--after-hours-copper))] hover:no-underline">{product.title}</Link></h3>
+                      <p className="mt-4 flex-1 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.68)]">{product.pitch}</p>
+                      {product.price > 0 ? <p className="mt-6 border-t border-[hsl(var(--after-hours-plum)/0.18)] pt-4 font-heading text-2xl text-[hsl(var(--after-hours-plum))]">{formatPrice(product.price, product.currency)}</p> : null}
+                      <button type="button" onClick={() => addOne(product)} disabled={!product.availableForSale || addingOne === product.handle} className={`${primaryActionClass} mt-5`} data-cta="jenas-trio-add-one" data-cta-placement="trio_product_card" data-cta-product={product.handle}>
+                        <span>{addingOne === product.handle ? "Adding…" : product.availableForSale ? "Add to bag" : "Out of stock"}</span><span aria-hidden="true">→</span>
+                      </button>
                     </div>
                   </article>
                 ))}
@@ -631,272 +368,68 @@ const JenasDailyTrioPage = () => {
           </div>
         </section>
 
-        {/* ======================================================== */}
-        {/* JENA'S NOTE — just the quote, no subtitle, no stat tiles */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-20 bg-gradient-to-b from-muted/40 to-background">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-4 mb-6">
-              <img
-                src="/assets/images/jena-headshot-4lMGRCmj.webp"
-                alt="Jena Pinn, owner of Hair Pinns Bangor"
-                className="w-16 h-16 rounded-full object-cover ring-2 ring-brand-500 shrink-0"
-                loading="lazy"
-                decoding="async"
-                width="160"
-                height="160"
-              />
-              <p className="text-sm font-bold text-brand-700 uppercase tracking-widest">
-                Jena's note
-              </p>
+        <section className="bg-[hsl(var(--after-hours-cream))] py-16 lg:py-24" aria-labelledby="jena-note-title">
+          <div className="mx-auto grid max-w-[78rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.3fr_0.7fr] lg:gap-16 lg:px-8">
+            <figure>
+              <img src="/assets/images/jena-headshot-4lMGRCmj.webp" alt="Jena Pinn, owner of Hair Pinns Bangor" className="aspect-[4/5] w-full max-w-[18rem] object-cover" loading="lazy" decoding="async" width="400" height="500" />
+              <figcaption className="border-b border-[hsl(var(--after-hours-plum)/0.24)] py-3 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.62)]">Jena Pinn / Bangor</figcaption>
+            </figure>
+            <div className="self-center border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-6">
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.66)]">02 / Why these three</p>
+              <blockquote id="jena-note-title" className="mt-6 max-w-[18ch] font-heading text-[clamp(2.3rem,5vw,4.7rem)] font-normal leading-[1.02] tracking-[-0.04em] text-[hsl(var(--after-hours-plum))]">“{trio.jenaStory}”</blockquote>
             </div>
-            <blockquote className="text-xl md:text-2xl text-heading font-heading leading-relaxed">
-              "{trio.jenaStory}"
-            </blockquote>
           </div>
         </section>
 
-        {/* ======================================================== */}
-        {/* HOW TO USE — three numbered steps, tight copy */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-20 bg-background">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading text-center mb-10">
-              How to use
-            </h2>
-            <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  step: "01",
-                  title: "Wash twice",
-                  copy: "First wash lifts build-up. Second wash actually cleans. Massage into the scalp for 60 seconds, rinse.",
-                },
-                {
-                  step: "02",
-                  title: "Condition mid-lengths to ends",
-                  copy: "Leave for 60 seconds. The Aromaganic Smooth detangles in one pass — no raking.",
-                },
-                {
-                  step: "03",
-                  title: "Leave-in on towel-dried hair",
-                  copy: "A small amount of QIQI through the ends before styling. Heat protection, frizz control, soft hold.",
-                },
-              ].map((s) => (
-                <li
-                  key={s.step}
-                  className="bg-card border border-border rounded-card p-6"
-                >
-                  <span className="block text-4xl font-heading font-bold text-brand-700 mb-2">
-                    {s.step}
-                  </span>
-                  <h3 className="font-heading text-lg text-heading mb-2">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm text-foreground leading-relaxed">{s.copy}</p>
-                </li>
-              ))}
+        <section className="bg-[hsl(var(--after-hours-near-black))] py-16 text-[hsl(var(--after-hours-cream))] lg:py-24" aria-labelledby="routine-title">
+          <div className="mx-auto max-w-[78rem] px-4 sm:px-6 lg:px-8">
+            <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">03 / The routine</p>
+            <h2 id="routine-title" className="mt-5 max-w-[11ch] font-heading text-[clamp(3rem,7vw,6.4rem)] font-normal leading-[0.9] tracking-[-0.05em] text-[hsl(var(--after-hours-cream))]">Wash day, made simple.</h2>
+            <ol className="mt-12 grid gap-8 border-t border-[hsl(var(--after-hours-cream)/0.22)] pt-8 md:grid-cols-3 md:gap-10">
+              {routineSteps.map((step) => <li key={step.step} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 md:block"><span className="pt-1 font-mono text-[0.62rem] tracking-[0.16em] text-[hsl(var(--after-hours-copper))]">{step.step}</span><div className="md:mt-5"><h3 className="font-heading text-2xl font-normal text-[hsl(var(--after-hours-cream))]">{step.title}</h3><p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.68)]">{step.copy}</p></div></li>)}
             </ol>
           </div>
         </section>
 
-        {/* ======================================================== */}
-        {/* BUNDLE COMPARISON — vs buying separately */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-20 bg-muted/40">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading text-center mb-10">
-              The trio vs. buying separately
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {/* Separately */}
-              <div className="bg-white border border-border rounded-card p-6">
-                <p className="text-sm uppercase tracking-wider text-heading font-bold mb-4">
-                  Buying separately
-                </p>
-                <ul className="space-y-2 mb-5">
-                  {products.map((p) => (
-                    <li
-                      key={p.handle}
-                      className="flex items-baseline justify-between text-sm border-b border-border/50 pb-2 last:border-0"
-                    >
-                      <span className="text-foreground font-medium">{p.title}</span>
-                      <span className="text-foreground/80 font-medium">
-                        {formatPrice(p.price, p.currency)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-baseline justify-between border-t border-border pt-3">
-                  <span className="text-base text-heading font-bold">Subtotal</span>
-                  <span className="text-xl font-bold text-heading">
-                    {formatPrice(subtotal, "AUD")}
-                  </span>
-                </div>
-              </div>
-
-              {/* Bundle */}
-              <div className="bg-gradient-to-br from-[hsl(var(--brand-500))] to-[hsl(var(--brand-700))] text-white rounded-card p-6 shadow-xl ring-2 ring-[hsl(var(--gold))]">
-                <p className="text-sm uppercase tracking-wider text-white font-bold mb-4">
-                  The trio bundle · save 10%
-                </p>
-                <ul className="space-y-2 mb-5">
-                  {products.map((p) => (
-                    <li
-                      key={p.handle}
-                      className="flex items-baseline justify-between text-sm border-b border-white/25 pb-2 last:border-0"
-                    >
-                      <span className="text-white font-medium">{p.title}</span>
-                      <span className="text-white/85 line-through font-medium">
-                        {formatPrice(p.price, p.currency)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-baseline justify-between border-t border-white/30 pt-3">
-                  <span className="text-base text-white font-semibold">Bundle price</span>
-                  <span className="text-2xl font-heading font-bold text-white">
-                    {formatPrice(bundlePrice, "AUD")}
-                  </span>
-                </div>
-                <p className="text-sm text-white/95 mt-3 font-semibold">
-                  You save {formatPrice(savings, "AUD")} · applied automatically at checkout
-                </p>
-              </div>
+        <section className="border-b border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] py-16 lg:py-24" aria-labelledby="value-title">
+          <div className="mx-auto max-w-[65rem] px-4 sm:px-6 lg:px-8">
+            <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.66)]">04 / The value</p>
+            <h2 id="value-title" className="mt-5 max-w-[12ch] font-heading text-[clamp(2.8rem,6vw,5.5rem)] font-normal leading-[0.93] tracking-[-0.05em] text-[hsl(var(--after-hours-plum))]">The same routine, with less on the total.</h2>
+            <div className="mt-12 grid border-y border-[hsl(var(--after-hours-plum)/0.24)] md:grid-cols-2">
+              <div className="py-8 md:pr-10"><p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.56)]">Buying separately</p><p className="mt-6 font-heading text-4xl text-[hsl(var(--after-hours-plum))]">{formatPrice(subtotal, "AUD")}</p><p className="mt-3 text-sm text-[hsl(var(--after-hours-plum)/0.64)]">The current total of all three individual products.</p></div>
+              <div className="border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[hsl(var(--after-hours-cream))] py-8 md:border-l md:border-t-0 md:px-10"><p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">The trio / save 10%</p><p className="mt-6 font-heading text-4xl text-[hsl(var(--after-hours-plum))]">{formatPrice(bundlePrice, "AUD")}</p><p className="mt-3 text-sm text-[hsl(var(--after-hours-plum)/0.64)]">A saving of {formatPrice(savings, "AUD")} across the routine.</p></div>
             </div>
           </div>
         </section>
 
-        {/* ======================================================== */}
-        {/* REVIEW SNIPPET — Google review for trust */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-20 bg-background">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-1 mb-4 text-brand-500">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <Star key={s} className="w-5 h-5 fill-current" />
-              ))}
-            </div>
-            <blockquote className="text-xl md:text-2xl text-heading font-heading leading-relaxed mb-4">
-              "I bought the trio after my last colour. Six weeks in, my hair is
-              honestly the best it's ever been — softer, less frizz, and the
-              colour is still holding."
-            </blockquote>
-            <p className="text-sm text-foreground/80 font-semibold">
-              Sarah M. · Google Review
-            </p>
-          </div>
-        </section>
-
-        {bundleReady && showStickyCta && (
-          <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
-            <div className="mx-auto max-w-xl rounded-2xl border border-border bg-background/95 backdrop-blur shadow-2xl p-4">
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">Jena's Daily Trio</p>
-                  <p className="text-sm text-heading font-semibold">
-                    {formatPrice(bundlePrice, "AUD")} · save {formatPrice(savings, "AUD")}
-                  </p>
-                </div>
-                <Badge className="bg-[hsl(var(--gold))]/20 text-heading border-[hsl(var(--gold))]/40 font-semibold">
-                  10% off
-                </Badge>
-              </div>
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full gap-2"
-                onClick={addAll}
-                disabled={addingAll || !allAvailable}
-                data-cta="jenas-trio-add-all-mobile"
-                data-cta-placement="trio_mobile_sticky"
-                data-cta-offer="jenas_daily_trio_10_off"
-              >
-                {addingAll ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Adding trio…
-                  </>
-                ) : (
-                  <>
-                    <ShoppingBag className="w-5 h-5" />
-                    Add all 3 to bag
-                  </>
-                )}
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {/* ======================================================== */}
-        {/* FAQ */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-20 bg-muted/40">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading text-center mb-10">
-              Common questions
-            </h2>
-            <div className="space-y-4">
-              {trio.faqItems.map((item, i) => (
-                <details
-                  key={i}
-                  className="group bg-card border border-border rounded-card p-5 open:shadow-md transition-shadow"
-                >
-                  <summary className="flex items-center justify-between gap-4 cursor-pointer list-none">
-                    <h3 className="font-heading text-lg text-heading">
-                      {item.question}
-                    </h3>
-                    <span
-                      className="text-2xl text-brand-500 transition-transform group-open:rotate-45"
-                      aria-hidden="true"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p className="text-foreground mt-3 leading-relaxed">{item.answer}</p>
+        <section className="bg-[hsl(var(--after-hours-cream))] py-16 lg:py-24" aria-labelledby="trio-faq-title">
+          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 sm:px-6 lg:grid-cols-[0.34fr_0.66fr] lg:gap-20 lg:px-8">
+            <header><p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.66)]">05 / Before you buy</p><h2 id="trio-faq-title" className="mt-4 max-w-[10ch] font-heading text-[clamp(2.8rem,5vw,5rem)] font-normal leading-[0.94] tracking-[-0.05em] text-[hsl(var(--after-hours-plum))]">Questions about the trio.</h2></header>
+            <div className="border-t border-[hsl(var(--after-hours-plum)/0.3)]">
+              {trio.faqItems.map((item, index) => (
+                <details key={item.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.22)]">
+                  <summary className="grid min-h-16 cursor-pointer list-none grid-cols-[2rem_1fr_auto] items-center gap-3 py-4 font-semibold text-[hsl(var(--after-hours-plum))] [&::-webkit-details-marker]:hidden"><span className="font-mono text-[0.62rem] text-[hsl(var(--after-hours-plum)/0.58)]">{String(index + 1).padStart(2, "0")}</span><span>{item.question}</span><span className="transition-transform group-open:rotate-45" aria-hidden="true">+</span></summary>
+                  <p className="max-w-[44rem] pb-7 pl-11 text-sm leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">{item.answer}</p>
                 </details>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ======================================================== */}
-        {/* FINAL CTA */}
-        {/* ======================================================== */}
-        <section className="py-14 md:py-16 bg-gradient-to-r from-[hsl(var(--brand-500))] to-[hsl(var(--brand-600))] text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              Ready to start the trio?
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={addAll}
-                disabled={loading || addingAll || !allAvailable}
-                className="bg-white !text-brand-600 hover:bg-white"
-                data-cta="jenas-trio-add-all-bottom"
-                data-cta-placement="trio_bottom"
-                data-cta-offer="jenas_daily_trio_10_off"
-              >
-                {addingAll ? "Adding…" : "Add all 3 to bag — save 10%"}
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => {
-                  trackBookingClick("jenas_trio_bottom", "/collections/jenas-daily-trio");
-                  window.open(BOOK_URL, "_blank");
-                }}
-                className="border-white text-white hover:bg-white/10"
-              >
-                {BOOK_CTA_LABEL}
-              </Button>
-            </div>
+        <section className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
+          <div className="mx-auto grid max-w-[78rem] gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.64fr_0.36fr] lg:gap-20 lg:px-8 lg:py-24">
+            <div><p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">One routine / Three products</p><h2 className="mt-5 max-w-[11ch] font-heading text-[clamp(3rem,6vw,6rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--after-hours-cream))]">Ready for a simpler wash day?</h2></div>
+            <div className="self-end border-t border-[hsl(var(--after-hours-cream)/0.3)] pt-6"><button type="button" onClick={addAll} disabled={!bundleReady || addingAll} className={inverseActionClass} data-cta="jenas-trio-add-all-bottom" data-cta-placement="trio_bottom" data-cta-offer="jenas_daily_trio_10_off"><span>{addingAll ? "Adding trio…" : "Add all three to bag"}</span><span aria-hidden="true">→</span></button><a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("jenas_trio_bottom", "/collections/jenas-daily-trio")} className="mt-3 flex min-h-12 items-center justify-between border border-[hsl(var(--after-hours-cream)/0.34)] px-5 text-sm font-semibold !text-[hsl(var(--after-hours-cream))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">{BOOK_CTA_LABEL}<span aria-hidden="true">↗</span></a></div>
           </div>
         </section>
-      </main>
 
+        {bundleReady && showStickyCta ? (
+          <div className="fixed bottom-3 left-3 right-3 z-50 border border-[hsl(var(--after-hours-cream)/0.24)] bg-[hsl(var(--after-hours-plum))] p-3 text-[hsl(var(--after-hours-cream))] shadow-xl md:hidden">
+            <div className="mb-3 flex items-center justify-between gap-3"><div><p className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-copper))]">Jena’s Daily Trio</p><p className="mt-1 text-sm">{formatPrice(bundlePrice, "AUD")} / save {formatPrice(savings, "AUD")}</p></div><span className="text-[0.61rem] font-semibold uppercase tracking-[0.12em]">10% off</span></div>
+            <button type="button" onClick={addAll} disabled={addingAll || !allAvailable} className={inverseActionClass} data-cta="jenas-trio-add-all-mobile" data-cta-placement="trio_mobile_sticky" data-cta-offer="jenas_daily_trio_10_off"><span>{addingAll ? "Adding trio…" : "Add all three to bag"}</span><ShoppingBag className="h-4 w-4" aria-hidden="true" /></button>
+          </div>
+        ) : null}
+      </main>
       <Footer />
     </div>
   );

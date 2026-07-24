@@ -67,7 +67,33 @@ const DeferredSection = ({
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // WebKit can miss an intersection when a programmatic or high-velocity
+    // scroll crosses a very small deferred placeholder between frames. Keep
+    // IntersectionObserver as the primary gate, but also reveal any section
+    // whose trigger has already been reached or passed.
+    const verticalMargin = Number.parseFloat(rootMargin) || 0;
+    let scheduledFrame: number | null = null;
+    let hasRevealed = false;
+    const checkPosition = () => {
+      scheduledFrame = null;
+      if (!hasRevealed && node.getBoundingClientRect().top <= window.innerHeight + verticalMargin) {
+        hasRevealed = true;
+        setIsVisible(true);
+      }
+    };
+    const revealIfReached = () => {
+      if (hasRevealed || scheduledFrame !== null) return;
+      scheduledFrame = window.requestAnimationFrame(checkPosition);
+    };
+
+    window.addEventListener("scroll", revealIfReached, { passive: true });
+    revealIfReached();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", revealIfReached);
+      if (scheduledFrame !== null) window.cancelAnimationFrame(scheduledFrame);
+    };
   }, [isVisible, rootMargin]);
 
   return (

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
 import type { BlogSummary } from "@/data/blogSummaries";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 
@@ -7,89 +6,54 @@ interface FeaturedPostProps {
   post: BlogSummary;
 }
 
-const FeaturedPost = ({ post }: FeaturedPostProps) => {
-  return (
-    <Link 
+const FeaturedPost = ({ post }: FeaturedPostProps) => (
+  <article className="border-y border-[hsl(var(--after-hours-plum)/0.24)]">
+    <Link
       to={`/blog/${post.slug}`}
-      className="group block"
+      className="group grid !text-[hsl(var(--after-hours-plum))] hover:no-underline lg:grid-cols-[1.08fr_0.92fr]"
     >
-      <div className="relative overflow-hidden rounded-card bg-surface shadow-card hover:shadow-xl transition-all duration-500">
-        <div className="grid lg:grid-cols-2 gap-0 items-center">
-          {/* Image Section */}
-          <div className="relative aspect-[21/9] lg:aspect-square overflow-hidden">
-            <picture>
-              <source
-                type="image/webp"
-                srcSet={[
-                  640,
-                  800,
-                  1000,
-                  1200,
-                  1400,
-                ].map((width) => `${shopifyImageWebp(post.image, width)} ${width}w`).join(", ")}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <img
-                src={shopifyImage(post.image, 1200)}
-                srcSet={[
-                  640,
-                  800,
-                  1000,
-                  1200,
-                  1400,
-                ].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
-                alt={post.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                width="1400"
-                height="600"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </picture>
-            <div className="absolute inset-0 bg-gradient-to-t from-heading/80 via-heading/40 to-transparent lg:hidden" />
-            <div className="absolute top-6 left-6">
-              <span className="inline-flex items-center px-4 py-2 rounded-full bg-brand-500 text-white font-bold text-sm shadow-xl">
-                Latest from Jena
-              </span>
-            </div>
-          </div>
-          
-          {/* Content Section */}
-          <div className="p-8 lg:p-12">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-accent text-brand-600 font-semibold text-sm mb-4">
-              {post.category}
-            </div>
-            
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading text-heading mb-4 group-hover:text-brand-500 transition-colors leading-tight">
-              {post.title}
-            </h2>
-            
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed line-clamp-4">
-              {post.excerpt}
-            </p>
-            
-            <div className="flex items-center gap-6 text-sm text-muted-foreground mb-8">
-              <span className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                {post.date}
-              </span>
-              <span className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                {post.readTime}
-              </span>
-            </div>
-            
-            <div className="inline-flex items-center gap-2 text-brand-500 font-bold text-lg group-hover:gap-4 transition-all">
-              Continue Reading
-              <ArrowRight className="w-6 h-6" />
-            </div>
+      <div className="relative min-h-[19rem] overflow-hidden bg-[hsl(var(--after-hours-plum)/0.06)] sm:min-h-[28rem] lg:min-h-[38rem]">
+        <picture>
+          <source
+            type="image/webp"
+            srcSet={[640, 800, 1000, 1200, 1400].map((width) => `${shopifyImageWebp(post.image, width)} ${width}w`).join(", ")}
+            sizes="(max-width: 1024px) 100vw, 55vw"
+          />
+          <img
+            src={shopifyImage(post.image, 1200)}
+            srcSet={[640, 800, 1000, 1200, 1400].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
+            alt={post.title}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            width="1400"
+            height="900"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            sizes="(max-width: 1024px) 100vw, 55vw"
+          />
+        </picture>
+      </div>
+
+      <div className="flex flex-col justify-between border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[hsl(var(--after-hours-cream))] p-6 sm:p-10 lg:border-l lg:border-t-0 lg:p-12 xl:p-16">
+        <div>
+          <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.68)]">01 / Latest from Jena</p>
+          <h2 className="mt-8 max-w-[11ch] font-heading text-[clamp(2.75rem,5.5vw,5.75rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--after-hours-plum))] transition-colors group-hover:text-[hsl(var(--after-hours-copper))]">
+            {post.title}
+          </h2>
+          <p className="mt-7 max-w-[42ch] text-base leading-7 text-[hsl(var(--after-hours-plum)/0.72)]">
+            {post.excerpt}
+          </p>
+        </div>
+
+        <div className="mt-12 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-5">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.66)]">
+            <span>{post.category} / {post.readTime}</span>
+            <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">Read the story →</span>
           </div>
         </div>
       </div>
     </Link>
-  );
-};
+  </article>
+);
 
 export default FeaturedPost;

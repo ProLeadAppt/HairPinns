@@ -191,7 +191,7 @@ const SuburbPage = () => {
         schemaJson={schemas}
       />
 
-      <div className="min-h-screen flex flex-col">
+      <div className="editorial-route min-h-screen flex flex-col">
         <Header />
         
         <main id="main-content" tabIndex={-1} className="flex-grow">

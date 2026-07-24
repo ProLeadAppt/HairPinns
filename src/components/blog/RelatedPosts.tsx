@@ -34,11 +34,12 @@ const RelatedPosts = ({ currentSlug, limit = 3 }: RelatedPostsProps) => {
   if (relatedPosts.length === 0) return null;
 
   return (
-    <section className="mt-16 pt-12 border-t border-border">
-      <h2 className="text-h2 font-heading text-heading mb-8 text-center">
-        You Might Also Love
+    <section className="mt-20 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-10">
+      <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.62)]">Continue reading</p>
+      <h2 className="mb-10 mt-4 max-w-[12ch] font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
+        More from Jena’s chair.
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
         {relatedPosts.map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
