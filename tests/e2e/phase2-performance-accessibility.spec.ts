@@ -304,6 +304,64 @@ test('shared typography and motion policy respects user preferences', async ({ p
   expect(await page.evaluate(() => (window as any).__scrollBehaviors.at(-1))).toBe('smooth');
 });
 
+test('mobile menu runtime waits for menu intent before loading', async ({ page }) => {
+  const loadedScripts: string[] = [];
+  page.on('requestfinished', request => {
+    if (request.resourceType() === 'script') loadedScripts.push(request.url());
+  });
+
+  const hasMobileMenuRuntime = async () => page.evaluate(async (scriptUrls) => {
+    const uniqueUrls = [...new Set(scriptUrls)]
+      .filter(url => new URL(url).origin === window.location.origin);
+    const sources = await Promise.all(uniqueUrls.map(url => fetch(url).then(response => response.text())));
+    const combinedSource = sources.join('\n');
+    return (
+      combinedSource.includes('DismissableLayer') &&
+      combinedSource.includes('FocusScope') &&
+      combinedSource.includes('RemoveScroll')
+    );
+  }, loadedScripts);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'load' });
+  await expect(page.getByRole('button', { name: 'Open menu' })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Mobile menu' })).toHaveCount(0);
+  expect(loadedScripts.some(url => /\/MobileMenuSheet-[^/]+\.js(?:\?|$)/.test(url))).toBe(false);
+  expect(await hasMobileMenuRuntime()).toBe(false);
+
+  await page.getByRole('button', { name: 'Open menu' }).click();
+  await expect(page.getByRole('dialog', { name: 'Mobile menu' })).toBeVisible();
+  await expect.poll(() => loadedScripts.some(url => /\/MobileMenuSheet-[^/]+\.js(?:\?|$)/.test(url))).toBe(true);
+  await expect.poll(hasMobileMenuRuntime).toBe(true);
+});
+
+test('pending mobile menu intent can be cancelled before its chunk resolves', async ({ page }) => {
+  let releaseChunk!: () => void;
+  const chunkGate = new Promise<void>(resolve => {
+    releaseChunk = resolve;
+  });
+  let chunkIntercepted = false;
+
+  await page.route(/\/MobileMenuSheet-[^/]+\.js(?:\?|$)/, async route => {
+    chunkIntercepted = true;
+    await chunkGate;
+    await route.continue();
+  });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'load' });
+  const trigger = page.getByRole('button', { name: 'Open menu' });
+  await trigger.click();
+  await expect.poll(() => chunkIntercepted).toBe(true);
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+
+  await page.keyboard.press('Escape');
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  releaseChunk();
+  await page.waitForTimeout(250);
+  await expect(page.getByRole('dialog', { name: 'Mobile menu' })).toHaveCount(0);
+});
+
 test('mobile navigation is a named dialog without nested controls', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
@@ -313,12 +371,13 @@ test('mobile navigation is a named dialog without nested controls', async ({ pag
   await expect(menu).toBeVisible();
   await expect(menu.locator('a button, button a')).toHaveCount(0);
   await expect(page.locator('input:focus')).toHaveCount(0);
-  expect(await menu.evaluate((element) => element.contains(document.activeElement))).toBe(true);
+  await expect(menu.getByRole('link', { name: 'Shop all products' })).toBeFocused();
 
   await menu.getByRole('button', { name: 'Cart' }).click();
   await expect(menu).toBeHidden();
   const cart = page.getByRole('dialog', { name: 'Your Bag' });
   await expect(cart).toBeVisible();
+  expect(await cart.evaluate((element) => element.contains(document.activeElement))).toBe(true);
   await page.keyboard.press('Escape');
   await expect(cart).toBeHidden();
   await expect(page.getByRole('button', { name: 'Open menu' })).toBeFocused();

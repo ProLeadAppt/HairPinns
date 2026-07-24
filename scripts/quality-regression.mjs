@@ -310,14 +310,20 @@ assert.match(footerSource, /aria-label="Accepted payment methods"[\s\S]*after-ho
 assert.doesNotMatch(footerSource, /bg-muted|rounded-xl|rounded-full|<Instagram|<Facebook|<MapPin|<Phone/, 'After-Hours footer must not regress to pale template cards or generic icon circles');
 
 const headerSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
+const mobileMenuSheetSource = await readFile(path.join(ROOT, 'src/components/navigation/MobileMenuSheet.tsx'), 'utf8');
 assert.match(headerSource, /isStocktakeActive\(\)[\s\S]*QIQI_DISCOUNT_ACTIVE[\s\S]*DEFAULT_HEADER_MESSAGE/, 'Header must retain promotion priority and fallback copy');
 assert.match(headerSource, /data-cta-offer=\{headerPromoOfferId\}[\s\S]*trackPromoClick\("header_promo_strip"/, 'Header promo must retain click attribution and offer identity');
 assert.match(headerSource, /hidden items-center gap-5 xl:flex[\s\S]*xl:hidden/, 'Full desktop navigation must wait until xl while tablet keeps the stable drawer');
 assert.match(headerSource, /aria-label="Main navigation"[\s\S]*to="\/blog"[\s\S]*to="\/about"[\s\S]*to="\/services"[\s\S]*to="\/contact"/, 'Desktop navigation must retain guides, founder, salon, and contact routes');
 assert.match(headerSource, /SHOP_BY_CONCERN\.slice\(0, 4\)[\s\S]*aria-label="Mobile navigation"|aria-label="Mobile navigation"[\s\S]*SHOP_BY_CONCERN\.slice\(0, 4\)/, 'Mobile navigation must retain centralized concern routes');
-assert.match(headerSource, /aria-label=\{itemCount > 0 \? `View cart[\s\S]*xl:hidden[\s\S]*<Sheet/, 'Mobile header must expose direct cart access before the menu');
-assert.match(headerSource, /openCart\(returnTarget\)[\s\S]*trackBookingClick\("header_mobile"/, 'Mobile drawer must retain cart handoff and booking attribution');
-assert.match(headerSource, /mobileMenuFirstLinkRef\.current\?\.focus\(\)[\s\S]*min-h-11/, 'Mobile drawer must retain deterministic opening focus and 44px targets');
+assert.match(headerSource, /aria-label=\{itemCount > 0 \? `View cart[\s\S]*xl:hidden[\s\S]*aria-haspopup="dialog"/, 'Mobile header must expose direct cart access before the menu');
+assert.doesNotMatch(headerSource, /from ["']@\/components\/ui\/sheet["']/, 'Header must not statically import the mobile dialog runtime');
+assert.match(headerSource, /const MobileMenuSheet = lazy\(\(\) => import\("@\/components\/navigation\/MobileMenuSheet"\)\)[\s\S]*mobileMenuRequested \? \([\s\S]*<MobileMenuSheet/, 'Mobile dialog runtime must load only after menu intent');
+assert.match(headerSource, /onCloseAutoFocus=\{\(\) => \{[\s\S]*mobileCartHandoffRef\.current[\s\S]*openCart\(returnTarget\)[\s\S]*mobileCartHandoffRef\.current = true;[\s\S]*setMobileMenuOpen\(false\)/, 'Mobile drawer must complete its close before handing focus to the cart');
+assert.match(headerSource, /\[pathname\][\s\S]*event\.key === "Escape"[\s\S]*setMobileMenuOpen\(false\)/, 'Pending mobile menu intent must be cancellable by navigation and Escape');
+assert.match(headerSource, /trackBookingClick\("header_mobile"/, 'Mobile drawer must retain booking attribution');
+assert.match(mobileMenuSheetSource, /onOpenAutoFocus[\s\S]*firstLinkRef\.current\?\.focus\(\)[\s\S]*onCloseAutoFocus[\s\S]*onCloseAutoFocus\(\)/, 'Mobile drawer must retain deterministic opening and delegated close focus');
+assert.match(headerSource, /mobileNavLinkClass[\s\S]*min-h-11/, 'Mobile drawer must retain 44px navigation targets');
 assert.match(headerSource, /after-hours-near-black[\s\S]*after-hours-cream[\s\S]*after-hours-copper/, 'Header must use the semantic After-Hours palette');
 assert.doesNotMatch(headerSource, /rounded-lg border border-border bg-muted\/30/, 'Mobile concerns must not regress to generic rounded tiles');
 
