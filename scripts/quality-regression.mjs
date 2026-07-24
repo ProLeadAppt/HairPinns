@@ -51,6 +51,7 @@ const criticalViteConfigSource = await readFile(path.join(ROOT, 'vite.config.ts'
 const notificationAppSource = await readFile(path.join(ROOT, 'src/App.tsx'), 'utf8');
 const notificationAdapterSource = await readFile(path.join(ROOT, 'src/hooks/use-toast.ts'), 'utf8');
 const notificationMiniCartSource = await readFile(path.join(ROOT, 'src/components/cart/MiniCart.tsx'), 'utf8');
+const cartProviderSource = await readFile(path.join(ROOT, 'src/contexts/CartContext.tsx'), 'utf8');
 const packageManifestSource = await readFile(path.join(ROOT, 'package.json'), 'utf8');
 const packageLockSource = await readFile(path.join(ROOT, 'package-lock.json'), 'utf8');
 const bunLockSource = await readFile(path.join(ROOT, 'bun.lockb'), 'utf8');
@@ -91,6 +92,11 @@ assert.doesNotMatch(notificationAppSource, /import\s+\{\s*Toaster\s+as\s+Sonner\
 assert.match(notificationAppSource, /lazy\(\(\)\s*=>\s*import\(["']@\/components\/ui\/sonner["']\)/, 'The notification renderer must stay interaction-deferred');
 assert.match(notificationAppSource, /['"]pointerdown['"][\s\S]*['"]keydown['"][\s\S]*['"]focusin['"]/, 'The deferred notification renderer must activate for pointer, keyboard, and focus intent');
 assert.match(notificationAppSource, /markNotificationRendererReady\(\)/, 'Queued notifications must wait for the renderer to commit');
+assert.doesNotMatch(cartProviderSource, /import\s+MiniCartDrawer\s+from/, 'The mini-cart drawer must not return to the startup graph');
+assert.doesNotMatch(cartProviderSource, /import\s+\{[^}]*getCart[^}]*\}\s+from\s+["']@\/lib\/shopify["']/, 'Persisted cart hydration must not eagerly load the Shopify client');
+assert.match(cartProviderSource, /lazy\(loadMiniCartDrawer\)/, 'The mini-cart drawer must remain interaction-deferred');
+assert.match(cartProviderSource, /import\(["']@\/lib\/shopify["']\)/, 'Persisted cart count hydration must retain the Shopify read path');
+assert.match(cartProviderSource, /drawerRequested\s*\?[\s\S]*<Suspense fallback=\{null\}>[\s\S]*<MiniCartDrawer/, 'The deferred drawer must mount only after cart intent');
 assert.doesNotMatch(packageManifestSource, /@tanstack\/react-query/, 'The unused React Query dependency must not return without a real consumer');
 assert.doesNotMatch(packageLockSource, /@tanstack\/(?:react-query|query-core)/, 'npm lock state must not restore the unused React Query dependency');
 assert.doesNotMatch(bunLockSource, /@tanstack\/(?:react-query|query-core)/, 'Bun lock state must not restore the unused React Query dependency');

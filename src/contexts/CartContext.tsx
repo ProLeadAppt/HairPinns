@@ -1,7 +1,8 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import { createContext, lazy, Suspense, useContext, useState, useEffect, useRef } from "react";
 import { getCartId, normalizeCartId } from "@/lib/cartManagement";
-import { getCart } from "@/lib/shopify";
-import MiniCartDrawer from "@/components/MiniCartDrawer";
+
+const loadMiniCartDrawer = () => import("@/components/MiniCartDrawer");
+const MiniCartDrawer = lazy(loadMiniCartDrawer);
 
 interface CartContextValue {
   openCart: (trigger?: HTMLElement) => void;
@@ -19,6 +20,7 @@ export function useCart() {
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [drawerRequested, setDrawerRequested] = useState(false);
   const [itemCount, setItemCount] = useState(0);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const countRevisionRef = useRef(0);
@@ -31,7 +33,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     let cancelled = false;
     const hydrationRevision = countRevisionRef.current;
-    getCart(persistedCartId)
+    import("@/lib/shopify")
+      .then(({ getCart }) => getCart(persistedCartId))
       .then((cart) => {
         if (cancelled || !cart || countRevisionRef.current !== hydrationRevision) return;
         const count = cart.lines?.edges?.reduce(
@@ -57,6 +60,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const openCart = (trigger?: HTMLElement) => {
     if (trigger) returnFocusRef.current = trigger;
     else rememberTrigger();
+    setDrawerRequested(true);
+    void loadMiniCartDrawer();
     setOpen(true);
   };
   const closeCart = () => {
@@ -71,6 +76,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       returnFocusRef.current = document.activeElement instanceof HTMLElement
         ? document.activeElement
         : null;
+      setDrawerRequested(true);
+      void loadMiniCartDrawer();
       setOpen(true);
     };
     window.addEventListener("hp:openMiniCart", handleOpen);
@@ -91,11 +98,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   return (
     <CartContext.Provider value={{ openCart, closeCart, itemCount }}>
       {children}
-      <MiniCartDrawer
-        open={open}
-        onClose={closeCart}
-        cartId={normalizeCartId(getCartId()) || getCartId() || ""}
-      />
+      {drawerRequested ? (
+        <Suspense fallback={null}>
+          <MiniCartDrawer
+            open={open}
+            onClose={closeCart}
+            cartId={normalizeCartId(getCartId()) || getCartId() || ""}
+          />
+        </Suspense>
+      ) : null}
     </CartContext.Provider>
   );
 }
