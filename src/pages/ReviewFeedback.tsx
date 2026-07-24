@@ -230,7 +230,7 @@ const ReviewFeedback = () => {
           noIndex={true}
         />
 
-        <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12">
+        <div className="editorial-route min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12">
           <motion.div 
             className="w-full max-w-2xl text-center"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -325,7 +325,7 @@ const ReviewFeedback = () => {
 
       <ExitIntentDialog />
 
-      <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12">
+      <div className="editorial-route min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12">
         <motion.div 
           className="w-full max-w-2xl feedback-card"
           initial={{ opacity: 0, y: 20 }}

@@ -81,7 +81,7 @@ const ImageGallery = ({ images, columns = 3, variant = "default" }: ImageGallery
           <button
             ref={closeRef}
             type="button"
-            className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center text-white hover:bg-white/10 rounded-full text-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center border border-white/35 bg-black/30 text-3xl text-white hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             onClick={closeLightbox}
             aria-label="Close image gallery"
           >
@@ -89,7 +89,7 @@ const ImageGallery = ({ images, columns = 3, variant = "default" }: ImageGallery
           </button>
           <button
             type="button"
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-white hover:bg-white/10 rounded-full text-4xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/35 bg-black/30 text-4xl text-white hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             onClick={(e) => {
               e.stopPropagation();
               setLightboxIdx((lightboxIdx - 1 + images.length) % images.length);
@@ -103,7 +103,7 @@ const ImageGallery = ({ images, columns = 3, variant = "default" }: ImageGallery
             <img
               src={images[lightboxIdx].fallbackSrc || images[lightboxIdx].src}
               alt={images[lightboxIdx].alt}
-              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              className="max-h-[85vh] max-w-full object-contain"
               onClick={(e) => e.stopPropagation()}
               loading="lazy"
               decoding="async"
@@ -113,7 +113,7 @@ const ImageGallery = ({ images, columns = 3, variant = "default" }: ImageGallery
           </picture>
           <button
             type="button"
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-white hover:bg-white/10 rounded-full text-4xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/35 bg-black/30 text-4xl text-white hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             onClick={(e) => {
               e.stopPropagation();
               setLightboxIdx((lightboxIdx + 1) % images.length);

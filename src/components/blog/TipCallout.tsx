@@ -1,5 +1,5 @@
 import { Lightbulb, Sparkles } from "lucide-react";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface TipCalloutProps {
   content: string | ReactNode;
@@ -7,25 +7,16 @@ interface TipCalloutProps {
   icon?: "lightbulb" | "sparkles";
 }
 
-const TipCallout = ({ content, title = "Jena's Tip", icon = "lightbulb" }: TipCalloutProps) => {
+const TipCallout = ({ content, title = "Jena’s note", icon = "lightbulb" }: TipCalloutProps) => {
   const Icon = icon === "sparkles" ? Sparkles : Lightbulb;
-  
   return (
-    <div className="my-8 bg-accent/10 border-l-4 border-brand-500 rounded-r-card p-6">
-      <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-brand-500/10 flex items-center justify-center">
-          <Icon className="w-5 h-5 text-brand-500" />
-        </div>
-        <div className="flex-1">
-          <h4 className="font-heading font-semibold text-lg text-heading mb-2">
-            {title}
-          </h4>
-          <div className="text-text leading-relaxed">
-            {typeof content === "string" ? <p>{content}</p> : content}
-          </div>
-        </div>
+    <aside className="my-12 grid grid-cols-[2.5rem_minmax(0,1fr)] gap-4 border-y border-[hsl(var(--after-hours-plum)/0.26)] py-7">
+      <Icon className="mt-1 h-5 w-5 text-[hsl(var(--after-hours-copper))]" aria-hidden="true" />
+      <div>
+        <h3 className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.64)]">{title}</h3>
+        <div className="mt-3 leading-7 text-[hsl(var(--after-hours-plum)/0.76)]">{typeof content === "string" ? <p>{content}</p> : content}</div>
       </div>
-    </div>
+    </aside>
   );
 };
 

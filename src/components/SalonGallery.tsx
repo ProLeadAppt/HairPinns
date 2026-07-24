@@ -89,7 +89,7 @@ export const SalonGallery = ({
             break-inside: avoid;
             position: relative;
             overflow: hidden;
-            border-radius: var(--radius);
+            border-radius: 0;
           }
           
           .gallery-item::before {
@@ -115,7 +115,7 @@ export const SalonGallery = ({
         return (
           <div
             key={index}
-            className="gallery-item group cursor-pointer hover:opacity-95 transition-opacity duration-300"
+            className="gallery-item group cursor-pointer border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-3 transition-opacity duration-300 hover:opacity-95"
             style={{
               '--aspect-ratio': image.aspectRatio,
             } as CSSProperties}

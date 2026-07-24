@@ -30,7 +30,7 @@ const InvalidSuburb = () => {
         noIndex={true}
       />
 
-      <div className="min-h-screen flex flex-col">
+      <div className="editorial-route min-h-screen flex flex-col">
         <Header />
         
         <main className="flex-grow flex items-center justify-center bg-muted py-16">

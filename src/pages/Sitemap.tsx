@@ -94,7 +94,7 @@ const Sitemap = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="editorial-route min-h-screen bg-background">
       <SEOHead
         title="Sitemap | Hair Pinns Bangor"
         description="Browse all pages on Hair Pinns website - services, products, blog articles, service areas, and policies."

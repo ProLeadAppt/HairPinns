@@ -164,6 +164,9 @@ const ContactForm = ({
   const stateShellClass = variant === "editorial"
     ? "border-y border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-10 text-center"
     : "rounded-card p-8 text-center";
+  const editorialButtonClass = "!min-h-12 !rounded-none !border-[hsl(var(--after-hours-plum)/0.42)] !bg-transparent !px-5 !text-sm !font-semibold !text-[hsl(var(--after-hours-plum))] hover:!border-[hsl(var(--after-hours-copper))] hover:!bg-transparent";
+  const editorialSubmitClass = "!min-h-12 !rounded-none !bg-[hsl(var(--after-hours-plum))] !px-5 !text-sm !font-semibold !text-[hsl(var(--after-hours-cream))] hover:!bg-[hsl(var(--after-hours-copper))]";
+  const editorialFieldClass = variant === "editorial" ? "!rounded-none !border-[hsl(var(--after-hours-plum)/0.32)] !bg-transparent focus-visible:!ring-[hsl(var(--after-hours-copper))]" : "";
   if (hasError) {
     return <div className={`${stateShellClass} bg-destructive/10 border-destructive/20 ${className}`}>
         <AlertCircle className="w-16 h-16 text-destructive mx-auto mb-4" />
@@ -174,7 +177,7 @@ const ContactForm = ({
           We couldn't send your message. This might be a temporary network issue.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button variant="outline" onClick={() => setHasError(false)}>
+          <Button variant="outline" onClick={() => setHasError(false)} className={variant === "editorial" ? editorialButtonClass : undefined}>
             Try Again
           </Button>
           <p className="text-sm text-muted-foreground">
@@ -206,7 +209,7 @@ const ContactForm = ({
             message: "",
             consent: false
           });
-        }} className="w-full">
+        }} className={`w-full ${variant === "editorial" ? editorialButtonClass : ""}`}>
             Send Another Message
           </Button>
           <p className="text-sm text-muted-foreground">
@@ -236,7 +239,7 @@ const ContactForm = ({
               setFormData({ ...formData, name: e.target.value });
               if (errors.name) setErrors({ ...errors, name: "" });
             }}
-            className={errors.name ? "border-destructive" : ""}
+            className={`${editorialFieldClass} ${errors.name ? "border-destructive" : ""}`}
             required 
           />
           {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
@@ -253,7 +256,7 @@ const ContactForm = ({
               setFormData({ ...formData, email: e.target.value });
               if (errors.email) setErrors({ ...errors, email: "" });
             }}
-            className={errors.email ? "border-destructive" : ""}
+            className={`${editorialFieldClass} ${errors.email ? "border-destructive" : ""}`}
             required 
           />
           {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
@@ -267,6 +270,7 @@ const ContactForm = ({
             placeholder="0416 037 663" 
             value={formData.phone} 
             onChange={e => setFormData({ ...formData, phone: e.target.value })} 
+            className={editorialFieldClass}
           />
         </div>
 
@@ -282,7 +286,7 @@ const ContactForm = ({
             >
               <SelectTrigger 
                 id="contact_topic" 
-                className={`bg-background ${errors.topic ? "border-destructive" : ""}`}
+                className={`bg-background ${editorialFieldClass} ${errors.topic ? "border-destructive" : ""}`}
               >
                 <SelectValue placeholder="Select a topic" />
               </SelectTrigger>
@@ -306,7 +310,7 @@ const ContactForm = ({
               setFormData({ ...formData, message: e.target.value });
               if (errors.message) setErrors({ ...errors, message: "" });
             }}
-            className={`resize-none ${errors.message ? "border-destructive" : ""}`}
+            className={`resize-none ${editorialFieldClass} ${errors.message ? "border-destructive" : ""}`}
             required 
           />
           {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
@@ -318,7 +322,7 @@ const ContactForm = ({
           id="contact_consent" 
         />
 
-        <Button type="submit" variant="primary" size="lg" className="w-full" disabled={isSubmitting}>
+        <Button type="submit" variant="primary" size="lg" className={`w-full ${variant === "editorial" ? editorialSubmitClass : ""}`} disabled={isSubmitting}>
           {isSubmitting ? <>
               <Loader2 className="w-5 h-5 mr-2 animate-spin" />
               Sending...

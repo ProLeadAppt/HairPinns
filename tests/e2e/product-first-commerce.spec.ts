@@ -24,6 +24,7 @@ test('homepage leads with shopping and keeps booking secondary', async ({ page }
 
 test('product discovery appears before founder and salon content', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('heading', { name: /hair care from someone who actually does hair/i })).toBeVisible();
   await page.evaluate(() => window.scrollTo(0, Math.max(900, window.innerHeight)));
   const concernHeading = page.getByRole('heading', { name: /start with what your hair needs/i });
   await expect(concernHeading).toBeVisible({ timeout: 15_000 });

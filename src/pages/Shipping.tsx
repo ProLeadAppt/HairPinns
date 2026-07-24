@@ -18,7 +18,7 @@ const SHIPPING_FAQS = [
 
 const Shipping = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title="Free Shipping Australia-Wide | Hair Pinns Hair Care"
         description="Hair Pinns ships professional hair care products Australia-wide. Free shipping over $150. Standard and express options. Hair products delivered across Australia."

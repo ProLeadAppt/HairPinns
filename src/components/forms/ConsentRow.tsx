@@ -45,7 +45,7 @@ const ConsentRow = ({
           checked={checked}
           onCheckedChange={onCheckedChange}
           required={required}
-          className="mt-1"
+          className="mt-1 rounded-none"
         />
         <Label
           htmlFor={id}

@@ -1,6 +1,4 @@
-import { ShoppingBag, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 
 interface Product {
   name: string;
@@ -13,40 +11,27 @@ interface ProductModuleProps {
   products: Product[];
 }
 
-const ProductModule = ({ title, products }: ProductModuleProps) => {
-  return (
-    <div className="my-8 p-6 bg-accent/10 border border-accent/20 rounded-card">
-      <div className="flex items-start gap-4">
-        <div className="p-3 bg-accent/20 rounded-lg">
-          <ShoppingBag className="w-6 h-6 text-accent" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-h3 font-heading text-heading mb-3">{title}</h3>
-          <div className="space-y-3 mb-4">
-            {products.map((product, index) => (
-              <Link 
-                key={index} 
-                to={product.link}
-                className="group block p-3 bg-background rounded-lg hover:shadow-md transition-all border border-border hover:border-accent"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-heading group-hover:text-brand-500 transition-colors">
-                      {product.name}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {product.description}
-                    </div>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand-500 transition-colors" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
+const ProductModule = ({ title, products }: ProductModuleProps) => (
+  <aside className="my-14 border-y border-[hsl(var(--after-hours-plum)/0.28)] py-8" aria-labelledby="product-note-title">
+    <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.6)]">From Jena’s shelf</p>
+    <h2 id="product-note-title" className="mt-4 max-w-[16ch] font-heading text-3xl font-normal leading-tight text-[hsl(var(--after-hours-plum))]">{title}</h2>
+    <div className="mt-7 border-t border-[hsl(var(--after-hours-plum)/0.22)]">
+      {products.map((product, index) => (
+        <Link
+          key={`${product.link}-${index}`}
+          to={product.link}
+          className="group grid min-h-20 grid-cols-[2.4rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-[hsl(var(--after-hours-plum)/0.18)] py-4 !text-[hsl(var(--after-hours-plum))] hover:no-underline"
+        >
+          <span className="font-mono text-[0.61rem] tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.5)]">{String(index + 1).padStart(2, "0")}</span>
+          <span>
+            <strong className="block font-heading text-lg font-normal transition-colors group-hover:text-[hsl(var(--after-hours-copper))]">{product.name}</strong>
+            <span className="mt-1 block text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.66)]">{product.description}</span>
+          </span>
+          <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+        </Link>
+      ))}
     </div>
-  );
-};
+  </aside>
+);
 
 export default ProductModule;

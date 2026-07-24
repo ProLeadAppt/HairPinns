@@ -14,7 +14,7 @@ const RETURNS_FAQS = [
 
 const Returns = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title="Hair Product Returns Australia | 14-Day Returns | Hair Pinns"
         description="Hassle-free 14-day returns on hair care products. Hair Pinns ships Australia-wide. Contact us for returns and exchanges."

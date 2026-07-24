@@ -1,7 +1,4 @@
 import { useState } from "react";
-import { Mail, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
 
@@ -11,107 +8,70 @@ const LeadMagnetBox = () => {
   const [consent, setConsent] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!consent) {
-      toast({
-        title: "Consent Required",
-        description: "Please agree to receive updates to continue.",
-        variant: "destructive",
-      });
+      toast({ title: "Consent Required", description: "Please agree to receive updates to continue.", variant: "destructive" });
       return;
     }
-    
+
     const hpCaptureModule = await import("@/lib/hpCapture");
     const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
-    
     const success = await hpCapture.postToZapier(
-      {
-        form_name: "blog_lead_magnet",
-        email,
-        phone,
-        consent_marketing: consent,
-      },
-      { event: "lead_magnet_subscription" }
+      { form_name: "blog_lead_magnet", email, phone, consent_marketing: consent },
+      { event: "lead_magnet_subscription" },
     );
-    
+
     if (success) {
-      toast({
-        title: "Success!",
-        description: "You're subscribed! Check your inbox for your exclusive hair care guide.",
-      });
-      
+      toast({ title: "You’re on the list", description: "Check your inbox for Jena’s hair care guide." });
       setEmail("");
       setPhone("");
       setConsent(false);
     } else {
-      toast({
-        title: "Submission Error",
-        description: "We couldn't process your subscription. Please try again or call us.",
-        variant: "destructive",
-      });
+      toast({ title: "Submission Error", description: "We couldn’t process your subscription. Please try again or call us.", variant: "destructive" });
     }
   };
 
   return (
-    <div className="my-12 p-8 bg-brand-500 text-primary-foreground rounded-card">
-      <div className="max-w-xl mx-auto text-center">
-        <h3 className="text-h2 font-heading mb-3">
-          Get Your Free Hair Care Guide
-        </h3>
-        <p className="text-lg mb-6 opacity-90">
-          Join our community and receive exclusive tips, product recommendations, 
-          and special offers from Hair Pinns Bangor.
-        </p>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex items-center gap-2 bg-background/10 backdrop-blur-sm rounded-lg p-1">
-            <Mail className="w-5 h-5 ml-3 opacity-70" />
-            <Input
+    <aside className="my-16 bg-[hsl(var(--after-hours-near-black))] px-5 py-10 text-[hsl(var(--after-hours-cream))] sm:px-8 sm:py-12" aria-labelledby="guide-title">
+      <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-12">
+        <header>
+          <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Keep the good advice</p>
+          <h2 id="guide-title" className="mt-4 max-w-[9ch] font-heading text-[clamp(2.4rem,5vw,4rem)] font-normal leading-[0.95] tracking-[-0.04em] text-[hsl(var(--after-hours-cream))]">Jena’s hair care guide.</h2>
+          <p className="mt-5 text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.68)]">Practical routines, product notes, and occasional salon updates. No inbox clutter.</p>
+        </header>
+
+        <form onSubmit={handleSubmit} className="border-t border-[hsl(var(--after-hours-cream)/0.26)] pt-2">
+          <label className="block border-b border-[hsl(var(--after-hours-cream)/0.2)] py-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.58)]">
+            Email address
+            <input
               type="email"
-              placeholder="Your email address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
               required
-              className="border-0 bg-transparent text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-0"
+              placeholder="you@example.com"
+              className="mt-2 min-h-11 w-full border-0 bg-transparent p-0 text-base font-normal normal-case tracking-normal text-[hsl(var(--after-hours-cream))] placeholder:text-[hsl(var(--after-hours-cream)/0.4)] focus-visible:ring-0"
             />
-          </div>
-          
-          <div className="flex items-center gap-2 bg-background/10 backdrop-blur-sm rounded-lg p-1">
-            <MessageSquare className="w-5 h-5 ml-3 opacity-70" />
-            <Input
+          </label>
+          <label className="block border-b border-[hsl(var(--after-hours-cream)/0.2)] py-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.58)]">
+            Phone, optional
+            <input
               type="tel"
-              placeholder="Your phone number (optional)"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="border-0 bg-transparent text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-0"
+              onChange={(event) => setPhone(event.target.value)}
+              placeholder="04xx xxx xxx"
+              className="mt-2 min-h-11 w-full border-0 bg-transparent p-0 text-base font-normal normal-case tracking-normal text-[hsl(var(--after-hours-cream))] placeholder:text-[hsl(var(--after-hours-cream)/0.4)] focus-visible:ring-0"
             />
+          </label>
+          <div className="py-5 text-[hsl(var(--after-hours-cream))] [&_a]:!text-[hsl(var(--after-hours-cream))]">
+            <ConsentRow checked={consent} onCheckedChange={setConsent} required id="lead_magnet_consent" />
           </div>
-          
-          <div className="bg-background/10 backdrop-blur-sm rounded-lg p-4">
-            <ConsentRow 
-              checked={consent}
-              onCheckedChange={setConsent}
-              required
-              id="lead_magnet_consent"
-            />
-          </div>
-          
-          <Button 
-            type="submit" 
-            size="lg" 
-            className="w-full bg-background text-brand-500 hover:bg-background/90"
-          >
-            Get My Free Guide
-          </Button>
+          <button type="submit" className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-copper))]">
+            Send me the guide <span aria-hidden="true">→</span>
+          </button>
         </form>
-        
-        <p className="text-sm mt-4 opacity-75">
-          No spam, ever. Unsubscribe anytime. We respect your privacy.
-        </p>
       </div>
-    </div>
+    </aside>
   );
 };
 

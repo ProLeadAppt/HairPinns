@@ -18,7 +18,7 @@ const Privacy = () => {
     ]),
   ];
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title="Privacy Policy | Hair Pinns"
         description="Hair Pinns privacy policy. How we collect, use and protect your personal information."
