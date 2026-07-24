@@ -1,7 +1,6 @@
 import { Menu, Calendar, ShoppingCart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
 import { useCart } from "@/contexts/CartContext";
@@ -25,19 +24,23 @@ function getPromoMessage(): string {
 
 const ProductSearch = lazy(() => import("@/components/product/ProductSearch"));
 const ShopDropdown = lazy(() => import("@/components/navigation/ShopDropdown"));
+const MobileMenuSheet = lazy(() => import("@/components/navigation/MobileMenuSheet"));
 
 const navLinkClass = "inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--after-hours-plum))] transition-colors duration-fast hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2";
 const mobileNavLinkClass = "inline-flex min-h-11 items-center border-t border-[hsl(var(--after-hours-plum)/0.16)] text-lg font-medium text-[hsl(var(--after-hours-plum))] transition-colors duration-fast hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500";
 
 const Header = () => {
   const { openCart, itemCount } = useCart();
+  const { pathname } = useLocation();
   const [showPromo, setShowPromo] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuRequested, setMobileMenuRequested] = useState(false);
   const [showDesktopEnhancements, setShowDesktopEnhancements] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(min-width: 1280px)").matches
   );
   const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
   const mobileMenuFirstLinkRef = useRef<HTMLAnchorElement>(null);
+  const mobileCartHandoffRef = useRef(false);
   const promoMessage = getPromoMessage();
   const promoLink = isStocktakeActive()
     ? "/collections"
@@ -57,6 +60,19 @@ const Header = () => {
     mediaQuery.addEventListener("change", updateDesktopEnhancements);
     return () => mediaQuery.removeEventListener("change", updateDesktopEnhancements);
   }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const cancelPendingMenu = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", cancelPendingMenu);
+    return () => window.removeEventListener("keydown", cancelPendingMenu);
+  }, [mobileMenuOpen]);
 
   return (
     <>
@@ -166,23 +182,38 @@ const Header = () => {
                 )}
               </Button>
 
-              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button ref={mobileMenuTriggerRef} variant="ghost" size="icon" className="h-11 w-11 flex-shrink-0 rounded-none text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]">
-                    <Menu className="h-5 w-5" />
-                    <span className="sr-only">Open menu</span>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent
-                  side="right"
-                  className="w-[calc(100%-2rem)] max-w-sm overflow-y-auto border-l border-[hsl(var(--after-hours-copper)/0.55)] bg-[hsl(var(--after-hours-cream))] p-0 text-[hsl(var(--after-hours-plum))] [&>button]:inline-flex [&>button]:h-11 [&>button]:w-11 [&>button]:items-center [&>button]:justify-center"
-                  onOpenAutoFocus={(event) => {
-                    event.preventDefault();
-                    mobileMenuFirstLinkRef.current?.focus();
-                  }}
-                >
-                  <SheetTitle className="sr-only">Mobile menu</SheetTitle>
-                  <div className="px-6 pb-6 pt-14">
+              <Button
+                ref={mobileMenuTriggerRef}
+                variant="ghost"
+                size="icon"
+                className="h-11 w-11 flex-shrink-0 rounded-none text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]"
+                aria-expanded={mobileMenuOpen}
+                aria-haspopup="dialog"
+                onClick={() => {
+                  setMobileMenuRequested(true);
+                  setMobileMenuOpen(true);
+                }}
+              >
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+
+              {mobileMenuRequested ? (
+                <Suspense fallback={null}>
+                  <MobileMenuSheet
+                    firstLinkRef={mobileMenuFirstLinkRef}
+                    open={mobileMenuOpen}
+                    onOpenChange={setMobileMenuOpen}
+                    onCloseAutoFocus={() => {
+                      const returnTarget = mobileMenuTriggerRef.current || undefined;
+                      if (mobileCartHandoffRef.current) {
+                        mobileCartHandoffRef.current = false;
+                        openCart(returnTarget);
+                        return;
+                      }
+                      returnTarget?.focus();
+                    }}
+                  >
                     <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">Hair Pinns / Menu</p>
                     <nav className="mt-6" aria-label="Mobile navigation">
                       <div className="mb-6 [&_input]:h-11 [&_input]:rounded-none [&_input]:border-[hsl(var(--after-hours-plum)/0.28)] [&_input]:bg-transparent">
@@ -225,9 +256,8 @@ const Header = () => {
                           size="lg"
                           className="min-h-11 w-full justify-center rounded-none bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))] hover:bg-brand-700"
                           onClick={() => {
-                            const returnTarget = mobileMenuTriggerRef.current || undefined;
+                            mobileCartHandoffRef.current = true;
                             setMobileMenuOpen(false);
-                            window.setTimeout(() => openCart(returnTarget), 0);
                           }}
                         >
                           <ShoppingCart className="h-5 w-5" />
@@ -241,9 +271,9 @@ const Header = () => {
                         </Button>
                       </div>
                     </nav>
-                  </div>
-                </SheetContent>
-              </Sheet>
+                  </MobileMenuSheet>
+                </Suspense>
+              ) : null}
             </div>
           </div>
         </div>
