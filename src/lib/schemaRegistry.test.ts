@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 import {
-  generateArticleSchema,
+  buildSchemaGraph,
   generateAuthorSchema,
   generateBlogPostSchema,
   generateJenaPersonSchema,
@@ -73,20 +73,40 @@ describe("canonical schema graph", () => {
     ]);
   });
 
-  it.each([generateBlogPostSchema, generateArticleSchema])(
-    "references canonical author and publisher IDs",
-    (generateSchema) => {
-      const schema = generateSchema(ARTICLE_FIXTURE);
-      expect(schema.author).toMatchObject({
-        "@type": "Person",
-        "@id": ENTITY_REGISTRY.ids.jena,
-        name: ENTITY_REGISTRY.person.name,
-      });
-      expect(schema.publisher).toMatchObject({
-        "@type": "Organization",
-        "@id": ENTITY_REGISTRY.ids.organization,
-        name: ENTITY_REGISTRY.business.name,
-      });
-    },
-  );
+  it("wraps page schemas in one connected graph without nested contexts", () => {
+    const graph = buildSchemaGraph([
+      generateWebSiteSchema(),
+      generateOrganizationSchema(),
+      generateBlogPostSchema(ARTICLE_FIXTURE),
+    ]);
+
+    expect(graph["@context"]).toBe("https://schema.org");
+    expect(graph["@graph"]).toHaveLength(3);
+    expect(graph["@graph"].every((node) => !("@context" in node))).toBe(true);
+    expect(graph["@graph"].map((node) => node["@type"])).toEqual([
+      "WebSite",
+      "Organization",
+      "BlogPosting",
+    ]);
+    expect(graph["@graph"][2]).toMatchObject({
+      "@id": `${ARTICLE_FIXTURE.url}#article`,
+      isPartOf: { "@id": ENTITY_REGISTRY.ids.webSite },
+      author: { "@id": ENTITY_REGISTRY.ids.jena },
+      publisher: { "@id": ENTITY_REGISTRY.ids.organization },
+    });
+  });
+
+  it("references canonical author and publisher IDs from the single article generator", () => {
+    const schema = generateBlogPostSchema(ARTICLE_FIXTURE);
+    expect(schema.author).toMatchObject({
+      "@type": "Person",
+      "@id": ENTITY_REGISTRY.ids.jena,
+      name: ENTITY_REGISTRY.person.name,
+    });
+    expect(schema.publisher).toMatchObject({
+      "@type": "Organization",
+      "@id": ENTITY_REGISTRY.ids.organization,
+      name: ENTITY_REGISTRY.business.name,
+    });
+  });
 });

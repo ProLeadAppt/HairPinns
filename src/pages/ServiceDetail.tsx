@@ -69,7 +69,6 @@ const ServiceDetail = () => {
     name: serviceData.title,
     description: serviceData.metaDescription,
     url: canonical,
-    speakable: serviceData.quickAnswer ? { cssSelector: [".speakable-quick-answer"] } : undefined,
   });
   const schemas = [
     serviceSchema,

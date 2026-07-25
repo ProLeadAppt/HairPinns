@@ -21,7 +21,7 @@ const Privacy = () => {
     <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title="Privacy Policy | Hair Pinns"
-        description="Hair Pinns privacy policy. How we collect, use and protect your personal information."
+        description="Read the Hair Pinns privacy policy, including how we collect, use, store and protect personal information for salon and online customers."
         canonical="https://hairpinns.com/privacy"
         hrefLang="en-AU"
         ogImage="https://hairpinns.com/og-default.jpg"

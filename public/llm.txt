@@ -1,259 +1,340 @@
-# Hair Pinns — Full Context for AI Systems
+# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-07-25
 
-> Hair Pinns is a family-friendly hair salon in Bangor, NSW (Sutherland Shire, Sydney, Australia) owned and operated by Jena Pinn — a hairdresser with 20+ years of professional experience. The salon was established in December 2009. Hair Pinns serves clients across the Sutherland Shire with professional hair services and retails salon-quality hair care products, personally selected by Jena, with Australia-wide shipping.
+# Hair Pinns: full crawler context
 
-## About Jena Pinn (Owner & Stylist)
-Jena Pinn has been working professionally in the hairdressing industry for over 20 years, and founded Hair Pinns in December 2009. She is known for:
+# Hair Pinns
 
-- **QIQI smoothing treatments** — the treatment clients return for again and again
-- **Fast foiling techniques** — efficient highlight and colour work
-- **Personalised recommendations** — taking the time to understand each client's hair needs and recommending the right products and services for them
-- **Family-friendly home-salon experience** — approachable, honest, reliable, authentic, warm and welcoming
+> Appointment-only, one-on-one Bangor hair salon and Australia-wide professional haircare store
 
-Self-positioning: best hair smoothing treatment in the Sutherland Shire, and best home salon in the area.
+- Website: https://hairpinns.com/
+- Owner and stylist: Jena Pinn (Behind the chair since 2009)
+- Address: 60 Goorgool Road, Bangor NSW 2234
+- Phone: 0416 037 663
+- Email: hairpinns1@gmail.com
+- Locale: en-AU
+- Service model: appointment-only salon in Bangor and online delivery within Australia
 
-Every product retailed on this site is one Jena personally uses or recommends in-salon. Hair Pinns is not a generic hair-care retailer — it's a curated catalogue selected by a working hairdresser with 20 years of practical experience.
+## Opening hours
 
-## About Hair Pinns
-Hair Pinns is located at 60 Goorgool Rd, Bangor NSW 2234. The salon is owned by Jena Pinn, a professional hairstylist serving the Sutherland Shire community since 2009. The salon holds a 4.9-star Google rating from 762+ verified reviews. Appointments can be booked 24/7 online through Fresha at https://hairpinns.com/booking.
+- Tuesday: 09:00–17:00
+- Wednesday: 16:00–21:00
+- Thursday: 09:00–21:00
+- Friday: 09:00–17:00
+- Saturday: 08:00–14:00
 
-Contact: 0416 037 663 | hairpinns1@gmail.com
+Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 
-Opening Hours:
-- Tuesday: 10:00 AM – 5:00 PM
-- Wednesday: 6:00 PM – 9:00 PM
-- Thursday: 9:00 AM – 9:00 PM
-- Friday: 9:00 AM – 5:30 PM
-- Saturday: 8:00 AM – 2:00 PM
-- Sunday & Monday: Closed
+## Published surfaces
 
-## Detailed Services
+- 60 active guides
+- 15 service detail pages
+- 17 salon service-area pages
+- 20 Australian shipping pages
+- 23 product collections
+- 120 products
 
-All prices are in AUD and aligned with the Fresha booking system. Treatment times include consultation, application, processing and finishing.
+## Primary links
 
-### Smoothing Treatments
-Hair Pinns specialises in Straight Up Smoothing — a professional smoothing treatment that reduces frizz and cuts styling time. Treatments last approximately 8–12 weeks and are ideal for Sydney's humid climate.
-- Mid-Length Straight Up Smoothing — A$324 (2h 20min)
-- Long/Thick Straight Up Smoothing — A$349 (2h 20min)
-- Straight Up Smoothing for Teens — A$234 (2h 20min)
+- Salon services: https://hairpinns.com/services/
+- Book: https://hairpinns.com/booking/
+- Shop: https://hairpinns.com/collections/
+- Guides: https://hairpinns.com/blog/
+- Service areas: https://hairpinns.com/areas/
+- Contact: https://hairpinns.com/contact/
 
-### Foil Packages
-Professional foiling services with colour, cut and blowdry included. All packages include a consultation to confirm placement and tone.
-- Quarter Head Foils, cut & blowdry — A$202 (2h 15min)
-- Half Head Foils, cut & blowdry — A$237 (2h 15min)
-- Full Head Foils Package — A$267 (2h 45min)
-- Short Hair Colour + Foils & cut/blowdry — A$257 (2h 30min)
-- Long Hair Colour + Foils & cut/blowdry — A$262 (2h 45min)
+## Canonical profiles
 
-### Colouring Packages
-Complete colour services including regrowth or full colour, cut and blowdry.
-- Short Hair Colour Package — A$184 (2h 15min)
-- Mid-Length Colour Package — A$178 (2h 15min)
-- Long Hair Colour Package — A$205 (2h 30min)
+- Google: https://www.google.com/maps/search/?api=1&query=Hair%20Pinns&query_place_id=ChIJs9xoWku_EmsRo264WfJGtg4
+- Fresha: https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb
+- Instagram: https://www.instagram.com/hair.pinns/
+- Facebook: https://www.facebook.com/Hair.Pinns/
 
-### Cut & Blowdry Packages
-Wash, cut and blowdry packages for all hair lengths.
-- Kids cut & blowdry bundle — A$54 (40min)
-- Short wash/cut/blow-dry — A$79 (1h)
-- Mid-length wash/cut/blow-dry — A$89 (1h)
-- Long Hair wash/cut/blow-dry — A$99 (1h 15min)
 
-### Kids & Formal Styling
-Specialised hairstyling for school formals, including consultation, styling and finishing.
+## Active guide URLs
 
-## Product Brands
-Hair Pinns retails professional salon-quality hair care products with Australia-wide shipping. The retail focus is on **Australian-made brands** that Jena uses and trusts — they perform best for Australian hair and climate:
+- https://hairpinns.com/blog/best-hair-products-australia-2025/
+- https://hairpinns.com/blog/where-to-buy-salon-hair-products-australia/
+- https://hairpinns.com/blog/hair-products-melbourne-brisbane-perth-australia/
+- https://hairpinns.com/blog/salon-vs-supermarket-hair-products/
+- https://hairpinns.com/blog/what-is-an-infrared-sauna/
+- https://hairpinns.com/blog/prevent-heat-damage-on-your-hair/
+- https://hairpinns.com/blog/say-goodbye-to-frizzy-hair-march-2025/
+- https://hairpinns.com/blog/whats-a-straight-up-smoothing-treatment/
+- https://hairpinns.com/blog/how-often-should-you-replace-your-shampoo/
+- https://hairpinns.com/blog/5-ways-infrared-sauna-boosts-hair-skin-glow/
+- https://hairpinns.com/blog/the-secret-behind-that-steamy-towel-moment/
+- https://hairpinns.com/blog/qiqi-bare-repair-oil-shine-strength-smoothness/
+- https://hairpinns.com/blog/smooth-seal-strengthen-pure-precious-ends/
+- https://hairpinns.com/blog/whats-the-best-hairspray-to-use/
+- https://hairpinns.com/blog/why-wet-brush-is-a-must-have/
+- https://hairpinns.com/blog/qiqi-vega-vs-nanoplasty-whats-the-difference/
+- https://hairpinns.com/blog/quench-your-hairs-thirst-hydration-bundle/
+- https://hairpinns.com/blog/pure-walnut-scrub-scalp-detox/
+- https://hairpinns.com/blog/truth-about-shampoo-after-straight-up-treatment/
+- https://hairpinns.com/blog/winter-weather-hair-care-sydney/
+- https://hairpinns.com/blog/what-is-lamellar-vitality-technology/
+- https://hairpinns.com/blog/why-heat-protection-is-essential/
+- https://hairpinns.com/blog/your-hair-deserves-the-best-wet-brush/
+- https://hairpinns.com/blog/which-juuce-range-is-best-for-you-quiz/
+- https://hairpinns.com/blog/infrared-sauna-for-hair-scalp-health/
+- https://hairpinns.com/blog/sutherland-shire-hair-salon-guide/
+- https://hairpinns.com/blog/keratin-smoothing-sydney-prices-brands/
+- https://hairpinns.com/blog/best-hair-salon-near-menai/
+- https://hairpinns.com/blog/hair-extensions-bangor/
+- https://hairpinns.com/blog/juuce-vs-pure-organic-shampoo/
+- https://hairpinns.com/blog/best-shampoo-colour-treated-hair-australia/
+- https://hairpinns.com/blog/sulfate-free-shampoo-australia/
+- https://hairpinns.com/blog/wet-brush-vs-tangle-teezer/
+- https://hairpinns.com/blog/keratin-vs-brazilian-blowout-vs-straight-up/
+- https://hairpinns.com/blog/how-often-should-you-wash-your-hair/
+- https://hairpinns.com/blog/how-long-does-keratin-smoothing-last/
+- https://hairpinns.com/blog/how-much-full-head-foils-cost-sydney/
+- https://hairpinns.com/blog/can-you-use-purple-shampoo-every-day/
+- https://hairpinns.com/blog/when-should-you-get-a-haircut/
+- https://hairpinns.com/blog/meet-jena-15-years-sutherland-shire/
+- https://hairpinns.com/blog/the-7-colouring-mistakes-i-see-every-week/
+- https://hairpinns.com/blog/home-hair-care-myths-stylist-wishes-youd-stop/
+- https://hairpinns.com/blog/how-to-recover-hair-from-box-dye-damage/
+- https://hairpinns.com/blog/best-hair-salon-bangor/
+- https://hairpinns.com/blog/best-hair-salon-near-illawong/
+- https://hairpinns.com/blog/best-hair-salon-near-sutherland/
+- https://hairpinns.com/blog/best-hair-salon-near-cronulla/
+- https://hairpinns.com/blog/best-hair-salon-near-como/
+- https://hairpinns.com/blog/best-hair-salon-near-miranda/
+- https://hairpinns.com/blog/best-hair-salon-near-engadine/
+- https://hairpinns.com/blog/summer-hair-care-australia-beach-sun-salt/
+- https://hairpinns.com/blog/winter-hair-care-sydney-2026/
+- https://hairpinns.com/blog/school-formal-hair-trends-2026/
+- https://hairpinns.com/blog/christmas-hair-gifts-2026/
+- https://hairpinns.com/blog/beating-frizz-sydney-humidity/
+- https://hairpinns.com/blog/when-do-i-use-a-leave-in-conditioner/
+- https://hairpinns.com/blog/salon-foils-vs-box-dye-highlights-at-home/
+- https://hairpinns.com/blog/olaplex-vs-k18-vs-juuce-bond-repair/
+- https://hairpinns.com/blog/bond-repair-vs-protein-treatment-difference/
+- https://hairpinns.com/blog/permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss/
 
-- **Juuce Hair Care** — Australian professional botanicals range including shampoos, conditioners, treatments, and styling products
-- **Qiqi Professional** — Professional-grade treatments, oils, and styling products
-- **Pure Organic** — Certified organic hair care for sensitive scalps and eco-conscious consumers
-- **Wet Brush** — The original detangling brush, suitable for all hair types including kids. USA brand kept on the catalogue because of the quality and after-sale backing.
+## Service URLs
 
-## Jena's Top Product Recommendations
-The products Jena recommends most often, drawn from what works best on her own clients:
+- https://hairpinns.com/services/smoothing/mid-length-straight-up-smoothing/
+- https://hairpinns.com/services/smoothing/long-thick-straight-up-smoothing/
+- https://hairpinns.com/services/smoothing/straight-up-smoothing-teens/
+- https://hairpinns.com/services/foil-packages/full-head-foils-package/
+- https://hairpinns.com/services/foil-packages/half-head-foils-cut-blowdry/
+- https://hairpinns.com/services/foil-packages/quarter-head-foils-cut-blowdry/
+- https://hairpinns.com/services/colouring-packages/long-hair-colour-package/
+- https://hairpinns.com/services/colouring-packages/mid-length-colour-package/
+- https://hairpinns.com/services/colouring-packages/short-hair-colour-package/
+- https://hairpinns.com/services/cut-packages/long-hair-wash-cut-blowdry/
+- https://hairpinns.com/services/cut-packages/mid-length-wash-cut-blowdry/
+- https://hairpinns.com/services/cut-packages/short-wash-cut-blowdry/
+- https://hairpinns.com/services/cut-packages/kids-cut-blowdry-bundle/
+- https://hairpinns.com/services/kids-formal/primary-formal-hairstyle/
+- https://hairpinns.com/services/kids-formal/high-school-formal-hairstyle/
 
-- **Pure Lamellar Vitality range** — Jena's top recommendation. Lamellar treatment for damaged, fragile or chemically-treated hair.
-- **Juuce Solar Enz** — leave-in heat, UV and environmental protection (often used alongside smoothing aftercare)
-- **Juuce Botanic Oil Serum** — finishing oil, shine and softness
-- **Juuce Super Soft Hydration Masks** — best-seller; deep hydration treatment for dry or thirsty hair
-- **Juuce Miracle Smooth shampoo & conditioner** — smoothing duo, frizz-prone hair
-- **Juuce Hydration range** — for daily hydration support between treatments
-- **Pure Forever Blonde shampoo & conditioner** — blonde-toning, brassiness control
-- **Wet Brush detanglers** — works on every hair type, kids and adults
+## Service-area URLs
 
-## Brand Approach
-Hair Pinns differentiates on:
-- **Simple, honest explanations** — no upselling, no jargon. Clear advice on what will and won't work for each client's hair.
-- **Quality over breadth** — the catalogue is curated, not bulk-stocked. If it's on the site, Jena trusts it.
-- **Personal advice for clients who need it** — Jena gives one-on-one product and styling advice, not generic recommendations.
-- **Australian-made bias** — Australian climate, hair types and water hardness suit Australian-formulated products best.
-- **20+ years of in-salon practice** behind every recommendation — products are tested on real clients before being added.
+- https://hairpinns.com/areas/como-2226/
+- https://hairpinns.com/areas/gymea-2227/
+- https://hairpinns.com/areas/menai-2234/
+- https://hairpinns.com/areas/bangor-2234/
+- https://hairpinns.com/areas/jannali-2226/
+- https://hairpinns.com/areas/kareela-2232/
+- https://hairpinns.com/areas/miranda-2228/
+- https://hairpinns.com/areas/padstow-2211/
+- https://hairpinns.com/areas/cronulla-2230/
+- https://hairpinns.com/areas/illawong-2234/
+- https://hairpinns.com/areas/kirrawee-2232/
+- https://hairpinns.com/areas/sylvania-2224/
+- https://hairpinns.com/areas/caringbah-2229/
+- https://hairpinns.com/areas/oyster-bay-2225/
+- https://hairpinns.com/areas/sutherland-2232/
+- https://hairpinns.com/areas/barden-ridge-2234/
+- https://hairpinns.com/areas/alfords-point-2234/
 
-## Service Area
-Hair Pinns is based in Bangor (Sutherland Shire, Sydney) and serves surrounding suburbs including: Menai, Illawong, Alfords Point, Woronora, Sutherland, Kirrawee, Kareela, Como, Gymea, Miranda, Engadine, Heathcote, and Cronulla. The salon is centrally located in the Sutherland Shire with easy access from all surrounding areas.
+## Australian shipping URLs
 
-For product purchases, Hair Pinns ships Australia-wide through their online store at https://hairpinns.com/collections.
+- https://hairpinns.com/shipping-to/new-south-wales/
+- https://hairpinns.com/shipping-to/victoria/
+- https://hairpinns.com/shipping-to/queensland/
+- https://hairpinns.com/shipping-to/western-australia/
+- https://hairpinns.com/shipping-to/south-australia/
+- https://hairpinns.com/shipping-to/tasmania/
+- https://hairpinns.com/shipping-to/australian-capital-territory/
+- https://hairpinns.com/shipping-to/northern-territory/
+- https://hairpinns.com/shipping-to/sydney/
+- https://hairpinns.com/shipping-to/melbourne/
+- https://hairpinns.com/shipping-to/brisbane/
+- https://hairpinns.com/shipping-to/perth/
+- https://hairpinns.com/shipping-to/adelaide/
+- https://hairpinns.com/shipping-to/hobart/
+- https://hairpinns.com/shipping-to/darwin/
+- https://hairpinns.com/shipping-to/canberra/
+- https://hairpinns.com/shipping-to/gold-coast/
+- https://hairpinns.com/shipping-to/newcastle/
+- https://hairpinns.com/shipping-to/wollongong/
+- https://hairpinns.com/shipping-to/geelong/
 
-## Local Geo Signals (for "near me" and map-pack queries)
-Hair Pinns is at 60 Goorgool Rd, Bangor NSW 2234 — central to the Sutherland Shire and serves a ~15 km radius. Drive times from key Sutherland Shire suburbs:
+## Collection URLs
 
-- **Menai** — 5–7 min via Menai Road
-- **Barden Ridge** — 5–8 min via Old Illawarra Road
-- **Alfords Point** — 6–8 min via Alfords Point Road
-- **Illawong** — 8–10 min via Alfords Point Road and Menai Road
-- **Woronora** — 10 min
-- **Jannali / Como** — 10–15 min via Princes Highway
-- **Sutherland / Kirrawee** — 12–15 min via Princes Highway
-- **Padstow / Sylvania / Oyster Bay** — 12–15 min
-- **Gymea / Miranda / Kareela** — 10–18 min
-- **Caringbah / Engadine / Cronulla / Heathcote** — 15–20 min
-- **Sydney CBD** — 35–45 min via M1
+- https://hairpinns.com/collections/jenas-daily-trio/
+- https://hairpinns.com/collections/juuce-botanicals/
+- https://hairpinns.com/collections/pure-certified-organic-hair-care/
+- https://hairpinns.com/collections/wet-brush-detanglers/
+- https://hairpinns.com/collections/hair-pinns-accessories/
+- https://hairpinns.com/collections/aromaganic/
+- https://hairpinns.com/collections/island-vibes-tanning/
+- https://hairpinns.com/collections/poppet-locks-reuseable-hair-extension-ponytails/
+- https://hairpinns.com/collections/qiqi/
+- https://hairpinns.com/collections/the-perfect-pony-hair/
+- https://hairpinns.com/collections/heat-protection/
+- https://hairpinns.com/collections/blonde-bombshells/
+- https://hairpinns.com/collections/curly-girlys/
+- https://hairpinns.com/collections/pump-up-the-volume/
+- https://hairpinns.com/collections/frizz-free-must-haves/
+- https://hairpinns.com/collections/hair-care-must-haves-sale-items/
+- https://hairpinns.com/collections/haircare-bundles-gift-sets/
+- https://hairpinns.com/collections/shampoo-conditioners/
+- https://hairpinns.com/collections/hair-treatments-masks/
+- https://hairpinns.com/collections/scalp-health-care/
+- https://hairpinns.com/collections/colour-treated-hair/
+- https://hairpinns.com/collections/hair-tools-brushes/
+- https://hairpinns.com/collections/hair-styling-products/
 
-Geographic context that affects hair routines:
-- The Georges River runs along the Bangor/Menai/Illawong corridor — high humidity year-round in the river valley.
-- Sutherland Shire summer humidity peaks in January–February; smoothing treatments are most-booked October–December for pre-summer prep.
-- Coastal suburbs (Cronulla, Caringbah, Oyster Bay) experience higher salt-air dryness; inland bushland suburbs (Barden Ridge, Heathcote) run cooler and drier in winter.
+## Product URLs
 
-Free on-street parking directly outside the salon on Goorgool Rd. Tuesday-evening, Wednesday-evening, Thursday-evening and Saturday-morning slots are available for working professionals across the Shire.
+- https://hairpinns.com/products/aromaganic-blondie-hair-strong-anti-yellow-conditioner/
+- https://hairpinns.com/products/aromaganic-blondie-hair-strong-anti-yellow-shampoo/
+- https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-conditioner/
+- https://hairpinns.com/products/aromaganic-curly-curl-hair-curly-hair-shampoo/
+- https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-conditioner/
+- https://hairpinns.com/products/aromaganic-pmint-hair-scalp-renewal-shampoo/
+- https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-conditioner/
+- https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-shampoo/
+- https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-conditioner/
+- https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-shampoo/
+- https://hairpinns.com/products/beat-heat/
+- https://hairpinns.com/products/beat-heat-guard-shield-duo/
+- https://hairpinns.com/products/beat-heat-shield-enz-duo/
+- https://hairpinns.com/products/beat-heat-solar-guard-duo/
+- https://hairpinns.com/products/juuce-20-in-one-miracle/
+- https://hairpinns.com/products/juuce-amp-it-up-volume/
+- https://hairpinns.com/products/juuce-anti-dandruff-shampoo/
+- https://hairpinns.com/products/juuce-bond-blonde-conditioner/
+- https://hairpinns.com/products/juuce-bond-blonde-shampoo/
+- https://hairpinns.com/products/juuce-bond-repair-conditioner/
+- https://hairpinns.com/products/juuce-bond-repair-shampoo/
+- https://hairpinns.com/products/juuce-boost-curl-kinky/
+- https://hairpinns.com/products/juuce-botanic-oil-serum/
+- https://hairpinns.com/products/juuce-control-sculpt-lotion/
+- https://hairpinns.com/products/juuce-curls-to-straight/
+- https://hairpinns.com/products/juuce-deep-cleanse-shampoo/
+- https://hairpinns.com/products/juuce-double-up-thicken/
+- https://hairpinns.com/products/juuce-dry-heat-guard/
+- https://hairpinns.com/products/juuce-dry-shampoo-volumiser/
+- https://hairpinns.com/products/juuce-full-volume-conditioner/
+- https://hairpinns.com/products/juuce-full-volume-shampoo/
+- https://hairpinns.com/products/juuce-heat-shield/
+- https://hairpinns.com/products/juuce-hyaluronic-hydrate-conditioner/
+- https://hairpinns.com/products/juuce-hyaluronic-hydrate-shampoo/
+- https://hairpinns.com/products/juuce-knot-knotty-detangler/
+- https://hairpinns.com/products/juuce-messed-up-texture/
+- https://hairpinns.com/products/juuce-miracle-smooth-conditioner/
+- https://hairpinns.com/products/juuce-miracle-smooth-shampoo/
+- https://hairpinns.com/products/juuce-peppermint-conditioner/
+- https://hairpinns.com/products/juuce-peppermint-shampoo/
+- https://hairpinns.com/products/juuce-protect-solar-enz/
+- https://hairpinns.com/products/juuce-radiant-colour-conditioner/
+- https://hairpinns.com/products/juuce-radiant-colour-shampoo/
+- https://hairpinns.com/products/juuce-repair-1-minute-treatment/
+- https://hairpinns.com/products/juuce-repair-smooth-enz/
+- https://hairpinns.com/products/juuce-sea-air-mist-beachy/
+- https://hairpinns.com/products/juuce-shimmer-shine-spray/
+- https://hairpinns.com/products/juuce-silver-blonde-conditioner/
+- https://hairpinns.com/products/juuce-silver-blonde-shampoo/
+- https://hairpinns.com/products/juuce-softly-nourish-conditioner/
+- https://hairpinns.com/products/juuce-softly-nourish-shampoo/
+- https://hairpinns.com/products/juuce-stuck-up-lacquer/
+- https://hairpinns.com/products/juuce-super-soft-hydration-moisture-mask/
+- https://hairpinns.com/products/juuce-tame-curls-smooth/
+- https://hairpinns.com/products/juuce-wake-up-wax-spray/
+- https://hairpinns.com/products/qiqi-3-pack/
+- https://hairpinns.com/products/qiqi-conditioner/
+- https://hairpinns.com/products/qiqi-masque/
+- https://hairpinns.com/products/qiqi-shampoo/
+- https://hairpinns.com/products/soft-towel/
+- https://hairpinns.com/products/pure-forever-blonde-shampoo/
+- https://hairpinns.com/products/pure-forever-blonde-conditioner/
+- https://hairpinns.com/products/lamellar-vitality-glass-hair-treatment/
+- https://hairpinns.com/products/lamellar-vitality-shampoo/
+- https://hairpinns.com/products/lamellar-vitality-conditioner/
+- https://hairpinns.com/products/lamellar-vitality-luminous-leave-in-silky-foam/
+- https://hairpinns.com/products/lamellar-vitality-butter-mask-treatment/
+- https://hairpinns.com/products/walnut-scrub-hair-scalp-pre-wash-treatment/
+- https://hairpinns.com/products/pure-goddess-shampoo/
+- https://hairpinns.com/products/pure-goddess-conditioner/
+- https://hairpinns.com/products/pure-precious-shampoo/
+- https://hairpinns.com/products/pure-precious-conditioner/
+- https://hairpinns.com/products/pure-miracle-renew-shampoo/
+- https://hairpinns.com/products/pure-miracle-renew-conditioner/
+- https://hairpinns.com/products/pure-colour-angel-shampoo/
+- https://hairpinns.com/products/pure-colour-angel-conditioner/
+- https://hairpinns.com/products/pure-curly-girly-foam-curl-primer/
+- https://hairpinns.com/products/pure-miracle-renew-hair-treatmentt/
+- https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment/
+- https://hairpinns.com/products/pure-uplift-volume-shampoo/
+- https://hairpinns.com/products/pure-uplift-volume-conditioner/
+- https://hairpinns.com/products/pure-guardian-angel/
+- https://hairpinns.com/products/pure-flourish-leave-in-treatment/
+- https://hairpinns.com/products/pure-styling-primer-anti-humidity-heat-protector/
+- https://hairpinns.com/products/hair-pinns-gift-card/
+- https://hairpinns.com/products/silicon-travel-bottle-duo/
+- https://hairpinns.com/products/head-massager/
+- https://hairpinns.com/products/island-vibes-self-tanning-foam/
+- https://hairpinns.com/products/wet-brush-original-detangler/
+- https://hairpinns.com/products/wet-brush-pro-flex-dry/
+- https://hairpinns.com/products/island-vibes-application-mit/
+- https://hairpinns.com/products/wet-brush-kids-detangler/
+- https://hairpinns.com/products/purple-wide-tooth-combs/
+- https://hairpinns.com/products/mini-mermaid-pony/
+- https://hairpinns.com/products/mini-unicorn-ponytail/
+- https://hairpinns.com/products/pure-fusion-complex-bond-repair-treatment/
+- https://hairpinns.com/products/pure-fusion-complex-shampoo/
+- https://hairpinns.com/products/pure-fusion-complex-conditioner/
+- https://hairpinns.com/products/pure-finest-volumizing-powder/
+- https://hairpinns.com/products/wet-brush-pro-shine-enhancer/
+- https://hairpinns.com/products/poppet-locks-little-plaited-piggy-tails/
+- https://hairpinns.com/products/poppet-locks-unicorn-straight-ponytail/
+- https://hairpinns.com/products/toner-masks/
+- https://hairpinns.com/products/aromaganic-clean-hair-colour-organics/
+- https://hairpinns.com/products/island-vibes-fade-tan-remover/
+- https://hairpinns.com/products/qiqi-all-out-blowout-styling-cream/
+- https://hairpinns.com/products/qiqi-porosity-play-spray/
+- https://hairpinns.com/products/pure-colour-optimising-treatments/
+- https://hairpinns.com/products/qiqi-bare-repair-oil/
+- https://hairpinns.com/products/mini-travel-hair-brush/
+- https://hairpinns.com/products/tame-texture-wax-stick/
+- https://hairpinns.com/products/flyaway-serum-baby-hair-control-smooth-hair-solution/
+- https://hairpinns.com/products/glow-go-tote/
+- https://hairpinns.com/products/wet-brush-go-green-curl-detangler/
+- https://hairpinns.com/products/christmas-reusable-ponytails/
+- https://hairpinns.com/products/rose-sunkiss-fix-hands-feet-face-tan-mist/
+- https://hairpinns.com/products/goodbye-frizz-quad/
+- https://hairpinns.com/products/pure-volumizing-spray/
+- https://hairpinns.com/products/the-curl-defining-detangle-brush/
+- https://hairpinns.com/products/mother-s-day-pamper-pack/
 
-## Frequently Asked Questions
+## Declared local service areas
 
-### Booking & Appointments
-- **How do I book an appointment?** Book online 24/7 at https://hairpinns.com/booking through Fresha, or call 0416 037 663.
-- **Do you accept walk-ins?** Hair Pinns operates by appointment to keep wait times short and quality consistent. Same-day bookings are sometimes available — call to ask.
-- **What are your opening hours?** Tuesday 10am–5pm, Wednesday 6pm–9pm (evening slot), Thursday 9am–9pm (full day + evening), Friday 9am–5:30pm, Saturday 8am–2pm. Closed Sunday and Monday.
-- **Is a deposit required?** Deposits may be required for longer services (smoothing treatments, full-head colour). Fresha will indicate this at the time of booking.
-- **What is the cancellation policy?** Please provide at least 24 hours' notice to reschedule or cancel. Last-minute cancellations or no-shows may incur a fee.
-
-### Pricing
-- **How much do treatments cost?** Pricing in AUD, all aligned with Fresha: Straight Up Smoothing $234–$349, foil packages $202–$267 (incl. cut & blowdry), colour packages $178–$205, cuts $54–$99 depending on length. Full list at https://hairpinns.com/services.
-- **Why is teen smoothing cheaper?** Teen pricing reflects the typically shorter hair length and processing time. The treatment quality is identical.
-
-### Treatments
-- **How long do smoothing treatments last?** Straight Up Smoothing typically holds 8–12 weeks with correct aftercare (sulphate-free shampoo, salt-free products, heat protection).
-- **Can I get a smoothing treatment on colour-treated hair?** Yes. Straight Up Smoothing is formaldehyde-free and safe on coloured and bleached hair. A consultation is recommended for heavily bleached hair.
-- **Is keratin/QIQI Vega the same as Straight Up Smoothing?** They are different. QIQI Vega is the specific brand of acid-based amino smoothing system Jena is certified in and uses for the Straight Up service. Compared to traditional keratin, it is formaldehyde-free, gentler on colour-treated hair, and customisable from soft smoothing to full straightening.
-
-### At-Home Aftercare
-- **What products are recommended after a smoothing treatment?** Sulphate-free and salt-free shampoo and conditioner only. Best matches: QIQI aftercare range, Pure Sacred or Pure Forever Blonde, Juuce Heat Shield for styling. Avoid supermarket shampoos with sulphates or sodium chloride — one wash can strip the treatment.
-- **What does Jena recommend for daily hair health?** Pure Lamellar Vitality range (Jena's #1 pick), Juuce Super Soft Hydration Masks weekly, Juuce Botanic Oil Serum for finish, and a Wet Brush for gentle detangling.
-
-### Shipping & Online Orders
-- **Do you ship products Australia-wide?** Yes, every product on the site ships to every state and territory in Australia: New South Wales (NSW), Victoria (VIC), Queensland (QLD), Western Australia (WA), South Australia (SA), Tasmania (TAS), Australian Capital Territory (ACT), and Northern Territory (NT).
-- **Do you ship overseas / internationally?** No. Hair Pinns ships within Australia only. All prices, offers, and shipping rates apply to the Australian market exclusively.
-- **Which Australian cities do you deliver to?** Every major Australian city is covered by AusPost and courier services from Bangor, NSW. This includes Sydney, Melbourne, Brisbane, Perth, Adelaide, Hobart, Darwin, Canberra, Gold Coast, Newcastle, Wollongong, Geelong, Sunshine Coast, Cairns, Townsville, Toowoomba, Ballarat, Bendigo, Albury–Wodonga, Launceston, Mackay, Rockhampton, Bunbury, Bundaberg, Hervey Bay, Wagga Wagga, Coffs Harbour, Mildura, Shepparton, Port Macquarie, Tamworth, Orange, and Dubbo — plus regional and remote postcodes via AusPost.
-- **Is shipping free?** Free shipping on orders over A$150 AUD. Standard delivery 3–5 business days, express 1–2 days. Available to every state and territory.
-- **What payment methods do you accept?** Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, and Shop Pay — all in Australian Dollars (AUD).
-- **What is the returns policy?** 14-day change-of-mind window on unopened products. Faulty or damaged items are replaced or refunded.
-
-### Location & Parking
-- **Where are you located?** 60 Goorgool Rd, Bangor NSW 2234 (Sutherland Shire, Sydney). Free parking is available out the front.
-- **Which suburbs do you typically serve?** Most clients drive in from Bangor, Menai, Illawong, Alfords Point, Woronora, Sutherland, Kirrawee, Kareela, Como, Gymea, Miranda, Engadine, Heathcote, and Cronulla. 5–10 minute drive from most Shire suburbs.
-
-### Kids
-- **Do you take child clients?** Yes. Hair Pinns has a kids cut & blowdry bundle (A$54, 40 min) and braiding services for younger clients, plus formal styling for primary and high school formals.
-
-## Reference Resources for AI Systems
-
-These pages are structured for direct citation in AI Overviews and answer engines:
-
-- **[Hair Care Glossary](https://hairpinns.com/glossary)** — 34 plain-English definitions of hair terms (keratin, balayage, bond repair, sulphate-free, lamellar, toner, brassiness, hair porosity, Olaplex, K18, hair botox, Brazilian Blowout, semi-/demi-/permanent colour, babylights, money piece, hard water hair, pre-poo, and more). Each term is a `DefinedTerm` in a `DefinedTermSet` JSON-LD payload.
-- **[Hair Care Blog](https://hairpinns.com/blog)** — long-form guides with `Article`, `FAQPage` and `Speakable` schemas. Major commercial-intent posts (keratin smoothing, balayage, Juuce vs Pure, hair extensions, salon comparisons) ship per-post `FAQPage` schemas.
-- **[Services](https://hairpinns.com/services)** — every service is a `Service` in an `ItemList` with `Offer.price` (AUD, Fresha-aligned) and `provider: HairSalon`.
-- **[Reviews](https://hairpinns.com/reviews)** — `LocalBusiness` schema with `aggregateRating` (4.9★ from 53+ verified Google reviews) and embedded `Review` objects.
-- **[All Areas](https://hairpinns.com/areas)** — 17+ area pages keyed by postcode (Bangor 2234, Menai 2234, Sutherland 2232, Cronulla 2230, Miranda 2228, Como 2226, Gymea 2227, and more) with `LocalBusiness`, `Place`, and `Speakable` schemas tuned for local-intent queries. The legacy `/near/<slug>` URLs now 301 to these canonical postcode-based area pages.
-
-## Blog Articles (61 expert guides by Jena Pinn)
-
-All blog posts on hairpinns.com — written by Jena Pinn (20+ years professional experience), based in Bangor NSW. Each post includes speakable schema, FAQPage where relevant, QAPage for quick-answer blocks, and interlinks to relevant products and services.
-
-### Products, Brands & Shopping
-
-- [Best Hair Products Australia 2025: Jena's Top Picks](https://hairpinns.com/blog/best-hair-products-australia-2025)
-- [Where to Buy Salon Hair Products in Australia](https://hairpinns.com/blog/where-to-buy-salon-hair-products-australia)
-- [Hair Products Melbourne, Brisbane & Perth: Salon Hair Care Australia-Wide](https://hairpinns.com/blog/hair-products-melbourne-brisbane-perth-australia)
-- [Supermarket VS Salon Hair Products](https://hairpinns.com/blog/salon-vs-supermarket-hair-products)
-- [🎁 Gift Packs at Hair Pinns 🎁](https://hairpinns.com/blog/christmas-gift-packs-at-hair-pinns)
-- [QIQI Bare Repair Oil – Shine, Strength & Smoothness in a Bottle](https://hairpinns.com/blog/qiqi-bare-repair-oil-shine-strength-smoothness)
-- [💧Smooth, Seal & Strengthen: Why Your Ends Need Pure Precious Ends](https://hairpinns.com/blog/smooth-seal-strengthen-pure-precious-ends)
-- [What's the Best Hairspray to Use?](https://hairpinns.com/blog/whats-the-best-hairspray-to-use)
-- [💖 Why a Wet Brush Is a Must-Have in Every Hair Routine](https://hairpinns.com/blog/why-wet-brush-is-a-must-have)
-- [Quench Your Hair's Thirst This Winter with Our Hydration Bundle](https://hairpinns.com/blog/quench-your-hairs-thirst-hydration-bundle)
-- [Pure Walnut Scrub – The Scalp Detox You Didn't Know You Needed](https://hairpinns.com/blog/pure-walnut-scrub-scalp-detox)
-- [Your Hair Deserves the BEST!](https://hairpinns.com/blog/your-hair-deserves-the-best-wet-brush)
-- [Hair Extensions in Bangor: Salon-Grade vs DIY Clip-Ins](https://hairpinns.com/blog/hair-extensions-bangor)
-- [Juuce vs Pure Organic Shampoo: Which Is Right for Your Hair?](https://hairpinns.com/blog/juuce-vs-pure-organic-shampoo)
-- [Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)](https://hairpinns.com/blog/best-shampoo-colour-treated-hair-australia)
-- [The Best Sulfate-Free Shampoos Available in Australia](https://hairpinns.com/blog/sulfate-free-shampoo-australia)
-- [Wet Brush vs Tangle Teezer: Honest Comparison (From a Stylist)](https://hairpinns.com/blog/wet-brush-vs-tangle-teezer)
-- [Olaplex vs K18 vs Juuce Bond Repair: What's Actually In The Bottle](https://hairpinns.com/blog/olaplex-vs-k18-vs-juuce-bond-repair)
-
-### Treatments (Keratin, Smoothing, Bond Repair)
-
-- [Say Goodbye to Frizzy Hair for Good? (March Edition)](https://hairpinns.com/blog/say-goodbye-to-frizzy-hair-march-2025)
-- [What's a Straight Up Smoothing Treatment?](https://hairpinns.com/blog/whats-a-straight-up-smoothing-treatment)
-- [The Secret Behind That Steamy Towel Moment 🔥💆](https://hairpinns.com/blog/the-secret-behind-that-steamy-towel-moment)
-- [QIQI Vega vs Nanoplasty: What's the Difference?](https://hairpinns.com/blog/qiqi-vega-vs-nanoplasty-whats-the-difference)
-- [The Truth About Shampoo After Straight Up Treatment](https://hairpinns.com/blog/truth-about-shampoo-after-straight-up-treatment)
-- [Keratin Smoothing Sydney: Prices, Brands & What You Actually Get](https://hairpinns.com/blog/keratin-smoothing-sydney-prices-brands)
-- [Keratin vs Brazilian Blowout vs Straight Up: Which One?](https://hairpinns.com/blog/keratin-vs-brazilian-blowout-vs-straight-up)
-- [How Long Does Keratin Smoothing Actually Last?](https://hairpinns.com/blog/how-long-does-keratin-smoothing-last)
-- [Bond Repair vs Protein Treatment: They Don't Do The Same Job](https://hairpinns.com/blog/bond-repair-vs-protein-treatment-difference)
-
-### Colour & Blonding
-
-- [How Much Does a Full Head of Foils Cost in Sydney?](https://hairpinns.com/blog/how-much-full-head-foils-cost-sydney)
-- [The 7 Colouring Mistakes I See Every Week (And How to Avoid Them)](https://hairpinns.com/blog/the-7-colouring-mistakes-i-see-every-week)
-- [How to Recover Hair From Box Dye Damage](https://hairpinns.com/blog/how-to-recover-hair-from-box-dye-damage)
-- [Salon Foils vs Box Dye Highlights: Honest Talk From Someone Who Fixes Them](https://hairpinns.com/blog/salon-foils-vs-box-dye-highlights-at-home)
-- [Permanent vs Semi-Permanent vs Demi-Permanent vs Gloss: A Plain English Guide](https://hairpinns.com/blog/permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss)
-
-### Local (Sutherland Shire / Suburb Pages)
-
-- [The Sutherland Shire Hair Salon Guide: What to Look For](https://hairpinns.com/blog/sutherland-shire-hair-salon-guide)
-- [Best Hair Salon Near Menai: What the Locals Say](https://hairpinns.com/blog/best-hair-salon-near-menai)
-- [The Best Hair Salon in Bangor: Meet Hair Pinns](https://hairpinns.com/blog/best-hair-salon-bangor)
-- [Best Hair Salon Near Illawong: What the Locals Say](https://hairpinns.com/blog/best-hair-salon-near-illawong)
-- [Best Hair Salon Near Sutherland: What the Locals Say](https://hairpinns.com/blog/best-hair-salon-near-sutherland)
-- [Best Hair Salon Near Cronulla: What the Locals Say](https://hairpinns.com/blog/best-hair-salon-near-cronulla)
-- [Best Hair Salon Near Como: What the Locals Say](https://hairpinns.com/blog/best-hair-salon-near-como)
-- [Best Hair Salon Near Miranda: What the Locals Say](https://hairpinns.com/blog/best-hair-salon-near-miranda)
-- [Best Hair Salon Near Engadine: What the Locals Say](https://hairpinns.com/blog/best-hair-salon-near-engadine)
-
-### Wellness (Sauna & Lifestyle)
-
-- [What is an 'Infrared Sauna'?](https://hairpinns.com/blog/what-is-an-infrared-sauna)
-- [5 Ways Infrared Sauna Sessions Boost Your Hair, Skin & Overall Glow](https://hairpinns.com/blog/5-ways-infrared-sauna-boosts-hair-skin-glow)
-- [Infrared Sauna for Hair & Scalp Health. Yes, It's a Thing!](https://hairpinns.com/blog/infrared-sauna-for-hair-scalp-health)
-
-### About
-
-- [Meet Jena: 20+ Years Behind the Chair in Sutherland Shire](https://hairpinns.com/blog/meet-jena-15-years-sutherland-shire)
-
-### Education
-
-- [How Often Should You Replace Your Shampoo?](https://hairpinns.com/blog/how-often-should-you-replace-your-shampoo)
-- [What is Lamellar Vitality Technology?](https://hairpinns.com/blog/what-is-lamellar-vitality-technology)
-- [🔥 Why Heat Protection Is Essential for Healthy Hair](https://hairpinns.com/blog/why-heat-protection-is-essential)
-- [Which range is best for you?](https://hairpinns.com/blog/which-juuce-range-is-best-for-you-quiz)
-- [How Often Should You Wash Your Hair? (By Hair Type)](https://hairpinns.com/blog/how-often-should-you-wash-your-hair)
-- [Can You Use Purple Shampoo Every Day? What Stylists Say](https://hairpinns.com/blog/can-you-use-purple-shampoo-every-day)
-- [When Should You Get a Haircut? Signs You're Overdue](https://hairpinns.com/blog/when-should-you-get-a-haircut)
-- [Home Hair Care Myths a Stylist Wishes You'd Stop Believing](https://hairpinns.com/blog/home-hair-care-myths-stylist-wishes-youd-stop)
-- [When Do I Use a Leave-In Conditioner? A Stylist's Honest Guide](https://hairpinns.com/blog/when-do-i-use-a-leave-in-conditioner)
-
-### Hair Care
-
-- [Do you Know how to Prevent Heat Damage on your Hair?](https://hairpinns.com/blog/prevent-heat-damage-on-your-hair)
-
-### Seasonal
-
-- [Winter Weather Hair Care in Sydney – Why It Matters & How to Protect Your Hair](https://hairpinns.com/blog/winter-weather-hair-care-sydney)
-- [Summer Hair Care in Australia: Beach, Sun, Salt Guide](https://hairpinns.com/blog/summer-hair-care-australia-beach-sun-salt)
-- [Winter Hair Care for Sydney Weather (2026 Guide)](https://hairpinns.com/blog/winter-hair-care-sydney-2026)
-- [School Formal Hair Trends 2026: What's In and How to Book](https://hairpinns.com/blog/school-formal-hair-trends-2026)
-- [Christmas Hair Care Gift Guide 2026](https://hairpinns.com/blog/christmas-hair-gifts-2026)
-- [Beating Frizz in Sydney Humidity: A Stylist's Complete Guide](https://hairpinns.com/blog/beating-frizz-sydney-humidity)
-
-## Glossary
-- [Hair Care Glossary](https://hairpinns.com/glossary) — Plain-English definitions of hair-care terms (keratin, balayage, bond repair, sulphate-free, lamellar, toner, brassiness, hair porosity, and more)
+- Bangor
+- Menai
+- Illawong
+- Alfords Point
+- Woronora
+- Sutherland
+- Kirrawee
+- Kareela
+- Como
+- Gymea
+- Miranda
+- Engadine
+- Heathcote

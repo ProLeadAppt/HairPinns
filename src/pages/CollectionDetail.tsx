@@ -21,6 +21,7 @@ import {
 import QuickViewModal from "@/components/product/QuickViewModal";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
+import { buildMetaDescription } from "@/lib/metadata";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
 import { getCollectionFAQs } from "@/data/collectionFAQs";
 import SEOHead from "@/components/SEOHead";
@@ -330,22 +331,29 @@ const CollectionDetail = () => {
     })),
   });
 
-  const faqSchema = generateFAQPageSchema(getCollectionFAQs(handle));
+  const faqs = getCollectionFAQs(handle);
 
   const webPageSchema = generateWebPageSchema({
     name: collectionTitle,
     description: collectionDescription,
     url: `https://hairpinns.com/collections/${handle}`,
-    speakable: { cssSelector: [".speakable-collection-intro"] },
   });
 
-  const schemas = [breadcrumbSchema, collectionPageSchema, faqSchema, webPageSchema];
+  const schemas = [
+    breadcrumbSchema,
+    collectionPageSchema,
+    ...(faqs.length > 0 ? [generateFAQPageSchema(faqs)] : []),
+    webPageSchema,
+  ];
+  const metaDescription = buildMetaDescription(collectionDescription, {
+    suffix: "Salon-selected hair care shipped Australia-wide, with free shipping on orders over $150.",
+  });
 
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title={`${collectionTitle} | Hair Care Australia | Hair Pinns`}
-        description={`${collectionDescription.substring(0, 130)} Shipped Australia-wide. Free shipping over $150.`}
+        description={metaDescription}
         canonical={`https://hairpinns.com/collections/${handle}`}
         ogImage={collection?.image?.url || getOGImage('collection')}
         ogType="website"
@@ -379,7 +387,7 @@ const CollectionDetail = () => {
                 <h1 className="font-heading text-[clamp(3rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.04em] text-[hsl(var(--after-hours-plum))] mb-4">
                   {collectionTitle}
                 </h1>
-                <p className="speakable-collection-intro max-w-3xl text-base leading-7 text-[hsl(var(--after-hours-plum)/0.72)] md:text-lg">
+                <p className="max-w-3xl text-base leading-7 text-[hsl(var(--after-hours-plum)/0.72)] md:text-lg">
                   {collectionDescription}
                 </p>
               </div>

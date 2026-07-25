@@ -22,13 +22,12 @@ import RelatedContent from "@/components/RelatedContent";
 import { topicsForBlogPost } from "@/data/topicMap";
 import { renderInlineLinks } from "@/lib/renderInlineLinks";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+import { buildMetaDescription } from "@/lib/metadata";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
   generateBreadcrumbSchema,
   generateFAQPageSchema,
-  generateArticleSchema,
-  generateQAPageSchema,
   generateJenaPersonSchema,
 } from "@/lib/schema";
 
@@ -62,53 +61,8 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     wordCount: wordCount,
   });
 
-  // Enhanced Article schema with speakable for AI SEO
-  const articleSchema = generateArticleSchema({
-    title: post.title,
-    description: post.excerpt,
-    author: post.author,
-    datePublished: new Date(post.date).toISOString(),
-    image: post.image,
-    url: `https://hairpinns.com/blog/${post.slug}`,
-    wordCount: wordCount,
-    speakable: {
-      // `.post-intro` is the lede paragraph (always present); .quick-answer is
-      // present on posts with a featured-snippet block. h2/h3 give voice
-      // assistants a fallback when the body has structure but no intro paragraph.
-      cssSelector: [".post-intro", ".quick-answer", "h2", "h3"],
-    },
-  });
 
-  // QAPage schema if quickAnswer exists
-  const qaSchema = post.content.quickAnswer
-    ? generateQAPageSchema({
-        question: post.content.quickAnswer.question,
-        answer: post.content.quickAnswer.answer,
-        author: post.author,
-        datePublished: new Date(post.date).toISOString(),
-      })
-    : null;
-
-  // Generic fallback FAQs shown visibly on posts that don't yet have their own
-  // faqSection. NOT emitted as schema — duplicate FAQPage JSON-LD across 57
-  // posts would trigger Google's spam heuristics. Backfill `faqSection` on
-  // individual posts to get per-post FAQ rich results.
-  const defaultBlogFaqs = [
-    {
-      question: "What's the best treatment for frizz in humid Sydney weather?",
-      answer: "A keratin-free smoothing treatment paired with a humidity-resistant leave-in works best for Sydney's changeable climate. Start with a gentle, sulphate-free wash, add a protein-balanced mask weekly, then seal with a heat-activated protectant before blow-drying."
-    },
-    {
-      question: "How often should I tone blonde hair at home?",
-      answer: "Every 1–2 weeks for maintenance, using a pH-balanced violet or blue-violet treatment, depending on your undertone. Keep dwell time short (3–5 mins) to avoid over-ash. Follow with a hydrating mask because toners can be slightly drying."
-    },
-    {
-      question: "Keratin vs. smoothing: which lasts longer?",
-      answer: "Keratin treatments (formaldehyde-free) generally outlast quick smoothing services, giving 2–4 months of frizz reduction with proper care. Smoothing services are gentler and great for first-timers or colour-treated hair, lasting 4–8 weeks."
-    },
-  ];
-
-  const visibleFaqs = post.content.faqSection ?? defaultBlogFaqs;
+  const visibleFaqs = post.content.faqSection ?? [];
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: 'https://hairpinns.com' },
@@ -122,6 +76,9 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     ? generateFAQPageSchema(post.content.faqSection)
     : null;
   const currentUrl = `https://hairpinns.com/blog/${post.slug}`;
+  const metaDescription = buildMetaDescription(post.excerpt, {
+    suffix: "Practical hair advice from Jena at Hair Pinns.",
+  });
 
   const personSchema =
     post.author === "Jena Pinn" ? generateJenaPersonSchema() : null;
@@ -130,9 +87,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     organizationSchema,
     blogPostSchema,
     breadcrumbSchema,
-    articleSchema,
     ...(faqSchema ? [faqSchema] : []),
-    ...(qaSchema ? [qaSchema] : []),
     ...(personSchema ? [personSchema] : []),
   ];
 
@@ -140,7 +95,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     <div className="min-h-screen bg-[hsl(var(--after-hours-paper))]">
       <SEOHead
         title={`${post.title} | Hair Pinns Blog`}
-        description={post.excerpt}
+        description={metaDescription}
         canonical={currentUrl}
         ogImage={post.image}
         ogType="article"
@@ -282,26 +237,27 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
             />
           )}
 
-          {/* FAQ Section */}
-          <div className="reveal mt-20 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-10">
-            <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.62)]">Questions from the chair</p>
-            <h2 className="mb-8 mt-4 max-w-[12ch] font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
-              Frequently Asked Questions
-            </h2>
-            <div className="border-t border-[hsl(var(--after-hours-plum)/0.24)]">
-              {visibleFaqs.map((faq, index) => (
-                <div key={index} className="border-b border-[hsl(var(--after-hours-plum)/0.2)] py-7">
-                  <h3 className="font-heading text-xl font-normal text-[hsl(var(--after-hours-plum))]">
-                    {faq.question}
-                  </h3>
-                  <p className="mb-4 mt-3 leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">
-                    {faq.answer}
-                  </p>
-                  <FaqFeedbackWidget question={faq.question} />
-                </div>
-              ))}
+          {visibleFaqs.length > 0 && (
+            <div className="reveal mt-20 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-10">
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.62)]">Questions from the chair</p>
+              <h2 className="mb-8 mt-4 max-w-[12ch] font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
+                Frequently Asked Questions
+              </h2>
+              <div className="border-t border-[hsl(var(--after-hours-plum)/0.24)]">
+                {visibleFaqs.map((faq, index) => (
+                  <div key={index} className="border-b border-[hsl(var(--after-hours-plum)/0.2)] py-7">
+                    <h3 className="font-heading text-xl font-normal text-[hsl(var(--after-hours-plum))]">
+                      {faq.question}
+                    </h3>
+                    <p className="mb-4 mt-3 leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">
+                      {faq.answer}
+                    </p>
+                    <FaqFeedbackWidget question={faq.question} />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Author bio — E-E-A-T anchor matching the Person JSON-LD */}
           <AuthorBio />

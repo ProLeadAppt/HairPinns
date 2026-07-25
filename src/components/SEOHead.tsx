@@ -1,6 +1,8 @@
 import { ReactNode, useEffect, useMemo } from "react";
 import { SITE_URL, canonicalSiteUrl } from "@/config/businessConfig";
 import { ENTITY_REGISTRY } from "@/config/entityRegistry";
+import { buildSchemaGraph } from "@/lib/schema";
+import { buildMetaDescription, buildMetaTitle } from "@/lib/metadata";
 
 interface SEOHeadProps {
   /** Page title (used for <title> and og:title) */
@@ -36,6 +38,19 @@ interface SEOHeadProps {
   children?: ReactNode;
 }
 
+const canonicalizeSchemaUrls = (value: unknown): unknown => {
+  if (typeof value === 'string' && value.startsWith(SITE_URL)) {
+    return canonicalSiteUrl(value);
+  }
+  if (Array.isArray(value)) return value.map(canonicalizeSchemaUrls);
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, child]) => [key, canonicalizeSchemaUrls(child)]),
+    );
+  }
+  return value;
+};
+
 /**
  * SEOHead Component
  *
@@ -69,23 +84,15 @@ export const SEOHead = ({
   const cleanOgImage = ogImage.startsWith("http")
     ? ogImage
     : `https://hairpinns.com${ogImage}`;
+  const resolvedTitle = buildMetaTitle([title]);
+  const resolvedDescription = buildMetaDescription(description);
 
-  const canonicalizeSchemaUrls = (value: unknown): unknown => {
-    if (typeof value === 'string' && value.startsWith(SITE_URL)) {
-      return canonicalSiteUrl(value);
-    }
-    if (Array.isArray(value)) return value.map(canonicalizeSchemaUrls);
-    if (value && typeof value === 'object') {
-      return Object.fromEntries(
-        Object.entries(value as Record<string, unknown>).map(([key, child]) => [key, canonicalizeSchemaUrls(child)]),
-      );
-    }
-    return value;
-  };
-
-  const rawSchemas = Array.isArray(schemaJson) ? schemaJson : schemaJson ? [schemaJson] : [];
-  const schemas = rawSchemas.map((schema) => canonicalizeSchemaUrls(schema) as Record<string, any>);
-  const schemaJSON = useMemo(() => schemas.map((s) => JSON.stringify(s)), [schemas]);
+  const schemaJSON = useMemo(() => {
+    if (!schemaJson) return null;
+    const rawSchemas = Array.isArray(schemaJson) ? schemaJson : [schemaJson];
+    const schemas = rawSchemas.map((schema) => canonicalizeSchemaUrls(schema) as Record<string, unknown>);
+    return JSON.stringify(buildSchemaGraph(schemas));
+  }, [schemaJson]);
 
   useEffect(() => {
     const head = document.head;
@@ -95,7 +102,7 @@ export const SEOHead = ({
     head.querySelectorAll(`[${OWN}="true"]`).forEach((el) => el.remove());
 
     // <title>
-    document.title = title;
+    document.title = resolvedTitle;
 
     const addMeta = (attrs: Record<string, string>) => {
       const el = document.createElement('meta');
@@ -121,7 +128,7 @@ export const SEOHead = ({
     };
 
     // Primary meta
-    addMeta({ name: 'description', content: description });
+    addMeta({ name: 'description', content: resolvedDescription });
     addMeta({ 'http-equiv': 'content-language', content: 'en-AU' });
 
     // Geo targeting — explicit AU signals for the wider search ecosystem.
@@ -155,8 +162,8 @@ export const SEOHead = ({
 
     // Open Graph
     addMeta({ property: 'og:type', content: ogType });
-    addMeta({ property: 'og:title', content: title });
-    addMeta({ property: 'og:description', content: description });
+    addMeta({ property: 'og:title', content: resolvedTitle });
+    addMeta({ property: 'og:description', content: resolvedDescription });
     addMeta({ property: 'og:url', content: cleanCanonical });
     addMeta({ property: 'og:image', content: cleanOgImage });
     addMeta({ property: 'og:image:width', content: '1200' });
@@ -166,14 +173,14 @@ export const SEOHead = ({
 
     // Twitter
     addMeta({ name: 'twitter:card', content: 'summary_large_image' });
-    addMeta({ name: 'twitter:title', content: title });
-    addMeta({ name: 'twitter:description', content: description });
+    addMeta({ name: 'twitter:title', content: resolvedTitle });
+    addMeta({ name: 'twitter:description', content: resolvedDescription });
     addMeta({ name: 'twitter:image', content: cleanOgImage });
     addMeta({ name: 'twitter:site', content: '@hairpinns' });
     addMeta({ name: 'twitter:creator', content: '@hairpinns' });
 
     // JSON-LD schemas
-    schemaJSON.forEach(addScript);
+    if (schemaJSON) addScript(schemaJSON);
 
     // Prerender-ready marker — Puppeteer waits for this element before
     // snapshotting. Only inject when the caller signals the page is in its
@@ -193,8 +200,8 @@ export const SEOHead = ({
       if (marker) marker.remove();
     };
   }, [
-    title,
-    description,
+    resolvedTitle,
+    resolvedDescription,
     cleanCanonical,
     cleanOgImage,
     ogType,

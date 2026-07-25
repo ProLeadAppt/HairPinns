@@ -119,7 +119,6 @@ const Index = () => {
     name: "Hair Pinns - Hair Care by Jena",
     description: "Hair care picked by Jena. The same products I use on my clients, shipped anywhere in Australia. Free shipping over $150.",
     url: "https://hairpinns.com",
-    speakable: { cssSelector: [".speakable-hero-intro"] },
   });
 
 

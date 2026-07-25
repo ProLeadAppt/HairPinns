@@ -3,13 +3,17 @@
  * Used by vite.config.ts to feed vite-plugin-prerender.
  * Reads dynamic slugs from data files + Shopify API.
  */
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { SERVICE_ROUTES } from './service-routes.js';
+import { isIndexableRoute } from './route-policy.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
+const routeCacheDir = resolve(root, 'node_modules/.cache/hairpinns');
+const routeCachePath = resolve(routeCacheDir, 'shopify-handles.json');
+const ROUTE_CACHE_MAX_AGE_MS = 10 * 60 * 1000;
 
 // Load .env if present
 if (existsSync(resolve(root, '.env'))) {
@@ -65,6 +69,22 @@ const CURRENT_COLLECTION_HANDLES = [
 ];
 
 async function fetchShopifyHandles(type) {
+  if (existsSync(routeCachePath)) {
+    try {
+      const cache = JSON.parse(readFileSync(routeCachePath, 'utf8'));
+      const cachedHandles = cache[type];
+      if (
+        Date.now() - cache.createdAt < ROUTE_CACHE_MAX_AGE_MS
+        && Array.isArray(cachedHandles)
+        && cachedHandles.length > 0
+      ) {
+        return cachedHandles;
+      }
+    } catch {
+      // Ignore corrupt or stale cache files and fetch authoritative data.
+    }
+  }
+
   const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
   const token = process.env.VITE_SF_STOREFRONT_TOKEN || '';
   const version = process.env.VITE_SF_API_VERSION || '2025-01';
@@ -77,14 +97,24 @@ async function fetchShopifyHandles(type) {
     ? `query { products(first: 250) { edges { node { handle } } } }`
     : `query { collections(first: 50) { edges { node { handle } } } }`;
 
-  const res = await fetch(`https://${domain}/api/${version}/graphql.json`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': token,
-    },
-    body: JSON.stringify({ query }),
-  });
+  let res;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      res = await fetch(`https://${domain}/api/${version}/graphql.json`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': token,
+        },
+        body: JSON.stringify({ query }),
+      });
+      if (res.ok || attempt === 3) break;
+    } catch (error) {
+      if (attempt === 3) throw error;
+    }
+    await new Promise((resolveDelay) => setTimeout(resolveDelay, 250 * (2 ** (attempt - 1))));
+  }
+  if (!res) throw new Error(`[prerender] Shopify ${type} request produced no response`);
   if (!res.ok) throw new Error(`[prerender] Shopify ${type} request failed with HTTP ${res.status}`);
 
   const json = await res.json();
@@ -94,6 +124,19 @@ async function fetchShopifyHandles(type) {
   const edges = type === 'products' ? json.data?.products?.edges : json.data?.collections?.edges;
   const handles = (edges || []).map((edge) => edge.node.handle).filter(Boolean);
   if (handles.length === 0) throw new Error(`[prerender] Shopify returned no ${type}; refusing an incomplete build`);
+
+  let cache = { createdAt: Date.now() };
+  if (existsSync(routeCachePath)) {
+    try {
+      cache = { ...cache, ...JSON.parse(readFileSync(routeCachePath, 'utf8')) };
+    } catch {
+      // Replace a corrupt cache with the successful authoritative response.
+    }
+  }
+  cache.createdAt = Date.now();
+  cache[type] = handles;
+  mkdirSync(routeCacheDir, { recursive: true });
+  writeFileSync(routeCachePath, JSON.stringify(cache), 'utf8');
   return handles;
 }
 
@@ -117,7 +160,10 @@ export async function collectRoutes() {
   // locally for the few internal links that haven't been migrated.
 
   const blogSlugs = [...new Set(extractBlogSlugs(resolve(root, 'src/data/blogSummaries.ts')))];
-  blogSlugs.forEach((slug) => routes.push(`/blog/${slug}`));
+  blogSlugs
+    .map((slug) => `/blog/${slug}`)
+    .filter(isIndexableRoute)
+    .forEach((route) => routes.push(route));
 
   // State-level shipping landing pages — one per AU state/territory. Auto-
   // discovered from src/data/shippingStates.ts so adding a new entry there

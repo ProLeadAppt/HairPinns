@@ -67,7 +67,7 @@ const LocationPage = () => {
   return (
     <>
       <SEOHead
-        title={`Hairdresser ${locationData.name} | Hair Salon near ${locationData.name} – Hair Pinns`}
+        title={`Hairdresser & Hair Salon near ${locationData.name} | Hair Pinns`}
         description={`Hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor. Book online or call ${BUSINESS_NAP.phone.display}.`}
         canonical={canonicalUrl}
         ogImage={getOGImage("default")}

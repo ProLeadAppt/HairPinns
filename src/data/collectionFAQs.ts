@@ -8,18 +8,6 @@ export interface FAQItem {
   answer: string;
 }
 
-/** Fallback FAQs for collections without specific mapping */
-const FALLBACK_FAQS: FAQItem[] = [
-  {
-    question: "Where can I buy salon hair products in Australia?",
-    answer: "Hair Pinns ships professional hair care Australia-wide. Free shipping over $150. Picked by Jena since 2009. Shop Juuce, QIQI, Pure, Wet Brush and more.",
-  },
-  {
-    question: "Does Hair Pinns ship to Melbourne, Brisbane and Perth?",
-    answer: "Yes. Hair Pinns ships to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping on orders over $150. Every state and territory.",
-  },
-];
-
 /** Collection handle to FAQs mapping */
 const COLLECTION_FAQS: Record<string, FAQItem[]> = {
   juuce: [
@@ -73,10 +61,11 @@ const COLLECTION_FAQS: Record<string, FAQItem[]> = {
 
 /**
  * Get FAQs for a collection by handle
- * Returns collection-specific FAQs or fallback
+ * Returns only collection-specific FAQs. Unknown collections intentionally
+ * emit no FAQ content or schema rather than duplicating generic commerce copy.
  */
 export function getCollectionFAQs(collectionHandle: string | undefined): FAQItem[] {
-  if (!collectionHandle) return FALLBACK_FAQS;
+  if (!collectionHandle) return [];
   const normalized = collectionHandle.toLowerCase().trim();
-  return COLLECTION_FAQS[normalized] ?? FALLBACK_FAQS;
+  return COLLECTION_FAQS[normalized] ?? [];
 }
