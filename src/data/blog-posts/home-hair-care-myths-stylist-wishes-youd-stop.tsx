@@ -3,14 +3,14 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "home-hair-care-myths-stylist-wishes-youd-stop",
     title: "Home Hair Care Myths a Stylist Wishes You'd Stop Believing",
-    excerpt: "After 20+ years in the salon, these are the home hair care myths I hear most often — and what actually works instead.",
+    excerpt: "Working behind the chair since 2009, Jena shares the home hair care myths she hears most often and what works instead.",
     category: "Education",
     date: "April 19, 2026",
     readTime: "6 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560",
     author: "Jena Pinn",
     content: {
-      introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), I've heard every home-hair-care myth there is. Some are harmless, some are actively damaging, and a lot of them got started in beauty magazines in the 1990s and never died. Here are the ones I wish would stop — and what actually works for healthy hair at home.",
+      introduction: "After [working behind the chair since 2009](/blog/meet-jena-15-years-sutherland-shire), I've heard a long list of home-hair-care myths. Some are harmless, some can be damaging, and many have circulated for years. Here are the ones I wish would stop and what to do instead.",
       sections: [
         {
           heading: "Myth: You Need to Wash Your Hair Every Day",

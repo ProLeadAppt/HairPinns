@@ -818,6 +818,16 @@ chat-widget[data-active="false"] {
 .editorial-route main h3 {
   color: hsl(var(--after-hours-plum));
 }
+.editorial-route.editorial-route--dark,
+.editorial-route.editorial-route--dark main {
+  background: hsl(var(--after-hours-plum));
+  color: hsl(var(--after-hours-cream));
+}
+.editorial-route.editorial-route--dark main h1,
+.editorial-route.editorial-route--dark main h2,
+.editorial-route.editorial-route--dark main h3 {
+  color: hsl(var(--after-hours-cream));
+}
 .editorial-route main [class*="bg-gradient"] h1,
 .editorial-route main [class*="bg-gradient"] h2,
 .editorial-route main [class*="bg-gradient"] h3 {

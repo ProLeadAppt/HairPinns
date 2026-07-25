@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run quality && npm test && node scripts/generate-sitemap.js && vite build && node scripts/prerender.mjs && node scripts/seo-smoke-test.js && (node scripts/submit-indexnow.js || echo 'IndexNow skipped')",
+    "build": "npm run quality && npm run audit:trust && npm test && node scripts/generate-sitemap.js && node node_modules/vite/bin/vite.js build && node scripts/prerender.mjs && node scripts/seo-smoke-test.js && node scripts/internal-link-audit.mjs",
     "quality": "node scripts/quality-regression.mjs",
+    "audit:trust": "node scripts/content-trust-audit.mjs",
     "test": "vitest run src tests/functions/functions-runtime.test.js",
     "test:e2e": "playwright test",
+    "audit:links": "node scripts/internal-link-audit.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "prerender": "node scripts/prerender.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.js",

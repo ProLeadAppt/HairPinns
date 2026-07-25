@@ -49,7 +49,6 @@ const Sitemap = () => {
         { title: "Gymea", url: "/areas/gymea-2227" },
         { title: "Miranda", url: "/areas/miranda-2228" },
         { title: "Cronulla", url: "/areas/cronulla-2230" },
-        { title: "Sydney CBD", url: "/areas/sydney" },
         { title: "Caringbah", url: "/areas/caringbah-2229" },
         { title: "Sylvania", url: "/areas/sylvania-2224" },
       ]

@@ -10,7 +10,7 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
     author: "Jena Pinn",
     content: {
-      introduction: "After [20+ years in the salon](/blog/meet-jena-15-years-sutherland-shire), I've seen what works and what doesn't. Here are my top hair product picks for 2025: the best hair care formulas available in Australia, chosen for real results, not hype.",
+      introduction: "After [working behind the chair since 2009](/blog/meet-jena-15-years-sutherland-shire), I've seen what works for different routines and hair types. Here are my hair product picks for 2025, chosen for practical salon and home use.",
       sections: [
         {
           heading: "Best for Bond Repair & Damage",

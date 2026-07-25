@@ -28,17 +28,17 @@ export const suburbPages: Record<string, SuburbData> = {
   "bangor": {
     slug: "bangor",
     name: "Bangor",
-    quickAnswer: "Hair Pinns is a boutique hair salon in Bangor, NSW, specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena brings over 20 years of experience to every appointment, with services tailored to the Sutherland Shire's unique river-valley climate.",
+    quickAnswer: "Hair Pinns is a boutique hair salon in Bangor, NSW, specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena brings experience behind the chair since 2009 to every appointment, with services tailored to the Sutherland Shire's unique river-valley climate.",
     driveTime: "On-site",
     route: "We're located right here in Bangor",
     localNote: "As Bangor locals, we understand the unique climate challenges, river humidity mixed with coastal breeze, and tailor every service accordingly.",
     landmarks: ["Georges River", "Bangor Bypass", "Sutherland Shire"],
     seasonalNote: "Sutherland Shire summer humidity peaks in January-February. Our smoothing treatments are designed for these conditions.",
-    intro: "Welcome to Hair Pinns, your boutique hair salon right here in Bangor, NSW. With over 20 years of experience, Jena specializes in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling designed for our local climate. As Bangor locals serving the Sutherland Shire, we understand exactly what your hair needs to look and feel amazing in our unique river-valley microclimate.",
+    intro: "Welcome to Hair Pinns, your boutique hair salon right here in Bangor, NSW. With experience behind the chair since 2009, Jena specializes in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling designed for our local climate. As Bangor locals serving the Sutherland Shire, we understand exactly what your hair needs to look and feel amazing in our unique river-valley microclimate.",
     faqs: [
       {
         question: "Why is Hair Pinns the best choice in Bangor?",
-        answer: "As Bangor locals with over 20 years of experience, we understand our unique microclimate, river humidity from the Georges River combined with coastal breeze. Our treatments are specifically designed for these conditions. We offer personalized, boutique service where you're never just a number. Every client receives a custom approach tailored to their hair type, lifestyle, and the challenges of living in the Sutherland Shire.",
+        answer: "As Bangor locals with experience behind the chair since 2009, we understand our unique microclimate, river humidity from the Georges River combined with coastal breeze. Our treatments are specifically designed for these conditions. We offer personalized, boutique service where you're never just a number. Every client receives a custom approach tailored to their hair type, lifestyle, and the challenges of living in the Sutherland Shire.",
       },
       {
         question: "How do I maintain my hair in Bangor's climate?",
@@ -46,7 +46,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "What makes your smoothing treatments different?",
-        answer: "We use professional-grade formulas specifically chosen for Sydney's climate, not generic products. Our smoothing treatments are customized to your hair type. Fine hair gets lightweight formulas, while thick, coarse hair receives stronger treatments. The service includes thorough aftercare education and product recommendations. With 20+ years of experience, we know exactly how to achieve lasting results in humid conditions like ours in Bangor.",
+        answer: "We use professional-grade formulas specifically chosen for Sydney's climate, not generic products. Our smoothing treatments are customized to your hair type. Fine hair gets lightweight formulas, while thick, coarse hair receives stronger treatments. The service includes thorough aftercare education and product recommendations. With experience behind the chair since 2009, we know exactly how to achieve lasting results in humid conditions like ours in Bangor.",
       },
     ],
     nearbySuburbs: ["menai", "woronora", "heathcote"],
@@ -60,7 +60,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "The humidity from the Georges River can intensify frizz. Our smoothing treatments are designed for local conditions.",
     landmarks: ["Georges River", "Menai Marketplace", "Menai Road"],
     seasonalNote: "River humidity is highest in summer. Book a smoothing treatment before the humid season for lasting results.",
-    intro: "Just minutes from Menai, Hair Pinns is your boutique hair salon specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena brings over 20 years of experience to every appointment, with a focus on results that work with Sydney's coastal humidity. Whether you're after dimensional colour, frizz-taming smoothing, or a fresh cut, we'll help you leave feeling confident.",
+    intro: "Just minutes from Menai, Hair Pinns is your boutique hair salon specializing in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena brings experience behind the chair since 2009 to every appointment, with a focus on results that work with Sydney's coastal humidity. Whether you're after dimensional colour, frizz-taming smoothing, or a fresh cut, we'll help you leave feeling confident.",
     faqs: [
       {
         question: "How does Menai's humidity affect my hair?",
@@ -86,7 +86,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Illawong's riverside location means extra humidity, perfect for our anti-frizz smoothing treatments.",
     landmarks: ["Georges River", "Illawong Bay", "Alfords Point Bridge"],
     seasonalNote: "Riverside humidity peaks in summer. Our treatments seal the cuticle to combat frizz year-round.",
-    intro: "Hair Pinns is your local salon serving Illawong and surrounding suburbs. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's unique climate. With Jena's 20+ years of experience, you'll receive personalized service in a welcoming, boutique environment. From full head foils to keratin treatments, we've got your hair goals covered.",
+    intro: "Hair Pinns is your local salon serving Illawong and surrounding suburbs. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's unique climate. With Jena's experience behind the chair since 2009, you'll receive personalized service in a welcoming, boutique environment. From full head foils to keratin treatments, we've got your hair goals covered.",
     faqs: [
       {
         question: "Why does my hair get so frizzy near the river?",
@@ -112,7 +112,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "The coastal breeze and river humidity make frizz control essential. Our treatments are proven to work.",
     landmarks: ["Georges River", "Alfords Point Bridge", "Woronora River"],
     seasonalNote: "Coastal breeze meets river humidity. Our smoothing treatments are formulated for this unique microclimate.",
-    intro: "Located just minutes from Alfords Point, Hair Pinns is your go-to boutique salon for Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena's 20+ years of experience means you'll get personalized, professional service every visit. Whether you need a colour refresh, frizz-taming treatment, or a fresh cut, we understand the unique challenges of Sydney's climate and hair care.",
+    intro: "Located just minutes from Alfords Point, Hair Pinns is your go-to boutique salon for Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena's experience behind the chair since 2009 means you'll get personalized, professional service every visit. Whether you need a colour refresh, frizz-taming treatment, or a fresh cut, we understand the unique challenges of Sydney's climate and hair care.",
     faqs: [
       {
         question: "How do I manage frizz from the coastal breeze?",
@@ -138,7 +138,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Woronora's river valley traps moisture, making our anti-frizz treatments especially effective.",
     landmarks: ["Woronora River", "Royal National Park", "Woronora Dam"],
     seasonalNote: "River valley geography traps moisture. Our treatments are proven for Woronora's humidity.",
-    intro: "Hair Pinns welcomes clients from Woronora to experience boutique hair care with over 20 years of expertise. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for Sydney's unique climate. Jena's personalized approach ensures you leave with hair that looks and feels amazing, with results that last in even the most humid conditions.",
+    intro: "Hair Pinns welcomes clients from Woronora to experience boutique hair care with experience behind the chair since 2009. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for Sydney's unique climate. Jena's personalized approach ensures you leave with hair that looks and feels amazing, with results that last in even the most humid conditions.",
     faqs: [
       {
         question: "Why is Woronora so humid and how does it affect hair?",
@@ -158,13 +158,13 @@ export const suburbPages: Record<string, SuburbData> = {
   "sutherland": {
     slug: "sutherland",
     name: "Sutherland",
-    quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Sutherland with over 20 years of expertise in Colour, Smoothing, and Cuts. 8–10 minutes via Princes Highway.",
+    quickAnswer: "Hair Pinns is a boutique salon in Bangor serving Sutherland with experience behind the chair since 2009 in Colour, Smoothing, and Cuts. 8–10 minutes via Princes Highway.",
     driveTime: "8–10 minutes",
     route: "Princes Highway via Bangor",
     localNote: "Sutherland's hard water can cause buildup and brassiness. Our clarifying treatments restore shine.",
     landmarks: ["Sutherland Shire", "Princes Highway", "Sutherland Shire Council"],
     seasonalNote: "Sydney's mineral-rich water affects colour year-round. Our toning helps maintain blonde vibrancy.",
-    intro: "Serving Sutherland with over 20 years of hair expertise, Hair Pinns is your boutique destination for Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Whether you're dealing with frizz, need a colour refresh, or want a fresh cut, Jena's personalized approach delivers results that work with your lifestyle and Sydney's climate. Experience professional hair care in a welcoming environment.",
+    intro: "Serving Sutherland with experience behind the chair since 2009, Hair Pinns is your boutique destination for Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Whether you're dealing with frizz, need a colour refresh, or want a fresh cut, Jena's personalized approach delivers results that work with your lifestyle and Sydney's climate. Experience professional hair care in a welcoming environment.",
     faqs: [
       {
         question: "How does Sutherland's water affect my hair?",
@@ -190,7 +190,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Kirrawee's coastal air brings salt and humidity. Our treatments protect against both.",
     landmarks: ["Cronulla Beach", "Royal National Park", "Princes Highway"],
     seasonalNote: "Coastal salt air and summer humidity. Our treatments create a protective barrier for your hair.",
-    intro: "Hair Pinns is proud to serve Kirrawee with boutique hair services including Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With over 20 years of experience, Jena understands how to create beautiful, lasting results in Sydney's coastal climate. From full head foils to keratin smoothing, we offer personalized service in a relaxed, professional environment.",
+    intro: "Hair Pinns is proud to serve Kirrawee with boutique hair services including Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With experience behind the chair since 2009, Jena understands how to create beautiful, lasting results in Sydney's coastal climate. From full head foils to keratin smoothing, we offer personalized service in a relaxed, professional environment.",
     faqs: [
       {
         question: "How does coastal air affect my hair in Kirrawee?",
@@ -216,7 +216,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Kareela's bushland surrounds can mean extra dryness. Our hydrating treatments restore moisture.",
     landmarks: ["Kareela Reserve", "President Avenue", "Como West"],
     seasonalNote: "Bushland can be drier than coastal areas. Our hydrating treatments restore moisture balance.",
-    intro: "Just a short drive from Kareela, Hair Pinns offers boutique hair expertise with over 20 years of experience. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for your lifestyle and Sydney's climate. Jena's personalized approach ensures you receive the perfect service, whether you need a colour change, frizz control, or a fresh new look.",
+    intro: "Just a short drive from Kareela, Hair Pinns offers boutique hair expertise with experience behind the chair since 2009. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for your lifestyle and Sydney's climate. Jena's personalized approach ensures you receive the perfect service, whether you need a colour change, frizz control, or a fresh new look.",
     faqs: [
       {
         question: "Why does my hair feel so dry in Kareela?",
@@ -242,7 +242,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Como's riverside location means high humidity. Our smoothing treatments are proven effective.",
     landmarks: ["Georges River", "Como Railway Bridge", "Como Pleasure Grounds"],
     seasonalNote: "Riverside humidity peaks in summer. Smoothing treatments last 3-4 months through the season.",
-    intro: "Hair Pinns welcomes clients from Como to experience boutique hair care with a focus on Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With over 20 years of expertise, Jena delivers personalized service that considers your hair's unique needs and Sydney's challenging climate. Whether you're battling frizz, seeking the perfect blonde, or ready for a style refresh, we're here to help.",
+    intro: "Hair Pinns welcomes clients from Como to experience boutique hair care with a focus on Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. With experience behind the chair since 2009, Jena delivers personalized service that considers your hair's unique needs and Sydney's challenging climate. Whether you're battling frizz, seeking the perfect blonde, or ready for a style refresh, we're here to help.",
     faqs: [
       {
         question: "How do I combat frizz from Como's riverside humidity?",
@@ -268,7 +268,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Gymea's coastal proximity means salt air and humidity. Our treatments protect your hair from both.",
     landmarks: ["Cronulla Beach", "Gymea Bay", "Sutherland Shire"],
     seasonalNote: "Beach season brings extra salt and sun. UV protectants and our treatments keep hair healthy.",
-    intro: "Hair Pinns is your boutique hair salon serving Gymea and the Sutherland Shire with over 20 years of expertise. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's coastal climate. Jena's personalized approach ensures you receive attentive service in a welcoming environment, with results that last through humidity, salt air, and sun exposure.",
+    intro: "Hair Pinns is your boutique hair salon serving Gymea and the Sutherland Shire with experience behind the chair since 2009. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling tailored to Sydney's coastal climate. Jena's personalized approach ensures you receive attentive service in a welcoming environment, with results that last through humidity, salt air, and sun exposure.",
     faqs: [
       {
         question: "How does coastal salt air damage hair in Gymea?",
@@ -294,7 +294,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Miranda's shopping district bustle means you need hair that lasts. Our treatments deliver all-day hold.",
     landmarks: ["Westfield Miranda", "Miranda Fair", "Sutherland Shire"],
     seasonalNote: "Busy lifestyles need hair that lasts. Our smoothing treatments reduce styling time and hold all day.",
-    intro: "Located near Miranda, Hair Pinns offers boutique hair expertise with over 20 years of experience in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena understands the demands of busy lifestyles and creates hair that looks great from morning to evening. Whether you're shopping, working, or socializing, we'll ensure your hair stays polished and manageable all day long.",
+    intro: "Located near Miranda, Hair Pinns offers boutique hair expertise with experience behind the chair since 2009 in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena understands the demands of busy lifestyles and creates hair that looks great from morning to evening. Whether you're shopping, working, or socializing, we'll ensure your hair stays polished and manageable all day long.",
     faqs: [
       {
         question: "How can I make my style last all day in Miranda?",
@@ -320,7 +320,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Engadine's bush surrounds can mean dryness and dust. Our hydrating treatments restore vitality.",
     landmarks: ["Royal National Park", "Heathcote Road", "Engadine wetlands"],
     seasonalNote: "Bushland dryness and dust. Our hydrating treatments and clarifying shampoos restore hair vitality.",
-    intro: "Hair Pinns is your local boutique salon serving Engadine with over 20 years of expertise in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena's personalized approach delivers results that work with your lifestyle and Sydney's environment. Whether you're dealing with dry, damaged hair or seeking a fresh colour and cut, we'll help you achieve healthy, beautiful hair you'll love.",
+    intro: "Hair Pinns is your local boutique salon serving Engadine with experience behind the chair since 2009 in Colour & Blonding, Smoothing Treatments, and precision Cuts & Styling. Jena's personalized approach delivers results that work with your lifestyle and Sydney's environment. Whether you're dealing with dry, damaged hair or seeking a fresh colour and cut, we'll help you achieve healthy, beautiful hair you'll love.",
     faqs: [
       {
         question: "How do I protect my hair from Engadine's dry conditions?",
@@ -346,7 +346,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Heathcote's bush setting means low humidity but dusty air. Our protective treatments seal your style.",
     landmarks: ["Royal National Park", "Heathcote National Park", "Princes Highway"],
     seasonalNote: "Gateway to Royal National Park. Our treatments protect hair from bushland dust and variable humidity.",
-    intro: "Hair Pinns is your nearby boutique salon serving Heathcote with over 20 years of hair expertise. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for your unique hair needs. Jena's personalized approach ensures you receive professional service in a welcoming environment, with results that withstand Sydney's diverse climate conditions from bush to coast.",
+    intro: "Hair Pinns is your nearby boutique salon serving Heathcote with experience behind the chair since 2009. We specialize in Colour & Blonding, Smoothing & Treatments, and precision Cuts & Styling designed for your unique hair needs. Jena's personalized approach ensures you receive professional service in a welcoming environment, with results that withstand Sydney's diverse climate conditions from bush to coast.",
     faqs: [
       {
         question: "How does Heathcote's bushland air affect hair?",
@@ -372,7 +372,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Beach and salt exposure can dry and damage hair. Our bond repair and smoothing treatments restore and protect.",
     landmarks: ["Cronulla Beach", "Royal National Park", "Sutherland Shire"],
     seasonalNote: "Summer sun and salt intensify damage. Book a deep conditioning or bond repair before beach season.",
-    intro: "Hair Pinns serves Cronulla with colour, smoothing and cuts, just 20-25 minutes inland in Bangor. We specialise in beach hair care: restoring sun and salt damage, maintaining blonde brightness, and keratin smoothing for coastal frizz. Whether you need blonde foiling, deep conditioning, or a fresh cut, Jena delivers boutique care with over 20 years of experience. Easy parking, honest advice. Book online via Fresha or text for a quote.",
+    intro: "Hair Pinns serves Cronulla with colour, smoothing and cuts, just 20-25 minutes inland in Bangor. We specialise in beach hair care: restoring sun and salt damage, maintaining blonde brightness, and keratin smoothing for coastal frizz. Whether you need blonde foiling, deep conditioning, or a fresh cut, Jena delivers boutique care with experience behind the chair since 2009. Easy parking, honest advice. Book online via Fresha or text for a quote.",
     faqs: [
       {
         question: "How far is Hair Pinns from Cronulla?",
@@ -398,7 +398,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Skip the city salon markup. Same premium quality, easier parking, personalised care.",
     landmarks: ["Sydney CBD", "M1 Motorway", "Sutherland Shire"],
     seasonalNote: "Sydney humidity peaks in summer. Our smoothing treatments are designed for these conditions.",
-    intro: "Hair Pinns serves Sydney with colour, blonding, keratin smoothing and precision cuts. Just 35–45 minutes from the CBD, our Bangor salon offers boutique care without city prices. Whether you're after dimensional full head foils, frizz-taming smoothing treatments, or a fresh cut that works with Sydney's humidity, Jena brings over 20 years of experience to every appointment. Book online 24/7 or text for a personalised quote.",
+    intro: "Hair Pinns serves Sydney with colour, blonding, keratin smoothing and precision cuts. Just 35–45 minutes from the CBD, our Bangor salon offers boutique care without city prices. Whether you're after dimensional full head foils, frizz-taming smoothing treatments, or a fresh cut that works with Sydney's humidity, Jena brings experience behind the chair since 2009 to every appointment. Book online 24/7 or text for a personalised quote.",
     faqs: [
       {
         question: "How far is Hair Pinns from Sydney CBD?",
@@ -424,7 +424,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Barden Ridge sits on the bushland edge — dry winds in winter, river humidity in summer. Both extremes need different care, and we tune each appointment to the season you're booking in.",
     landmarks: ["Heathcote Road", "Bangor State Forest", "Old Illawarra Road"],
     seasonalNote: "Bushland-edge suburbs hit colder mornings in winter — hydration treatments are particularly worth booking through May–August.",
-    intro: "Hair Pinns is a quick 5–8 minute drive from Barden Ridge, with Jena's 20+ years of experience behind every appointment. We cover the full range of colour, blonding, Straight Up smoothing, foils and cuts — and because Barden Ridge sits right on the bushland fringe with a different climate profile to the riverside suburbs, we tailor recommendations to your specific routine. Easy parking, honest advice, no upselling.",
+    intro: "Hair Pinns is a quick 5–8 minute drive from Barden Ridge, with Jena's experience behind the chair since 2009 informing every appointment. We cover the full range of colour, blonding, Straight Up smoothing, foils and cuts — and because Barden Ridge sits right on the bushland fringe with a different climate profile to the riverside suburbs, we tailor recommendations to your specific routine. Easy parking, honest advice, no upselling.",
     faqs: [
       {
         question: "How do I keep my hair healthy through Sydney winters in Barden Ridge?",
@@ -450,7 +450,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Caringbah locals tell us they make the drive to escape the rushed feel of busier Shire-centre salons. We're boutique, one-stylist, and time is built into every appointment.",
     landmarks: ["Caringbah Station", "Westfield Miranda", "The Kingsway"],
     seasonalNote: "Caringbah's proximity to Botany Bay means heavier salt air than the inland suburbs — that adds dryness on top of summer humidity, so layered hydration matters.",
-    intro: "Hair Pinns is about 15–18 minutes from Caringbah via The Kingsway, with Jena bringing over 20 years of hairdressing experience to every appointment. We cover colour and blonding, Straight Up smoothing treatments, foils, cuts and kids/formal styling. If you've been bouncing between bigger Caringbah and Miranda salons looking for someone who'll actually listen, give us a try — boutique service, honest advice, easy parking.",
+    intro: "Hair Pinns is about 15–18 minutes from Caringbah via The Kingsway, with Jena bringing experience behind the chair since 2009 to every appointment. We cover colour and blonding, Straight Up smoothing treatments, foils, cuts and kids/formal styling. If you've been bouncing between bigger Caringbah and Miranda salons looking for someone who'll actually listen, give us a try — boutique service, honest advice, easy parking.",
     faqs: [
       {
         question: "What makes a boutique salon in Bangor different from the bigger Caringbah salons?",
@@ -458,7 +458,7 @@ export const suburbPages: Record<string, SuburbData> = {
       },
       {
         question: "Can you fix a colour I'm not happy with?",
-        answer: "Yes, colour correction is one of Jena's specialisations. Bring a clear photo of where you are now and where you want to be, and we'll quote honestly — including whether it's a one-visit fix or needs to be staged over multiple sessions. We don't promise miracles, but with 20+ years of correction work we can usually get there safely. Text 0416 037 663 with photos for the fastest quote.",
+        answer: "Yes, colour correction is one of Jena's specialisations. Bring a clear photo of where you are now and where you want to be, and we'll quote honestly — including whether it's a one-visit fix or needs to be staged over multiple sessions. We don't promise miracles, but with experience handling colour correction since 2009 we can usually get there safely. Text 0416 037 663 with photos for the fastest quote.",
       },
       {
         question: "How do I maintain my hair in Caringbah's salt-air climate?",
@@ -476,7 +476,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Jannali sits in the Georges River valley — humidity is on the higher side, especially in summer, which is where our smoothing treatments earn their keep.",
     landmarks: ["Jannali Station", "Jannali Oval", "Princes Highway"],
     seasonalNote: "The Georges River valley traps humidity from December through February. Booking a smoothing treatment in October–November keeps you frizz-free across the worst of summer.",
-    intro: "Hair Pinns is about 10–12 minutes from Jannali via the Princes Highway. Jena specialises in colour and blonding, Straight Up smoothing treatments, foils, and precision cuts — every service backed by 20+ years of professional experience. The Georges River valley brings its own humidity profile, and we tailor every treatment to that. Book online 24/7 through Fresha or text for a personalised quote.",
+    intro: "Hair Pinns is about 10–12 minutes from Jannali via the Princes Highway. Jena specialises in colour and blonding, Straight Up smoothing treatments, foils, and precision cuts — every service backed by experience behind the chair since 2009. The Georges River valley brings its own humidity profile, and we tailor every treatment to that. Book online 24/7 through Fresha or text for a personalised quote.",
     faqs: [
       {
         question: "Why is smoothing so popular with Jannali clients?",
@@ -502,7 +502,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Oyster Bay is a quiet leafy peninsula off the Georges River — beautiful to live in, but the river air keeps humidity higher than the western Shire suburbs.",
     landmarks: ["Georges River", "Oyster Bay Reserve", "Oyster Bay Peninsula"],
     seasonalNote: "Waterfront peninsulas hold humidity year-round. Smoothing treatments are worth booking even in cooler months — the moisture in the air doesn't drop the way it does inland.",
-    intro: "Hair Pinns is around 12–15 minutes from Oyster Bay via Como Road and the Princes Highway. Jena's 20+ years of professional experience means every appointment gets the time and attention it needs — colour, blonding, Straight Up smoothing, foils, cuts. Living on the peninsula brings constant river humidity, and we tune every treatment recommendation to that reality. Easy parking, no upselling, honest advice.",
+    intro: "Hair Pinns is around 12–15 minutes from Oyster Bay via Como Road and the Princes Highway. Jena's experience behind the chair since 2009 means every appointment gets the time and attention it needs — colour, blonding, Straight Up smoothing, foils, cuts. Living on the peninsula brings constant river humidity, and we tune every treatment recommendation to that reality. Easy parking, no upselling, honest advice.",
     faqs: [
       {
         question: "Does waterfront living really change how I should care for my hair?",
@@ -528,7 +528,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Padstow is just across the Georges River from us, easy run via Henry Lawson Drive and the Alfords Point Bridge. Many of our Padstow regulars say the drive's actually faster than fighting Padstow traffic for a closer salon.",
     landmarks: ["Padstow Station", "Henry Lawson Drive", "Alfords Point Bridge"],
     seasonalNote: "Padstow sits on the northern bank of the Georges River — similar humidity profile to Bangor, with summer being the toughest period for fine and colour-treated hair.",
-    intro: "Hair Pinns is a 12–15 minute drive from Padstow via Henry Lawson Drive and the Alfords Point Bridge. Jena has 20+ years of hairdressing experience and covers the full range — colour, blonding, Straight Up smoothing, foils, cuts, kids and formal styling. Many Padstow clients tell us the drive is faster than the local traffic, and you get a boutique salon experience at the end of it. Book online 24/7 or text for a quote.",
+    intro: "Hair Pinns is a 12–15 minute drive from Padstow via Henry Lawson Drive and the Alfords Point Bridge. Jena has worked behind the chair since 2009 and covers the full range — colour, blonding, Straight Up smoothing, foils, cuts, kids and formal styling. Many Padstow clients tell us the drive is faster than the local traffic, and you get a boutique salon experience at the end of it. Book online 24/7 or text for a quote.",
     faqs: [
       {
         question: "Is it really faster to drive to Bangor than to a Padstow salon?",
@@ -554,7 +554,7 @@ export const suburbPages: Record<string, SuburbData> = {
     localNote: "Sylvania (and Sylvania Waters) sit right on the Georges River — high humidity year-round, particularly hard on fine or colour-treated hair without proper aftercare.",
     landmarks: ["Tom Uglys Bridge", "Sylvania Waters", "Princes Highway"],
     seasonalNote: "Sylvania Waters and the canal estates hold humidity even on cool days. A monthly hydrating treatment plus a quality leave-in does more here than in drier suburbs.",
-    intro: "Hair Pinns is about 12–15 minutes from Sylvania via the Princes Highway. With 20+ years of professional experience, Jena specialises in colour and blonding, Straight Up smoothing treatments, foils, cuts and kids/formal styling. The waterway-heavy geography of Sylvania means humidity is a near-constant — we'll talk through which products and treatments actually move the needle for your routine. Easy parking, honest pricing, no upselling.",
+    intro: "Hair Pinns is about 12–15 minutes from Sylvania via the Princes Highway. With experience behind the chair since 2009, Jena specialises in colour and blonding, Straight Up smoothing treatments, foils, cuts and kids/formal styling. The waterway-heavy geography of Sylvania means humidity is a near-constant — we'll talk through which products and treatments actually move the needle for your routine. Easy parking, honest pricing, no upselling.",
     faqs: [
       {
         question: "Why does my hair feel different in Sylvania than other Sydney suburbs?",

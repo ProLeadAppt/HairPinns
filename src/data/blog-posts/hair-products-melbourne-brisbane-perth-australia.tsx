@@ -26,7 +26,7 @@ const post = {
         },
         {
           heading: "Why Hair Pinns for Australia-Wide Hair Care",
-          content: "20+ years in the salon. Genuine professional brands only. Free shipping over $150. 14-day hassle-free returns. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Your best hair is a click away."
+          content: "Hair Pinns has operated since 2009. Genuine professional brands only. Free shipping over $150. 14-day returns apply to eligible products. We ship across Australia."
         }
       ],
       productModule: {
@@ -56,7 +56,7 @@ const post = {
         },
         {
           question: "Why should I buy hair products from Hair Pinns instead of a big retailer?",
-          answer: "20+ years of salon experience. Genuine professional brands only — no cheap knockoffs. 14-day hassle-free returns. We ship to every state and territory. But most importantly: the products are chosen by Jena personally based on what actually works in the salon. You're supporting a local salon that genuinely cares about your hair health, not a corporation trying to move volume."
+          answer: "Hair Pinns has operated since 2009 and stocks genuine professional brands. Eligible products can be returned within 14 days under the published returns policy, and orders ship across Australia. Jena selects the range for Hair Pinns based on salon and home-care use."
         }
       ]
     },

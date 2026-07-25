@@ -30,17 +30,17 @@ const post = {
         products: [
           {
             name: "Juuce Solar Enz",
-            link: "https://hairpinns.com/products/solar-enz",
+            link: "https://hairpinns.com/products/juuce-protect-solar-enz",
             description: "UV protection leave-in treatment"
           },
           {
             name: "Juuce Heat Shield",
-            link: "https://hairpinns.com/products/heat-shield",
+            link: "https://hairpinns.com/products/juuce-heat-shield",
             description: "Thermal styling protector"
           },
           {
             name: "Juuce Dry Heat Guard",
-            link: "https://hairpinns.com/products/dry-heat-guard",
+            link: "https://hairpinns.com/products/juuce-dry-heat-guard",
             description: "Heat defense for frequent styling"
           }
         ]

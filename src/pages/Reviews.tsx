@@ -1,289 +1,98 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
-import { cn } from "@/lib/utils";
 import SEOHead from "@/components/SEOHead";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "@/lib/motionShim";
-// canvas-confetti is dynamically imported at click time — keeps ~30KB out of
-// the initial bundle on a page that only fires the effect after a star click.
-import { soundEffects } from "@/lib/soundEffects";
-import { haptics } from "@/lib/haptics";
-import {
-  generateEnhancedLocalBusinessSchema,
-  generateBreadcrumbSchema,
-  generateWebPageSchema,
-} from "@/lib/schema";
+import ReviewChoices from "@/components/reviews/ReviewChoices";
+import { cn } from "@/lib/utils";
+import { normaliseReviewRating, type ReviewRating } from "@/lib/reviewPolicy";
 
-
-const sentimentLabels = ['Poor', 'Fair', 'Good', 'Great', 'Excellent'];
+const sentimentLabels = ["Poor", "Fair", "Good", "Great", "Excellent"] as const;
 
 const Reviews = () => {
-  const navigate = useNavigate();
-  const [hoveredStar, setHoveredStar] = useState<number | null>(null);
-  const [selectedStar, setSelectedStar] = useState<number | null>(null);
-  
-  // Parallax effect
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
-  const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
+  const [selectedRating, setSelectedRating] = useState<ReviewRating | null>(null);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = document.querySelector('.review-card')?.getBoundingClientRect();
-      if (rect) {
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        mouseX.set(e.clientX - centerX);
-        mouseY.set(e.clientY - centerY);
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  const handleStarHover = (rating: number) => {
-    setHoveredStar(rating);
-    soundEffects.playHover();
-    haptics.light();
+  const chooseRating = (value: number) => {
+    setSelectedRating(normaliseReviewRating(value));
   };
-
-  const handleStarClick = (rating: number) => {
-    setSelectedStar(rating);
-    soundEffects.playClick();
-    haptics.medium();
-
-    // Advanced confetti for 4-5 stars — dynamic import keeps ~30KB out of
-    // the initial bundle since it's only needed after a positive rating.
-    if (rating >= 4) {
-      soundEffects.playCelebration();
-      haptics.success();
-
-      void import("canvas-confetti").then((mod) => {
-        const confetti: (opts: Record<string, unknown>) => void = (mod as { default: (opts: Record<string, unknown>) => void }).default;
-        const duration = 1000;
-        const end = Date.now() + duration;
-        const colors = ['#8B4A8B', '#E7D2EE', '#773E77', '#5D2C5D'];
-
-        (function frame() {
-          confetti({
-            particleCount: 3,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0, y: 0.6 },
-            colors: colors,
-          });
-          confetti({
-            particleCount: 3,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1, y: 0.6 },
-            colors: colors,
-          });
-
-          if (Date.now() < end) {
-            requestAnimationFrame(frame);
-          }
-        })();
-      });
-    } else if (rating <= 2) {
-      soundEffects.playSympathy();
-      haptics.error();
-    }
-
-    // Delay for visual feedback
-    setTimeout(() => {
-      if (rating <= 3) {
-        navigate("/reviews/feedback", { state: { rating } });
-      } else {
-        navigate("/reviews/google", { state: { rating } });
-      }
-    }, 600);
-  };
-
-  const localBusinessSchema = generateEnhancedLocalBusinessSchema(
-    "https://hairpinns.com/reviews"
-  );
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://hairpinns.com" },
-    { name: "Reviews", url: "https://hairpinns.com/reviews" },
-  ]);
-  const webPageSchema = generateWebPageSchema({
-    name: "Hair Pinns Reviews | Bangor NSW Hair Salon",
-    description: "Share feedback about your Hair Pinns salon experience.",
-    url: "https://hairpinns.com/reviews",
-  });
-  const schemas = [localBusinessSchema, breadcrumbSchema, webPageSchema];
 
   return (
-    <>
+    <div className="editorial-route editorial-route--dark min-h-screen bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
       <SEOHead
         title="Share Your Experience | Hair Pinns"
-        description="How was your experience with Hair Pinns? Share your feedback to help us improve."
+        description="Share public or private feedback about your Hair Pinns experience. Both options are available for every rating."
         canonical="https://hairpinns.com/reviews"
-        schemaJson={schemas}
+        noIndex={true}
       />
 
-      <div className="editorial-route min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12 relative overflow-hidden">
-        {/* Animated background particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-brand-500/20 rounded-full"
-              initial={{ x: Math.random() * window.innerWidth, y: -20 }}
-              animate={{
-                y: window.innerHeight + 20,
-                x: Math.random() * window.innerWidth,
-              }}
-              transition={{
-                duration: 8 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-              }}
-            />
-          ))}
+      <header className="border-b border-[hsl(var(--after-hours-cream)/0.18)] px-4 py-5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-[78rem] items-center justify-between">
+          <Link to="/" className="font-heading text-xl font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+            Hair Pinns
+          </Link>
+          <Link to="/" className="min-h-11 border-b border-[hsl(var(--after-hours-cream)/0.44)] py-3 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: "hsl(var(--after-hours-cream))" }}>
+            Return home
+          </Link>
         </div>
+      </header>
 
-        <motion.div 
-          className="w-full max-w-2xl relative z-10 review-card"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          style={{ 
-            rotateX,
-            rotateY,
-            transformStyle: "preserve-3d"
-          }}
-        >
-          <div className="bg-surface/80 backdrop-blur-xl rounded-card shadow-[0_8px_40px_rgba(139,74,139,0.15)] p-8 md:p-12 text-center border border-accent/30"
-            style={{ transform: "translateZ(20px)" }}
-          >
-            {/* Header with staggered word animation */}
-            <motion.div 
-              className="mb-12"
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.h1 
-                className="text-h2-lg md:text-[2.5rem] font-heading text-heading mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                How was your experience with Hair Pinns?
-              </motion.h1>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <p className="text-lg text-text max-w-md mx-auto">
-                Tap a star below to rate us
-              </p>
-            </motion.div>
-            </motion.div>
+      <main id="main-content" tabIndex={-1}>
+        <div className="mx-auto grid max-w-[78rem] gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[0.56fr_0.44fr] lg:gap-20 lg:px-8 lg:py-28">
+          <section>
+            <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.72)]">Hair Pinns / Feedback</p>
+            <h1 className="mt-5 max-w-[10ch] font-heading text-[clamp(3.6rem,7vw,7.4rem)] font-semibold leading-[0.88] tracking-[-0.06em]" style={{ color: "hsl(var(--after-hours-cream))" }}>
+              Share your experience.
+            </h1>
+            <p className="mt-8 max-w-[40rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.78)] sm:text-lg sm:leading-8">
+              Choose a rating if you would like, then decide whether to post publicly on Google or send feedback privately to Jena. The same choices are available for every rating.
+            </p>
+          </section>
 
-            {/* Star Rating with sequential appearance */}
-            <div className="flex flex-col items-center gap-6 mb-8">
-              <div className="flex justify-center gap-3 md:gap-6">
-                <AnimatePresence>
-                  {[1, 2, 3, 4, 5].map((star) => {
-                    const isHovered = hoveredStar !== null && star <= hoveredStar;
-                    const isSelected = selectedStar !== null && star <= selectedStar;
-                    const shouldFill = isSelected || isHovered;
-
-                    return (
-                      <motion.button
-                        key={star}
-                        onClick={() => handleStarClick(star)}
-                        onMouseEnter={() => handleStarHover(star)}
-                        onMouseLeave={() => setHoveredStar(null)}
+          <div className="self-start border-t border-[hsl(var(--after-hours-cream)/0.3)] pt-7">
+            <fieldset>
+              <legend className="font-heading text-2xl font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+                How would you rate your visit?
+              </legend>
+              <p className="mt-2 text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.68)]">Rating is optional and never changes the choices below.</p>
+              <div className="mt-6 grid grid-cols-5 gap-2" aria-label="Rate your visit">
+                {[1, 2, 3, 4, 5].map((star) => {
+                  const active = selectedRating !== null && star <= selectedRating;
+                  return (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => chooseRating(star)}
                       className={cn(
-                        "transform transition-all duration-200 hover:scale-110 active:scale-95 relative",
-                        "focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg p-2",
-                        isSelected && "scale-105"
+                        "flex min-h-14 items-center justify-center border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+                        active
+                          ? "border-[hsl(var(--after-hours-copper))] bg-[hsl(var(--after-hours-copper))] text-[hsl(var(--after-hours-near-black))]"
+                          : "border-[hsl(var(--after-hours-cream)/0.34)] text-[hsl(var(--after-hours-cream)/0.72)] hover:border-[hsl(var(--after-hours-cream))]",
                       )}
-                      aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
-                      initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                      animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                      transition={{
-                        duration: 0.5,
-                        delay: 0.6 + star * 0.1,
-                        type: "spring",
-                        stiffness: 200,
-                      }}
-                      whileHover={{ 
-                        rotate: [0, -5, 5, 0],
-                        transition: { duration: 0.3 }
-                      }}
-                      whileTap={{ scale: 0.9 }}
+                      aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
+                      aria-pressed={selectedRating === star}
                     >
-                      {/* Glow effect on hover */}
-                      {shouldFill && (
-                        <motion.div
-                          className="absolute inset-0 bg-brand-500/20 rounded-full blur-xl"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                        />
-                      )}
-                      
-                      <Star
-                        className={cn(
-                          "w-12 h-12 md:w-16 md:h-16 transition-all duration-200 relative z-10",
-                          shouldFill
-                            ? "fill-brand-500 text-brand-500 drop-shadow-[0_0_8px_rgba(139,74,139,0.5)]"
-                            : "text-border hover:text-brand-500/50"
-                        )}
-                      />
-                      </motion.button>
-                    );
-                  })}
-                </AnimatePresence>
+                      <Star aria-hidden="true" className={cn("h-6 w-6", active && "fill-current")} />
+                    </button>
+                  );
+                })}
               </div>
+              <p className="mt-4 min-h-6 text-sm font-semibold text-[hsl(var(--after-hours-cream)/0.82)]" aria-live="polite">
+                {selectedRating ? `${selectedRating} out of 5 · ${sentimentLabels[selectedRating - 1]}` : "No rating selected"}
+              </p>
+            </fieldset>
 
-              {/* Sentiment Label */}
-              <AnimatePresence mode="wait">
-                {(hoveredStar || selectedStar) && (
-                  <motion.div
-                    key={hoveredStar || selectedStar}
-                    initial={{ opacity: 0, y: -10, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-lg font-medium text-brand-500"
-                  >
-                    {sentimentLabels[(hoveredStar || selectedStar)! - 1]}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Helper Text */}
-            <motion.p 
-              className="text-sm text-text"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-            >
-              Your feedback helps us serve you better
-            </motion.p>
+            {selectedRating ? (
+              <div className="mt-8">
+                <ReviewChoices rating={selectedRating} source="reviews_rating" />
+              </div>
+            ) : (
+              <div className="mt-8">
+                <ReviewChoices rating={null} source="reviews_no_rating" />
+              </div>
+            )}
           </div>
-
-          {/* Footer Note */}
-          <motion.p 
-            className="text-center text-xs text-text mt-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4 }}
-          >
-            Your feedback is confidential and helps us improve our service
-          </motion.p>
-        </motion.div>
-      </div>
-    </>
+        </div>
+      </main>
+    </div>
   );
 };
 

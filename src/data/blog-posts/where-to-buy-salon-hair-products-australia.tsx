@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "Hair Pinns: Chosen by Jena, Australia-Wide",
-          content: "At Hair Pinns, we've been looking after hair since 2009. Every product is chosen by Jena with 20+ years in the salon. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Free shipping on orders over $150. No guesswork, just professional products delivered to your door."
+          content: "Hair Pinns has operated since 2009, and Jena selects the product range for salon and home-care use. We ship across Australia, with free shipping on eligible orders over $150."
         },
         {
           heading: "Popular Brands You Can Trust",

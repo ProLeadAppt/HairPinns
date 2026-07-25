@@ -1,542 +1,157 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { CheckCircle2, Send, Home, ExternalLink, AlertCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { CheckCircle2, ExternalLink, Send } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "@/lib/motionShim";
-import { soundEffects } from "@/lib/soundEffects";
-import { haptics } from "@/lib/haptics";
-import { analyzeSentiment } from "@/lib/sentimentAnalysis";
 import { getHpCapture } from "@/lib/loadHpCapture";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+  GOOGLE_REVIEW_URL,
+  normaliseReviewRating,
+} from "@/lib/reviewPolicy";
 
-const AUTOSAVE_KEY = 'hair-pinns-feedback-draft';
+const SESSION_DRAFT_KEY = "hair-pinns-feedback-draft";
 
 const ReviewFeedback = () => {
-  const navigate = useNavigate();
   const location = useLocation();
-  const rating = location.state?.rating || 3;
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    feedback: "",
-  });
-  
+  const [searchParams] = useSearchParams();
+  const queryRating = searchParams.get("rating");
+  const rating = normaliseReviewRating(
+    location.state?.rating ?? (queryRating ? Number(queryRating) : null),
+  );
+  const [formData, setFormData] = useState({ name: "", email: "", feedback: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showExitDialog, setShowExitDialog] = useState(false);
-  
-  const [completedFields, setCompletedFields] = useState({
-    name: false,
-    email: false,
-    feedback: false,
-  });
-
-  const sentiment = formData.feedback.length > 10 ? analyzeSentiment(formData.feedback) : null;
-
-  // Parallax effect
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const rotateX = useTransform(mouseY, [-300, 300], [3, -3]);
-  const rotateY = useTransform(mouseX, [-300, 300], [-3, 3]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = document.querySelector('.feedback-card')?.getBoundingClientRect();
-      if (rect) {
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        mouseX.set(e.clientX - centerX);
-        mouseY.set(e.clientY - centerY);
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  // Auto-save to localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem(AUTOSAVE_KEY);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setFormData(parsed);
-        // Check which fields are already filled
-        setCompletedFields({
-          name: parsed.name.trim().length > 0,
-          email: parsed.email.trim().length > 0,
-          feedback: parsed.feedback.trim().length > 0,
-        });
-      } catch (e) {
-        console.error('Failed to parse saved feedback');
-      }
-    }
+    const saved = sessionStorage.getItem(SESSION_DRAFT_KEY);
+    if (!saved) return;
+    setFormData((current) => ({ ...current, feedback: saved }));
   }, []);
 
   useEffect(() => {
     if (!isSubmitted) {
-      localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(formData));
+      sessionStorage.setItem(SESSION_DRAFT_KEY, formData.feedback);
     }
   }, [formData, isSubmitted]);
 
-  // Exit intent detection
-  useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!isSubmitted && (formData.name || formData.email || formData.feedback)) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !isSubmitted && (formData.name || formData.email || formData.feedback)) {
-        setShowExitDialog(true);
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    document.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, [formData, isSubmitted]);
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    
-    // Update completed fields
-    const isComplete = value.trim().length > 0;
-    setCompletedFields((prev) => ({
-      ...prev,
-      [name]: isComplete,
-    }));
-
-    // Haptic feedback on completion
-    if (isComplete && !completedFields[name as keyof typeof completedFields]) {
-      haptics.light();
-      soundEffects.playClick();
-    }
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
     setIsSubmitting(true);
-    soundEffects.playClick();
-    haptics.medium();
-
-    const feedbackData = {
-      ...formData,
-      rating,
-      sentiment: sentiment?.label || 'unknown',
-      timestamp: new Date().toISOString(),
-    };
+    setErrorMessage("");
 
     try {
       const hpCapture = await getHpCapture();
-      await hpCapture.postToGHL({
-        form_name: 'review_feedback',
-        name: formData.name,
-        email: formData.email,
-        message: formData.feedback,
-        rating: rating,
-        sentiment: sentiment?.label || 'unknown',
-      }, {
-        event: 'review_feedback'
-      });
-      
-      console.log("Feedback submitted:", feedbackData);
-      soundEffects.playSuccess();
-      haptics.success();
-      localStorage.removeItem(AUTOSAVE_KEY);
+      await hpCapture.postToGHL(
+        {
+          form_name: "review_feedback",
+          name: formData.name,
+          email: formData.email,
+          message: formData.feedback,
+          rating,
+        },
+        { event: "review_feedback" },
+      );
+      sessionStorage.removeItem(SESSION_DRAFT_KEY);
       setIsSubmitted(true);
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      haptics.error();
+      setErrorMessage("Your feedback could not be sent. Please try again, or contact Hair Pinns directly.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleGoHome = () => {
-    soundEffects.playClick();
-    haptics.light();
-    navigate("/");
-  };
-
-  const handleGoogleReview = () => {
-    soundEffects.playClick();
-    haptics.medium();
-    window.open("https://g.page/r/CX-F0vOcpJLhEBM/review", "_blank");
-  };
-
-  // Exit intent dialog
-  const ExitIntentDialog = () => (
-    <AlertDialog open={showExitDialog} onOpenChange={setShowExitDialog}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 text-brand-500" />
-            Before you go...
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            Your feedback is really valuable to us. It only takes a moment to share your thoughts and helps us improve our service for everyone.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => {
-            soundEffects.playClick();
-            haptics.light();
-          }}>
-            Leave anyway
-          </AlertDialogCancel>
-          <AlertDialogAction onClick={() => {
-            soundEffects.playClick();
-            haptics.medium();
-            setShowExitDialog(false);
-          }}>
-            Continue feedback
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  );
-
-  // Thank you state after submission
-  if (isSubmitted) {
-    return (
-      <>
-        <SEOHead
-          title="Thank You | Hair Pinns"
-          description="Thank you for your feedback. We appreciate your time."
-          noIndex={true}
-        />
-
-        <div className="editorial-route min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12">
-          <motion.div 
-            className="w-full max-w-2xl text-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-          >
-            <div className="bg-surface/80 backdrop-blur-xl rounded-card shadow-[0_8px_40px_rgba(139,74,139,0.15)] p-8 md:p-12 border border-accent/30">
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 200,
-                  delay: 0.2 
-                }}
-              >
-                <CheckCircle2 className="w-20 h-20 text-brand-500 mx-auto mb-6" />
-              </motion.div>
-
-              <motion.h1 
-                className="text-h2-lg md:text-[2rem] font-heading text-heading mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                Thank You for Your Feedback!
-              </motion.h1>
-
-              <motion.p 
-                className="text-lg text-text mb-10 max-w-md mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                We really appreciate you taking the time to share your thoughts. Your feedback helps us improve.
-              </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex justify-center"
-            >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={handleGoHome}
-                  size="lg"
-                  className="bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-500 text-white"
-                >
-                  <Home className="w-5 h-5 mr-2" />
-                  Back to Home
-                </Button>
-              </motion.div>
-            </motion.div>
-
-            {/* Small compliance link at bottom */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="mt-8 pt-6 border-t border-accent/30"
-            >
-              <p className="text-xs text-muted-foreground text-center">
-                <a 
-                  href="https://g.page/r/CX-F0vOcpJLhEBM/review" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={soundEffects.playClick}
-                  className="hover:text-brand-500 transition-colors"
-                >
-                  Leave a public Google review
-                </a>
-              </p>
-            </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </>
-    );
-  }
-
-  const completedCount = Object.values(completedFields).filter(Boolean).length;
-  const progressPercentage = (completedCount / 3) * 100;
-
   return (
-    <>
+    <div className="editorial-route min-h-screen bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]">
       <SEOHead
-        title="Share Your Feedback | Hair Pinns"
-        description="We'd love to hear your feedback to help us improve."
+        title="Private Feedback | Hair Pinns"
+        description="Send private feedback directly to Hair Pinns."
+        canonical="https://hairpinns.com/reviews/feedback"
         noIndex={true}
       />
 
-      <ExitIntentDialog />
+      <header className="border-b border-[hsl(var(--after-hours-plum)/0.18)] px-4 py-5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-[78rem] items-center justify-between">
+          <Link to="/" className="font-heading text-xl font-semibold" style={{ color: "hsl(var(--after-hours-plum))" }}>Hair Pinns</Link>
+          <Link to="/reviews" className="min-h-11 border-b border-[hsl(var(--after-hours-plum)/0.44)] py-3 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: "hsl(var(--after-hours-plum))" }}>Review options</Link>
+        </div>
+      </header>
 
-      <div className="editorial-route min-h-screen bg-gradient-to-br from-bg via-surface to-accent/10 flex items-center justify-center px-4 py-12">
-        <motion.div 
-          className="w-full max-w-2xl feedback-card"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{ 
-            rotateX,
-            rotateY,
-            transformStyle: "preserve-3d"
-          }}
-        >
-          <div className="bg-surface/80 backdrop-blur-xl rounded-card shadow-[0_8px_40px_rgba(139,74,139,0.15)] p-8 md:p-12 border border-accent/30"
-            style={{ transform: "translateZ(20px)" }}
-          >
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <h1 className="text-h2-lg md:text-[2rem] font-heading text-heading mb-3">
-                Help Us Improve
-              </h1>
-              <p className="text-lg text-text">
-                We're sorry we didn't meet your expectations. Your honest feedback helps us do better.
+      <main id="main-content" tabIndex={-1}>
+        <div className="mx-auto grid max-w-[78rem] gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[0.38fr_0.62fr] lg:gap-20 lg:px-8 lg:py-24">
+          <aside>
+            <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.68)]">Direct to Hair Pinns</p>
+            <h1 className="mt-5 max-w-[8ch] font-heading text-[clamp(3.4rem,6vw,6.6rem)] font-semibold leading-[0.9] tracking-[-0.055em]">
+              Private feedback.
+            </h1>
+            <p className="mt-7 max-w-[30rem] text-base leading-7 text-[hsl(var(--after-hours-plum)/0.76)]">
+              Your comments go directly to Hair Pinns. A rating is optional, and choosing private feedback does not prevent you from reviewing publicly.
+            </p>
+            {rating && (
+              <p className="mt-5 border-l-2 border-[hsl(var(--after-hours-copper))] pl-4 text-sm font-semibold">
+                Rating supplied: {rating} out of 5
               </p>
-            </motion.div>
-
-            {/* Progress Bar */}
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+            )}
+            <a
+              href={GOOGLE_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 flex min-h-12 max-w-sm items-center justify-between border border-[hsl(var(--after-hours-plum)/0.34)] px-5 py-3 text-sm font-semibold"
+              style={{ color: "hsl(var(--after-hours-plum))" }}
             >
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-text">Progress</span>
-                <span className="text-sm font-medium text-brand-500">
-                  {completedCount}/3 fields
-                </span>
+              Leave a Google review
+              <ExternalLink aria-hidden="true" className="h-4 w-4" />
+            </a>
+          </aside>
+
+          <section className="border-t border-[hsl(var(--after-hours-plum)/0.3)] pt-7" aria-label="Private feedback form">
+            {isSubmitted ? (
+              <div aria-live="polite">
+                <CheckCircle2 aria-hidden="true" className="h-8 w-8 text-[hsl(var(--after-hours-copper))]" />
+                <h2 className="mt-8 max-w-[12ch] font-heading text-4xl font-semibold leading-tight">Thank you for sharing it privately.</h2>
+                <p className="mt-5 max-w-[38rem] text-base leading-7 text-[hsl(var(--after-hours-plum)/0.76)]">
+                  Your message has been sent to Hair Pinns. If you also want to share your experience publicly, the Google option remains available.
+                </p>
+                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-plum))] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+                    Leave a Google review <ExternalLink aria-hidden="true" className="h-4 w-4" />
+                  </a>
+                  <Link to="/" className="flex min-h-12 items-center justify-between border border-[hsl(var(--after-hours-plum)/0.34)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-plum))" }}>
+                    Return home <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </div>
-              <div className="h-2 bg-accent/20 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-brand-500 to-brand-600"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progressPercentage}%` }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {progressPercentage === 100 && (
-                    <motion.div
-                      className="h-full w-full"
-                      animate={{ 
-                        background: [
-                          'linear-gradient(90deg, #8B4A8B 0%, #773E77 100%)',
-                          'linear-gradient(90deg, #773E77 0%, #8B4A8B 100%)',
-                          'linear-gradient(90deg, #8B4A8B 0%, #773E77 100%)',
-                        ]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  )}
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <Label htmlFor="name" className="text-base font-medium text-heading">
-                  Your Name <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  required
-                  className="mt-2"
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.45 }}
-              >
-                <Label htmlFor="email" className="text-base font-medium text-heading">
-                  Email Address <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your@email.com"
-                  required
-                  className="mt-2"
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <Label htmlFor="feedback" className="text-base font-medium text-heading">
-                  Your Feedback <span className="text-destructive">*</span>
-                </Label>
-                <Textarea
-                  id="feedback"
-                  name="feedback"
-                  value={formData.feedback}
-                  onChange={handleChange}
-                  placeholder="Tell us about your experience..."
-                  required
-                  rows={6}
-                  className="mt-2 resize-none"
-                />
-                
-                {/* Sentiment Analysis Preview */}
-                <AnimatePresence>
-                  {sentiment && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="mt-2 flex items-center gap-2 text-sm"
-                    >
-                      <span className="text-2xl">{sentiment.emoji}</span>
-                      <span className="text-text">
-                        Sentiment: <strong className="text-brand-500 capitalize">{sentiment.label}</strong>
-                      </span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <motion.div 
-                className="flex-1"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-500 text-white"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
-                      />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Feedback
-                    </>
-                  )}
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  type="button"
-                  onClick={handleGoHome}
-                  variant="outline"
-                  size="lg"
-                  className="text-brand-500 border-brand-500/30 hover:bg-brand-500/5"
-                >
-                  <Home className="w-5 h-5 mr-2" />
-                  Return Home
-                </Button>
-              </motion.div>
-            </motion.div>
-            </form>
-
-            {/* Footer note */}
-            <motion.div 
-              className="mt-8 text-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
-            >
-              <p className="text-xs text-text">
-                💜 Your feedback is private and helps us improve
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    </>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-7">
+                <div>
+                  <label htmlFor="name" className="text-sm font-semibold">Your name</label>
+                  <input id="name" name="name" value={formData.name} onChange={handleChange} required autoComplete="name" className="mt-2 min-h-12 w-full border border-[hsl(var(--after-hours-plum)/0.34)] bg-transparent px-4 py-3 text-base outline-none focus:border-[hsl(var(--after-hours-plum))]" />
+                </div>
+                <div>
+                  <label htmlFor="email" className="text-sm font-semibold">Email address</label>
+                  <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required autoComplete="email" className="mt-2 min-h-12 w-full border border-[hsl(var(--after-hours-plum)/0.34)] bg-transparent px-4 py-3 text-base outline-none focus:border-[hsl(var(--after-hours-plum))]" />
+                </div>
+                <div>
+                  <label htmlFor="feedback" className="text-sm font-semibold">Your feedback</label>
+                  <textarea id="feedback" name="feedback" value={formData.feedback} onChange={handleChange} required rows={7} className="mt-2 w-full resize-y border border-[hsl(var(--after-hours-plum)/0.34)] bg-transparent px-4 py-3 text-base outline-none focus:border-[hsl(var(--after-hours-plum))]" />
+                </div>
+                {errorMessage && <p role="alert" className="border-l-2 border-destructive pl-4 text-sm leading-6 text-destructive">{errorMessage}</p>}
+                <button type="submit" disabled={isSubmitting} className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-plum))] px-5 py-3 text-sm font-semibold disabled:opacity-60" style={{ color: "hsl(var(--after-hours-cream))" }}>
+                  {isSubmitting ? "Sending…" : "Send private feedback"}
+                  <Send aria-hidden="true" className="h-4 w-4" />
+                </button>
+                <p className="text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.62)]">Only your feedback message is saved in this tab. It is cleared after submission or when the tab closes.</p>
+              </form>
+            )}
+          </section>
+        </div>
+      </main>
+    </div>
   );
 };
 

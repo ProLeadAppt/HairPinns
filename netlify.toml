@@ -233,6 +233,62 @@
   status = 301
   force = true
 
+# Trust and backlink recovery aliases. Internal links must use the canonical
+# targets directly; scripts/internal-link-audit.mjs enforces that rule.
+[[redirects]]
+  from = "/super-inquiry/"
+  to = "/booking"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/areas/sydney"
+  to = "/areas"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collections/accessories"
+  to = "/collections/hair-pinns-accessories"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collections/treatments"
+  to = "/collections/hair-treatments-masks"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collections/styling"
+  to = "/collections/hair-styling-products"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/solar-enz"
+  to = "/products/juuce-protect-solar-enz"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/heat-shield"
+  to = "/products/juuce-heat-shield"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/dry-heat-guard"
+  to = "/products/juuce-dry-heat-guard"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/pure-precious-ends-leave-in-treatment"
+  to = "/collections/pure-certified-organic-hair-care"
+  status = 301
+  force = true
+
 # Discontinued product handles -> closest-fit collection (recover backlink equity)
 [[redirects]]
   from = "/products/juuce-fibre-goo-sumo-grip"
@@ -321,9 +377,13 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 [[headers]]
+  for = "/reviews"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+[[headers]]
   for = "/reviews/*"
   [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
+    X-Robots-Tag = "noindex, follow"
 
 # AI crawler discovery files (AEO/GEO)
 [[headers]]

@@ -44,8 +44,8 @@ export const getSitemapUrls = (): SitemapUrl[] => {
     { loc: `${baseUrl}/collections/qiqi`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/pure`, changefreq: 'weekly', priority: 0.8 },
     { loc: `${baseUrl}/collections/wet-brush`, changefreq: 'weekly', priority: 0.8 },
-    { loc: `${baseUrl}/collections/treatments`, changefreq: 'weekly', priority: 0.8 },
-    { loc: `${baseUrl}/collections/styling`, changefreq: 'weekly', priority: 0.8 },
+    { loc: `${baseUrl}/collections/hair-treatments-masks`, changefreq: 'weekly', priority: 0.8 },
+    { loc: `${baseUrl}/collections/hair-styling-products`, changefreq: 'weekly', priority: 0.8 },
     
     // Suburb pages - all valid service areas
     { loc: `${baseUrl}/near/bangor`, changefreq: 'monthly', priority: 0.7 },

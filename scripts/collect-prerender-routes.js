@@ -116,7 +116,7 @@ export async function collectRoutes() {
   // for URLs that immediately redirect. The React route still resolves
   // locally for the few internal links that haven't been migrated.
 
-  const blogSlugs = [...new Set(extractBlogSlugs(resolve(root, 'src/data/blogPosts.ts')))];
+  const blogSlugs = [...new Set(extractBlogSlugs(resolve(root, 'src/data/blogSummaries.ts')))];
   blogSlugs.forEach((slug) => routes.push(`/blog/${slug}`));
 
   // State-level shipping landing pages — one per AU state/territory. Auto-
