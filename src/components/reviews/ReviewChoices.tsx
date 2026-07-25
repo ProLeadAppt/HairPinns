@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, LockKeyhole } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ExternalLink, LockKeyhole } from "lucide-react";
 import {
   GOOGLE_REVIEW_URL,
   REVIEW_CHOICES,
@@ -46,7 +46,7 @@ const ReviewChoices = ({ rating, source }: ReviewChoicesProps) => {
           </div>
           <span className="mt-6 flex items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-4 text-sm font-semibold">
             Open Google
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">↗</span>
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </span>
         </a>
 
@@ -70,7 +70,7 @@ const ReviewChoices = ({ rating, source }: ReviewChoicesProps) => {
           </div>
           <span className="mt-6 flex items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-4 text-sm font-semibold">
             Write privately
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+            <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </Link>
       </div>
