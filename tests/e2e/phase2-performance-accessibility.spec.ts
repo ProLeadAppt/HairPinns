@@ -427,6 +427,7 @@ test('after-hours header preserves commerce paths across tablet and desktop navi
   await directCart.click();
   const cart = page.getByRole('dialog', { name: 'Your Bag' });
   await expect(cart).toBeVisible();
+  await expect.poll(() => cart.evaluate((element) => element.contains(document.activeElement))).toBe(true);
   await page.keyboard.press('Escape');
   await expect(cart).toBeHidden();
   await expect(directCart).toBeFocused();
