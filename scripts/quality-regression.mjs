@@ -45,6 +45,9 @@ assert.match(businessConfig, /tel:\s*["']tel:\+61[0-9]{9}["']/);
 const homepageSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 const truthSchemaSource = await readFile(path.join(ROOT, 'src/lib/schema.ts'), 'utf8');
 const reviewsPageSource = await readFile(path.join(ROOT, 'src/pages/Reviews.tsx'), 'utf8');
+const reviewFeedbackSource = await readFile(path.join(ROOT, 'src/pages/ReviewFeedback.tsx'), 'utf8');
+const reviewGoogleSource = await readFile(path.join(ROOT, 'src/pages/ReviewGoogle.tsx'), 'utf8');
+const reviewChoicesSource = await readFile(path.join(ROOT, 'src/components/reviews/ReviewChoices.tsx'), 'utf8');
 const homepageTrustSource = await readFile(path.join(ROOT, 'src/components/home/HeroSocialProofBar.tsx'), 'utf8');
 const criticalHeaderSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
 const criticalViteConfigSource = await readFile(path.join(ROOT, 'vite.config.ts'), 'utf8');
@@ -66,6 +69,17 @@ assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
 assert.doesNotMatch(truthSchemaSource, /\baggregateRating\s*:/);
 assert.doesNotMatch(homepageSource, /generateFAQPageSchema|generateHowToSchema|googleReviews|PT2M|762\s+five-star/i);
 assert.doesNotMatch(reviewsPageSource, /4\.9\s+stars|53\+\s+verified|googleReviews/i);
+const reviewFlowSource = [reviewsPageSource, reviewFeedbackSource, reviewGoogleSource, reviewChoicesSource].join('\n');
+assert.doesNotMatch(reviewFlowSource, /rating\s*(?:<=|>=|<|>)\s*[1-5]/, 'Review visibility must never branch on a rating threshold');
+assert.doesNotMatch(reviewFlowSource, /glad you loved it|happy clients|sorry we didn['’]t meet your expectations/i, 'Sentiment-conditioned review steering must not return');
+assert.doesNotMatch(reviewFlowSource, /canvas-confetti|confetti\(/, 'Review choices must not receive score-conditioned celebration');
+assert.match(reviewChoicesSource, /data-review-choice=\{REVIEW_CHOICES\[0\]\.id\}[\s\S]*data-review-choice=\{REVIEW_CHOICES\[1\]\.id\}/, 'The shared review handoff must expose both public and private choices');
+assert.equal((reviewChoicesSource.match(/group flex min-h-48 flex-col justify-between bg-\[hsl\(var\(--after-hours-cream\)\)\]/g) ?? []).length, 2, 'Public and private review choices must retain equal visual prominence');
+assert.match(reviewsPageSource, /<ReviewChoices rating=\{selectedRating\}/, 'Selected ratings must flow into the same neutral choice component');
+assert.match(reviewsPageSource, /editorial-route editorial-route--dark/, 'The main review route must opt into the dark editorial contrast variant');
+assert.match(reviewGoogleSource, /editorial-route editorial-route--dark/, 'The legacy Google review route must opt into the dark editorial contrast variant');
+assert.doesNotMatch(reviewFeedbackSource, /localStorage/, 'Private feedback PII must not persist across browser sessions');
+assert.match(reviewFeedbackSource, /sessionStorage\.setItem\(SESSION_DRAFT_KEY, formData\.feedback\)/, 'Only the feedback message may receive same-tab draft recovery');
 assert.doesNotMatch(homepageTrustSource, /762|4\.9\s*\/\s*5|no drama/i);
 assert.match(homepageTrustSource, /14-day returns[\s\S]*unopened products/);
 assert.doesNotMatch(criticalViteConfigSource, /id\.includes\(['"]react['"]\)/, 'React vendor matching must not capture every package containing “react”');
@@ -578,11 +592,16 @@ for (const operationalPath of ['/confirm', '/order-confirmation', '/reviews/feed
     `Operational route needs an SPA rewrite: ${operationalPath}`,
   );
 }
-for (const noindexPath of ['/confirm', '/order-confirmation', '/reviews/*']) {
+for (const [noindexPath, robotsPolicy] of [
+  ['/confirm', 'noindex, nofollow'],
+  ['/order-confirmation', 'noindex, nofollow'],
+  ['/reviews', 'noindex, follow'],
+  ['/reviews/*', 'noindex, follow'],
+]) {
   const escaped = noindexPath.replaceAll('/', '\\/').replace('*', '\\*');
   assert.match(
     netlify,
-    new RegExp(`\\[\\[headers\\]\\]\\s+for\\s*=\\s*"${escaped}"\\s+\\[headers\\.values\\]\\s+X-Robots-Tag\\s*=\\s*"noindex, nofollow"`),
+    new RegExp(`\\[\\[headers\\]\\]\\s+for\\s*=\\s*"${escaped}"\\s+\\[headers\\.values\\]\\s+X-Robots-Tag\\s*=\\s*"${robotsPolicy}"`),
     `Operational route needs an HTTP noindex policy: ${noindexPath}`,
   );
 }

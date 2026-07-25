@@ -3,14 +3,14 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "the-7-colouring-mistakes-i-see-every-week",
     title: "The 7 Colouring Mistakes I See Every Week (And How to Avoid Them)",
-    excerpt: "After 20+ years behind the chair, these are the seven hair-colouring mistakes I see every week — at-home and at other salons — and exactly how to avoid them.",
+    excerpt: "Working behind the chair since 2009, Jena shares seven hair-colouring mistakes she sees regularly and how to avoid them.",
     category: "Colour",
     date: "April 19, 2026",
     readTime: "9 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807",
     author: "Jena Pinn",
     content: {
-      introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), these are the seven hair-colouring mistakes I see every single week — some from home dye jobs, some from other salons, some from clients following advice they read online. Every one of them is avoidable, and every one of them makes the next appointment harder (and more expensive). Here's what they are and how to stop making them.",
+      introduction: "After [working behind the chair since 2009](/blog/meet-jena-15-years-sutherland-shire), these are seven hair-colouring mistakes I see regularly, including at-home colour and unsuitable advice found online. Here is what they are and how to reduce the risk.",
       sections: [
         {
           heading: "Mistake 1: Box Dye Over Previously-Coloured Hair",

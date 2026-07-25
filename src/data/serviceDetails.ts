@@ -273,7 +273,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           { name: 'QIQI Bare Repair Oil', link: 'https://hairpinns.com/products/qiqi-bare-repair-oil', reason: "A few drops after each wash. Teens love that it's not greasy and the bottle lasts." },
           { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily smoothness. School mornings get easier.' },
           { name: 'Wet Brush Original Detangler', link: 'https://hairpinns.com/products/wet-brush-original-detangler', reason: 'Detangles wet hair without breaking. Teen hair is more fragile than people think.' },
-          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for the ends. Stops the split-end cycle so cuts last longer between trims.' }
+          { name: 'Pure hair care', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Browse the current Pure range for leave-in care suited to your hair and routine.' }
           ]
         }
       }
@@ -571,7 +571,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           products: [
           { name: 'Juuce Radiant Colour Shampoo', link: 'https://hairpinns.com/products/juuce-radiant-colour-shampoo', reason: 'Daily wash. Locks in colour, slows fade, smells incredible.' },
           { name: 'Juuce Radiant Colour Conditioner', link: 'https://hairpinns.com/products/juuce-radiant-colour-conditioner', reason: 'Matched conditioner. Always pair the two, not with anything else.' },
-          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for long hair ends. Stops the split-end cycle so cuts last longer.' },
+          { name: 'Pure hair care', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Browse the current Pure range for leave-in care suited to long hair.' },
           { name: 'Pure Sacred Mask', link: 'https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment', reason: 'Weekly Sunday-night ritual. Colour-treated long hair drinks moisture.' }
           ]
         }
@@ -788,7 +788,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           { name: 'Pure Lamellar Vitality Shampoo & Conditioner', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Lightweight daily wash. My number one pick for any hair type.' },
           { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Before any styling. Long hair is fragile at the ends, heat shield is mandatory.' },
           { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Mid-lengths to ends. Smooths, shines, controls flyaways.' },
-          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for the ends. Stops splits so your cut lasts ten weeks instead of six.' }
+          { name: 'Pure hair care', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Browse the current Pure range for lightweight care through the ends.' }
           ]
         }
       },
@@ -987,7 +987,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           products: [
           { name: 'Wet Brush Kids Detangler', link: 'https://hairpinns.com/products/wet-brush-kids-detangler', reason: 'Detangles wet hair without breaking. The end of brush-time tears.' },
           { name: 'Juuce Knot Knotty Detangler', link: 'https://hairpinns.com/products/juuce-knot-knotty-detangler', reason: 'Spray-in detangler. Spritz it on wet or dry hair before the brush comes out.' },
-          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in for ends. Stops the split-end cycle that means cuts every six weeks.' }
+          { name: 'Pure hair care', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Browse the current Pure range for leave-in care through the ends.' }
           ]
         }
       }
@@ -1066,7 +1066,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           products: [
           { name: 'Juuce Stuck Up Lacquer', link: 'https://hairpinns.com/products/juuce-stuck-up-lacquer', reason: 'Flexible hairspray that holds without crunch. Brushes out clean at the end of the night.' },
           { name: 'Wet Brush Original Detangler', link: 'https://hairpinns.com/products/wet-brush-original-detangler', reason: 'Brush out the style after the event without breaking hair.' },
-          { name: 'Pure Precious Ends', link: 'https://hairpinns.com/products/pure-precious-ends-leave-in-treatment', reason: 'Leave-in on the ends the day before. Smooths and shines so up-styles look polished.' }
+          { name: 'Pure hair care', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Browse the current Pure range for pre-event care through the ends.' }
           ]
         }
       },

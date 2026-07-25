@@ -10,7 +10,7 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560",
     author: "Jena Pinn",
     content: {
-      introduction: "If you've ever stood in the haircare aisle wondering whether you actually need a leave-in conditioner — or when you're supposed to use one — you're not alone. After [20+ years behind the chair at Hair Pinns](/blog/meet-jena-15-years-sutherland-shire), it's one of the questions I get every week. Short answer: most people benefit from a leave-in, but it's about *when* and *how* you use it. Here's the honest version.",
+      introduction: "If you've ever stood in the haircare aisle wondering whether you need a leave-in conditioner or when to use one, you're not alone. After [working behind the chair since 2009](/blog/meet-jena-15-years-sutherland-shire), it remains a common question. Most people can benefit from a leave-in, but timing and application matter.",
       sections: [
         {
           heading: "What a Leave-In Conditioner Actually Does",

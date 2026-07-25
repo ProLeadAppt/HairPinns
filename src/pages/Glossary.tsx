@@ -84,7 +84,7 @@ const Glossary = () => {
             </h1>
             <p className="text-lg text-muted-foreground mb-10">
               Plain-English definitions of the hair-care terms clients ask about most often.
-              Written by Jena at Hair Pinns based on 20+ years in the salon. If you want the
+              Written by Jena at Hair Pinns, where she has worked behind the chair since 2009. If you want the
               honest answer with the trade-offs, you're in the right place.
             </p>
 

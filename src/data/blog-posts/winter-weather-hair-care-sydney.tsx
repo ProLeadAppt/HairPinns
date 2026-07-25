@@ -39,7 +39,7 @@ const post = {
           },
           {
             name: "Heat Protection",
-            link: "/collections/treatments",
+            link: "/collections/hair-treatments-masks",
             description: "Shield from styling damage"
           }
         ]

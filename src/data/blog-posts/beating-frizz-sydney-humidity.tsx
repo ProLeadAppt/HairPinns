@@ -10,7 +10,7 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-050.jpg?v=1744178399",
     author: "Jena Pinn",
     content: {
-      introduction: "Sydney humidity turns smooth hair into frizz within minutes of stepping outside, and a lot of the advice online doesn't work — or works for 20 minutes then falls apart. After 20+ years doing hair in the Sutherland Shire I've tested every approach, and here's the version that actually holds up through a real Sydney summer or spring day. Causes, at-home fixes, and when it's time to consider a salon treatment.",
+      introduction: "Sydney humidity turns smooth hair into frizz within minutes of stepping outside, and a lot of the advice online doesn't work — or works for 20 minutes then falls apart. Since opening Hair Pinns in 2009, I've tested many approaches behind the chair. Here are the causes, at-home options, and signs it may be time to consider a salon treatment.",
       sections: [
         {
           heading: "Why Hair Frizzes in Humidity",

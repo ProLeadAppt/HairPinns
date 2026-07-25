@@ -197,9 +197,9 @@ async function main() {
   // URLs to crawlers.
 
   // Blog posts - read slug from source
-  const blogPath = resolve(root, 'src/data/blogPosts.ts');
+  const blogPath = resolve(root, 'src/data/blogSummaries.ts');
   const blogContent = existsSync(blogPath) ? readFileSync(blogPath, 'utf8') : '';
-  const blogMod = gitLastMod('src/data/blogPosts.ts');
+  const blogMod = gitLastMod('src/data/blogSummaries.ts');
   const blogSlugs = [...(blogContent.match(/slug:\s*["']([^"']+)["']/g) || [])].map((m) => m.replace(/slug:\s*["']([^"']+)["']/, '$1'));
   const excludedBlogSlugs = new Set(['christmas-gift-packs-at-hair-pinns']);
   [...new Set(blogSlugs)].filter((s) => s.length > 2 && !excludedBlogSlugs.has(s)).forEach((slug) => {

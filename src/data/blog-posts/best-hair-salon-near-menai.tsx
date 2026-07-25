@@ -35,7 +35,7 @@ const post = {
       ],
       quickAnswer: {
         question: "What's the best hair salon near Menai?",
-        answer: "Hair Pinns in Bangor is a 5-minute drive from Menai with free parking, specialises in colour, Straight Up Smoothing, and cuts, and has a 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
+        answer: "Hair Pinns is located at 60 Goorgool Road, Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is a 5-minute drive from Menai with free parking",

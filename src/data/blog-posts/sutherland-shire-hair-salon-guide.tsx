@@ -10,7 +10,7 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-050.jpg?v=1744178399",
     author: "Jena Pinn",
     content: {
-      introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After [20+ years behind the chair in Bangor](/blog/meet-jena-15-years-sutherland-shire), I've heard every version of 'my last hairdresser didn't listen' — and I've seen what separates a good appointment from a great one. This is an honest guide to what to look for, what to avoid, and how to know you've found the right salon before you sit down.",
+      introduction: "Choosing a hair salon in the Sutherland Shire shouldn't feel like a gamble. After [working behind the chair since 2009](/blog/meet-jena-15-years-sutherland-shire), I've heard many versions of 'my last hairdresser didn't listen.' This guide covers what to look for and what to ask before you book.",
       sections: [
         {
           heading: "Start With the Consultation, Not the Price List",
@@ -43,7 +43,7 @@ const post = {
       ],
       quickAnswer: {
         question: "What should I look for in a Sutherland Shire hair salon?",
-        answer: "Look for a salon that starts with a 15-minute consultation, tells you no when your hair isn't ready for a service, stocks professional products they actually use, and has reviews that mention service and honesty (not just photos). In the Sutherland Shire, Hair Pinns in Bangor specialises in colour, Straight Up Smoothing, and cuts with a 4.9-star Google rating."
+        answer: "Look for a salon that asks about your hair history, explains trade-offs before starting, and gives clear aftercare guidance. Hair Pinns has operated in Bangor since 2009 and offers colour, smoothing, cuts, and styling."
       },
       keyTakeaways: [
         "Good salons spend 15 minutes on consultation before touching your hair",

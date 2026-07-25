@@ -18,22 +18,6 @@ export interface LocationData {
 }
 
 export const locationPages: Record<string, LocationData> = {
-  sydney: {
-    slug: "sydney",
-    name: "Sydney",
-    fullName: "Sydney NSW, Australia",
-    postcode: "2000",
-    driveTime: "35–45 minutes",
-    localIntro: "Hair Pinns serves Sydney with colour, blonding, keratin smoothing and precision cuts. Just 35-45 minutes from the CBD, our Bangor salon offers boutique care without city prices. Whether you're after dimensional full head foils, frizz-taming smoothing treatments, or a fresh cut that works with Sydney's humidity, Jena brings over 20 years of experience to every appointment. Book online 24/7 or text for a personalised quote.",
-    popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
-    faqs: [
-      { question: "How far is Hair Pinns from Sydney CBD?", answer: "About 35–45 minutes south via M1. Easy parking, no city stress." },
-      { question: "Do you do keratin smoothing?", answer: "Yes! Lasts 3–5 months, perfect for Sydney humidity." },
-      { question: "Can I book online?", answer: "Yes, book 24/7 via Fresha or text 0416 037 663." },
-      { question: "What products do you use?", answer: "Premium brands: Olaplex, K18, Moroccan Oil, Juuce, Aromaganic." }
-    ],
-    nearbyLocations: ["padstow-2211", "cronulla-2230", "miranda-2228", "caringbah-2229", "sutherland-2232"]
-  },
   "como-2226": {
     slug: "como-2226",
     name: "Como",
@@ -72,7 +56,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Menai NSW 2234, Australia",
     postcode: "2234",
     driveTime: "5–8 minutes",
-    localIntro: "Hair Pinns is practically local for Menai, just 5-8 minutes away in Bangor. We specialise in colour, blonding, keratin smoothing and cuts tailored to the Georges River humidity. Whether you're after sun-kissed full head foils, anti-frizz smoothing that lasts months, or a precision cut, Jena brings over 20 years of expertise to every appointment. Easy parking, honest advice, and boutique care. Book online 24/7 or text for a personalised quote.",
+    localIntro: "Hair Pinns is practically local for Menai, just 5-8 minutes away in Bangor. We specialise in colour, blonding, keratin smoothing and cuts tailored to the Georges River humidity. Whether you're after sun-kissed full head foils, anti-frizz smoothing that lasts months, or a precision cut, Jena brings experience behind the chair since 2009 to every appointment. Easy parking, honest advice, and boutique care. Book online 24/7 or text for a personalised quote.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How does Menai's humidity affect my hair?", answer: "Riverside humidity causes frizz. Smoothing treatments seal cuticles for 3–5 months." },
@@ -88,10 +72,10 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Bangor NSW 2234, Australia",
     postcode: "2234",
     driveTime: "On-site",
-    localIntro: "Hair Pinns is your local Bangor salon, right here at 60 Goorgool Road. We understand the river-valley humidity and tailor every service (colour, smoothing, cuts) to work with our unique microclimate. Whether you need dimensional blonde, keratin smoothing that lasts months, or a fresh precision cut, Jena's boutique salon delivers personalised care with over 20 years of expertise. Easy parking, flexible hours, honest advice. Book online or text 0416 037 663 for a quote.",
+    localIntro: "Hair Pinns is your local Bangor salon, right here at 60 Goorgool Road. We understand the river-valley humidity and tailor every service (colour, smoothing, cuts) to work with our unique microclimate. Whether you need dimensional blonde, keratin smoothing that lasts months, or a fresh precision cut, Jena's boutique salon delivers personalised care backed by experience behind the chair since 2009. Easy parking, flexible hours, honest advice. Book online or text 0416 037 663 for a quote.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
-      { question: "Why is Hair Pinns the best choice in Bangor?", answer: "Local expertise, 20+ years experience, treatments designed for our humid climate." },
+      { question: "Why choose Hair Pinns in Bangor?", answer: "Hair Pinns has operated in Bangor since 2009 and offers colour, smoothing, cuts, and styling from 60 Goorgool Road." },
       { question: "How do I maintain hair in Bangor's climate?", answer: "Anti-humidity serums daily, smoothing treatments every 3–4 months seal cuticles." },
       { question: "What makes your smoothing different?", answer: "Professional formulas customized to your hair type for lasting results." },
       { question: "Can I drop by for a consultation?", answer: "Yes! Or book free consultation via Fresha or text for quote." }
@@ -104,7 +88,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Jannali NSW 2226, Australia",
     postcode: "2226",
     driveTime: "15–18 minutes",
-    localIntro: "Hair Pinns serves Jannali with colour, blonding, smoothing and cuts, just 15 minutes away in Bangor. We specialise in dimensional colour that lasts, keratin smoothing for frizz control, and precision cuts tailored to your lifestyle. Jena's boutique salon offers one-on-one care with over 20 years of experience, honest advice, and easy parking. Whether you need blonde maintenance or a style refresh, book online via Fresha or text for a quote.",
+    localIntro: "Hair Pinns serves Jannali with colour, blonding, smoothing and cuts from its Bangor salon. Jena offers one-on-one care backed by experience behind the chair since 2009. Whether you need blonde maintenance or a style refresh, check the current service menu and availability through Fresha.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How far from Jannali?", answer: "15–18 minutes via President Ave and Princes Highway. Free parking." },
@@ -120,7 +104,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Kareela NSW 2232, Australia",
     postcode: "2232",
     driveTime: "10–12 minutes",
-    localIntro: "Just 10 minutes from Kareela, Hair Pinns offers boutique colour, smoothing and cuts in Bangor. We understand bushland dryness and tailor treatments to restore moisture, shine and manageability. From natural full head foils to deep conditioning, keratin smoothing to precision cuts, Jena delivers personalised care with over 20 years of expertise. Easy parking, honest advice, flexible hours. Book online 24/7 or text 0416 037 663 for a quote.",
+    localIntro: "Hair Pinns serves Kareela clients from its Bangor salon with colour, smoothing, cuts, and styling. Jena delivers personalised care backed by experience behind the chair since 2009. Check the current service menu and availability through Fresha, or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "Why does my hair feel dry in Kareela?", answer: "Bushland environment. Deep condition monthly, use leave-in conditioner daily." },
@@ -136,7 +120,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Miranda NSW 2228, Australia",
     postcode: "2228",
     driveTime: "15–20 minutes",
-    localIntro: "Hair Pinns offers Miranda locals a boutique alternative to mall salons, just 15 minutes south in Bangor. Specialising in dimensional colour, keratin smoothing and precision cuts, we deliver personalised care without the rush. Jena's 20+ years of expertise means honest advice, premium products (Olaplex, K18, Moroccan Oil), and results that last. Easy parking, no Westfield stress. Book online via Fresha or text 0416 037 663 for a quote.",
+    localIntro: "Hair Pinns offers Miranda clients a Bangor-based option for colour, smoothing, cuts, and styling. Jena has worked behind the chair since 2009 and provides personalised service from 60 Goorgool Road. Check the current menu through Fresha or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How far from Miranda?", answer: "15–20 minutes south via Kingsway and Princes Highway. Free parking." },
@@ -160,7 +144,7 @@ export const locationPages: Record<string, LocationData> = {
       { question: "Do you do keratin?", answer: "Yes! Reduces frizz, adds shine, lasts 3–5 months." },
       { question: "Can I get a quote?", answer: "Text photo to 0416 037 663 for detailed quote and timing." }
     ],
-    nearbyLocations: ["sydney", "cronulla-2230", "miranda-2228", "caringbah-2229"]
+    nearbyLocations: ["cronulla-2230", "miranda-2228", "caringbah-2229"]
   },
   "cronulla-2230": {
     slug: "cronulla-2230",
@@ -168,7 +152,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Cronulla NSW 2230, Australia",
     postcode: "2230",
     driveTime: "20–25 minutes",
-    localIntro: "Hair Pinns serves Cronulla with colour, smoothing and cuts, just 20 minutes inland in Bangor. We specialise in beach hair care: restoring sun and salt damage, maintaining blonde brightness, and keratin smoothing for coastal frizz. Whether you need blonde foiling, deep conditioning, or a fresh cut, Jena delivers boutique care with over 20 years of experience. Easy parking, honest advice. Book online via Fresha or text for a quote.",
+    localIntro: "Hair Pinns serves Cronulla clients from its Bangor salon with colour, smoothing, cuts, and styling. Whether you need blonde foiling, conditioning care, or a fresh cut, Jena brings experience behind the chair since 2009. Check the current service menu and availability through Fresha.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How far from Cronulla?", answer: "20–25 minutes via Kingsway and Taren Point Road. Free parking." },
@@ -184,7 +168,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Illawong NSW 2234, Australia",
     postcode: "2234",
     driveTime: "8–10 minutes",
-    localIntro: "Hair Pinns is your local salon for Illawong, just 8 minutes away in Bangor. We understand riverside humidity and specialise in colour, smoothing and cuts that work with our local climate. From dimensional full head foils to keratin smoothing that lasts months, Jena's boutique salon delivers one-on-one care with over 20 years of experience. Easy parking, honest advice, flexible hours. Book online via Fresha or text 0416 037 663 for a quote.",
+    localIntro: "Hair Pinns serves Illawong clients from its Bangor salon with colour, smoothing, cuts, and styling. Jena delivers one-on-one care backed by experience behind the chair since 2009. Check the current service menu through Fresha or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "Why does my hair get frizzy near the river?", answer: "High humidity swells cuticles. Smoothing treatments seal them for 3–5 months." },
@@ -200,7 +184,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Kirrawee NSW 2232, Australia",
     postcode: "2232",
     driveTime: "12–15 minutes",
-    localIntro: "Just 12 minutes from Kirrawee, Hair Pinns specialises in colour, smoothing and cuts for coastal living. We understand salt air and humidity, tailoring every service to protect and restore your hair. From blonde foiling to keratin smoothing, precision cuts to deep conditioning, Jena's boutique salon delivers personalised care with 20+ years of expertise. Easy parking in Bangor, honest advice. Book online or text 0416 037 663 for a quote.",
+    localIntro: "Hair Pinns serves Kirrawee clients from its Bangor salon with colour, smoothing, cuts, and styling. Jena delivers personalised care backed by experience behind the chair since 2009. Check the current service menu through Fresha or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How does coastal air affect Kirrawee hair?", answer: "Salt and humidity dry/frizz hair. Use leave-in conditioner + UV protection." },
@@ -232,7 +216,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Caringbah NSW 2229, Australia",
     postcode: "2229",
     driveTime: "15–20 minutes",
-    localIntro: "Hair Pinns offers Caringbah a boutique alternative to mall salons, just 15 minutes away in Bangor. Specialising in colour, smoothing and cuts, we deliver personalised care without the rush. Whether you need blonde maintenance, keratin smoothing for frizz, or a fresh style, Jena brings 20+ years of expertise to every appointment. Free parking, honest advice, premium products. Book online via Fresha or text 0416 037 663.",
+    localIntro: "Hair Pinns offers Caringbah clients a Bangor-based option for colour, smoothing, cuts, and styling. Jena brings experience behind the chair since 2009 to each appointment. Check the current service menu through Fresha or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How far from Caringbah?", answer: "15–20 minutes via Taren Point Road. Free parking, no mall stress." },
@@ -248,7 +232,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Oyster Bay NSW 2225, Australia",
     postcode: "2225",
     driveTime: "15–18 minutes",
-    localIntro: "Just 15 minutes from Oyster Bay, Hair Pinns specialises in colour, smoothing and cuts for riverside living. We understand humidity and tailor every service to combat frizz and maintain shine. From natural full head foils to keratin smoothing, precision cuts to deep conditioning, Jena's boutique salon delivers one-on-one care with 20+ years of expertise. Easy parking in Bangor. Book online or text 0416 037 663 for a quote.",
+    localIntro: "Hair Pinns serves Oyster Bay clients from its Bangor salon with colour, smoothing, cuts, and styling. Jena delivers one-on-one care backed by experience behind the chair since 2009. Check the current service menu through Fresha or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How far from Oyster Bay?", answer: "15–18 minutes via Como West Road. Scenic riverside drive." },
@@ -264,7 +248,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Sutherland NSW 2232, Australia",
     postcode: "2232",
     driveTime: "8–10 minutes",
-    localIntro: "Hair Pinns is practically local for Sutherland, just 8 minutes south in Bangor. We specialise in colour, smoothing and cuts tailored to hard water challenges and local climate. From dimensional blonde to clarifying treatments that restore shine, keratin smoothing to precision cuts, Jena delivers boutique care with over 20 years of experience. Easy parking, honest advice, flexible hours. Book online via Fresha or text for a quote.",
+    localIntro: "Hair Pinns serves Sutherland clients from its Bangor salon with colour, smoothing, cuts, and styling. Jena delivers personalised care backed by experience behind the chair since 2009. Check the current service menu and availability through Fresha.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How does Sutherland's water affect hair?", answer: "Mineral buildup causes dullness. Use clarifying treatment monthly." },
@@ -280,7 +264,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Barden Ridge NSW 2234, Australia",
     postcode: "2234",
     driveTime: "5–7 minutes",
-    localIntro: "Hair Pinns is your neighborhood salon for Barden Ridge, just 5 minutes away in Bangor. We understand bushland dryness and specialise in colour, smoothing and cuts that restore moisture and shine. Whether you need dimensional colour, deep conditioning treatments, or a precision cut, Jena's boutique salon delivers one-on-one care with over 20 years of expertise. Easy parking, honest advice. Book online via Fresha or text 0416 037 663.",
+    localIntro: "Hair Pinns serves Barden Ridge clients from its Bangor salon with colour, smoothing, cuts, and styling. Jena delivers one-on-one care backed by experience behind the chair since 2009. Check the current service menu through Fresha or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How far from Barden Ridge?", answer: "Just 5-7 minutes. We're practically your neighborhood salon!" },
@@ -296,7 +280,7 @@ export const locationPages: Record<string, LocationData> = {
     fullName: "Alfords Point NSW 2234, Australia",
     postcode: "2234",
     driveTime: "6–8 minutes",
-    localIntro: "Just 6 minutes from Alfords Point, Hair Pinns specialises in colour, smoothing and cuts for riverside living. We understand the coastal breeze and river humidity, tailoring every service for frizz control and shine. From dimensional full head foils to keratin smoothing, precision cuts to deep conditioning, Jena's boutique salon delivers personalised care with 20+ years of expertise. Easy parking in Bangor. Book online or text 0416 037 663.",
+    localIntro: "Hair Pinns serves Alfords Point clients from its Bangor salon with colour, smoothing, cuts, and styling. Jena delivers personalised care backed by experience behind the chair since 2009. Check the current service menu through Fresha or text 0416 037 663 for help choosing a service.",
     popularServices: ["Colour & Blonding", "Keratin/Straight Up Smoothing", "Cuts & Styling"],
     faqs: [
       { question: "How do I manage frizz from coastal breeze?", answer: "Smoothing treatments seal cuticles. Use anti-humidity serums daily." },

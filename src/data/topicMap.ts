@@ -137,7 +137,7 @@ export const topics: Topic[] = [
       'best-hair-salon-near-engadine',
       'school-formal-hair-trends-2026',
     ],
-    collectionSlugs: ['styling', 'wet-brush-detanglers'],
+    collectionSlugs: ['hair-styling-products', 'wet-brush-detanglers'],
     serviceSlugs: [
       'cut-packages/long-hair-wash-cut-blowdry',
       'cut-packages/mid-length-wash-cut-blowdry',

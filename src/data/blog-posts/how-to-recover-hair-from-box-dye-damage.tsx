@@ -10,7 +10,7 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-050.jpg?v=1744178399",
     author: "Jena Pinn",
     content: {
-      introduction: "After [20+ years behind the chair in the Sutherland Shire](/blog/meet-jena-15-years-sutherland-shire), box-dye recovery is the single most common consultation I take. You've dyed your hair at home, it's gone wrong — wrong colour, uneven, damaged, or all three — and now you're looking for help. Here's the honest version: what's actually achievable, how long it takes, how much it costs, and what to do in the meantime.",
+      introduction: "After [working behind the chair since 2009](/blog/meet-jena-15-years-sutherland-shire), I've handled many consultations about at-home colour that did not go to plan. Here is the practical version: what may be achievable, why recovery can take time, and what to do before a professional consultation.",
       sections: [
         {
           heading: "First: Why Box Dye Damage Is So Hard to Fix",

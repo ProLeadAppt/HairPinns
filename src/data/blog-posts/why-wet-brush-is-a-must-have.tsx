@@ -39,7 +39,7 @@ const post = {
           },
           {
             name: "Browse Accessories",
-            link: "/collections/accessories",
+            link: "/collections/hair-pinns-accessories",
             description: "Hair tools and care essentials"
           }
         ]

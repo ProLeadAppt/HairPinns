@@ -35,7 +35,7 @@ const post = {
       ],
       quickAnswer: {
         question: "What's the best hair salon near Illawong?",
-        answer: "Hair Pinns in Bangor is under 10 minutes from Illawong via Alfords Point Road with free parking out the front. Specialises in colour, Straight Up Smoothing, foils, and weekend appointments. 4.9-star Google rating. Book online 24/7 or call 0416 037 663."
+        answer: "Hair Pinns is located at 60 Goorgool Road, Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call 0416 037 663."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is a short drive from Illawong via Alfords Point Road",
@@ -59,7 +59,7 @@ const post = {
         },
         {
           question: "Is Hair Pinns good for older clients?",
-          answer: "Yes — Jena has a loyal 60+ clientele because the salon is quiet, fully air-conditioned, ground-floor access, and there's never any pressure to add services you didn't ask for.",
+          answer: "Hair Pinns welcomes clients of all ages. If you have mobility, sensory, or appointment-support needs, contact the salon before booking so Jena can explain the space and available options.",
         },
         {
           question: "What's the parking situation at Hair Pinns?",

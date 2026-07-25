@@ -3,7 +3,7 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "olaplex-vs-k18-vs-juuce-bond-repair",
     title: "Olaplex vs K18 vs Juuce Bond Repair: What's Actually In The Bottle",
-    excerpt: "Three big bond repair brands, three different science stories. Twenty years of salon experience and four hundred client trials later, here's which one I actually keep on my shelf and why.",
+    excerpt: "Three big bond repair brands and three different approaches. Here is how they differ and what to consider before choosing one.",
     category: "Products",
     date: "May 6, 2026",
     readTime: "7 min read",
