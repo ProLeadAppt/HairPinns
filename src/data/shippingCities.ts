@@ -1,3 +1,5 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
+
 /**
  * City-level shipping landing pages.
  *
@@ -97,7 +99,7 @@ export const shippingCities: Record<string, ShippingCityData> = {
       },
       {
         question: "Can I collect from the Bangor salon instead of paying for shipping?",
-        answer: "Yes. Sydney customers are welcome to arrange a salon pickup from 60 Goorgool Rd, Bangor NSW 2234. No shipping cost and I'll add a personal product recommendation in person. Message Hair Pinns to coordinate a time.",
+        answer: "Yes. Sydney customers are welcome to arrange a salon pickup from " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. No shipping cost and I'll add a personal product recommendation in person. Message Hair Pinns to coordinate a time.",
       },
       {
         question: "What hair products work best for Sydney humidity?",
@@ -444,7 +446,7 @@ export const shippingCities: Record<string, ShippingCityData> = {
       },
       {
         question: "Can I pick up in Sydney instead?",
-        answer: "If you'd prefer salon pickup, Hair Pinns is at 60 Goorgool Rd, Bangor NSW 2234. Roughly a 3hr drive from Canberra. Most ACT customers prefer the 2-day shipping.",
+        answer: "If you'd prefer salon pickup, Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. Roughly a 3hr drive from Canberra. Most ACT customers prefer the 2-day shipping.",
       },
     ],
     nearbyCities: ["sydney", "wollongong"],

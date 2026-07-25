@@ -1,3 +1,4 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
@@ -10,7 +11,7 @@ const post = {
   image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697",
   author: "Jena Pinn",
   content: {
-    introduction: "If you live in Bangor and are looking for a local hair salon, Hair Pinns is at 60 Goorgool Road. This guide covers the details you can verify before booking: who runs the salon, the current service focus, and where to find live prices and availability.",
+    introduction: "If you live in Bangor and are looking for a local hair salon, Hair Pinns is at " + BUSINESS_NAP.address.street + ". This guide covers the details you can verify before booking: who runs the salon, the current service focus, and where to find live prices and availability.",
     sections: [
       {
         heading: "A Bangor Salon Since 2009",
@@ -22,28 +23,28 @@ const post = {
       },
       {
         heading: "Before Your First Booking",
-        content: "Choose the service that most closely matches what you need and review the details in Fresha before confirming. For colour corrections, major changes, or uncertainty about which service to select, call Hair Pinns on 0416 037 663 before booking."
+        content: "Choose the service that most closely matches what you need and review the details in Fresha before confirming. For colour corrections, major changes, or uncertainty about which service to select, call Hair Pinns on " + BUSINESS_NAP.phone.display + " before booking."
       },
       {
         heading: "Address and Contact",
-        content: "Hair Pinns is at 60 Goorgool Road, Bangor NSW 2234. You can view live availability online or call 0416 037 663 for help with service selection."
+        content: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. You can view live availability online or call " + BUSINESS_NAP.phone.display + " for help with service selection."
       }
     ],
     quickAnswer: {
       question: "Is there a hair salon in Bangor?",
-      answer: "Yes. Hair Pinns is at 60 Goorgool Road, Bangor NSW 2234. The salon has operated since 2009 and offers colour, foils, smoothing treatments, cuts, and styling."
+      answer: "Yes. Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. The salon has operated since 2009 and offers colour, foils, smoothing treatments, cuts, and styling."
     },
     keyTakeaways: [
-      "Hair Pinns is at 60 Goorgool Road in Bangor",
+      "Hair Pinns is at " + BUSINESS_NAP.address.street + " in Bangor",
       "The salon has operated since 2009",
       "Jena Pinn is the founder and stylist",
       "Current prices, durations, and availability are shown in Fresha",
-      "Call 0416 037 663 if you need help choosing a service"
+      "Call " + BUSINESS_NAP.phone.display + " if you need help choosing a service"
     ],
     faqSection: [
       {
         question: "Where is Hair Pinns in Bangor?",
-        answer: "Hair Pinns is at 60 Goorgool Road, Bangor NSW 2234."
+        answer: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234."
       },
       {
         question: "What services are currently available?",
@@ -55,7 +56,7 @@ const post = {
       },
       {
         question: "What if I am unsure which service to book?",
-        answer: "Call Hair Pinns on 0416 037 663 before confirming so Jena can help you choose the closest service."
+        answer: "Call Hair Pinns on " + BUSINESS_NAP.phone.display + " before confirming so Jena can help you choose the closest service."
       }
     ]
   },

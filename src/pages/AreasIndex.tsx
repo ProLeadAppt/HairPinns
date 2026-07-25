@@ -55,7 +55,7 @@ const AreasIndex = () => {
                 One-on-one colour, smoothing, cuts, and honest advice from Jena. Easy parking in Bangor, without the shopping-centre salon rush.
               </p>
               <dl className="mt-8 grid grid-cols-2 gap-5 border-t border-[hsl(var(--after-hours-cream)/0.18)] pt-5">
-                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.5)]">Studio</dt><dd className="mt-2 text-sm">60 Goorgool Rd</dd></div>
+                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.5)]">Studio</dt><dd className="mt-2 text-sm">{BUSINESS_NAP.address.street}</dd></div>
                 <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.5)]">Appointments</dt><dd className="mt-2 text-sm">Tuesday to Saturday</dd></div>
               </dl>
             </div>

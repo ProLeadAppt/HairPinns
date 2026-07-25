@@ -1,3 +1,5 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
+
 /**
  * State-by-state shipping landing pages.
  *
@@ -126,7 +128,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Can I pick up from the Bangor salon instead of shipping?",
-        answer: "Yes. Message Hair Pinns to arrange a salon collection from 60 Goorgool Rd, Bangor NSW 2234. No shipping cost and you get Jena's product recommendation in person.",
+        answer: "Yes. Message Hair Pinns to arrange a salon collection from " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. No shipping cost and you get Jena's product recommendation in person.",
       },
     ],
     nearbyStates: ["australian-capital-territory", "victoria", "queensland"],
@@ -420,7 +422,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Can I pick up from Sydney instead?",
-        answer: "If you'd prefer salon pickup, Hair Pinns is at 60 Goorgool Rd, Bangor NSW 2234. Roughly a 3 hr drive from Canberra. Most ACT customers prefer the 2-day shipping.",
+        answer: "If you'd prefer salon pickup, Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. Roughly a 3 hr drive from Canberra. Most ACT customers prefer the 2-day shipping.",
       },
     ],
     nearbyStates: ["new-south-wales", "victoria"],

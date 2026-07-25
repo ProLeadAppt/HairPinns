@@ -3,11 +3,13 @@
  * Update these constants to change booking link and label across the entire app
  */
 
+import { ENTITY_REGISTRY } from "./entityRegistry";
+
 export const BOOK_CTA_LABEL = "Book now";
 // Booking URL (no parameters) - should go directly to booking page
-export const BOOK_URL = "https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb";
+export const BOOK_URL = ENTITY_REGISTRY.profiles.fresha.venueUrl;
 // Review URL (with ?reviews=true parameter) - should go to reviews page
-export const FRESHA_REVIEWS_URL = "https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb?reviews=true";
+export const FRESHA_REVIEWS_URL = ENTITY_REGISTRY.profiles.fresha.reviewsUrl;
 
 /**
  * Track booking CTA click event.

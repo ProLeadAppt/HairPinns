@@ -37,10 +37,13 @@ function occurrences(pattern, { exclude = [] } = {}) {
     .map(({ relativePath }) => relativePath);
 }
 
+const entityRegistrySource = await readFile(path.join(ROOT, 'src/config/entityRegistry.ts'), 'utf8');
 const businessConfig = await readFile(path.join(ROOT, 'src/config/businessConfig.ts'), 'utf8');
-assert.match(businessConfig, /display:\s*["']0416 037 663["']/);
-assert.match(businessConfig, /raw:\s*["']\+61[0-9]{9}["']/);
-assert.match(businessConfig, /tel:\s*["']tel:\+61[0-9]{9}["']/);
+assert.match(entityRegistrySource, /display:\s*["']0416 037 663["']/);
+assert.match(entityRegistrySource, /raw:\s*["']\+61[0-9]{9}["']/);
+assert.match(entityRegistrySource, /tel:\s*["']tel:\+61[0-9]{9}["']/);
+assert.match(businessConfig, /import\s+\{\s*ENTITY_REGISTRY\s*\}\s+from\s+["']\.\/entityRegistry["']/);
+assert.match(businessConfig, /export const BUSINESS_NAP = \{[\s\S]*\.\.\.ENTITY_REGISTRY\.contact/);
 
 const homepageSource = await readFile(path.join(ROOT, 'src/pages/Index.tsx'), 'utf8');
 const truthSchemaSource = await readFile(path.join(ROOT, 'src/lib/schema.ts'), 'utf8');
@@ -57,6 +60,11 @@ const notificationMiniCartSource = await readFile(path.join(ROOT, 'src/component
 const cartProviderSource = await readFile(path.join(ROOT, 'src/contexts/CartContext.tsx'), 'utf8');
 const errorBoundarySource = await readFile(path.join(ROOT, 'src/components/ErrorBoundary.tsx'), 'utf8');
 const packageManifestSource = await readFile(path.join(ROOT, 'package.json'), 'utf8');
+assert.doesNotMatch(
+  packageManifestSource,
+  /refresh-google-reviews|refresh-reviews|reviews:refresh/,
+  'Package scripts must not restore the retired unverified Google review refresh pipeline',
+);
 const packageLockSource = await readFile(path.join(ROOT, 'package-lock.json'), 'utf8');
 const bunLockSource = await readFile(path.join(ROOT, 'bun.lockb'), 'utf8');
 const denoLockSource = await readFile(path.join(ROOT, 'deno.lock'), 'utf8');
@@ -277,7 +285,7 @@ assert.match(bookingBannerSource, /data-home-booking-close/, 'Salon close must e
 assert.match(bookingBannerSource, /BOOK_CTA_LABEL[\s\S]*href=\{BOOK_URL\}/, 'Salon close must retain the centralized visible booking label and destination');
 assert.match(bookingBannerSource, /trackBookingClick\("booking_banner", window\.location\.pathname\)/, 'Salon close must preserve booking attribution');
 assert.match(bookingBannerSource, /target="_blank"[\s\S]*rel="noopener noreferrer"/, 'External Fresha booking must open safely in a new tab');
-assert.match(bookingBannerSource, /tel:\+61416037663/, 'Salon close must retain the canonical Hair Pinns mobile number');
+assert.match(bookingBannerSource, /import\s+\{\s*BUSINESS_NAP\s*\}\s+from\s+["']@\/config\/businessConfig["'][\s\S]*href=\{BUSINESS_NAP\.phone\.tel\}[\s\S]*\{BUSINESS_NAP\.phone\.display\}/, 'Salon close must render the canonical Hair Pinns mobile number from the NAP projection');
 assert.match(bookingBannerSource, /jena-working-480w\.avif[\s\S]*srcSet[\s\S]*sizes=/, 'Salon close must use responsive first-party working imagery');
 assert.doesNotMatch(bookingBannerSource, /aria-label="Book an appointment"|rounded-full|999px|bg-gradient|contentVisibility/, 'Salon close must not regress to mismatched labels, pills, gradients, or double deferral');
 
@@ -312,12 +320,12 @@ assert.match(footerSource, /after-hours-near-black[\s\S]*after-hours-copper[\s\S
 assert.match(footerSource, /hairPinnsLogo[\s\S]*brightness-0 invert/, 'Footer must retain the real Hair Pinns logo with dark-background treatment');
 assert.match(footerSource, /form_name: 'newsletter_footer'[\s\S]*consent_marketing: true[\s\S]*event: 'newsletter_subscription'/, 'Footer newsletter must retain GHL capture, consent, and attribution');
 assert.match(footerSource, /leadconnector-widget[\s\S]*data-widget-id[\s\S]*setTimeout\(load, 8000\)/, 'Footer must retain the deferred LeadConnector facade');
-assert.match(footerSource, /instagram\.com\/hair\.pinns[\s\S]*facebook\.com\/Hair\.Pinns/, 'Footer must retain first-party social destinations');
-assert.match(footerSource, /BUSINESS_NAP\.address\.street[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*sms:\$\{BUSINESS_NAP\.phone\.raw\}[\s\S]*wa\.me\/61416037663/, 'Footer must retain canonical address, phone, SMS, and WhatsApp contacts');
+assert.match(footerSource, /ENTITY_REGISTRY\.profiles\.instagram[\s\S]*ENTITY_REGISTRY\.profiles\.facebook/, 'Footer must retain registry-backed first-party social destinations');
+assert.match(footerSource, /BUSINESS_NAP\.address\.street[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.phone\.sms[\s\S]*BUSINESS_NAP\.phone\.whatsapp/, 'Footer must retain canonical address, phone, SMS, and WhatsApp contacts');
 for (const route of ['/collections', '/blog', '/policies/shipping', '/policies/returns', '/faq', '/glossary', '/services', '/booking', '/about', '/areas', '/contact', '/privacy', '/terms']) {
   assert.match(footerSource, new RegExp(route.replaceAll('/', '\\/')), `Footer must retain route ${route}`);
 }
-assert.match(footerSource, /Mon", "Closed[\s\S]*Tue", "10am–5pm[\s\S]*Wed", "6pm–9pm[\s\S]*Thu", "9am–9pm[\s\S]*Fri", "9am–5:30pm[\s\S]*Sat", "8am–2pm[\s\S]*Sun", "Closed/, 'Footer must retain published salon hours');
+assert.match(footerSource, /BUSINESS_WEEK_DISPLAY as salonHours[\s\S]*salonHours\.map\(\(\[day, hours\]\)/, 'Footer must render the seven-day schedule projected from the entity registry');
 assert.match(footerSource, /min-h-11[\s\S]*aria-label="Footer navigation"[\s\S]*aria-label="Legal links"/, 'Footer navigation and legal links must retain 44px touch targets and named regions');
 assert.match(footerSource, /munyal\.com\.au[\s\S]*Visa[\s\S]*Mastercard[\s\S]*Afterpay[\s\S]*Zip/, 'Footer must retain Munyal credit and accepted payment labels');
 assert.match(footerSource, /aria-label="Accepted payment methods"[\s\S]*after-hours-cream\)\/0\.68|after-hours-cream\)\/0\.68[^\n]*aria-label="Accepted payment methods"/, 'Small footer payment labels need accessible cream contrast');
@@ -476,9 +484,10 @@ for (const unsupportedClaim of ['762+ five-star reviews', 'Same-day available', 
 for (const marker of ['data-contact-page', 'data-contact-hero', 'data-contact-visit', 'data-contact-message', 'data-contact-faq', 'data-contact-close']) {
   assert.match(contactSource, new RegExp(marker), `Contact page must preserve ${marker}`);
 }
-assert.match(contactSource, /BUSINESS_NAP\.address\.fullForMaps[\s\S]*BUSINESS_HOURS_DISPLAY[\s\S]*BUSINESS_NAP\.phone\.raw/, 'Contact page must derive map, display hours, and schema phone from canonical config');
-assert.match(contactSource, /openingHoursSpecification: BUSINESS_HOURS\.map/, 'Contact HairSalon schema must derive opening hours from canonical config');
-assert.match(contactSource, /<iframe[\s\S]*loading="lazy"[\s\S]*title="Hair Pinns at 60 Goorgool Rd, Bangor"/, 'Contact map must remain lazy and named');
+assert.match(contactSource, /ENTITY_REGISTRY\.contact\.address\.fullForMaps/, 'Contact map must derive its address from the entity registry');
+assert.match(contactSource, /BUSINESS_HOURS_DISPLAY\.map/, 'Contact must render hours projected from the entity registry');
+assert.match(contactSource, /\.\.\.generateLocalBusinessSchema\(\)[\s\S]*email: BUSINESS_NAP\.email[\s\S]*hasMap: MAP_URL/, 'Contact schema must extend the shared canonical HairSalon entity');
+assert.match(contactSource, /<iframe[\s\S]*loading="lazy"[\s\S]*title=\{`Hair Pinns at \$\{BUSINESS_NAP\.address\.full\}`\}/, 'Contact map must remain lazy and canonically named');
 assert.match(contactSource, /<ContactForm formName="contact_page"[\s\S]*variant="editorial"/, 'Contact page must preserve the live contact form with the route-specific editorial shell');
 assert.equal((contactSource.match(/question: "/g) || []).length, 4, 'Contact page must expose four schema-matched FAQs');
 assert.match(contactSource, /generateFAQPageSchema\(contactFaqs\)/, 'Contact FAQ schema must use the visible FAQ source');

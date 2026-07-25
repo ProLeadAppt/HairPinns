@@ -17,6 +17,7 @@ import {
   generateProductSchema,
 } from "@/lib/schema";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 
 const fireAddToCart = (data: {
   currency: string;
@@ -259,7 +260,11 @@ const JenasDailyTrioPage = () => {
     price: bundlePrice.toFixed(2),
     availability: allAvailable ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
     priceValidUntil: new Date(new Date().setMonth(new Date().getMonth() + 6)).toISOString().split("T")[0],
-    seller: { "@type": "Organization", name: "Hair Pinns" },
+    seller: {
+      "@type": "Organization",
+      "@id": ENTITY_REGISTRY.ids.organization,
+      name: ENTITY_REGISTRY.business.name,
+    },
   };
 
   return (

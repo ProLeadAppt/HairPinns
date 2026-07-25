@@ -1,6 +1,8 @@
 // Service detail data for dedicated service pages
 // Each service gets rich content for SEO and conversion
 
+export const SERVICE_PRICE_PROOF_ID = "service-menu-live-source" as const;
+
 export interface ServiceDetailData {
   slug: string;
   title: string;
@@ -37,6 +39,8 @@ export interface ServiceDetailData {
 export interface ServiceCategoryData {
   slug: string;
   title: string;
+  /** Proof record used to verify the category's copied Fresha service prices. */
+  priceProofId: typeof SERVICE_PRICE_PROOF_ID;
   services: ServiceDetailData[];
 }
 
@@ -44,6 +48,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
   {
     slug: "smoothing",
     title: "Straight Up Smoothing Treatments",
+    priceProofId: SERVICE_PRICE_PROOF_ID,
     services: [
       {
         slug: "mid-length-straight-up-smoothing",
@@ -282,6 +287,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
   {
     slug: "foil-packages",
     title: "Foil Packages",
+    priceProofId: SERVICE_PRICE_PROOF_ID,
     services: [
       {
         slug: "full-head-foils-package",
@@ -504,6 +510,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
   {
     slug: "colouring-packages",
     title: "Colouring Packages",
+    priceProofId: SERVICE_PRICE_PROOF_ID,
     services: [
       {
         slug: "long-hair-colour-package",
@@ -721,6 +728,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
   {
     slug: "cut-packages",
     title: "Cut & Blow-dry Packages",
+    priceProofId: SERVICE_PRICE_PROOF_ID,
     services: [
       {
         slug: "long-hair-wash-cut-blowdry",
@@ -996,6 +1004,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
   {
     slug: "kids-formal",
     title: "Kids Formal Hairstyles",
+    priceProofId: SERVICE_PRICE_PROOF_ID,
     services: [
       {
         slug: "primary-formal-hairstyle",

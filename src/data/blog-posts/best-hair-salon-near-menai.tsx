@@ -1,3 +1,4 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
@@ -22,7 +23,7 @@ const post = {
         },
         {
           heading: "Services Popular with Menai Locals",
-          content: "The most-booked services for Menai clients: Straight Up Smoothing (reduces frizz for 8–12 weeks — crucial in Sydney's humid summer), full head foils for blonde maintenance, and mid-length wash/cut/blowdry. We also do kids and formal styling, popular with Menai families heading to school events. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
+          content: "The most-booked services for Menai clients: Straight Up Smoothing (reduces frizz for 8–12 weeks — crucial in Sydney's humid summer), full head foils for blonde maintenance, and mid-length wash/cut/blowdry. We also do kids and formal styling, popular with Menai families heading to school events. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
         },
         {
           heading: "Real Review from a Menai Client",
@@ -35,7 +36,7 @@ const post = {
       ],
       quickAnswer: {
         question: "What's the best hair salon near Menai?",
-        answer: "Hair Pinns is located at 60 Goorgool Road, Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call 0416 037 663."
+        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is a 5-minute drive from Menai with free parking",

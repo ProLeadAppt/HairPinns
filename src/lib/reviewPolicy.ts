@@ -1,6 +1,8 @@
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
+
 export type ReviewRating = 1 | 2 | 3 | 4 | 5;
 
-export const GOOGLE_REVIEW_URL = "https://g.page/r/CX-F0vOcpJLhEBM/review";
+export const GOOGLE_REVIEW_URL = ENTITY_REGISTRY.profiles.google.reviewUrl;
 
 export const REVIEW_CHOICES = [
   {

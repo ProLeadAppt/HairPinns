@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 import * as path from 'node:path';
+import { ENTITY_REGISTRY } from '../../src/config/entityRegistry';
 
 const evidenceDir = process.env.PLAYWRIGHT_EVIDENCE_DIR ||
   'D:/hermes-agent/home/client-work/hair-pinns/performance-phase-2/browser-matrix';
@@ -1125,7 +1126,7 @@ test('after-hours About journey keeps founder proof truthful and bookable at Fol
   const phone = close.getByRole('link', { name: '0416 037 663' });
   await expect(closeBooking).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
   await expect(phone).toHaveAttribute('href', /^tel:\+614\d+7663$/);
-  await expect(close.getByText('60 Goorgool Rd, Bangor NSW 2234', { exact: true })).toBeVisible();
+  await expect(close.getByText(ENTITY_REGISTRY.contact.address.full, { exact: true })).toBeVisible();
   await expect(close.locator('details')).toHaveCount(5);
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
 
@@ -1199,7 +1200,7 @@ test('after-hours service directory preserves the complete Fresha menu at Fold w
   await close.scrollIntoViewIfNeeded();
   await expect(close.getByRole('link', { name: /Book now/ })).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
   await expect(close.getByRole('link', { name: '0416 037 663' })).toHaveAttribute('href', /^tel:\+614\d+7663$/);
-  await expect(close.getByText('60 Goorgool Rd, Bangor NSW 2234', { exact: true })).toBeVisible();
+  await expect(close.getByText(ENTITY_REGISTRY.contact.address.full, { exact: true })).toBeVisible();
   await expect(close.getByRole('link', { name: /See service areas/ })).toHaveAttribute('href', '/areas');
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
 
@@ -1259,7 +1260,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
   const close = page.locator('[data-service-detail-close]');
   await close.scrollIntoViewIfNeeded();
   await expect(close.getByRole('link', { name: '0416 037 663' })).toHaveAttribute('href', /^tel:\+614\d+7663$/);
-  await expect(close.getByText('60 Goorgool Rd, Bangor NSW 2234', { exact: true })).toBeVisible();
+  await expect(close.getByText(ENTITY_REGISTRY.contact.address.full, { exact: true })).toBeVisible();
   await expect(close.getByRole('link', { name: /Back to the service menu/ })).toHaveAttribute('href', '/services');
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
   await expect(detail.getByText(/same-day appointments/i)).toHaveCount(0);
@@ -1361,10 +1362,10 @@ test('after-hours contact journey preserves canonical visit details and the live
   await expect(page.locator('[data-contact-hero] a[href="mailto:hairpinns1@gmail.com"]')).toContainText('Email Jena');
 
   const visit = page.locator('[data-contact-visit]');
-  await expect(visit).toContainText('60 Goorgool Rd, Bangor NSW 2234');
+  await expect(visit).toContainText(ENTITY_REGISTRY.contact.address.full);
   await expect(visit.locator('li')).toHaveCount(6);
   await expect(visit.locator('iframe')).toHaveAttribute('loading', 'lazy');
-  await expect(visit.locator('iframe')).toHaveAttribute('title', 'Hair Pinns at 60 Goorgool Rd, Bangor');
+  await expect(visit.locator('iframe')).toHaveAttribute('title', `Hair Pinns at ${ENTITY_REGISTRY.contact.address.full}`);
   await expect(visit.getByRole('link', { name: 'Open directions' })).toHaveAttribute('target', '_blank');
 
   const form = page.locator('[data-contact-message] form');
@@ -1387,7 +1388,7 @@ test('after-hours contact journey preserves canonical visit details and the live
   const faqs = page.locator('[data-contact-faq] details');
   await expect(faqs).toHaveCount(4);
   await faqs.last().locator('summary').click();
-  await expect(faqs.last()).toContainText('60 Goorgool Rd, Bangor NSW 2234');
+  await expect(faqs.last()).toContainText(ENTITY_REGISTRY.contact.address.full);
 
   for (const unsupportedClaim of ['within 24 hours', 'within 2 hours', 'rear entrance', 'Wheelchair accessible', 'available 24/7', 'Open now']) {
     await expect(contact).not.toContainText(unsupportedClaim);
@@ -1400,7 +1401,7 @@ test('after-hours contact journey preserves canonical visit details and the live
   const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) => nodes.map((node) => JSON.parse(node.textContent || '{}')));
   const salonSchema = schemas.find((schema) => schema['@type'] === 'HairSalon');
   expect(salonSchema?.telephone).toBe('+61416037663');
-  expect(salonSchema?.address?.streetAddress).toBe('60 Goorgool Rd');
+  expect(salonSchema?.address?.streetAddress).toBe(ENTITY_REGISTRY.contact.address.street);
   expect(salonSchema?.openingHoursSpecification).toHaveLength(5);
   expect(schemas.some((schema) => schema['@type'] === 'FAQPage' && schema.mainEntity?.length === 4)).toBe(true);
   expect(schemas.some((schema) => schema['@type'] === 'BreadcrumbList')).toBe(true);

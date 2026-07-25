@@ -1,3 +1,4 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
@@ -34,7 +35,7 @@ const post = {
         },
         {
           heading: "When to Book",
-          content: "For a formal in October–November, book your hair appointment by early August. Good formal appointment slots fill up 2–3 months out because most schools have formals clustered in the same weeks. If you leave it until September, you'll struggle to get your preferred time. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
+          content: "For a formal in October–November, book your hair appointment by early August. Good formal appointment slots fill up 2–3 months out because most schools have formals clustered in the same weeks. If you leave it until September, you'll struggle to get your preferred time. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
         },
         {
           heading: "Makeup Timing on Formal Day",

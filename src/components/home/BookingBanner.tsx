@@ -1,4 +1,5 @@
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import jenaWorkingAvif480 from "@/assets/images/jena-working-480w.avif";
 import jenaWorkingAvif800 from "@/assets/images/jena-working-800w.avif";
 import jenaWorkingAvif1170 from "@/assets/images/jena-working-1170w.avif";
@@ -64,16 +65,16 @@ const BookingBanner = () => {
             <dl className="mt-10 divide-y divide-[hsl(var(--after-hours-cream)/0.2)] border-t border-[hsl(var(--after-hours-cream)/0.2)] text-sm">
               <div className="grid grid-cols-[5rem_minmax(0,1fr)] gap-4 py-4">
                 <dt className="text-[0.61rem] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--after-hours-copper))]">Visit</dt>
-                <dd className="text-[hsl(var(--after-hours-cream)/0.86)]">60 Goorgool Rd, Bangor NSW</dd>
+                <dd className="text-[hsl(var(--after-hours-cream)/0.86)]">{BUSINESS_NAP.address.full}</dd>
               </div>
               <div className="grid grid-cols-[5rem_minmax(0,1fr)] gap-4 py-4">
                 <dt className="text-[0.61rem] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--after-hours-copper))]">Call</dt>
                 <dd>
                   <a
-                    href="tel:+61416037663"
+                    href={BUSINESS_NAP.phone.tel}
                     className="inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-cream)/0.45)] !text-[hsl(var(--after-hours-cream))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] sm:min-h-0"
                   >
-                    0416 037 663
+                    {BUSINESS_NAP.phone.display}
                   </a>
                 </dd>
               </div>

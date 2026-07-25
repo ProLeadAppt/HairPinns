@@ -26,7 +26,7 @@ const post = {
         },
         {
           heading: "Reviews Should Mention Service, Not Just Results",
-          content: "Anyone can deliver a good blowout once. What matters in the Sutherland Shire is consistency across visits. Read past review 50, and look for: 'Jena told me not to do X because my hair wasn't ready.' 'She didn't try to upsell me.' 'She remembered me from last time.' These signals beat any 'before/after' photo. Our Google reviews (53+ at 4.9 stars) over-index on this language because that's how we work — honesty first, always."
+          content: "Anyone can deliver a good blowout once. What matters is consistency across visits. When reading public reviews, look for specific details about consultation, advice, repeat visits, and how the stylist handled trade-offs. Those details are more useful than an unattributed rating claim or a single before-and-after photo."
         },
         {
           heading: "Location, Parking, and Timing Matter More Than You Think",

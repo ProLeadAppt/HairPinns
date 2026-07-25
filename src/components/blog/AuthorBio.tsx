@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import jenaHeadshot from "@/assets/images/jena-headshot.webp";
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 
 const AuthorBio = () => (
   <aside className="mt-16 border-y border-[hsl(var(--after-hours-plum)/0.26)] py-8" aria-labelledby="author-bio-heading">
@@ -26,7 +27,7 @@ const AuthorBio = () => (
         <nav aria-label="More from Jena" className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-[0.66rem] font-semibold uppercase tracking-[0.12em]">
           <Link to="/about" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Meet Jena</Link>
           <Link to="/booking" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Book a visit</Link>
-          <a href="https://www.instagram.com/hair.pinns/" target="_blank" rel="noopener noreferrer" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Instagram ↗</a>
+          <a href={ENTITY_REGISTRY.profiles.instagram} target="_blank" rel="noopener noreferrer" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Instagram ↗</a>
         </nav>
       </div>
     </div>
