@@ -247,14 +247,14 @@ const CollectionDetail = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Skeleton className="h-4 w-48 mb-8" />
           
-          <div className="bg-accent py-12 rounded-card mb-8">
+          <div className="mb-8 border-y border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-cream))] py-12">
             <Skeleton className="h-12 w-3/4 mb-4" />
             <Skeleton className="h-6 w-full max-w-3xl" />
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((n) => (
-              <div key={n} className="bg-card border border-border rounded-card overflow-hidden">
+              <div key={n} className="overflow-hidden border border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper))]">
                 <Skeleton className="aspect-square w-full" />
                 <div className="p-6 space-y-3">
                   <Skeleton className="h-6 w-3/4" />
@@ -475,7 +475,7 @@ const CollectionDetail = () => {
                       <h3 className="mb-2 line-clamp-3 font-heading text-base leading-tight text-[hsl(var(--after-hours-plum))] sm:text-lg">
                         <Link
                           to={`/products/${product.handle}`}
-                          className="hover:text-brand-500 transition-colors"
+                          className="transition-colors hover:text-[hsl(var(--after-hours-copper))]"
                         >
                           {product.title}
                         </Link>
@@ -549,14 +549,14 @@ const CollectionDetail = () => {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {recent.map((p: any) => (
                       <Link key={p.slug} to={`/products/${p.slug}`} className="group">
-                        <div className="aspect-square bg-muted rounded-card overflow-hidden mb-2">
+                        <div className="mb-2 aspect-square overflow-hidden bg-[hsl(var(--after-hours-cream))]">
                           <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy"
               decoding="async"
               width="800"
               height="800"
             />
                         </div>
-                        <p className="text-sm font-medium text-heading line-clamp-1 group-hover:text-brand-500 transition-colors">{p.title}</p>
+                        <p className="line-clamp-1 text-sm font-medium text-heading transition-colors group-hover:text-[hsl(var(--after-hours-copper))]">{p.title}</p>
                       </Link>
                     ))}
                   </div>

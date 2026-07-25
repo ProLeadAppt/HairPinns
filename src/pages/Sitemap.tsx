@@ -118,10 +118,10 @@ const Sitemap = () => {
               return (
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-card p-6"
+                  className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-6"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h2 className="text-xl font-heading font-semibold text-heading">
@@ -133,9 +133,9 @@ const Sitemap = () => {
                       <li key={linkIndex}>
                         <Link
                           to={link.url}
-                          className="text-foreground hover:text-brand-500 transition-colors inline-flex items-center gap-2"
+                          className="inline-flex items-center gap-2 text-foreground transition-colors hover:text-[hsl(var(--after-hours-copper))]"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+                          <span className="h-1.5 w-1.5 rounded-full bg-[hsl(var(--after-hours-copper))]"></span>
                           {link.title}
                         </Link>
                       </li>
@@ -152,7 +152,7 @@ const Sitemap = () => {
             </p>
             <a
               href="/sitemap.xml"
-              className="text-brand-500 hover:text-brand-600 font-semibold"
+              className="font-semibold text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
               target="_blank"
               rel="noopener noreferrer"
             >

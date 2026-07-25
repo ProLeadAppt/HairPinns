@@ -356,7 +356,7 @@ const ProductDetail = () => {
         <Header />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500 mx-auto mb-4"></div>
+            <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-[hsl(var(--after-hours-copper))]"></div>
             {/* h1 kept (visually as a spinner caption) so prerender snapshots
                 captured during slow Shopify responses still satisfy the SEO
                 smoke test. Page is noindex, so this title never reaches an

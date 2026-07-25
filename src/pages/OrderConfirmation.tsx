@@ -177,13 +177,13 @@ const OrderConfirmation = () => {
 
             {/* Order Details */}
             {orderData && (
-              <div className="bg-muted/30 rounded-card p-8 mb-8 text-left">
+              <div className="mb-8 border border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-cream))] p-8 text-left">
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Order Number</p>
                     <p className="text-h3 font-heading text-heading">{orderData.order_id}</p>
                   </div>
-                  <Package className="w-8 h-8 text-brand-500" />
+                  <Package className="h-8 w-8 text-[hsl(var(--after-hours-copper))]" />
                 </div>
 
                 {orderData.items.length > 0 && (
@@ -219,7 +219,7 @@ const OrderConfirmation = () => {
             )}
 
             {/* What's Next */}
-            <div className="bg-accent/10 border border-accent/20 rounded-card p-6 mb-8 text-left">
+            <div className="mb-8 border border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-cream))] p-6 text-left">
               <h2 className="text-h3 font-heading text-heading mb-4 flex items-center gap-2">
                 <Mail className="w-5 h-5 text-accent" />
                 What happens next?
@@ -277,11 +277,11 @@ const OrderConfirmation = () => {
             {/* Support */}
             <p className="text-sm text-muted-foreground mt-8">
               Questions about your order?{" "}
-              <a href="/contact" className="text-brand-500 hover:underline">
+              <a href="/contact" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
                 Contact us
               </a>{" "}
               or call{" "}
-              <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline">
+              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
                 {BUSINESS_NAP.phone.display}
               </a>
             </p>

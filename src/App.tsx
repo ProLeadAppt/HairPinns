@@ -35,15 +35,13 @@ const Shipping = lazy(() => import("./pages/Shipping"));
 const Returns = lazy(() => import("./pages/Returns"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
-const SuburbPage = lazy(() => import("./pages/SuburbPage"));
 const SuburbRedirect = lazy(() => import("./pages/SuburbRedirect"));
 const LocationPage = lazy(() => import("./pages/LocationPage"));
 const AreasIndex = lazy(() => import("./pages/AreasIndex"));
 const ShippingStatePage = lazy(() => import("./pages/ShippingStatePage"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const DevCollections = lazy(() => import("./pages/DevCollections"));
-const DevShopify = lazy(() => import("./pages/DevShopify"));
+
 const Reviews = lazy(() => import("./pages/Reviews"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Glossary = lazy(() => import("./pages/Glossary"));
@@ -173,7 +171,6 @@ const AppContent = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
               <Route path="/confirm" element={<Confirm />} />
-              <Route path="/near/:suburb" element={<SuburbPage />} />
               <Route path="/suburbs/:suburb" element={<SuburbRedirect />} />
               <Route path="/areas" element={<AreasIndex />} />
               <Route path="/areas/:slug" element={<LocationPage />} />
@@ -188,8 +185,7 @@ const AppContent = () => {
               <Route path="/reviews" element={<Reviews />} />
               <Route path="/reviews/feedback" element={<ReviewFeedback />} />
               <Route path="/reviews/google" element={<ReviewGoogle />} />
-              <Route path="/dev/collections" element={<DevCollections />} />
-              <Route path="/dev/shopify" element={<DevShopify />} />
+
               <Route path="/404" element={<NotFound />} />
               <Route path="/500" element={<ServerError />} />
               <Route path="*" element={<NotFound />} />

@@ -91,7 +91,7 @@ const Privacy = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Contact Us</h2>
             <p className="text-foreground leading-relaxed">
               For any privacy-related questions or requests, please contact us at{" "}
-              <a href="mailto:privacy@hairpinns.com" className="text-brand-500 hover:text-brand-600">
+              <a href="mailto:privacy@hairpinns.com" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 privacy@hairpinns.com
               </a>
               .

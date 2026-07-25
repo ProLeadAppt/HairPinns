@@ -45,26 +45,26 @@ const Shipping = () => {
             </p>
 
             {/* Free shipping callout */}
-            <div className="bg-brand-500/5 border border-brand-500/20 rounded-card p-5 mb-8 text-center">
+            <div className="mb-8 border border-[hsl(var(--after-hours-copper)/0.45)] bg-[hsl(var(--after-hours-cream))] p-5 text-center">
               <p className="text-lg font-semibold text-heading">Free shipping on orders over {FREE_SHIPPING_THRESHOLD_DISPLAY}</p>
               <p className="text-sm text-muted-foreground mt-1">Standard delivery, anywhere in Australia</p>
             </div>
 
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Shipping Rates</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
-              <div className="bg-card border border-border rounded-card p-4 text-center">
+              <div className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-4 text-center">
                 <p className="text-sm text-muted-foreground">Standard</p>
                 <p className="text-xl font-bold text-heading">$9.95</p>
                 <p className="text-xs text-muted-foreground">3-5 business days</p>
               </div>
-              <div className="bg-card border border-border rounded-card p-4 text-center">
+              <div className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-4 text-center">
                 <p className="text-sm text-muted-foreground">Express</p>
                 <p className="text-xl font-bold text-heading">$14.95</p>
                 <p className="text-xs text-muted-foreground">1-2 business days</p>
               </div>
-              <div className="bg-brand-500/5 border border-brand-500/20 rounded-card p-4 text-center">
-                <p className="text-sm text-brand-500 font-medium">Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</p>
-                <p className="text-xl font-bold text-brand-500">FREE</p>
+              <div className="border border-[hsl(var(--after-hours-copper)/0.45)] bg-[hsl(var(--after-hours-cream))] p-4 text-center">
+                <p className="text-sm font-medium text-[hsl(var(--after-hours-plum))]">Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</p>
+                <p className="text-xl font-bold text-[hsl(var(--after-hours-copper))]">FREE</p>
                 <p className="text-xs text-muted-foreground">Standard delivery</p>
               </div>
             </div>
@@ -79,7 +79,7 @@ const Shipping = () => {
                 { step: "Enjoy", desc: "At your door" },
               ].map((s, i) => (
                 <div key={s.step} className="flex flex-col items-center text-center flex-1">
-                  <div className="w-8 h-8 rounded-full bg-brand-500 text-white flex items-center justify-center text-xs font-bold mb-1">{i + 1}</div>
+                  <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-[hsl(var(--after-hours-plum))] text-xs font-bold text-[hsl(var(--after-hours-cream))]">{i + 1}</div>
                   <p className="text-xs font-medium text-heading">{s.step}</p>
                   <p className="text-[10px] text-muted-foreground">{s.desc}</p>
                 </div>
@@ -92,7 +92,7 @@ const Shipping = () => {
             </p>
             <p className="text-foreground leading-relaxed mb-4">
               We deliver to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, Gold Coast, Newcastle, Wollongong and all of Australia.{" "}
-              <a href="/blog/hair-products-melbourne-brisbane-perth-australia" className="text-brand-500 hover:text-brand-600 font-medium">
+              <a href="/blog/hair-products-melbourne-brisbane-perth-australia" className="font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 Read our guide to hair products Melbourne, Brisbane & Perth
               </a>.
             </p>
@@ -109,7 +109,7 @@ const Shipping = () => {
                 <Link
                   key={s.slug}
                   to={`/shipping-to/${s.slug}`}
-                  className="block bg-card border border-border rounded-card px-3 py-2 text-center hover:border-brand-500 hover:text-brand-500 transition-colors"
+                  className="block border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] px-3 py-2 text-center transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))]"
                 >
                   <span className="text-sm font-medium">{s.name}</span>
                   <span className="block text-xs text-muted-foreground">
@@ -122,11 +122,11 @@ const Shipping = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Questions?</h2>
             <p className="text-foreground leading-relaxed">
               For any shipping inquiries, please contact us at{" "}
-              <a href="mailto:hairpinns1@gmail.com" className="text-brand-500 hover:text-brand-600">
+              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 hairpinns1@gmail.com
               </a>{" "}
               or call{" "}
-              <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:text-brand-600">
+              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 {BUSINESS_NAP.phone.display}
               </a>
               .

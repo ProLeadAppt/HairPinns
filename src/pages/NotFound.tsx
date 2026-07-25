@@ -31,7 +31,7 @@ const NotFound = () => {
         noIndex={true}
         noFollow={true}
       />
-      <div className="editorial-route flex min-h-screen items-center justify-center bg-gradient-to-b from-accent/30 to-background">
+      <div className="editorial-route flex min-h-screen items-center justify-center bg-[hsl(var(--after-hours-paper))]">
         <main id="main-content" tabIndex={-1} className="text-center px-4 py-12 max-w-lg">
           <h1 className="mb-2 text-4xl font-heading font-bold text-heading">Hmm, that page doesn't exist</h1>
           <p className="mb-6 text-muted-foreground">
@@ -53,20 +53,20 @@ const NotFound = () => {
           </form>
           <p className="mb-4 text-sm text-muted-foreground">Or jump to:</p>
           <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-            <Link to="/collections" className="bg-card border border-border rounded-card p-4 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-              <ShoppingBag className="w-6 h-6 text-brand-500 mx-auto mb-2" />
+            <Link to="/collections" className="border border-[hsl(var(--after-hours-plum)/0.2)] bg-[hsl(var(--after-hours-paper))] p-4 text-center transition-colors hover:border-[hsl(var(--after-hours-copper))]">
+              <ShoppingBag className="mx-auto mb-2 h-6 w-6 text-[hsl(var(--after-hours-copper))]" />
               <span className="text-sm font-medium text-heading">Shop Products</span>
             </Link>
-            <Link to="/services" className="bg-card border border-border rounded-card p-4 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-              <Scissors className="w-6 h-6 text-brand-500 mx-auto mb-2" />
+            <Link to="/services" className="border border-[hsl(var(--after-hours-plum)/0.2)] bg-[hsl(var(--after-hours-paper))] p-4 text-center transition-colors hover:border-[hsl(var(--after-hours-copper))]">
+              <Scissors className="mx-auto mb-2 h-6 w-6 text-[hsl(var(--after-hours-copper))]" />
               <span className="text-sm font-medium text-heading">Our Services</span>
             </Link>
-            <Link to="/booking" className="bg-card border border-border rounded-card p-4 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-              <Calendar className="w-6 h-6 text-brand-500 mx-auto mb-2" />
+            <Link to="/booking" className="border border-[hsl(var(--after-hours-plum)/0.2)] bg-[hsl(var(--after-hours-paper))] p-4 text-center transition-colors hover:border-[hsl(var(--after-hours-copper))]">
+              <Calendar className="mx-auto mb-2 h-6 w-6 text-[hsl(var(--after-hours-copper))]" />
               <span className="text-sm font-medium text-heading">Book Now</span>
             </Link>
-            <Link to="/contact" className="bg-card border border-border rounded-card p-4 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-              <Phone className="w-6 h-6 text-brand-500 mx-auto mb-2" />
+            <Link to="/contact" className="border border-[hsl(var(--after-hours-plum)/0.2)] bg-[hsl(var(--after-hours-paper))] p-4 text-center transition-colors hover:border-[hsl(var(--after-hours-copper))]">
+              <Phone className="mx-auto mb-2 h-6 w-6 text-[hsl(var(--after-hours-copper))]" />
               <span className="text-sm font-medium text-heading">Contact Jena</span>
             </Link>
           </div>

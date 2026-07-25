@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MapPin, ArrowRight } from "lucide-react";
 import Section from "@/components/design-system/Section";
-import { suburbPages } from "@/data/suburbPages";
+import { locationPages } from "@/data/locationPages";
 
 /**
  * ServiceAreasStrip
@@ -17,12 +17,12 @@ import { suburbPages } from "@/data/suburbPages";
  */
 
 const ANCHOR_SUBURBS: { slug: string; distance: string }[] = [
-  { slug: "bangor", distance: "home salon" },
-  { slug: "menai", distance: "4 min" },
-  { slug: "illawong", distance: "5 min" },
-  { slug: "alfords-point", distance: "6 min" },
-  { slug: "barden-ridge", distance: "7 min" },
-  { slug: "sutherland", distance: "12 min" },
+  { slug: "bangor-2234", distance: "home salon" },
+  { slug: "menai-2234", distance: "4 min" },
+  { slug: "illawong-2234", distance: "5 min" },
+  { slug: "alfords-point-2234", distance: "6 min" },
+  { slug: "barden-ridge-2234", distance: "7 min" },
+  { slug: "sutherland-2232", distance: "12 min" },
 ];
 
 const ServiceAreasStrip = () => {
@@ -50,12 +50,12 @@ const ServiceAreasStrip = () => {
 
         <ul className="flex flex-wrap items-center gap-2">
           {ANCHOR_SUBURBS.map(({ slug, distance }) => {
-            const suburb = suburbPages[slug];
+            const suburb = locationPages[slug];
             if (!suburb) return null;
             return (
               <li key={slug}>
                 <Link
-                  to={`/near/${slug}`}
+                  to={`/areas/${slug}`}
                   className="group inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-background px-3 py-1.5 text-xs font-medium text-heading transition hover:border-gold hover:bg-gold/10"
                 >
                   <span>{suburb.name}</span>
@@ -69,7 +69,7 @@ const ServiceAreasStrip = () => {
               to="/areas"
               className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-gold underline-offset-4 hover:underline"
             >
-              All 21 suburbs <ArrowRight className="h-3 w-3" aria-hidden="true" />
+              All 17 suburbs <ArrowRight className="h-3 w-3" aria-hidden="true" />
             </Link>
           </li>
         </ul>
