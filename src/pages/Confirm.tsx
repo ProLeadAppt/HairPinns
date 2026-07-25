@@ -55,7 +55,7 @@ const Confirm = () => {
       />
 
       <div className="editorial-route min-h-screen flex items-center justify-center bg-background p-4">
-        <div className="max-w-md w-full text-center space-y-6 bg-card p-8 rounded-card border border-border">
+        <div className="w-full max-w-md space-y-6 border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-8 text-center">
           {status === 'loading' && (
             <>
               <Loader2 className="w-16 h-16 animate-spin text-primary mx-auto" />

@@ -99,7 +99,38 @@
   to = "/areas/cronulla-2230"
   status = 301
   force = true
-# Suburbs with no matching /areas/ entry (woronora, engadine, heathcote) fall
+[[redirects]]
+  from = "/near/barden-ridge"
+  to = "/areas/barden-ridge-2234"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/caringbah"
+  to = "/areas/caringbah-2229"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/jannali"
+  to = "/areas/jannali-2226"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/oyster-bay"
+  to = "/areas/oyster-bay-2225"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/padstow"
+  to = "/areas/padstow-2211"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/near/sylvania"
+  to = "/areas/sylvania-2224"
+  status = 301
+  force = true
+# Suburbs with no matching /areas/ entry (woronora, engadine, heathcote and
+# sydney) fall
 # through to the /areas index — better than a 404 on a stale link.
 [[redirects]]
   from = "/near/*"
@@ -161,6 +192,36 @@
 [[redirects]]
   from = "/suburbs/cronulla"
   to = "/areas/cronulla-2230/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/barden-ridge"
+  to = "/areas/barden-ridge-2234/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/caringbah"
+  to = "/areas/caringbah-2229/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/jannali"
+  to = "/areas/jannali-2226/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/oyster-bay"
+  to = "/areas/oyster-bay-2225/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/padstow"
+  to = "/areas/padstow-2211/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/sylvania"
+  to = "/areas/sylvania-2224/"
   status = 301
   force = true
 [[redirects]]

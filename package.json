@@ -6,21 +6,22 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run quality && npm run audit:trust && npm test && node scripts/generate-sitemap.js && node node_modules/vite/bin/vite.js build && node scripts/prerender.mjs && node scripts/seo-smoke-test.js && node scripts/internal-link-audit.mjs",
-    "quality": "node scripts/quality-regression.mjs",
+    "quality": "node scripts/editorial-system-audit.mjs && node scripts/quality-regression.mjs",
+    "audit:design": "node scripts/editorial-system-audit.mjs",
     "audit:trust": "node scripts/content-trust-audit.mjs",
     "test": "vitest run src tests/functions/functions-runtime.test.js",
-    "test:e2e": "playwright test",
+    "test:e2e": "node node_modules/@playwright/test/cli.js test",
     "audit:links": "node scripts/internal-link-audit.mjs",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "prerender": "node scripts/prerender.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.js",
-    "seo-smoke": "node scripts/seo-smoke-test.js",
     "gsc-pulse": "node scripts/gsc-pulse.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview --host 0.0.0.0 --port ${PORT:-4173}",
     "convert-images": "node scripts/convert-images-to-webp.js",
-    "compress-collections": "node scripts/compress-collection-images.js"
+    "compress-collections": "node scripts/compress-collection-images.js",
+    "seo-smoke": "node scripts/seo-smoke-test.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

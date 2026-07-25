@@ -310,7 +310,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           <div className="mt-12 pt-8 border-t border-border">
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-sm font-medium text-brand-500 hover:text-brand-600 transition-colors group"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--after-hours-plum))] transition-colors hover:text-[hsl(var(--after-hours-copper))]"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               Back to All Articles

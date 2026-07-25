@@ -95,7 +95,7 @@ const Glossary = () => {
                   <a
                     key={cat}
                     href={`#category-${cat}`}
-                    className="px-3 py-1.5 text-sm rounded-full border border-border bg-card hover:border-brand-500 hover:text-brand-500 transition-colors"
+                    className="border border-[hsl(var(--after-hours-plum)/0.22)] bg-[hsl(var(--after-hours-paper))] px-3 py-1.5 text-sm transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))]"
                   >
                     {CATEGORY_LABELS[cat]}
                   </a>
@@ -132,7 +132,7 @@ const Glossary = () => {
                           <p className="mt-2 text-sm">
                             <Link
                               to={term.link.href}
-                              className="text-brand-500 hover:text-brand-600 hover:underline font-medium"
+                              className="font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
                             >
                               {term.link.label} →
                             </Link>
@@ -152,13 +152,13 @@ const Glossary = () => {
               <div className="flex flex-wrap justify-center gap-3">
                 <Link
                   to="/contact"
-                  className="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-btn font-medium transition-colors"
+                  className="bg-[hsl(var(--after-hours-plum))] px-5 py-2.5 font-medium text-[hsl(var(--after-hours-cream))] transition-colors hover:bg-[hsl(var(--after-hours-near-black))]"
                 >
                   Contact Jena
                 </Link>
                 <Link
                   to="/services"
-                  className="px-5 py-2.5 border border-border bg-card hover:border-brand-500 hover:text-brand-500 rounded-btn font-medium transition-colors"
+                  className="border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper))] px-5 py-2.5 font-medium transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))]"
                 >
                   See Services
                 </Link>

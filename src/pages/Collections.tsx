@@ -380,7 +380,7 @@ const Collections = () => {
 
                     {/* Content */}
                     <div className="pt-4">
-                      <h2 className="font-heading text-xl leading-tight text-[hsl(var(--after-hours-plum))] transition-colors group-hover:text-brand-600 sm:text-2xl">
+                      <h2 className="font-heading text-xl leading-tight text-[hsl(var(--after-hours-plum))] transition-colors group-hover:text-[hsl(var(--after-hours-copper))] sm:text-2xl">
                         {collection.title}
                       </h2>
                       

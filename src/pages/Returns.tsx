@@ -40,7 +40,7 @@ const Returns = () => {
             </p>
 
             {/* 14-day badge */}
-            <div className="bg-green-50 border border-green-200 rounded-card p-5 mb-8 text-center">
+            <div className="mb-8 border border-green-200 bg-green-50 p-5 text-center">
               <p className="text-2xl font-bold text-green-700">14-Day Returns</p>
               <p className="text-sm text-green-600 mt-1">Changed your mind? No drama. Send it back.</p>
             </div>
@@ -75,7 +75,7 @@ const Returns = () => {
                 { step: 4, text: "Refund processed within 5-7 business days" },
               ].map((s) => (
                 <div key={s.step} className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-full bg-brand-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">{s.step}</div>
+                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[hsl(var(--after-hours-plum))] text-xs font-bold text-[hsl(var(--after-hours-cream))]">{s.step}</div>
                   <p className="text-foreground text-sm">{s.text}</p>
                 </div>
               ))}
@@ -89,11 +89,11 @@ const Returns = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Questions?</h2>
             <p className="text-foreground leading-relaxed">
               Contact us at{" "}
-              <a href="mailto:hairpinns1@gmail.com" className="text-brand-500 hover:text-brand-600">
+              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 hairpinns1@gmail.com
               </a>{" "}
               or{" "}
-              <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:text-brand-600">
+              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 {BUSINESS_NAP.phone.display}
               </a>
               .

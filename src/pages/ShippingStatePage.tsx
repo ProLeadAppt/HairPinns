@@ -233,8 +233,8 @@ const ShippingStatePage = () => {
 
             {/* Delivery window cards */}
             <div className="speakable-delivery grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-              <div className="bg-accent/5 border border-accent/20 rounded-card p-6">
-                <Truck className="w-8 h-8 text-brand-500 mb-3" />
+              <div className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-6">
+                <Truck className="mb-3 h-8 w-8 text-[hsl(var(--after-hours-copper))]" />
                 <h2 className="text-base font-heading font-semibold text-heading mb-1">
                   Standard delivery
                 </h2>
@@ -249,8 +249,8 @@ const ShippingStatePage = () => {
                 </p>
               </div>
 
-              <div className="bg-brand-500/5 border border-brand-500/20 rounded-card p-6">
-                <Package className="w-8 h-8 text-brand-500 mb-3" />
+              <div className="border border-[hsl(var(--after-hours-copper)/0.45)] bg-[hsl(var(--after-hours-cream))] p-6">
+                <Package className="mb-3 h-8 w-8 text-[hsl(var(--after-hours-copper))]" />
                 <h2 className="text-base font-heading font-semibold text-heading mb-1">
                   Express delivery
                 </h2>
@@ -265,8 +265,8 @@ const ShippingStatePage = () => {
                 </p>
               </div>
 
-              <div className="bg-accent/5 border border-accent/20 rounded-card p-6">
-                <Clock className="w-8 h-8 text-brand-500 mb-3" />
+              <div className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-6">
+                <Clock className="mb-3 h-8 w-8 text-[hsl(var(--after-hours-copper))]" />
                 <h2 className="text-base font-heading font-semibold text-heading mb-1">
                   Free shipping
                 </h2>
@@ -296,7 +296,7 @@ const ShippingStatePage = () => {
                     key={region}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full text-sm text-foreground"
                   >
-                    <MapPin className="w-3.5 h-3.5 text-brand-500" />
+                    <MapPin className="h-3.5 w-3.5 text-[hsl(var(--after-hours-copper))]" />
                     {region}
                   </span>
                 ))}
@@ -317,15 +317,15 @@ const ShippingStatePage = () => {
                   <Link
                     key={pick.collectionPath}
                     to={pick.collectionPath}
-                    className="group block bg-card border border-border rounded-card p-5 hover:border-brand-500 transition-colors"
+                    className="group block border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-5 transition-colors hover:border-[hsl(var(--after-hours-copper))]"
                   >
-                    <h3 className="text-lg font-heading font-semibold text-heading mb-2 group-hover:text-brand-500 transition-colors">
+                    <h3 className="mb-2 font-heading text-lg font-semibold text-heading transition-colors group-hover:text-[hsl(var(--after-hours-copper))]">
                       {pick.label}
                     </h3>
                     <p className="text-sm text-foreground leading-relaxed mb-3">
                       {pick.reason}
                     </p>
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-brand-500">
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
                       Shop the range
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </span>
@@ -344,7 +344,7 @@ const ShippingStatePage = () => {
                   <AccordionItem
                     key={idx}
                     value={`faq-${idx}`}
-                    className="bg-card border border-border rounded-card px-5"
+                    className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] px-5"
                   >
                     <AccordionTrigger className="text-left font-heading font-semibold text-heading hover:no-underline">
                       {faq.question}
@@ -395,7 +395,7 @@ const ShippingStatePage = () => {
             )}
 
             {/* CTA */}
-            <div className="text-center bg-brand-500/5 border border-brand-500/20 rounded-card p-8">
+            <div className="border border-[hsl(var(--after-hours-copper)/0.45)] bg-[hsl(var(--after-hours-cream))] p-8 text-center">
               <h2 className="text-2xl font-heading font-bold text-heading mb-3">
                 Ready to order?
               </h2>
