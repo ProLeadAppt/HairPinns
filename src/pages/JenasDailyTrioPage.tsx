@@ -237,7 +237,6 @@ const JenasDailyTrioPage = () => {
     name: `${trio.name} — Curated by Jena | Hair Pinns`,
     description: trio.subheadline,
     url: "https://hairpinns.com/collections/jenas-daily-trio",
-    speakable: { cssSelector: [".speakable-trio-intro"] },
   });
   const faq = generateFAQPageSchema(trio.faqItems);
   const productSchemas = products.map((product) => generateProductSchema({
@@ -295,7 +294,7 @@ const JenasDailyTrioPage = () => {
                 <h1 id="trio-title" className="mt-6 max-w-[9ch] font-heading text-[clamp(3.6rem,9vw,8rem)] font-semibold leading-[0.87] tracking-[-0.06em] text-[hsl(var(--after-hours-cream))]">
                   {trio.headline}
                 </h1>
-                <p className="speakable-trio-intro mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.76)] sm:text-lg sm:leading-8">
+                <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.76)] sm:text-lg sm:leading-8">
                   {trio.subheadline}
                 </p>
               </div>

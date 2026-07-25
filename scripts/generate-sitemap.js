@@ -8,13 +8,19 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import { SERVICE_ROUTES } from './service-routes.js';
+import {
+  normaliseLastmod,
+  parseBlogFreshness,
+  renderSitemapUrl,
+} from './sitemap-utils.js';
+import { isIndexableRoute } from './route-policy.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 /**
- * Get the most recent commit date for a file. Falls back to today if
- * the file isn't tracked or git fails.
+ * Get the most recent commit date for a tracked file. If Git cannot prove a
+ * date, omit lastmod rather than claiming the build date as content freshness.
  */
 function gitLastMod(relativePath) {
   try {
@@ -22,9 +28,9 @@ function gitLastMod(relativePath) {
       `git log -1 --format=%cd --date=short -- "${relativePath}"`,
       { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }
     ).trim();
-    return result || new Date().toISOString().split('T')[0];
+    return normaliseLastmod(result);
   } catch {
-    return new Date().toISOString().split('T')[0];
+    return undefined;
   }
 }
 
@@ -42,7 +48,6 @@ if (existsSync(resolve(root, '.env'))) {
 }
 
 const BASE = 'https://hairpinns.com';
-const today = new Date().toISOString().split('T')[0];
 
 function canonicalSiteUrl(value) {
   const parsed = new URL(value, `${BASE}/`);
@@ -52,22 +57,8 @@ function canonicalSiteUrl(value) {
   return parsed.toString();
 }
 
-function url(loc, changefreq = 'weekly', priority = 0.8, lastmod = today, images = []) {
-  return { loc: canonicalSiteUrl(loc), changefreq, priority, lastmod, images };
-}
-
-/**
- * Escape a string for safe inclusion in XML element content / attribute
- * values. Sitemap image titles/captions can contain &, <, >, etc.
- */
-function xmlEscape(s) {
-  if (s == null) return '';
-  return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
+function url(loc, changefreq = 'weekly', priority = 0.8, lastmod, images = []) {
+  return { loc: canonicalSiteUrl(loc), changefreq, priority, lastmod: normaliseLastmod(lastmod), images };
 }
 
 async function fetchShopify(query, variables = {}) {
@@ -101,6 +92,7 @@ async function getShopifyProducts() {
       edges { node {
         handle
         title
+        updatedAt
         images(first: 5) {
           edges { node { url altText } }
         }
@@ -110,6 +102,7 @@ async function getShopifyProducts() {
   const products = (data?.products?.edges || []).map((e) => ({
     handle: e.node.handle,
     title: e.node.title,
+    updatedAt: e.node.updatedAt,
     images: (e.node.images?.edges || [])
       .map((ie) => ({ url: ie.node.url, altText: ie.node.altText || e.node.title }))
       .filter((img) => img.url),
@@ -121,12 +114,14 @@ async function getShopifyProducts() {
 async function getShopifyCollections() {
   const data = await fetchShopify(`
     query { collections(first: 50) {
-      edges { node { handle } }
+      edges { node { handle updatedAt } }
     }}
   `);
-  const handles = data?.collections?.edges?.map((e) => e.node.handle).filter(Boolean) || [];
-  if (handles.length === 0) throw new Error('[sitemap] Shopify returned no collections; refusing an incomplete sitemap');
-  return handles;
+  const collections = data?.collections?.edges
+    ?.map((edge) => ({ handle: edge.node.handle, updatedAt: edge.node.updatedAt }))
+    .filter((entry) => entry.handle) || [];
+  if (collections.length === 0) throw new Error('[sitemap] Shopify returned no collections; refusing an incomplete sitemap');
+  return collections;
 }
 
 async function main() {
@@ -168,10 +163,15 @@ async function main() {
   });
 
   // Collections come from live Shopify. Incomplete API responses fail the build.
-  let collectionHandles = await getShopifyCollections();
-  collectionHandles = [...new Set([...collectionHandles, 'jenas-daily-trio'])];
-  collectionHandles.forEach((h) => {
-    urls.push(url(`${BASE}/collections/${h}`, 'weekly', 0.8));
+  const collectionEntries = await getShopifyCollections();
+  const collectionFreshness = new Map(
+    collectionEntries.map((entry) => [entry.handle, entry.updatedAt]),
+  );
+  if (!collectionFreshness.has('jenas-daily-trio')) {
+    collectionFreshness.set('jenas-daily-trio', gitLastMod('src/data/jenasDailyTrio.ts'));
+  }
+  collectionFreshness.forEach((updatedAt, handle) => {
+    urls.push(url(`${BASE}/collections/${handle}`, 'weekly', 0.8, updatedAt));
   });
 
   // Products from Shopify — fetch handles + images so each <url> in the
@@ -179,7 +179,7 @@ async function main() {
   // reads these for product photo indexing.
   const productEntries = await getShopifyProducts();
   productEntries.forEach((p) => {
-    urls.push(url(`${BASE}/products/${p.handle}`, 'weekly', 0.8, today, p.images));
+    urls.push(url(`${BASE}/products/${p.handle}`, 'weekly', 0.8, p.updatedAt, p.images));
   });
 
   // Location pages (areas) - read from source
@@ -199,11 +199,8 @@ async function main() {
   // Blog posts - read slug from source
   const blogPath = resolve(root, 'src/data/blogSummaries.ts');
   const blogContent = existsSync(blogPath) ? readFileSync(blogPath, 'utf8') : '';
-  const blogMod = gitLastMod('src/data/blogSummaries.ts');
-  const blogSlugs = [...(blogContent.match(/slug:\s*["']([^"']+)["']/g) || [])].map((m) => m.replace(/slug:\s*["']([^"']+)["']/, '$1'));
-  const excludedBlogSlugs = new Set(['christmas-gift-packs-at-hair-pinns']);
-  [...new Set(blogSlugs)].filter((s) => s.length > 2 && !excludedBlogSlugs.has(s)).forEach((slug) => {
-    urls.push(url(`${BASE}/blog/${slug}`, 'monthly', 0.6, blogMod));
+  parseBlogFreshness(blogContent).filter(({ slug }) => isIndexableRoute(`/blog/${slug}`)).forEach(({ slug, lastmod }) => {
+    urls.push(url(`${BASE}/blog/${slug}`, 'monthly', 0.6, lastmod));
   });
 
   // State-by-state shipping landing pages — one per AU state/territory.
@@ -247,24 +244,7 @@ async function main() {
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${urls
-  .map((u) => {
-    const imageBlock = (u.images || [])
-      .slice(0, 5)
-      .map(
-        (img) => `    <image:image>
-      <image:loc>${xmlEscape(img.url)}</image:loc>${img.altText ? `\n      <image:title>${xmlEscape(img.altText)}</image:title>` : ''}
-    </image:image>`
-      )
-      .join('\n');
-    return `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
-    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority.toFixed(1)}</priority>${imageBlock ? '\n' + imageBlock : ''}
-  </url>`;
-  })
-  .join('\n')}
+${urls.map(renderSitemapUrl).join('\n')}
 </urlset>`;
 
   const outPath = resolve(root, 'public', 'sitemap.xml');

@@ -42,13 +42,6 @@ interface BlogPostData {
   wordCount?: number;
 }
 
-interface QAPageData {
-  question: string;
-  answer: string;
-  author?: string;
-  datePublished?: string;
-}
-
 interface HowToData {
   name: string;
   description: string;
@@ -91,6 +84,29 @@ const BUSINESS_SAME_AS = [
   ENTITY_REGISTRY.profiles.facebook,
   ENTITY_REGISTRY.profiles.sustainableSalons,
 ];
+
+export type SchemaNode = Record<string, unknown>;
+
+/**
+ * Emit one JSON-LD document per page. Individual generators remain small and
+ * reusable, while SEOHead publishes them as a single connected schema graph.
+ */
+export const buildSchemaGraph = (schemas: SchemaNode | SchemaNode[]) => {
+  const input = Array.isArray(schemas) ? schemas : [schemas];
+  const graph = input.flatMap((schema) => {
+    const nestedGraph = schema['@graph'];
+    const nodes = Array.isArray(nestedGraph) ? nestedGraph : [schema];
+    return nodes.map((node) => {
+      const { '@context': _context, '@graph': _graph, ...rest } = node as SchemaNode;
+      return rest;
+    });
+  });
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph,
+  };
+};
 
 const schemaAuthor = (name: string) => ({
   '@type': 'Person',
@@ -377,18 +393,23 @@ export const generateProductSchema = (product: ProductData) => {
   return schema;
 };
 
-export const generateFAQPageSchema = (faqs: FAQItem[]) => ({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
-});
+export const generateFAQPageSchema = (faqs: FAQItem[]) => {
+  if (faqs.length === 0) {
+    throw new Error('FAQPage schema requires at least one eligible FAQ');
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+};
 
 /**
  * WebPage schema for generic pages - helps search engines understand page context
@@ -398,7 +419,6 @@ export const generateWebPageSchema = (data: {
   description: string;
   url: string;
   breadcrumb?: BreadcrumbItem[];
-  speakable?: { cssSelector?: string[]; xPath?: string[] };
 }) => {
   const schema: any = {
     '@context': 'https://schema.org',
@@ -415,12 +435,6 @@ export const generateWebPageSchema = (data: {
   };
   if (data.breadcrumb && data.breadcrumb.length > 0) {
     schema.breadcrumb = generateBreadcrumbSchema(data.breadcrumb);
-  }
-  if (data.speakable) {
-    schema.speakable = {
-      '@type': 'SpeakableSpecification',
-      ...data.speakable,
-    };
   }
   return schema;
 };
@@ -449,6 +463,7 @@ export const generateBlogPostSchema = (post: BlogPostData) => {
   const schema: any = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': `${post.url}#article`,
     headline: post.title,
     description: post.description,
     author: schemaAuthor(post.author),
@@ -461,6 +476,10 @@ export const generateBlogPostSchema = (post: BlogPostData) => {
       '@type': 'WebPage',
       '@id': post.url,
     },
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': ENTITY_REGISTRY.ids.webSite,
+    },
   };
 
   if (post.wordCount) {
@@ -470,33 +489,6 @@ export const generateBlogPostSchema = (post: BlogPostData) => {
   return schema;
 };
 
-/**
- * Generate QAPage schema for Answer Engine Optimization
- * Used for question-answer content optimized for AI search engines
- */
-export const generateQAPageSchema = (qa: QAPageData) => ({
-  '@context': 'https://schema.org',
-  '@type': 'QAPage',
-  mainEntity: {
-    '@type': 'Question',
-    name: qa.question,
-    text: qa.question,
-    dateCreated: qa.datePublished || new Date().toISOString(),
-    author: {
-      '@type': 'Person',
-      name: qa.author || 'Jena Pinn',
-    },
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: qa.answer,
-      dateCreated: qa.datePublished || new Date().toISOString(),
-      author: {
-        '@type': 'Person',
-        name: qa.author || 'Jena Pinn',
-      },
-    },
-  },
-});
 
 /**
  * Generate HowTo schema for step-by-step tutorials
@@ -543,42 +535,6 @@ export const generateHowToSchema = (howTo: HowToData) => {
   return schema;
 };
 
-/**
- * Generate enhanced Article schema with speakable property
- * Optimized for voice search and AI assistants
- */
-export const generateArticleSchema = (post: BlogPostData & { speakable?: { cssSelector?: string[]; xPath?: string[] } }) => {
-  const schema: any = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.description,
-    author: schemaAuthor(post.author),
-    publisher: schemaPublisher(),
-    datePublished: post.datePublished,
-    dateModified: post.dateModified || post.datePublished,
-    image: post.image,
-    url: post.url,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': post.url,
-    },
-  };
-
-  if (post.wordCount) {
-    schema.wordCount = post.wordCount;
-  }
-
-  // Add speakable property for voice search optimization
-  if (post.speakable) {
-    schema.speakable = {
-      '@type': 'SpeakableSpecification',
-      ...post.speakable,
-    };
-  }
-
-  return schema;
-};
 
 /**
  * Person schema for Jena Pinn — E-E-A-T author authority.
@@ -1074,12 +1030,8 @@ export const generateBlogItemListSchema = (items: Array<{
   itemListElement: items.map((item, index) => ({
     '@type': 'ListItem',
     position: index + 1,
-    item: {
-      '@type': 'Article',
-      name: item.name,
-      url: item.url.startsWith('http') ? item.url : `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
-      ...(item.datePublished && { datePublished: item.datePublished }),
-    },
+    name: item.name,
+    item: item.url.startsWith('http') ? item.url : `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
   })),
 });
 

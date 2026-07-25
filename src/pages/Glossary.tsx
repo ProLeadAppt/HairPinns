@@ -53,7 +53,6 @@ const Glossary = () => {
     description:
       "Plain-English hair-care glossary — keratin treatments, full head foils, bond repair, toner, sulphate-free, lamellar and more. Defined by Jena at Hair Pinns Bangor.",
     url: "https://hairpinns.com/glossary",
-    speakable: { cssSelector: [".glossary-term-definition"] },
   });
 
   return (

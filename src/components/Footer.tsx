@@ -16,6 +16,7 @@ const shopLinks = [
   ["Returns", "/policies/returns"],
   ["FAQ", "/faq"],
   ["Glossary", "/glossary"],
+  ["Sitemap", "/sitemap"],
 ] as const;
 
 const salonLinks = [

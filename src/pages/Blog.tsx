@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { getOGImage } from "@/lib/sitemap";
 import { generateWebPageSchema, generateBreadcrumbSchema, generateBlogItemListSchema } from "@/lib/schema";
 import Header from "@/components/Header";
@@ -143,6 +144,24 @@ const Blog = () => {
                   </button>
                 </div>
               ) : null}
+
+              <details className="mt-12 border-y border-[hsl(var(--after-hours-plum)/0.24)] py-5">
+                <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-[hsl(var(--after-hours-plum))]">
+                  Browse all journal guides
+                </summary>
+                <ul className="grid gap-x-8 pt-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {visiblePosts.map((post) => (
+                    <li key={post.slug} className="border-t border-[hsl(var(--after-hours-plum)/0.14)]">
+                      <Link
+                        to={`/blog/${post.slug}`}
+                        className="flex min-h-11 items-center py-2 text-sm leading-5 text-[hsl(var(--after-hours-plum)/0.78)] hover:text-[hsl(var(--after-hours-copper))]"
+                      >
+                        {post.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </details>
             </div>
           </section>
         ) : null}

@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { getProductByHandle, getProductUrl } from "@/lib/shopify";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
+import { buildMetaDescription } from "@/lib/metadata";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { getCartId } from "@/lib/cartManagement";
@@ -443,7 +444,10 @@ const ProductDetail = () => {
   });
 
   // Build product schemas
-  const productDescription = String(product.description ?? "").substring(0, 120);
+  const productDescription = buildMetaDescription(
+    product.description || `${product.title} - Professional hair care product from Hair Pinns`,
+    { suffix: "Shipped Australia-wide. Free shipping over $150." },
+  );
 
   const productSchemas = [
     generateBreadcrumbSchema([
@@ -489,7 +493,6 @@ const ProductDetail = () => {
       name: product.title,
       description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
       url: `https://hairpinns.com/products/${handle}`,
-      speakable: { cssSelector: [".speakable-product-intro"] },
     }),
     ...(() => {
       const howTo = getProductHowTo(handle, product.title);
@@ -507,7 +510,7 @@ const ProductDetail = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title={`${product.title} | Hair Care Australia | Hair Pinns`}
-        description={`${productDescription} Shipped Australia-wide. Free shipping over $150.`}
+        description={productDescription}
         canonical={`https://hairpinns.com/products/${handle}`}
         ogImage={images[0]?.url || getOGImage('product')}
         ogType="product"
@@ -782,13 +785,13 @@ const ProductDetail = () => {
                           const keyPoints = sentences.slice(0, 5).map((s: string) => s.trim()).filter(Boolean);
 
                           if (keyPoints.length === 0) {
-                            return <p className="speakable-product-intro">Professional hair care product designed for great results at home.</p>;
+                            return <p>Professional hair care product designed for great results at home.</p>;
                           }
 
                           return (
                             <div className="space-y-2">
                               {keyPoints.map((point, index) => (
-                                <p key={index} className={index === 0 ? "speakable-product-intro text-sm leading-relaxed" : "text-sm leading-relaxed"}>{point}.</p>
+                                <p key={index} className="text-sm leading-relaxed">{point}.</p>
                               ))}
                             </div>
                           );

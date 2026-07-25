@@ -127,7 +127,7 @@ const Collections = () => {
     const fetchCollections = async () => {
       try {
         setIsLoading(true);
-        const data = await getAllCollections(20);
+        const data = await getAllCollections(100);
         const sortedData = sortCollections(data);
         setCollections(sortedData);
         setError(null);
@@ -194,6 +194,7 @@ const Collections = () => {
         ogImage={getOGImage('collection')}
         ogType="website"
         schemaJson={schemas}
+        prerenderReady={!isLoading}
       />
 
       <Header />

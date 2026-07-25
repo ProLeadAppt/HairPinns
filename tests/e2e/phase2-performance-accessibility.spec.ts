@@ -624,6 +624,7 @@ test('cart drawer is a keyboard-contained named dialog', async ({ page }) => {
 
   const cart = page.getByRole('dialog', { name: 'Your Bag' });
   await expect(cart).toBeVisible();
+  await expect.poll(() => cart.evaluate((element) => element.contains(document.activeElement))).toBe(true);
   await page.keyboard.press('Escape');
   await expect(cart).toBeHidden();
   await expect(cartButton).toBeFocused();

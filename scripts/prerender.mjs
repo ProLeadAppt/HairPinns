@@ -32,6 +32,7 @@ import { resolve, dirname, join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { collectRoutes } from './collect-prerender-routes.js';
 import { isTransientBrowserError, isTransientPrerenderRouteError } from './prerender-retry.mjs';
+import { getListeningPort, resolveRequestedPort } from './prerender-port.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -48,8 +49,7 @@ const argMap = Object.fromEntries(
 const DRY_RUN = argMap['dry-run'] === 'true';
 const CONCURRENCY = parseInt(argMap.concurrency || '4', 10);
 const TIMEOUT_MS = parseInt(argMap.timeout || '60000', 10);
-const PORT = parseInt(argMap.port || '4180', 10);
-const PREVIEW_URL = `http://127.0.0.1:${PORT}`;
+const REQUESTED_PORT = resolveRequestedPort(argMap);
 
 // ----- third-party pollution to strip from rendered HTML -----
 // Mirrors the regexes from the old rollup-plugin's postProcess. Each one
@@ -277,14 +277,16 @@ async function main() {
   // Start a tiny static server in-process. This is more stable than `vite preview`
   // for long prerender batches and still serves the built SPA shell plus assets.
   const PREVIEW_HOST = '127.0.0.1';
-  preview = await startPreviewServer(PORT, PREVIEW_HOST);
-  const res = await fetch(`${PREVIEW_URL}/`, { method: 'GET' });
+  preview = await startPreviewServer(REQUESTED_PORT, PREVIEW_HOST);
+  const previewPort = getListeningPort(preview);
+  const previewUrl = `http://${PREVIEW_HOST}:${previewPort}`;
+  const res = await fetch(`${previewUrl}/`, { method: 'GET' });
   if (!res.ok) {
     console.error(`[prerender] Preview server health check failed with HTTP ${res.status}`);
     await stopPreview(preview);
     process.exit(1);
   }
-  console.log(`[prerender] Preview server ready at ${PREVIEW_URL}`);
+  console.log(`[prerender] Preview server ready at ${previewUrl}`);
 
   // Lazy import puppeteer (large dep)
   const puppeteer = (await import('puppeteer')).default;
@@ -327,7 +329,7 @@ async function main() {
     routes.map((route) =>
       (route.startsWith('/products/') ? productPool : pool).run(async () => {
         const t0 = Date.now();
-        const url = `${PREVIEW_URL}${route}`;
+        const url = `${previewUrl}${route}`;
         let lastErr = null;
 
         for (let attempt = 0; attempt < 3; attempt++) {
@@ -483,10 +485,3 @@ main().catch((err) => {
   console.error('[prerender] Fatal:', err);
   process.exit(1);
 });
-
-// Belt-and-braces: when Node's event loop drains, exit. This should be a
-// no-op (the await stopPreview calls above release the loop), but if anything
-// else (a stray setTimeout, a misbehaving native binding) ever sneaks in,
-// `process.exit(0)` is a final guarantee that the build script returns control
-// to `npm run build` and the Netlify job finishes inside its time limit.
-process.on('exit', () => {});

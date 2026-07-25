@@ -186,7 +186,6 @@ const ShippingStatePage = () => {
       name: `Hair Care Delivery to ${data.name}`,
       description: pageDescription,
       url: canonicalUrl,
-      speakable: { cssSelector: [".speakable-state-intro", ".speakable-delivery"] },
     }),
     generateFAQPageSchema(data.faqs),
     generateOrganizationSchema(),
@@ -227,12 +226,12 @@ const ShippingStatePage = () => {
           />
 
           <div className="max-w-3xl mx-auto">
-            <p className="speakable-state-intro text-lg text-foreground leading-relaxed mb-8">
+            <p className="text-lg text-foreground leading-relaxed mb-8">
               {data.intro}
             </p>
 
             {/* Delivery window cards */}
-            <div className="speakable-delivery grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
               <div className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-6">
                 <Truck className="mb-3 h-8 w-8 text-[hsl(var(--after-hours-copper))]" />
                 <h2 className="text-base font-heading font-semibold text-heading mb-1">

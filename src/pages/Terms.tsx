@@ -21,7 +21,7 @@ const Terms = () => {
     <div className="editorial-route min-h-screen flex flex-col">
       <SEOHead
         title="Terms of Service | Hair Pinns"
-        description="Hair Pinns terms of service for salon services and online purchases."
+        description="Read Hair Pinns terms for salon bookings, online orders, payments, shipping, returns, website use and customer responsibilities."
         canonical="https://hairpinns.com/terms"
         hrefLang="en-AU"
         ogImage="https://hairpinns.com/og-default.jpg"
