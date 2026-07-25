@@ -19,8 +19,8 @@ const JenaPromise = lazy(() => import("@/components/home/JenaPromise"));
 import {
   generateOrganizationSchema,
   generateEnhancedLocalBusinessSchema,
-  generateKnowledgeGraphSchema,
   generateStoreSchema,
+  generatePlaceSchema,
   generateWebPageSchema,
   generateAuthorSchema,
   generateWebSiteSchema,
@@ -110,8 +110,8 @@ const Index = () => {
   const mainRef = useScrollReveal();
   const organizationSchema = generateOrganizationSchema();
   const localBusinessSchema = generateEnhancedLocalBusinessSchema('https://hairpinns.com');
-  const knowledgeGraphSchema = generateKnowledgeGraphSchema();
   const storeSchema = generateStoreSchema();
+  const placeSchema = generatePlaceSchema();
   const authorSchema = generateAuthorSchema();
   const webSiteSchema = generateWebSiteSchema();
 
@@ -136,8 +136,8 @@ const Index = () => {
       webSiteSchema,
       organizationSchema,
       localBusinessSchema,
-      knowledgeGraphSchema,
       storeSchema,
+      placeSchema,
       webPageSchema,
       authorSchema,
       popularGuidesSchema,
@@ -146,8 +146,8 @@ const Index = () => {
       webSiteSchema,
       organizationSchema,
       localBusinessSchema,
-      knowledgeGraphSchema,
       storeSchema,
+      placeSchema,
       webPageSchema,
       authorSchema,
       popularGuidesSchema,

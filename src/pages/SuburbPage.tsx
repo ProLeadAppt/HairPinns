@@ -23,9 +23,10 @@ import {
   Scissors
 } from "lucide-react";
 import { getSuburbData } from "@/data/suburbPages";
-import { generateFAQPageSchema, generateWebPageSchema, generatePlaceSchema, generateQAPageSchema } from "@/lib/schema";
+import { generateFAQPageSchema, generateWebPageSchema, generateQAPageSchema, generateLocalBusinessSchema } from "@/lib/schema";
 import { getOGImage } from "@/lib/sitemap";
-import { BUSINESS_NAP, BUSINESS_HOURS, BUSINESS_HOURS_DISPLAY } from "@/config/businessConfig";
+import { BUSINESS_NAP, BUSINESS_HOURS_DISPLAY } from "@/config/businessConfig";
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 import RelatedContent from "@/components/RelatedContent";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
@@ -65,6 +66,8 @@ const SuburbPage = () => {
     return <InvalidSuburb />;
   }
 
+  const canonicalUrl = `https://hairpinns.com/near/${suburbData.slug}`;
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -85,51 +88,12 @@ const SuburbPage = () => {
         "@type": "ListItem",
         "position": 3,
         "name": suburbData.name,
-        "item": `https://hairpinns.com/near/${suburbData.slug}`
+        "item": canonicalUrl
       }
     ]
   };
 
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "HairSalon",
-    "@id": "https://hairpinns.com/#hairsalon",
-    "name": "Hair Pinns",
-    "image": "https://hairpinns.com/logo.png",
-    "description": `Boutique hair salon serving ${suburbData.name} with Colour & Blonding, Smoothing Treatments, and Cuts & Styling.`,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": BUSINESS_NAP.address.street,
-      "addressLocality": BUSINESS_NAP.address.locality,
-      "addressRegion": BUSINESS_NAP.address.region,
-      "postalCode": BUSINESS_NAP.address.postcode,
-      "addressCountry": BUSINESS_NAP.address.country
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": suburbData.name
-      },
-      {
-        "@type": "City",
-        "name": "Bangor"
-      }
-    ],
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "-34.0186",
-      "longitude": "151.0333"
-    },
-    "url": `https://hairpinns.com/near/${suburbData.slug}`,
-    "telephone": BUSINESS_NAP.phone.raw,
-    "priceRange": "$$",
-    "openingHoursSpecification": BUSINESS_HOURS.map(h => ({
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": h.day,
-      "opens": h.opens,
-      "closes": h.closes,
-    }))
-  };
+  const localBusinessSchema = generateLocalBusinessSchema(canonicalUrl);
 
   const services = [
     {
@@ -165,14 +129,7 @@ const SuburbPage = () => {
       url: `https://hairpinns.com/near/${suburbData.slug}`,
       speakable: suburbData.quickAnswer ? { cssSelector: [".speakable-quick-answer"] } : undefined,
     }),
-    generatePlaceSchema({
-      name: `Hair Pinns - ${suburbData.name}`,
-      description: suburbData.quickAnswer || suburbData.intro,
-      url: `https://hairpinns.com/near/${suburbData.slug}`,
-      addressLocality: suburbData.name,
-      addressRegion: "NSW",
-      postalCode: "2234",
-    }),
+
     ...(suburbData.quickAnswer ? [generateQAPageSchema({
       question: `What is Hair Pinns near ${suburbData.name}?`,
       answer: suburbData.quickAnswer,
@@ -183,8 +140,8 @@ const SuburbPage = () => {
     <>
       <SEOHead
         title={`Hair Salon ${suburbData.name} | Hair Pinns Bangor | Book Online`}
-        description={`${suburbData.driveTime} from ${suburbData.name}. Colour, smoothing & cuts. Expert care since 2018. Book online 24/7.`}
-        canonical={`https://hairpinns.com/near/${suburbData.slug}`}
+        description={`${suburbData.driveTime} from ${suburbData.name}. Colour, smoothing and cuts in the Bangor studio. ${ENTITY_REGISTRY.person.safeExperienceWording}. Book online.`}
+        canonical={canonicalUrl}
         ogImage={getOGImage('suburb')}
         ogType="website"
         hrefLang="en-AU"

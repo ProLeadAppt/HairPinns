@@ -5,7 +5,7 @@ import ImageGallery from "@/components/gallery/ImageGallery";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { getOGImage } from "@/lib/sitemap";
-import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateFAQPageSchema, generateBreadcrumbSchema, generateAuthorSchema } from "@/lib/schema";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { BUSINESS_NAP, SITE_URL } from "@/config/businessConfig";
 
@@ -105,18 +105,12 @@ const About = () => {
   ]);
   const faqSchema = generateFAQPageSchema(aboutFaqs);
   const jenaPersonSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Jena Pinn",
+    ...generateAuthorSchema(),
     jobTitle: "Founder and Hairdresser",
     description: "Founder of Hair Pinns boutique salon in Bangor, NSW. Behind the chair at Hair Pinns since 2009, with a focus on colour, blonding, smoothing treatments, cutting, and styling.",
     image: `${SITE_URL}${jenaFounderWebp1080}`,
     url: `${SITE_URL}/about`,
-    worksFor: {
-      "@type": "Organization",
-      name: BUSINESS_NAP.name,
-      url: SITE_URL,
-    },
+
     knowsAbout: ["Hair colouring", "Hair blonding", "Hair smoothing", "Hair cutting", "Hair styling"],
     areaServed: {
       "@type": "City",

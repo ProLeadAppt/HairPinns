@@ -1,3 +1,4 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
@@ -22,7 +23,7 @@ const post = {
         },
         {
           heading: "Services Popular with Miranda Locals",
-          content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
+          content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
         },
         {
           heading: "Why the Miranda Trip Works",
@@ -35,7 +36,7 @@ const post = {
       ],
       quickAnswer: {
         question: "What's the best hair salon near Miranda?",
-        answer: "Hair Pinns is located at 60 Goorgool Road, Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call 0416 037 663."
+        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 10–12 minutes from Miranda via Kingsway",
@@ -47,7 +48,7 @@ const post = {
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
+          answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + " in Bangor, with local parking and online booking. Jena has worked behind the chair since 2009.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",

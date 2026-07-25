@@ -282,7 +282,7 @@ const OrderConfirmation = () => {
               </a>{" "}
               or call{" "}
               <a href={BUSINESS_NAP.phone.tel} className="text-brand-500 hover:underline">
-                0416 037 663
+                {BUSINESS_NAP.phone.display}
               </a>
             </p>
           </div>

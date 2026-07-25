@@ -27,9 +27,10 @@ const source = (await Promise.all(
 ));
 
 const forbiddenClaims = [
-  { pattern: /20\+ years|over 20 years|twenty years of salon experience/i, label: 'unsupported rolling tenure claim' },
+  { pattern: /20\+ years|over 20 years|more than 20 years|after 20 years|twenty years of salon experience/i, label: 'unsupported rolling tenure claim' },
   { pattern: /team of 4 stylists/i, label: 'unsupported team-size claim' },
-  { pattern: /4\.9-star Google rating/i, label: 'unsupported aggregate review claim' },
+  { pattern: /4\.9-star Google rating|(?:Google[^\n]{0,50}4\.9|4\.9[^\n]{0,50}Google)|\b762\+?\b|53\+?[^\n]{0,20}4\.9/i, label: 'unsupported aggregate review claim' },
+  { pattern: /(?:since|established|founded|expert care since) 2018/i, label: 'conflicting tenure claim' },
   { pattern: /15 minutes from Bangor/i, label: 'unsupported travel-time claim' },
   { pattern: /L['’]Or[ée]al Colour Specialist|DevaCut certified|Brazilian Blowout certified/i, label: 'unsupported credential claim' },
   { pattern: /up to 4 weddings per Saturday|no waitlist/i, label: 'unsupported capacity or availability claim' },
@@ -38,8 +39,10 @@ const forbiddenClaims = [
   { pattern: /four hundred client trials|400 client trials/i, label: 'unsupported trial-volume claim' },
 ];
 
+const claimSource = source.filter(({ file }) => !/\.test\.[cm]?[jt]sx?$/.test(file));
+
 for (const { pattern, label } of forbiddenClaims) {
-  const matches = source
+  const matches = claimSource
     .filter(({ text }) => pattern.test(text))
     .map(({ file }) => file);
   assert.deepEqual(matches, [], `${label} found in: ${matches.join(', ')}`);

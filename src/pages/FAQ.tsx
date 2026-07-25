@@ -48,7 +48,7 @@ const FAQPage = () => {
     <div className="min-h-screen bg-[hsl(var(--after-hours-paper))]">
       <SEOHead
         title="FAQ | Hair Pinns | Common Questions About Hair Care and Shipping"
-        description="Got questions about hair care, shipping, returns or booking? Here are the answers. If you can't find what you need, just call Jena on 0416 037 663."
+        description={`Got questions about hair care, shipping, returns or booking? Here are the answers. If you can't find what you need, just call Jena on ${BUSINESS_NAP.phone.display}.`}
         canonical="https://hairpinns.com/faq"
         ogImage={getOGImage("default")}
         ogType="website"

@@ -1,3 +1,4 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
@@ -14,7 +15,7 @@ const post = {
     sections: [
       {
         heading: "Hair Pinns Since 2009",
-        content: "Hair Pinns opened in Bangor in 2009. The salon now serves clients from Bangor and surrounding Sutherland Shire suburbs from 60 Goorgool Road. If you are comparing salons, start with the practical details: the current service menu, live booking availability, and whether the stylist's approach matches what you need."
+        content: "Hair Pinns opened in Bangor in 2009. The salon now serves clients from Bangor and surrounding Sutherland Shire suburbs from " + BUSINESS_NAP.address.street + ". If you are comparing salons, start with the practical details: the current service menu, live booking availability, and whether the stylist's approach matches what you need."
       },
       {
         heading: "What I Work On",
@@ -26,7 +27,7 @@ const post = {
       },
       {
         heading: "Where to Find Hair Pinns",
-        content: "Hair Pinns is at 60 Goorgool Road, Bangor NSW 2234. You can view the current service menu and live availability through the [booking page](/booking), or call 0416 037 663 if you need help choosing a service."
+        content: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. You can view the current service menu and live availability through the [booking page](/booking), or call " + BUSINESS_NAP.phone.display + " if you need help choosing a service."
       }
     ],
     quickAnswer: {
@@ -38,7 +39,7 @@ const post = {
       "Jena is the founder and stylist behind the salon",
       "The current menu covers colour, foils, smoothing treatments, cuts, and styling",
       "Current prices, durations, and availability are shown through Fresha",
-      "Hair Pinns is at 60 Goorgool Road, Bangor NSW 2234"
+      "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234"
     ],
     faqSection: [
       {
@@ -55,7 +56,7 @@ const post = {
       },
       {
         question: "Where is Hair Pinns?",
-        answer: "Hair Pinns is at 60 Goorgool Road, Bangor NSW 2234."
+        answer: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234."
       }
     ]
   },

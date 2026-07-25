@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useMemo } from "react";
 import { SITE_URL, canonicalSiteUrl } from "@/config/businessConfig";
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 
 interface SEOHeadProps {
   /** Page title (used for <title> and og:title) */
@@ -126,12 +127,12 @@ export const SEOHead = ({
     // Geo targeting — explicit AU signals for the wider search ecosystem.
     // Hair Pinns ships only within Australia and the salon is in Bangor NSW,
     // so we lean into these signals rather than presenting as a generic
-    // English site. `geo.position` / ICBM are Sydney lat/long (close enough
-    // for the Bangor 2234 retail/dispatch hub).
+    // English site. Coordinates come from the canonical entity registry and
+    // retain their verification status and provenance there.
     addMeta({ name: 'geo.region', content: 'AU-NSW' });
     addMeta({ name: 'geo.placename', content: 'Bangor, New South Wales, Australia' });
-    addMeta({ name: 'geo.position', content: '-34.0227;151.0144' });
-    addMeta({ name: 'ICBM', content: '-34.0227, 151.0144' });
+    addMeta({ name: 'geo.position', content: `${ENTITY_REGISTRY.place.geo.latitude};${ENTITY_REGISTRY.place.geo.longitude}` });
+    addMeta({ name: 'ICBM', content: `${ENTITY_REGISTRY.place.geo.latitude}, ${ENTITY_REGISTRY.place.geo.longitude}` });
     addMeta({ name: 'DC.coverage', content: 'Australia' });
 
     // Canonical + hreflang.

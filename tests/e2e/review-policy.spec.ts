@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { ENTITY_REGISTRY } from "../../src/config/entityRegistry";
 
 const ratings = [1, 5] as const;
 
@@ -13,7 +14,7 @@ for (const rating of ratings) {
     await expect(choices.locator('[data-review-choice="private"]')).toBeVisible();
     await expect(choices.getByRole("link", { name: /Google review/i })).toHaveAttribute(
       "href",
-      "https://g.page/r/CX-F0vOcpJLhEBM/review",
+      ENTITY_REGISTRY.profiles.google.reviewUrl,
     );
     await expect(choices.getByRole("link", { name: /Private feedback/i })).toHaveAttribute(
       "href",

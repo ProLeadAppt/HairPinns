@@ -4,19 +4,10 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
-import { BUSINESS_NAP } from "@/config/businessConfig";
+import { BUSINESS_NAP, BUSINESS_WEEK_DISPLAY as salonHours } from "@/config/businessConfig";
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import hairPinnsLogo from "@/assets/images/hair-pinns-logo-full.webp";
-
-const salonHours = [
-  ["Mon", "Closed"],
-  ["Tue", "10am–5pm"],
-  ["Wed", "6pm–9pm"],
-  ["Thu", "9am–9pm"],
-  ["Fri", "9am–5:30pm"],
-  ["Sat", "8am–2pm"],
-  ["Sun", "Closed"],
-] as const;
 
 const shopLinks = [
   ["Shop products", "/collections"],
@@ -167,7 +158,7 @@ const Footer = () => {
             </p>
             <div className="mt-4 flex flex-wrap gap-x-7">
               <a
-                href="https://www.instagram.com/hair.pinns/"
+                href={ENTITY_REGISTRY.profiles.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={linkClass}
@@ -176,7 +167,7 @@ const Footer = () => {
                 Instagram ↗
               </a>
               <a
-                href="https://www.facebook.com/Hair.Pinns"
+                href={ENTITY_REGISTRY.profiles.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={linkClass}
@@ -240,13 +231,13 @@ const Footer = () => {
                 {BUSINESS_NAP.phone.display}
               </a>
               <a
-                href={`sms:${BUSINESS_NAP.phone.raw}?body=Hi%20Hair%20Pinns%2C%20I'd%20like%20to%20enquire%20about%20`}
+                href={`${BUSINESS_NAP.phone.sms}?body=Hi%20Hair%20Pinns%2C%20I'd%20like%20to%20enquire%20about%20`}
                 className={linkClass}
               >
                 Text us
               </a>
               <a
-                href="https://wa.me/61416037663?text=Hi%20Jena%2C%20I%27d%20like%20to%20enquire%20about%20"
+                href={`${BUSINESS_NAP.phone.whatsapp}?text=Hi%20Jena%2C%20I%27d%20like%20to%20enquire%20about%20`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={linkClass}

@@ -1,3 +1,4 @@
+import { BUSINESS_NAP } from "@/config/businessConfig";
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
@@ -22,7 +23,7 @@ const post = {
         },
         {
           heading: "Services Popular with Como Locals",
-          content: "The most-booked services for Como clients: full head foils with toner refreshes, mid-length cut-and-blowdry packages, and Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call 0416 037 663."
+          content: "The most-booked services for Como clients: full head foils with toner refreshes, mid-length cut-and-blowdry packages, and Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
         },
         {
           heading: "Why the Como Trip Works",
@@ -35,7 +36,7 @@ const post = {
       ],
       quickAnswer: {
         question: "What's the best hair salon near Como?",
-        answer: "Hair Pinns is located at 60 Goorgool Road, Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call 0416 037 663."
+        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 8–10 minutes from Como via Como Bridge",
@@ -47,7 +48,7 @@ const post = {
       faqSection: [
         {
           question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns is located at 60 Goorgool Road in Bangor, with local parking and online booking. Jena has more than 20 years of hairdressing experience in the Sutherland Shire.",
+          answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + " in Bangor, with local parking and online booking. Jena has worked behind the chair since 2009.",
         },
         {
           question: "Do you offer kids' haircuts at Hair Pinns?",

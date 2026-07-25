@@ -62,38 +62,51 @@ interface HowToData {
   supply?: Array<{ name: string }>;
 }
 
-import { BUSINESS_NAP, BUSINESS_HOURS, SITE_URL } from '@/config/businessConfig';
+import {
+  ENTITY_REGISTRY,
+  getOpeningHoursSpecification as getRegistryOpeningHoursSpecification,
+} from '@/config/entityRegistry';
 
-const BASE_URL = SITE_URL;
+const BASE_URL = ENTITY_REGISTRY.site.url;
 const LOGO_URL = `${BASE_URL}/logo.png`;
 const SALON_ADDRESS = {
-  streetAddress: BUSINESS_NAP.address.street,
-  addressLocality: BUSINESS_NAP.address.locality,
-  addressRegion: BUSINESS_NAP.address.region,
-  postalCode: BUSINESS_NAP.address.postcode,
-  addressCountry: BUSINESS_NAP.address.country,
+  streetAddress: ENTITY_REGISTRY.contact.address.street,
+  addressLocality: ENTITY_REGISTRY.contact.address.locality,
+  addressRegion: ENTITY_REGISTRY.contact.address.region,
+  postalCode: ENTITY_REGISTRY.contact.address.postcode,
+  addressCountry: ENTITY_REGISTRY.contact.address.country,
 };
 const SALON_GEO = {
-  latitude: '-34.0186',
-  longitude: '151.0333',
+  latitude: ENTITY_REGISTRY.place.geo.latitude,
+  longitude: ENTITY_REGISTRY.place.geo.longitude,
 };
-const SALON_PHONE = BUSINESS_NAP.phone.raw;
+const SALON_PHONE = ENTITY_REGISTRY.contact.phone.raw;
 
-const AREA_SERVED = [
-  'Bangor',
-  'Menai',
-  'Illawong',
-  'Alfords Point',
-  'Woronora',
-  'Sutherland',
-  'Kirrawee',
-  'Kareela',
-  'Como',
-  'Gymea',
-  'Miranda',
-  'Engadine',
-  'Heathcote',
+const AREA_SERVED = ENTITY_REGISTRY.serviceAreas;
+
+const BUSINESS_SAME_AS = [
+  ENTITY_REGISTRY.profiles.google.profileUrl,
+  ENTITY_REGISTRY.profiles.fresha.venueUrl,
+  ENTITY_REGISTRY.profiles.instagram,
+  ENTITY_REGISTRY.profiles.facebook,
+  ENTITY_REGISTRY.profiles.sustainableSalons,
 ];
+
+const schemaAuthor = (name: string) => ({
+  '@type': 'Person',
+  ...(name === ENTITY_REGISTRY.person.name && { '@id': ENTITY_REGISTRY.ids.jena }),
+  name,
+});
+
+const schemaPublisher = () => ({
+  '@type': 'Organization',
+  '@id': ENTITY_REGISTRY.ids.organization,
+  name: ENTITY_REGISTRY.business.name,
+  logo: {
+    '@type': 'ImageObject',
+    url: LOGO_URL,
+  },
+});
 
 /**
  * WebSite schema with SearchAction - enables sitelinks search box in Google
@@ -101,8 +114,8 @@ const AREA_SERVED = [
 export const generateWebSiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  '@id': `${BASE_URL}/#website`,
-  name: 'Hair Pinns',
+  '@id': ENTITY_REGISTRY.ids.webSite,
+  name: ENTITY_REGISTRY.business.name,
   url: BASE_URL,
   potentialAction: {
     '@type': 'SearchAction',
@@ -117,7 +130,8 @@ export const generateWebSiteSchema = () => ({
 export const generateOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Hair Pinns',
+  '@id': ENTITY_REGISTRY.ids.organization,
+  name: ENTITY_REGISTRY.business.name,
   url: BASE_URL,
   logo: LOGO_URL,
   // Australia-only commerce. The Organization (Hair Pinns as a shop) ships
@@ -128,13 +142,9 @@ export const generateOrganizationSchema = () => ({
     '@type': 'Country',
     name: 'AU',
   },
-  currenciesAccepted: 'AUD',
-  paymentAccepted: 'Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, Shop Pay',
-  sameAs: [
-    'https://www.facebook.com/Hair.Pinns',
-    'https://www.instagram.com/hair.pinns/',
-    'https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer',
-  ],
+  currenciesAccepted: ENTITY_REGISTRY.commerce.currency,
+  paymentAccepted: ENTITY_REGISTRY.commerce.paymentAccepted.join(', '),
+  sameAs: BUSINESS_SAME_AS,
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: SALON_PHONE,
@@ -144,11 +154,11 @@ export const generateOrganizationSchema = () => ({
   },
 });
 
-export const generateLocalBusinessSchema = (pageUrl?: string) => ({
+export const generateLocalBusinessSchema = (pageUrl = BASE_URL) => ({
   '@context': 'https://schema.org',
   '@type': 'HairSalon',
-  '@id': `${BASE_URL}/#hairsalon`,
-  name: 'Hair Pinns',
+  '@id': ENTITY_REGISTRY.ids.hairSalon,
+  name: ENTITY_REGISTRY.business.name,
   image: LOGO_URL,
   description:
     'Boutique hair salon in Bangor specializing in Colour and Blonding, Smoothing Treatments, and Cuts and Styling. Run by Jena since 2009, serving Sutherland Shire. Professional hair care products shipped Australia-wide.',
@@ -161,7 +171,8 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
     latitude: SALON_GEO.latitude,
     longitude: SALON_GEO.longitude,
   },
-  url: pageUrl || BASE_URL,
+  url: BASE_URL,
+  mainEntityOfPage: pageUrl,
   telephone: SALON_PHONE,
   priceRange: '$$',
   foundingDate: '2009',
@@ -178,6 +189,11 @@ export const generateLocalBusinessSchema = (pageUrl?: string) => ({
     addressCountry: 'AU',
   })),
   openingHoursSpecification: getOpeningHoursSpecification(),
+  sameAs: BUSINESS_SAME_AS,
+  containedInPlace: {
+    '@type': 'Place',
+    '@id': ENTITY_REGISTRY.ids.place,
+  },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Hair Services',
@@ -269,7 +285,7 @@ export const generateServiceSchema = (service: ServiceData) => ({
   provider: {
     '@type': 'HairSalon',
     name: 'Hair Pinns',
-    '@id': `${BASE_URL}/#hairsalon`,
+    '@id': ENTITY_REGISTRY.ids.hairSalon,
   },
   areaServed: AREA_SERVED.map((area) => ({
     '@type': 'City',
@@ -392,7 +408,7 @@ export const generateWebPageSchema = (data: {
     url: data.url,
     isPartOf: {
       '@type': 'WebSite',
-      '@id': `${BASE_URL}/#website`,
+      '@id': ENTITY_REGISTRY.ids.webSite,
       name: 'Hair Pinns',
       url: BASE_URL,
     },
@@ -417,7 +433,7 @@ export const generateBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
   // up the tree and want to confirm the parent website.
   isPartOf: {
     '@type': 'WebSite',
-    '@id': `${BASE_URL}/#website`,
+    '@id': ENTITY_REGISTRY.ids.webSite,
     name: 'Hair Pinns',
     url: BASE_URL,
   },
@@ -435,18 +451,8 @@ export const generateBlogPostSchema = (post: BlogPostData) => {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
-    author: {
-      '@type': 'Person',
-      name: post.author,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Hair Pinns',
-      logo: {
-        '@type': 'ImageObject',
-        url: LOGO_URL,
-      },
-    },
+    author: schemaAuthor(post.author),
+    publisher: schemaPublisher(),
     datePublished: post.datePublished,
     dateModified: post.dateModified || post.datePublished,
     image: post.image,
@@ -547,18 +553,8 @@ export const generateArticleSchema = (post: BlogPostData & { speakable?: { cssSe
     '@type': 'Article',
     headline: post.title,
     description: post.description,
-    author: {
-      '@type': 'Person',
-      name: post.author,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Hair Pinns',
-      logo: {
-        '@type': 'ImageObject',
-        url: LOGO_URL,
-      },
-    },
+    author: schemaAuthor(post.author),
+    publisher: schemaPublisher(),
     datePublished: post.datePublished,
     dateModified: post.dateModified || post.datePublished,
     image: post.image,
@@ -592,8 +588,8 @@ export const generateArticleSchema = (post: BlogPostData & { speakable?: { cssSe
 export const generateJenaPersonSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
-  '@id': `${BASE_URL}/blog/meet-jena-15-years-sutherland-shire#person`,
-  name: 'Jena Pinn',
+  '@id': ENTITY_REGISTRY.ids.jena,
+  name: ENTITY_REGISTRY.person.name,
   jobTitle: 'Hair Stylist, Colourist & Founder of Hair Pinns',
   description:
     'Jena Pinn is the founder and stylist behind Hair Pinns in Bangor. She established Hair Pinns in December 2009 and works across colour, foils, smoothing treatments, cuts, and styling.',
@@ -601,8 +597,8 @@ export const generateJenaPersonSchema = () => ({
   image: LOGO_URL,
   worksFor: {
     '@type': 'Organization',
-    '@id': `${BASE_URL}/#organization`,
-    name: 'Hair Pinns',
+    '@id': ENTITY_REGISTRY.ids.organization,
+    name: ENTITY_REGISTRY.business.name,
     url: BASE_URL,
   },
   knowsAbout: [
@@ -628,95 +624,17 @@ export const generateJenaPersonSchema = () => ({
       'Colour correction, foils, smoothing treatments, cut and finish, bond repair',
   },
   sameAs: [
-    'https://www.instagram.com/hair.pinns/',
-    'https://www.facebook.com/Hair.Pinns',
+    ENTITY_REGISTRY.profiles.fresha.professionalUrl,
+    ENTITY_REGISTRY.profiles.instagram,
+    ENTITY_REGISTRY.profiles.facebook,
   ],
 });
-
-// Helper to combine multiple schemas without @context/@type conflicts
-export const combineSchemas = (...schemas: any[]) => {
-  return schemas.map((schema) => {
-    // Each schema should be a complete, independent block
-    return schema;
-  });
-};
 
 /**
- * Knowledge Graph Schema for AEO (Answer Engine Optimization)
- * Optimizes for AI/LLM search results (ChatGPT, Google AI Overview, voice assistants)
+ * Backward-compatible knowledge-graph entry point. Entity facts are owned by
+ * generateOrganizationSchema; callers must not maintain a second Organization.
  */
-export const generateKnowledgeGraphSchema = () => ({
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  '@id': `${BASE_URL}/#organization`,
-  name: 'Hair Pinns',
-  alternateName: 'Hair Pinns Hair Salon',
-  description:
-    'Hair Pinns is a boutique hair salon in Bangor, NSW, Australia. Colour, Smoothing Treatments, and Cuts and Styling. Founded in 2009 by Jena Pinn, serving the Sutherland Shire. Professional hair care products shipped Australia-wide with free shipping over $150.',
-  url: BASE_URL,
-  logo: {
-    '@type': 'ImageObject',
-    url: LOGO_URL,
-  },
-  image: LOGO_URL,
-  foundingDate: '2009',
-  founder: {
-    '@type': 'Person',
-    name: 'Jena Pinn',
-    jobTitle: 'Hair Stylist & Colorist',
-  },
-  address: {
-    '@type': 'PostalAddress',
-    ...SALON_ADDRESS,
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: SALON_GEO.latitude,
-    longitude: SALON_GEO.longitude,
-  },
-  telephone: SALON_PHONE,
-  priceRange: '$$',
-  sameAs: [
-    'https://www.facebook.com/Hair.Pinns',
-    'https://www.instagram.com/hair.pinns/',
-    'https://www.fresha.com/book-now/hair-pinns-hw3xch0p/all-offer',
-  ],
-
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Hair Services & Products',
-    itemListElement: [
-      {
-        '@type': 'OfferCatalog',
-        name: 'Hair Services',
-        description: 'Professional hair salon services including colour, treatments, cuts, and styling',
-      },
-      {
-        '@type': 'OfferCatalog',
-        name: 'Hair Care Products',
-        description: 'Professional hair care products picked by Jena, available Australia-wide',
-      },
-    ],
-  },
-  // Area served for location-based queries
-  areaServed: AREA_SERVED.map((area) => ({
-    '@type': 'City',
-    name: area,
-    addressRegion: 'NSW',
-    addressCountry: 'AU',
-  })),
-  // Expertise and specialization
-  knowsAbout: [
-    'Hair Coloring',
-    'Hair Blonding',
-    'Full Head Foils',
-    'Hair Smoothing Treatments',
-    'Keratin Treatments',
-    'Hair Cutting',
-    'Hair Styling',
-    'Hair Care Products',
-  ],
-});
+export const generateKnowledgeGraphSchema = () => generateOrganizationSchema();
 
 /**
  * Store schema for Australia-wide online retail presence
@@ -725,8 +643,8 @@ export const generateKnowledgeGraphSchema = () => ({
 export const generateStoreSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Store',
-  '@id': `${BASE_URL}/#store`,
-  name: 'Hair Pinns',
+  '@id': ENTITY_REGISTRY.ids.store,
+  name: ENTITY_REGISTRY.business.name,
   description:
     'Australia-wide hair care retailer. Picked by Jena since 2009. Free shipping over $150. Juuce, QIQI, Pure, Wet Brush and more. Ships to every state and territory.',
   url: BASE_URL,
@@ -862,7 +780,7 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
           '@type': 'Country',
           name: 'AU',
         },
-        currenciesAccepted: 'AUD',
+        currenciesAccepted: ENTITY_REGISTRY.commerce.currency,
       },
     },
   };
@@ -952,7 +870,7 @@ export const generateEnhancedServiceSchema = (service: EnhancedServiceData) => {
     description: service.description,
     provider: {
       '@type': 'HairSalon',
-      '@id': `${BASE_URL}/#hairsalon`,
+      '@id': ENTITY_REGISTRY.ids.hairSalon,
       name: 'Hair Pinns',
       image: LOGO_URL,
       address: {
@@ -1193,7 +1111,7 @@ export const generateServiceItemListSchema = (items: Array<{
       ...(item.description && { description: item.description }),
       provider: {
         '@type': 'HairSalon',
-        '@id': `${BASE_URL}/#hairsalon`,
+        '@id': ENTITY_REGISTRY.ids.hairSalon,
         name: 'Hair Pinns',
         url: BASE_URL,
       },
@@ -1210,82 +1128,27 @@ export const generateServiceItemListSchema = (items: Array<{
 });
 
 /**
- * Enhanced LocalBusiness Schema for AEO
- * Adds serviceArea and geo radius for better location-based queries
+ * Canonical physical Place for the Bangor studio. Area pages reference the
+ * HairSalon entity and use areaServed; they must not manufacture a venue in
+ * each suburb.
  */
-/**
- * Place schema for local/geo pages - optimizes for "near me" and map pack.
- * Suburb pages restate the salon offer catalogue for geo-targeted context.
- */
-export const generatePlaceSchema = (data: {
-  name: string;
-  description: string;
-  url: string;
-  addressLocality: string;
-  addressRegion?: string;
-  postalCode?: string;
-}) => ({
+export const generatePlaceSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Place',
-  name: data.name,
-  description: data.description,
-  url: data.url,
+  '@id': ENTITY_REGISTRY.ids.place,
+  name: `${ENTITY_REGISTRY.business.name} Bangor studio`,
+  description: ENTITY_REGISTRY.business.publicPositioning,
+  url: BASE_URL,
   address: {
     '@type': 'PostalAddress',
-    addressLocality: data.addressLocality,
-    addressRegion: data.addressRegion || 'NSW',
-    postalCode: data.postalCode || '',
-    addressCountry: 'AU',
+    ...SALON_ADDRESS,
   },
-  containedInPlace: {
-    '@type': 'City',
-    name: 'Sutherland Shire',
-    addressRegion: 'NSW',
-    addressCountry: 'AU',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SALON_GEO.latitude,
+    longitude: SALON_GEO.longitude,
   },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Hair Pinns Service Catalogue',
-    itemListElement: [
-      {
-        '@type': 'OfferCatalog',
-        name: 'Smoothing Treatments',
-        itemListElement: [
-          { '@type': 'Offer', name: 'Straight Up Smoothing (Mid-Length)', price: '324', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Straight Up Smoothing (Long/Thick)', price: '349', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Straight Up Smoothing (Teens)', price: '234', priceCurrency: 'AUD' },
-        ],
-      },
-      {
-        '@type': 'OfferCatalog',
-        name: 'Foil Packages',
-        itemListElement: [
-          { '@type': 'Offer', name: 'Quarter Head Foils, cut & blowdry', price: '202', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Half Head Foils, cut & blowdry', price: '237', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Full Head Foils Package', price: '267', priceCurrency: 'AUD' },
-        ],
-      },
-      {
-        '@type': 'OfferCatalog',
-        name: 'Colouring Packages',
-        itemListElement: [
-          { '@type': 'Offer', name: 'Short Hair Colour Package', price: '184', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Mid-Length Colour Package', price: '178', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Long Hair Colour Package', price: '205', priceCurrency: 'AUD' },
-        ],
-      },
-      {
-        '@type': 'OfferCatalog',
-        name: 'Cut & Blowdry Packages',
-        itemListElement: [
-          { '@type': 'Offer', name: 'Kids cut & blowdry bundle', price: '54', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Short wash/cut/blow-dry', price: '79', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Mid-length wash/cut/blow-dry', price: '89', priceCurrency: 'AUD' },
-          { '@type': 'Offer', name: 'Long Hair wash/cut/blow-dry', price: '99', priceCurrency: 'AUD' },
-        ],
-      },
-    ],
-  },
+  hasMap: ENTITY_REGISTRY.profiles.google.profileUrl,
 });
 
 export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
@@ -1300,7 +1163,7 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
   //     plus `paymentAccepted` give AU-shopper trust signals.
   return {
     ...baseSchema,
-    hasMap: 'https://www.google.com/maps/place/Hair+Pinns+Bangor',
+    hasMap: ENTITY_REGISTRY.profiles.google.profileUrl,
     serviceArea: {
       '@type': 'GeoCircle',
       geoMidpoint: {
@@ -1314,8 +1177,8 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
         unitCode: 'KM',
       },
     },
-    currenciesAccepted: 'AUD',
-    paymentAccepted: 'Cash, Credit Card, Debit Card, Afterpay, Apple Pay, Google Pay, Shop Pay',
+    currenciesAccepted: ENTITY_REGISTRY.commerce.currency,
+    paymentAccepted: ENTITY_REGISTRY.commerce.paymentAccepted.join(', '),
   };
 };
 
@@ -1326,12 +1189,12 @@ export const generateEnhancedLocalBusinessSchema = (pageUrl?: string) => {
 export const generateAuthorSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
-  '@id': `${BASE_URL}/#jena-pinn`,
-  name: 'Jena Pinn',
+  '@id': ENTITY_REGISTRY.ids.jena,
+  name: ENTITY_REGISTRY.person.name,
   jobTitle: 'Salon Owner and Hair Care Specialist',
   worksFor: {
     '@type': 'HairSalon',
-    '@id': `${BASE_URL}/#hairsalon`,
+    '@id': ENTITY_REGISTRY.ids.hairSalon,
     name: 'Hair Pinns',
   },
   knowsAbout: [
@@ -1348,8 +1211,9 @@ export const generateAuthorSchema = () => ({
     ...SALON_ADDRESS,
   },
   sameAs: [
-    'https://www.instagram.com/hair.pinns/',
-    'https://www.facebook.com/Hair.Pinns',
+    ENTITY_REGISTRY.profiles.fresha.professionalUrl,
+    ENTITY_REGISTRY.profiles.instagram,
+    ENTITY_REGISTRY.profiles.facebook,
   ],
 });
 
@@ -1357,12 +1221,7 @@ export const generateAuthorSchema = () => ({
  * Opening hours from centralised config for schema use
  */
 export const getOpeningHoursSpecification = () =>
-  BUSINESS_HOURS.map(h => ({
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: h.day,
-    opens: h.opens,
-    closes: h.closes,
-  }));
+  getRegistryOpeningHoursSpecification();
 
 /**
  * DefinedTermSet schema for /glossary — gives AI overviews and search

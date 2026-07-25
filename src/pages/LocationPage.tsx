@@ -28,8 +28,9 @@ import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingCon
 import RelatedContent from "@/components/RelatedContent";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
 import { serviceDetailData } from "@/data/serviceDetails";
-import { BUSINESS_HOURS } from "@/config/businessConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
+import { generateLocalBusinessSchema } from "@/lib/schema";
 
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -66,6 +67,8 @@ const LocationPage = () => {
     return null;
   }
 
+  const canonicalUrl = `https://hairpinns.com/areas/${locationData.slug}`;
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -86,47 +89,12 @@ const LocationPage = () => {
         "@type": "ListItem",
         "position": 3,
         "name": locationData.name,
-        "item": `https://hairpinns.com/areas/${locationData.slug}`
+        "item": canonicalUrl
       }
     ]
   };
 
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "HairSalon",
-    "name": "Hair Pinns",
-    "image": "https://hairpinns.com/logo.png",
-    "description": `Boutique hair salon near ${locationData.name}. Colour, blonding, keratin smoothing, braids & cuts with Jena. Easy parking & quick callbacks.`,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "60 Goorgool Road",
-      "addressLocality": "Bangor",
-      "addressRegion": "NSW",
-      "postalCode": "2234",
-      "addressCountry": "AU"
-    },
-    "areaServed": `${locationData.name} NSW`,
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "-34.0186",
-      "longitude": "151.0333"
-    },
-    "url": `https://hairpinns.com/areas/${locationData.slug}`,
-    "telephone": "+61416037663",
-    "priceRange": "$$",
-    "openingHoursSpecification": BUSINESS_HOURS.map(h => ({
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": h.day,
-      "opens": h.opens,
-      "closes": h.closes,
-    })),
-    "hasMap": `https://www.google.com/maps/dir/${encodeURIComponent(locationData.fullName)}/Hair+Pinns,+60+Goorgool+Road,+Bangor+NSW+2234`,
-    "sameAs": [
-      "https://www.facebook.com/hairpinns",
-      "https://www.instagram.com/hairpinns",
-      "https://g.page/r/CX-F0vOcpJLhEBM"
-    ]
-  };
+  const localBusinessSchema = generateLocalBusinessSchema(canonicalUrl);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -161,8 +129,8 @@ const LocationPage = () => {
     <>
       <SEOHead
         title={`Hairdresser ${locationData.name} | Hair Salon near ${locationData.name} – Hair Pinns`}
-        description={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call 0416 037 663.`}
-        canonical={`https://hairpinns.com/areas/${locationData.slug}`}
+        description={`Boutique hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor with easy parking. Book online or call ${BUSINESS_NAP.phone.display}.`}
+        canonical={canonicalUrl}
         ogImage={getOGImage('default')}
         ogType="website"
         hrefLang="en-AU"
@@ -239,7 +207,7 @@ const LocationPage = () => {
                 >
                   <a href={BUSINESS_NAP.phone.tel} className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
-                    Call 0416 037 663
+                    Call {BUSINESS_NAP.phone.display}
                   </a>
                 </Button>
               </div>
@@ -413,8 +381,8 @@ const LocationPage = () => {
                 </p>
                 <div className="mb-8 text-foreground text-lg space-y-2">
                   <p className="font-bold text-heading">Hair Pinns</p>
-                  <p>60 Goorgool Road</p>
-                  <p>Bangor NSW 2234</p>
+                  <p>{BUSINESS_NAP.address.street}</p>
+                  <p>{BUSINESS_NAP.address.locality} {BUSINESS_NAP.address.region} {BUSINESS_NAP.address.postcode}</p>
                   <p className="text-brand-500 font-semibold mt-4">✓ Easy parking available</p>
                 </div>
                 <Button 
@@ -424,7 +392,7 @@ const LocationPage = () => {
                   asChild
                 >
                   <a 
-                    href={`https://www.google.com/maps/dir/${encodeURIComponent(locationData.fullName)}/Hair+Pinns,+60+Goorgool+Road,+Bangor+NSW+2234`}
+                    href={ENTITY_REGISTRY.profiles.google.directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
@@ -483,7 +451,7 @@ const LocationPage = () => {
                 >
                   <a href={BUSINESS_NAP.phone.tel} className="flex items-center gap-2">
                     <Phone className="w-5 h-5" />
-                    Call 0416 037 663
+                    Call {BUSINESS_NAP.phone.display}
                   </a>
                 </Button>
               </div>

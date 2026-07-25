@@ -3,7 +3,7 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "salon-foils-vs-box-dye-highlights-at-home",
     title: "Salon Foils vs Box Dye Highlights: Honest Talk From Someone Who Fixes Them",
-    excerpt: "Box-dye highlight kits look like a $30 shortcut. After 20 years of cleaning them up, here's what I actually think you're saving and what you're risking.",
+    excerpt: "Box-dye highlight kits look like a $30 shortcut. After working behind the chair since 2009, here's what I think you're saving and what you're risking.",
     category: "Colour",
     date: "May 5, 2026",
     readTime: "6 min read",

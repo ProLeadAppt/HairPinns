@@ -15,7 +15,7 @@ const bookingFaqs = [
   },
   {
     question: "How can I see the next available appointment?",
-    answer: "Fresha shows live appointment availability for each service. If the available times do not suit, call or text Jena on 0416 037 663.",
+    answer: `Fresha shows live appointment availability for each service. If the available times do not suit, call or text Jena on ${BUSINESS_NAP.phone.display}.`,
   },
   {
     question: "Will I need to pay a deposit?",
@@ -49,7 +49,7 @@ const Booking = () => {
     <div className="min-h-screen bg-[hsl(var(--after-hours-cream))]">
       <SEOHead
         title="Book a Hair Appointment | Hair Pinns Bangor"
-        description="Choose your Hair Pinns service and view live appointment availability through Fresha. Need help choosing? Call Jena on 0416 037 663."
+        description={`Choose your Hair Pinns service and view live appointment availability through Fresha. Need help choosing? Call Jena on ${BUSINESS_NAP.phone.display}.`}
         canonical="https://hairpinns.com/booking"
         ogImage={getOGImage("service")}
         ogType="website"

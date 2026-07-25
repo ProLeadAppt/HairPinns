@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { ENTITY_REGISTRY } from '../../src/config/entityRegistry';
 
 const blockThirdParties = async (page: import('@playwright/test').Page) => {
   await page.route(
@@ -215,7 +216,7 @@ test('contained salon close preserves Fresha booking at mobile and landscape wid
   let salonClose = await openSalonClose();
   await expect(salonClose).toHaveAttribute('data-home-booking-close', '');
   await expect(salonClose).toContainText('05 / Visit the salon');
-  await expect(salonClose).toContainText('60 Goorgool Rd, Bangor NSW');
+  await expect(salonClose).toContainText(ENTITY_REGISTRY.contact.address.full);
   await expect(salonClose.getByRole('link', { name: '0416 037 663' })).toHaveAttribute('href', 'tel:+61416037663');
 
   const booking = salonClose.getByRole('link', { name: 'Book now', exact: true });
@@ -385,8 +386,8 @@ test('after-hours footer closes with complete commerce, salon, and legal paths',
   await expect(footer.getByRole('link', { name: 'Text us' })).toHaveAttribute('href', /^sms:\+61416037663/);
   await expect(footer.getByRole('link', { name: /WhatsApp/i })).toHaveAttribute('href', /^https:\/\/wa\.me\/61416037663/);
   await expect(footer.getByRole('link', { name: /Instagram/i })).toHaveAttribute('href', 'https://www.instagram.com/hair.pinns/');
-  await expect(footer.getByRole('link', { name: /Facebook/i })).toHaveAttribute('href', 'https://www.facebook.com/Hair.Pinns');
-  await expect(footer).toContainText('60 Goorgool Rd');
+  await expect(footer.getByRole('link', { name: /Facebook/i })).toHaveAttribute('href', ENTITY_REGISTRY.profiles.facebook);
+  await expect(footer).toContainText(ENTITY_REGISTRY.contact.address.street);
   await expect(footer).toContainText('Bangor NSW 2234');
   await expect(footer).toContainText('Visa');
   await expect(footer.getByRole('link', { name: 'Munyal' })).toHaveAttribute('href', 'https://munyal.com.au');

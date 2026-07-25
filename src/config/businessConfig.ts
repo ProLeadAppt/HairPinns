@@ -1,22 +1,19 @@
-/**
- * Single source of truth for business NAP (Name, Address, Phone) and contact details.
- * Keep in sync with Google My Business profile for local SEO.
- */
+import { ENTITY_REGISTRY } from "./entityRegistry";
 
-/** Canonical site URL — single source of truth for all SEO references */
-export const SITE_URL = 'https://hairpinns.com';
+/** Canonical site URL, projected from the entity registry for existing callers. */
+export const SITE_URL = ENTITY_REGISTRY.site.url;
 
 /** Return the final public URL form used by Netlify and every SEO surface. */
 export const canonicalSiteUrl = (value: string = SITE_URL): string => {
-  const absolute = value.startsWith('http')
+  const absolute = value.startsWith("http")
     ? value
-    : `${SITE_URL}${value.startsWith('/') ? value : `/${value}`}`;
+    : `${SITE_URL}${value.startsWith("/") ? value : `/${value}`}`;
   const parsed = new URL(absolute);
 
   if (parsed.origin === SITE_URL) {
-    const lastSegment = parsed.pathname.split('/').filter(Boolean).at(-1) || '';
+    const lastSegment = parsed.pathname.split("/").filter(Boolean).at(-1) || "";
     const isStaticFile = /\.[a-z0-9]{2,8}$/i.test(lastSegment);
-    if (!isStaticFile && !parsed.pathname.endsWith('/')) {
+    if (!isStaticFile && !parsed.pathname.endsWith("/")) {
       parsed.pathname = `${parsed.pathname}/`;
     }
   }
@@ -24,59 +21,66 @@ export const canonicalSiteUrl = (value: string = SITE_URL): string => {
   return parsed.toString();
 };
 
+/**
+ * Backward-compatible NAP projection. New fact ownership belongs in
+ * entityRegistry.ts; this object exists so callers can migrate without a
+ * simultaneous site-wide API break.
+ */
 export const BUSINESS_NAP = {
-  name: "Hair Pinns",
-  address: {
-    street: "60 Goorgool Rd",
-    locality: "Bangor",
-    region: "NSW",
-    postcode: "2234",
-    country: "AU",
-    full: "60 Goorgool Rd, Bangor NSW 2234",
-    fullForMaps: "60 Goorgool Rd, Bangor NSW 2234",
-  },
-  phone: {
-    // Canonical mobile for Hair Pinns. Verified against Google Business
-    // Profile on 2026-06-17. `display` 0416 037 663 → E.164 +61416037663.
-    // Prior values were a literal string mask ("+61416037663") that
-    // produced dead tel: links in Footer, StickyBookBar, ContactForm and
-    // JSON-LD schema. Keep these three fields in sync with the GBP. To
-    // rotate the number, update all three below + GBP + Fresha + business
-    // profile listing.
-    //   - `display`  human-readable (used in copy / fallback label)
-    //   - `raw`      E.164 with no `tel:` prefix (for wa.me, sms:, schema)
-    //   - `tel`      full `tel:` href
-    display: "0416 037 663",
-    raw: "+61416037663",
-    tel: "tel:+61416037663",
-  },
-  email: "hairpinns1@gmail.com",
+  name: ENTITY_REGISTRY.business.name,
+  ...ENTITY_REGISTRY.contact,
 } as const;
 
-/**
- * Single source of truth for opening hours.
- * Keep in sync with Google Business Profile and Fresha.
- * Closed: Sunday, Monday
- */
-export const BUSINESS_HOURS = [
-  { day: "Tuesday", opens: "10:00", closes: "17:00" },
-  { day: "Wednesday", opens: "18:00", closes: "21:00" },
-  { day: "Thursday", opens: "09:00", closes: "21:00" },
-  { day: "Friday", opens: "09:00", closes: "17:30" },
-  { day: "Saturday", opens: "08:00", closes: "14:00" },
+/** Canonical weekly hours. Special-date overrides live beside these in the registry. */
+export const BUSINESS_HOURS = ENTITY_REGISTRY.hours.weekly;
+
+const formatTime = (value: string): string => {
+  const [hourText, minute] = value.split(":");
+  const hour = Number(hourText);
+  const suffix = hour >= 12 ? "pm" : "am";
+  const displayHour = hour % 12 || 12;
+  return minute === "00" ? `${displayHour}${suffix}` : `${displayHour}:${minute}${suffix}`;
+};
+
+const SHORT_DAY: Record<(typeof BUSINESS_HOURS)[number]["day"], string> = {
+  Monday: "Mon",
+  Tuesday: "Tue",
+  Wednesday: "Wed",
+  Thursday: "Thu",
+  Friday: "Fri",
+  Saturday: "Sat",
+  Sunday: "Sun",
+};
+
+const BUSINESS_DAY_ORDER = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 ] as const;
 
-/** Short format for display: "Tue 10am-5pm" style */
+/** Complete seven-day display derived from the canonical weekly records. */
+export const BUSINESS_WEEK_DISPLAY = BUSINESS_DAY_ORDER.map((day) => {
+  const hours = BUSINESS_HOURS.find((entry) => entry.day === day);
+  return [
+    SHORT_DAY[day],
+    hours ? `${formatTime(hours.opens)}–${formatTime(hours.closes)}` : "Closed",
+  ] as const;
+});
+
+/** Short display strings generated from the same weekly-hour records as schema. */
 export const BUSINESS_HOURS_DISPLAY = [
-  "Tue: 10am - 5pm",
-  "Wed: 6pm - 9pm",
-  "Thu: 9am - 9pm",
-  "Fri: 9am - 5:30pm",
-  "Sat: 8am - 2pm",
+  ...BUSINESS_HOURS.map(
+    (hours) =>
+      `${SHORT_DAY[hours.day]}: ${formatTime(hours.opens)} - ${formatTime(hours.closes)}`,
+  ),
   "Sun - Mon: Closed",
 ] as const;
 
-/** Google Business Profile ID */
-export const GBP_ID = "CX-F0vOcpJLhEBM";
-export const GBP_REVIEW_URL = `https://g.page/r/${GBP_ID}/review`;
-export const GBP_URL = `https://g.page/r/${GBP_ID}`;
+/** Canonical Google Places identifiers and actions. */
+export const GBP_ID = ENTITY_REGISTRY.profiles.google.placeId;
+export const GBP_REVIEW_URL = ENTITY_REGISTRY.profiles.google.reviewUrl;
+export const GBP_URL = ENTITY_REGISTRY.profiles.google.profileUrl;

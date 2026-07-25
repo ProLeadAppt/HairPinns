@@ -267,7 +267,7 @@ const ContactForm = ({
           <Input 
             id="contact_phone" 
             type="tel" 
-            placeholder="0416 037 663" 
+            placeholder={BUSINESS_NAP.phone.display}
             value={formData.phone} 
             onChange={e => setFormData({ ...formData, phone: e.target.value })} 
             className={editorialFieldClass}

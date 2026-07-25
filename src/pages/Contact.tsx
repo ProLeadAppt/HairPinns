@@ -5,12 +5,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/components/forms/ContactForm";
 import SEOHead from "@/components/SEOHead";
 import { getOGImage } from "@/lib/sitemap";
-import { generateFAQPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateFAQPageSchema, generateBreadcrumbSchema, generateLocalBusinessSchema } from "@/lib/schema";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
-import { BUSINESS_HOURS, BUSINESS_HOURS_DISPLAY, BUSINESS_NAP } from "@/config/businessConfig";
+import { BUSINESS_HOURS_DISPLAY, BUSINESS_NAP } from "@/config/businessConfig";
+import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 
-const MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BUSINESS_NAP.address.fullForMaps)}`;
-const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d151.0333!3d-34.0186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12c4d1c7b3c3b3%3A0xe36f79e949fabda0!2s60%20Goorgool%20Rd%2C%20Bangor%20NSW%202234!5e0!3m2!1sen!2sau!4v1234567890";
+const MAP_URL = ENTITY_REGISTRY.profiles.google.directionsUrl;
+const MAP_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(ENTITY_REGISTRY.contact.address.fullForMaps)}&output=embed`;
 
 const contactFaqs = [
   {
@@ -32,35 +33,9 @@ const contactFaqs = [
 ];
 
 const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "HairSalon",
-  name: BUSINESS_NAP.name,
-  image: "https://hairpinns.com/logo.png",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: BUSINESS_NAP.address.street,
-    addressLocality: BUSINESS_NAP.address.locality,
-    addressRegion: BUSINESS_NAP.address.region,
-    postalCode: BUSINESS_NAP.address.postcode,
-    addressCountry: BUSINESS_NAP.address.country,
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: -34.0186,
-    longitude: 151.0367,
-  },
-  telephone: BUSINESS_NAP.phone.raw,
+  ...generateLocalBusinessSchema(),
   email: BUSINESS_NAP.email,
-  openingHoursSpecification: BUSINESS_HOURS.map((hours) => ({
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: hours.day,
-    opens: hours.opens,
-    closes: hours.closes,
-  })),
-  priceRange: "$$",
-  url: "https://hairpinns.com",
   hasMap: MAP_URL,
-  sameAs: ["https://www.facebook.com/Hair.Pinns", "https://www.instagram.com/hair.pinns/"],
 };
 
 const Contact = () => {
@@ -108,7 +83,7 @@ const Contact = () => {
                 Call {BUSINESS_NAP.phone.display}
                 <span aria-hidden="true">↗</span>
               </a>
-              <a href={`sms:${BUSINESS_NAP.phone.raw}`} className="mt-3 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-cream)/0.34)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
+              <a href={BUSINESS_NAP.phone.sms} className="mt-3 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-cream)/0.34)] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
                 Send a text
                 <span aria-hidden="true">→</span>
               </a>
@@ -160,7 +135,7 @@ const Contact = () => {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Hair Pinns at 60 Goorgool Rd, Bangor"
+                  title={`Hair Pinns at ${BUSINESS_NAP.address.full}`}
                 />
               </div>
             </div>
