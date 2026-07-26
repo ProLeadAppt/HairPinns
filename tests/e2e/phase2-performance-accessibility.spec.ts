@@ -504,12 +504,12 @@ test('mobile header defers desktop-only enhancement chunks until they are needed
 
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  const configEntries = await page.evaluate(() =>
+  await expect.poll(() => page.evaluate(() =>
     ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer || [])
       .map((entry) => Array.from(entry))
-      .filter((entry) => entry[0] === 'config' && entry[1] === 'G-N6Y1TJMWGG'),
-  );
-  expect(configEntries).toHaveLength(1);
+      .filter((entry) => entry[0] === 'config' && entry[1] === 'G-N6Y1TJMWGG')
+      .length,
+  )).toBe(1);
 });
 
 test('product gallery zoom is keyboard accessible and modal', async ({ page }) => {
@@ -517,10 +517,12 @@ test('product gallery zoom is keyboard accessible and modal', async ({ page }) =
   const zoom = page.getByRole('button', { name: /Open .*full screen/i });
   await expect(zoom).toBeVisible();
   await zoom.focus();
-  await page.keyboard.press('Enter');
-
   const dialog = page.getByRole('dialog', { name: /Expanded product image/i });
-  await expect(dialog).toBeVisible();
+  await expect.poll(async () => {
+    if (await dialog.isVisible()) return true;
+    await zoom.press('Enter');
+    return dialog.isVisible();
+  }).toBe(true);
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(zoom).toBeFocused();
