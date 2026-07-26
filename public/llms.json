@@ -1,7 +1,7 @@
 {
   "_meta": {
     "notice": "GENERATED FILE - DO NOT EDIT",
-    "sourceDate": "2026-07-25"
+    "sourceDate": "2026-07-26"
   },
   "@context": "https://schema.org",
   "@type": [
@@ -117,16 +117,16 @@
     "https://sustainablesalons.org/salon-directory/hair-pinns-pty-ltd/"
   ],
   "routeSummary": {
-    "total": 271,
+    "total": 270,
     "blogs": 60,
     "services": 15,
     "areas": 17,
     "shipping": 20,
     "collections": 23,
-    "products": 120
+    "products": 119
   },
   "discovery": {
-    "sourceDate": "2026-07-25",
+    "sourceDate": "2026-07-26",
     "generatedFrom": [
       "src/config/entityRegistry.ts",
       "scripts/collect-prerender-routes.js"

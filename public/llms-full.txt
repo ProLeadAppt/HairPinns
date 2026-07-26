@@ -1,4 +1,4 @@
-# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-07-25
+# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-07-26
 
 # Hair Pinns: full crawler context
 
@@ -31,7 +31,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - 17 salon service-area pages
 - 20 Australian shipping pages
 - 23 product collections
-- 120 products
+- 119 products
 
 ## Primary links
 
@@ -69,7 +69,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/blog/why-wet-brush-is-a-must-have/
 - https://hairpinns.com/blog/qiqi-vega-vs-nanoplasty-whats-the-difference/
 - https://hairpinns.com/blog/quench-your-hairs-thirst-hydration-bundle/
-- https://hairpinns.com/blog/pure-walnut-scrub-scalp-detox/
+- https://hairpinns.com/blog/scalp-buildup-how-to-reset-hair/
 - https://hairpinns.com/blog/truth-about-shampoo-after-straight-up-treatment/
 - https://hairpinns.com/blog/winter-weather-hair-care-sydney/
 - https://hairpinns.com/blog/what-is-lamellar-vitality-technology/
@@ -269,7 +269,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/lamellar-vitality-conditioner/
 - https://hairpinns.com/products/lamellar-vitality-luminous-leave-in-silky-foam/
 - https://hairpinns.com/products/lamellar-vitality-butter-mask-treatment/
-- https://hairpinns.com/products/walnut-scrub-hair-scalp-pre-wash-treatment/
 - https://hairpinns.com/products/pure-goddess-shampoo/
 - https://hairpinns.com/products/pure-goddess-conditioner/
 - https://hairpinns.com/products/pure-precious-shampoo/

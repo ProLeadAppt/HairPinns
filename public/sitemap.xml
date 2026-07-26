@@ -6,7 +6,7 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://hairpinns.com/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -36,13 +36,13 @@
   </url>
   <url>
     <loc>https://hairpinns.com/collections/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -71,7 +71,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/glossary/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1582,20 +1582,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hairpinns.com/products/walnut-scrub-hair-scalp-pre-wash-treatment/</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-077-Edit.jpg?v=1744177674</image:loc>
-      <image:title>Pure Walnut Scrub Hair &amp; Scalp Pre-wash Treatment</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/B4022282-FA5B-4D58-A264-C7D157C5E497.jpg?v=1744177674</image:loc>
-      <image:title>Pure Walnut Scrub Hair &amp; Scalp Pre-wash Treatment</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://hairpinns.com/products/pure-goddess-shampoo/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -2736,8 +2722,8 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hairpinns.com/blog/pure-walnut-scrub-scalp-detox/</loc>
-    <lastmod>2025-06-11</lastmod>
+    <loc>https://hairpinns.com/blog/scalp-buildup-how-to-reset-hair/</loc>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

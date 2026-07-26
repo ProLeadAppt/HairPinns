@@ -221,8 +221,8 @@ export const shippingCities: Record<string, ShippingCityData> = {
     productPicks: [
       {
         label: "Clarifying & scalp health",
-        collectionPath: "/collections/pure-certified-organic-hair-care",
-        reason: "Hard Perth water leaves residue. Pure walnut scrub clarifies without stripping.",
+        collectionPath: "/collections/scalp-health-care",
+        reason: "Hard Perth water leaves residue. Juuce Deep Cleanse helps shift product and mineral buildup.",
       },
       {
         label: "Bond repair",
@@ -246,7 +246,7 @@ export const shippingCities: Record<string, ShippingCityData> = {
       },
       {
         question: "What products work best for Perth's hard water?",
-        answer: "Pure walnut scrub or a weekly clarifying wash to remove mineral build-up, Pure Lamellar Vitality for lightweight daily hydration that doesn't compound the dryness, and sulphate-free shampoos so the wash itself isn't stripping natural oils on top of what the water already does.",
+        answer: "Use Juuce Deep Cleanse as a weekly clarifying wash to remove mineral build-up, Pure Lamellar Vitality for lightweight daily hydration, and a sulphate-free shampoo for regular washes.",
       },
       {
         question: "Is express shipping worth it for Perth orders?",

@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "Pure: The Organic Specialist",
-          content: "Pure is certified organic, sulfate-free, paraben-free, and uses cold-pressed botanical oils. This matters if: (1) You have a sensitive scalp that reacts to synthetic sulfates. (2) You prefer natural ingredients for health or environmental reasons. (3) Your hair responds better to gentler cleansing. Pure Sacred Mask is a weekly favourite for my clients who want deep conditioning without silicones. The Walnut Scrub is unique in the category — a weekly scalp detox that nothing else really matches."
+          content: "Pure is certified organic, sulfate-free, paraben-free, and uses cold-pressed botanical oils. This matters if: (1) You have a sensitive scalp that reacts to synthetic sulfates. (2) You prefer natural ingredients for health or environmental reasons. (3) Your hair responds better to gentler cleansing. Pure Sacred Mask is a weekly favourite for my clients who want deep conditioning without silicones."
         },
         {
           heading: "Which One for Your Hair Type",
