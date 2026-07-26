@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { useQuickAddToCart } from "@/hooks/useQuickAddToCart";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import useViewportImageGate from "@/hooks/useViewportImageGate";
+import { getPrimaryVariantPricing } from "@/lib/productPricing";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -99,22 +100,18 @@ const BestSellers = () => {
 
         const mappedProducts = productList.map((product: any) => {
           const firstImage = product.images?.edges?.[0]?.node;
-          const price = parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
-          const compareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount
-            ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount)
-            : undefined;
-          const firstVariant = product.variants?.edges?.[0]?.node;
+          const pricing = getPrimaryVariantPricing(product);
 
           return {
             id: product.id,
             slug: product.handle,
             title: product.title,
-            price: price,
-            originalPrice: compareAtPrice,
-            currency: product.priceRange?.minVariantPrice?.currencyCode || "AUD",
+            price: pricing.price,
+            originalPrice: pricing.originalPrice,
+            currency: pricing.currency,
             image: firstImage?.url || "/placeholder.svg",
             availableForSale: product.availableForSale,
-            variantId: firstVariant?.id,
+            variantId: pricing.variantId,
           };
         });
 

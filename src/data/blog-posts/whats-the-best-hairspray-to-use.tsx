@@ -55,7 +55,7 @@ const post = {
         },
         {
           question: "How do I get rid of hairspray build-up?",
-          answer: "A clarifying shampoo once a week. Juuce Detox or Pure Walnut Scrub lifts polymers and silicones without stripping colour. After one wash, hair feels light again.",
+          answer: "Use a clarifying shampoo once a week. Juuce Deep Cleanse lifts product buildup without leaving hair feeling stripped. After one wash, hair feels light again.",
         },
         {
           question: "Is aerosol hairspray bad for the environment?",

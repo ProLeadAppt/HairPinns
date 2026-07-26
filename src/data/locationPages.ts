@@ -304,7 +304,7 @@ const JENA_PRODUCT_TIPS: string[] = [
   "For coastal humidity, I send every [Suburb] client home with a QIQI Bare Repair Oil. 3 drops through damp hair, that's it.",
   "Straight Up Smoothing holds up to 12 weeks in coastal air. If you're tired of fighting the straightener, ask me about it.",
   "Juuce Daily Indulge is my ride-or-die for aftercare. A small amount on damp hair, blowdry, you're done.",
-  "Walnut Scrub once a fortnight clears the buildup that flattens your colour. Most clients don't know about this one.",
+  "Juuce Super Soft Hydration Moisture Mask is my weekly pick when dry hair needs softness back without feeling heavy.",
   "Heat Shield is non-negotiable in summer. Australian UV will fry your ends if you skip it. Two sprays before blowdry.",
   "If you're between smoothing appointments, use a sulfate-free shampoo. Regular shampoo strips the treatment in half the time.",
   "Curly girls — the Aromaganics Curl Duo is what I keep behind the chair. Cleansing without the crunch.",

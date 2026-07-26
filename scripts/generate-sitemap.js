@@ -14,6 +14,7 @@ import {
   renderSitemapUrl,
 } from './sitemap-utils.js';
 import { isIndexableRoute } from './route-policy.js';
+import { isRetiredProductHandle } from './retired-products.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -106,7 +107,7 @@ async function getShopifyProducts() {
     images: (e.node.images?.edges || [])
       .map((ie) => ({ url: ie.node.url, altText: ie.node.altText || e.node.title }))
       .filter((img) => img.url),
-  })).filter((p) => p.handle);
+  })).filter((p) => p.handle && !isRetiredProductHandle(p.handle));
   if (products.length === 0) throw new Error('[sitemap] Shopify returned no products; refusing an incomplete sitemap');
   return products;
 }
