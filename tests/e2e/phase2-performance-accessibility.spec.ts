@@ -620,16 +620,17 @@ test('late cart hydration cannot overwrite a newer cart count event', async ({ p
   });
 
   await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
-  await expect(page.getByRole('button', { name: 'View cart' })).toBeVisible();
+  const visibleCartButton = page.locator('button[aria-label="View cart"]:visible');
+  await expect(visibleCartButton).toHaveCount(1);
   await expect.poll(() => Boolean(releaseHydration)).toBe(true);
   await page.evaluate(() => {
     window.dispatchEvent(new CustomEvent('hp:cartCountUpdate', { detail: { count: 3 } }));
   });
-  await expect(page.getByRole('button', { name: 'View cart, 3 items' })).toBeVisible();
+  await expect(page.locator('button[aria-label="View cart, 3 items"]:visible')).toHaveCount(1);
 
   releaseHydration?.();
   await page.waitForTimeout(200);
-  await expect(page.getByRole('button', { name: 'View cart, 3 items' })).toBeVisible();
+  await expect(page.locator('button[aria-label="View cart, 3 items"]:visible')).toHaveCount(1);
 });
 
 test('cart drawer is a keyboard-contained named dialog', async ({ page }) => {
@@ -702,7 +703,9 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
   });
 
   await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
-  await page.getByRole('button', { name: /^View cart/ }).click();
+  const visibleCartButton = page.locator('button[aria-label^="View cart"]:visible');
+  await expect(visibleCartButton).toHaveCount(1);
+  await visibleCartButton.click();
 
   const drawer = page.locator('[data-mini-cart]');
   await expect(drawer).toBeVisible();
