@@ -19,15 +19,18 @@ const collectSourceFiles = (directory: string): string[] =>
 const productionFiles = collectSourceFiles(sourceRoot);
 const relativePath = (path: string) => relative(projectRoot, path).replaceAll("\\", "/");
 const read = (path: string) => readFileSync(path, "utf8");
+const productionSources = productionFiles.map((path) => ({
+  name: relativePath(path),
+  text: read(path),
+}));
 
 const findMatches = (
   pattern: RegExp,
   excludedPaths: readonly string[] = [],
 ): string[] =>
-  productionFiles.flatMap((path) => {
-    const name = relativePath(path);
+  productionSources.flatMap(({ name, text }) => {
     if (excludedPaths.includes(name)) return [];
-    return pattern.test(read(path)) ? [name] : [];
+    return pattern.test(text) ? [name] : [];
   });
 
 describe("build-time entity and proof parity", () => {
@@ -90,5 +93,14 @@ describe("build-time entity and proof parity", () => {
   it("does not restore the retired fabricated review dataset", () => {
     expect(productionFiles.map(relativePath)).not.toContain("src/data/reviews.ts");
     expect(findMatches(/@\/data\/reviews/)).toEqual([]);
+  });
+
+  it("keeps the supported Fresha aggregate inside the proof boundary", () => {
+    expect(
+      findMatches(/5\.0[^\n]{0,40}(?:review|Fresha)|(?:review|Fresha)[^\n]{0,40}5\.0/i, [
+        "src/config/proofRegistry.ts",
+        "src/lib/venueReviewProof.ts",
+      ]),
+    ).toEqual([]);
   });
 });

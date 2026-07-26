@@ -8,6 +8,7 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { SERVICE_ROUTES } from './service-routes.js';
 import { isIndexableRoute } from './route-policy.js';
+import { parseLocationSlugs } from './sitemap-utils.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -151,7 +152,8 @@ export async function collectRoutes() {
   ];
   routes.push(...staticPages);
 
-  const areaSlugs = [...new Set(extractObjectKeys(resolve(root, 'src/data/locationPages.ts')))];
+  const locationSource = readFileSync(resolve(root, 'src/data/locationPages.ts'), 'utf8');
+  const areaSlugs = parseLocationSlugs(locationSource);
   areaSlugs.forEach((slug) => routes.push(`/areas/${slug}`));
 
   // /near/<slug> routes are deprecated (301 → /areas/<slug>-<postcode> in

@@ -11,6 +11,7 @@ import { SERVICE_ROUTES } from './service-routes.js';
 import {
   normaliseLastmod,
   parseBlogFreshness,
+  parseLocationSlugs,
   renderSitemapUrl,
 } from './sitemap-utils.js';
 import { isIndexableRoute } from './route-policy.js';
@@ -186,8 +187,8 @@ async function main() {
   const locPath = resolve(root, 'src/data/locationPages.ts');
   const locContent = existsSync(locPath) ? readFileSync(locPath, 'utf8') : '';
   const locMod = gitLastMod('src/data/locationPages.ts');
-  const areaSlugs = [...(locContent.match(/"([a-z0-9-]+)":\s*\{/g) || [])].map((m) => m.replace(/"([a-z0-9-]+)":\s*\{/, '$1'));
-  [...new Set(areaSlugs)].filter((s) => s.length > 1).forEach((slug) => {
+  const areaSlugs = parseLocationSlugs(locContent);
+  areaSlugs.forEach((slug) => {
     urls.push(url(`${BASE}/areas/${slug}`, 'monthly', 0.7, locMod));
   });
 

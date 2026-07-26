@@ -94,6 +94,12 @@ export const getPublishableProof = (
       proof.publicationStatus === "published" && !isExpired(proof, asOfDate),
   );
 
+export const getPublishableProofById = (
+  proofId: string,
+  asOfDate: string = new Date().toISOString().slice(0, 10),
+): ProofRecord | undefined =>
+  getPublishableProof(asOfDate).find((proof) => proof.id === proofId);
+
 export const validateProofRegistry = (
   asOfDate: string = new Date().toISOString().slice(0, 10),
   registry: readonly ProofRecord[] = PROOF_REGISTRY,

@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
 import RelatedContent from "@/components/RelatedContent";
 import FaqFeedbackWidget from "@/components/FaqFeedbackWidget";
+import ReviewProofBadge from "@/components/reviews/ReviewProofBadge";
 import { Button } from "@/components/ui/button";
 import { getLocationData } from "@/data/locationPages";
 import { getOGImage } from "@/lib/sitemap";
@@ -14,6 +15,13 @@ import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingCon
 import { BUSINESS_NAP } from "@/config/businessConfig";
 import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 import { generateLocalBusinessSchema } from "@/lib/schema";
+import {
+  buildLocationFaqSchema,
+  getLocationJourneyHeading,
+  getLocationMetaDescription,
+  getLocationTravelCopy,
+} from "@/lib/locationPresentation";
+import { resolveVenueReviewProof } from "@/lib/venueReviewProof";
 
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -54,26 +62,27 @@ const LocationPage = () => {
       { "@type": "ListItem", position: 3, name: locationData.name, item: canonicalUrl },
     ],
   };
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: locationData.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
-    })),
-  };
+  const faqSchema = buildLocationFaqSchema(locationData.faqs);
+  const travelCopy = getLocationTravelCopy(locationData);
+  const venueReviewProof = resolveVenueReviewProof({
+    entityType: "location",
+    entitySlug: locationData.slug,
+  });
 
   return (
     <>
       <SEOHead
         title={`Hairdresser & Hair Salon near ${locationData.name} | Hair Pinns`}
-        description={`Hair salon near ${locationData.name} for colour, blonding, smoothing and cuts. ${locationData.driveTime} from Bangor. Book online or call ${BUSINESS_NAP.phone.display}.`}
+        description={getLocationMetaDescription(locationData)}
         canonical={canonicalUrl}
         ogImage={getOGImage("default")}
         ogType="website"
         hrefLang="en-AU"
-        schemaJson={[breadcrumbSchema, generateLocalBusinessSchema(canonicalUrl), faqSchema]}
+        schemaJson={[
+          breadcrumbSchema,
+          generateLocalBusinessSchema(canonicalUrl),
+          ...(faqSchema ? [faqSchema] : []),
+        ]}
       />
 
       <div className="editorial-route min-h-screen bg-[hsl(var(--after-hours-paper))] text-[hsl(var(--after-hours-plum))]" data-location-page="">
@@ -93,7 +102,7 @@ const LocationPage = () => {
             <div className="container-custom px-4 sm:px-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
               <div className="max-w-4xl">
                 <p className="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-[hsl(var(--after-hours-copper))]">
-                  {locationData.driveTime} from Bangor
+                  {travelCopy.heroLabel}
                 </p>
                 <h1 className="max-w-3xl font-heading text-[clamp(2.8rem,7vw,5.8rem)] leading-[0.98] text-[hsl(var(--after-hours-cream))]">
                   Hairdresser near {locationData.name}
@@ -112,12 +121,17 @@ const LocationPage = () => {
                   </Button>
                 </div>
               </div>
-              <dl className="border-l border-[hsl(var(--after-hours-cream)/0.28)] pl-6 text-sm">
-                <dt className="uppercase tracking-[0.18em] text-[hsl(var(--after-hours-muted))]">Salon</dt>
-                <dd className="mt-2 font-heading text-2xl">Hair Pinns, Bangor</dd>
-                <dt className="mt-6 uppercase tracking-[0.18em] text-[hsl(var(--after-hours-muted))]">From {locationData.name}</dt>
-                <dd className="mt-2 text-base">{locationData.driveTime}</dd>
-              </dl>
+              <aside className="border-l border-[hsl(var(--after-hours-cream)/0.28)] pl-6 text-sm" aria-label="Salon location and proof">
+                <dl>
+                  <dt className="uppercase tracking-[0.18em] text-[hsl(var(--after-hours-muted))]">Salon</dt>
+                  <dd className="mt-2 font-heading text-2xl">Hair Pinns, Bangor</dd>
+                  <dt className="mt-6 uppercase tracking-[0.18em] text-[hsl(var(--after-hours-muted))]">From {locationData.name}</dt>
+                  <dd className="mt-2 text-base">{locationData.driveTime}</dd>
+                </dl>
+                {venueReviewProof && (
+                  <ReviewProofBadge proof={venueReviewProof} tone="dark" className="mt-6" />
+                )}
+              </aside>
             </div>
           </section>
 
@@ -142,7 +156,7 @@ const LocationPage = () => {
               <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[hsl(var(--after-hours-copper))]">Salon menu</p>
-                  <h2 className="mt-4 font-heading text-h2">Services chosen around {locationData.name}</h2>
+                  <h2 className="mt-4 font-heading text-h2">Services available at Hair Pinns</h2>
                   <p className="mt-4 leading-relaxed text-[hsl(var(--after-hours-plum)/0.74)]">Explore the current Hair Pinns menu and book live availability through Fresha.</p>
                 </div>
                 <ol className="border-t border-[hsl(var(--after-hours-plum)/0.2)]">
@@ -158,32 +172,34 @@ const LocationPage = () => {
             </div>
           </section>
 
-          <section className="py-16 md:py-24" data-location-faq="">
-            <div className="container-custom px-4 sm:px-6 grid gap-10 lg:grid-cols-[0.6fr_1.4fr]">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[hsl(var(--after-hours-copper))]">Common questions</p>
-                <h2 className="mt-4 font-heading text-h2">Before you visit</h2>
+          {locationData.faqs.length > 0 ? (
+            <section className="py-16 md:py-24" data-location-faq="">
+              <div className="container-custom px-4 sm:px-6 grid gap-10 lg:grid-cols-[0.6fr_1.4fr]">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[hsl(var(--after-hours-copper))]">Common questions</p>
+                  <h2 className="mt-4 font-heading text-h2">Before you visit</h2>
+                </div>
+                <div className="border-t border-[hsl(var(--after-hours-plum)/0.2)]">
+                  {locationData.faqs.map((faq) => (
+                    <details key={faq.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.2)] py-5">
+                      <summary className="min-h-11 cursor-pointer list-none pr-8 font-heading text-lg font-semibold">{faq.question}</summary>
+                      <div className="max-w-3xl pb-2 pt-3 leading-relaxed text-[hsl(var(--after-hours-plum)/0.78)]">
+                        <p>{faq.answer}</p>
+                        <FaqFeedbackWidget question={faq.question} />
+                      </div>
+                    </details>
+                  ))}
+                </div>
               </div>
-              <div className="border-t border-[hsl(var(--after-hours-plum)/0.2)]">
-                {locationData.faqs.map((faq) => (
-                  <details key={faq.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.2)] py-5">
-                    <summary className="min-h-11 cursor-pointer list-none pr-8 font-heading text-lg font-semibold">{faq.question}</summary>
-                    <div className="max-w-3xl pb-2 pt-3 leading-relaxed text-[hsl(var(--after-hours-plum)/0.78)]">
-                      <p>{faq.answer}</p>
-                      <FaqFeedbackWidget question={faq.question} />
-                    </div>
-                  </details>
-                ))}
-              </div>
-            </div>
-          </section>
+            </section>
+          ) : null}
 
           <section className="bg-[hsl(var(--after-hours-near-black))] py-16 text-[hsl(var(--after-hours-cream))] md:py-24" data-location-visit="">
             <div className="container-custom px-4 sm:px-6 grid gap-10 lg:grid-cols-2">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[hsl(var(--after-hours-copper))]">Visit Hair Pinns</p>
-                <h2 className="mt-4 font-heading text-h2 text-[hsl(var(--after-hours-cream))]">From {locationData.name} to Bangor</h2>
-                <p className="mt-5 text-lg text-[hsl(var(--after-hours-cream)/0.78)]">Allow {locationData.driveTime}. The salon is at {BUSINESS_NAP.address.full}.</p>
+                <h2 className="mt-4 font-heading text-h2 text-[hsl(var(--after-hours-cream))]">{getLocationJourneyHeading(locationData)}</h2>
+                <p className="mt-5 text-lg text-[hsl(var(--after-hours-cream)/0.78)]">{travelCopy.visitNote}</p>
               </div>
               <div className="flex flex-col justify-end gap-3 sm:flex-row lg:justify-start">
                 <Button asChild size="lg" className="rounded-none bg-[hsl(var(--after-hours-copper))] text-[hsl(var(--after-hours-near-black))] hover:bg-[hsl(var(--after-hours-cream))]">
@@ -209,7 +225,7 @@ const LocationPage = () => {
             </div>
           </nav>
 
-          <RelatedContent topics={["smoothing", "cuts", "colour", "frizz-control"]} heading="Popular with locals" />
+          <RelatedContent topics={["smoothing", "cuts", "colour", "frizz-control"]} heading="More from Hair Pinns" />
         </main>
         <Footer />
       </div>

@@ -1,7 +1,7 @@
 {
   "_meta": {
     "notice": "GENERATED FILE - DO NOT EDIT",
-    "sourceDate": "2026-07-25"
+    "sourceDate": "2026-07-26"
   },
   "@context": "https://schema.org",
   "@type": [
@@ -126,7 +126,7 @@
     "products": 120
   },
   "discovery": {
-    "sourceDate": "2026-07-25",
+    "sourceDate": "2026-07-26",
     "generatedFrom": [
       "src/config/entityRegistry.ts",
       "scripts/collect-prerender-routes.js"

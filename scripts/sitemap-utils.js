@@ -49,6 +49,27 @@ export const parseBlogFreshness = (source) => {
   return entries;
 };
 
+export const parseLocationSlugs = (source) => {
+  const slugs = [];
+  const seen = new Set();
+  const patterns = [
+    /\bslug:\s*["']([a-z0-9-]+)["']/g,
+    /["']([a-z0-9-]+)["']\s*:\s*\{/g,
+  ];
+
+  for (const pattern of patterns) {
+    let match;
+    while ((match = pattern.exec(source)) !== null) {
+      const slug = match[1];
+      if (!/^[a-z0-9-]+-\d{4}$/.test(slug) || seen.has(slug)) continue;
+      seen.add(slug);
+      slugs.push(slug);
+    }
+  }
+
+  return slugs;
+};
+
 export const renderSitemapUrl = (entry) => {
   const imageBlock = (entry.images || [])
     .slice(0, 5)

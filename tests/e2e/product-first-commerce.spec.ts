@@ -373,7 +373,7 @@ test('after-hours footer closes with complete commerce, salon, and legal paths',
   const footerNav = footer.getByRole('navigation', { name: 'Footer navigation' });
   const expectedFooterRoutes = [
     '/collections', '/blog', '/policies/shipping', '/policies/returns', '/faq', '/glossary',
-    '/services', '/booking', '/about', '/areas', '/contact',
+    '/sitemap', '/services', '/booking', '/about', '/areas', '/contact',
   ];
   const footerHrefs = await footerNav.getByRole('link').evaluateAll(links => links.map(link => link.getAttribute('href')));
   expect(footerHrefs).toEqual(expectedFooterRoutes);
@@ -401,10 +401,10 @@ test('after-hours footer closes with complete commerce, salon, and legal paths',
       linkCount: element.querySelectorAll('a').length,
     };
   });
-  expect(metrics.height).toBeLessThan(1750);
+  expect(metrics.height).toBeLessThan(1800);
   expect(metrics.background).toBe('rgb(24, 0, 31)');
   expect(metrics.minTarget).toBeGreaterThanOrEqual(44);
-  expect(metrics.linkCount).toBe(22);
+  expect(metrics.linkCount).toBe(23);
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
   await expect(page.getByRole('region', { name: 'Quick shop bar' })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
