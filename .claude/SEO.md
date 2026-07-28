@@ -55,3 +55,26 @@ Full command reference: `.claude/skills/seo/SKILL.md`.
 The bundled Python tools must run through `claude-seo run <script>.py`, never a
 bare interpreter. If a command reports that setup is required, run `/seo setup`
 rather than improvising a `pip install`.
+
+## SEO drift monitoring, not yet baselined
+
+`/seo drift` is the highest-leverage command for a multi-site portfolio: it
+snapshots the SEO-critical elements of a site into SQLite and diffs them
+between runs, so a regression surfaces on the next deploy instead of weeks
+later in Search Console.
+
+**No baseline exists yet.** It could not be captured when the plugin was wired
+in: that session ran in a sandbox whose network policy refused outbound
+CONNECT to any host outside an allowlist, so no live URL was reachable. Capture
+it on a machine with normal network access:
+
+```
+/seo drift baseline <production-url>     # once, to establish the reference
+/seo drift compare  <production-url>     # after each deploy
+/seo drift history  <production-url>     # trend over time
+```
+
+Worth wiring `compare` into the post-deploy step. On the two Vite SPAs in this
+portfolio (HairPinns, romansbuildingservices) crawlability depends entirely on
+the postbuild prerender: if that silently fails, crawlers get an empty shell
+and a drift comparison is what catches it.
