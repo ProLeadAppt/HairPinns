@@ -15,7 +15,7 @@ import blogImg14 from "@/assets/blog/juuce-hairspray-collection.webp";
 import blogImg15 from "@/assets/blog/wet-brush-collection.webp";
 import blogImg16 from "@/assets/blog/qiqi-vega-comparison.webp";
 import blogImg17 from "@/assets/blog/hydration-bundle.webp";
-import blogImg18 from "@/assets/blog/walnut-scrub-hero-1280w.webp";
+
 import blogImg19 from "@/assets/images/hair.pinns_1765910087_3789049150835962518_2244281067.avif";
 import blogImg20 from "@/assets/blog/winter-hair-care.webp";
 import blogImg21 from "@/assets/blog/lamellar-vitality-pack.webp";
@@ -247,13 +247,13 @@ export const blogSummaries: BlogSummary[] = [
     author: 'Jena Pinn',
   },
   {
-    slug: 'pure-walnut-scrub-scalp-detox',
-    title: "Pure Walnut Scrub – The Scalp Detox You Didn't Know You Needed",
-    excerpt: 'When was the last time you gave your scalp a proper detox? Meet the Pure Walnut Scrub Hair & Scalp Pre-Wash Treatment.',
-    category: 'Products',
-    date: 'June 11, 2025',
-    readTime: '3 min read',
-    image: blogImg18,
+    slug: 'scalp-buildup-how-to-reset-hair',
+    title: 'Scalp Buildup: How to Reset Your Hair Without Overdoing It',
+    excerpt: 'Heavy roots, dull lengths or an itchy scalp can point to buildup. Here is how I handle it in the salon and at home.',
+    category: 'Education',
+    date: 'July 26, 2026',
+    readTime: '4 min read',
+    image: blogImg04,
     author: 'Jena Pinn',
   },
   {

@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 import { SERVICE_ROUTES } from './service-routes.js';
 import { isIndexableRoute } from './route-policy.js';
 import { parseLocationSlugs } from './sitemap-utils.js';
+import { excludeRetiredProductHandles } from './retired-products.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -188,7 +189,7 @@ export async function collectRoutes() {
   }
   collectionHandles.forEach((h) => routes.push(`/collections/${h}`));
 
-  const productHandles = await fetchShopifyHandles('products');
+  const productHandles = excludeRetiredProductHandles(await fetchShopifyHandles('products'));
   productHandles.forEach((h) => routes.push(`/products/${h}`));
 
   console.log(`[prerender] Collected ${routes.length} routes for prerendering`);

@@ -15,7 +15,7 @@ export const FRIZZ_FREE_COLLECTION_HANDLE: string | null = "frizz-free-must-have
  * Best seller = first in list. Frizz-Free products are merged in from FRIZZ_FREE_COLLECTION_HANDLE.
  */
 export const ABOVE_FOLD_HERO_PRODUCT_HANDLES: string[] = [
-  "walnut-scrub-hair-scalp-pre-wash-treatment", // Best Seller (first) — Jena's own
+  "juuce-super-soft-hydration-moisture-mask", // Jena-confirmed best-selling category
   "juuce-bond-repair-shampoo",
   "juuce-protect-solar-enz",
   "juuce-heat-shield",
@@ -25,10 +25,10 @@ export const ABOVE_FOLD_HERO_PRODUCT_HANDLES: string[] = [
  * Best Sellers product handles — when set, overrides BEST_SELLERS_COLLECTION_HANDLE.
  * Jena updates this list from analytics (add-to-cart, views, time on page).
  * Order = popularity (first = most popular). Leave empty to use the collection.
- * Product handle = URL slug, e.g. from /products/walnut-scrub-hair-scalp-pre-wash-treatment use "walnut-scrub-hair-scalp-pre-wash-treatment"
+ * Product handle = URL slug, e.g. from /products/juuce-bond-repair-shampoo use "juuce-bond-repair-shampoo"
  */
 export const BEST_SELLERS_PRODUCT_HANDLES: string[] = [
-  "walnut-scrub-hair-scalp-pre-wash-treatment", // Jena's own — lead
+  "juuce-super-soft-hydration-moisture-mask",
   "juuce-bond-repair-shampoo",
   "juuce-heat-shield",
   "juuce-protect-solar-enz",

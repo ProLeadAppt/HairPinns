@@ -18,17 +18,6 @@ export interface ProductHowToData {
 
 /** Product handle to HowTo mapping — add more as needed */
 export const PRODUCT_HOWTO: Record<string, ProductHowToData> = {
-  "walnut-scrub-hair-scalp-pre-wash-treatment": {
-    name: "How to Use Pure Walnut Scrub Hair & Scalp Pre-Wash Treatment",
-    description: "A gentle scalp exfoliant that refreshes and clarifies. Use before shampooing for best results.",
-    step: [
-      { name: "Apply to damp hair", text: "Apply the Walnut Scrub to damp hair, focusing on the scalp area." },
-      { name: "Massage gently", text: "Massage gently into the scalp using circular motions for 1-2 minutes." },
-      { name: "Rinse", text: "Rinse thoroughly with water." },
-      { name: "Follow with shampoo", text: "Follow with your usual Pure shampoo and conditioner. Use once a week for best results." },
-    ],
-    supply: ["Pure Walnut Scrub", "Shampoo", "Conditioner"],
-  },
   "juuce-bond-repair-mask": {
     name: "How to Use Juuce Bond Repair Mask",
     description: "A bond-building hair mask that repairs damage from heat, colour, and chemical processing.",

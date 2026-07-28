@@ -40,6 +40,45 @@
   status = 302
   force = true
 
+# Retired Pure Walnut Scrub product. Keep both current and legacy URL forms
+# out of the SPA so old links permanently resolve to relevant scalp care.
+[[redirects]]
+  from = "/products/walnut-scrub-hair-scalp-pre-wash-treatment"
+  to = "/collections/scalp-health-care/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/walnut-scrub-hair-scalp-pre-wash-treatment/"
+  to = "/collections/scalp-health-care/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/product/walnut-scrub-hair-scalp-pre-wash-treatment"
+  to = "/collections/scalp-health-care/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/product/walnut-scrub-hair-scalp-pre-wash-treatment/"
+  to = "/collections/scalp-health-care/"
+  status = 301
+  force = true
+
+# Preserve the authority of the retired product-led guide after its rewrite.
+[[redirects]]
+  from = "/blog/pure-walnut-scrub-scalp-detox"
+  to = "/blog/scalp-buildup-how-to-reset-hair/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/pure-walnut-scrub-scalp-detox/"
+  to = "/blog/scalp-buildup-how-to-reset-hair/"
+  status = 301
+  force = true
+
 # Legacy /near/<slug> routes (the old suburb-page system) -> the canonical
 # /areas/<slug>-<postcode> pages. Both code paths render today, but /areas/ is
 # the fully-built, sitemap-indexed system. Routing requests at the edge prevents

@@ -173,7 +173,7 @@ FAQ_BANK: List[Tuple[List[str], List[Tuple[str, str]]]] = [
        ("What's the difference between flexible and firm hold hairspray?",
         "Flexible hold lets hair move (great for waves, natural styles), firm hold locks it in place (updos, special events). Using firm hold for a beach wave makes it look crispy and unnatural."),
        ("How do I get rid of hairspray build-up?",
-        "A clarifying shampoo once a week. Juuce Detox or Pure Walnut Scrub lifts polymers and silicones without stripping colour. After one wash, hair feels light again."),
+         "Use a clarifying shampoo once a week. Juuce Deep Cleanse lifts product buildup without leaving hair feeling stripped. After one wash, hair feels light again."),
        ("Is aerosol hairspray bad for the environment?",
         "Modern aerosols are CFC-free and VOC-compliant. The bigger environmental cost is over-use — a 2-second burst is enough. Hold the can 30cm away for a fine, even mist."),
        ("Can hairspray be used on dry shampoo days?",
@@ -225,19 +225,17 @@ FAQ_BANK: List[Tuple[List[str], List[Tuple[str, str]]]] = [
         "Yes — the leave-in mask and silk pillowcase combo addresses the two biggest frizz causes: dehydration and friction. Most clients see a difference in two washes."),
      ]),
 
-    # 14. Walnut scrub
-    (["walnut-scrub", "scalp-detox"],
+    # 14. Scalp buildup
+    (["scalp-buildup"],
      [
-       ("What is the Pure Walnut Scrub?",
-        "A physical exfoliant for the scalp that lifts dead skin, product build-up, and excess sebum. The walnut shell particles are fine enough to scrub without scratching the scalp."),
-       ("How often should I use a scalp scrub?",
-        "Once a week if you use styling product daily, once a fortnight for low-maintenance hair. Over-scrubbing strips the scalp's natural oils and causes rebound oiliness."),
-       ("Is scalp exfoliation safe for coloured hair?",
-        "Yes — the scrub doesn't penetrate the hair shaft, only the scalp. Use it 48 hours after colour, not before, so the cuticle is fully closed."),
-       ("Can scalp scrub help with dandruff?",
-        "For product-buildup flake, yes. For seborrheic dermatitis or fungal dandruff, no — you need a medicated shampoo like Nizoral. If flakes persist after 3 scrubs, see a GP or trichologist."),
-       ("Does the Walnut Scrub promote hair growth?",
-        "Indirectly — by clearing the follicle of build-up, new growth can emerge without obstruction. It's not a growth stimulant, but it's a healthy-scalp prerequisite for any growth product to work."),
+       ("How often should I use a clarifying shampoo?",
+        "Once a week if you use styling products most days. Once a fortnight may be enough if you use less product or have a dry scalp."),
+       ("Can clarifying shampoo fade colour?",
+        "Using it too often can fade colour faster. Keep it to the scalp and roots, use it only when needed and follow with conditioner through the lengths."),
+       ("Is scalp buildup the same as dandruff?",
+        "Not always. Product buildup can look like flakes, but dandruff may need a medicated shampoo. If flakes or irritation persist, ask your GP or dermatologist."),
+       ("Should I shampoo twice?",
+        "You can shampoo twice when the first wash does not lather or your roots still feel coated. Use a small amount each time and rinse properly."),
      ]),
 
     # 15. Winter hair care

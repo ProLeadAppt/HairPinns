@@ -273,8 +273,7 @@ export const glossary: GlossaryTerm[] = [
     id: "pre-poo",
     term: "Pre-poo treatment",
     definition:
-      "Applying an oil or conditioner BEFORE shampooing to protect very dry, coily or chemically-treated hair from being stripped by the wash. Pure Walnut Scrub doubles as a pre-wash scalp treatment that doubles as a pre-poo.",
-    link: { label: "Pure Walnut Scrub", href: "/products/walnut-scrub-hair-scalp-pre-wash-treatment" },
+      "Applying an oil or conditioner before shampooing to protect very dry, coily or chemically treated hair from feeling stripped by the wash.",
     category: "care",
   },
 ];

@@ -1,4 +1,8 @@
 import { projectConfig } from "@/config/projectConfig";
+import {
+  excludeRetiredProductEdges,
+  isRetiredProductHandle,
+} from "@/config/retiredProducts";
 
 const { domain, storefrontToken, apiVersion, storeUrl } = projectConfig.shopify;
 
@@ -80,6 +84,8 @@ export async function fetchShopify<T>(
  * Get product by handle
  */
 export async function getProductByHandle(handle: string) {
+  if (isRetiredProductHandle(handle)) return null;
+
   const query = `
     query getProduct($handle: String!) {
       product(handle: $handle) {
@@ -223,6 +229,9 @@ export async function getCollectionByHandle(handle: string) {
 
   try {
     const data = await fetchShopify<{ collection: any }>(query, { handle });
+    if (data.collection?.products?.edges) {
+      data.collection.products.edges = excludeRetiredProductEdges(data.collection.products.edges);
+    }
     return data.collection;
   } catch (error) {
     console.error(`Failed to fetch collection ${handle}:`, error);
@@ -313,8 +322,10 @@ export async function searchProducts(query: string, first: number = 20) {
       first 
     });
     
+    const activeProductEdges = excludeRetiredProductEdges(data.products.edges);
+
     return {
-      products: data.products.edges.map((edge: any) => edge.node),
+      products: activeProductEdges.map((edge: any) => edge.node),
       pageInfo: data.products.pageInfo,
     };
   } catch (error) {

@@ -10,14 +10,14 @@ The "Shop Our Best Sellers" and "Above Fold Products" sections can show products
    - Or any other analytics you use
 
 2. **Find the product handle** for each product:
-   - From the product URL: `hairpinns.com/products/walnut-scrub-hair-scalp-pre-wash-treatment` → handle is `walnut-scrub-hair-scalp-pre-wash-treatment`
+   - From the product URL: `hairpinns.com/products/juuce-bond-repair-shampoo` → handle is `juuce-bond-repair-shampoo`
    - Or in Shopify Admin: Products > [product] > the URL slug in the "Search engine listing" section
 
 3. **Add the handles** to `src/config/featuredProducts.ts` in the `BEST_SELLERS_PRODUCT_HANDLES` array, in order of popularity (first = most popular):
 
 ```ts
 export const BEST_SELLERS_PRODUCT_HANDLES: string[] = [
-  "walnut-scrub-hair-scalp-pre-wash-treatment",  // #1 most popular
+  "juuce-super-soft-hydration-moisture-mask",  // #1 most popular
   "juuce-heat-shield",
   "aromaganic-curly-curl-hair-shampoo-conditioner-duo",
   // ... up to 6 products
