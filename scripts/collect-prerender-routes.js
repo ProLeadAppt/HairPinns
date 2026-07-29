@@ -3,19 +3,20 @@
  * Used by vite.config.ts to feed vite-plugin-prerender.
  * Reads dynamic slugs from data files + Shopify API.
  */
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { SERVICE_ROUTES } from './service-routes.js';
 import { isIndexableRoute } from './route-policy.js';
 import { parseLocationSlugs } from './sitemap-utils.js';
 import { excludeRetiredProductHandles } from './retired-products.js';
+import {
+  readShopifyRouteCache,
+  writeShopifyRouteCache,
+} from './shopify-route-cache.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const routeCacheDir = resolve(root, 'node_modules/.cache/hairpinns');
-const routeCachePath = resolve(routeCacheDir, 'shopify-handles.json');
-const ROUTE_CACHE_MAX_AGE_MS = 10 * 60 * 1000;
 
 // Load .env if present
 if (existsSync(resolve(root, '.env'))) {
@@ -71,21 +72,8 @@ const CURRENT_COLLECTION_HANDLES = [
 ];
 
 async function fetchShopifyHandles(type) {
-  if (existsSync(routeCachePath)) {
-    try {
-      const cache = JSON.parse(readFileSync(routeCachePath, 'utf8'));
-      const cachedHandles = cache[type];
-      if (
-        Date.now() - cache.createdAt < ROUTE_CACHE_MAX_AGE_MS
-        && Array.isArray(cachedHandles)
-        && cachedHandles.length > 0
-      ) {
-        return cachedHandles;
-      }
-    } catch {
-      // Ignore corrupt or stale cache files and fetch authoritative data.
-    }
-  }
+  const cachedHandles = readShopifyRouteCache(type);
+  if (cachedHandles) return cachedHandles;
 
   const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
   const token = process.env.VITE_SF_STOREFRONT_TOKEN || '';
@@ -127,18 +115,7 @@ async function fetchShopifyHandles(type) {
   const handles = (edges || []).map((edge) => edge.node.handle).filter(Boolean);
   if (handles.length === 0) throw new Error(`[prerender] Shopify returned no ${type}; refusing an incomplete build`);
 
-  let cache = { createdAt: Date.now() };
-  if (existsSync(routeCachePath)) {
-    try {
-      cache = { ...cache, ...JSON.parse(readFileSync(routeCachePath, 'utf8')) };
-    } catch {
-      // Replace a corrupt cache with the successful authoritative response.
-    }
-  }
-  cache.createdAt = Date.now();
-  cache[type] = handles;
-  mkdirSync(routeCacheDir, { recursive: true });
-  writeFileSync(routeCachePath, JSON.stringify(cache), 'utf8');
+  writeShopifyRouteCache({ [type]: handles });
   return handles;
 }
 

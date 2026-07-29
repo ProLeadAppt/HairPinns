@@ -16,6 +16,7 @@ import {
 } from './sitemap-utils.js';
 import { isIndexableRoute } from './route-policy.js';
 import { isRetiredProductHandle } from './retired-products.js';
+import { writeShopifyRouteCache } from './shopify-route-cache.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -180,6 +181,13 @@ async function main() {
   // sitemap can carry up to 5 <image:image> entries. Google Image search
   // reads these for product photo indexing.
   const productEntries = await getShopifyProducts();
+  // Seed the route cache from the same authoritative inventory used for this
+  // sitemap. Later build stages must not reuse a previous deploy's handles and
+  // publish AI discovery URLs that are absent from the current sitemap.
+  writeShopifyRouteCache({
+    collections: collectionEntries.map((entry) => entry.handle),
+    products: productEntries.map((entry) => entry.handle),
+  });
   productEntries.forEach((p) => {
     urls.push(url(`${BASE}/products/${p.handle}`, 'weekly', 0.8, p.updatedAt, p.images));
   });
