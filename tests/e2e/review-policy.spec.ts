@@ -54,6 +54,31 @@ test("private draft recovery excludes contact PII", async ({ page }) => {
   await expect(page.getByLabel("Your feedback")).toHaveValue("Keep only this message in the active tab.");
 });
 
+test("service pages attribute venue-level Fresha proof without review schema", async ({ page }) => {
+  await page.goto("/services/smoothing/mid-length-straight-up-smoothing");
+
+  const proof = page.locator('[data-review-proof-source="fresha"]');
+  await expect(proof).toBeVisible();
+  await expect(proof).toContainText("Hair Pinns venue on Fresha: 5.0 from 936 reviews");
+  await expect(proof).toHaveAttribute("href", ENTITY_REGISTRY.profiles.fresha.venueUrl);
+  await expect(page.getByRole("link", { name: /Book now/i }).first()).toBeVisible();
+
+  const schemaText = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts.map((script) => script.textContent || "").join("\n"),
+  );
+  expect(schemaText).not.toContain("AggregateRating");
+});
+
+test("venue proof is scoped to the canonical Bangor location", async ({ page }) => {
+  await page.goto("/areas/bangor-2234");
+  await expect(page.locator('[data-review-proof-source="fresha"]')).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Visit Hair Pinns in Bangor" })).toBeVisible();
+  await expect(page.getByText("From Bangor to Bangor")).toHaveCount(0);
+
+  await page.goto("/areas/como-2226");
+  await expect(page.locator('[data-review-proof-source="fresha"]')).toHaveCount(0);
+});
+
 for (const viewport of [
   { name: "mobile", width: 390, height: 844 },
   { name: "fold", width: 717, height: 512 },
@@ -69,6 +94,20 @@ for (const viewport of [
     await page.getByRole("button", { name: "Rate 1 star" }).click();
     await expect(page.locator('[data-review-choice="public"]')).toBeVisible();
     await expect(page.locator('[data-review-choice="private"]')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+}
+
+for (const viewport of [
+  { name: "mobile", width: 390, height: 844 },
+  { name: "fold-cover", width: 344, height: 882 },
+  { name: "fold-open", width: 717, height: 512 },
+] as const) {
+  test(`${viewport.name} venue proof stays usable without horizontal overflow`, async ({ page }) => {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.goto("/services/smoothing/mid-length-straight-up-smoothing");
+
+    await expect(page.locator('[data-review-proof-source="fresha"]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }

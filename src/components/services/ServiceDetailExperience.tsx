@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedContent from "@/components/RelatedContent";
+import ReviewProofBadge from "@/components/reviews/ReviewProofBadge";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 import { serviceDetailData, type ServiceCategoryData, type ServiceDetailData } from "@/data/serviceDetails";
+import { resolveVenueReviewProof } from "@/lib/venueReviewProof";
 
 interface ServiceDetailExperienceProps {
   categoryData: ServiceCategoryData;
@@ -23,6 +25,10 @@ const ServiceDetailExperience = ({
   topics,
 }: ServiceDetailExperienceProps) => {
   const route = `/services/${categorySlug}/${serviceSlug}`;
+  const venueReviewProof = resolveVenueReviewProof({
+    entityType: "service",
+    entitySlug: serviceSlug,
+  });
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
@@ -78,6 +84,9 @@ const ServiceDetailExperience = ({
                 </div>
               )}
             </dl>
+            {venueReviewProof && (
+              <ReviewProofBadge proof={venueReviewProof} tone="dark" className="mt-7" />
+            )}
             <a
               href={BOOK_URL}
               target="_blank"

@@ -22,10 +22,19 @@ const readJsonLd = async (page: Page): Promise<JsonLdNode[]> =>
 const findType = (nodes: JsonLdNode[], type: string) =>
   nodes.find((node) => node["@type"] === type);
 
+const isNetlifyPreviewToolbarCspError = (message: string) => {
+  const baseUrl = process.env.PLAYWRIGHT_BASE_URL || "";
+  return /^https:\/\/deploy-preview-\d+--hairpinns\.netlify\.app/.test(baseUrl)
+    && /app\.netlify\.com(?:\/|')/i.test(message)
+    && /frame-src|content-security-policy|framing/i.test(message);
+};
+
 const attachRuntimeGuards = (page: Page) => {
   const errors: string[] = [];
   page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+    if (message.type() === "error" && !isNetlifyPreviewToolbarCspError(message.text())) {
+      errors.push(message.text());
+    }
   });
   page.on("pageerror", (error) => errors.push(error.message));
   return errors;

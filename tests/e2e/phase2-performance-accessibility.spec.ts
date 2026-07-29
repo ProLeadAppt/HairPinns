@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 import * as path from 'node:path';
 import { ENTITY_REGISTRY } from '../../src/config/entityRegistry';
@@ -11,6 +11,23 @@ const viewports = [
   { name: 'fold-344', width: 344, height: 882 },
   { name: 'desktop-1440', width: 1440, height: 1000 },
 ];
+
+type JsonLdNode = Record<string, any>;
+
+const readJsonLd = async (page: Page): Promise<JsonLdNode[]> =>
+  page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts.flatMap((script) => {
+      try {
+        const value = JSON.parse(script.textContent || 'null');
+        if (!value) return [];
+        if (Array.isArray(value)) return value;
+        if (Array.isArray(value['@graph'])) return value['@graph'];
+        return [value];
+      } catch {
+        return [];
+      }
+    }),
+  );
 
 test.beforeEach(async ({ page }) => {
   await page.route(
@@ -487,12 +504,12 @@ test('mobile header defers desktop-only enhancement chunks until they are needed
 
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  const configEntries = await page.evaluate(() =>
+  await expect.poll(() => page.evaluate(() =>
     ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer || [])
       .map((entry) => Array.from(entry))
-      .filter((entry) => entry[0] === 'config' && entry[1] === 'G-N6Y1TJMWGG'),
-  );
-  expect(configEntries).toHaveLength(1);
+      .filter((entry) => entry[0] === 'config' && entry[1] === 'G-N6Y1TJMWGG')
+      .length,
+  )).toBe(1);
 });
 
 test('product gallery zoom is keyboard accessible and modal', async ({ page }) => {
@@ -500,10 +517,12 @@ test('product gallery zoom is keyboard accessible and modal', async ({ page }) =
   const zoom = page.getByRole('button', { name: /Open .*full screen/i });
   await expect(zoom).toBeVisible();
   await zoom.focus();
-  await page.keyboard.press('Enter');
-
   const dialog = page.getByRole('dialog', { name: /Expanded product image/i });
-  await expect(dialog).toBeVisible();
+  await expect.poll(async () => {
+    if (await dialog.isVisible()) return true;
+    await zoom.press('Enter');
+    return dialog.isVisible();
+  }).toBe(true);
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(zoom).toBeFocused();
@@ -603,16 +622,17 @@ test('late cart hydration cannot overwrite a newer cart count event', async ({ p
   });
 
   await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
-  await expect(page.getByRole('button', { name: 'View cart' })).toBeVisible();
+  const visibleCartButton = page.locator('button[aria-label="View cart"]:visible');
+  await expect(visibleCartButton).toHaveCount(1);
   await expect.poll(() => Boolean(releaseHydration)).toBe(true);
   await page.evaluate(() => {
     window.dispatchEvent(new CustomEvent('hp:cartCountUpdate', { detail: { count: 3 } }));
   });
-  await expect(page.getByRole('button', { name: 'View cart, 3 items' })).toBeVisible();
+  await expect(page.locator('button[aria-label="View cart, 3 items"]:visible')).toHaveCount(1);
 
   releaseHydration?.();
   await page.waitForTimeout(200);
-  await expect(page.getByRole('button', { name: 'View cart, 3 items' })).toBeVisible();
+  await expect(page.locator('button[aria-label="View cart, 3 items"]:visible')).toHaveCount(1);
 });
 
 test('cart drawer is a keyboard-contained named dialog', async ({ page }) => {
@@ -685,7 +705,9 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
   });
 
   await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
-  await page.getByRole('button', { name: /^View cart/ }).click();
+  const visibleCartButton = page.locator('button[aria-label^="View cart"]:visible');
+  await expect(visibleCartButton).toHaveCount(1);
+  await visibleCartButton.click();
 
   const drawer = page.locator('[data-mini-cart]');
   await expect(drawer).toBeVisible();
@@ -804,10 +826,10 @@ test('after-hours search results preserve product, guide, sorting and schema con
   await expect(page.locator('[data-search-product-results] article h3').first()).toHaveText('Juuce Smooth Enz');
   expect(shopifyCalls).toBe(1);
 
-  const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) => nodes.map((node) => JSON.parse(node.textContent || '{}')['@type']));
-  expect(schemas).toContain('BreadcrumbList');
-  expect(schemas).toContain('ItemList');
-  expect(schemas).not.toContain('FAQPage');
+  const schemaTypes = (await readJsonLd(page)).map((schema) => schema['@type']);
+  expect(schemaTypes).toContain('BreadcrumbList');
+  expect(schemaTypes).toContain('ItemList');
+  expect(schemaTypes).not.toContain('FAQPage');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
   await expect(page.locator('[data-search-page]')).not.toContainText('Where can I buy');
   await expect(page.locator('[data-search-page]')).not.toContainText('Does Hair Pinns ship');
@@ -1132,15 +1154,7 @@ test('after-hours About journey keeps founder proof truthful and bookable at Fol
   await expect(close.locator('details')).toHaveCount(5);
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
 
-  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
-  const parsedSchemas = schemas.flatMap(text => {
-    try {
-      const value = JSON.parse(text);
-      return Array.isArray(value) ? value : [value];
-    } catch {
-      return [];
-    }
-  });
+  const parsedSchemas = await readJsonLd(page);
   const faqSchema = parsedSchemas.find(schema => schema['@type'] === 'FAQPage');
   const personSchema = parsedSchemas.find(schema => schema['@type'] === 'Person' && schema.name === 'Jena Pinn');
   expect(faqSchema?.mainEntity).toHaveLength(5);
@@ -1206,15 +1220,7 @@ test('after-hours service directory preserves the complete Fresha menu at Fold w
   await expect(close.getByRole('link', { name: /See service areas/ })).toHaveAttribute('href', '/areas');
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);
 
-  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
-  const parsedSchemas = schemas.flatMap(text => {
-    try {
-      const value = JSON.parse(text);
-      return Array.isArray(value) ? value : [value];
-    } catch {
-      return [];
-    }
-  });
+  const parsedSchemas = await readJsonLd(page);
   const itemListSchema = parsedSchemas.find(schema => schema['@type'] === 'ItemList');
   const faqSchema = parsedSchemas.find(schema => schema['@type'] === 'FAQPage');
   expect(itemListSchema?.itemListElement).toHaveLength(15);
@@ -1268,15 +1274,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
   await expect(detail.getByText(/same-day appointments/i)).toHaveCount(0);
   await expect(detail.getByText(/starting from/i)).toHaveCount(0);
 
-  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
-  const parsedSchemas = schemas.flatMap(text => {
-    try {
-      const value = JSON.parse(text);
-      return Array.isArray(value) ? value : [value];
-    } catch {
-      return [];
-    }
-  });
+  const parsedSchemas = await readJsonLd(page);
   for (const type of ['Service', 'BreadcrumbList', 'FAQPage', 'HowTo', 'WebPage']) {
     expect(parsedSchemas.some(schema => schema['@type'] === type)).toBe(true);
   }
@@ -1334,16 +1332,7 @@ test('after-hours booking handoff keeps Fresha and direct help truthful at Fold 
   await expect(close.getByRole('link', { name: 'Privacy' })).toHaveAttribute('href', '/privacy');
   await expect(close.getByRole('link', { name: 'Terms' })).toHaveAttribute('href', '/terms');
 
-  const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
-    nodes.flatMap((node) => {
-      try {
-        const parsed = JSON.parse(node.textContent || '{}');
-        return Array.isArray(parsed) ? parsed : [parsed];
-      } catch {
-        return [];
-      }
-    }),
-  );
+  const schemas = await readJsonLd(page);
   expect(schemas.some((schema) => schema['@type'] === 'FAQPage' && schema.mainEntity?.length === 5)).toBe(true);
   expect(schemas.some((schema) => schema['@type'] === 'BreadcrumbList')).toBe(true);
 
@@ -1400,7 +1389,7 @@ test('after-hours contact journey preserves canonical visit details and the live
   await expect(close.getByRole('link', { name: 'Book now' })).toHaveAttribute('href', 'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb');
   await expect(close.getByRole('link', { name: 'Browse services' })).toHaveAttribute('href', '/services');
 
-  const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) => nodes.map((node) => JSON.parse(node.textContent || '{}')));
+  const schemas = await readJsonLd(page);
   const salonSchema = schemas.find((schema) => schema['@type'] === 'HairSalon');
   expect(salonSchema?.telephone).toBe('+61416037663');
   expect(salonSchema?.address?.streetAddress).toBe(ENTITY_REGISTRY.contact.address.street);

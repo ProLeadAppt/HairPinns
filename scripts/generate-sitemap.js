@@ -11,10 +11,12 @@ import { SERVICE_ROUTES } from './service-routes.js';
 import {
   normaliseLastmod,
   parseBlogFreshness,
+  parseLocationSlugs,
   renderSitemapUrl,
 } from './sitemap-utils.js';
 import { isIndexableRoute } from './route-policy.js';
 import { isRetiredProductHandle } from './retired-products.js';
+import { writeShopifyRouteCache } from './shopify-route-cache.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -179,6 +181,13 @@ async function main() {
   // sitemap can carry up to 5 <image:image> entries. Google Image search
   // reads these for product photo indexing.
   const productEntries = await getShopifyProducts();
+  // Seed the route cache from the same authoritative inventory used for this
+  // sitemap. Later build stages must not reuse a previous deploy's handles and
+  // publish AI discovery URLs that are absent from the current sitemap.
+  writeShopifyRouteCache({
+    collections: collectionEntries.map((entry) => entry.handle),
+    products: productEntries.map((entry) => entry.handle),
+  });
   productEntries.forEach((p) => {
     urls.push(url(`${BASE}/products/${p.handle}`, 'weekly', 0.8, p.updatedAt, p.images));
   });
@@ -187,8 +196,8 @@ async function main() {
   const locPath = resolve(root, 'src/data/locationPages.ts');
   const locContent = existsSync(locPath) ? readFileSync(locPath, 'utf8') : '';
   const locMod = gitLastMod('src/data/locationPages.ts');
-  const areaSlugs = [...(locContent.match(/"([a-z0-9-]+)":\s*\{/g) || [])].map((m) => m.replace(/"([a-z0-9-]+)":\s*\{/, '$1'));
-  [...new Set(areaSlugs)].filter((s) => s.length > 1).forEach((slug) => {
+  const areaSlugs = parseLocationSlugs(locContent);
+  areaSlugs.forEach((slug) => {
     urls.push(url(`${BASE}/areas/${slug}`, 'monthly', 0.7, locMod));
   });
 
