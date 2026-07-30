@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   getHpCapture: vi.fn(),
-  hpTrackEvent: vi.fn(),
+  hpQueueEvent: vi.fn(),
   trackProductView: vi.fn(),
   trackAddToCart: vi.fn(),
   trackBeginCheckout: vi.fn(),
@@ -38,8 +38,8 @@ const item = {
 describe("ecommerceTracking", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.getHpCapture.mockResolvedValue({ trackEvent: mocks.hpTrackEvent });
-    mocks.hpTrackEvent.mockResolvedValue(true);
+    mocks.getHpCapture.mockResolvedValue({ queueEvent: mocks.hpQueueEvent });
+    mocks.hpQueueEvent.mockResolvedValue(true);
   });
 
   it("sends view_item to pixels and preserves the product-view GHL event", async () => {
@@ -52,7 +52,7 @@ describe("ecommerceTracking", () => {
       price: item.price,
       currency: item.currency,
     });
-    expect(mocks.hpTrackEvent).toHaveBeenCalledWith(
+    expect(mocks.hpQueueEvent).toHaveBeenCalledWith(
       "micro_conversion_product_view",
       expect.objectContaining({
         product_id: item.product_id,
@@ -65,7 +65,7 @@ describe("ecommerceTracking", () => {
   });
 
   it("sends add_to_cart to pixels even when GHL delivery fails", async () => {
-    mocks.hpTrackEvent.mockRejectedValueOnce(new Error("GHL unavailable"));
+    mocks.hpQueueEvent.mockRejectedValueOnce(new Error("GHL unavailable"));
 
     await expect(trackAddToCart(item)).resolves.toBeUndefined();
 
@@ -100,7 +100,7 @@ describe("ecommerceTracking", () => {
         },
       ],
     });
-    expect(mocks.hpTrackEvent).toHaveBeenCalledWith(
+    expect(mocks.hpQueueEvent).toHaveBeenCalledWith(
       "begin_checkout",
       expect.objectContaining({
         cart_total: 49.9,

@@ -9,7 +9,7 @@
     "quality": "node scripts/editorial-system-audit.mjs && node scripts/quality-regression.mjs && node scripts/verify-ga4-tracking.mjs",
     "audit:design": "node scripts/editorial-system-audit.mjs",
     "audit:trust": "node scripts/content-trust-audit.mjs",
-    "test": "vitest run src scripts tests/functions/functions-runtime.test.js",
+    "test": "vitest run src scripts tests/functions",
     "test:e2e": "node node_modules/@playwright/test/cli.js test",
     "audit:links": "node scripts/internal-link-audit.mjs",
     "audit:crawler": "node scripts/crawler-hardening-audit.mjs",

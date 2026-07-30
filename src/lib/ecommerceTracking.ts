@@ -27,7 +27,7 @@ async function trackGhlEvent(
 ): Promise<void> {
   try {
     const hpCapture = await getHpCapture();
-    await hpCapture.trackEvent(eventName, payload);
+    await hpCapture.queueEvent(eventName, payload);
   } catch (error) {
     // GHL delivery must never suppress or delay the browser pixel event.
     console.error(`Failed to track ${failureLabel}:`, error);
