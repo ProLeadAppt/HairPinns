@@ -275,6 +275,77 @@ async function generateDedupeKey(
 // Sleep utility for retry backoff
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
+interface QueuedCrmEvent {
+  event_name: string;
+  data: Record<string, unknown>;
+  timestamp: string;
+}
+
+const CRM_EVENT_BUFFER_KEY = 'hp_crm_event_buffer_v1';
+const CRM_EVENT_BUFFER_LIMIT = 20;
+
+function getQueuedEvents(): QueuedCrmEvent[] {
+  if (typeof window === 'undefined') return [];
+
+  try {
+    const stored = window.sessionStorage.getItem(CRM_EVENT_BUFFER_KEY);
+    if (!stored) return [];
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.warn('[hpCapture] Failed to read the CRM event buffer:', error);
+    return [];
+  }
+}
+
+function queueEvent(eventName: string, data: Record<string, unknown>): boolean {
+  if (typeof window === 'undefined') return false;
+
+  try {
+    const next = [
+      ...getQueuedEvents(),
+      {
+        event_name: eventName,
+        data,
+        timestamp: new Date().toISOString(),
+      },
+    ].slice(-CRM_EVENT_BUFFER_LIMIT);
+    window.sessionStorage.setItem(CRM_EVENT_BUFFER_KEY, JSON.stringify(next));
+    return true;
+  } catch (error) {
+    console.warn('[hpCapture] Failed to buffer CRM event:', error);
+    return false;
+  }
+}
+
+function removeDeliveredEvents(deliveredEvents: QueuedCrmEvent[]): void {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const deliveredCounts = new Map<string, number>();
+    deliveredEvents.forEach((event) => {
+      const key = JSON.stringify(event);
+      deliveredCounts.set(key, (deliveredCounts.get(key) || 0) + 1);
+    });
+
+    const remaining = getQueuedEvents().filter((event) => {
+      const key = JSON.stringify(event);
+      const count = deliveredCounts.get(key) || 0;
+      if (count === 0) return true;
+      deliveredCounts.set(key, count - 1);
+      return false;
+    });
+
+    if (remaining.length > 0) {
+      window.sessionStorage.setItem(CRM_EVENT_BUFFER_KEY, JSON.stringify(remaining));
+    } else {
+      window.sessionStorage.removeItem(CRM_EVENT_BUFFER_KEY);
+    }
+  } catch (error) {
+    console.warn('[hpCapture] Failed to remove delivered CRM events:', error);
+  }
+}
+
 // POST to GHL inbound webhook with retry logic
 async function postToGHL(
   payload: Partial<CapturePayload>,
@@ -285,9 +356,7 @@ async function postToGHL(
   // Fail loudly in development and runtime diagnostics when the destination is absent.
   // Ecommerce pixel callers catch this independently, so GA4/Meta delivery still runs.
   if (!GHL_INBOUND_WEBHOOK_URL) {
-    const error = new Error(
-      '[hpCapture] GHL inbound webhook URL not configured. Set VITE_GHL_INBOUND_WEBHOOK_URL environment variable.'
-    );
+    const error = new Error('[hpCapture] CRM capture endpoint is not configured.');
     if (typeof window !== 'undefined' && window.__hpErrors) {
       window.__hpErrors.push({
         timestamp: new Date().toISOString(),
@@ -307,7 +376,7 @@ async function postToGHL(
       window.__hpErrors.push({
         timestamp: new Date().toISOString(),
         error: 'Honeypot field filled - potential bot',
-        payload: { ...payload, company: '[REDACTED]' },
+        payload: { company: '[redacted]' },
       });
     }
     
@@ -395,6 +464,13 @@ async function postToGHL(
       first_seen_timestamp: firstTouch.first_seen_timestamp,
     },
   };
+
+  const queuedEvents = identifier ? getQueuedEvents() : [];
+  if (queuedEvents.length > 0) {
+    fullPayload.engagement = {
+      events: queuedEvents,
+    };
+  }
   
   // Add optional commerce data if present
   if (cleanPayload.product_id || cleanPayload.product_title || cleanPayload.order_id || cleanPayload.items) {
@@ -430,6 +506,24 @@ async function postToGHL(
       slug: cleanPayload.lead_magnet_slug || '',
     };
   }
+
+  const diagnosticPayload = {
+    contact: {
+      first_name: cleanPayload.first_name ? '[redacted]' : '',
+      last_name: cleanPayload.last_name ? '[redacted]' : '',
+      email: cleanPayload.email ? '[redacted]' : '',
+      phone: cleanPayload.phone ? '[redacted]' : '',
+    },
+    context: {
+      form_name: fullPayload.context.form_name,
+      event_name: fullPayload.context.event_name,
+      timestamp: fullPayload.context.timestamp,
+    },
+    ...(fullPayload.commerce ? { commerce: fullPayload.commerce } : {}),
+    ...(queuedEvents.length > 0
+      ? { engagement: { event_count: queuedEvents.length } }
+      : {}),
+  };
   
   // Retry logic with exponential backoff
   const backoffDelays = [1000, 3000, 10000]; // 1s, 3s, 10s
@@ -441,13 +535,14 @@ async function postToGHL(
         headers: {
           'Content-Type': 'application/json',
         },
-        mode: 'no-cors',
         body: JSON.stringify(fullPayload),
       });
       
-      // With no-cors, response is opaque (status 0). Treat as success.
-      if (response.ok || response.type === 'opaque' || response.status === 0) {
-        console.log('[hpCapture] Request sent to GHL (opaque allowed):', fullPayload);
+      if (response.ok) {
+        if (queuedEvents.length > 0) {
+          removeDeliveredEvents(queuedEvents);
+        }
+        console.log('[hpCapture] Request sent to GHL.');
         return true;
       }
       
@@ -463,7 +558,7 @@ async function postToGHL(
           error: `HTTP ${response.status} on attempt ${attempt + 1}`,
           status_code: response.status,
           response_text: responseText,
-          payload: fullPayload,
+          payload: diagnosticPayload,
         });
       }
       
@@ -480,7 +575,7 @@ async function postToGHL(
         window.__hpErrors.push({
           timestamp: new Date().toISOString(),
           error: `Network error on attempt ${attempt + 1}: ${error instanceof Error ? error.message : String(error)}`,
-          payload: fullPayload,
+          payload: diagnosticPayload,
         });
       }
       
@@ -495,7 +590,7 @@ async function postToGHL(
   const errorLog = {
     timestamp: new Date().toISOString(),
     error: 'Failed to submit after all retry attempts',
-    payload: fullPayload,
+    payload: diagnosticPayload,
   };
   
   if (typeof window !== 'undefined' && window.__hpErrors) {
@@ -516,10 +611,7 @@ export const trackConversionEvent = async (
   eventName: string,
   data: Record<string, any> = {}
 ): Promise<boolean> => {
-  return postToGHL(
-    { ...data, timestamp: new Date().toISOString() },
-    { event: eventName }
-  );
+  return queueEvent(eventName, data);
 };
 
 export const hpCapture = {
@@ -569,81 +661,89 @@ export const hpCapture = {
   },
   
   /**
+   * Buffer an anonymous event in session storage until a known contact submits.
+   */
+  queueEvent: async (eventName: string, data: Record<string, unknown> = {}): Promise<boolean> => {
+    return queueEvent(eventName, data);
+  },
+
+  getQueuedEvents: (): QueuedCrmEvent[] => {
+    return getQueuedEvents();
+  },
+
+  /**
    * Track a custom event (e.g., button click, page view)
    * @param eventName - Name of the event
    * @param data - Additional data to include
    */
   trackEvent: async (eventName: string, data: Record<string, any> = {}): Promise<boolean> => {
-    return postToGHL(
-      { ...data },
-      { event: eventName }
-    );
+    return queueEvent(eventName, data);
   },
   /**
    * Track hero CTA click
    */
   trackHeroCTA: async (ctaType: string, placement: string = "hero_home"): Promise<boolean> => {
-    return postToGHL({ cta_type: ctaType, placement }, { event: "hero_cta_click" });
+    return queueEvent("hero_cta_click", { cta_type: ctaType, placement });
   },
   /**
    * Track product card hover
    */
   trackProductHover: async (productId: string, productTitle: string): Promise<boolean> => {
-    return postToGHL({ product_id: productId, product_title: productTitle }, { event: "product_card_hover" });
+    return queueEvent("product_card_hover", { product_id: productId, product_title: productTitle });
   },
   /**
    * Track quick view open
    */
   trackQuickView: async (productId: string): Promise<boolean> => {
-    return postToGHL({ product_id: productId }, { event: "quick_view_open" });
+    return queueEvent("quick_view_open", { product_id: productId });
   },
   /**
    * Track urgency indicator seen
    */
   trackUrgencySeen: async (productId: string, urgencyType: string): Promise<boolean> => {
-    return postToGHL({ product_id: productId, urgency_type: urgencyType }, { event: "urgency_indicator_seen" });
+    return queueEvent("urgency_indicator_seen", { product_id: productId, urgency_type: urgencyType });
   },
   /**
    * Track social proof click
    */
   trackSocialProof: async (proofType: string, source: string): Promise<boolean> => {
-    return postToGHL({ proof_type: proofType, source }, { event: "social_proof_click" });
+    return queueEvent("social_proof_click", { proof_type: proofType, source });
   },
   /**
    * Track hero video played
    */
   trackHeroVideoPlayed: async (videoUrl?: string): Promise<boolean> => {
-    return postToGHL({ video_url: videoUrl }, { event: "hero_video_played" });
+    return queueEvent("hero_video_played", { video_url: videoUrl });
   },
   /**
    * Track hero CTA visibility
    */
   trackHeroCTAVisible: async (ctaType: string, placement: string = "hero_home"): Promise<boolean> => {
-    return postToGHL({ cta_type: ctaType, placement }, { event: "hero_cta_visible" });
+    return queueEvent("hero_cta_visible", { cta_type: ctaType, placement });
   },
   /**
    * Track quick add clicked
    */
   trackQuickAddClicked: async (productId: string, productTitle: string, placement: string = "hero"): Promise<boolean> => {
-    return postToGHL({ product_id: productId, product_title: productTitle, placement }, { event: "quick_add_clicked" });
+    return queueEvent("quick_add_clicked", { product_id: productId, product_title: productTitle, placement });
   },
   /**
    * Track location detected
    */
   trackLocationDetected: async (city?: string, region?: string, country?: string): Promise<boolean> => {
-    return postToGHL({ location_city: city, location_region: region, location_country: country }, { event: "location_detected" });
+    return queueEvent("location_detected", { location_city: city, location_region: region, location_country: country });
   },
   /**
    * Track scroll depth
    */
   trackScrollDepth: async (depth: 25 | 50 | 75 | 100, pageUrl?: string): Promise<boolean> => {
-    return postToGHL({ scroll_depth: depth, page_url: pageUrl || (typeof window !== 'undefined' ? window.location.href : '') }, { event: `scroll_depth_${depth}` });
+    return queueEvent(`scroll_depth_${depth}`, { scroll_depth: depth, page_url: pageUrl || (typeof window !== 'undefined' ? window.location.href : '') });
   },
   /**
    * Track hero engagement (scroll, hover, click)
    */
   trackHeroEngagement: async (action: 'scroll' | 'hover' | 'click', element?: string): Promise<boolean> => {
-    return postToGHL({ action, element }, { event: "hero_engagement" });
+    return queueEvent("hero_engagement", { action, element });
   },
 };
 

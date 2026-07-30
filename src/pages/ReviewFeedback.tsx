@@ -46,16 +46,20 @@ const ReviewFeedback = () => {
 
     try {
       const hpCapture = await getHpCapture();
-      await hpCapture.postToGHL(
+      const success = await hpCapture.postToGHL(
         {
           form_name: "review_feedback",
           name: formData.name,
           email: formData.email,
           message: formData.feedback,
           rating,
+          consent_marketing: false,
         },
         { event: "review_feedback" },
       );
+      if (!success) {
+        throw new Error("Feedback delivery failed");
+      }
       sessionStorage.removeItem(SESSION_DRAFT_KEY);
       setIsSubmitted(true);
     } catch (error) {

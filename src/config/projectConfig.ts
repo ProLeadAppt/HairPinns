@@ -1,8 +1,6 @@
 // Project-wide configuration
 // Modify these settings to control global behavior
 
-import { normalizeExternalWebhookUrl } from '@/lib/externalUrl';
-
 export const projectConfig = {
   /**
    * Double Opt-In Configuration
@@ -27,12 +25,11 @@ export const projectConfig = {
   gdpr_region: 'AU',
   
   /**
-   * GoHighLevel Inbound Webhook URL
-   * Used for all form submissions and event tracking
-   * Loaded from environment variable for security
+   * Same-origin CRM capture relay.
+   * The private HighLevel webhook is stored only in Netlify's server environment.
    */
   ghl: {
-    inboundWebhookUrl: normalizeExternalWebhookUrl(import.meta.env.VITE_GHL_INBOUND_WEBHOOK_URL),
+    inboundWebhookUrl: '/api/ghl-capture',
   },
   
   /**

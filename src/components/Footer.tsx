@@ -80,8 +80,10 @@ const Footer = () => {
   // LeadConnector ships its own socket.io client. Missing live replies after a
   // visitor sends a message are a GHL server-push issue, not a page-code issue.
 
-  const handleNewsletterSubmit = async (e: FormEvent) => {
+  const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const company = String(new FormData(e.currentTarget).get("company") || "");
 
     if (!email) {
       toast({
@@ -93,13 +95,12 @@ const Footer = () => {
     }
 
     setIsSubmitting(true);
-    console.log("Newsletter signup:", email);
-
     try {
       const { hpCapture } = await import("@/lib/hpCapture");
       const success = await hpCapture.postToGHL({
         form_name: 'newsletter_footer',
         email,
+        company,
         consent_marketing: true,
       }, {
         event: 'newsletter_subscription'
@@ -190,6 +191,14 @@ const Footer = () => {
               Practical hair advice and product news from Jena. Your code arrives by email.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="mt-6 grid max-w-2xl gap-3 sm:grid-cols-[1fr_auto]">
+              <input
+                name="company"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-px w-px opacity-0"
+              />
               <label htmlFor="footer-newsletter-email" className="sr-only">
                 Email address for 10% off newsletter signup
               </label>
