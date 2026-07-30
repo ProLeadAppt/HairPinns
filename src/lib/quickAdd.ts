@@ -60,7 +60,7 @@ export async function quickAddToCart(
     await hpCapture.trackQuickAddClicked(productId, productTitle, "hero").catch(() => {});
 
     // Track add_to_cart event
-    await trackAddToCart({
+    void trackAddToCart({
       product_id: productId,
       title: productTitle,
       variant_id: variantId,

@@ -57,7 +57,7 @@ export function useQuickAddToCart() {
         const { cartId } = await response.json();
         if (cartId) localStorage.setItem("hp_cart_id", cartId);
 
-        trackAddToCart({
+        void trackAddToCart({
           product_id: opts.productId ?? opts.variantId,
           title: opts.title,
           variant_id: opts.variantId,

@@ -117,10 +117,21 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
     setIsCheckingOut(true);
     try {
       const cartTotal = cart?.cost?.totalAmount?.amount ? parseFloat(cart.cost.totalAmount.amount) : subtotal;
-      await trackBeginCheckout({
+      void trackBeginCheckout({
         cart_total: cartTotal,
         item_count: itemCount,
         currency: cart?.cost?.totalAmount?.currencyCode || currency,
+        items: lines.map((edge: any) => {
+          const merchandise = edge.node.merchandise;
+          return {
+            product_id: merchandise?.product?.id || merchandise?.id,
+            variant_id: merchandise?.id,
+            title: merchandise?.product?.title || merchandise?.title || "Product",
+            price: parseFloat(merchandise?.price?.amount || "0"),
+            currency: merchandise?.price?.currencyCode || currency,
+            quantity: edge.node.quantity,
+          };
+        }),
       });
 
       const form = document.createElement("form");
