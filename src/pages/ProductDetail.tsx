@@ -88,8 +88,26 @@ const ProductDetail = () => {
 
           setProduct(productData);
 
+          const variants = productData.variants.edges;
+          const firstAvailableVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
+          const viewPrice = parseFloat(
+            firstAvailableVariant?.price?.amount
+              || productData.priceRange?.minVariantPrice?.amount
+              || "0"
+          );
+          const viewCurrency = firstAvailableVariant?.price?.currencyCode
+            || productData.priceRange?.minVariantPrice?.currencyCode
+            || "AUD";
+
           // Track product view for conversion funnel
-          trackProductView(productData.id, productData.title);
+          trackProductView({
+            product_id: productData.id,
+            variant_id: firstAvailableVariant?.id,
+            title: productData.title,
+            price: viewPrice,
+            currency: viewCurrency,
+            quantity: 1,
+          });
           trackFunnelStep("view", {
             product_id: productData.id,
             product_title: productData.title,
@@ -106,9 +124,6 @@ const ProductDetail = () => {
           } catch {}
 
           // Set first available variant as default
-          const variants = productData.variants.edges;
-          const firstAvailableVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
-
           if (firstAvailableVariant) {
             setActiveVariantId(firstAvailableVariant.id);
 
@@ -256,7 +271,7 @@ const ProductDetail = () => {
         );
       }
       
-      trackAddToCart({
+      void trackAddToCart({
         product_id: product.id,
         title: product.title,
         variant_id: activeVariantId,
@@ -282,24 +297,23 @@ const ProductDetail = () => {
     setBuyingNow(true);
     
     try {
-      // Track add_to_cart
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
 
-      trackAddToCart({
-        product_id: product.id,
-        title: product.title,
-        variant_id: activeVariantId,
-        price: price,
-        currency: "AUD",
-        quantity: 1,
-      });
-      
-      // Track begin_checkout
-      trackBeginCheckout({
+      // A direct buy-now action starts checkout without first mutating the cart.
+      // Emit begin_checkout only so add_to_cart remains tied to confirmed cart writes.
+      void trackBeginCheckout({
         cart_total: price,
         item_count: 1,
         currency: "AUD",
+        items: [{
+          product_id: product.id,
+          variant_id: activeVariantId,
+          title: product.title,
+          price,
+          currency: "AUD",
+          quantity: 1,
+        }],
       });
       
       // A top-level form navigation lets the browser follow Netlify's 303 to

@@ -282,10 +282,20 @@ async function postToGHL(
 ): Promise<boolean> {
   const { event, retryAttempts = 3 } = options;
   
-  // Validate GHL webhook URL is configured
+  // Fail loudly in development and runtime diagnostics when the destination is absent.
+  // Ecommerce pixel callers catch this independently, so GA4/Meta delivery still runs.
   if (!GHL_INBOUND_WEBHOOK_URL) {
-    console.warn('[hpCapture] GHL inbound webhook URL not configured. Set VITE_GHL_INBOUND_WEBHOOK_URL environment variable.');
-    return false;
+    const error = new Error(
+      '[hpCapture] GHL inbound webhook URL not configured. Set VITE_GHL_INBOUND_WEBHOOK_URL environment variable.'
+    );
+    if (typeof window !== 'undefined' && window.__hpErrors) {
+      window.__hpErrors.push({
+        timestamp: new Date().toISOString(),
+        error: error.message,
+      });
+    }
+    console.error(error.message);
+    throw error;
   }
   
   // Check honeypot field - if filled, reject silently
