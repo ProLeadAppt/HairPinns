@@ -84,6 +84,25 @@ describe("hpCapture known-contact delivery", () => {
     expect(hpCapture.getQueuedEvents()).toEqual([]);
   });
 
+  it("adds stable engagement summary fields for workflow notes", async () => {
+    await hpCapture.queueEvent("view_item", { product_id: "product-1" });
+    await hpCapture.queueEvent("begin_checkout", { cart_total: 49.9 });
+
+    await hpCapture.postToGHL(
+      {
+        form_name: "newsletter_footer",
+        email: "shopper@example.com",
+        consent_marketing: true,
+      },
+      { event: "newsletter_signup", retryAttempts: 1 },
+    );
+
+    const [, request] = vi.mocked(fetch).mock.calls[0];
+    const payload = JSON.parse(String(request?.body));
+    expect(payload.engagement.event_count).toBe(2);
+    expect(payload.engagement.event_names).toBe("view_item, begin_checkout");
+  });
+
   it("retains buffered events after failure and redacts contact details from diagnostics", async () => {
     vi.mocked(fetch).mockResolvedValueOnce({
       ok: false,
