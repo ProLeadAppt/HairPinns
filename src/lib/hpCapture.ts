@@ -469,9 +469,11 @@ async function postToGHL(
   if (queuedEvents.length > 0) {
     fullPayload.engagement = {
       events: queuedEvents,
+      event_count: queuedEvents.length,
+      event_names: queuedEvents.map((queuedEvent) => queuedEvent.event_name).join(', '),
     };
   }
-  
+
   // Add optional commerce data if present
   if (cleanPayload.product_id || cleanPayload.product_title || cleanPayload.order_id || cleanPayload.items) {
     fullPayload.commerce = {
