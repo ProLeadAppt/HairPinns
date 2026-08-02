@@ -1,3 +1,8 @@
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+export const resolveScriptRoot = (metaUrl) => resolve(fileURLToPath(new URL('..', metaUrl)));
+
 const decodeEntities = (value) =>
   String(value ?? '')
     .replace(/&amp;/g, '&')

@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { BOOK_CTA_LABEL } from "../../config/bookingConfig";
 import { serviceDetailData } from "../../data/serviceDetails";
