@@ -1,8 +1,8 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { relative, resolve, sep } from 'node:path';
-import { auditDocuments } from './crawler-audit-utils.js';
+import { auditDocuments, resolveScriptRoot } from './crawler-audit-utils.js';
 
-const root = resolve(new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const root = resolveScriptRoot(import.meta.url);
 const dist = resolve(root, 'dist');
 const publicDir = resolve(root, 'public');
 

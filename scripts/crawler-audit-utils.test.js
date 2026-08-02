@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import {
   auditDocuments,
   extractPageSignals,
+  resolveScriptRoot,
   textSimilarity,
 } from "./crawler-audit-utils.js";
 
@@ -20,6 +23,13 @@ const page = ({
 </head><body>${body}</body></html>`;
 
 describe("crawler audit utilities", () => {
+  it("resolves a script root when the file URL contains spaces", () => {
+    const projectRoot = resolve("tmp", "Hair Pinns");
+    const metaUrl = pathToFileURL(resolve(projectRoot, "scripts", "crawler-hardening-audit.mjs")).href;
+
+    expect(resolveScriptRoot(metaUrl)).toBe(projectRoot);
+  });
+
   it("extracts metadata, links and a connected schema graph", () => {
     const signals = extractPageSignals(page(), "/useful/");
     expect(signals.title).toBe("Useful page | Hair Pinns");
