@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import Header from "@/components/Header";
 import HeroHome from "@/components/home/HeroHome";
 import HeroSocialProofBar from "@/components/home/HeroSocialProofBar";
+import PromotionFeature from "@/components/home/PromotionFeature";
 
 import useScrollReveal from "@/hooks/useScrollReveal";
 import SEOHead from "@/components/SEOHead";
@@ -172,7 +173,10 @@ const Index = () => {
         {/* 2. Trust bar — 3 quiet signals, lots of air */}
         <HeroSocialProofBar />
 
-        {/* 3. Shop by concern — fast intent routing before the product grid */}
+        {/* 3. Time-boxed commerce offer; self-hides outside its configured window */}
+        <PromotionFeature />
+
+        {/* 4. Shop by concern — fast intent routing before the product grid */}
         <DeferredSection
           rootMargin="0px"
           fallback={<div className="h-24" aria-hidden="true" />}

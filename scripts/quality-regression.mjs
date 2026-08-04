@@ -333,8 +333,8 @@ assert.doesNotMatch(footerSource, /bg-muted|rounded-xl|rounded-full|<Instagram|<
 
 const headerSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
 const mobileMenuSheetSource = await readFile(path.join(ROOT, 'src/components/navigation/MobileMenuSheet.tsx'), 'utf8');
-assert.match(headerSource, /isStocktakeActive\(\)[\s\S]*QIQI_DISCOUNT_ACTIVE[\s\S]*DEFAULT_HEADER_MESSAGE/, 'Header must retain promotion priority and fallback copy');
-assert.match(headerSource, /data-cta-offer=\{headerPromoOfferId\}[\s\S]*trackPromoClick\("header_promo_strip"/, 'Header promo must retain click attribution and offer identity');
+assert.match(headerSource, /usePromotionNow[\s\S]*const headerPromotion = getHeaderPromotion\(promotionNow\)[\s\S]*to=\{headerPromotion\.href\}[\s\S]*\{headerPromotion\.message\}/, 'Header must retain live centralized promotion timing and fallback copy');
+assert.match(headerSource, /data-cta-offer=\{headerPromotion\.id\}[\s\S]*trackPromoClick\("header_promo_strip"/, 'Header promo must retain click attribution and offer identity');
 assert.match(headerSource, /hidden items-center gap-5 xl:flex[\s\S]*xl:hidden/, 'Full desktop navigation must wait until xl while tablet keeps the stable drawer');
 assert.match(headerSource, /aria-label="Main navigation"[\s\S]*to="\/blog"[\s\S]*to="\/about"[\s\S]*to="\/services"[\s\S]*to="\/contact"/, 'Desktop navigation must retain guides, founder, salon, and contact routes');
 assert.match(headerSource, /SHOP_BY_CONCERN\.slice\(0, 4\)[\s\S]*aria-label="Mobile navigation"|aria-label="Mobile navigation"[\s\S]*SHOP_BY_CONCERN\.slice\(0, 4\)/, 'Mobile navigation must retain centralized concern routes');

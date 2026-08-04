@@ -48,6 +48,7 @@ const Glossary = lazy(() => import("./pages/Glossary"));
 const ReviewFeedback = lazy(() => import("./pages/ReviewFeedback"));
 const ReviewGoogle = lazy(() => import("./pages/ReviewGoogle"));
 const SearchResults = lazy(() => import("./pages/SearchResults"));
+const OfferFreeExtra = lazy(() => import("./pages/OfferFreeExtra"));
 const ServerError = lazy(() => import("./pages/ServerError"));
 
 // Fallback while a lazy route chunk is downloading.
@@ -169,6 +170,7 @@ const AppContent = () => {
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/search" element={<SearchResults />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/offers/free-extra" element={<OfferFreeExtra />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
               <Route path="/confirm" element={<Confirm />} />
               <Route path="/suburbs/:suburb" element={<SuburbRedirect />} />

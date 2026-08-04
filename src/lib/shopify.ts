@@ -30,8 +30,8 @@ function getEndpoint(): string {
 
 /**
  * Fetch data from Shopify Storefront API
- * Note: Only used for public read-only operations (products, collections)
- * Cart operations are handled server-side via /api/checkout Edge Function
+ * Used for public product and collection reads plus Storefront cart mutations.
+ * The /api/checkout function resolves the final Shopify checkout URL server-side.
  */
 export async function fetchShopify<T>(
   query: string,
@@ -353,6 +353,10 @@ export async function cartCreate(lines: Array<{ merchandiseId: string; quantity:
         cart {
           id
           checkoutUrl
+          discountCodes {
+            code
+            applicable
+          }
           lines(first: 100) {
             edges {
               node {
@@ -369,6 +373,7 @@ export async function cartCreate(lines: Array<{ merchandiseId: string; quantity:
                     product {
                       title
                       handle
+                      tags
                     }
                   }
                 }
@@ -429,6 +434,10 @@ export async function cartLinesAdd(
         cart {
           id
           checkoutUrl
+          discountCodes {
+            code
+            applicable
+          }
           lines(first: 100) {
             edges {
               node {
@@ -445,6 +454,7 @@ export async function cartLinesAdd(
                     product {
                       title
                       handle
+                      tags
                     }
                   }
                 }
@@ -497,6 +507,10 @@ export async function getCart(cartId: string) {
       cart(id: $cartId) {
         id
         checkoutUrl
+        discountCodes {
+          code
+          applicable
+        }
         lines(first: 100) {
           edges {
             node {
@@ -514,6 +528,7 @@ export async function getCart(cartId: string) {
                     id
                     title
                     handle
+                    tags
                   }
                   image {
                     url
@@ -540,6 +555,54 @@ export async function getCart(cartId: string) {
   // Carts are mutable. Never serve cart reads from the product/catalogue cache.
   const data = await fetchShopify<{ cart: any }>(query, { cartId }, { cache: false });
   return data.cart;
+}
+
+/**
+ * Replace the cart discount-code list and return application status.
+ */
+export async function cartDiscountCodesUpdate(cartId: string, discountCodes: string[]) {
+  const query = `
+    mutation cartDiscountCodesUpdate($cartId: ID!, $discountCodes: [String!]!) {
+      cartDiscountCodesUpdate(cartId: $cartId, discountCodes: $discountCodes) {
+        cart {
+          id
+          checkoutUrl
+          cost {
+            totalAmount {
+              amount
+              currencyCode
+            }
+          }
+          discountCodes {
+            code
+            applicable
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+        warnings {
+          code
+          message
+        }
+      }
+    }
+  `;
+
+  const data = await fetchShopify<{ cartDiscountCodesUpdate: any }>(
+    query,
+    { cartId, discountCodes },
+    { cache: false },
+  );
+  const payload = data.cartDiscountCodesUpdate;
+  if (payload.userErrors?.length > 0) {
+    throw new Error(payload.userErrors[0].message);
+  }
+  return {
+    cart: payload.cart,
+    warnings: payload.warnings ?? [],
+  };
 }
 
 /**

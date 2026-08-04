@@ -5,8 +5,15 @@ import { notify } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { clearCartId } from "@/lib/cartManagement";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
-import { getCart } from "@/lib/shopify";
+import { cartDiscountCodesUpdate, getCart } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
+import {
+  FREE_EXTRA_PROMOTION,
+  getActivePromotion,
+  getCheckoutDiscountCodes,
+  getPromotionCartState,
+} from "@/config/promotions";
+import { usePromotionNow } from "@/hooks/use-promotion-now";
 
 export interface MiniCartProps {
   open: boolean;
@@ -108,6 +115,24 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
   const currency = cart?.cost?.subtotalAmount?.currencyCode || "AUD";
   const remainingForShipping = Math.max(0, FREE_STANDARD_SHIPPING - subtotal);
   const shippingProgress = Math.min(100, (subtotal / FREE_STANDARD_SHIPPING) * 100);
+  const promotionNow = usePromotionNow();
+  const activePromotion = getActivePromotion(promotionNow);
+  const promotionCartState = getPromotionCartState(
+    lines.map((edge: any) => ({
+      quantity: edge.node.quantity,
+      productTags: edge.node.merchandise?.product?.tags ?? [],
+      productHandle: edge.node.merchandise?.product?.handle,
+    })),
+  );
+  const promotionMessage = promotionCartState.unapprovedGiftUnits > 0
+    ? "That item is not one of the three listed gifts. Choose one travel bottle, soft head towel or purple wide-tooth comb."
+    : promotionCartState.giftUnits > FREE_EXTRA_PROMOTION.maximumDiscountedGiftsPerOrder
+      ? `Choose exactly one free extra. Remove ${promotionCartState.giftUnits - FREE_EXTRA_PROMOTION.maximumDiscountedGiftsPerOrder} ${promotionCartState.giftUnits - FREE_EXTRA_PROMOTION.maximumDiscountedGiftsPerOrder === 1 ? "extra" : "extras"} before the offer can apply.`
+    : promotionCartState.shouldApplyCode
+      ? "Offer ready. We’ll confirm the free extra before checkout."
+      : promotionCartState.qualifyingUnits >= 2
+        ? "Your two eligible products are in. Choose and add one free extra."
+        : `Add ${2 - promotionCartState.qualifyingUnits} more eligible hair ${2 - promotionCartState.qualifyingUnits === 1 ? "product" : "products"}, then choose one free extra.`;
 
   const handleCheckout = async () => {
     if (!cartId || !hasItems) {
@@ -116,11 +141,38 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
     }
     setIsCheckingOut(true);
     try {
-      const cartTotal = cart?.cost?.totalAmount?.amount ? parseFloat(cart.cost.totalAmount.amount) : subtotal;
+      const checkoutNow = new Date();
+      const checkoutPromotion = getActivePromotion(checkoutNow);
+      const existingDiscountCodes = (cart?.discountCodes ?? []).map((discount: any) => discount.code);
+      const discountCodes = getCheckoutDiscountCodes({
+        existingCodes: existingDiscountCodes,
+        promotionEligible: promotionCartState.shouldApplyCode,
+        now: checkoutNow,
+      });
+      const shouldApplyPromotion = Boolean(
+        checkoutPromotion && discountCodes.includes(FREE_EXTRA_PROMOTION.discountCode),
+      );
+      const discountUpdate = await cartDiscountCodesUpdate(cartId, discountCodes);
+      const discountedCart = discountUpdate.cart;
+
+      if (shouldApplyPromotion && checkoutPromotion) {
+        const applied = discountedCart?.discountCodes?.some(
+          (discount: any) => discount.code === checkoutPromotion.discountCode && discount.applicable,
+        );
+        if (!applied) {
+          await cartDiscountCodesUpdate(cartId, existingDiscountCodes);
+          notify.error("The free extra could not be applied. Check the offer items in your bag and try again.");
+          setIsCheckingOut(false);
+          return;
+        }
+      }
+
+      const checkoutCartTotal = discountedCart?.cost?.totalAmount?.amount ?? cart?.cost?.totalAmount?.amount;
+      const cartTotal = checkoutCartTotal ? parseFloat(checkoutCartTotal) : subtotal;
       void trackBeginCheckout({
         cart_total: cartTotal,
         item_count: itemCount,
-        currency: cart?.cost?.totalAmount?.currencyCode || currency,
+        currency: discountedCart?.cost?.totalAmount?.currencyCode || cart?.cost?.totalAmount?.currencyCode || currency,
         items: lines.map((edge: any) => {
           const merchandise = edge.node.merchandise;
           return {
@@ -205,6 +257,26 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
             </div>
           ) : hasItems ? (
             <div data-cart-lines="" className="text-[hsl(var(--after-hours-plum))]">
+              {activePromotion && (
+                <section
+                  data-cart-promotion=""
+                  aria-label="Free extra offer"
+                  className="mb-6 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[#f3e8df] p-4"
+                >
+                  <p className="font-heading text-xl font-semibold">Your free extra is waiting.</p>
+                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.74)]">
+                    {promotionMessage} One free extra per order. The discount is applied automatically when the offer is valid.
+                  </p>
+                  <Link
+                    to={activePromotion.landingPath}
+                    onClick={onClose}
+                    className="mt-3 inline-flex min-h-11 items-center text-xs font-semibold underline underline-offset-4"
+                    style={{ color: "hsl(var(--after-hours-plum))" }}
+                  >
+                    See eligible products and gifts
+                  </Link>
+                </section>
+              )}
               <ol>
                 {lines.map((edge: any, index: number) => {
                   const node = edge.node;

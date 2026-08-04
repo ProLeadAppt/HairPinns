@@ -11,7 +11,7 @@ vi.mock("@/config/projectConfig", () => ({
   },
 }));
 
-import { getCart } from "./shopify";
+import { cartDiscountCodesUpdate, getCart } from "./shopify";
 
 const cartResponse = (quantity: number) => ({
   data: {
@@ -46,5 +46,68 @@ describe("getCart", () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(first.lines.edges[0].node.quantity).toBe(1);
     expect(second.lines.edges[0].node.quantity).toBe(2);
+  });
+});
+
+describe("cartDiscountCodesUpdate", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("sends the exact code list and returns Shopify applicability, warnings and discounted total", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          data: {
+            cartDiscountCodesUpdate: {
+              cart: {
+                id: "gid://shopify/Cart/promo",
+                checkoutUrl: "https://shop.example.test/checkout",
+                cost: { totalAmount: { amount: "71.90", currencyCode: "AUD" } },
+                discountCodes: [{ code: "HP-FREE-EXTRA-2026-08", applicable: true }],
+              },
+              userErrors: [],
+              warnings: [],
+            },
+          },
+        }),
+        { status: 200 },
+      ),
+    );
+
+    const result = await cartDiscountCodesUpdate("gid://shopify/Cart/promo", ["HP-FREE-EXTRA-2026-08"]);
+    const request = fetchMock.mock.calls[0][1] as RequestInit;
+    const body = JSON.parse(String(request.body));
+
+    expect(body.variables).toEqual({
+      cartId: "gid://shopify/Cart/promo",
+      discountCodes: ["HP-FREE-EXTRA-2026-08"],
+    });
+    expect(body.query).toContain("cartDiscountCodesUpdate");
+    expect(body.query).toContain("totalAmount");
+    expect(result.cart.discountCodes[0]).toEqual({ code: "HP-FREE-EXTRA-2026-08", applicable: true });
+    expect(result.cart.cost.totalAmount).toEqual({ amount: "71.90", currencyCode: "AUD" });
+    expect(result.warnings).toEqual([]);
+  });
+
+  it("fails closed when Shopify returns a mutation error", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          data: {
+            cartDiscountCodesUpdate: {
+              cart: null,
+              userErrors: [{ field: ["discountCodes"], message: "Discount unavailable" }],
+              warnings: [],
+            },
+          },
+        }),
+        { status: 200 },
+      ),
+    );
+
+    await expect(
+      cartDiscountCodesUpdate("gid://shopify/Cart/promo", ["HP-FREE-EXTRA-2026-08"]),
+    ).rejects.toThrow("Discount unavailable");
   });
 });
