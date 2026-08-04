@@ -69,6 +69,8 @@ const CURRENT_COLLECTION_HANDLES = [
   'colour-treated-hair',
   'hair-tools-brushes',
   'hair-styling-products',
+  'free-extra-eligible',
+  'free-extra-gifts',
 ];
 
 async function fetchShopifyHandles(type) {
@@ -125,6 +127,7 @@ export async function collectRoutes() {
   const staticPages = [
     '/', '/about', '/blog', '/contact', '/services', '/booking',
     '/faq', '/glossary', '/reviews', '/areas', '/collections', '/collections/jenas-daily-trio', '/search',
+    '/offers/free-extra',
     '/privacy', '/terms', '/policies/shipping', '/policies/returns',
     '/sitemap', '/404',
   ];

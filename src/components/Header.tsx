@@ -5,22 +5,11 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
 import { useCart } from "@/contexts/CartContext";
 import { SHOP_BY_CONCERN } from "@/config/commerceNavigation";
-import {
-  isStocktakeActive,
-  QIQI_DISCOUNT_ACTIVE,
-  STOCKTAKE_HEADER_MESSAGE,
-  DEFAULT_HEADER_MESSAGE,
-  PROMO_COLLECTIONS,
-} from "@/config/promotions";
+import { getHeaderPromotion } from "@/config/promotions";
+import { usePromotionNow } from "@/hooks/use-promotion-now";
 
 import hairPinnsLogoFull from "@/assets/images/hair-pinns-logo-full.webp";
 import hairPinnsLogoCompact from "@/assets/images/hair-pinns-logo-compact.webp";
-
-function getPromoMessage(): string {
-  if (isStocktakeActive()) return STOCKTAKE_HEADER_MESSAGE;
-  if (QIQI_DISCOUNT_ACTIVE) return "20% off QIQI range, shop now";
-  return DEFAULT_HEADER_MESSAGE;
-}
 
 const ProductSearch = lazy(() => import("@/components/product/ProductSearch"));
 const ShopDropdown = lazy(() => import("@/components/navigation/ShopDropdown"));
@@ -41,17 +30,8 @@ const Header = () => {
   const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
   const mobileMenuFirstLinkRef = useRef<HTMLAnchorElement>(null);
   const mobileCartHandoffRef = useRef(false);
-  const promoMessage = getPromoMessage();
-  const promoLink = isStocktakeActive()
-    ? "/collections"
-    : QIQI_DISCOUNT_ACTIVE
-      ? `/collections/${PROMO_COLLECTIONS.qiqi}`
-      : "/collections";
-  const headerPromoOfferId = (() => {
-    if (isStocktakeActive()) return "stocktake_2025";
-    if (QIQI_DISCOUNT_ACTIVE) return "qiqi_20_off";
-    return "none";
-  })();
+  const promotionNow = usePromotionNow();
+  const headerPromotion = getHeaderPromotion(promotionNow);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1280px)");
@@ -79,17 +59,17 @@ const Header = () => {
       {showPromo && (
         <div className="relative min-h-11 border-b border-[hsl(var(--after-hours-copper)/0.5)] bg-[hsl(var(--after-hours-near-black))] text-[hsl(var(--after-hours-cream))]">
           <Link
-            to={promoLink}
+            to={headerPromotion.href}
             data-cta="header-promo-strip"
             data-cta-placement="header_promo_strip"
-            data-cta-offer={headerPromoOfferId}
+            data-cta-offer={headerPromotion.id}
             onClick={() =>
               trackPromoClick("header_promo_strip", typeof window !== "undefined" ? window.location.pathname : "/")
             }
             className="flex min-h-11 items-center justify-center px-14 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-cream))] transition-colors duration-fast hover:text-[hsl(var(--after-hours-copper))]"
-            aria-label={`Shop the current Hair Pinns offer: ${promoMessage}`}
+            aria-label={`Shop the current Hair Pinns offer: ${headerPromotion.message}`}
           >
-            {isStocktakeActive() ? "Stocktake / " : ""}{promoMessage}
+            {headerPromotion.message}
           </Link>
           <button
             type="button"

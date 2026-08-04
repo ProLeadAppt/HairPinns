@@ -35,7 +35,12 @@ test('product discovery appears before founder and salon content', async ({ page
       window.scrollTo(0, y);
       await new Promise(resolve => window.setTimeout(resolve, 80));
     }
+    window.scrollTo(0, document.documentElement.scrollHeight);
   });
+
+  await expect(page.getByRole('heading', { name: /popular picks from the shelf/i })).toBeAttached({ timeout: 15_000 });
+  await expect(page.getByRole('heading', { name: /a short shelf/i })).toBeAttached({ timeout: 15_000 });
+  await expect(page.getByRole('heading', { name: /come in and see me/i })).toBeAttached({ timeout: 15_000 });
 
   const positions = await page.evaluate(() => {
     const textPosition = (text: string) => {
@@ -393,7 +398,8 @@ test('after-hours footer closes with complete commerce, salon, and legal paths',
   await expect(footer.getByRole('link', { name: 'Munyal' })).toHaveAttribute('href', 'https://munyal.com.au');
 
   const metrics = await footer.evaluate(element => {
-    const targets = Array.from(element.querySelectorAll<HTMLElement>('a, button, input'));
+    const targets = Array.from(element.querySelectorAll<HTMLElement>('a, button, input'))
+      .filter(target => target.getAttribute('aria-hidden') !== 'true');
     return {
       height: element.getBoundingClientRect().height,
       background: getComputedStyle(element).backgroundColor,

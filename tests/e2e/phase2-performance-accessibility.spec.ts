@@ -402,12 +402,13 @@ test('mobile navigation is a named dialog without nested controls', async ({ pag
 });
 
 test('after-hours header preserves commerce paths across tablet and desktop navigation', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-08-13T00:00:00+10:00'));
   await page.setViewportSize({ width: 1024, height: 768 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
 
   const promo = page.locator('[data-cta="header-promo-strip"]');
-  await expect(promo).toHaveAttribute('href', '/collections/qiqi');
-  await expect(promo).toContainText('20% off QIQI range, shop now');
+  await expect(promo).toHaveAttribute('href', '/collections');
+  await expect(promo).toContainText('Free shipping on orders over $150');
   expect(await promo.evaluate(element => getComputedStyle(element.parentElement!).backgroundColor)).toBe('rgb(24, 0, 31)');
 
   const directCart = page.getByRole('button', { name: 'View cart' });
