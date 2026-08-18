@@ -279,6 +279,13 @@ const CollectionDetail = () => {
   if (!collection || products.length === 0) {
     return (
       <div className="min-h-screen bg-background">
+        <SEOHead
+          title="Collection Temporarily Unavailable | Hair Pinns"
+          description="This Hair Pinns collection is temporarily unavailable. Browse all salon-selected hair care collections or try again shortly."
+          canonical={`https://hairpinns.com/collections/${handle}`}
+          ogImage={getOGImage('collection')}
+          noIndex
+        />
         <Header />
         <div className="flex items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-lg">

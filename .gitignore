@@ -34,6 +34,8 @@ img-audit/
 # Browser test output
 playwright-report/
 test-results/
+.playwright-cli/
+output/playwright/
 
 # Google service account keys (GSC pulse)
 gsc-service-account.json

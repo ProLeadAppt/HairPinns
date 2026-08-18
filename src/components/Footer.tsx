@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect, useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { BOOK_CTA_LABEL } from "@/config/bookingConfig";
 import { BUSINESS_NAP, BUSINESS_WEEK_DISPLAY as salonHours } from "@/config/businessConfig";
 import { ENTITY_REGISTRY } from "@/config/entityRegistry";
@@ -31,54 +31,6 @@ const Footer = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Inject LeadConnector chat widget — but as a facade. The real loader.js (plus
-  // its socket.io + Ionic web-components payload, hundreds of KB) only runs once
-  // the user has shown intent: a meaningful scroll, the first pointer/key event,
-  // OR after 8 s of idle, whichever comes first. Skipped during prerender so
-  // the build step doesn't fetch the widget.
-  useEffect(() => {
-    const ua = navigator.userAgent || '';
-    if (ua.indexOf('HeadlessChrome') !== -1 || ua.indexOf('HairPinnsPrerender') !== -1) return;
-    if (document.getElementById('leadconnector-widget')) return;
-
-    let loaded = false;
-    const load = () => {
-      if (loaded || document.getElementById('leadconnector-widget')) return;
-      loaded = true;
-      const script = document.createElement('script');
-      script.id = 'leadconnector-widget';
-      script.src = 'https://beta.leadconnectorhq.com/loader.js';
-      script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
-      script.setAttribute('data-widget-id', '69faa5663cc757c354898554');
-      document.body.appendChild(script);
-      cleanup();
-    };
-
-    const onScroll = () => {
-      if (window.scrollY > 200) load();
-    };
-
-    const cleanup = () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('pointerdown', load);
-      window.removeEventListener('keydown', load);
-      window.removeEventListener('touchstart', load);
-      if (idleTimer) window.clearTimeout(idleTimer);
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('pointerdown', load, { once: true });
-    window.addEventListener('keydown', load, { once: true });
-    window.addEventListener('touchstart', load, { once: true, passive: true });
-
-    const idleTimer = window.setTimeout(load, 8000);
-
-    return cleanup;
-  }, []);
-
-  // LeadConnector ships its own socket.io client. Missing live replies after a
-  // visitor sends a message are a GHL server-push issue, not a page-code issue.
 
   const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

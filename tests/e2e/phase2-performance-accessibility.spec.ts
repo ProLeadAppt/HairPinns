@@ -910,7 +910,6 @@ test('after-hours collection system stays truthful and shoppable at Fold width',
     const states = [
       ['aria-hidden', 'true'],
       ['data-aria-hidden', 'true'],
-      ['data-active', 'false'],
     ];
     return states.map(([name, value]) => {
       const widget = document.createElement('chat-widget');
@@ -924,7 +923,6 @@ test('after-hours collection system stays truthful and shoppable at Fold width',
   expect(hiddenPointerStates).toEqual([
     { name: 'aria-hidden', pointerEvents: 'none' },
     { name: 'data-aria-hidden', pointerEvents: 'none' },
-    { name: 'data-active', pointerEvents: 'none' },
   ]);
 
   await page.evaluate(() => {
@@ -942,14 +940,21 @@ test('after-hours collection system stays truthful and shoppable at Fold width',
   await activeWidget.evaluate((element) => element.remove());
 
   await page.evaluate(() => {
-    const hiddenWidget = document.createElement('chat-widget');
-    hiddenWidget.setAttribute('data-active', 'false');
-    hiddenWidget.setAttribute(
+    const inactiveWidget = document.createElement('chat-widget');
+    inactiveWidget.setAttribute('data-active', 'false');
+    inactiveWidget.setAttribute('data-testid', 'inactive-chat-widget');
+    inactiveWidget.setAttribute(
       'style',
-      'position:fixed;inset:0;z-index:2147483647;display:block;',
+      'position:fixed;right:16px;bottom:16px;width:64px;height:64px;z-index:2147483647;display:block;',
     );
-    document.body.appendChild(hiddenWidget);
+    inactiveWidget.addEventListener('click', () => inactiveWidget.setAttribute('data-clicked', 'true'));
+    document.body.appendChild(inactiveWidget);
   });
+  const inactiveWidget = page.getByTestId('inactive-chat-widget');
+  await expect(inactiveWidget).toHaveCSS('pointer-events', 'auto');
+  await inactiveWidget.click();
+  await expect(inactiveWidget).toHaveAttribute('data-clicked', 'true');
+  await inactiveWidget.evaluate((element) => element.remove());
   await products.first().getByRole('button', { name: 'Quick View' }).click();
   await expect(page.getByRole('dialog', { name: 'Quick View' })).toBeVisible({ timeout: 30_000 });
   await page.getByRole('dialog', { name: 'Quick View' }).getByRole('button', { name: 'Add to Cart' }).click();

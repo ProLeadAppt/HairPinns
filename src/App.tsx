@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import LeadConnectorWidget from "./components/LeadConnectorWidget";
 import TrackingGate from "./components/tracking/TrackingGate";
+import { FloatingActionsProvider } from "@/contexts/FloatingActionsContext";
 import { initCartAbandonmentMonitoring } from "@/lib/cartAbandonment";
 import {
   markNotificationRendererReady,
@@ -150,13 +152,15 @@ const AppContent = () => {
           <NotificationRenderer />
         </Suspense>
       ) : null}
-      <BrowserRouter>
-        <CartProvider>
-          <ScrollToTop />
-          <ScrollToTopButton />
-          <TrackingGate />
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
+      <FloatingActionsProvider>
+        <BrowserRouter>
+          <CartProvider>
+            <LeadConnectorWidget />
+            <ScrollToTop />
+            <ScrollToTopButton />
+            <TrackingGate />
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/collections" element={<Collections />} />
               <Route path="/collections/jenas-daily-trio" element={<JenasDailyTrioPage />} />
@@ -191,10 +195,11 @@ const AppContent = () => {
               <Route path="/404" element={<NotFound />} />
               <Route path="/500" element={<ServerError />} />
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </CartProvider>
-      </BrowserRouter>
+              </Routes>
+            </Suspense>
+          </CartProvider>
+        </BrowserRouter>
+      </FloatingActionsProvider>
     </>
   );
 };

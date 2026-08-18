@@ -172,7 +172,7 @@ const About = () => {
               <picture className="block aspect-[4/5] h-full min-h-[500px] overflow-hidden bg-[hsl(var(--after-hours-cream)/0.08)] lg:aspect-auto">
                 <source type="image/avif" srcSet={`${jenaFounderAvif540} 540w, ${jenaFounderAvif1080} 1080w`} sizes="(max-width: 1023px) 100vw, 48vw" />
                 <source type="image/webp" srcSet={`${jenaFounderWebp540} 540w, ${jenaFounderWebp1080} 1080w`} sizes="(max-width: 1023px) 100vw, 48vw" />
-                <img src={jenaFounderWebp1080} alt="Jena, founder and hairdresser at Hair Pinns in Bangor" width="1080" height="1080" className="h-full w-full object-cover object-[center_38%]" fetchPriority="high" decoding="async" />
+                <img src={jenaFounderWebp1080} alt="Jena, founder and hairdresser at Hair Pinns in Bangor" width="1080" height="1080" className="h-full w-full object-cover object-[center_38%]" fetchpriority="high" decoding="async" />
               </picture>
               <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-4 bg-[hsl(var(--after-hours-near-black)/0.9)] px-4 py-4 backdrop-blur-sm sm:px-6">
                 <span className="font-heading text-xl">Jena</span>
