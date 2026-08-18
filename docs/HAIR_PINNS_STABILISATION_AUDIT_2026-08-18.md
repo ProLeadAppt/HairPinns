@@ -16,14 +16,14 @@ Hair Pinns is live and its main public routes, product discovery, booking page, 
 
 The audit also found material governance and operations debt. The public repository tracks `.env`, has no GitHub Actions, no main-branch protection and has Dependabot alerts disabled. Eight npm advisories affect build/development tooling; the production dependency audit is clean. HighLevel contains duplicated agents, knowledge bases and tags, legacy pipelines, zero-enrolment workflows and inconsistent reputation/reporting data. These HighLevel items are classified below, but none was changed, archived or deleted.
 
-The production text-chat route has now passed a controlled synthetic-contact test: the all-in-one widget created one labelled QA contact and routed exactly one live-chat conversation to Isabella. The test also exposed a material knowledge defect: Isabella answered that Wednesday hours are 6pm–9pm, while the verified current hours are 4pm–9pm. Her active rich-text source is older again and states 9am–5pm, confirming conflicting/stale knowledge rather than a transport failure. Three approved authoritative FAQ entries for current hours, booking and information-only/no-forced-callback behaviour have been published. Retrieval now ranks the correct 4pm–9pm FAQ first, and Isabella correctly stopped requiring a phone/callback, but her internal agent test still answered 6pm–9pm. The remaining defect is therefore prompt/source precedence and still blocks production release. Sam's embedded web-call connection and greeting passed, but two-way speech, field capture, post-call actions and human handoff remain unverified because no real or invented phone data was used.
+The production text-chat route has now passed a controlled synthetic-contact test: the all-in-one widget created one labelled QA contact and routed exactly one live-chat conversation to Isabella. The test also exposed a material knowledge defect: Isabella answered that Wednesday hours are 6pm–9pm, while the verified current hours are 4pm–9pm. Her active rich-text source is older again and states 9am–5pm, confirming conflicting/stale knowledge rather than a transport failure. Three approved authoritative FAQ entries for current hours, booking and information-only/no-forced-callback behaviour have been published. Retrieval now ranks the correct 4pm–9pm FAQ first, and Isabella correctly stopped requiring a phone/callback, but her internal agent test still answered 6pm–9pm. The remaining defect is therefore prompt/source precedence and blocks final AI acceptance, although the independently verified website-control release is now live. Sam's embedded web-call connection and greeting passed, but two-way speech, field capture, post-call actions and human handoff remain unverified because no real or invented phone data was used.
 
 ## Access, baseline and rollback
 
 | System | Access and baseline | Rollback |
 | --- | --- | --- |
 | GitHub | Confirmed `ADMIN`; repository is public; baseline `87d0c55d73a14a19621a5d8ddf3ea8d24b82913a` | Revert the stabilisation commit or redeploy the baseline commit |
-| Netlify | Authenticated and linked to existing `hairpinns` site; no replacement site created | Production deploy `6a71fec912629a00088fc16f`; immutable URL: <https://6a71fec912629a00088fc16f--hairpinns.netlify.app> |
+| Netlify | Production stabilisation deploy `6a83d6584a395d3a98c1a5ef` published 18 August 2026; no replacement site created | Previous production deploy `6a71fec912629a00088fc16f`; immutable rollback URL: <https://6a71fec912629a00088fc16f--hairpinns.netlify.app> |
 | HighLevel | Authenticated agency UI access to Hair Pinns sub-account; approved all-in-one widget configuration update published | Widget settings can be restored from the recorded pre-change configuration; any later cleanup must be applied in small reversible batches |
 
 The baseline Netlify deploy was `ready`, used four functions, 93 redirects and 26 header rules. Its recorded Lighthouse results were Performance 96, Accessibility 100, Best Practices 92 and SEO 100. Netlify's deploy secret scan reported no matches.
@@ -91,6 +91,9 @@ The baseline Netlify deploy was `ready`, used four functions, 93 redirects and 2
 | Final floating-control browser matrix | 15/15 passed across Chromium, Firefox and WebKit |
 | Netlify preview | Draft deploy `6a83c3ebc06bd92e34b72cd4`: <https://6a83c3ebc06bd92e34b72cd4--hairpinns.netlify.app> |
 | Preview floating-control acceptance | 15/15 passed across Chromium, Firefox and WebKit |
+| Netlify production | Deploy `6a83d6584a395d3a98c1a5ef` ready and published at <https://hairpinns.com> |
+| Production floating-control acceptance | 15/15 passed across Chromium, Firefox and WebKit after publish |
+| Real production HighLevel launcher | Pass: widget loaded after fallback, retained `pointer-events: auto`, opened successfully and displayed Live Chat and Voice options |
 | Broader preview Chromium suite | 32 passed before the runner lost network; 42 subsequent navigations failed with `ERR_INTERNET_DISCONNECTED`, so these are not recorded as application failures |
 | HighLevel widget handoff | Pass: one synthetic name/email contact, no phone, one Live Chat conversation, exactly one Isabella response |
 | Isabella knowledge answer | Fail: replied Wednesday 6pm–9pm; verified current hours are 4pm–9pm; active rich-text source says 9am–5pm |
@@ -272,9 +275,9 @@ There are 54 tags in total. Seasonal tags must be assessed by dependency and ret
 
 ## Recommended sequence
 
-1. Accept the Netlify preview after widget, dock, scroll, product, cart and booking smoke tests.
+1. **Completed:** Accept the Netlify preview after widget, dock, scroll, product, cart and booking smoke tests.
 2. Run the separately approved Sam/Isabella controlled tests and record routing/handoff evidence.
-3. Promote the identical reviewed commit to production and retain the baseline deploy URL for rollback.
+3. **Completed:** Promote the verified website-control build to production and retain the baseline deploy URL for rollback.
 4. Complete SEC-01 credential classification/rotation and establish GitHub CI/protection before broader optimisation.
 5. Repair analytics/ads attribution and choose a single commerce-to-CRM data path.
 6. Approve the HighLevel cleanup register, then execute **Merge**, **Archive** and finally **Delete** in separate reversible batches.
