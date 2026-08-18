@@ -290,11 +290,14 @@ assert.match(bookingBannerSource, /jena-working-480w\.avif[\s\S]*srcSet[\s\S]*si
 assert.doesNotMatch(bookingBannerSource, /aria-label="Book an appointment"|rounded-full|999px|bg-gradient|contentVisibility/, 'Salon close must not regress to mismatched labels, pills, gradients, or double deferral');
 
 const stickyBarSource = await readFile(path.join(ROOT, 'src/components/home/StickyBookBar.tsx'), 'utf8');
-assert.match(stickyBarSource, /querySelector<HTMLElement>\("\[data-home-booking-close\]"\)/, 'Sticky commerce bar must detect the contained salon close');
-assert.match(stickyBarSource, /salonRect\.bottom > 0 && salonRect\.top < window\.innerHeight/, 'Sticky commerce bar must hide for the full visible salon-close interval');
-assert.match(stickyBarSource, /new MutationObserver\(updateVisibility\)[\s\S]*childList: true, subtree: true/, 'Sticky commerce bar must handle deferred salon and footer mounting');
+const floatingActionsSource = await readFile(path.join(ROOT, 'src/contexts/FloatingActionsContext.tsx'), 'utf8');
+assert.match(floatingActionsSource, /\[data-home-booking-close\][\s\S]*\[data-home-footer\]/, 'Floating coordinator must detect the salon close and footer');
+assert.match(floatingActionsSource, /new IntersectionObserver[\s\S]*new MutationObserver[\s\S]*childList: true, subtree: true/, 'Floating coordinator must observe viewport intersections and deferred mounts');
+assert.match(floatingActionsSource, /new ResizeObserver[\s\S]*--mobile-action-dock-height/, 'Floating coordinator must publish the measured dock height');
 assert.match(stickyBarSource, /requestAnimationFrame[\s\S]*cancelAnimationFrame/, 'Sticky commerce geometry checks must be frame-throttled and cleaned up');
-assert.match(stickyBarSource, /window\.scrollY > 400 && !salonIsVisible && !footerIsVisible/, 'Sticky commerce bar must retain threshold, salon, and footer suppression');
+assert.match(stickyBarSource, /window\.scrollY > 400/, 'Sticky commerce bar must retain its scroll threshold');
+assert.match(stickyBarSource, /passedScrollThreshold && !dockBlocked/, 'Sticky commerce bar must retain shared blocker suppression');
+assert.match(stickyBarSource, /data-mobile-action-dock=""/, 'Sticky commerce bar must expose the shared mobile-dock contract');
 assert.match(stickyBarSource, /to="\/collections"[\s\S]*href=\{BOOK_URL\}/, 'Sticky commerce bar must retain product-first and secondary salon actions');
 
 const scrollTopSource = await readFile(path.join(ROOT, 'src/components/ScrollToTopButton.tsx'), 'utf8');
@@ -302,10 +305,9 @@ const motionSource = await readFile(path.join(ROOT, 'src/lib/motion.ts'), 'utf8'
 const scrollRevealSource = await readFile(path.join(ROOT, 'src/hooks/useScrollReveal.ts'), 'utf8');
 const tableOfContentsSource = await readFile(path.join(ROOT, 'src/components/blog/TableOfContents.tsx'), 'utf8');
 const serviceDirectoryMotionSource = await readFile(path.join(ROOT, 'src/components/services/ServiceDirectory.tsx'), 'utf8');
-assert.match(scrollTopSource, /querySelector<HTMLElement>\("\[data-home-booking-close\]"\)/, 'Scroll-to-top control must detect the salon close');
-assert.match(scrollTopSource, /querySelector<HTMLElement>\("\[data-home-footer\]"\)/, 'Scroll-to-top control must detect the final footer');
-assert.match(scrollTopSource, /window\.pageYOffset > 300 && !salonIsVisible && !footerIsVisible/, 'Scroll-to-top control must yield to the salon close and footer while retaining its threshold');
-assert.match(scrollTopSource, /new MutationObserver\(toggleVisibility\)[\s\S]*childList: true, subtree: true/, 'Scroll-to-top control must handle deferred salon mounting');
+assert.match(scrollTopSource, /window\.pageYOffset > 300/, 'Scroll-to-top control must retain its scroll threshold');
+assert.match(scrollTopSource, /passedScrollThreshold && !scrollTopBlocked/, 'Scroll-to-top control must yield to shared blockers');
+assert.match(scrollTopSource, /useFloatingActions/, 'Scroll-to-top control must consume the shared floating coordinator');
 assert.match(motionSource, /prefers-reduced-motion: reduce[\s\S]*matches[\s\S]*\? "auto" : "smooth"/, 'Shared motion policy must map reduced motion to instant scrolling');
 assert.match(scrollTopSource, /preferredScrollBehavior\(\)/, 'Scroll-to-top control must use the shared reduced-motion policy');
 assert.match(scrollRevealSource, /prefersReducedMotion\(\)[\s\S]*classList\.add\("visible"\)/, 'Reduced-motion users must receive revealed content without an observer animation');
@@ -315,11 +317,13 @@ assert.doesNotMatch(scrollTopSource, /transition-all/, 'Scroll-to-top control mu
 assert.doesNotMatch(indexCss, /font-family:\s*"Fraunces"|fraunces-(?:italic-)?latin\.woff2/, 'Global typography must use one Playfair editorial face without loading legacy Fraunces');
 
 const footerSource = await readFile(path.join(ROOT, 'src/components/Footer.tsx'), 'utf8');
+const leadConnectorSource = await readFile(path.join(ROOT, 'src/components/LeadConnectorWidget.tsx'), 'utf8');
 assert.match(footerSource, /data-home-footer=""/, 'Footer must expose a stable marker for floating-control suppression');
 assert.match(footerSource, /after-hours-near-black[\s\S]*after-hours-copper[\s\S]*after-hours-cream/, 'Footer must continue the semantic After-Hours palette');
 assert.match(footerSource, /hairPinnsLogo[\s\S]*brightness-0 invert/, 'Footer must retain the real Hair Pinns logo with dark-background treatment');
 assert.match(footerSource, /form_name: 'newsletter_footer'[\s\S]*consent_marketing: true[\s\S]*event: 'newsletter_subscription'/, 'Footer newsletter must retain GHL capture, consent, and attribution');
-assert.match(footerSource, /leadconnector-widget[\s\S]*data-widget-id[\s\S]*setTimeout\(load, 8000\)/, 'Footer must retain the deferred LeadConnector facade');
+assert.match(leadConnectorSource, /leadconnector-widget-loader[\s\S]*data-widget-id[\s\S]*setTimeout\(load, 8000\)/, 'Application widget loader must retain intent loading and the eight-second fallback');
+assert.doesNotMatch(footerSource, /leadconnectorhq|data-widget-id/, 'Footer must not own application-level LeadConnector loading');
 assert.match(footerSource, /ENTITY_REGISTRY\.profiles\.instagram[\s\S]*ENTITY_REGISTRY\.profiles\.facebook/, 'Footer must retain registry-backed first-party social destinations');
 assert.match(footerSource, /BUSINESS_NAP\.address\.street[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.phone\.sms[\s\S]*BUSINESS_NAP\.phone\.whatsapp/, 'Footer must retain canonical address, phone, SMS, and WhatsApp contacts');
 for (const route of ['/collections', '/blog', '/policies/shipping', '/policies/returns', '/faq', '/glossary', '/services', '/booking', '/about', '/areas', '/contact', '/privacy', '/terms']) {
@@ -371,6 +375,7 @@ assert.match(collectionDetailSource, /grid grid-cols-2[\s\S]*sortedProducts\.map
 assert.match(collectionDetailSource, /object-contain[\s\S]*Quick View[\s\S]*Add to Bag/, 'Collection product plates must preserve full-image containment and both commerce actions');
 assert.match(collectionDetailSource, /aria-label="Filter by price"[\s\S]*aria-label="Sort products"/, 'Collection controls must keep persistent accessible names');
 assert.match(collectionDetailSource, /min-h-11[\s\S]*Quick View[\s\S]*min-h-11[\s\S]*Add to Bag/, 'Collection product actions must remain at least 44px tall');
+assert.match(collectionDetailSource, /Collection Temporarily Unavailable[\s\S]*canonical=\{`https:\/\/hairpinns\.com\/collections\/\$\{handle\}`\}[\s\S]*noIndex/, 'Collection fallback must publish a canonical no-index SEO state so prerender terminates after Shopify failures');
 assert.doesNotMatch(collectionDetailSource, /TrustStrip|762\+ five-star|Newest First|sortBy === "newest"/, 'Collection detail must not expose unsourced review proof or a no-op newest sort');
 
 const productDetailSource = await readFile(path.join(ROOT, 'src/pages/ProductDetail.tsx'), 'utf8');
@@ -404,7 +409,7 @@ assert.match(stickyProductSource, /querySelector\('\[data-product-purchase-actio
 assert.match(stickyProductSource, /data-home-footer|querySelector\('footer'\)/, 'Sticky product action must yield over the footer');
 assert.match(stickyProductSource, /requestAnimationFrame|cancelAnimationFrame/, 'Sticky product visibility must be frame-throttled and cleaned up');
 assert.match(stickyProductSource, /data-product-sticky-purchase=""/, 'Sticky product action needs a stable test marker');
-assert.match(scrollToTopSource, /\[data-product-detail-core\]/, 'Scroll-to-top control must yield throughout the core product detail');
+assert.match(floatingActionsSource, /\[data-product-detail-core\]/, 'Scroll-to-top control must yield throughout the core product detail');
 assert.doesNotMatch(productRecommendationsSource, /content-visibility-auto/, 'Async product recommendations must remain scrollable in WebKit');
 assert.match(productRecommendationsSource, /RecommendationContext = "collection" \| "catalogue" \| "curated"/, 'Recommendation copy must reflect its actual data relationship');
 assert.match(productRecommendationsSource, /More from this range[\s\S]*More to browse/, 'Recommendation shelf needs truthful collection and catalogue headings');
@@ -416,8 +421,8 @@ assert.match(socialShareSource, /variant\?: "fixed" \| "inline"[\s\S]*variant = 
 assert.match(productDetailSource, /variant="editorial"[\s\S]*data-product-share-close=""[\s\S]*variant="inline"/, 'PDP must route conditional related content into the inline share close');
 assert.ok(productDetailSource.indexOf('<ProductRecommendations') < productDetailSource.indexOf('data-product-share-close=""'), 'Recommendation shelf must precede the terminal share close');
 assert.match(stickyProductSource, /\[data-product-share-close\]/, 'Sticky purchase action must yield over the product share close');
-assert.match(scrollToTopSource, /\[data-product-share-close\]/, 'Scroll-to-top control must yield over the product share close');
-assert.match(scrollToTopSource, /\[data-product-recommendations\]/, 'Scroll-to-top control must not cover recommendation products');
+assert.match(floatingActionsSource, /\[data-product-share-close\]/, 'Scroll-to-top control must yield over the product share close');
+assert.match(floatingActionsSource, /\[data-product-recommendations\]/, 'Scroll-to-top control must not cover recommendation products');
 assert.match(relatedContentSource, /variant\?: "default" \| "editorial"[\s\S]*variant = "default"/, 'Related content must preserve existing routes while allowing the PDP editorial variant');
 assert.match(aboutSource, /data-about-page=""[\s\S]*data-about-hero=""[\s\S]*data-about-work=""[\s\S]*data-about-close=""/, 'About route needs stable founder, proof, and close markers');
 assert.match(aboutSource, /jena-founder-540w\.avif[\s\S]*jena-founder-1080w\.webp[\s\S]*jena-working-480w\.avif[\s\S]*jena-working-1170w\.webp/, 'About route must use approved responsive founder and working imagery');
@@ -432,7 +437,7 @@ assert.match(imageGallerySource, /event\.key === "Escape"/, 'Shared gallery ligh
 assert.match(imageGallerySource, /triggerRefs\.current\[returnIndex\]\?\.focus/, 'Shared gallery lightbox must restore trigger focus');
 assert.match(imageGallerySource, /fallbackSrc\?: string[\s\S]*type="image\/avif"[\s\S]*img\.fallbackSrc \|\| img\.src/, 'Shared gallery must support AVIF sources with WebP image fallbacks');
 assert.match(aboutSource, /fallbackSrc: salonInteriorWebp[\s\S]*fallbackSrc: bobResultWebp/, 'About work proof must provide WebP fallbacks for every AVIF gallery image');
-assert.match(scrollToTopSource, /\[data-about-page\]/, 'Scroll-to-top control must not cover the About founder journey');
+assert.match(floatingActionsSource, /\[data-about-page\]/, 'Scroll-to-top control must not cover the About founder journey');
 const servicesDataBlock = servicesSource.slice(servicesSource.indexOf('const serviceCategories'), servicesSource.indexOf('// Scroll spy'));
 assert.equal((servicesDataBlock.match(/\n\s+id: "/g) || []).length, 14, 'Services directory must preserve all 14 Fresha categories');
 assert.equal((servicesDataBlock.match(/\n\s+price: /g) || []).length, 59, 'Services directory must preserve all 59 Fresha entries');
@@ -448,7 +453,7 @@ assert.match(serviceDirectorySource, /<details[\s\S]*Service details[\s\S]*servi
 assert.match(serviceDirectorySource, /BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.address\.full[\s\S]*to="\/areas"/, 'Services close must use canonical phone, address, and area routes');
 assert.doesNotMatch(serviceDirectorySource, /`tel:\$\{BUSINESS_NAP\.phone\.tel\}`/, 'Services close must not duplicate the tel protocol');
 assert.match(serviceDirectorySource, /min-h-11[\s\S]*Book now[\s\S]*min-h-11[\s\S]*Service guide/, 'Service actions must retain 44px targets');
-assert.match(scrollToTopSource, /\[data-about-page\], \[data-services-page\], \[data-service-detail\]/, 'Scroll-to-top control must not cover editorial About, Services, or service-detail journeys');
+assert.match(floatingActionsSource, /\[data-about-page\], \[data-services-page\], \[data-service-detail\]/, 'Scroll-to-top control must not cover editorial About, Services, or service-detail journeys');
 assert.equal((serviceDetailDataSource.match(/metaDescription:\s*"/g) || []).length, 15, 'Service-detail data must preserve all 15 dedicated service routes');
 assert.equal((serviceDetailDataSource.match(/\n\s+services: \[/g) || []).length, 5, 'Service-detail data must preserve all five routed categories');
 assert.match(serviceDetailSource, /generateEnhancedServiceSchema[\s\S]*generateBreadcrumbSchema[\s\S]*generateFAQPageSchema[\s\S]*generateHowToSchema[\s\S]*generateWebPageSchema/, 'Service-detail controller must preserve all five schema sources');
@@ -475,7 +480,7 @@ assert.match(bookingSource, /generateBreadcrumbSchema/, 'Booking breadcrumb sche
 assert.equal((bookingSource.match(/question: "/g) || []).length, 5, 'Booking page must preserve five visible schema-matched FAQs');
 assert.match(bookingSource, /<details key=\{faq\.question\}/, 'Booking FAQs must use native disclosures');
 assert.match(bookingSource, /<Breadcrumbs[\s\S]*variant="dark"/, 'Booking hero must use the explicit dark breadcrumb variant');
-assert.match(scrollToTopSource, /\[data-booking-page\]/, 'Booking journey must suppress the floating scroll-to-top control');
+assert.match(floatingActionsSource, /\[data-booking-page\]/, 'Booking journey must suppress the floating scroll-to-top control');
 for (const unsupportedClaim of ['762+ five-star reviews', 'Same-day available', 'Klarna', 'Afterpay', '50% fee', 'free up to 24 hours', 'chat with Isabella', 'Takes about 2 minutes']) {
   assert.ok(!bookingSource.includes(unsupportedClaim), `Booking page must not restore unsupported claim: ${unsupportedClaim}`);
 }
@@ -492,7 +497,7 @@ assert.match(contactSource, /<ContactForm formName="contact_page"[\s\S]*variant=
 assert.equal((contactSource.match(/question: "/g) || []).length, 4, 'Contact page must expose four schema-matched FAQs');
 assert.match(contactSource, /generateFAQPageSchema\(contactFaqs\)/, 'Contact FAQ schema must use the visible FAQ source');
 assert.match(contactSource, /trackBookingClick\("contact_close", "\/contact"\)/, 'Contact booking close must preserve attribution');
-assert.match(scrollToTopSource, /\[data-contact-page\]/, 'Contact journey must suppress the floating scroll-to-top control');
+assert.match(floatingActionsSource, /\[data-contact-page\]/, 'Contact journey must suppress the floating scroll-to-top control');
 assert.doesNotMatch(contactSource, /new Date\(|businessInfo|Open now|Currently closed|rear entrance|Wheelchair accessible|available 24\/7|within 24 hours/, 'Contact page must not restore browser-time status, duplicate business data, or unsupported access and response claims');
 for (const formContract of ['postToZapier', 'contact_form_submit', "window.gtag('event', 'generate_lead'", 'pixelTracking.trackFormSubmission', 'contactSchema.safeParse', 'Send Another Message']) {
   assert.ok(contactFormSource.includes(formContract), `Contact form must preserve operational contract: ${formContract}`);

@@ -179,7 +179,7 @@ const HeroHome = () => (
             src={heroJournalWebp1280}
             alt="Smooth copper hair finished at Hair Pinns"
             className="absolute inset-0 h-full w-full object-cover object-[center_48%]"
-            fetchPriority="high"
+            fetchpriority="high"
             decoding="async"
             loading="eager"
             width="1440"

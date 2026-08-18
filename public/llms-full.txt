@@ -1,4 +1,4 @@
-# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-07-26
+# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-07-29
 
 # Hair Pinns: full crawler context
 
@@ -30,7 +30,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - 15 service detail pages
 - 17 salon service-area pages
 - 20 Australian shipping pages
-- 23 product collections
+- 25 product collections
 - 119 products
 
 ## Primary links
@@ -199,6 +199,8 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/collections/colour-treated-hair/
 - https://hairpinns.com/collections/hair-tools-brushes/
 - https://hairpinns.com/collections/hair-styling-products/
+- https://hairpinns.com/collections/free-extra-eligible/
+- https://hairpinns.com/collections/free-extra-gifts/
 
 ## Product URLs
 
@@ -277,6 +279,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/pure-miracle-renew-conditioner/
 - https://hairpinns.com/products/pure-colour-angel-shampoo/
 - https://hairpinns.com/products/pure-colour-angel-conditioner/
+- https://hairpinns.com/products/pure-sensual-curls/
 - https://hairpinns.com/products/pure-curly-girly-foam-curl-primer/
 - https://hairpinns.com/products/pure-miracle-renew-hair-treatmentt/
 - https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment/
@@ -314,7 +317,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/tame-texture-wax-stick/
 - https://hairpinns.com/products/flyaway-serum-baby-hair-control-smooth-hair-solution/
 - https://hairpinns.com/products/glow-go-tote/
-- https://hairpinns.com/products/wet-brush-go-green-curl-detangler/
 - https://hairpinns.com/products/christmas-reusable-ponytails/
 - https://hairpinns.com/products/rose-sunkiss-fix-hands-feet-face-tan-mist/
 - https://hairpinns.com/products/goodbye-frizz-quad/

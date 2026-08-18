@@ -161,7 +161,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
               alt={post.title}
               className="h-full min-h-[26rem] w-full object-cover lg:min-h-[44rem]"
               loading="eager"
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="async"
               width="1600"
               height="900"

@@ -3,71 +3,59 @@ import { CalendarCheck, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
+import { useFloatingActions } from "@/contexts/FloatingActionsContext";
 
 /**
  * Mobile quick-action bar. Shopping is the primary path across the product-led
  * homepage; salon booking remains available as a quieter secondary action.
  */
 const StickyBookBar = () => {
-  const [visible, setVisible] = useState(false);
+  const [passedScrollThreshold, setPassedScrollThreshold] = useState(false);
+  const { dockBlocked, dockRef, setDockVisible } = useFloatingActions();
+  const visible = passedScrollThreshold && !dockBlocked;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     let frame = 0;
-    const updateVisibility = () => {
+    const updateScrollThreshold = () => {
       if (frame) return;
       frame = window.requestAnimationFrame(() => {
         frame = 0;
-        const salonClose = document.querySelector<HTMLElement>("[data-home-booking-close]");
-        const salonRect = salonClose?.getBoundingClientRect();
-        const salonIsVisible = Boolean(
-          salonRect && salonRect.bottom > 0 && salonRect.top < window.innerHeight,
-        );
-
-        const footer = document.querySelector<HTMLElement>("footer");
-        const footerRect = footer?.getBoundingClientRect();
-        const footerIsVisible = Boolean(
-          footerRect && footerRect.bottom > 0 && footerRect.top <= window.innerHeight - 40,
-        );
-
-        setVisible(window.scrollY > 400 && !salonIsVisible && !footerIsVisible);
+        setPassedScrollThreshold(window.scrollY > 400);
       });
     };
 
-    updateVisibility();
-    window.addEventListener("scroll", updateVisibility, { passive: true });
-    window.addEventListener("resize", updateVisibility);
-
-    // The salon close and footer are deferred. Recalculate as soon as either is
-    // inserted so the bar cannot remain over newly mounted conversion content.
-    const mountObserver = new MutationObserver(updateVisibility);
-    mountObserver.observe(document.body, { childList: true, subtree: true });
+    updateScrollThreshold();
+    window.addEventListener("scroll", updateScrollThreshold, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", updateVisibility);
-      window.removeEventListener("resize", updateVisibility);
-      mountObserver.disconnect();
+      window.removeEventListener("scroll", updateScrollThreshold);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
+
+  useEffect(() => {
+    setDockVisible(visible);
+    return () => setDockVisible(false);
+  }, [setDockVisible, visible]);
 
   if (!visible) return null;
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 lg:hidden"
+      ref={dockRef}
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-[hsl(var(--after-hours-copper)/0.72)] bg-[hsl(var(--after-hours-cream)/0.97)] text-[hsl(var(--after-hours-plum))] shadow-[0_-10px_28px_-18px_hsl(var(--after-hours-near-black)/0.5)] backdrop-blur lg:hidden"
       role="region"
       aria-label="Quick shop bar"
+      data-mobile-action-dock=""
     >
-      <div className="bg-white/95 backdrop-blur border-t border-border shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.18)]">
-        <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center gap-2">
+      <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 pt-2.5 [padding-bottom:calc(0.625rem+env(safe-area-inset-bottom))]">
           <Button
             asChild
             variant="primary"
             size="default"
-            className="flex-1 font-semibold"
-            style={{ borderRadius: "999px" }}
+            className="min-h-12 flex-1 rounded-none border border-[hsl(var(--after-hours-plum))] bg-[hsl(var(--after-hours-plum))] font-semibold text-[hsl(var(--after-hours-cream))] shadow-none hover:bg-[hsl(var(--after-hours-near-black))] focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-2"
           >
             <Link
               to="/collections"
@@ -83,15 +71,14 @@ const StickyBookBar = () => {
               }}
             >
               <ShoppingBag className="w-4 h-4" />
-              <span>Shop all products</span>
+              <span>Shop products</span>
             </Link>
           </Button>
           <Button
             asChild
             variant="outline"
             size="default"
-            className="hidden min-[360px]:inline-flex shrink-0"
-            style={{ borderRadius: "999px" }}
+            className="min-h-12 shrink-0 rounded-none border-[hsl(var(--after-hours-plum))] bg-transparent px-3 font-semibold text-[hsl(var(--after-hours-plum))] shadow-none hover:bg-[hsl(var(--after-hours-copper)/0.18)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-2"
           >
             <a
               href={BOOK_URL}
@@ -101,11 +88,9 @@ const StickyBookBar = () => {
               onClick={() => trackBookingClick("sticky_bar_mobile_secondary", window.location.pathname)}
             >
               <CalendarCheck className="w-4 h-4" />
-              <span className="hidden min-[360px]:inline">Book salon</span>
-              <span className="sr-only min-[360px]:hidden">Book salon</span>
+              <span>Book salon</span>
             </a>
           </Button>
-        </div>
       </div>
     </div>
   );

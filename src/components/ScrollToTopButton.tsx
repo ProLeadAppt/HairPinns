@@ -1,57 +1,28 @@
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 import { preferredScrollBehavior } from "@/lib/motion";
+import { useFloatingActions } from "@/contexts/FloatingActionsContext";
 
 const ScrollToTopButton = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [passedScrollThreshold, setPassedScrollThreshold] = useState(false);
+  const { scrollTopBlocked } = useFloatingActions();
+  const isVisible = passedScrollThreshold && !scrollTopBlocked;
 
   useEffect(() => {
     let frame = 0;
-    const toggleVisibility = () => {
+    const updateScrollThreshold = () => {
       if (frame) return;
       frame = window.requestAnimationFrame(() => {
         frame = 0;
-        const salonClose = document.querySelector<HTMLElement>("[data-home-booking-close]");
-        const salonRect = salonClose?.getBoundingClientRect();
-        const salonIsVisible = Boolean(
-          salonRect && salonRect.bottom > 0 && salonRect.top < window.innerHeight,
-        );
-        const footer = document.querySelector<HTMLElement>("[data-home-footer]");
-        const footerRect = footer?.getBoundingClientRect();
-        const footerIsVisible = Boolean(
-          footerRect && footerRect.bottom > 0 && footerRect.top < window.innerHeight,
-        );
-        const productCore = document.querySelector<HTMLElement>("[data-product-detail-core]");
-        const productCoreRect = productCore?.getBoundingClientRect();
-        const productCoreIsVisible = Boolean(
-          productCoreRect && productCoreRect.bottom > 0 && productCoreRect.top < window.innerHeight,
-        );
-        const productShareClose = document.querySelector<HTMLElement>("[data-product-share-close]");
-        const productShareRect = productShareClose?.getBoundingClientRect();
-        const productShareIsVisible = Boolean(
-          productShareRect && productShareRect.bottom > 0 && productShareRect.top < window.innerHeight,
-        );
-        const productRecommendations = document.querySelector<HTMLElement>("[data-product-recommendations]");
-        const productRecommendationsRect = productRecommendations?.getBoundingClientRect();
-        const productRecommendationsAreVisible = Boolean(
-          productRecommendationsRect && productRecommendationsRect.bottom > 0 && productRecommendationsRect.top < window.innerHeight,
-        );
-        const isEditorialJourney = Boolean(document.querySelector('[data-about-page], [data-services-page], [data-service-detail], [data-booking-page], [data-contact-page]'));
-        setIsVisible(window.pageYOffset > 300 && !salonIsVisible && !footerIsVisible && !productCoreIsVisible && !productShareIsVisible && !productRecommendationsAreVisible && !isEditorialJourney);
+        setPassedScrollThreshold(window.pageYOffset > 300);
       });
     };
 
-    toggleVisibility();
-    window.addEventListener("scroll", toggleVisibility, { passive: true });
-    window.addEventListener("resize", toggleVisibility);
-
-    const mountObserver = new MutationObserver(toggleVisibility);
-    mountObserver.observe(document.body, { childList: true, subtree: true });
+    updateScrollThreshold();
+    window.addEventListener("scroll", updateScrollThreshold, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", toggleVisibility);
-      window.removeEventListener("resize", toggleVisibility);
-      mountObserver.disconnect();
+      window.removeEventListener("scroll", updateScrollThreshold);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
@@ -68,7 +39,7 @@ const ScrollToTopButton = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="group fixed bottom-24 left-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-brand-500 !text-white shadow-2xl transition-[background-color,transform,box-shadow] duration-300 hover:scale-110 hover:bg-brand-600 motion-reduce:hover:scale-100"
+          className="floating-scroll-top group fixed left-4 z-40 flex h-12 w-12 items-center justify-center rounded-none border border-[hsl(var(--after-hours-copper))] bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))] shadow-[0_10px_24px_-14px_hsl(var(--after-hours-near-black)/0.65)] transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-[hsl(var(--after-hours-near-black))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           aria-label="Scroll to top"
         >
           <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-1 motion-reduce:group-hover:translate-y-0" />

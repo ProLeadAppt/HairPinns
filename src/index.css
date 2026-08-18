@@ -756,9 +756,44 @@ main#main-content:focus-visible {
    and WebKit that transparent host can otherwise sit above product dialogs
    and swallow clicks before the widget is opened. */
 chat-widget[aria-hidden="true"],
-chat-widget[data-aria-hidden="true"],
-chat-widget[data-active="false"] {
+chat-widget[data-aria-hidden="true"] {
   pointer-events: none !important;
+}
+
+/* Floating-layer contract. The observer-backed coordinator publishes the
+   mobile dock's measured height so third-party chat and first-party controls
+   share the same occupied bottom space. */
+.floating-scroll-top {
+  bottom: calc(
+    var(--mobile-action-dock-height, 0px)
+    + env(safe-area-inset-bottom)
+    + 7.5rem
+  );
+}
+
+@media (max-width: 1023px) {
+  html[data-mobile-action-dock-visible="true"] chat-widget:not([aria-hidden="true"]):not([data-aria-hidden="true"]) {
+    translate: 0 calc(
+      -1 * (
+        var(--mobile-action-dock-height, 0px)
+        + env(safe-area-inset-bottom)
+        + 0.75rem
+      )
+    ) !important;
+    transition: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .floating-scroll-top {
+    bottom: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-mobile-action-dock-visible="true"] chat-widget {
+    transition: none !important;
+  }
 }
 
 /* Shared editorial eyebrow used across After-Hours surfaces. */

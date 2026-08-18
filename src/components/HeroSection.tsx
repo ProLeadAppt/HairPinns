@@ -15,7 +15,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
           width="1920"
           height="1080"
-          fetchPriority="high"
+          fetchpriority="high"
           decoding="async"
         />
         <div className="absolute inset-0 bg-[hsl(0,0%,0%)/0.6]"></div>

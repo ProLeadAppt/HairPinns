@@ -27,7 +27,7 @@ const FeaturedPost = ({ post }: FeaturedPostProps) => (
             width="1400"
             height="900"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
             decoding="async"
             sizes="(max-width: 1024px) 100vw, 55vw"
           />

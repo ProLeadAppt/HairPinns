@@ -582,7 +582,7 @@ const ProductDetail = () => {
                       width={currentImg?.width || 800}
                       height={currentImg?.height || 800}
                       decoding="async"
-                      fetchPriority="high"
+                      fetchpriority="high"
                     />
                   </picture>
                   </button>
