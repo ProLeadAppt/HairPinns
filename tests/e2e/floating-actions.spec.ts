@@ -96,6 +96,7 @@ test.describe('shared floating actions', () => {
     expect(boxesOverlap(scrollTopBox!, dockBox!)).toBe(false);
     expect(widgetBox!.y + widgetBox!.height).toBeLessThanOrEqual(dockBox!.y - 8);
     expect(scrollTopBox!.y + scrollTopBox!.height).toBeLessThanOrEqual(dockBox!.y - 8);
+    expect(dockBox!.y - (scrollTopBox!.y + scrollTopBox!.height)).toBeLessThanOrEqual(20);
 
     await expect(dock).toHaveAttribute('data-mobile-action-dock', '');
     await expect(dock.locator('a')).toHaveCount(2);
@@ -128,8 +129,13 @@ test.describe('shared floating actions', () => {
       const spacer = document.createElement('div');
       spacer.style.height = '1800px';
       document.body.appendChild(spacer);
-      window.scrollTo(0, 700);
     });
+    await page.evaluate(() => new Promise<void>((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        window.scrollTo(0, 700);
+        resolve();
+      }));
+    }));
 
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(300);
     await expect(page.getByRole('region', { name: 'Quick shop bar' })).toBeHidden();

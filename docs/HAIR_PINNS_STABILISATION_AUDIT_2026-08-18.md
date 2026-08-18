@@ -75,6 +75,24 @@ The baseline Netlify deploy was `ready`, used four functions, 93 redirects and 2
 - **Rollback:** Revert the attribute-only edits.
 - **Verification:** TypeScript, lint and browser console checks.
 
+### W-06 — Floating-control placement follow-up
+
+- **Status:** Implemented and awaiting release verification.
+- **Evidence:** The mobile scroll-to-top control previously used an additional 7.5rem bottom offset, leaving it visibly detached from the sticky action dock. HighLevel's all-in-one widget was still configured at `bottom-right`.
+- **Correction:** Reduced the scroll control gap to 0.75rem above the measured dock and changed the Hair Pinns HighLevel widget's supported position setting to `middle-right`; HighLevel confirmed the widget configuration saved successfully.
+- **Business effect:** The scroll control remains adjacent to the action it supports, while chat occupies a separate right-side zone rather than competing with either sticky control.
+- **Rollback:** Restore the prior CSS offset and set the HighLevel widget position back to `bottom-right`.
+- **Verification:** Responsive geometry checks now enforce an 8–20px dock gap, followed by preview and production visual acceptance.
+
+### W-07 — Blank favicon and installed-app icon
+
+- **Status:** Implemented and awaiting release verification.
+- **Evidence:** The web manifest advertised a 219×140 wordmark as both 192×192 and 512×512 and also listed a 1200×630 social-sharing image as an app icon.
+- **Correction:** Created a square plum-and-cream Hair Pinns logo master and generated dedicated 16, 32, 180, 192 and 512px assets, a safe-area-aware maskable 512px asset and a valid ICO. Updated the document head and manifest to declare their real sizes and purposes.
+- **Business effect:** Browser tabs, bookmarks, home-screen installs and PWA launch surfaces receive a legible Hair Pinns mark instead of a blank or clipped image.
+- **Rollback:** Restore the previous head/manifest references and icon files.
+- **Verification:** Automated tests inspect every declared icon's file format and physical dimensions; browser/PWA metadata is checked on preview and production.
+
 ## Verification record
 
 | Check | Result |

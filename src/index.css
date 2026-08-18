@@ -767,7 +767,7 @@ chat-widget[data-aria-hidden="true"] {
   bottom: calc(
     var(--mobile-action-dock-height, 0px)
     + env(safe-area-inset-bottom)
-    + 7.5rem
+    + 0.75rem
   );
 }
 
