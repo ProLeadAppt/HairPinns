@@ -16,7 +16,7 @@ Hair Pinns is live and its main public routes, product discovery, booking page, 
 
 The audit also found material governance and operations debt. The public repository tracks `.env`, has no GitHub Actions, no main-branch protection and has Dependabot alerts disabled. Eight npm advisories affect build/development tooling; the production dependency audit is clean. HighLevel contains duplicated agents, knowledge bases and tags, legacy pipelines, zero-enrolment workflows and inconsistent reputation/reporting data. These HighLevel items are classified below, but none was changed, archived or deleted.
 
-The production Voice AI and chat routing still require a controlled live test. That test would create a contact, record audio, send notifications and potentially trigger a workflow, so it remains explicitly gated by action-time approval.
+The production text-chat route has now passed a controlled synthetic-contact test: the all-in-one widget created one labelled QA contact and routed exactly one live-chat conversation to Isabella. The test also exposed a material knowledge defect: Isabella answered that Wednesday hours are 6pm–9pm, while the verified current hours are 4pm–9pm. Her active rich-text source is older again and states 9am–5pm, confirming conflicting/stale knowledge rather than a transport failure. Three approved authoritative FAQ entries for current hours, booking and information-only/no-forced-callback behaviour have been published. Retrieval now ranks the correct 4pm–9pm FAQ first, and Isabella correctly stopped requiring a phone/callback, but her internal agent test still answered 6pm–9pm. The remaining defect is therefore prompt/source precedence and still blocks production release. Sam's embedded web-call connection and greeting passed, but two-way speech, field capture, post-call actions and human handoff remain unverified because no real or invented phone data was used.
 
 ## Access, baseline and rollback
 
@@ -24,7 +24,7 @@ The production Voice AI and chat routing still require a controlled live test. T
 | --- | --- | --- |
 | GitHub | Confirmed `ADMIN`; repository is public; baseline `87d0c55d73a14a19621a5d8ddf3ea8d24b82913a` | Revert the stabilisation commit or redeploy the baseline commit |
 | Netlify | Authenticated and linked to existing `hairpinns` site; no replacement site created | Production deploy `6a71fec912629a00088fc16f`; immutable URL: <https://6a71fec912629a00088fc16f--hairpinns.netlify.app> |
-| HighLevel | Authenticated agency UI access to Hair Pinns sub-account | No account mutation performed; any later cleanup must be applied in small reversible batches |
+| HighLevel | Authenticated agency UI access to Hair Pinns sub-account; approved all-in-one widget configuration update published | Widget settings can be restored from the recorded pre-change configuration; any later cleanup must be applied in small reversible batches |
 
 The baseline Netlify deploy was `ready`, used four functions, 93 redirects and 26 header rules. Its recorded Lighthouse results were Performance 96, Accessibility 100, Best Practices 92 and SEO 100. Netlify's deploy secret scan reported no matches.
 
@@ -92,8 +92,13 @@ The baseline Netlify deploy was `ready`, used four functions, 93 redirects and 2
 | Netlify preview | Draft deploy `6a83c3ebc06bd92e34b72cd4`: <https://6a83c3ebc06bd92e34b72cd4--hairpinns.netlify.app> |
 | Preview floating-control acceptance | 15/15 passed across Chromium, Firefox and WebKit |
 | Broader preview Chromium suite | 32 passed before the runner lost network; 42 subsequent navigations failed with `ERR_INTERNET_DISCONNECTED`, so these are not recorded as application failures |
+| HighLevel widget handoff | Pass: one synthetic name/email contact, no phone, one Live Chat conversation, exactly one Isabella response |
+| Isabella knowledge answer | Fail: replied Wednesday 6pm–9pm; verified current hours are 4pm–9pm; active rich-text source says 9am–5pm |
+| Authoritative KB correction | Published: three FAQs for current hours, booking URL and information-only/no-forced-callback behaviour; current-hours FAQ ranks first in retrieval |
+| Isabella internal retest | Partial: correctly stated no phone/callback is required for information, but still answered Wednesday 6pm–9pm despite the first-ranked 4pm–9pm FAQ |
+| Sam web call | Partial pass: connection and greeting succeeded; caller speech, capture, post-call workflow and handoff not yet verified |
 
-No billable checkout, message send, review request, contact mutation or live AI call was performed.
+No billable checkout, review request, real-customer contact mutation or external phone call was performed. The approved QA used `Hair Pinns QA 20260818` / `hairpinns.qa.20260818@example.com`, with no phone number, and sent one clearly labelled information-only message through the preview widget.
 
 ## Prioritised findings
 
@@ -126,12 +131,12 @@ No billable checkout, message send, review request, contact mutation or live AI 
 - **Rollback:** Export the existing prompt before change and restore it if call QA regresses.
 - **Verification:** Controlled scripts for mild irritation, severe reaction, upset caller and human handoff; inspect transcript and notification without using real medical details.
 
-#### AI-02 — Live Voice/Conversation ownership remains unverified — High
+#### AI-02 — Voice routing is only partially verified — High
 
-- **Evidence:** Five Voice AI agents exist; four unassigned duplicates are legacy/FAQ variants. Sam is assigned to a phone number and the all-in-one webchat widget, but current-month Voice AI reports show zero calls. Four Conversation AI agents exist; two generic duplicates and Reputation Management are off, while Isabella is on auto-pilot with one live-chat conversation and three messages.
-- **Impact:** The broken customer experience may be a routing/channel conflict rather than only website code; duplicate agents increase the chance of double replies or orphaned handoffs.
-- **Recommendation:** Run one controlled test of Sam and one Isabella text test, verify number/widget ownership, KB answers, field capture, contact notes, admin notification and `AI – Callback`; then document a single owner per channel.
-- **Dependencies:** Action-time approval because this creates contact data, audio, notifications and workflow events.
+- **Evidence:** Five Voice AI agents exist; four unassigned duplicates are legacy/FAQ variants. Sam is assigned to `0468 093 991` and the all-in-one webchat widget. His embedded web call connected and produced the expected greeting, but caller speech was unavailable and no post-call action was visible in the inspected action configuration. Isabella is the only enabled Conversation AI agent and one approved synthetic website chat routed to her exactly once, with no duplicate reply.
+- **Impact:** Text ownership is now clear, but a real inbound voice path could still fail to capture fields, write notes, notify the salon or trigger `AI – Callback`.
+- **Recommendation:** Preserve Isabella as text owner and Sam as voice owner. Complete a controlled two-way voice test with an authorised test number, then verify transcript, knowledge answers, field capture, contact notes, notification, callback workflow and human escalation.
+- **Dependencies:** An authorised test phone number and action-time approval for the external call/recording/workflow effects.
 - **Rollback:** Use a clearly labelled test contact and remove it only after approval; restore previous channel assignment from screenshots/export.
 - **Verification:** Exactly one response owner per channel, correct notes and notification, no duplicate reply, successful human handoff.
 
@@ -220,9 +225,9 @@ No billable checkout, message send, review request, contact mutation or live AI 
 
 #### KB-01 — Knowledge-base duplication — Medium
 
-- **Evidence:** Six knowledge bases exist; three use generic “Existing knowledge base”/timestamp naming and one primary Hair Pinns KB reports a gap.
-- **Impact:** Agents can answer from conflicting or stale facts and ownership is unclear.
-- **Recommendation:** Map every agent to its active KB, compare source freshness/coverage, merge approved Hair Pinns facts into one governed KB plus any genuinely specialised review KB, then archive duplicates.
+- **Evidence:** Six knowledge bases exist; three use generic “Existing knowledge base”/timestamp naming and the primary Hair Pinns KB reports one gap. A controlled Isabella query returned Wednesday 6pm–9pm. The verified current hours are 4pm–9pm, while Isabella's active rich-text source states 9am–5pm, Thursday 9am–8pm and Saturday 8am–4pm. The same document tells the agent to collect a mobile and pivot to a callback for routine questions, and contains placeholders such as “use the salon number from GHL settings”. Three authoritative FAQs were published and the current-hours FAQ ranks first in retrieval, but Isabella's internal test continued to answer 6pm–9pm. Her information-only answer did correctly stop requiring a phone/callback after the FAQ update.
+- **Impact:** This is a demonstrated production-answer defect. Conflicting facts can misdirect customers, and callback-first instructions create avoidable friction for information-only enquiries.
+- **Recommendation:** Add a highest-priority current-hours/booking instruction at the start of Isabella's prompt, retest the complete agent, then replace the stale rich-text hours and crawler/footer copies in a governed source update. Map every agent to its active KB, merge approved facts into one governed source plus any genuinely specialised review KB, and archive duplicates after approval.
 - **Dependencies:** Agent-to-KB dependency export and content-owner review.
 - **Rollback:** Export all KB content before merge.
 - **Verification:** Golden-question suite passes for salon, products, booking, delivery, returns, safety and unavailable information.
