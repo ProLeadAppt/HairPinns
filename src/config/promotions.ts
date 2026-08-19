@@ -38,10 +38,44 @@ export type HeaderPromotion = {
   href: string;
 };
 
+export type SitewidePromotion = {
+  id: string;
+  enabled: boolean;
+  startsAt: string;
+  endsAt: string | null;
+  timeZone: "Australia/Sydney";
+  landingPath: string;
+  message: string;
+  headline: string;
+  body: string;
+  supportingText: string;
+  ctaLabel: string;
+  discountCode: string;
+  stackingAllowed: boolean;
+};
+
 export const DEFAULT_HEADER_PROMOTION: HeaderPromotion = {
   id: "free_shipping_150",
   message: "Free shipping on orders over $150",
   href: "/collections",
+};
+
+export const SITEWIDE_B2G1_PROMOTION: SitewidePromotion = {
+  id: "sitewide_buy_two_get_one_2026_08",
+  enabled: true,
+  startsAt: "2026-08-19T00:00:00+10:00",
+  endsAt: null,
+  timeZone: "Australia/Sydney",
+  landingPath: "/collections",
+  message: "Site-wide sale · Buy 2, get 1 free · Add 3 + use code SALE",
+  headline: "Pick any three. The cheapest is free.",
+  body:
+    "The sale is live across the entire Hair Pinns website. Add any three products to your bag, enter code SALE at checkout, and Shopify makes the cheapest product free.",
+  supportingText:
+    "Shop shampoo, conditioner, treatments, styling, tools and more. The offer cannot be combined with another discount and is subject to stock availability.",
+  ctaLabel: "Shop the site-wide sale",
+  discountCode: "SALE",
+  stackingAllowed: false,
 };
 
 export const FREE_EXTRA_PROMOTION: Promotion = {
@@ -106,7 +140,25 @@ export function getActivePromotion(now = new Date()): Promotion | null {
   return timestamp >= startsAt && timestamp < endsAt ? FREE_EXTRA_PROMOTION : null;
 }
 
+export function getActiveSitewidePromotion(now = new Date()): SitewidePromotion | null {
+  if (!SITEWIDE_B2G1_PROMOTION.enabled) return null;
+  const timestamp = now.getTime();
+  const startsAt = new Date(SITEWIDE_B2G1_PROMOTION.startsAt).getTime();
+  const endsAt = SITEWIDE_B2G1_PROMOTION.endsAt
+    ? new Date(SITEWIDE_B2G1_PROMOTION.endsAt).getTime()
+    : Number.POSITIVE_INFINITY;
+  return timestamp >= startsAt && timestamp < endsAt ? SITEWIDE_B2G1_PROMOTION : null;
+}
+
 export function getHeaderPromotion(now = new Date()): HeaderPromotion {
+  const activeSitewidePromotion = getActiveSitewidePromotion(now);
+  if (activeSitewidePromotion) {
+    return {
+      id: activeSitewidePromotion.id,
+      message: activeSitewidePromotion.message,
+      href: activeSitewidePromotion.landingPath,
+    };
+  }
   const activePromotion = getActivePromotion(now);
   if (!activePromotion) return DEFAULT_HEADER_PROMOTION;
   return {

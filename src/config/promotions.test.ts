@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   DEFAULT_HEADER_PROMOTION,
   FREE_EXTRA_PROMOTION,
+  SITEWIDE_B2G1_PROMOTION,
   getActivePromotion,
+  getActiveSitewidePromotion,
   getCheckoutDiscountCodes,
   getHeaderPromotion,
   getPromotionCartState,
@@ -44,6 +46,32 @@ describe("free-extra promotion configuration", () => {
     expect(DEFAULT_HEADER_PROMOTION).toMatchObject({
       id: "free_shipping_150",
       message: "Free shipping on orders over $150",
+      href: "/collections",
+    });
+  });
+});
+
+describe("site-wide buy two get one promotion", () => {
+  it("is explicitly site-wide and active until it is manually disabled", () => {
+    expect(SITEWIDE_B2G1_PROMOTION).toMatchObject({
+      id: "sitewide_buy_two_get_one_2026_08",
+      enabled: true,
+      landingPath: "/collections",
+      discountCode: "SALE",
+      endsAt: null,
+      stackingAllowed: false,
+    });
+    expect(SITEWIDE_B2G1_PROMOTION.body).toContain("entire Hair Pinns website");
+    expect(getActiveSitewidePromotion(new Date("2026-08-18T23:59:59+10:00"))).toBeNull();
+    expect(getActiveSitewidePromotion(new Date("2026-08-19T00:00:00+10:00"))?.id).toBe(
+      SITEWIDE_B2G1_PROMOTION.id,
+    );
+  });
+
+  it("takes precedence over the evergreen shipping banner", () => {
+    expect(getHeaderPromotion(new Date("2026-08-19T12:00:00+10:00"))).toEqual({
+      id: SITEWIDE_B2G1_PROMOTION.id,
+      message: SITEWIDE_B2G1_PROMOTION.message,
       href: "/collections",
     });
   });

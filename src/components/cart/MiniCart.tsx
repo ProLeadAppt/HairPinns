@@ -10,6 +10,7 @@ import { formatPrice } from "@/lib/utils";
 import {
   FREE_EXTRA_PROMOTION,
   getActivePromotion,
+  getActiveSitewidePromotion,
   getCheckoutDiscountCodes,
   getPromotionCartState,
 } from "@/config/promotions";
@@ -117,6 +118,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
   const shippingProgress = Math.min(100, (subtotal / FREE_STANDARD_SHIPPING) * 100);
   const promotionNow = usePromotionNow();
   const activePromotion = getActivePromotion(promotionNow);
+  const activeSitewidePromotion = getActiveSitewidePromotion(promotionNow);
   const promotionCartState = getPromotionCartState(
     lines.map((edge: any) => ({
       quantity: edge.node.quantity,
@@ -257,6 +259,27 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
             </div>
           ) : hasItems ? (
             <div data-cart-lines="" className="text-[hsl(var(--after-hours-plum))]">
+              {activeSitewidePromotion && (
+                <section
+                  data-cart-sitewide-promotion=""
+                  aria-label="Site-wide buy two get one free offer"
+                  className="mb-6 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[#f3e8df] p-4"
+                >
+                  <p className="after-hours-kicker text-[hsl(var(--after-hours-plum))]">Site-wide sale</p>
+                  <p className="mt-2 font-heading text-xl font-semibold">Buy 2 products. Get the cheapest of your 3 free.</p>
+                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.74)]">
+                    Add any three products to your bag, then enter code <strong>SALE</strong> at checkout. Cannot be combined with another discount.
+                  </p>
+                  <Link
+                    to={activeSitewidePromotion.landingPath}
+                    onClick={onClose}
+                    className="mt-3 inline-flex min-h-11 items-center text-xs font-semibold underline underline-offset-4"
+                    style={{ color: "hsl(var(--after-hours-plum))" }}
+                  >
+                    Add another product
+                  </Link>
+                </section>
+              )}
               {activePromotion && (
                 <section
                   data-cart-promotion=""
@@ -335,6 +358,19 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
             </div>
           ) : (
             <div data-cart-empty="" className="py-10 text-[hsl(var(--after-hours-plum))]">
+              {activeSitewidePromotion && (
+                <section
+                  data-cart-sitewide-promotion=""
+                  aria-label="Site-wide buy two get one free offer"
+                  className="mb-8 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[#f3e8df] p-4"
+                >
+                  <p className="after-hours-kicker text-[hsl(var(--after-hours-plum))]">Site-wide sale</p>
+                  <p className="mt-2 font-heading text-xl font-semibold">Pick any three. The cheapest is free.</p>
+                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.74)]">
+                    Add any three products to your bag, then enter code <strong>SALE</strong> at checkout. Cannot be combined with another discount.
+                  </p>
+                </section>
+              )}
               <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.66)]">Nothing here yet</p>
               <h3 className="mt-4 max-w-[9ch] font-heading text-4xl font-semibold leading-[0.95]">Your bag is empty.</h3>
               <p className="mt-5 max-w-[24rem] text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.74)]">Browse Jena’s product shelf or shop the full catalogue.</p>
