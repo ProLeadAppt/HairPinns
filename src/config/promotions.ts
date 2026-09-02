@@ -62,7 +62,7 @@ export const DEFAULT_HEADER_PROMOTION: HeaderPromotion = {
 
 export const SITEWIDE_B2G1_PROMOTION: SitewidePromotion = {
   id: "sitewide_buy_two_get_one_2026_08",
-  enabled: true,
+  enabled: false,
   startsAt: "2026-08-19T00:00:00+10:00",
   endsAt: null,
   timeZone: "Australia/Sydney",
