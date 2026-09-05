@@ -212,7 +212,7 @@ const Header = () => {
                           <div key={group.id}>
                             <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.7)]">Shop by {group.label.toLowerCase()}</p>
                             <div className="mt-2 grid grid-cols-2 border-t border-[hsl(var(--after-hours-plum)/0.18)]">
-                              {group.destinations.slice(0, 4).map((destination, index) => (
+                              {(group.id === "brand" ? group.destinations : group.destinations.slice(0, 4)).map((destination, index) => (
                                 <Link
                                   key={destination.handle}
                                   to={destination.href}

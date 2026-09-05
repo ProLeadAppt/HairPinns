@@ -99,7 +99,7 @@ const Collections = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Shop Hair Products by Need, Product or Brand | Hair Pinns"
-        description="Find salon-selected hair care by hair need, product type or brand. Shop Juuce, Pure, QIQI, Aromaganic, Wet Brush and more, with Australia-wide shipping."
+        description="Find salon-selected hair care by hair need, product type or brand. Shop Hair Pinns, Juuce, Pure, QIQI, Island Vibes, Poppet Locks and more, with Australia-wide shipping."
         canonical="https://hairpinns.com/collections"
         ogImage={getOGImage("collection")}
         ogType="website"

@@ -73,23 +73,24 @@ export const SHOP_BY_PRODUCT = [
 ];
 
 export const FEATURED_BRANDS = [
+  { name: "Hair Pinns", shortName: "Hair Pinns", handle: "hair-pinns-accessories", href: "/collections/hair-pinns-accessories", description: "Jena's own towels, travel bottles and everyday hair essentials.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/1FB984E5-CDC3-4326-A645-C1F8B79F57FE.jpg?v=1746873506" },
   { name: "Juuce", shortName: "Juuce", handle: "juuce-botanicals", href: "/collections/juuce-botanicals", description: "Australian professional hair care for everyday results.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587" },
   { name: "Pure", shortName: "Pure", handle: "pure-certified-organic-hair-care", href: "/collections/pure-certified-organic-hair-care", description: "Certified organic hair care selected for the salon shelf.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-034.jpg?v=1744176510" },
   { name: "QIQI", shortName: "QIQI", handle: "qiqi", href: "/collections/qiqi", description: "Professional smoothing and home-care products.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029" },
   { name: "Aromaganic", shortName: "Aromaganic", handle: "aromaganic", href: "/collections/aromaganic", description: "Professional hair care for colour, moisture and styling.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-14.jpg?v=1746832701" },
   { name: "Wet Brush", shortName: "Wet Brush", handle: "wet-brush-detanglers", href: "/collections/wet-brush-detanglers", description: "Detangling brushes for wet or dry hair.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998" },
+  { name: "Island Vibes", shortName: "Island Vibes", handle: "island-vibes-tanning", href: "/collections/island-vibes-tanning", description: "Self-tanning foams, mists and tools for an even glow.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningDeepBangingBronzeDIYFoam.webp?v=1742170894" },
+  { name: "Poppet Locks", shortName: "Poppet Locks", handle: "poppet-locks-reuseable-hair-extension-ponytails", href: "/collections/poppet-locks-reuseable-hair-extension-ponytails", description: "Reusable coloured ponytails and playful hair extensions.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/98599680-F876-44FB-8AF2-687C0FC9176F.jpg?v=1746739385" },
 ];
 
 export const SECONDARY_BRANDS = [
-  { name: "Island Vibes", shortName: "Island Vibes", handle: "island-vibes-tanning", href: "/collections/island-vibes-tanning", description: "Explore the Island Vibes range.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningDeepBangingBronzeDIYFoam.webp?v=1742170894" },
   { name: "The Perfect Pony", shortName: "Perfect Pony", handle: "the-perfect-pony-hair", href: "/collections/the-perfect-pony-hair", description: "Ponytail pieces and styling options.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/A96B9D56-5A54-458F-9D5C-DAF26AF03C8C.jpg?v=1753072697" },
-  { name: "Poppet Locks", shortName: "Poppet Locks", handle: "poppet-locks-reuseable-hair-extension-ponytails", href: "/collections/poppet-locks-reuseable-hair-extension-ponytails", description: "Reusable hair extension ponytails.", image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/98599680-F876-44FB-8AF2-687C0FC9176F.jpg?v=1746739385" },
 ];
 
 export const SHOP_TAXONOMY = [
   { id: "hair-need", label: "Hair Need", heading: "Shop by hair need", description: "Start with what you want your hair care to help with.", destinations: SHOP_BY_HAIR_NEED },
   { id: "product", label: "Product", heading: "Shop by product", description: "Go straight to the type of product you already know you need.", destinations: SHOP_BY_PRODUCT },
-  { id: "brand", label: "Brand", heading: "Shop by brand", description: "Browse Jena's core professional ranges, with more brands below.", destinations: FEATURED_BRANDS, secondaryDestinations: SECONDARY_BRANDS },
+  { id: "brand", label: "Brand", heading: "Shop by brand", description: "Browse Jena's own essentials and the professional ranges she trusts.", destinations: FEATURED_BRANDS, secondaryDestinations: SECONDARY_BRANDS },
 ];
 
 export const CHRISTMAS_PRODUCTS = [

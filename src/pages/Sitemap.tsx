@@ -26,7 +26,7 @@ const Sitemap = () => {
       links: [
         { title: "Choose how to shop", url: "/collections" },
         ...SHOP_TAXONOMY.flatMap((group) =>
-          group.destinations.map((destination) => ({
+          [...group.destinations, ...(group.secondaryDestinations || [])].map((destination) => ({
             title: `${group.label}: ${destination.name}`,
             url: destination.href,
           })),
