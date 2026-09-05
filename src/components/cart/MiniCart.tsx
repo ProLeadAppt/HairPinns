@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowRight, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { notify } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import { clearCartId } from "@/lib/cartManagement";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
-import { cartDiscountCodesUpdate, getCart } from "@/lib/shopify";
 import { formatPrice } from "@/lib/utils";
+import { gotoCheckout } from "@/lib/checkout";
+import { useCart } from "@/contexts/CartContext";
 import {
   FREE_EXTRA_PROMOTION,
   getActivePromotion,
@@ -19,87 +19,23 @@ import { usePromotionNow } from "@/hooks/use-promotion-now";
 export interface MiniCartProps {
   open: boolean;
   onClose: () => void;
-  cartId: string;
   subtotal?: number;
 }
 
 const FREE_STANDARD_SHIPPING = 150;
 
-export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal = 0 }: MiniCartProps) {
+export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: MiniCartProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [removingLineId, setRemovingLineId] = useState<string | null>(null);
-  const [cart, setCart] = useState<any>(null);
-  const [cartLoading, setCartLoading] = useState(false);
-  const [cartError, setCartError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!open || !cartId) {
-      setCart(null);
-      setCartError(null);
-      return;
-    }
-
-    let cancelled = false;
-    const fetchCart = async () => {
-      setCartLoading(true);
-      setCartError(null);
-      try {
-        let data = await getCart(cartId);
-        if (!data) {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          data = await getCart(cartId);
-        }
-        if (cancelled) return;
-        if (!data) {
-          setCartError("This bag has expired. Add your products again to start a new one.");
-          setCart(null);
-          clearCartId();
-          window.dispatchEvent(new CustomEvent("hp:cartCountUpdate", { detail: { count: 0 } }));
-          return;
-        }
-        setCart(data);
-        const count = data.lines?.edges?.reduce((sum: number, edge: any) => sum + edge.node.quantity, 0) ?? 0;
-        window.dispatchEvent(new CustomEvent("hp:cartCountUpdate", { detail: { count } }));
-      } catch (error) {
-        if (cancelled) return;
-        console.error("Failed to fetch cart:", error);
-        setCartError("Could not load your bag. Close it and try again.");
-        setCart(null);
-      } finally {
-        if (!cancelled) setCartLoading(false);
-      }
-    };
-
-    fetchCart();
-    return () => {
-      cancelled = true;
-    };
-  }, [open, cartId]);
-
-  const fetchCheckoutApi = async (body: object) => {
-    const options = {
-      method: "POST" as const,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    };
-    let response = await fetch(new URL("/api/checkout", window.location.origin).href, options);
-    if (!response.ok && response.status === 404) {
-      response = await fetch(new URL("/.netlify/functions/checkout", window.location.origin).href, options);
-    }
-    return response;
-  };
+  const { cart, cartLoading, cartError, removeLine, prepareCheckout } = useCart();
+  const cartId = cart?.id || "";
 
   const handleRemoveLine = async (lineId: string) => {
     if (!cartId) return;
     setRemovingLineId(lineId);
     try {
-      const response = await fetchCheckoutApi({ cartId, removeLineIds: [lineId] });
-      if (!response.ok) throw new Error("Failed to remove line");
-      const { cart: updatedCart } = await response.json();
-      setCart(updatedCart);
-      const count = updatedCart?.lines?.edges?.reduce((sum: number, edge: any) => sum + edge.node.quantity, 0) ?? 0;
-      window.dispatchEvent(new CustomEvent("hp:cartCountUpdate", { detail: { count } }));
-      notify.success("Item removed");
+      const updatedCart = await removeLine(lineId);
+      notify.success(updatedCart ? "Item removed" : "Your previous bag expired. You can start a new one.");
     } catch {
       notify.error("Could not remove item");
     } finally {
@@ -154,15 +90,14 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
       const shouldApplyPromotion = Boolean(
         checkoutPromotion && discountCodes.includes(FREE_EXTRA_PROMOTION.discountCode),
       );
-      const discountUpdate = await cartDiscountCodesUpdate(cartId, discountCodes);
-      const discountedCart = discountUpdate.cart;
+      const discountedCart = await prepareCheckout(discountCodes);
 
       if (shouldApplyPromotion && checkoutPromotion) {
         const applied = discountedCart?.discountCodes?.some(
           (discount: any) => discount.code === checkoutPromotion.discountCode && discount.applicable,
         );
         if (!applied) {
-          await cartDiscountCodesUpdate(cartId, existingDiscountCodes);
+          await prepareCheckout(existingDiscountCodes);
           notify.error("The free extra could not be applied. Check the offer items in your bag and try again.");
           setIsCheckingOut(false);
           return;
@@ -188,25 +123,8 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
         }),
       });
 
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = `${window.location.origin}/.netlify/functions/checkout?redirect=true`;
-      form.style.display = "none";
-
-      const cartIdInput = document.createElement("input");
-      cartIdInput.type = "hidden";
-      cartIdInput.name = "cartId";
-      cartIdInput.value = cartId;
-      form.appendChild(cartIdInput);
-
-      const linesInput = document.createElement("input");
-      linesInput.type = "hidden";
-      linesInput.name = "lines";
-      linesInput.value = "[]";
-      form.appendChild(linesInput);
-
-      document.body.appendChild(form);
-      form.submit();
+      if (!discountedCart.checkoutUrl) throw new Error("Checkout URL unavailable");
+      gotoCheckout(discountedCart.checkoutUrl);
     } catch (error) {
       console.error("Checkout error:", error);
       notify.error("Unable to proceed to checkout. Please try again.");
@@ -388,7 +306,7 @@ export default function MiniCart({ open, onClose, cartId, subtotal: propSubtotal
               <strong className="font-heading text-2xl">{formatPrice(subtotal, currency)}</strong>
             </div>
           )}
-          <button type="button" className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-plum))] px-5 py-3 text-sm font-semibold text-[hsl(var(--after-hours-cream))] disabled:cursor-not-allowed disabled:opacity-45" onClick={handleCheckout} disabled={isCheckingOut || !hasItems}>
+          <button type="button" className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-plum))] px-5 py-3 text-sm font-semibold text-[hsl(var(--after-hours-cream))] disabled:cursor-not-allowed disabled:opacity-45" onClick={handleCheckout} disabled={isCheckingOut || cartLoading || !!cartError || !hasItems}>
             <span>{isCheckingOut ? "Opening checkout…" : "Checkout"}</span>
             <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </button>

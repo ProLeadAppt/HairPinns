@@ -1,94 +1,81 @@
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
-    slug: "christmas-hair-gifts-2026",
-    title: "Christmas Hair Care Gift Guide 2026",
-    excerpt: "A stylist's Christmas gift guide for anyone who loves their hair — from $30 stocking fillers to premium bundles, shipped Australia-wide with free shipping over $150.",
-    category: "Seasonal",
-    date: "April 19, 2026",
-    readTime: "5 min read",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560",
-    author: "Jena Pinn",
-    content: {
-      introduction: "Hair care makes a better Christmas gift than most people realise. Good salon-grade products last months, get used every single day, and solve real problems. The generic department-store gift sets are often a disappointment — cheap formulas in pretty packaging. Here's what I'd actually give as a Christmas gift across price points, with a note on who each one suits.",
-      sections: [
-        {
-          heading: "Under $40 — Stocking Fillers That Get Used",
-          content: "A good detangling brush ($30–$40). Wet Brush is the one we recommend most — it works wet or dry, reduces breakage, and comes in fun designs that genuinely land with teenagers and adults alike. Clip-in accessories and ponytail wraps ($15–$35) for anyone who wants styling options without commitment. A quality leave-in conditioner ($30–$40) — Juuce or Pure leave-ins are daily-use products most people wouldn't buy themselves but happily use when gifted."
-        },
-        {
-          heading: "$40–$80 — Practical Gifts That Solve Problems",
-          content: "A bond-repair mask ($45–$65) for anyone who colours, heat-styles, or complains about damaged hair. Juuce Bond Repair is the go-to. A heat-protection spray ($40–$50) for anyone who uses hot tools. Purple or silver shampoo ($40–$55) for any blonde friend — they'll use it, they'll notice the difference, it's a genuinely useful gift. A quality hair oil ($50–$75) — QIQI Bare Repair or Pure Precious Ends both work for ends protection."
-        },
-        {
-          heading: "$80–$150 — Proper Routine Starter Kits",
-          content: "A shampoo-and-conditioner duo in a premium range ($80–$120) — Juuce, Pure, or Aromaganic depending on the recipient's priorities (bond repair, organic, or blonde care). This replaces their supermarket purchases and actually shifts their hair condition over 6–8 weeks. A complete smoothing-maintenance kit ($100–$150) — shampoo, conditioner, mask, oil — for anyone who's had a smoothing treatment done at a salon. Pairs especially well with a gift voucher for a service."
-        },
-        {
-          heading: "Over $150 — Premium or Bundles",
-          content: "A full routine bundle — shampoo, conditioner, mask, leave-in, heat protection ($150–$250). Free shipping applies at $150+ so bundle gifting is cost-efficient. A salon service gift voucher — especially popular for Christmas. We offer vouchers from $50 up; most people gift $100–$200 as a contribution toward a service. Recipient books the appointment of their choice. Zero mismatch risk."
-        },
-        {
-          heading: "For the Teenagers and Tweens",
-          content: "Teenagers are fussy gift recipients, but a Wet Brush in a glitter design and a set of Pure clip-in accessories almost always lands well. For slightly older teens who actually care about their hair, a purple shampoo (if blonde) or a leave-in conditioner tends to be genuinely used. Skip anything that needs application technique — they won't read the instructions."
-        },
-        {
-          heading: "What to Avoid as a Gift",
-          content: "Generic drugstore 'hair care gift sets' with mystery ingredients — they disappoint. Heat tools for someone who already has one — unless you know specifically they want a new one. Hair cuts vouchers as standalone gifts — people get picky about stylists; book it with an 'any service' gift voucher instead. Anything requiring a hair-type match you're guessing at — shampoo for curly hair given to someone with straight hair is awkward."
-        },
-        {
-          heading: "Order Cutoffs and Gift Wrapping",
-          content: "We ship Australia-wide with free shipping over $150. Christmas order cutoffs are usually mid-December for guaranteed delivery before the 25th — check hairpinns.com for the exact date closer to the season. Gift-wrap options available at checkout. Local Sutherland Shire pickup available year-round."
-        }
-      ],
-      productModule: {
-        title: "Shop Christmas hair gifts",
-        products: [
-          { name: "Wet Brush range", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Best stocking-filler gift, every price point" },
-          { name: "Hair accessories", link: "https://hairpinns.com/collections/hair-pinns-accessories", description: "Clip-ins and ponytail wraps under $40" },
-          { name: "Pure Organic bundles", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Premium routine gifts, $80+" }
-        ]
+  slug: "christmas-hair-gifts-2026",
+  title: "Christmas Hair Care Gift Guide 2026",
+  excerpt: "A simple guide to the current Juuce and Pure Christmas packs at Hair Pinns, plus a festive styling duo and salon-selected gift ideas.",
+  category: "Seasonal",
+  date: "5 September 2026",
+  readTime: "4 min read",
+  image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560",
+  author: "Jena Pinn",
+  content: {
+    introduction: "Christmas hair care should be easy to choose and useful after the wrapping comes off. This year's Hair Pinns edit starts with the current Juuce and Pure Christmas packs, plus a Festive Finish duo. Each product page carries the latest pack options, price and availability, so you can choose from current information rather than an old seasonal list.",
+    sections: [
+      {
+        heading: "Juuce Christmas Packs",
+        content: "The Juuce Christmas Packs bring the current Juuce gift options together on one product page. Open the product page to compare the available variants and choose the option that best matches the recipient's hair routine.",
       },
-      quickAnswer: {
-        question: "What are the best hair care Christmas gifts?",
-        answer: "The best hair care Christmas gifts by price: under $40 — Wet Brush or leave-in conditioner; $40–$80 — bond-repair mask, heat protection, or purple shampoo; $80–$150 — shampoo-conditioner duos in premium ranges; over $150 — full routine bundles with free shipping, or salon service gift vouchers. Avoid generic drugstore gift sets."
+      {
+        heading: "Pure Christmas Packs",
+        content: "The Pure Christmas Packs are the seasonal place to start for someone who already uses Pure or prefers that range. Current variants and availability are shown on the product page before you add a pack to your bag.",
       },
-      keyTakeaways: [
-        "Wet Brush is the reliable stocking-filler across all age groups",
-        "Bond-repair mask makes the best $40–$80 gift — solves a real problem",
-        "Salon service gift vouchers avoid mismatch risk entirely",
-        "Free shipping kicks in at $150 — bundle gifts efficiently",
-        "Skip generic drugstore gift sets"
-      ],
-      faqSection: [
-        {
-          question: "Is Hair Pinns a real salon I can visit?",
-          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
-        },
-        {
-          question: "What services does Hair Pinns offer?",
-          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
-        },
-        {
-          question: "Do you ship products Australia-wide?",
-          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
-        },
-        {
-          question: "Can I book a free consultation?",
-          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
-        },
-        {
-          question: "What payment methods do you accept?",
-          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
-        }
+      {
+        heading: "Festive Finish Gift Set Duo",
+        content: "The Festive Finish Gift Set Duo is another simple gifting option in the Haircare Bundles & Gift Sets collection. Check the product page for the current details and availability.",
+      },
+      {
+        heading: "Choose by hair need when you are unsure",
+        content: "If you do not know the recipient's preferred brand, start with the Hair Pinns shop and browse by hair need. Frizz control, blonde care, heat protection, fine and flat hair, curls, scalp care and colour-treated hair each have their own clear path.",
+      },
+      {
+        heading: "Christmas shipping",
+        content: "Hair Pinns ships products Australia-wide, with free standard shipping on orders over $150. Delivery timing depends on the destination and the carrier, so check the current shipping information before ordering. Hair Pinns will publish any confirmed Christmas cut-off separately rather than promise a date that may change.",
+      },
+    ],
+    productModule: {
+      title: "Shop the Christmas edit",
+      products: [
+        { name: "Juuce Christmas Packs", link: "/products/christmas-packs", description: "See current Juuce pack options" },
+        { name: "Pure Christmas Packs", link: "/products/pure-christmas-packs-2025", description: "See current Pure pack options" },
+        { name: "Festive Finish Gift Set Duo", link: "/products/festive-finish-gift-set-duo", description: "View the festive styling duo" },
       ],
     },
-    cta: {
-      type: "product",
-      productPath: "https://hairpinns.com/collections/hair-pinns-accessories",
-      customText: "Shop Christmas hair gifts"
-    }
-  } as const;
+    quickAnswer: {
+      question: "What Christmas hair care packs can I buy from Hair Pinns?",
+      answer: "Hair Pinns currently features Juuce Christmas Packs, Pure Christmas Packs and the Festive Finish Gift Set Duo. Check each product page for current variants, price and availability.",
+    },
+    keyTakeaways: [
+      "Compare current Juuce and Pure pack variants on their product pages",
+      "Use the Festive Finish Gift Set Duo as another ready-made option",
+      "Browse by hair need if you are unsure which brand to choose",
+      "Check current availability and shipping information before ordering",
+    ],
+    faqSection: [
+      {
+        question: "Where can I see the current Hair Pinns Christmas packs?",
+        answer: "Open the Juuce Christmas Packs or Pure Christmas Packs product page, or browse Haircare Bundles & Gift Sets. Those pages show the current options and availability.",
+      },
+      {
+        question: "Can I buy Hair Pinns Christmas packs online?",
+        answer: "Yes. Packs that are available to purchase can be added to your bag from their Hair Pinns product page and checked out online.",
+      },
+      {
+        question: "Does Hair Pinns ship Christmas packs Australia-wide?",
+        answer: "Hair Pinns ships products Australia-wide. Free standard shipping applies to orders over $150. Check the shipping policy for current details.",
+      },
+      {
+        question: "What if I do not know which pack to choose?",
+        answer: "Browse by hair need in the Hair Pinns shop, or ask Jena for guidance before choosing. The product page will show the current variants available for each pack.",
+      },
+    ],
+  },
+  cta: {
+    type: "product",
+    productPath: "/collections/haircare-bundles-gift-sets",
+    customText: "Shop bundles & gifts",
+  },
+} as const;
 
 export default function BlogPostPage() {
   return <BlogPostTemplate post={post as any} />;

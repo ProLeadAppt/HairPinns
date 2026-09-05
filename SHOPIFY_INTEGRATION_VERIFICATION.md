@@ -84,7 +84,7 @@ Set in Netlify Dashboard → Site Settings → Environment Variables:
 
 - `SHOPIFY_MYSHOPIFY_DOMAIN` - Shopify store domain (e.g., `femtat-zu.myshopify.com`)
 - `SF_STOREFRONT_TOKEN` - Storefront API access token
-- `SF_API_VERSION` - API version (e.g., `2025-01`)
+- `SF_API_VERSION` - API version (e.g., `2026-07`)
 
 ### Client-Side Environment Variables (.env)
 

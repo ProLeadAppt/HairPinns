@@ -30,8 +30,8 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - 15 service detail pages
 - 17 salon service-area pages
 - 20 Australian shipping pages
-- 25 product collections
-- 119 products
+- 21 product collections
+- 122 products
 
 ## Primary links
 
@@ -176,7 +176,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 
 ## Collection URLs
 
-- https://hairpinns.com/collections/jenas-daily-trio/
 - https://hairpinns.com/collections/juuce-botanicals/
 - https://hairpinns.com/collections/pure-certified-organic-hair-care/
 - https://hairpinns.com/collections/wet-brush-detanglers/
@@ -191,7 +190,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/collections/curly-girlys/
 - https://hairpinns.com/collections/pump-up-the-volume/
 - https://hairpinns.com/collections/frizz-free-must-haves/
-- https://hairpinns.com/collections/hair-care-must-haves-sale-items/
 - https://hairpinns.com/collections/haircare-bundles-gift-sets/
 - https://hairpinns.com/collections/shampoo-conditioners/
 - https://hairpinns.com/collections/hair-treatments-masks/
@@ -199,8 +197,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/collections/colour-treated-hair/
 - https://hairpinns.com/collections/hair-tools-brushes/
 - https://hairpinns.com/collections/hair-styling-products/
-- https://hairpinns.com/collections/free-extra-eligible/
-- https://hairpinns.com/collections/free-extra-gifts/
 
 ## Product URLs
 
@@ -291,8 +287,11 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/hair-pinns-gift-card/
 - https://hairpinns.com/products/silicon-travel-bottle-duo/
 - https://hairpinns.com/products/head-massager/
+- https://hairpinns.com/products/wet-brush-pro-paddle-detangler/
+- https://hairpinns.com/products/wet-brush-pro-detangler/
 - https://hairpinns.com/products/island-vibes-self-tanning-foam/
 - https://hairpinns.com/products/wet-brush-original-detangler/
+- https://hairpinns.com/products/wet-brush-speed-dry/
 - https://hairpinns.com/products/wet-brush-pro-flex-dry/
 - https://hairpinns.com/products/island-vibes-application-mit/
 - https://hairpinns.com/products/wet-brush-kids-detangler/
@@ -313,16 +312,16 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/qiqi-porosity-play-spray/
 - https://hairpinns.com/products/pure-colour-optimising-treatments/
 - https://hairpinns.com/products/qiqi-bare-repair-oil/
-- https://hairpinns.com/products/mini-travel-hair-brush/
 - https://hairpinns.com/products/tame-texture-wax-stick/
 - https://hairpinns.com/products/flyaway-serum-baby-hair-control-smooth-hair-solution/
+- https://hairpinns.com/products/festive-finish-gift-set-duo/
 - https://hairpinns.com/products/glow-go-tote/
+- https://hairpinns.com/products/christmas-packs/
+- https://hairpinns.com/products/pure-christmas-packs-2025/
 - https://hairpinns.com/products/christmas-reusable-ponytails/
 - https://hairpinns.com/products/rose-sunkiss-fix-hands-feet-face-tan-mist/
 - https://hairpinns.com/products/goodbye-frizz-quad/
 - https://hairpinns.com/products/pure-volumizing-spray/
-- https://hairpinns.com/products/the-curl-defining-detangle-brush/
-- https://hairpinns.com/products/mother-s-day-pamper-pack/
 
 ## Declared local service areas
 

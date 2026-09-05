@@ -24,7 +24,7 @@ VITE_GHL_INBOUND_WEBHOOK_URL=https://services.leadconnectorhq.com/hooks/...
 ```bash
 VITE_SHOPIFY_MYSHOPIFY_DOMAIN=femtat-zu.myshopify.com
 VITE_SF_STOREFRONT_TOKEN=your_storefront_token_here
-VITE_SF_API_VERSION=2025-01
+VITE_SF_API_VERSION=2026-07
 VITE_SHOP_DOMAIN=hairpinns.com
 ```
 
@@ -100,7 +100,7 @@ VITE_GTM_CONTAINER_ID=GTM-KFH27CHQ
 VITE_GHL_INBOUND_WEBHOOK_URL=https://services.leadconnectorhq.com/hooks/abc123
 VITE_SHOPIFY_MYSHOPIFY_DOMAIN=femtat-zu.myshopify.com
 VITE_SF_STOREFRONT_TOKEN=your_token_here
-VITE_SF_API_VERSION=2025-01
+VITE_SF_API_VERSION=2026-07
 VITE_SHOP_DOMAIN=hairpinns.com
 VITE_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
 VITE_META_PIXEL_ID=000000000000000
@@ -125,4 +125,3 @@ VITE_GTM_CONTAINER_ID=GTM-KFH27CHQ
 - ❌ Never expose: Shopify Admin API tokens, GHL API keys, database credentials
 
 The current configuration only uses client-safe variables. All sensitive operations are handled server-side.
-

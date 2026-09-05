@@ -1,48 +1,78 @@
 /**
- * Netlify Function for Shopify Checkout
- * Handles cart creation and checkout URL generation
- * 
- * Environment Variables Required (set in Netlify dashboard or .env):
- * - SHOPIFY_MYSHOPIFY_DOMAIN (e.g., femtat-zu.myshopify.com)
- * - SF_STOREFRONT_TOKEN (your storefront access token)
- * - SF_API_VERSION (e.g., 2025-01)
+ * Authoritative Shopify cart boundary.
+ *
+ * JSON clients send one explicit action: get, add, remove or checkout.
+ * The response always includes the complete cart snapshot. Legacy line-based
+ * requests are temporarily inferred so existing product purchase forms keep
+ * working while callers migrate to the action contract.
  */
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-// Read Shopify config from environment variables
+const jsonHeaders = { ...corsHeaders, 'Content-Type': 'application/json' };
 const SHOPIFY_DOMAIN = process.env.SHOPIFY_MYSHOPIFY_DOMAIN;
-const SF_API_VERSION = process.env.SF_API_VERSION || '2025-01';
+const SF_API_VERSION = process.env.SF_API_VERSION || '2026-07';
 const SF_STOREFRONT_TOKEN = process.env.SF_STOREFRONT_TOKEN;
-
-// Validate required env vars (log but don't throw - validate at runtime)
-if (!SHOPIFY_DOMAIN || !SF_STOREFRONT_TOKEN) {
-  console.error('Missing required environment variables:', {
-    SHOPIFY_DOMAIN: !!SHOPIFY_DOMAIN,
-    SF_STOREFRONT_TOKEN: !!SF_STOREFRONT_TOKEN,
-  });
-}
-
-const SHOPIFY_ENDPOINT = SHOPIFY_DOMAIN 
+const SHOPIFY_ENDPOINT = SHOPIFY_DOMAIN
   ? `https://${SHOPIFY_DOMAIN}/api/${SF_API_VERSION}/graphql.json`
   : null;
 
-/**
- * Call Shopify Storefront API
- */
+const CART_FIELDS = `
+  id
+  checkoutUrl
+  totalQuantity
+  discountCodes { code applicable }
+  lines(first: 100) {
+    edges {
+      node {
+        id
+        quantity
+        merchandise {
+          ... on ProductVariant {
+            id
+            title
+            price { amount currencyCode }
+            product { id title handle tags }
+            image { url altText }
+          }
+        }
+      }
+    }
+  }
+  cost {
+    subtotalAmount { amount currencyCode }
+    totalAmount { amount currencyCode }
+  }
+`;
+
+class CheckoutError extends Error {
+  constructor(message, status = 500, code = 'CHECKOUT_ERROR') {
+    super(message);
+    this.status = status;
+    this.code = code;
+  }
+}
+
+const isStaleMessage = (message = '', code = '') => {
+  const normalised = message.toLowerCase();
+  return code === 'CART_DOES_NOT_EXIST'
+    || normalised.includes('cart does not exist')
+    || normalised.includes('cart not found')
+    || normalised.includes('cart has expired')
+    || normalised.includes('invalid cart');
+};
+
 async function fetchShopify(query, variables) {
   if (!SHOPIFY_ENDPOINT || !SF_STOREFRONT_TOKEN) {
-    throw new Error('Shopify configuration not available');
+    throw new CheckoutError('Shopify configuration is unavailable.', 500, 'SHOPIFY_CONFIGURATION');
   }
 
-  // 10-second timeout to prevent hanging on slow Shopify responses
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 10000);
-
   try {
     const response = await fetch(SHOPIFY_ENDPOINT, {
       method: 'POST',
@@ -53,498 +83,230 @@ async function fetchShopify(query, variables) {
       body: JSON.stringify({ query, variables }),
       signal: controller.signal,
     });
-
     const json = await response.json();
-
-    if (json.errors) {
-      console.error('Shopify API errors:', json.errors);
-      // Check for stale/expired cart errors
-      const isCartError = json.errors.some(e =>
-        (e.message || '').toLowerCase().includes('cart') ||
-        (e.extensions?.code || '') === 'CART_DOES_NOT_EXIST'
-      );
-      if (isCartError) {
-        const err = new Error('Cart not found or expired');
-        err.code = 'STALE_CART';
-        throw err;
-      }
-      throw new Error('Shopify API error');
+    if (!response.ok) {
+      throw new CheckoutError('Shopify could not update the bag.', 502, 'SHOPIFY_HTTP_ERROR');
     }
-
+    if (json.errors?.length) {
+      const stale = json.errors.some((error) => isStaleMessage(error.message, error.extensions?.code));
+      if (stale) throw new CheckoutError('This bag has expired.', 410, 'STALE_CART');
+      throw new CheckoutError('Shopify could not update the bag.', 502, 'SHOPIFY_API_ERROR');
+    }
     return json.data;
   } finally {
     clearTimeout(timeout);
   }
 }
 
-/**
- * Create a new Shopify cart
- */
-async function cartCreate(lines) {
-  const query = `
-    mutation cartCreate($input: CartInput!) {
-      cartCreate(input: $input) {
-        cart {
-          id
-          checkoutUrl
-          lines(first: 50) {
-            edges {
-              node {
-                id
-                quantity
-                merchandise {
-                  ... on ProductVariant {
-                    id
-                    title
-                    price {
-                      amount
-                      currencyCode
-                    }
-                    product {
-                      id
-                      title
-                      handle
-                    }
-                    image {
-                      url
-                      altText
-                    }
-                  }
-                }
-              }
-            }
-          }
-          cost {
-            totalAmount {
-              amount
-              currencyCode
-            }
-          }
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-
-  const variables = {
-    input: {
-      lines,
-      buyerIdentity: {
-        countryCode: "AU",
-      },
-    },
-  };
-
-  const data = await fetchShopify(query, variables);
-
-  if (data.cartCreate.userErrors?.length > 0) {
-    console.error('Cart create user errors:', data.cartCreate.userErrors);
-    throw new Error(data.cartCreate.userErrors[0].message);
-  }
-
-  return data.cartCreate.cart;
+function normalizeCartId(cartId) {
+  if (!cartId || typeof cartId !== 'string') return null;
+  const trimmed = cartId.trim();
+  return trimmed.startsWith('gid://shopify/Cart/')
+    ? trimmed
+    : `gid://shopify/Cart/${trimmed}`;
 }
 
-/**
- * Add lines to existing cart
- */
-async function cartLinesAdd(cartId, lines) {
-  const query = `
-    mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
-      cartLinesAdd(cartId: $cartId, lines: $lines) {
-        cart {
-          id
-          checkoutUrl
-          lines(first: 50) {
-            edges {
-              node {
-                id
-                quantity
-                merchandise {
-                  ... on ProductVariant {
-                    id
-                    title
-                    price {
-                      amount
-                      currencyCode
-                    }
-                    product {
-                      id
-                      title
-                      handle
-                    }
-                    image {
-                      url
-                      altText
-                    }
-                  }
-                }
-              }
-            }
-          }
-          cost {
-            totalAmount {
-              amount
-              currencyCode
-            }
-          }
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-
-  const variables = { cartId, lines };
-
-  const data = await fetchShopify(query, variables);
-
-  if (data.cartLinesAdd.userErrors?.length > 0) {
-    console.error('Cart lines add user errors:', data.cartLinesAdd.userErrors);
-    throw new Error(data.cartLinesAdd.userErrors[0].message);
-  }
-
-  return data.cartLinesAdd.cart;
-}
-
-/**
- * Remove lines from cart
- */
-async function cartLinesRemove(cartId, lineIds) {
-  const query = `
-    mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
-      cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
-        cart {
-          id
-          checkoutUrl
-          lines(first: 100) {
-            edges {
-              node {
-                id
-                quantity
-                merchandise {
-                  ... on ProductVariant {
-                    id
-                    title
-                    price {
-                      amount
-                      currencyCode
-                    }
-                    product {
-                      id
-                      title
-                      handle
-                    }
-                    image {
-                      url
-                      altText
-                    }
-                  }
-                }
-              }
-            }
-          }
-          cost {
-            totalAmount {
-              amount
-              currencyCode
-            }
-            subtotalAmount {
-              amount
-              currencyCode
-            }
-          }
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-  const data = await fetchShopify(query, { cartId, lineIds });
-  if (data.cartLinesRemove.userErrors?.length > 0) {
-    console.error('Cart lines remove user errors:', data.cartLinesRemove.userErrors);
-    throw new Error(data.cartLinesRemove.userErrors[0].message);
-  }
-  return data.cartLinesRemove.cart;
-}
-
-/**
- * Ensure checkout URL uses Shopify domain and valid path
- * - Custom domain URLs hit our SPA and show 404
- * - Wrong paths (e.g. /api/checkout) mean Shopify config is misconfigured
- */
 function ensureShopifyCheckoutUrl(url) {
   if (!url || typeof url !== 'string') return null;
   try {
     const parsed = new URL(url);
-    const customDomains = ['hairpinns.com', 'www.hairpinns.com'];
-
-    // Reject URLs that point to our API - Shopify config is wrong
-    if (parsed.pathname.includes('/api/') || parsed.pathname === '/api/checkout') {
-      console.error('Invalid checkout URL from Shopify (points to our API):', url);
-      return null;
-    }
-
-    // Rewrite custom domain to Shopify domain so checkout loads on Shopify
-    if (customDomains.some(d => parsed.hostname === d) && SHOPIFY_DOMAIN) {
-      parsed.hostname = SHOPIFY_DOMAIN;
-      return parsed.toString();
-    }
-
-    // Ensure we're on Shopify domain for checkout
-    if (!parsed.hostname.endsWith('.myshopify.com') && !parsed.hostname.includes('shopify.com')) {
-      if (SHOPIFY_DOMAIN) {
-        parsed.hostname = SHOPIFY_DOMAIN;
-        return parsed.toString();
-      }
-    }
-
-    return url;
+    if (parsed.pathname.includes('/api/')) return null;
+    const isShopify = parsed.hostname.endsWith('.myshopify.com') || parsed.hostname.endsWith('.shopify.com');
+    if (!isShopify && SHOPIFY_DOMAIN) parsed.hostname = SHOPIFY_DOMAIN;
+    return parsed.toString();
   } catch {
     return null;
   }
 }
 
-/**
- * Normalize cart ID to Shopify GID format
- */
-function normalizeCartId(cartId) {
-  if (!cartId || typeof cartId !== 'string') return null;
-  const trimmed = cartId.trim();
-  if (trimmed.startsWith('gid://shopify/Cart/')) return trimmed;
-  // Token-only format: add GID prefix
-  return `gid://shopify/Cart/${trimmed}`;
+function assertUserErrors(payload) {
+  const errors = payload?.userErrors || [];
+  if (!errors.length) return;
+  const first = errors[0];
+  if (errors.some((error) => isStaleMessage(error.message, error.code))) {
+    throw new CheckoutError('This bag has expired.', 410, 'STALE_CART');
+  }
+  throw new CheckoutError(first.message || 'The bag could not be updated.', 422, 'CART_USER_ERROR');
 }
 
-/**
- * Get existing cart by ID (for "Proceed to Checkout" when cart already has items)
- */
 async function cartGet(cartId) {
-  const query = `
-    query getCart($cartId: ID!) {
-      cart(id: $cartId) {
-        id
-        checkoutUrl
-        cost {
-          totalAmount {
-            amount
-            currencyCode
-          }
-        }
-      }
-    }
-  `;
-  const data = await fetchShopify(query, { cartId });
-  if (!data.cart) {
-    throw new Error('Cart not found or expired');
-  }
+  const data = await fetchShopify(
+    `query getCart($cartId: ID!) { cart(id: $cartId) { ${CART_FIELDS} } }`,
+    { cartId },
+  );
+  if (!data?.cart) throw new CheckoutError('This bag has expired.', 410, 'STALE_CART');
   return data.cart;
 }
 
-/**
- * Netlify Function Handler (v1 format - no package required)
- */
-export const handler = async (event, context) => {
-  // Handle CORS preflight
-  if (event.httpMethod === 'OPTIONS') {
+async function cartCreate(lines) {
+  const data = await fetchShopify(
+    `mutation cartCreate($input: CartInput!) {
+      cartCreate(input: $input) { cart { ${CART_FIELDS} } userErrors { field message code } }
+    }`,
+    { input: { lines, buyerIdentity: { countryCode: 'AU' } } },
+  );
+  assertUserErrors(data.cartCreate);
+  return data.cartCreate.cart;
+}
+
+async function cartLinesAdd(cartId, lines) {
+  const data = await fetchShopify(
+    `mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+      cartLinesAdd(cartId: $cartId, lines: $lines) {
+        cart { ${CART_FIELDS} }
+        userErrors { field message code }
+      }
+    }`,
+    { cartId, lines },
+  );
+  assertUserErrors(data.cartLinesAdd);
+  if (!data.cartLinesAdd.cart) throw new CheckoutError('This bag has expired.', 410, 'STALE_CART');
+  return data.cartLinesAdd.cart;
+}
+
+async function cartLinesRemove(cartId, lineIds) {
+  const data = await fetchShopify(
+    `mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+      cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+        cart { ${CART_FIELDS} }
+        userErrors { field message code }
+      }
+    }`,
+    { cartId, lineIds },
+  );
+  assertUserErrors(data.cartLinesRemove);
+  if (!data.cartLinesRemove.cart) throw new CheckoutError('This bag has expired.', 410, 'STALE_CART');
+  return data.cartLinesRemove.cart;
+}
+
+async function cartDiscountCodesUpdate(cartId, discountCodes) {
+  const data = await fetchShopify(
+    `mutation cartDiscountCodesUpdate($cartId: ID!, $discountCodes: [String!]!) {
+      cartDiscountCodesUpdate(cartId: $cartId, discountCodes: $discountCodes) {
+        cart { ${CART_FIELDS} }
+        userErrors { field message code }
+      }
+    }`,
+    { cartId, discountCodes },
+  );
+  assertUserErrors(data.cartDiscountCodesUpdate);
+  if (!data.cartDiscountCodesUpdate.cart) throw new CheckoutError('This bag has expired.', 410, 'STALE_CART');
+  return data.cartDiscountCodesUpdate.cart;
+}
+
+function parseBody(event) {
+  const contentType = event.headers?.['content-type'] || event.headers?.['Content-Type'] || '';
+  if (contentType.includes('application/x-www-form-urlencoded')) {
+    const params = new URLSearchParams(event.body || '');
     return {
-      statusCode: 200,
-      headers: corsHeaders,
-      body: '',
+      action: params.get('action') || undefined,
+      cartId: params.get('cartId') || undefined,
+      lines: (() => { try { return JSON.parse(params.get('lines') || '[]'); } catch { return []; } })(),
     };
   }
+  try {
+    return event.body ? JSON.parse(event.body) : {};
+  } catch {
+    throw new CheckoutError('The request body is not valid JSON.', 400, 'INVALID_JSON');
+  }
+}
 
-  // Only allow POST
+function inferLegacyAction(body) {
+  if (body.action) return body.action;
+  if (Array.isArray(body.removeLineIds) && body.removeLineIds.length) return 'remove';
+  if (Array.isArray(body.lines) && body.lines.length) return 'add';
+  if (body.cartId) return 'checkout';
+  return null;
+}
+
+function validateLines(lines) {
+  if (!Array.isArray(lines) || !lines.length) {
+    throw new CheckoutError('At least one line item is required.', 400, 'INVALID_LINES');
+  }
+  for (const line of lines) {
+    if (!line?.merchandiseId || !Number.isInteger(line.quantity) || line.quantity < 1) {
+      throw new CheckoutError('Each line requires a merchandiseId and positive whole quantity.', 400, 'INVALID_LINES');
+    }
+  }
+}
+
+function responseForCart(cart) {
+  if (!cart?.id) throw new CheckoutError('Shopify returned an incomplete bag.', 502, 'INVALID_CART_RESPONSE');
+  const checkoutUrl = ensureShopifyCheckoutUrl(cart.checkoutUrl);
+  const snapshot = { ...cart, checkoutUrl: checkoutUrl || cart.checkoutUrl || '' };
+  return {
+    cart: snapshot,
+    cartId: snapshot.id,
+    checkoutUrl: snapshot.checkoutUrl,
+  };
+}
+
+export const handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers: corsHeaders, body: '' };
+  }
   if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Method not allowed' }),
-    };
+    return { statusCode: 405, headers: jsonHeaders, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
   try {
-    // Check env vars are available
-    if (!SHOPIFY_DOMAIN || !SF_STOREFRONT_TOKEN) {
-      return {
-        statusCode: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: 'Server configuration error',
-          message: 'Missing required Shopify environment variables',
-        }),
-      };
+    const body = parseBody(event);
+    const action = inferLegacyAction(body);
+    if (!['get', 'add', 'remove', 'checkout'].includes(action)) {
+      throw new CheckoutError('Action must be get, add, remove or checkout.', 400, 'INVALID_ACTION');
     }
 
-    // Parse request body - support both JSON and form-urlencoded (for form POST redirect)
-    let body = {};
-    const contentType = (event.headers && (event.headers['content-type'] || event.headers['Content-Type'])) || '';
-    if (contentType.includes('application/json')) {
-      body = event.body ? JSON.parse(event.body) : {};
-    } else if (contentType.includes('application/x-www-form-urlencoded') || (event.body && event.body.includes('='))) {
-      const params = new URLSearchParams(event.body || '');
-      body = {
-        cartId: params.get('cartId') || null,
-        lines: (() => { try { return JSON.parse(params.get('lines') || '[]'); } catch { return []; } })(),
-      };
-    } else {
-      body = event.body ? JSON.parse(event.body) : {};
-    }
-    const lines = Array.isArray(body.lines) ? body.lines : [];
-    const removeLineIds = Array.isArray(body.removeLineIds) ? body.removeLineIds : [];
-    const cartId = normalizeCartId(body.cartId) || body.cartId || null;
-
+    const cartId = normalizeCartId(body.cartId);
     let cart;
-
-    // Remove lines from cart
-    if (removeLineIds.length > 0 && cartId) {
-      console.log('Removing lines from cart:', cartId, removeLineIds);
-      cart = await cartLinesRemove(cartId, removeLineIds);
-      if (!cart) {
-        return {
-          statusCode: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ error: 'Failed to remove items' }),
-        };
-      }
-      return {
-        statusCode: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cart }),
-      };
-    }
-
-    // "Proceed to Checkout" with existing cart (mini cart sends cartId + empty lines)
-    if (lines.length === 0 && cartId) {
-      console.log('Fetching existing cart for checkout:', cartId);
+    if (action === 'get') {
+      if (!cartId) throw new CheckoutError('A cartId is required.', 400, 'INVALID_CART_ID');
       cart = await cartGet(cartId);
-    }
-    // Add to cart (one or more line items)
-    else if (lines.length > 0) {
-      // Validate line items
-      for (const line of lines) {
-        if (!line.merchandiseId || typeof line.quantity !== 'number') {
-          return {
-            statusCode: 400,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              error: 'Invalid line item: merchandiseId and quantity required',
-            }),
-          };
-        }
-      }
+    } else if (action === 'add') {
+      validateLines(body.lines);
       if (cartId) {
-        console.log('Adding to existing cart:', cartId);
-        cart = await cartLinesAdd(cartId, lines);
+        try {
+          cart = await cartLinesAdd(cartId, body.lines);
+        } catch (error) {
+          if (!(error instanceof CheckoutError) || error.code !== 'STALE_CART') throw error;
+          cart = await cartCreate(body.lines);
+        }
       } else {
-        console.log('Creating new cart');
-        cart = await cartCreate(lines);
+        cart = await cartCreate(body.lines);
       }
+    } else if (action === 'remove') {
+      if (!cartId) throw new CheckoutError('A cartId is required.', 400, 'INVALID_CART_ID');
+      const lineIds = Array.isArray(body.lineIds) ? body.lineIds : body.removeLineIds;
+      if (!Array.isArray(lineIds) || !lineIds.length) {
+        throw new CheckoutError('At least one lineId is required.', 400, 'INVALID_LINE_IDS');
+      }
+      cart = await cartLinesRemove(cartId, lineIds);
     } else {
-      return {
-        statusCode: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: 'Invalid request: send lines (add to cart) or cartId with empty lines (proceed to checkout)',
-        }),
-      };
+      if (!cartId) throw new CheckoutError('A cartId is required.', 400, 'INVALID_CART_ID');
+      cart = Array.isArray(body.discountCodes)
+        ? await cartDiscountCodesUpdate(cartId, body.discountCodes)
+        : await cartGet(cartId);
     }
 
-    // Validate checkoutUrl exists
-    if (!cart.checkoutUrl) {
-      console.error('Cart missing checkoutUrl:', cart);
-      return {
-        statusCode: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ error: 'Checkout URL not available' }),
-      };
+    const result = responseForCart(cart);
+    if (event.queryStringParameters?.redirect === 'true') {
+      if (!result.checkoutUrl) {
+        throw new CheckoutError('Checkout is temporarily unavailable.', 502, 'CHECKOUT_URL_MISSING');
+      }
+      return { statusCode: 303, headers: { ...corsHeaders, Location: result.checkoutUrl }, body: '' };
     }
-
-    // Ensure checkout URL uses Shopify domain (fixes 404 when custom domain hits our SPA)
-    const checkoutUrl = ensureShopifyCheckoutUrl(cart.checkoutUrl);
-
-    if (!checkoutUrl) {
-      console.error('Invalid or misconfigured checkout URL from Shopify:', cart.checkoutUrl);
-      return {
-        statusCode: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: 'Checkout configuration error',
-          message: 'Unable to get checkout URL. Please check your Shopify store settings.',
-        }),
-      };
-    }
-
-    console.log('✅ Cart ready:', { cartId: cart.id, checkoutUrl });
-
-    // Check for redirect query param
-    const queryParams = event.queryStringParameters || {};
-    const shouldRedirect = queryParams.redirect === 'true';
-
-    if (shouldRedirect) {
-      // 303 redirect to Shopify checkout
-      return {
-        statusCode: 303,
-        headers: {
-          ...corsHeaders,
-          'Location': checkoutUrl,
-        },
-        body: '',
-      };
-    }
-
-    // Return JSON response
-    return {
-      statusCode: 200,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        checkoutUrl,
-        cartId: cart.id,
-      }),
-    };
+    return { statusCode: 200, headers: jsonHeaders, body: JSON.stringify(result) };
   } catch (error) {
-    console.error('Checkout error:', error);
-
-    // Return specific error code for stale carts so client can recover
-    if (error.code === 'STALE_CART') {
-      return {
-        statusCode: 410,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: 'Cart expired',
-          code: 'STALE_CART',
-          message: 'Your cart has expired. Please add your items again.',
-        }),
-      };
-    }
-
-    // Timeout-specific error
-    if (error.name === 'AbortError') {
-      return {
-        statusCode: 504,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: 'Checkout timeout',
-          message: 'Checkout is taking longer than usual. Please try again.',
-        }),
-      };
-    }
-
+    const status = error instanceof CheckoutError ? error.status : 500;
+    const code = error instanceof CheckoutError ? error.code : 'CHECKOUT_ERROR';
+    if (status >= 500) console.error('Checkout function error:', error);
     return {
-      statusCode: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      statusCode: status,
+      headers: jsonHeaders,
       body: JSON.stringify({
-        error: 'Checkout failed',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        error: status >= 500 ? 'Checkout is temporarily unavailable.' : error.message,
+        message: error.message,
+        code,
       }),
     };
   }
 };
-

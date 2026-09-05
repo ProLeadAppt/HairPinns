@@ -28,8 +28,8 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - 15 service detail pages
 - 17 salon service-area pages
 - 20 Australian shipping pages
-- 25 product collections
-- 119 products
+- 21 product collections
+- 122 products
 
 ## Primary links
 

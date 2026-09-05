@@ -59,6 +59,7 @@ const routes = [
   "/areas/menai-2234",
   "/shipping-to/new-south-wales",
   "/collections/qiqi",
+  "/collections/free-extra-eligible",
   "/products/qiqi-vega",
 ];
 
@@ -89,6 +90,7 @@ describe("AI discovery generation", () => {
     expect(files["llms-full.txt"]).toContain("https://hairpinns.com/blog/first-guide/");
     expect(files["llms-full.txt"]).toContain("https://hairpinns.com/products/qiqi-vega/");
     expect(files["llms-full.txt"]).not.toContain("christmas-gift-packs");
+    expect(files["llms-full.txt"]).not.toContain("free-extra-eligible");
   });
 
   it("emits valid structured JSON with canonical hours and route counts", () => {

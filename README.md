@@ -38,7 +38,7 @@ cp .env.example .env
 Edit `.env` and configure:
 - `VITE_SHOPIFY_MYSHOPIFY_DOMAIN` - Your Shopify store domain (e.g., `your-store.myshopify.com`)
 - `VITE_SF_STOREFRONT_TOKEN` - Shopify Storefront API access token (public, safe for client-side)
-- `VITE_SF_API_VERSION` - Shopify API version (e.g., `2025-01`)
+- `VITE_SF_API_VERSION` - Shopify API version (e.g., `2026-07`)
 - `VITE_SHOP_DOMAIN` - Your store URL (e.g., `hairpinns.com`)
 - `VITE_GHL_INBOUND_WEBHOOK_URL` - GoHighLevel webhook URL (optional, for form submissions)
 
@@ -64,7 +64,7 @@ Set these in Netlify Dashboard → Site Settings → Environment Variables:
 
 - `SHOPIFY_MYSHOPIFY_DOMAIN` - Shopify store domain
 - `SF_STOREFRONT_TOKEN` - Storefront API token
-- `SF_API_VERSION` - API version (e.g., `2025-01`)
+- `SF_API_VERSION` - API version (e.g., `2026-07`)
 
 ## Project Structure
 

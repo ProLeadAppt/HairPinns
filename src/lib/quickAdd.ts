@@ -4,7 +4,7 @@
  * Shows toast notifications and optionally opens mini cart
  */
 
-import { getCartId, saveCartId } from "./cartManagement";
+import { addCartLines } from "./cartApi";
 import { trackAddToCart } from "./ecommerceTracking";
 import { trackCartCreated } from "./cartAbandonment";
 import { getHpCapture } from "./loadHpCapture";
@@ -32,28 +32,9 @@ export async function quickAddToCart(
   const { variantId, productId, productTitle, price, currency, quantity = 1 } = product;
 
   try {
-    const existingCartId = getCartId();
-
-    // Call Edge Function to add to cart
-    const response = await fetch('/api/checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lines: [{ merchandiseId: variantId, quantity }],
-        ...(existingCartId && { cartId: existingCartId }),
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to add to cart');
-    }
-
-    const { checkoutUrl, cartId } = await response.json();
-
-    // Store cart ID for future additions
-    if (cartId) {
-      saveCartId(cartId);
-    }
+    const cart = await addCartLines([{ merchandiseId: variantId, quantity }]);
+    const cartId = cart.id;
+    const checkoutUrl = cart.checkoutUrl;
 
     // Track quick add clicked
     const hpCapture = await getHpCapture();
@@ -93,7 +74,7 @@ export async function quickAddToCart(
 
     // Dispatch custom event to open mini cart if needed
     if (openMiniCart && typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('hp:openMiniCart', { detail: { cartId } }));
+      window.dispatchEvent(new CustomEvent('hp:openMiniCart', { detail: { cart, cartId } }));
     }
 
     return { cartId, checkoutUrl };

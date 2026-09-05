@@ -148,7 +148,7 @@ async function launchPrerenderBrowser(puppeteer, launchOpts) {
 async function closeBrowserSafely(browser) {
   if (!browser) return;
   try {
-    if (browser.isConnected()) {
+    if (browser.connected) {
       await browser.close();
     }
   } catch (err) {
@@ -302,7 +302,7 @@ async function main() {
   }
 
   const ensureBrowser = async () => {
-    if (!browser || !browser.isConnected()) {
+    if (!browser || !browser.connected) {
       browser = await launchPrerenderBrowser(puppeteer, launchOpts);
     }
     return browser;

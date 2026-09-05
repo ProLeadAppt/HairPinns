@@ -8,7 +8,7 @@ Set these in **Netlify → Site configuration → Environment variables**:
 |----------|-------|----------|
 | `SHOPIFY_MYSHOPIFY_DOMAIN` | `femtat-zu.myshopify.com` | Yes |
 | `SF_STOREFRONT_TOKEN` | Your Storefront API token from the Shopify custom app | Yes |
-| `SF_API_VERSION` | `2025-01` | No (defaults to 2025-01) |
+| `SF_API_VERSION` | `2026-07` | No (defaults to 2026-07) |
 
 ## How to Find Values
 

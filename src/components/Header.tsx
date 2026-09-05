@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { BOOK_CTA_LABEL, BOOK_URL, trackBookingClick, trackPromoClick } from "@/config/bookingConfig";
 import { useCart } from "@/contexts/CartContext";
-import { SHOP_BY_CONCERN } from "@/config/commerceNavigation";
+import { SHOP_TAXONOMY } from "@/config/commerceNavigation";
 import { getHeaderPromotion } from "@/config/promotions";
 import { usePromotionNow } from "@/hooks/use-promotion-now";
 
@@ -207,19 +207,25 @@ const Header = () => {
                       <Link ref={mobileMenuFirstLinkRef} to="/collections" onClick={() => setMobileMenuOpen(false)} className="inline-flex min-h-11 items-center font-heading text-2xl text-[hsl(var(--after-hours-plum))] hover:text-brand-600">
                         Shop all products
                       </Link>
-                      <p className="mt-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">Shop by concern</p>
-                      <div className="mt-2 grid grid-cols-2 border-t border-[hsl(var(--after-hours-plum)/0.18)]" aria-label="Shop by concern">
-                        {SHOP_BY_CONCERN.slice(0, 4).map((concern, index) => (
-                          <Link
-                            key={concern.handle}
-                            to={concern.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            aria-label={`Shop ${concern.name.toLowerCase()}`}
-                            className="inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.18)] pr-2 text-sm font-medium text-[hsl(var(--after-hours-plum))] transition-colors hover:text-brand-600 even:pl-3"
-                          >
-                            <span className="mr-2 text-[0.62rem] text-[hsl(var(--after-hours-copper))]">0{index + 1}</span>
-                            {concern.shortName}
-                          </Link>
+                      <div className="mt-5 space-y-5" aria-label="Shop categories">
+                        {SHOP_TAXONOMY.map((group) => (
+                          <div key={group.id}>
+                            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.7)]">Shop by {group.label.toLowerCase()}</p>
+                            <div className="mt-2 grid grid-cols-2 border-t border-[hsl(var(--after-hours-plum)/0.18)]">
+                              {group.destinations.slice(0, 4).map((destination, index) => (
+                                <Link
+                                  key={destination.handle}
+                                  to={destination.href}
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  aria-label={`Shop ${destination.name.toLowerCase()}`}
+                                  className="inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.18)] pr-2 text-sm font-medium text-[hsl(var(--after-hours-plum))] transition-colors hover:text-brand-600 even:pl-3"
+                                >
+                                  <span className="mr-2 text-[0.62rem] text-[hsl(var(--after-hours-copper))]">0{index + 1}</span>
+                                  {destination.shortName}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         ))}
                       </div>
 

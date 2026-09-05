@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FileText, ShoppingBag, MapPin, BookOpen, Info } from "lucide-react";
 import { generateWebPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { SHOP_TAXONOMY } from "@/config/commerceNavigation";
 
 const Sitemap = () => {
   const sitemapSections = [
@@ -20,17 +21,16 @@ const Sitemap = () => {
       ]
     },
     {
-      title: "Shop Collections",
+      title: "Shop Hair Care",
       icon: ShoppingBag,
       links: [
-        { title: "All Collections", url: "/collections" },
-        { title: "Jena's Daily Trio", url: "/collections/jenas-daily-trio" },
-        { title: "Juuce", url: "/collections/juuce-botanicals" },
-        { title: "QIQI", url: "/collections/qiqi" },
-        { title: "Pure Organic", url: "/collections/pure-certified-organic-hair-care" },
-        { title: "Wet Brush", url: "/collections/wet-brush-detanglers" },
-        { title: "Aromaganic", url: "/collections/aromaganic" },
-        { title: "Island Vibes", url: "/collections/island-vibes-tanning" },
+        { title: "Choose how to shop", url: "/collections" },
+        ...SHOP_TAXONOMY.flatMap((group) =>
+          group.destinations.map((destination) => ({
+            title: `${group.label}: ${destination.name}`,
+            url: destination.href,
+          })),
+        ),
       ]
     },
     {

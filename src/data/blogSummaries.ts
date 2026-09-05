@@ -609,10 +609,10 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'christmas-hair-gifts-2026',
     title: 'Christmas Hair Care Gift Guide 2026',
-    excerpt: "A stylist's Christmas gift guide for anyone who loves their hair — from $30 stocking fillers to premium bundles, shipped Australia-wide with free shipping over $150.",
+    excerpt: 'A simple guide to the current Juuce and Pure Christmas packs at Hair Pinns, plus a festive styling duo and salon-selected gift ideas.',
     category: 'Seasonal',
-    date: 'April 19, 2026',
-    readTime: '5 min read',
+    date: '5 September 2026',
+    readTime: '4 min read',
     image: blogImg54,
     author: 'Jena Pinn',
   },

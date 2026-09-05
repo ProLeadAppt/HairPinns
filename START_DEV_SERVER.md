@@ -48,14 +48,14 @@ The app needs these environment variables (with `VITE_` prefix for client-side):
 
 - `VITE_SHOPIFY_MYSHOPIFY_DOMAIN` (e.g., `femtat-zu.myshopify.com`)
 - `VITE_SF_STOREFRONT_TOKEN` (your storefront access token)
-- `VITE_SF_API_VERSION` (e.g., `2025-01`)
+- `VITE_SF_API_VERSION` (e.g., `2026-07`)
 
 Create a `.env` file in the project root:
 
 ```env
 VITE_SHOPIFY_MYSHOPIFY_DOMAIN=femtat-zu.myshopify.com
 VITE_SF_STOREFRONT_TOKEN=your_token_here
-VITE_SF_API_VERSION=2025-01
+VITE_SF_API_VERSION=2026-07
 ```
 
 **Note:** `.env` files are gitignored for security.
@@ -71,7 +71,7 @@ VITE_SF_API_VERSION=2025-01
    ```env
    SHOPIFY_MYSHOPIFY_DOMAIN=femtat-zu.myshopify.com
    SF_STOREFRONT_TOKEN=your_token_here
-   SF_API_VERSION=2025-01
+   SF_API_VERSION=2026-07
    ```
 
 ## What Should Work
@@ -89,7 +89,6 @@ Once the site loads, you can:
 1. Test the UI and navigation
 2. View products and collections
 3. Test the checkout function by deploying to Netlify
-
 
 
 

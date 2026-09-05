@@ -12,10 +12,12 @@ describe("crawler discovery surfaces", () => {
     expect(source).toContain('to={`/blog/${post.slug}`}');
   });
 
-  it("loads the complete live collection inventory on the collection index", () => {
+  it("renders the curated catalogue taxonomy and seasonal links for crawlers", () => {
     const source = read("src/pages/Collections.tsx");
-    expect(source).toContain("getAllCollections(100)");
-    expect(source).toContain("prerenderReady={!isLoading}");
+    expect(source).toContain("SHOP_TAXONOMY.map((group)");
+    expect(source).toContain("group.destinations.map((destination");
+    expect(source).toContain("CHRISTMAS_PRODUCTS.map((product");
+    expect(source).toContain("prerenderReady");
   });
 
   it("links the HTML sitemap from global footer navigation", () => {

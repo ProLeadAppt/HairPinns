@@ -118,7 +118,9 @@ assert.match(notificationAppSource, /markNotificationRendererReady\(\)/, 'Queued
 assert.doesNotMatch(cartProviderSource, /import\s+MiniCartDrawer\s+from/, 'The mini-cart drawer must not return to the startup graph');
 assert.doesNotMatch(cartProviderSource, /import\s+\{[^}]*getCart[^}]*\}\s+from\s+["']@\/lib\/shopify["']/, 'Persisted cart hydration must not eagerly load the Shopify client');
 assert.match(cartProviderSource, /lazy\(loadMiniCartDrawer\)/, 'The mini-cart drawer must remain interaction-deferred');
-assert.match(cartProviderSource, /import\(["']@\/lib\/shopify["']\)/, 'Persisted cart count hydration must retain the Shopify read path');
+assert.match(cartProviderSource, /from\s+["']@\/lib\/cartApi["']/, 'Persisted cart hydration must use the server-owned cart API');
+assert.match(cartProviderSource, /getCartSnapshot\(cartId\)/, 'Persisted cart hydration must accept the authoritative server snapshot');
+assert.doesNotMatch(cartProviderSource, /@\/lib\/shopify/, 'Cart state must not read Shopify directly in the browser');
 assert.match(cartProviderSource, /drawerRequested\s*\?[\s\S]*<Suspense fallback=\{null\}>[\s\S]*<MiniCartDrawer/, 'The deferred drawer must mount only after cart intent');
 assert.doesNotMatch(errorBoundarySource, /import\s+Footer\s+from/, 'The recovery footer must not return to the startup graph');
 assert.match(errorBoundarySource, /lazy\(\(\)\s*=>\s*import\(["']@\/components\/Footer["']\)\)/, 'The recovery footer must remain failure-deferred');
@@ -190,7 +192,8 @@ assert.match(prerender, /throw new Error\(`Prerender failed/, 'Any missing prere
 
 const routeCollector = await readFile(path.join(ROOT, 'scripts/collect-prerender-routes.js'), 'utf8');
 assert.doesNotMatch(routeCollector, /collectionHandles = \['juuce', 'qiqi', 'pure'/, 'Stale collection fallbacks must not be prerendered');
-assert.match(routeCollector, /juuce-botanicals/, 'Current Shopify collection handles must be guarded');
+assert.match(routeCollector, /PUBLIC_COLLECTION_HANDLES[\s\S]*missingRequiredCollections/, 'Current customer-facing Shopify collection handles must be guarded from the shared taxonomy');
+assert.match(routeCollector, /CHRISTMAS_PRODUCTS[\s\S]*missingChristmasProducts/, 'Current Christmas product handles must be required before publishing routes');
 assert.doesNotMatch(routeCollector, /available_for_sale:true/, 'Sold-out Shopify products must remain routable');
 
 const sitemapXml = await readFile(path.join(ROOT, 'public/sitemap.xml'), 'utf8');
@@ -208,7 +211,12 @@ const exactRouterPaths = [...appSource.matchAll(/<Route\s+path="(\/[^"]*)"/g)]
   .filter((route) => !route.includes(':') && route !== '/*');
 const staticPageBlock = routeCollector.match(/const staticPages = \[([\s\S]*?)\];/)?.[1] || '';
 const prerenderedExactPaths = new Set([...staticPageBlock.matchAll(/['"](\/[^'"]*)['"]/g)].map((match) => match[1]));
-const intentionallyPrivatePaths = new Set(['/dev/collections', '/dev/shopify', '/500']);
+const intentionallyPrivatePaths = new Set([
+  '/collections/jenas-daily-trio',
+  '/dev/collections',
+  '/dev/shopify',
+  '/500',
+]);
 
 const schemaSource = await readFile(path.join(ROOT, 'src/lib/schema.ts'), 'utf8');
 assert.match(schemaSource, /shippingDestination:[\s\S]*?addressCountry:\s*'AU'/, 'Product schema must restrict shipping to Australia');
@@ -341,7 +349,7 @@ assert.match(headerSource, /usePromotionNow[\s\S]*const headerPromotion = getHea
 assert.match(headerSource, /data-cta-offer=\{headerPromotion\.id\}[\s\S]*trackPromoClick\("header_promo_strip"/, 'Header promo must retain click attribution and offer identity');
 assert.match(headerSource, /hidden items-center gap-5 xl:flex[\s\S]*xl:hidden/, 'Full desktop navigation must wait until xl while tablet keeps the stable drawer');
 assert.match(headerSource, /aria-label="Main navigation"[\s\S]*to="\/blog"[\s\S]*to="\/about"[\s\S]*to="\/services"[\s\S]*to="\/contact"/, 'Desktop navigation must retain guides, founder, salon, and contact routes');
-assert.match(headerSource, /SHOP_BY_CONCERN\.slice\(0, 4\)[\s\S]*aria-label="Mobile navigation"|aria-label="Mobile navigation"[\s\S]*SHOP_BY_CONCERN\.slice\(0, 4\)/, 'Mobile navigation must retain centralized concern routes');
+assert.match(headerSource, /SHOP_TAXONOMY\.map[\s\S]*aria-label="Shop categories"|aria-label="Shop categories"[\s\S]*SHOP_TAXONOMY\.map/, 'Mobile navigation must retain all three centralised catalogue paths');
 assert.match(headerSource, /aria-label=\{itemCount > 0 \? `View cart[\s\S]*xl:hidden[\s\S]*aria-haspopup="dialog"/, 'Mobile header must expose direct cart access before the menu');
 assert.doesNotMatch(headerSource, /from ["']@\/components\/ui\/sheet["']/, 'Header must not statically import the mobile dialog runtime');
 assert.match(headerSource, /const MobileMenuSheet = lazy\(\(\) => import\("@\/components\/navigation\/MobileMenuSheet"\)\)[\s\S]*mobileMenuRequested \? \([\s\S]*<MobileMenuSheet/, 'Mobile dialog runtime must load only after menu intent');
@@ -354,8 +362,8 @@ assert.match(headerSource, /after-hours-near-black[\s\S]*after-hours-cream[\s\S]
 assert.doesNotMatch(headerSource, /rounded-lg border border-border bg-muted\/30/, 'Mobile concerns must not regress to generic rounded tiles');
 
 const shopDropdownSource = await readFile(path.join(ROOT, 'src/components/navigation/ShopDropdown.tsx'), 'utf8');
-assert.match(shopDropdownSource, /SHOP_BY_CONCERN\.map[\s\S]*FEATURED_BRANDS\.map[\s\S]*to="\/collections"/, 'Desktop shop ledger must retain all centralized concerns, brands, and catalogue route');
-assert.match(shopDropdownSource, /w-\[34rem\][\s\S]*min-h-11[\s\S]*rounded-none/, 'Desktop shop ledger must retain editorial geometry and 44px targets');
+assert.match(shopDropdownSource, /SHOP_BY_HAIR_NEED\.map[\s\S]*SHOP_BY_PRODUCT\.map[\s\S]*FEATURED_BRANDS\.map[\s\S]*to="\/collections"/, 'Desktop shop ledger must retain the centralised hair need, product, and brand routes');
+assert.match(shopDropdownSource, /w-\[48rem\][\s\S]*min-h-11[\s\S]*rounded-none/, 'Desktop shop ledger must retain editorial geometry and 44px targets');
 assert.doesNotMatch(shopDropdownSource, /w-56|rounded-md|shadow-lg/, 'Desktop shop menu must not regress to the generic narrow dropdown');
 
 const collectionsSource = await readFile(path.join(ROOT, 'src/pages/Collections.tsx'), 'utf8');
@@ -364,9 +372,12 @@ const breadcrumbsSource = await readFile(path.join(ROOT, 'src/components/Breadcr
 assert.match(breadcrumbsSource, /<Fragment[\s\S]*<BreadcrumbItem>[\s\S]*<BreadcrumbSeparator/, 'Breadcrumbs must keep valid ordered-list semantics without div wrappers');
 assert.doesNotMatch(breadcrumbsSource, /<div key=\{index\}/, 'Breadcrumb lists must not wrap list items in direct div children');
 assert.match(indexCss, /--after-hours-paper:\s*270 67% 99%/, 'After-Hours paper must remain the approved #FCFAFE semantic token');
-assert.match(collectionsSource, /grid grid-cols-2[\s\S]*filteredAndSortedCollections\.map/, 'Collection index must remain a two-column mobile catalogue');
+assert.match(collectionsSource, /SHOP_TAXONOMY\.map[\s\S]*grid grid-cols-2[\s\S]*DestinationCard/, 'Collection index must render the three curated paths as a two-column mobile catalogue');
 assert.match(collectionsSource, /collectionImageSizes = "\(max-width: 767px\) 50vw/, 'Collection index must request mobile half-width Shopify image candidates');
-assert.match(collectionsSource, /Jena’s routine \/ 10% saving[\s\S]*\/collections\/jenas-daily-trio/, 'Jena daily trio ledger and destination must remain intact');
+assert.match(collectionsSource, /role="tablist"[\s\S]*activePath[\s\S]*role="tabpanel"/, 'Collection index must expose an accessible three-path selector');
+assert.match(collectionsSource, /CHRISTMAS_PRODUCTS\.map/, 'Collection index must expose the removable Christmas products');
+assert.match(collectionsSource, /\/collections\/haircare-bundles-gift-sets/, 'Collection index must link its seasonal feature to Bundles & Gifts');
+assert.doesNotMatch(collectionsSource, /Jena.?s Daily Trio|10% saving|Search collections|Sort collections/, 'Paused Daily Trio and the redundant collection search/sort controls must stay off the shop hub');
 assert.match(collectionsSource, /collections_cta[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*BOOK_URL/, 'Collection advice close must preserve chat attribution, phone, and booking routes');
 assert.doesNotMatch(collectionsSource, /product-count|Most Products/, 'Collection index must not rank by incomplete GraphQL product counts');
 assert.doesNotMatch(collectionsSource, /bg-gradient-to|radial-gradient|rounded-3xl|rounded-2xl/, 'Collection index must not regress to gradient or rounded template panels');
@@ -374,7 +385,9 @@ assert.doesNotMatch(collectionsSource, /text-\[(?:0\.62|0\.66)rem\][^\n]*after-h
 assert.match(collectionDetailSource, /grid grid-cols-2[\s\S]*sortedProducts\.map/, 'Collection detail must remain a two-column mobile product catalogue');
 assert.match(collectionDetailSource, /object-contain[\s\S]*Quick View[\s\S]*Add to Bag/, 'Collection product plates must preserve full-image containment and both commerce actions');
 assert.match(collectionDetailSource, /aria-label="Filter by price"[\s\S]*aria-label="Sort products"/, 'Collection controls must keep persistent accessible names');
+assert.match(collectionDetailSource, /shouldShowControls[\s\S]*aria-label="Filter by price"/, 'Collection controls must only appear when the range is large enough to compare');
 assert.match(collectionDetailSource, /min-h-11[\s\S]*Quick View[\s\S]*min-h-11[\s\S]*Add to Bag/, 'Collection product actions must remain at least 44px tall');
+assert.match(collectionDetailSource, /faqs\.length > 0[\s\S]*faqs\.map[\s\S]*<details/, 'Collection FAQ schema must have a matching visible disclosure section');
 assert.match(collectionDetailSource, /Collection Temporarily Unavailable[\s\S]*canonical=\{`https:\/\/hairpinns\.com\/collections\/\$\{handle\}`\}[\s\S]*noIndex/, 'Collection fallback must publish a canonical no-index SEO state so prerender terminates after Shopify failures');
 assert.doesNotMatch(collectionDetailSource, /TrustStrip|762\+ five-star|Newest First|sortBy === "newest"/, 'Collection detail must not expose unsourced review proof or a no-op newest sort');
 
@@ -509,14 +522,14 @@ assert.doesNotMatch(contactFormSource, /within 24 hours|within 2 hours|Need imme
 for (const marker of ['data-mini-cart', 'data-cart-loading', 'data-cart-error', 'data-cart-lines', 'data-cart-shipping', 'data-cart-empty', 'data-cart-checkout']) {
   assert.match(miniCartSource, new RegExp(marker), `Mini cart must preserve ${marker}`);
 }
-for (const cartContract of ['getCart(cartId)', 'clearCartId()', 'hp:cartCountUpdate', 'removeLineIds: [lineId]', 'trackBeginCheckout', '/.netlify/functions/checkout?redirect=true', 'cartIdInput.name = "cartId"', 'linesInput.name = "lines"', 'form.submit()']) {
+for (const cartContract of ['useCart()', 'removeLine(lineId)', 'prepareCheckout(discountCodes)', 'trackBeginCheckout', 'gotoCheckout(discountedCart.checkoutUrl)']) {
   assert.ok(miniCartSource.includes(cartContract), `Mini cart must preserve operational contract: ${cartContract}`);
 }
 assert.match(miniCartSource, /FREE_STANDARD_SHIPPING = 150[\s\S]*Standard shipping is \$9\.95[\s\S]*Free standard shipping applies from \$150/, 'Cart shipping handoff must preserve the published $9.95 and $150 facts');
 assert.match(miniCartSource, /to="\/policies\/shipping"[\s\S]*to="\/policies\/returns"/, 'Cart must preserve shipping and returns policy routes');
 assert.match(miniCartSource, /14-day returns on unopened products/, 'Cart returns language must preserve the published unopened-product condition');
 assert.match(miniCartSource, /h-11 w-11[\s\S]*Remove \$\{merchandise/, 'Cart line removal must retain a 44px named target');
-assert.match(miniCartSource, /disabled=\{isCheckingOut \|\| !hasItems\}/, 'Checkout must remain unavailable for empty or expired carts');
+assert.match(miniCartSource, /disabled=\{isCheckingOut \|\| cartLoading \|\| !!cartError \|\| !hasItems\}/, 'Checkout must remain unavailable for empty, loading, or unrecoverable carts');
 assert.match(miniCartSource, /merchandise\.title !== "Default Title"/, 'Cart must not display Shopify Default Title');
 assert.doesNotMatch(miniCartSource, /searchProducts|upsellProducts|EstimatedDelivery|FreeShippingBar|You might also like|Estimated delivery|businessDays|hover:scale|rounded-card|shadow-lg/, 'Cart must not restore arbitrary upsells, simulated delivery, or generic conversion-card styling');
 
@@ -568,7 +581,7 @@ assert.match(stickyActionSource, /aria-label="Quick shop bar"/, 'Mobile sticky a
 assert.ok(stickyActionSource.indexOf('to="/collections"') < stickyActionSource.indexOf('href={BOOK_URL}'), 'Mobile sticky action must present shopping before salon booking');
 assert.match(stickyActionSource, /if \(!visible\) return null;/, 'Hidden mobile sticky actions must be removed from keyboard navigation');
 
-const commerceNavigationSource = await readFile(path.join(ROOT, 'src/config/commerceNavigation.ts'), 'utf8');
+const commerceNavigationSource = await readFile(path.join(ROOT, 'src/config/commerceNavigation.data.js'), 'utf8');
 for (const handle of ['frizz-free-must-haves', 'heat-protection', 'blonde-bombshells', 'pump-up-the-volume', 'curly-girlys']) {
   assert.match(commerceNavigationSource, new RegExp(handle), `Shop-by-concern destination missing: ${handle}`);
 }

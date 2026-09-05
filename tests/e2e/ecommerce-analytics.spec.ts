@@ -121,6 +121,17 @@ test("product view and confirmed cart mutation emit GA4 ecommerce events once", 
       body: JSON.stringify({
         cartId: "gid://shopify/Cart/200",
         checkoutUrl: "https://shop.example.test/checkouts/200",
+        cart: {
+          id: "gid://shopify/Cart/200",
+          checkoutUrl: "https://shop.example.test/checkouts/200",
+          totalQuantity: 1,
+          discountCodes: [],
+          lines: { edges: [] },
+          cost: {
+            subtotalAmount: { amount: "24.95", currencyCode: "AUD" },
+            totalAmount: { amount: "24.95", currencyCode: "AUD" },
+          },
+        },
       }),
     }),
   );
@@ -163,21 +174,44 @@ test("product view and confirmed cart mutation emit GA4 ecommerce events once", 
   ]);
 });
 
-test("rejected cart mutation does not emit add_to_cart", async ({ page }) => {
+test("a rejected cart mutation preserves the existing cart and does not retry or emit add_to_cart", async ({ page }) => {
+  const existingCartId = "gid://shopify/Cart/keep-this-cart";
+  await page.addInitScript((cartId) => localStorage.setItem("hp_cart_id", cartId), existingCartId);
   let checkoutRequests = 0;
   await page.route("**/api/checkout", (route) => {
+    const body = route.request().postDataJSON();
+    if (body.action === "get") {
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          cart: {
+            id: existingCartId,
+            checkoutUrl: "https://shop.example.test/checkouts/existing",
+            totalQuantity: 1,
+            discountCodes: [],
+            lines: { edges: [{ node: { id: "existing-line", quantity: 1 } }] },
+            cost: {
+              subtotalAmount: { amount: "34.95", currencyCode: "AUD" },
+              totalAmount: { amount: "34.95", currencyCode: "AUD" },
+            },
+          },
+        }),
+      });
+    }
     checkoutRequests += 1;
     return route.fulfill({
-      status: 503,
+      status: 422,
       contentType: "application/json",
-      body: JSON.stringify({ error: "checkout unavailable" }),
+      body: JSON.stringify({ code: "CART_USER_ERROR", error: "Variant unavailable" }),
     });
   });
 
   await page.goto("/products/analytics-test-brush", { waitUntil: "commit" });
   await expect(page.getByRole("heading", { name: product.title })).toBeVisible({ timeout: 30_000 });
   await page.getByRole("button", { name: "Add to Bag" }).click();
-  await expect.poll(() => checkoutRequests).toBe(2);
+  await expect.poll(() => checkoutRequests).toBe(1);
+  await expect.poll(() => page.evaluate(() => localStorage.getItem("hp_cart_id"))).toBe(existingCartId);
   expect(await ecommerceEvents(page, "add_to_cart")).toHaveLength(0);
 });
 

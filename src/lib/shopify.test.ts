@@ -5,13 +5,13 @@ vi.mock("@/config/projectConfig", () => ({
     shopify: {
       domain: "shop.example.test",
       storefrontToken: "public-test-token",
-      apiVersion: "2025-01",
+      apiVersion: "2026-07",
       storeUrl: "https://example.test",
     },
   },
 }));
 
-import { cartDiscountCodesUpdate, getCart } from "./shopify";
+import { cartDiscountCodesUpdate, getCart, getCollectionByHandle } from "./shopify";
 
 const cartResponse = (quantity: number) => ({
   data: {
@@ -109,5 +109,28 @@ describe("cartDiscountCodesUpdate", () => {
     await expect(
       cartDiscountCodesUpdate("gid://shopify/Cart/promo", ["HP-FREE-EXTRA-2026-08"]),
     ).rejects.toThrow("Discount unavailable");
+  });
+});
+
+describe("getCollectionByHandle", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("requests enough variant information to make collection-card purchases safe", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(
+      new Response(JSON.stringify({ data: { collection: { products: { edges: [] } } } }), { status: 200 }),
+    );
+
+    await getCollectionByHandle("variant-safety-query-test");
+
+    const request = fetchMock.mock.calls[0][1] as RequestInit;
+    const body = JSON.parse(String(request.body));
+    expect(body.query).toContain("variants(first: 100)");
+    expect(body.query).toMatch(/variants\(first: 100\)[\s\S]*title/);
+    expect(body.query).toMatch(/variants\(first: 100\)[\s\S]*price\s*\{/);
+    expect(body.query).toMatch(/variants\(first: 100\)[\s\S]*compareAtPrice\s*\{/);
+    expect(body.query).toMatch(/variants\(first: 100\)[\s\S]*pageInfo\s*\{\s*hasNextPage/);
+    expect(body.query).toMatch(/priceRange[\s\S]*maxVariantPrice/);
   });
 });

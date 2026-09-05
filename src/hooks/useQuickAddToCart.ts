@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { notify } from "@/hooks/use-toast";
-import { getCartId } from "@/lib/cartManagement";
+import { addCartLines } from "@/lib/cartApi";
 import { trackAddToCart } from "@/lib/ecommerceTracking";
 
 /**
@@ -9,8 +9,7 @@ import { trackAddToCart } from "@/lib/ecommerceTracking";
  * to their bag without navigating to the PDP.
  *
  * Behaviour:
- *  - Calls POST /api/checkout Edge Function with the variantId
- *  - Stores the returned cartId in localStorage for follow-up adds
+ *  - Adds through the authoritative server cart boundary
  *  - Dispatches hp:openMiniCart so the MiniCartDrawer slides in
  *  - Tracks add_to_cart via the same ecommerceTracking module the PDP uses
  *  - Surfaces toast feedback (success / error)
@@ -31,31 +30,7 @@ export function useQuickAddToCart() {
       if (busy) return;
       setBusy(true);
       try {
-        const existingCartId = getCartId();
-        let response: Response | null = null;
-        let useCartId: string | null = existingCartId;
-        for (let attempt = 0; attempt < 2; attempt++) {
-          response = await fetch("/api/checkout", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              lines: [{ merchandiseId: opts.variantId, quantity: 1 }],
-              ...(useCartId && { cartId: useCartId }),
-            }),
-          });
-          if (response.ok) break;
-          if (attempt === 0 && existingCartId) {
-            useCartId = null;
-            localStorage.removeItem("hp_cart_id");
-          }
-        }
-
-        if (!response || !response.ok) {
-          throw new Error("Failed to add to cart");
-        }
-
-        const { cartId } = await response.json();
-        if (cartId) localStorage.setItem("hp_cart_id", cartId);
+        const cart = await addCartLines([{ merchandiseId: opts.variantId, quantity: 1 }]);
 
         void trackAddToCart({
           product_id: opts.productId ?? opts.variantId,
@@ -67,7 +42,7 @@ export function useQuickAddToCart() {
         });
 
         notify.success("Added to bag!");
-        window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
+        window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cart, cartId: cart.id } }));
       } catch (err) {
         console.error("[useQuickAddToCart] add failed:", err);
         notify.error("Couldn't add to bag — please try again.");

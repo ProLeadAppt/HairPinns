@@ -60,6 +60,12 @@ describe("quickAddToCart analytics boundary", () => {
         JSON.stringify({
           cartId: "gid://shopify/Cart/200",
           checkoutUrl: "https://shop.example.test/checkouts/200",
+          cart: {
+            id: "gid://shopify/Cart/200",
+            checkoutUrl: "https://shop.example.test/checkouts/200",
+            lines: { edges: [] },
+            cost: { totalAmount: { amount: "24.95", currencyCode: "AUD" } },
+          },
         }),
         { status: 200, headers: { "Content-Type": "application/json" } },
       ),

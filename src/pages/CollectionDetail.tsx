@@ -28,6 +28,8 @@ import SEOHead from "@/components/SEOHead";
 import { useImagePreload } from "@/components/ImagePreloader";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
+import { mapCollectionProduct } from "@/lib/collectionProduct";
+import { addCartLines } from "@/lib/cartApi";
 
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
@@ -43,6 +45,11 @@ const CollectionDetail = () => {
 
   const collectionTitle = collection?.title || "Collection";
   const collectionDescription = collection?.description || "Browse this hair care collection";
+  const collectionIntroduction = (() => {
+    const clean = collectionDescription.replace(/\s+/g, " ").trim();
+    const firstSentence = clean.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim() || clean;
+    return firstSentence.length > 180 ? `${firstSentence.slice(0, 177).trimEnd()}...` : firstSentence;
+  })();
 
   // Track GA4 view_item_list when collection loads
   useEffect(() => {
@@ -63,7 +70,9 @@ const CollectionDetail = () => {
       
       try {
         console.log("🔍 Fetching", handle, "collection...");
-        const cacheKey = `hp_col_${handle}`;
+        // Versioned so cards cached before variant-count safety was introduced
+        // can never expose an arbitrary quick-add action.
+        const cacheKey = `hp_col_v2_${handle}`;
         const cached = sessionStorage.getItem(cacheKey);
         if (cached) {
           try {
@@ -110,36 +119,13 @@ const CollectionDetail = () => {
         setCollection(collectionData);
         
         // Map Shopify products to our format
-        const mappedProducts = productEdges.map((edge: any) => {
-          const product = edge.node;
-          const firstImage = product.images.edges[0]?.node;
-          const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
-          const compareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount
-            ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount)
-            : undefined;
-          
-          // Get first available variant ID
-          const variants = product.variants?.edges || [];
-          const firstVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
-          const variantId = firstVariant?.id || null;
-          
-          return {
-            id: product.id,
-            handle: product.handle,
-            title: product.title,
-            price: minPrice,
-            originalPrice: compareAtPrice,
-            image: firstImage?.url || "/placeholder.svg",
-            availableForSale: product.availableForSale,
-            firstVariantId: variantId,
-          };
-        });
+        const mappedProducts = productEdges.map((edge: any) => mapCollectionProduct(edge.node));
         
         console.log("✅ Mapped products:", mappedProducts.length);
         setProducts(mappedProducts);
         
         try {
-          sessionStorage.setItem(`hp_col_${handle}`, JSON.stringify({
+          sessionStorage.setItem(cacheKey, JSON.stringify({
             collection: collectionData,
             products: mappedProducts
           }));
@@ -182,27 +168,8 @@ const CollectionDetail = () => {
     setAddingToCart(productHandle);
     
     try {
-      const existingCartId = localStorage.getItem('hp_cart_id');
-      
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          lines: [{ merchandiseId: variantId, quantity: 1 }],
-          ...(existingCartId && { cartId: existingCartId }),
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to add to cart');
-      }
-      
-      const { cartId } = await response.json();
-      if (cartId) {
-        localStorage.setItem('hp_cart_id', cartId);
-      }
-      
-      window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
+      const cart = await addCartLines([{ merchandiseId: variantId, quantity: 1 }]);
+      window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cart, cartId: cart.id } }));
       notify.success("Added to bag!");
     } catch (error: any) {
       console.error("Add to bag failed:", error);
@@ -335,10 +302,12 @@ const CollectionDetail = () => {
       image: product.image,
       price: product.price.toString(),
       currency: product.currency || "AUD",
+      availability: product.availability?.schema || "OutOfStock",
     })),
   });
 
   const faqs = getCollectionFAQs(handle);
+  const shouldShowControls = products.length >= 6;
 
   const webPageSchema = generateWebPageSchema({
     name: collectionTitle,
@@ -386,16 +355,16 @@ const CollectionDetail = () => {
         </div>
         
         {/* Collection Header */}
-        <section className="border-y border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-10 md:py-14">
+        <section className="border-y border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-9 md:py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_10rem] lg:items-end">
               <div className="flex-1">
                 <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">Collection / Hair Pinns</p>
-                <h1 className="font-heading text-[clamp(3rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.04em] text-[hsl(var(--after-hours-plum))] mb-4">
+                <h1 className="mb-4 max-w-[18ch] font-heading text-[clamp(2.6rem,5vw,5rem)] leading-[0.94] tracking-[-0.035em] text-[hsl(var(--after-hours-plum))]">
                   {collectionTitle}
                 </h1>
                 <p className="max-w-3xl text-base leading-7 text-[hsl(var(--after-hours-plum)/0.72)] md:text-lg">
-                  {collectionDescription}
+                  {collectionIntroduction}
                 </p>
               </div>
               {sortedProducts.length > 0 && (
@@ -409,8 +378,8 @@ const CollectionDetail = () => {
           </div>
         </section>
 
-        {/* Filters & Sort */}
-        <section className="sticky top-16 z-30 border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper)/0.97)] backdrop-blur-sm">
+        {/* Controls are only useful once a collection has enough products to compare. */}
+        {shouldShowControls && <section className="border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper))]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
               {/* Price & Sort */}
@@ -443,7 +412,7 @@ const CollectionDetail = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section>}
 
         {/* Products Grid */}
         <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14">
@@ -475,12 +444,20 @@ const CollectionDetail = () => {
                         height="600"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                      {!product.availableForSale && (
+                      {(!product.availableForSale || product.availability?.schema === "OutOfStock") && (
                         <Badge
                           variant="destructive"
                           className="absolute top-3 left-3"
                         >
                           Out of Stock
+                        </Badge>
+                      )}
+                      {product.availability?.schema === "BackOrder" && (
+                        <Badge
+                          variant="outline"
+                          className="absolute left-3 top-3 rounded-none border-[hsl(var(--after-hours-copper))] bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]"
+                        >
+                          Available to order
                         </Badge>
                       )}
                     </Link>
@@ -498,18 +475,18 @@ const CollectionDetail = () => {
 
                       <div className="flex items-baseline gap-2 mb-1">
                         {(() => {
-                          const priceText = formatPrice(product.price, "AUD");
+                          const priceText = formatPrice(product.price, product.currency || "AUD");
                           if (!priceText) return null;
                           const compareAt =
                             product.originalPrice && product.originalPrice > product.price
                               ? product.originalPrice
                               : undefined;
                           const compareText = compareAt
-                            ? formatPrice(compareAt, "AUD")
+                            ? formatPrice(compareAt, product.currency || "AUD")
                             : "";
                           return (
                             <>
-                              <p className="text-lg font-semibold text-[hsl(var(--after-hours-plum))] sm:text-2xl">{priceText}</p>
+                              <p className="text-lg font-semibold text-[hsl(var(--after-hours-plum))] sm:text-2xl">{product.pricePrefix}{priceText}</p>
                               {compareText && (
                                 <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
                                   {compareText}
@@ -522,25 +499,40 @@ const CollectionDetail = () => {
                       <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--after-hours-plum)/0.62)]">Afterpay &middot; Zip available</p>
 
                       {/* Actions */}
-                      <div className="mt-auto flex flex-col gap-2 border-t border-[hsl(var(--after-hours-plum)/0.14)] pt-3 sm:flex-row">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="min-h-11 flex-1 rounded-none border-[hsl(var(--after-hours-plum)/0.28)] px-2 text-xs sm:text-sm"
-                          onClick={() => setQuickViewHandle(product.handle)}
-                        >
-                          Quick View
-                        </Button>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          className="min-h-11 flex-1 rounded-none bg-[hsl(var(--after-hours-plum))] px-2 text-xs text-[hsl(var(--after-hours-cream))] sm:text-sm"
-                          onClick={() => handleAddToBag(product.handle, product.firstVariantId)}
-                          disabled={!product.availableForSale || addingToCart === product.handle}
-                        >
-                          <ShoppingBag className="mr-1 hidden h-4 w-4 sm:block" />
-                          {addingToCart === product.handle ? "Adding..." : "Add to Bag"}
-                        </Button>
+                      <div className="mt-auto flex gap-2 border-t border-[hsl(var(--after-hours-plum)/0.14)] pt-3">
+                        {product.hasMultipleVariants ? (
+                          <Button
+                            asChild
+                            variant="primary"
+                            size="sm"
+                            className="min-h-11 flex-1 rounded-none bg-[hsl(var(--after-hours-plum))] px-2 text-xs text-[hsl(var(--after-hours-cream))] sm:text-sm"
+                          >
+                            <Link to={`/products/${product.handle}`} aria-label={`Choose options for ${product.title}`}>
+                              Choose options
+                            </Link>
+                          </Button>
+                        ) : (
+                          <>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="hidden min-h-11 flex-1 rounded-none border-[hsl(var(--after-hours-plum)/0.28)] px-2 text-xs md:inline-flex md:text-sm"
+                              onClick={() => setQuickViewHandle(product.handle)}
+                            >
+                              Quick View
+                            </Button>
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              className="min-h-11 flex-1 rounded-none bg-[hsl(var(--after-hours-plum))] px-2 text-xs text-[hsl(var(--after-hours-cream))] sm:text-sm"
+                              onClick={() => handleAddToBag(product.handle, product.quickAddVariantId)}
+                              disabled={!product.availableForSale || !product.quickAddVariantId || addingToCart === product.handle}
+                            >
+                              <ShoppingBag className="mr-1 hidden h-4 w-4 sm:block" aria-hidden="true" />
+                              {addingToCart === product.handle ? "Adding..." : "Add to Bag"}
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </article>
@@ -549,6 +541,42 @@ const CollectionDetail = () => {
             )}
           </div>
         </section>
+
+        {collectionDescription.trim() !== collectionIntroduction.trim() && (
+          <section className="border-t border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-10 md:py-14" aria-labelledby="about-collection-heading">
+            <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+              <details className="group border-y border-[hsl(var(--after-hours-plum)/0.2)] py-5">
+                <summary id="about-collection-heading" className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-heading text-2xl text-[hsl(var(--after-hours-plum))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
+                  About this collection
+                  <span className="text-[hsl(var(--after-hours-copper))] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p className="max-w-3xl pb-2 pt-4 text-sm leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">{collectionDescription}</p>
+              </details>
+            </div>
+          </section>
+        )}
+
+        {faqs.length > 0 && (
+          <section className="border-t border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] py-12 md:py-16" aria-labelledby="collection-faq-heading">
+            <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
+              <div>
+                <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.72)]">Before you choose</p>
+                <h2 id="collection-faq-heading" className="mt-4 max-w-[10ch] font-heading text-4xl leading-[0.96] text-[hsl(var(--after-hours-plum))]">Questions about this range.</h2>
+              </div>
+              <div className="border-t border-[hsl(var(--after-hours-plum)/0.2)]">
+                {faqs.map((faq) => (
+                  <details key={faq.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.2)] py-4">
+                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-[hsl(var(--after-hours-plum))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
+                      {faq.question}
+                      <span className="shrink-0 text-[hsl(var(--after-hours-copper))] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                    </summary>
+                    <p className="pb-2 pr-8 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.72)]">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
 
         {/* Recently Viewed */}

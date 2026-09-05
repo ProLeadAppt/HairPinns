@@ -57,6 +57,11 @@ const COLLECTION_FAQS: Record<string, FAQItem[]> = {
     { question: "Where can I buy hair care gift packs in Australia?", answer: "Hair Pinns offers hair care gift packs from Juuce and Pure. Shipped Australia-wide with free shipping over $150. Perfect for gifts across Australia." },
     { question: "Do Hair Pinns gift packs ship Australia-wide?", answer: "Yes. Hair Pinns ships gift packs to every state and territory. Free shipping on orders over $150." },
   ],
+  "haircare-bundles-gift-sets": [
+    { question: "Which Christmas packs are available at Hair Pinns?", answer: "Hair Pinns currently features Juuce Christmas Packs, Pure Christmas Packs and the Festive Finish Gift Set Duo. Open each product page to see current variants, price and availability." },
+    { question: "Can Hair Pinns bundles and gift sets be ordered online?", answer: "Yes. Products that are currently available to purchase can be added to your bag and checked out online for Australia-wide shipping." },
+    { question: "Does Hair Pinns offer free shipping on gift packs?", answer: "Free standard shipping applies when the total order is over $150. Check the shipping policy for current details." },
+  ],
 };
 
 /**
