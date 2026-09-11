@@ -18,6 +18,7 @@ const Sitemap = () => {
         { title: "Booking", url: "/booking" },
         { title: "Contact", url: "/contact" },
         { title: "Blog", url: "/blog" },
+        { title: "Email updates", url: "/updates" },
       ]
     },
     {

@@ -14,6 +14,7 @@ describe('catalogue route policy', () => {
     '/collections/free-extra-gifts',
     '/collections/best-sellers-march',
     '/collections/jenas-daily-trio',
+    '/collections/hair-pinns-homepage-picks',
   ])('excludes internal or paused collection %s', (route) => {
     expect(isIndexableRoute(route)).toBe(false);
   });

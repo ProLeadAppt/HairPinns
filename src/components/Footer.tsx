@@ -12,6 +12,7 @@ import hairPinnsLogo from "@/assets/images/hair-pinns-logo-full.webp";
 const shopLinks = [
   ["Shop products", "/collections"],
   ["Hair care guides", "/blog"],
+  ["Email updates", "/updates"],
   ["Shipping", "/policies/shipping"],
   ["Returns", "/policies/returns"],
   ["FAQ", "/faq"],

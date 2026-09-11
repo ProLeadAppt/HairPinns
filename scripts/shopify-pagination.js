@@ -2,7 +2,7 @@
  * Exhaust a Shopify GraphQL connection without assuming the catalogue fits
  * within one page. The caller owns the query shape and returns a connection.
  */
-export async function collectShopifyConnection(fetchPage, label) {
+export async function collectShopifyConnection(fetchPage, label, { allowEmpty = false } = {}) {
   const nodes = [];
   const seenCursors = new Set();
   let after = null;
@@ -24,7 +24,7 @@ export async function collectShopifyConnection(fetchPage, label) {
     after = nextCursor;
   }
 
-  if (nodes.length === 0) {
+  if (nodes.length === 0 && !allowEmpty) {
     throw new Error(`[shopify] Shopify returned no ${label}; refusing an incomplete build`);
   }
   return nodes;

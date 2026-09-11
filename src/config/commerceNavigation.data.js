@@ -105,6 +105,7 @@ export const HIDDEN_COLLECTION_HANDLES = [
   "free-extra-gifts",
   "best-sellers-march",
   "jenas-daily-trio",
+  "hair-pinns-homepage-picks",
 ];
 
 export const PUBLIC_COLLECTION_HANDLES = [

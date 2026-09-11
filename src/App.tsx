@@ -30,6 +30,8 @@ const Booking = lazy(() => import("./pages/Booking"));
 const About = lazy(() => import("./pages/About"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const Updates = lazy(() => import("./pages/Updates"));
+const UpdatePost = lazy(() => import("./pages/UpdatePost"));
 const Contact = lazy(() => import("./pages/Contact"));
 const OrderConfirmation = lazy(() => import("./pages/OrderConfirmation"));
 const Confirm = lazy(() => import("./pages/Confirm"));
@@ -172,6 +174,8 @@ const AppContent = () => {
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/updates" element={<Updates />} />
+              <Route path="/updates/:handle" element={<UpdatePost />} />
               <Route path="/search" element={<SearchResults />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/offers/free-extra" element={<OfferFreeExtra />} />

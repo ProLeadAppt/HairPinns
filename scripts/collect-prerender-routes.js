@@ -104,11 +104,47 @@ async function fetchShopifyHandles(type) {
   return handles;
 }
 
+async function fetchUpdateArticleHandles() {
+  const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
+  const token = process.env.VITE_SF_STOREFRONT_TOKEN || '';
+  const version = process.env.VITE_SF_API_VERSION || '2026-07';
+  if (!token) throw new Error('[prerender] Missing Shopify Storefront token while collecting public updates');
+
+  const query = `query updateHandles($after: String) {
+    blog(handle: "updates") {
+      articles(first: 100, after: $after, sortKey: PUBLISHED_AT, reverse: true) {
+        edges { node { handle } }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+  }`;
+
+  const nodes = await collectShopifyConnection(async (after) => {
+    const response = await fetch(`https://${domain}/api/${version}/graphql.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': token,
+      },
+      body: JSON.stringify({ query, variables: { after } }),
+    });
+    if (!response.ok) throw new Error(`[prerender] Shopify updates request failed with HTTP ${response.status}`);
+    const payload = await response.json();
+    if (payload.errors?.length) {
+      throw new Error(`[prerender] Shopify updates query failed: ${payload.errors.map((error) => error.message).join('; ')}`);
+    }
+    if (!payload.data?.blog) throw new Error('[prerender] Required Shopify blog "updates" is missing');
+    return payload.data.blog.articles;
+  }, 'updates', { allowEmpty: true });
+
+  return nodes.map((node) => node.handle).filter(Boolean);
+}
+
 export async function collectRoutes() {
   const routes = [];
 
   const staticPages = [
-    '/', '/about', '/blog', '/contact', '/services', '/booking',
+    '/', '/about', '/blog', '/updates', '/contact', '/services', '/booking',
     '/faq', '/glossary', '/reviews', '/areas', '/collections', '/search',
     '/offers/free-extra',
     '/privacy', '/terms', '/policies/shipping', '/policies/returns',
@@ -130,6 +166,9 @@ export async function collectRoutes() {
     .map((slug) => `/blog/${slug}`)
     .filter(isIndexableRoute)
     .forEach((route) => routes.push(route));
+
+  const updateHandles = await fetchUpdateArticleHandles();
+  updateHandles.forEach((handle) => routes.push(`/updates/${handle}`));
 
   // State-level shipping landing pages — one per AU state/territory. Auto-
   // discovered from src/data/shippingStates.ts so adding a new entry there
