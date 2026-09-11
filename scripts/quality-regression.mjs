@@ -84,6 +84,9 @@ const viewportImageGateSource = await readFile(path.join(ROOT, 'src/hooks/useVie
 const bestSellersSource = await readFile(path.join(ROOT, 'src/components/home/BestSellers.tsx'), 'utf8');
 const shopByConcernSource = await readFile(path.join(ROOT, 'src/components/home/ShopByConcern.tsx'), 'utf8');
 const blogTrioSource = await readFile(path.join(ROOT, 'src/components/home/BlogTrio.tsx'), 'utf8');
+const sulfateFreeGuideSource = await readFile(path.join(ROOT, 'src/data/blog-posts/sulfate-free-shampoo-australia.tsx'), 'utf8');
+assert.doesNotMatch(sulfateFreeGuideSource, /QIQI Shampoo|most-sold|\$\d+(?:\.\d{2})?/, 'Sulfate-free guide must not retain disproven products, unsupported sales rankings or stale prices');
+assert.match(sulfateFreeGuideSource, /aromaganic-pmint-hair-scalp-renewal-shampoo/, 'Sulfate-free guide must link to the current verified product');
 assert.doesNotMatch(truthSchemaSource, /reviewCount:\s*["']762["']/);
 assert.doesNotMatch(truthSchemaSource, /reviews\.slice\(/);
 assert.doesNotMatch(truthSchemaSource, /\baggregateRating\s*:/);

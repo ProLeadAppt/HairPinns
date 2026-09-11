@@ -615,6 +615,34 @@ test('journal search finds advice by topic and recovers from no results', async 
   await expect(page.getByText(/field notes \/ Bangor, NSW/)).toBeVisible();
 });
 
+test('refreshed sulfate-free guide uses current verified product evidence', async ({ page }) => {
+  await page.goto('/blog/sulfate-free-shampoo-australia', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('heading', { level: 1, name: /What ‘Sulphate Free’ Really Means/ })).toBeVisible();
+  await expect(page.getByText(/current Hair Pinns option Jena has checked/)).toBeVisible();
+  await expect(page.getByRole('link', { name: /Aromaganic P’Mint Hair Scalp Renewal Shampoo/ })).toHaveAttribute(
+    'href',
+    '/products/aromaganic-pmint-hair-scalp-renewal-shampoo',
+  );
+  await expect(page.locator('main article').first()).not.toContainText(/QIQI Shampoo|most-sold|\$\d+(?:\.\d{2})?/);
+
+  const schemaTypes = await page.locator('script[type="application/ld+json"]').evaluateAll(scripts =>
+    scripts.flatMap(script => {
+      try {
+        const value = JSON.parse(script.textContent || '{}');
+        const entries = Array.isArray(value) ? value : [value];
+        return entries.flatMap(entry => [
+          entry?.['@type'],
+          ...(Array.isArray(entry?.['@graph']) ? entry['@graph'].map((node: any) => node?.['@type']) : []),
+        ]).filter(Boolean);
+      } catch {
+        return [];
+      }
+    }),
+  );
+  expect(schemaTypes).toContain('BlogPosting');
+  expect(schemaTypes).toContain('FAQPage');
+});
+
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect.poll(() => page.evaluate(() =>
