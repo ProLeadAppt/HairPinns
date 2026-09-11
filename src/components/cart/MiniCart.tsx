@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Trash2, X } from "lucide-react";
+import { ArrowRight, Minus, Plus, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { notify } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
@@ -27,7 +27,8 @@ const FREE_STANDARD_SHIPPING = 150;
 export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: MiniCartProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [removingLineId, setRemovingLineId] = useState<string | null>(null);
-  const { cart, cartLoading, cartError, removeLine, prepareCheckout } = useCart();
+  const [updatingLineId, setUpdatingLineId] = useState<string | null>(null);
+  const { cart, cartLoading, cartError, removeLine, updateLine, prepareCheckout } = useCart();
   const cartId = cart?.id || "";
 
   const handleRemoveLine = async (lineId: string) => {
@@ -40,6 +41,19 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
       notify.error("Could not remove item");
     } finally {
       setRemovingLineId(null);
+    }
+  };
+
+  const handleQuantityChange = async (lineId: string, quantity: number) => {
+    if (!cartId || quantity < 1) return;
+    setUpdatingLineId(lineId);
+    try {
+      const updatedCart = await updateLine(lineId, quantity);
+      if (!updatedCart) notify.error("Your previous bag expired. You can start a new one.");
+    } catch {
+      notify.error("Could not update quantity");
+    } finally {
+      setUpdatingLineId(null);
     }
   };
 
@@ -245,12 +259,20 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
                           <p className="mt-2 font-heading text-lg font-semibold leading-tight">{merchandise?.product?.title || "Product"}</p>
                         )}
                         {variantTitle && <p className="mt-1 text-xs text-[hsl(var(--hp-ink)/0.7)]">{variantTitle}</p>}
-                        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-                          <span>Qty {node.quantity}</span>
+                        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+                          <div className="inline-grid min-h-11 grid-cols-[2.75rem_2.75rem_2.75rem] border border-[hsl(var(--hp-ink)/0.24)]" aria-label={`Quantity for ${merchandise?.product?.title || "item"}`}>
+                            <button type="button" className="flex min-h-11 items-center justify-center border-r border-[hsl(var(--hp-ink)/0.18)] disabled:cursor-not-allowed disabled:opacity-40" onClick={() => handleQuantityChange(node.id, node.quantity - 1)} disabled={node.quantity <= 1 || updatingLineId === node.id || removingLineId === node.id} aria-label={`Decrease ${merchandise?.product?.title || "item"} quantity`}>
+                              <Minus className="h-4 w-4" aria-hidden="true" />
+                            </button>
+                            <output className="flex min-h-11 items-center justify-center font-semibold tabular-nums" aria-live="polite" aria-label={`Quantity ${node.quantity}`}>{node.quantity}</output>
+                            <button type="button" className="flex min-h-11 items-center justify-center border-l border-[hsl(var(--hp-ink)/0.18)] disabled:cursor-not-allowed disabled:opacity-40" onClick={() => handleQuantityChange(node.id, node.quantity + 1)} disabled={updatingLineId === node.id || removingLineId === node.id} aria-label={`Increase ${merchandise?.product?.title || "item"} quantity`}>
+                              {updatingLineId === node.id ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-b-transparent" aria-hidden="true" /> : <Plus className="h-4 w-4" aria-hidden="true" />}
+                            </button>
+                          </div>
                           <span className="font-semibold">{formatPrice(price * node.quantity, lineCurrency)}</span>
                         </div>
                       </div>
-                      <button type="button" className="flex h-11 w-11 items-center justify-center self-start text-[hsl(var(--hp-ink)/0.7)] hover:text-destructive disabled:opacity-50" onClick={() => handleRemoveLine(node.id)} disabled={removingLineId === node.id} aria-label={`Remove ${merchandise?.product?.title || "item"} from bag`}>
+                      <button type="button" className="flex h-11 w-11 items-center justify-center self-start text-[hsl(var(--hp-ink)/0.7)] hover:text-destructive disabled:opacity-50" onClick={() => handleRemoveLine(node.id)} disabled={removingLineId === node.id || updatingLineId === node.id} aria-label={`Remove ${merchandise?.product?.title || "item"} from bag`}>
                         {removingLineId === node.id ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-b-transparent" aria-hidden="true" /> : <Trash2 className="h-4 w-4" aria-hidden="true" />}
                       </button>
                     </li>

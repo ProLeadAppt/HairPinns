@@ -1,7 +1,7 @@
 /**
  * Authoritative Shopify cart boundary.
  *
- * JSON clients send one explicit action: get, add, remove or checkout.
+ * JSON clients send one explicit action: get, add, update, remove or checkout.
  * The response always includes the complete cart snapshot. Legacy line-based
  * requests are temporarily inferred so existing product purchase forms keep
  * working while callers migrate to the action contract.
@@ -179,6 +179,21 @@ async function cartLinesRemove(cartId, lineIds) {
   return data.cartLinesRemove.cart;
 }
 
+async function cartLinesUpdate(cartId, lines) {
+  const data = await fetchShopify(
+    `mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+      cartLinesUpdate(cartId: $cartId, lines: $lines) {
+        cart { ${CART_FIELDS} }
+        userErrors { field message code }
+      }
+    }`,
+    { cartId, lines },
+  );
+  assertUserErrors(data.cartLinesUpdate);
+  if (!data.cartLinesUpdate.cart) throw new CheckoutError('This bag has expired.', 410, 'STALE_CART');
+  return data.cartLinesUpdate.cart;
+}
+
 async function cartDiscountCodesUpdate(cartId, discountCodes) {
   const data = await fetchShopify(
     `mutation cartDiscountCodesUpdate($cartId: ID!, $discountCodes: [String!]!) {
@@ -230,6 +245,17 @@ function validateLines(lines) {
   }
 }
 
+function validateUpdateLines(lines) {
+  if (!Array.isArray(lines) || !lines.length) {
+    throw new CheckoutError('At least one cart line is required.', 400, 'INVALID_UPDATE_LINES');
+  }
+  for (const line of lines) {
+    if (!line?.id || !Number.isInteger(line.quantity) || line.quantity < 1) {
+      throw new CheckoutError('Each cart line requires an id and positive whole quantity.', 400, 'INVALID_UPDATE_LINES');
+    }
+  }
+}
+
 function responseForCart(cart) {
   if (!cart?.id) throw new CheckoutError('Shopify returned an incomplete bag.', 502, 'INVALID_CART_RESPONSE');
   const checkoutUrl = ensureShopifyCheckoutUrl(cart.checkoutUrl);
@@ -252,8 +278,8 @@ export const handler = async (event) => {
   try {
     const body = parseBody(event);
     const action = inferLegacyAction(body);
-    if (!['get', 'add', 'remove', 'checkout'].includes(action)) {
-      throw new CheckoutError('Action must be get, add, remove or checkout.', 400, 'INVALID_ACTION');
+    if (!['get', 'add', 'update', 'remove', 'checkout'].includes(action)) {
+      throw new CheckoutError('Action must be get, add, update, remove or checkout.', 400, 'INVALID_ACTION');
     }
 
     const cartId = normalizeCartId(body.cartId);
@@ -273,6 +299,10 @@ export const handler = async (event) => {
       } else {
         cart = await cartCreate(body.lines);
       }
+    } else if (action === 'update') {
+      if (!cartId) throw new CheckoutError('A cartId is required.', 400, 'INVALID_CART_ID');
+      validateUpdateLines(body.lines);
+      cart = await cartLinesUpdate(cartId, body.lines);
     } else if (action === 'remove') {
       if (!cartId) throw new CheckoutError('A cartId is required.', 400, 'INVALID_CART_ID');
       const lineIds = Array.isArray(body.lineIds) ? body.lineIds : body.removeLineIds;

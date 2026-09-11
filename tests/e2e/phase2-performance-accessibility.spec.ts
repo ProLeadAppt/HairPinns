@@ -715,6 +715,7 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
     },
   });
   let removalBody: Record<string, unknown> | null = null;
+  let updateBody: Record<string, unknown> | null = null;
 
   await page.route('**/api/checkout', async (route) => {
     const body = route.request().postDataJSON();
@@ -725,6 +726,15 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
     if (body.action === 'remove') {
       removalBody = body;
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: makeCart([lineTwo]) }) });
+      return;
+    }
+    if (body.action === 'update') {
+      updateBody = body;
+      const updatedLine = { ...lineOne, node: { ...lineOne.node, quantity: 3 } };
+      const updatedCart = makeCart([updatedLine, lineTwo]);
+      updatedCart.cost.subtotalAmount.amount = '154.80';
+      updatedCart.cost.totalAmount.amount = '154.80';
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: updatedCart }) });
       return;
     }
     await route.continue();
@@ -748,6 +758,19 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
   await expect(drawer.getByRole('link', { name: '14-day returns on unopened products' })).toHaveAttribute('href', '/policies/returns');
   await expect(drawer.getByText('You might also like')).toHaveCount(0);
   await expect(drawer.getByText(/Estimated delivery/)).toHaveCount(0);
+
+  const increaseFirst = drawer.getByRole('button', { name: 'Increase Juuce Bond Repair Shampoo quantity' });
+  const increaseBox = await increaseFirst.boundingBox();
+  expect(Math.round(increaseBox?.width || 0)).toBeGreaterThanOrEqual(44);
+  expect(Math.round(increaseBox?.height || 0)).toBeGreaterThanOrEqual(44);
+  await increaseFirst.click();
+  await expect(drawer.getByRole('heading', { name: 'Your bag / 4' })).toBeVisible();
+  await expect(drawer.getByText('$154.8', { exact: true }).first()).toBeVisible();
+  expect(updateBody).toEqual({
+    action: 'update',
+    cartId: 'gid://shopify/Cart/after-hours-test',
+    lines: [{ id: 'line-1', quantity: 3 }],
+  });
 
   const removeFirst = drawer.getByRole('button', { name: 'Remove Juuce Bond Repair Shampoo from bag' });
   const removeBox = await removeFirst.boundingBox();

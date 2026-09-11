@@ -15,6 +15,7 @@ import {
   isStaleCartError,
   prepareCartCheckout,
   removeCartLines,
+  updateCartLines,
   type CartSnapshot,
 } from "@/lib/cartApi";
 
@@ -30,6 +31,7 @@ interface CartContextValue {
   cartError: string | null;
   refreshCart: (cartId?: string | null) => Promise<CartSnapshot | null>;
   removeLine: (lineId: string) => Promise<CartSnapshot | null>;
+  updateLine: (lineId: string, quantity: number) => Promise<CartSnapshot | null>;
   prepareCheckout: (discountCodes?: string[]) => Promise<CartSnapshot>;
 }
 
@@ -144,6 +146,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [acceptCart, cart?.id]);
 
+  const updateLine = useCallback(async (lineId: string, quantity: number) => {
+    if (!cart?.id) return null;
+    try {
+      const snapshot = await updateCartLines(cart.id, [{ id: lineId, quantity }]);
+      acceptCart(snapshot);
+      return snapshot;
+    } catch (error) {
+      if (isStaleCartError(error)) {
+        acceptCart(null);
+        return null;
+      }
+      throw error;
+    }
+  }, [acceptCart, cart?.id]);
+
   const prepareCheckout = useCallback(async (discountCodes?: string[]) => {
     if (!cart?.id) throw new Error("Your bag is empty.");
     const snapshot = await prepareCartCheckout(cart.id, discountCodes);
@@ -160,8 +177,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     cartError,
     refreshCart,
     removeLine,
+    updateLine,
     prepareCheckout,
-  }), [cart, cartError, cartLoading, closeCart, openCart, prepareCheckout, refreshCart, removeLine]);
+  }), [cart, cartError, cartLoading, closeCart, openCart, prepareCheckout, refreshCart, removeLine, updateLine]);
 
   return (
     <CartContext.Provider value={value}>
