@@ -520,6 +520,27 @@ test('mobile header defers desktop-only enhancement chunks until they are needed
   await expect.poll(() => requestedChunks.some((url) => url.includes('/ShopDropdown-'))).toBe(true);
 });
 
+test('product routes prioritise their own image instead of unrelated or raw preloads', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/products/wet-brush-kids-detangler', { waitUntil: 'networkidle' });
+
+  const imagePreloads = await page.evaluate(() =>
+    performance.getEntriesByType('resource')
+      .filter((entry) => entry.initiatorType === 'link')
+      .map((entry) => entry.name)
+      .filter((url) => /\.(?:avif|webp|png|jpe?g)(?:\?|$)/i.test(url)),
+  );
+
+  expect(imagePreloads.some((url) => url.includes('hero-journal'))).toBe(false);
+  expect(imagePreloads.some((url) =>
+    url.includes('cdn.shopify.com') && !/[?&]width=\d+/.test(url),
+  )).toBe(false);
+
+  const primaryImage = page.locator('[data-product-detail-core] picture img').first();
+  await expect(primaryImage).toHaveAttribute('fetchpriority', 'high');
+  await expect(primaryImage).toHaveJSProperty('complete', true);
+});
+
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect.poll(() => page.evaluate(() =>

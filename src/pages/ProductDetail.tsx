@@ -33,7 +33,6 @@ import { SilentErrorBoundary } from "@/components/ErrorBoundary";
 import { trackCartCreated } from "@/lib/cartAbandonment";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
-import { useImagePreload } from "@/components/ImagePreloader";
 import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema, generateHowToSchema } from "@/lib/schema";
 import { getProductHowTo } from "@/data/productHowTo";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
@@ -347,8 +346,6 @@ const ProductDetail = () => {
 
   const variantEdges = product?.variants?.edges ?? [];
   const images = (product?.images?.edges ?? []).map((e: any) => e?.node).filter(Boolean);
-  const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
-  useImagePreload(imageUrls.slice(0, 2));
 
   if (loading) {
     return (
