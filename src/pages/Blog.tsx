@@ -61,18 +61,18 @@ const Blog = () => {
 
       <main id="main-content" tabIndex={-1} data-blog-index="">
         <section className="bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]" aria-labelledby="journal-title">
-          <div className="mx-auto grid max-w-[78rem] gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-[0.68fr_0.32fr] lg:gap-20 lg:px-8 lg:pb-24 lg:pt-20">
+          <div className="mx-auto grid max-w-[78rem] gap-6 px-4 pb-10 pt-8 sm:px-6 sm:pb-16 sm:pt-12 lg:grid-cols-[0.68fr_0.32fr] lg:gap-20 lg:px-8 lg:pb-24 lg:pt-20">
             <div>
               <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Hair Pinns / The journal</p>
-              <h1 id="journal-title" className="mt-5 max-w-[10ch] font-heading text-[clamp(3.6rem,9vw,8rem)] font-semibold leading-[0.87] tracking-[-0.06em] text-[hsl(var(--hp-ink))]">
+              <h1 id="journal-title" className="mt-4 max-w-[12ch] font-heading text-[clamp(3rem,9vw,8rem)] font-semibold leading-[0.9] tracking-[-0.055em] text-[hsl(var(--hp-ink))]">
                 Good hair starts with honest advice.
               </h1>
             </div>
-            <div className="self-end border-t border-[hsl(var(--hp-ink)/0.3)] pt-6">
+            <div className="self-end border-t border-[hsl(var(--hp-ink)/0.3)] pt-4 lg:pt-6">
               <p className="max-w-[31rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.76)]">
                 The advice Jena gives behind the chair, written down. Hair care, product notes, salon answers, and practical routines for Australian hair.
               </p>
-              <p className="mt-8 text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-copper))]">
+              <p className="mt-4 text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-copper))] lg:mt-8">
                 {visiblePosts.length} field notes / Bangor, NSW
               </p>
             </div>

@@ -3,6 +3,7 @@ const TRANSIENT_NAVIGATION_ERROR_RE = /Navigation timeout of \d+ ms exceeded/i;
 const TRANSIENT_COMMERCE_FALLBACK_RE = /published (?:product|collection) rendered noindex|published product missing Product schema/i;
 
 export function commercePrerenderIssue(route, html) {
+  if (route.replace(/\/$/, '') === '/collections/jenas-daily-trio') return null;
   const isProduct = /^\/products\/[^/]+\/?$/.test(route);
   const isCollection = /^\/collections\/[^/]+\/?$/.test(route);
   if (!isProduct && !isCollection) return null;

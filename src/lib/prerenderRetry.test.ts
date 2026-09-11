@@ -41,4 +41,9 @@ describe("prerender retry classification", () => {
     const html = '<meta name="robots" content="noindex, follow">';
     expect(commercePrerenderIssue('/reviews', html)).toBeNull();
   });
+
+  it("allows the intentionally paused Daily Trio document to remain noindex", () => {
+    const html = '<meta name="robots" content="noindex, follow">';
+    expect(commercePrerenderIssue('/collections/jenas-daily-trio', html)).toBeNull();
+  });
 });

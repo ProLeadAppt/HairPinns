@@ -549,6 +549,18 @@ test('product routes prioritise their own image instead of unrelated or raw prel
   expect(productSchemas).toHaveLength(1);
 });
 
+test('shop and journal navigation appear early in the mobile journey', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  await page.goto('/collections', { waitUntil: 'networkidle' });
+  const shopTabs = await page.getByRole('tablist', { name: 'Ways to shop' }).boundingBox();
+  expect(shopTabs?.y).toBeLessThan(560);
+
+  await page.goto('/blog', { waitUntil: 'networkidle' });
+  const journalFilters = await page.getByRole('navigation', { name: 'Filter journal stories' }).boundingBox();
+  expect(journalFilters?.y).toBeLessThan(560);
+});
+
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect.poll(() => page.evaluate(() =>

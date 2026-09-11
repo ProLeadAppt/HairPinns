@@ -193,6 +193,12 @@ assert.match(seoHead, /canonicalizeSchemaUrls/, 'SEOHead must normalize same-sit
 
 const prerender = await readFile(path.join(ROOT, 'scripts/prerender.mjs'), 'utf8');
 assert.match(prerender, /canonicalizeInternalHref/, 'Prerendered internal links must use trailing slashes');
+const prerenderRoutes = await readFile(path.join(ROOT, 'scripts/collect-prerender-routes.js'), 'utf8');
+assert.match(
+  prerenderRoutes,
+  /['"]\/collections\/jenas-daily-trio['"]/,
+  'The paused Daily Trio route must prerender its truthful noindex document',
+);
 assert.match(prerender, /throw new Error\(`Prerender failed/, 'Any missing prerender route must fail the build');
 
 const routeCollector = await readFile(path.join(ROOT, 'scripts/collect-prerender-routes.js'), 'utf8');

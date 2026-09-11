@@ -22,6 +22,7 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
+const PRERENDER_ONLY_ROUTES = new Set(['/collections/jenas-daily-trio']);
 
 // Load .env if present
 if (existsSync(resolve(root, '.env'))) {
@@ -111,7 +112,7 @@ export async function collectRoutes() {
     '/faq', '/glossary', '/reviews', '/areas', '/collections', '/search',
     '/offers/free-extra',
     '/privacy', '/terms', '/policies/shipping', '/policies/returns',
-    '/sitemap', '/404',
+    '/sitemap', '/404', '/collections/jenas-daily-trio',
   ];
   routes.push(...staticPages);
 
@@ -160,7 +161,8 @@ export async function collectRoutes() {
   }
   productHandles.forEach((h) => routes.push(`/products/${h}`));
 
-  const publicRoutes = [...new Set(routes)].filter(isIndexableRoute);
+  const publicRoutes = [...new Set(routes)].filter((route) =>
+    isIndexableRoute(route) || PRERENDER_ONLY_ROUTES.has(route));
   console.log(`[prerender] Collected ${publicRoutes.length} routes for prerendering`);
   return publicRoutes;
 }

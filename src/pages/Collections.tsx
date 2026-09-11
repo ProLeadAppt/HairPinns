@@ -117,27 +117,26 @@ const Collections = () => {
       </div>
 
       <main id="main-content" tabIndex={-1}>
-        <section className="border-b border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-12 sm:py-16 lg:py-20">
+        <section className="border-b border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-8 sm:py-12 lg:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.76)]">Shop / Hair Pinns</p>
-            <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1fr)_30rem] lg:items-end lg:gap-16">
-              <h1 className="max-w-[9ch] font-heading text-[clamp(3.2rem,7vw,6.8rem)] leading-[0.91] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">
+            <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_30rem] lg:items-end lg:gap-16">
+              <h1 className="max-w-[11ch] font-heading text-[clamp(2.75rem,7vw,6.8rem)] leading-[0.93] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">
                 Find your hair care.
               </h1>
-              <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-5">
-                <p className="text-lg font-semibold leading-7 text-[hsl(var(--hp-ink))]">Three simple ways to shop Jena's salon-selected shelf.</p>
-                <p className="mt-3 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Start with your hair need, the product you want or a brand you already know.</p>
+              <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-4">
+                <p className="text-base font-semibold leading-7 text-[hsl(var(--hp-ink))]">Shop Jena's salon-selected shelf by hair need, product or brand.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-[hsl(var(--after-hours-paper))] py-12 md:py-20" aria-labelledby="shop-path-heading">
+        <section className="bg-[hsl(var(--after-hours-paper))] py-7 md:py-14" aria-labelledby="shop-path-heading">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-6 border-b border-[hsl(var(--after-hours-plum)/0.2)] pb-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="flex flex-col gap-4 border-b border-[hsl(var(--after-hours-plum)/0.2)] pb-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.72)]">01 / Choose your path</p>
-                <h2 id="shop-path-heading" className="mt-3 font-heading text-4xl leading-none text-[hsl(var(--hp-ink))] md:text-5xl">How would you like to shop?</h2>
+                <h2 id="shop-path-heading" className="mt-2 font-heading text-2xl leading-none text-[hsl(var(--hp-ink))] md:text-4xl">Shop by</h2>
               </div>
               <div className="grid grid-cols-3 border border-[hsl(var(--after-hours-plum)/0.24)]" role="tablist" aria-label="Ways to shop" aria-orientation="horizontal">
                 {SHOP_TAXONOMY.map((group, index) => {
@@ -172,10 +171,10 @@ const Collections = () => {
                 role="tabpanel"
                 aria-labelledby={`shop-tab-${group.id}`}
                 hidden={activePath !== group.id}
-                className="pt-9"
+                className="pt-6 md:pt-9"
               >
-                <div className="mb-8 max-w-2xl">
-                  <h2 className="font-heading text-3xl text-[hsl(var(--hp-ink))]">{group.heading}</h2>
+                <div className="mb-5 max-w-2xl md:mb-8">
+                  <h2 className="font-heading text-2xl text-[hsl(var(--hp-ink))] md:text-3xl">{group.heading}</h2>
                   <p className="mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">{group.description}</p>
                 </div>
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-7 lg:grid-cols-4">
