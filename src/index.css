@@ -772,13 +772,13 @@ chat-widget[data-aria-hidden="true"] {
 }
 
 @media (max-width: 1023px) {
-  html[data-mobile-action-dock-visible="true"] chat-widget:not([aria-hidden="true"]):not([data-aria-hidden="true"]) {
-    translate: 0 calc(
-      -1 * (
-        var(--mobile-action-dock-height, 0px)
-        + env(safe-area-inset-bottom)
-        + 0.75rem
-      )
+  /* Never transform the host: this would make the vendor's fixed panel
+     relative to the document. Only offset fixed-host collapsed launchers. */
+  html[data-mobile-action-dock-visible="true"] chat-widget:not([data-active="true"]):not([aria-hidden="true"]):not([data-aria-hidden="true"]) {
+    bottom: calc(
+      var(--mobile-action-dock-height, 0px)
+      + env(safe-area-inset-bottom)
+      + 0.75rem
     ) !important;
     transition: none !important;
   }

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { installChatViewportGuard } from "@/lib/chatViewport";
 
 const LOADER_ID = "leadconnector-widget-loader";
 const WIDGET_SELECTOR = "chat-widget#leadconnector-widget";
@@ -9,6 +10,7 @@ const WIDGET_ID = "69faa5663cc757c354898554";
  * is available on every route without waiting for the deferred footer.
  */
 const LeadConnectorWidget = () => {
+  useEffect(installChatViewportGuard, []);
   useEffect(() => {
     const userAgent = navigator.userAgent || "";
     if (userAgent.includes("HeadlessChrome") || userAgent.includes("HairPinnsPrerender")) return;

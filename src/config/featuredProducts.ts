@@ -1,8 +1,9 @@
 /**
  * Featured product handles for homepage and best sellers sections.
- * Add Shopify product handles here to control which products are showcased.
- * Leave empty to fall back to default search/collection behavior.
- */
+ * The named Shopify collection controls the main shelf once configured.
+ * Existing handles remain a migration fallback only; never use random search results.
+*/
+export const HOMEPAGE_PICKS_COLLECTION_HANDLE = "hair-pinns-homepage-picks";
 
 /**
  * Frizz-Free Must-Haves collection — products from this collection appear in the hero grid.

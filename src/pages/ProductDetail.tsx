@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -45,8 +45,14 @@ const buildShopifySrcSet = (url: string, widths: number[]) =>
 const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
 
+const imagesMatch = (left: any, right: any): boolean => Boolean(left && right && (
+  (left.id && right.id && left.id === right.id) || (left.url && right.url && left.url === right.url)
+));
+
 const ProductDetail = () => {
   const { handle } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedVariant = searchParams.get("variant");
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentImage, setCurrentImage] = useState(0);
@@ -90,7 +96,10 @@ const ProductDetail = () => {
           setProduct(productData);
 
           const variants = productData.variants.edges;
-          const firstAvailableVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
+          const linkedId = new URLSearchParams(window.location.search).get("variant");
+          const firstAvailableVariant = linkedId
+            ? variants.find((v: any) => v.node.id === linkedId || v.node.id.split('/').pop() === linkedId)?.node
+            : variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
           const viewPrice = parseFloat(
             firstAvailableVariant?.price?.amount
               || productData.priceRange?.minVariantPrice?.amount
@@ -124,17 +133,6 @@ const ProductDetail = () => {
             localStorage.setItem("hp_recent_products", JSON.stringify(filtered.slice(0, 8)));
           } catch {}
 
-          // Set first available variant as default
-          if (firstAvailableVariant) {
-            setActiveVariantId(firstAvailableVariant.id);
-
-            // Set default selected options
-            const defaultOptions: Record<string, string> = {};
-            (firstAvailableVariant.selectedOptions || []).forEach((opt: any) => {
-              defaultOptions[opt.name] = opt.value;
-            });
-            setSelectedOptions(defaultOptions);
-          }
         }
       } catch (error) {
         if (!isMounted) return;
@@ -154,6 +152,40 @@ const ProductDetail = () => {
       clearTimeout(timeoutId);
     };
   }, [handle]);
+
+  // Honour direct links (including sold-out options) and same-page URL changes.
+  // An invalid link must not quietly select a different item for purchase.
+  useEffect(() => {
+    if (!product) return;
+    const variants = product.variants.edges.map((edge: any) => edge.node);
+    const variant = requestedVariant
+      ? variants.find((item: any) => item.id === requestedVariant || item.id.split('/').pop() === requestedVariant)
+      : variants.find((item: any) => item.availableForSale) || variants[0];
+    setActiveVariantId(variant?.id ?? null);
+    setSelectedOptions(Object.fromEntries((variant?.selectedOptions || []).map((option: any) => [option.name, option.value])));
+    const index = product.images?.edges?.findIndex((edge: any) => imagesMatch(edge.node, variant?.image)) ?? -1;
+    setCurrentImage(index >= 0 ? index : 0);
+  }, [product, requestedVariant]);
+
+  const selectVariant = (variant: any) => {
+    setActiveVariantId(variant.id);
+    setSelectedOptions(Object.fromEntries((variant.selectedOptions || []).map((option: any) => [option.name, option.value])));
+    const index = product.images?.edges?.findIndex((edge: any) => imagesMatch(edge.node, variant.image)) ?? -1;
+    if (index >= 0) setCurrentImage(index);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('variant', variant.id.split('/').pop());
+    setSearchParams(nextParams, { replace: true, preventScrollReset: true });
+  };
+
+  const variantsForImage = (image: any) => (product?.variants?.edges || [])
+    .map((edge: any) => edge.node).filter((variant: any) => imagesMatch(image, variant.image));
+
+  const selectImage = (index: number) => {
+    setCurrentImage(index);
+    const matching = variantsForImage(product.images.edges[index]?.node);
+    // Shared or lifestyle images cannot identify an exact purchasable variant.
+    if (matching.length === 1) selectVariant(matching[0]);
+  };
 
   // Prerender fallback: if Shopify is slow or stalls entirely, inject the
   // readiness marker after a short grace period so the build can snapshot the
@@ -189,25 +221,13 @@ const ProductDetail = () => {
       );
     });
 
-    if (matchingVariant) {
-      setActiveVariantId(matchingVariant.node.id);
-
-      // Update image to match variant if available
-      const variantImage = matchingVariant.node.image;
-      if (variantImage && product.images?.edges) {
-        const imageIndex = product.images.edges.findIndex(
-          (edge: any) => edge.node.id === variantImage.id || edge.node.url === variantImage.url
-        );
-        if (imageIndex !== -1) {
-          setCurrentImage(imageIndex);
-        }
-      }
-    }
+    if (matchingVariant) selectVariant(matchingVariant.node);
+    else setActiveVariantId(null);
   };
 
   // Handle add to bag - use server-side Edge Function
   const handleAddToBag = async () => {
-    if (!activeVariantId || !product) return;
+    if (!activeVariantId || !product?.variants.edges.some((edge: any) => edge.node.id === activeVariantId && edge.node.availableForSale)) return;
     
     setAddingToCart(true);
     
@@ -264,7 +284,7 @@ const ProductDetail = () => {
 
   // Handle buy now - server-side checkout
   const handleBuyNow = async () => {
-    if (!activeVariantId || !product) return;
+    if (!activeVariantId || !product?.variants.edges.some((edge: any) => edge.node.id === activeVariantId && edge.node.availableForSale)) return;
     
     setBuyingNow(true);
     
@@ -316,13 +336,13 @@ const ProductDetail = () => {
   const nextImage = () => {
     const edges = product?.images?.edges;
     if (!edges?.length) return;
-    setCurrentImage((prev) => (prev + 1) % edges.length);
+    selectImage((currentImage + 1) % edges.length);
   };
 
   const prevImage = () => {
     const edges = product?.images?.edges;
     if (!edges?.length) return;
-    setCurrentImage((prev) => (prev - 1 + edges.length) % edges.length);
+    selectImage((currentImage - 1 + edges.length) % edges.length);
   };
 
   const variantEdges = product?.variants?.edges ?? [];
@@ -391,13 +411,7 @@ const ProductDetail = () => {
     );
   }
 
-  // Get active variant details (null-safe) - fallback to first variant if activeVariantId doesn't match
-  let activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
-  if (!activeVariant && variantEdges.length > 0) {
-    // Selected variant no longer exists - prefer first available variant
-    const firstAvailable = variantEdges.find((e: any) => e.node.availableForSale)?.node || variantEdges[0]?.node;
-    activeVariant = firstAvailable;
-  }
+  const activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
   const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
   const compareAtPrice = activeVariant?.compareAtPrice?.amount
     ? parseFloat(activeVariant.compareAtPrice.amount)
@@ -591,7 +605,7 @@ const ProductDetail = () => {
                         <button
                           key={index}
                           type="button"
-                          onClick={() => setCurrentImage(index)}
+                          onClick={() => selectImage(index)}
                           className="group/dot w-11 h-11 flex items-center justify-center focus-visible:outline-none"
                           aria-label={`View image ${index + 1}`}
                           aria-current={index === currentImage ? "true" : undefined}
@@ -614,8 +628,10 @@ const ProductDetail = () => {
                     {images.map((image: any, index: number) => (
                       <button
                         key={index}
-                        onClick={() => setCurrentImage(index)}
-                        aria-label={`View thumbnail ${index + 1}`}
+                        type="button"
+                        onClick={() => selectImage(index)}
+                        aria-label={variantsForImage(image).length === 1 ? `Select ${variantsForImage(image)[0].title} — image ${index + 1}` : `View gallery image ${index + 1} (does not change selected options)`}
+                        aria-pressed={index === currentImage}
                         className={`aspect-square overflow-hidden border transition-all ${
                           index === currentImage ? "border-[hsl(var(--after-hours-plum))]" : "border-[hsl(var(--after-hours-plum)/0.14)] hover:border-[hsl(var(--after-hours-plum)/0.4)]"
                         }`}
@@ -652,7 +668,7 @@ const ProductDetail = () => {
                   <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
                     Product / {product.vendor || "Hair Pinns"}
                   </p>
-                  <h1 className="mt-4 max-w-[13ch] font-heading text-[clamp(3rem,7vw,5.8rem)] leading-[0.91] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
+                  <h1 className="mt-4 max-w-[24ch] font-heading text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.025em] text-[hsl(var(--after-hours-plum))]">
                     {product.title}
                   </h1>
                 </div>
@@ -661,7 +677,7 @@ const ProductDetail = () => {
                   <div className="flex items-end justify-between gap-4">
                     <div className="flex flex-wrap items-baseline gap-3">
                       <span className="font-heading text-3xl text-[hsl(var(--after-hours-plum))]">
-                        {formatPrice(Number.isFinite(price) ? price : 0, "AUD")}
+                        {activeVariant ? formatPrice(Number.isFinite(price) ? price : 0, "AUD") : "Choose an option"}
                       </span>
                       {compareAtPrice && compareAtPrice > price && (
                         <span className="text-sm text-[hsl(var(--after-hours-plum)/0.58)] line-through">
@@ -670,7 +686,7 @@ const ProductDetail = () => {
                       )}
                     </div>
                     <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${isAvailable ? "text-[hsl(var(--after-hours-plum)/0.72)]" : "text-destructive"}`}>
-                      {availability.label}
+                      {activeVariant ? availability.label : "Option unavailable"}
                     </p>
                   </div>
                   <p className="mt-2 text-xs text-[hsl(var(--after-hours-plum)/0.62)]">Australian dollars. Tax included.</p>
@@ -704,6 +720,9 @@ const ProductDetail = () => {
                     </Select>
                   </div>
                 ))}
+
+                {!activeVariant && <p role="status" className="text-sm text-destructive">This option is not available. Please choose a style above; no alternative has been added to your bag.</p>}
+                {images.length > 1 && <p className="text-sm text-muted-foreground">Select a labelled style to choose your brush or product. Gallery-only photographs do not change your selection.</p>}
 
                 <div data-product-purchase-actions="" className="space-y-3">
                   <Button

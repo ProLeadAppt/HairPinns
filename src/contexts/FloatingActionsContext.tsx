@@ -71,9 +71,10 @@ export const FloatingActionsProvider = ({ children }: PropsWithChildren) => {
         Array.from(document.querySelectorAll(selector)).some((element) => visibleElements.get(element) === true)
       ));
 
-      setDockBlocked(hasVisibleMatch(DOCK_BLOCKERS));
+      const chatOpen = Boolean(document.querySelector('chat-widget[data-active="true"]'));
+      setDockBlocked(chatOpen || hasVisibleMatch(DOCK_BLOCKERS));
       setScrollTopBlocked(
-        hasVisibleMatch(SCROLL_BLOCKERS) || Boolean(document.querySelector(EDITORIAL_ROUTES)),
+        chatOpen || hasVisibleMatch(SCROLL_BLOCKERS) || Boolean(document.querySelector(EDITORIAL_ROUTES)),
       );
     };
 
@@ -102,7 +103,7 @@ export const FloatingActionsProvider = ({ children }: PropsWithChildren) => {
 
     refreshObservedElements();
     const mountObserver = new MutationObserver(refreshObservedElements);
-    mountObserver.observe(document.body, { childList: true, subtree: true });
+    mountObserver.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-active'] });
 
     return () => {
       intersectionObserver.disconnect();
