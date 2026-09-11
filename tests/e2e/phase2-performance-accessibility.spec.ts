@@ -267,6 +267,45 @@ test('operational routes still render the React application', async ({ page }) =
   }
 });
 
+test('returning customers receive one cache recovery reload without losing local state', async ({ page }) => {
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('hp_cart_id')) {
+      localStorage.setItem('hp_cart_id', 'gid://shopify/Cart/returning-customer');
+      localStorage.setItem('hp_recent_products', JSON.stringify(['wet-brush-original-detangler']));
+    }
+  });
+
+  let topLevelNavigations = 0;
+  page.on('framenavigated', frame => {
+    if (frame === page.mainFrame()) topLevelNavigations += 1;
+  });
+
+  await page.goto('/collections?source=returning', { waitUntil: 'domcontentloaded' });
+  const initialNavigations = topLevelNavigations;
+  await page.evaluate(() => {
+    navigator.serviceWorker.dispatchEvent(new MessageEvent('message', {
+      data: { type: 'sw-killswitch-reload' },
+    }));
+  });
+  await page.waitForFunction(() => !window.location.search.includes('__sw_killed'));
+  await expect.poll(() => topLevelNavigations).toBeGreaterThan(initialNavigations);
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('hp_cart_id')))
+    .toBe('gid://shopify/Cart/returning-customer');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('hp_recent_products')))
+    .toBe(JSON.stringify(['wet-brush-original-detangler']));
+
+  await page.waitForTimeout(750);
+  const recoveredNavigations = topLevelNavigations;
+  await page.evaluate(() => {
+    navigator.serviceWorker.dispatchEvent(new MessageEvent('message', {
+      data: { type: 'sw-killswitch-reload' },
+    }));
+  });
+  await page.waitForTimeout(500);
+  expect(topLevelNavigations).toBe(recoveredNavigations);
+  expect(new URL(page.url()).searchParams.get('source')).toBe('returning');
+});
+
 test('shared business claims and schemas stay truthful', async ({ page }) => {
   for (const route of ['/', '/services', '/reviews']) {
     await page.goto(route);
