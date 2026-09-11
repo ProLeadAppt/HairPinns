@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,6 +7,17 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SEARCH_ROOTS = ['src', 'public', 'scripts'];
 const TEXT_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.json', '.txt', '.html', '.toml', '.xml']);
+
+const trackedEnvironmentFiles = execFileSync(
+  'git',
+  ['ls-files', '.env', '.env.local', '.env.*.local'],
+  { cwd: ROOT, encoding: 'utf8' },
+).trim();
+assert.equal(
+  trackedEnvironmentFiles,
+  '',
+  `Environment files must never be tracked by Git: ${trackedEnvironmentFiles}`,
+);
 
 async function textFiles(relativeDir) {
   const absoluteDir = path.join(ROOT, relativeDir);
