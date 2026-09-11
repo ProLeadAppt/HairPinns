@@ -196,7 +196,7 @@ const Index = () => {
             >
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="border-t border-[hsl(var(--after-hours-plum)/0.18)] pt-6">
-                  <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
+                  <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">
                     02 / Jena’s shelf
                   </p>
                   <div className="h-12 w-3/4 max-w-xl animate-pulse bg-[hsl(var(--after-hours-plum)/0.1)]" />

@@ -12,8 +12,8 @@ const ReviewProofBadge = ({
   className = "",
 }: ReviewProofBadgeProps) => {
   const toneClass = tone === "dark"
-    ? "border-[hsl(var(--after-hours-cream)/0.28)] text-[hsl(var(--after-hours-cream))]"
-    : "border-[hsl(var(--after-hours-plum)/0.24)] text-[hsl(var(--after-hours-plum))]";
+    ? "border-[hsl(var(--hp-ink)/0.28)] text-[hsl(var(--hp-ink))]"
+    : "border-[hsl(var(--after-hours-plum)/0.24)] text-[hsl(var(--hp-ink))]";
 
   return (
     <a

@@ -16,18 +16,18 @@ const AuthorBio = () => (
         />
       </Link>
       <div>
-        <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.6)]">The person behind the advice</p>
-        <h2 id="author-bio-heading" className="mt-3 font-heading text-3xl font-normal leading-tight text-[hsl(var(--after-hours-plum))]">Written by Jena Pinn.</h2>
+        <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.6)]">The person behind the advice</p>
+        <h2 id="author-bio-heading" className="mt-3 font-heading text-3xl font-normal leading-tight text-[hsl(var(--hp-ink))]">Written by Jena Pinn.</h2>
         <p className="mt-3 font-mono text-[0.66rem] uppercase tracking-[0.12em] text-[hsl(var(--after-hours-copper))]" aria-label="Verified salon owner, behind the chair since 2009">
           Verified salon owner · Behind the chair since 2009
         </p>
-        <p className="mt-4 text-sm leading-7 text-[hsl(var(--after-hours-plum)/0.72)]">
+        <p className="mt-4 text-sm leading-7 text-[hsl(var(--hp-ink)/0.72)]">
           Jena owns and runs Hair Pinns in Bangor, Sutherland Shire. She has worked behind the chair since 2009 and specialises in smoothing, foiling, colour, and practical home hair care. Every product recommended here is one she uses with clients.
         </p>
         <nav aria-label="More from Jena" className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-[0.66rem] font-semibold uppercase tracking-[0.12em]">
-          <Link to="/about" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Meet Jena</Link>
-          <Link to="/booking" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Book a visit</Link>
-          <a href={ENTITY_REGISTRY.profiles.instagram} target="_blank" rel="noopener noreferrer" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Instagram ↗</a>
+          <Link to="/about" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--hp-ink))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Meet Jena</Link>
+          <Link to="/booking" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--hp-ink))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Book a visit</Link>
+          <a href={ENTITY_REGISTRY.profiles.instagram} target="_blank" rel="noopener noreferrer" className="border-b border-[hsl(var(--after-hours-plum)/0.35)] !text-[hsl(var(--hp-ink))] hover:border-[hsl(var(--after-hours-copper))] hover:no-underline">Instagram ↗</a>
         </nav>
       </div>
     </div>

@@ -28,7 +28,7 @@ const ProductBadges = ({
         </Badge>
       )}
       {isFastMoving && (
-        <Badge variant="default" className="flex items-center gap-1 bg-orange-500 hover:bg-orange-600">
+        <Badge variant="default" className="flex items-center gap-1 bg-brand-500 hover:bg-brand-600">
           <Flame className="w-3 h-3" />
           {soldLast24h}+ sold today
         </Badge>

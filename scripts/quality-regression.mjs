@@ -240,7 +240,9 @@ assert.match(trackingScripts, /googletagmanager\.com\/gtag\/js/, 'Deferred track
 assert.doesNotMatch(trackingScripts, /gtag\?\.\(['"]config['"]/, 'Deferred loader must not queue a duplicate GA4 config/page view');
 
 const indexCss = await readFile(path.join(ROOT, 'src/index.css'), 'utf8');
-assert.match(indexCss, /--after-hours-near-black:\s*288 100% 6%;\s*\/\* #18001E \*\//, 'After-Hours footer near-black must remain a semantic token');
+assert.match(indexCss, /--hp-lavender:\s*280 47\.3684% 96\.2745%/, 'Jena’s light lavender surface must remain a shared token');
+assert.match(indexCss, /--hp-purple:\s*280 40\.7767% 40\.3922%/, 'Jena’s brighter purple must remain a shared token');
+assert.match(indexCss, /--after-hours-copper:\s*var\(--hp-purple\)/, 'Legacy copper accents must use Jena’s purple palette');
 
 const heroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
 assert.match(heroSource, /Shop Jena's shelf/, 'Hero CTA must expose its visible shopping label');
@@ -327,8 +329,9 @@ assert.doesNotMatch(indexCss, /font-family:\s*"Fraunces"|fraunces-(?:italic-)?la
 const footerSource = await readFile(path.join(ROOT, 'src/components/Footer.tsx'), 'utf8');
 const leadConnectorSource = await readFile(path.join(ROOT, 'src/components/LeadConnectorWidget.tsx'), 'utf8');
 assert.match(footerSource, /data-home-footer=""/, 'Footer must expose a stable marker for floating-control suppression');
-assert.match(footerSource, /after-hours-near-black[\s\S]*after-hours-copper[\s\S]*after-hours-cream/, 'Footer must continue the semantic After-Hours palette');
-assert.match(footerSource, /hairPinnsLogo[\s\S]*brightness-0 invert/, 'Footer must retain the real Hair Pinns logo with dark-background treatment');
+assert.match(footerSource, /bg-\[hsl\(var\(--hp-lavender\)\)\][\s\S]*text-\[hsl\(var\(--hp-ink\)/, 'Footer must use a light lavender surface and readable ink');
+assert.match(footerSource, /src=\{hairPinnsLogo\}/, 'Footer must retain the real Hair Pinns logo');
+assert.doesNotMatch(footerSource, /brightness-0 invert/, 'The logo must remain recognisable in its original colours on the light footer');
 assert.match(footerSource, /form_name: 'newsletter_footer'[\s\S]*consent_marketing: true[\s\S]*event: 'newsletter_subscription'/, 'Footer newsletter must retain GHL capture, consent, and attribution');
 assert.match(leadConnectorSource, /leadconnector-widget-loader[\s\S]*data-widget-id[\s\S]*setTimeout\(load, 8000\)/, 'Application widget loader must retain intent loading and the eight-second fallback');
 assert.doesNotMatch(footerSource, /leadconnectorhq|data-widget-id/, 'Footer must not own application-level LeadConnector loading');
@@ -340,7 +343,7 @@ for (const route of ['/collections', '/blog', '/policies/shipping', '/policies/r
 assert.match(footerSource, /BUSINESS_WEEK_DISPLAY as salonHours[\s\S]*salonHours\.map\(\(\[day, hours\]\)/, 'Footer must render the seven-day schedule projected from the entity registry');
 assert.match(footerSource, /min-h-11[\s\S]*aria-label="Footer navigation"[\s\S]*aria-label="Legal links"/, 'Footer navigation and legal links must retain 44px touch targets and named regions');
 assert.match(footerSource, /munyal\.com\.au[\s\S]*Visa[\s\S]*Mastercard[\s\S]*Afterpay[\s\S]*Zip/, 'Footer must retain Munyal credit and accepted payment labels');
-assert.match(footerSource, /aria-label="Accepted payment methods"[\s\S]*after-hours-cream\)\/0\.68|after-hours-cream\)\/0\.68[^\n]*aria-label="Accepted payment methods"/, 'Small footer payment labels need accessible cream contrast');
+assert.match(footerSource, /aria-label="Accepted payment methods"[\s\S]*hp-ink\)\/0\.68|hp-ink\)\/0\.68[^\n]*aria-label="Accepted payment methods"/, 'Small footer payment labels need readable ink on the light surface');
 assert.doesNotMatch(footerSource, /bg-muted|rounded-xl|rounded-full|<Instagram|<Facebook|<MapPin|<Phone/, 'After-Hours footer must not regress to pale template cards or generic icon circles');
 
 const headerSource = await readFile(path.join(ROOT, 'src/components/Header.tsx'), 'utf8');
@@ -358,7 +361,7 @@ assert.match(headerSource, /\[pathname\][\s\S]*event\.key === "Escape"[\s\S]*set
 assert.match(headerSource, /trackBookingClick\("header_mobile"/, 'Mobile drawer must retain booking attribution');
 assert.match(mobileMenuSheetSource, /onOpenAutoFocus[\s\S]*firstLinkRef\.current\?\.focus\(\)[\s\S]*onCloseAutoFocus[\s\S]*onCloseAutoFocus\(\)/, 'Mobile drawer must retain deterministic opening and delegated close focus');
 assert.match(headerSource, /mobileNavLinkClass[\s\S]*min-h-11/, 'Mobile drawer must retain 44px navigation targets');
-assert.match(headerSource, /after-hours-near-black[\s\S]*after-hours-cream[\s\S]*after-hours-copper/, 'Header must use the semantic After-Hours palette');
+assert.match(headerSource, /hp-lavender[\s\S]*hp-ink/, 'Header must use Jena’s light palette');
 assert.doesNotMatch(headerSource, /rounded-lg border border-border bg-muted\/30/, 'Mobile concerns must not regress to generic rounded tiles');
 
 const shopDropdownSource = await readFile(path.join(ROOT, 'src/components/navigation/ShopDropdown.tsx'), 'utf8');
@@ -371,7 +374,7 @@ const collectionDetailSource = await readFile(path.join(ROOT, 'src/pages/Collect
 const breadcrumbsSource = await readFile(path.join(ROOT, 'src/components/Breadcrumbs.tsx'), 'utf8');
 assert.match(breadcrumbsSource, /<Fragment[\s\S]*<BreadcrumbItem>[\s\S]*<BreadcrumbSeparator/, 'Breadcrumbs must keep valid ordered-list semantics without div wrappers');
 assert.doesNotMatch(breadcrumbsSource, /<div key=\{index\}/, 'Breadcrumb lists must not wrap list items in direct div children');
-assert.match(indexCss, /--after-hours-paper:\s*270 67% 99%/, 'After-Hours paper must remain the approved #FCFAFE semantic token');
+assert.match(indexCss, /--after-hours-paper:\s*var\(--hp-white\)/, 'Legacy paper surfaces must use the approved white refresh token');
 assert.match(collectionsSource, /SHOP_TAXONOMY\.map[\s\S]*grid grid-cols-2[\s\S]*DestinationCard/, 'Collection index must render the three curated paths as a two-column mobile catalogue');
 assert.match(collectionsSource, /collectionImageSizes = "\(max-width: 767px\) 50vw/, 'Collection index must request mobile half-width Shopify image candidates');
 assert.match(collectionsSource, /role="tablist"[\s\S]*activePath[\s\S]*role="tabpanel"/, 'Collection index must expose an accessible three-path selector');
@@ -427,8 +430,8 @@ assert.doesNotMatch(productRecommendationsSource, /content-visibility-auto/, 'As
 assert.match(productRecommendationsSource, /RecommendationContext = "collection" \| "catalogue" \| "curated"/, 'Recommendation copy must reflect its actual data relationship');
 assert.match(productRecommendationsSource, /More from this range[\s\S]*More to browse/, 'Recommendation shelf needs truthful collection and catalogue headings');
 assert.match(productRecommendationsSource, /grid-cols-2[\s\S]*object-contain[\s\S]*View product/, 'Recommendation shelf must stay compact, identifiable, and honest on mobile');
-assert.match(productRecommendationsSource, /!text-\[hsl\(var\(--after-hours-plum\)\)\][\s\S]*data-recommendation-catalogue=""[\s\S]*Browse catalogue/, 'Recommendation shelf must resist global link colour overrides and balance the mobile final row');
-assert.match(productRecommendationsSource, /text-xs text-\[hsl\(var\(--after-hours-plum\)\/0\.72\)\] line-through/, 'Recommendation compare-at prices must retain AA contrast');
+assert.match(productRecommendationsSource, /!text-\[hsl\(var\(--hp-ink\)\)\][\s\S]*data-recommendation-catalogue=""[\s\S]*Browse catalogue/, 'Recommendation shelf must resist global link colour overrides and balance the mobile final row');
+assert.match(productRecommendationsSource, /text-xs text-\[hsl\(var\(--hp-ink\)\/0\.72\)\] line-through/, 'Recommendation compare-at prices must retain AA contrast');
 assert.doesNotMatch(productRecommendationsSource, /Complete the Set|Add to Bag|hover:shadow|rounded-card/, 'Recommendations must not imply a set, fake add-to-cart, or regress to template cards');
 assert.match(socialShareSource, /variant\?: "fixed" \| "inline"[\s\S]*variant = "fixed"/, 'Shared social controls must preserve the BlogPost fixed default and expose the PDP inline variant');
 assert.match(productDetailSource, /variant="editorial"[\s\S]*data-product-share-close=""[\s\S]*variant="inline"/, 'PDP must route conditional related content into the inline share close');
@@ -478,7 +481,7 @@ assert.match(serviceDetailExperienceSource, /data-service-detail-homecare[\s\S]*
 assert.match(serviceDetailExperienceSource, /data-service-detail-related[\s\S]*relatedServices\.map[\s\S]*<RelatedContent/, 'Service-detail renderer must preserve related services and editorial guidance');
 assert.match(serviceDetailExperienceSource, /BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.address\.full[\s\S]*Back to the service menu/, 'Service-detail close must preserve canonical phone, address, and directory return');
 assert.doesNotMatch(serviceDetailExperienceSource, /same-day appointments|Starting from|rounded-card|hover:scale|shadow-lg/, 'Service-detail renderer must not restore unsupported availability, inexact pricing, or generic conversion-card styling');
-assert.match(breadcrumbsSource, /variant\?: "default" \| "dark"[\s\S]*isDark[\s\S]*after-hours-cream/, 'Shared breadcrumbs must preserve the default and expose an explicit dark-hero variant');
+assert.match(breadcrumbsSource, /variant\?: "default" \| "dark"[\s\S]*isDark[\s\S]*hp-ink/, 'Shared breadcrumbs must remain readable on the refreshed light headers');
 
 // After-Hours booking handoff invariants.
 for (const marker of ['data-booking-page', 'data-booking-hero', 'data-booking-steps', 'data-booking-notes', 'data-booking-faq', 'data-booking-close']) {

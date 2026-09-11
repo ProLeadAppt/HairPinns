@@ -33,16 +33,16 @@ const LeadMagnetBox = () => {
   };
 
   return (
-    <aside className="my-16 bg-[hsl(var(--after-hours-near-black))] px-5 py-10 text-[hsl(var(--after-hours-cream))] sm:px-8 sm:py-12" aria-labelledby="guide-title">
+    <aside className="my-16 bg-[hsl(var(--hp-lavender))] px-5 py-10 text-[hsl(var(--hp-ink))] sm:px-8 sm:py-12" aria-labelledby="guide-title">
       <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-12">
         <header>
           <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Keep the good advice</p>
-          <h2 id="guide-title" className="mt-4 max-w-[9ch] font-heading text-[clamp(2.4rem,5vw,4rem)] font-normal leading-[0.95] tracking-[-0.04em] text-[hsl(var(--after-hours-cream))]">Jena’s hair care guide.</h2>
-          <p className="mt-5 text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.68)]">Practical routines, product notes, and occasional salon updates. No inbox clutter.</p>
+          <h2 id="guide-title" className="mt-4 max-w-[9ch] font-heading text-[clamp(2.4rem,5vw,4rem)] font-normal leading-[0.95] tracking-[-0.04em] text-[hsl(var(--hp-ink))]">Jena’s hair care guide.</h2>
+          <p className="mt-5 text-sm leading-6 text-[hsl(var(--hp-ink)/0.68)]">Practical routines, product notes, and occasional salon updates. No inbox clutter.</p>
         </header>
 
-        <form onSubmit={handleSubmit} className="border-t border-[hsl(var(--after-hours-cream)/0.26)] pt-2">
-          <label className="block border-b border-[hsl(var(--after-hours-cream)/0.2)] py-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.58)]">
+        <form onSubmit={handleSubmit} className="border-t border-[hsl(var(--hp-ink)/0.26)] pt-2">
+          <label className="block border-b border-[hsl(var(--hp-ink)/0.2)] py-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.58)]">
             Email address
             <input
               type="email"
@@ -50,23 +50,23 @@ const LeadMagnetBox = () => {
               onChange={(event) => setEmail(event.target.value)}
               required
               placeholder="you@example.com"
-              className="mt-2 min-h-11 w-full border-0 bg-transparent p-0 text-base font-normal normal-case tracking-normal text-[hsl(var(--after-hours-cream))] placeholder:text-[hsl(var(--after-hours-cream)/0.4)] focus-visible:ring-0"
+              className="mt-2 min-h-11 w-full border-0 bg-transparent p-0 text-base font-normal normal-case tracking-normal text-[hsl(var(--hp-ink))] placeholder:text-[hsl(var(--hp-ink)/0.4)] focus-visible:ring-0"
             />
           </label>
-          <label className="block border-b border-[hsl(var(--after-hours-cream)/0.2)] py-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.58)]">
+          <label className="block border-b border-[hsl(var(--hp-ink)/0.2)] py-4 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.58)]">
             Phone, optional
             <input
               type="tel"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
               placeholder="04xx xxx xxx"
-              className="mt-2 min-h-11 w-full border-0 bg-transparent p-0 text-base font-normal normal-case tracking-normal text-[hsl(var(--after-hours-cream))] placeholder:text-[hsl(var(--after-hours-cream)/0.4)] focus-visible:ring-0"
+              className="mt-2 min-h-11 w-full border-0 bg-transparent p-0 text-base font-normal normal-case tracking-normal text-[hsl(var(--hp-ink))] placeholder:text-[hsl(var(--hp-ink)/0.4)] focus-visible:ring-0"
             />
           </label>
-          <div className="py-5 text-[hsl(var(--after-hours-cream))] [&_a]:!text-[hsl(var(--after-hours-cream))]">
+          <div className="py-5 text-[hsl(var(--hp-ink))] [&_a]:!text-[hsl(var(--hp-ink))]">
             <ConsentRow checked={consent} onCheckedChange={setConsent} required id="lead_magnet_consent" />
           </div>
-          <button type="submit" className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-copper))]">
+          <button type="submit" className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--hp-lilac))]">
             Send me the guide <span aria-hidden="true">→</span>
           </button>
         </form>

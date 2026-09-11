@@ -25,7 +25,7 @@ const Breadcrumbs = ({ items, className, variant = "default" }: BreadcrumbsProps
 
   return (
     <Breadcrumb className={className}>
-      <BreadcrumbList style={isDark ? { color: "hsl(var(--after-hours-cream) / 0.7)" } : undefined}>
+      <BreadcrumbList style={isDark ? { color: "hsl(var(--hp-ink) / 0.7)" } : undefined}>
         {items.map((item, index) => (
           <Fragment key={`${item.label}-${index}`}>
             <BreadcrumbItem>
@@ -34,7 +34,7 @@ const Breadcrumbs = ({ items, className, variant = "default" }: BreadcrumbsProps
                   <Link
                     to={item.href}
                     className={isDark ? undefined : "text-foreground/80 hover:text-foreground"}
-                    style={isDark ? { color: "hsl(var(--after-hours-cream) / 0.72)" } : undefined}
+                    style={isDark ? { color: "hsl(var(--hp-ink) / 0.72)" } : undefined}
                   >
                     {item.label}
                   </Link>
@@ -42,7 +42,7 @@ const Breadcrumbs = ({ items, className, variant = "default" }: BreadcrumbsProps
               ) : (
                 <BreadcrumbPage
                   className={isDark ? undefined : "text-foreground"}
-                  style={isDark ? { color: "hsl(var(--after-hours-cream) / 0.86)" } : undefined}
+                  style={isDark ? { color: "hsl(var(--hp-ink) / 0.86)" } : undefined}
                 >
                   {item.label}
                 </BreadcrumbPage>

@@ -359,18 +359,18 @@ const CollectionDetail = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_10rem] lg:items-end">
               <div className="flex-1">
-                <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">Collection / Hair Pinns</p>
-                <h1 className="mb-4 max-w-[18ch] font-heading text-[clamp(2.6rem,5vw,5rem)] leading-[0.94] tracking-[-0.035em] text-[hsl(var(--after-hours-plum))]">
+                <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">Collection / Hair Pinns</p>
+                <h1 className="mb-4 max-w-[18ch] font-heading text-[clamp(2.6rem,5vw,5rem)] leading-[0.94] tracking-[-0.035em] text-[hsl(var(--hp-ink))]">
                   {collectionTitle}
                 </h1>
-                <p className="max-w-3xl text-base leading-7 text-[hsl(var(--after-hours-plum)/0.72)] md:text-lg">
+                <p className="max-w-3xl text-base leading-7 text-[hsl(var(--hp-ink)/0.72)] md:text-lg">
                   {collectionIntroduction}
                 </p>
               </div>
               {sortedProducts.length > 0 && (
                 <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-3 lg:text-right">
-                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Products</p>
-                  <p className="font-heading text-3xl text-[hsl(var(--after-hours-plum))]">{sortedProducts.length}</p>
+                  <p className="text-[0.62rem] uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Products</p>
+                  <p className="font-heading text-3xl text-[hsl(var(--hp-ink))]">{sortedProducts.length}</p>
                 </div>
               )}
             </div>
@@ -455,7 +455,7 @@ const CollectionDetail = () => {
                       {product.availability?.schema === "BackOrder" && (
                         <Badge
                           variant="outline"
-                          className="absolute left-3 top-3 rounded-none border-[hsl(var(--after-hours-copper))] bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]"
+                          className="absolute left-3 top-3 rounded-none border-[hsl(var(--after-hours-copper))] bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--hp-ink))]"
                         >
                           Available to order
                         </Badge>
@@ -464,7 +464,7 @@ const CollectionDetail = () => {
 
                     {/* Content */}
                     <div className="flex flex-1 flex-col pt-4">
-                      <h3 className="mb-2 line-clamp-3 font-heading text-base leading-tight text-[hsl(var(--after-hours-plum))] sm:text-lg">
+                      <h3 className="mb-2 line-clamp-3 font-heading text-base leading-tight text-[hsl(var(--hp-ink))] sm:text-lg">
                         <Link
                           to={`/products/${product.handle}`}
                           className="transition-colors hover:text-[hsl(var(--after-hours-copper))]"
@@ -486,7 +486,7 @@ const CollectionDetail = () => {
                             : "";
                           return (
                             <>
-                              <p className="text-lg font-semibold text-[hsl(var(--after-hours-plum))] sm:text-2xl">{product.pricePrefix}{priceText}</p>
+                              <p className="text-lg font-semibold text-[hsl(var(--hp-ink))] sm:text-2xl">{product.pricePrefix}{priceText}</p>
                               {compareText && (
                                 <p className="text-sm font-semibold text-muted-foreground line-through decoration-muted-foreground/30">
                                   {compareText}
@@ -496,7 +496,7 @@ const CollectionDetail = () => {
                           );
                         })()}
                       </div>
-                      <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--after-hours-plum)/0.62)]">Afterpay &middot; Zip available</p>
+                      <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--hp-ink)/0.62)]">Afterpay &middot; Zip available</p>
 
                       {/* Actions */}
                       <div className="mt-auto flex gap-2 border-t border-[hsl(var(--after-hours-plum)/0.14)] pt-3">
@@ -546,11 +546,11 @@ const CollectionDetail = () => {
           <section className="border-t border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-10 md:py-14" aria-labelledby="about-collection-heading">
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
               <details className="group border-y border-[hsl(var(--after-hours-plum)/0.2)] py-5">
-                <summary id="about-collection-heading" className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-heading text-2xl text-[hsl(var(--after-hours-plum))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
+                <summary id="about-collection-heading" className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-heading text-2xl text-[hsl(var(--hp-ink))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
                   About this collection
                   <span className="text-[hsl(var(--after-hours-copper))] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                 </summary>
-                <p className="max-w-3xl pb-2 pt-4 text-sm leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">{collectionDescription}</p>
+                <p className="max-w-3xl pb-2 pt-4 text-sm leading-7 text-[hsl(var(--hp-ink)/0.74)]">{collectionDescription}</p>
               </details>
             </div>
           </section>
@@ -560,17 +560,17 @@ const CollectionDetail = () => {
           <section className="border-t border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] py-12 md:py-16" aria-labelledby="collection-faq-heading">
             <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
               <div>
-                <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.72)]">Before you choose</p>
-                <h2 id="collection-faq-heading" className="mt-4 max-w-[10ch] font-heading text-4xl leading-[0.96] text-[hsl(var(--after-hours-plum))]">Questions about this range.</h2>
+                <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.72)]">Before you choose</p>
+                <h2 id="collection-faq-heading" className="mt-4 max-w-[10ch] font-heading text-4xl leading-[0.96] text-[hsl(var(--hp-ink))]">Questions about this range.</h2>
               </div>
               <div className="border-t border-[hsl(var(--after-hours-plum)/0.2)]">
                 {faqs.map((faq) => (
                   <details key={faq.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.2)] py-4">
-                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-[hsl(var(--after-hours-plum))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
+                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-[hsl(var(--hp-ink))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
                       {faq.question}
                       <span className="shrink-0 text-[hsl(var(--after-hours-copper))] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                     </summary>
-                    <p className="pb-2 pr-8 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.72)]">{faq.answer}</p>
+                    <p className="pb-2 pr-8 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">{faq.answer}</p>
                   </details>
                 ))}
               </div>

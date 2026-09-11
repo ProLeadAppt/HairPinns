@@ -83,21 +83,21 @@ const Footer = () => {
     }
   };
 
-  const linkClass = "inline-flex min-h-11 items-center text-sm text-[hsl(var(--after-hours-cream)/0.76)] transition-colors hover:text-[hsl(var(--after-hours-copper))]";
+  const linkClass = "inline-flex min-h-11 items-center text-sm text-[hsl(var(--hp-ink)/0.76)] transition-colors hover:text-[hsl(var(--after-hours-copper))]";
 
   return (
     <footer
-      className="border-t border-[hsl(var(--after-hours-copper)/0.55)] bg-[hsl(var(--after-hours-near-black))] text-[hsl(var(--after-hours-cream))]"
+      className="border-t border-[hsl(var(--after-hours-copper)/0.55)] bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]"
       data-home-footer=""
     >
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
-        <div className="grid gap-10 border-b border-[hsl(var(--after-hours-cream)/0.18)] pb-10 md:grid-cols-12 md:gap-10 lg:pb-12">
+        <div className="grid gap-10 border-b border-[hsl(var(--hp-purple)/0.18)] pb-10 md:grid-cols-12 md:gap-10 lg:pb-12">
           <div className="min-w-0 md:col-span-5">
             <Link to="/" className="inline-flex min-h-11 items-center" aria-label="Hair Pinns home">
               <img
                 src={hairPinnsLogo}
                 alt="Hair Pinns — Happy Hair Specialist"
-                className="h-14 w-auto brightness-0 invert"
+                className="h-14 w-auto "
                 loading="lazy"
                 decoding="async"
                 width="250"
@@ -107,7 +107,7 @@ const Footer = () => {
             <p className="mt-5 max-w-md font-heading text-[clamp(2rem,5vw,3.7rem)] leading-[1.02] tracking-[-0.035em]">
               Hair care picked by Jena.
             </p>
-            <p className="mt-3 max-w-md text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.7)]">
+            <p className="mt-3 max-w-md text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">
               Shipped anywhere in Australia. Free over {FREE_SHIPPING_THRESHOLD_DISPLAY}.
             </p>
             <div className="mt-4 flex flex-wrap gap-x-7">
@@ -132,14 +132,14 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="min-w-0 md:col-span-7 md:border-l md:border-[hsl(var(--after-hours-cream)/0.18)] md:pl-10 lg:pl-14">
+          <div className="min-w-0 md:col-span-7 md:border-l md:border-[hsl(var(--hp-purple)/0.18)] md:pl-10 lg:pl-14">
             <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
               From behind the chair
             </p>
-            <h2 className="mt-4 max-w-[12ch] font-heading text-[clamp(2rem,6vw,4.5rem)] leading-[0.98] tracking-[-0.04em] text-[hsl(var(--after-hours-cream))]">
+            <h2 className="mt-4 max-w-[12ch] font-heading text-[clamp(2rem,6vw,4.5rem)] leading-[0.98] tracking-[-0.04em] text-[hsl(var(--hp-ink))]">
               Take 10% off your first order.
             </h2>
-            <p id="footer-newsletter-note" className="mt-3 max-w-xl text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.68)]">
+            <p id="footer-newsletter-note" className="mt-3 max-w-xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.68)]">
               Practical hair advice and product news from Jena. Your code arrives by email.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="mt-6 grid max-w-2xl gap-3 sm:grid-cols-[1fr_auto]">
@@ -161,7 +161,7 @@ const Footer = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isSubmitting}
-                className="h-12 rounded-none border-[hsl(var(--after-hours-cream)/0.36)] bg-transparent px-4 text-[hsl(var(--after-hours-cream))] placeholder:text-[hsl(var(--after-hours-cream)/0.48)] focus-visible:ring-[hsl(var(--after-hours-copper))]"
+                className="h-12 rounded-none border-[hsl(var(--hp-purple)/0.36)] bg-transparent px-4 text-[hsl(var(--hp-ink))] placeholder:text-[hsl(var(--hp-ink)/0.48)] focus-visible:ring-[hsl(var(--after-hours-copper))]"
                 aria-describedby="footer-newsletter-note"
                 autoComplete="email"
               />
@@ -169,7 +169,7 @@ const Footer = () => {
                 type="submit"
                 variant="primary"
                 disabled={isSubmitting}
-                className="h-12 rounded-none !bg-[hsl(var(--after-hours-cream))] px-7 font-semibold !text-[hsl(var(--after-hours-plum))] hover:!bg-[hsl(var(--after-hours-copper))]"
+                className="h-12 rounded-none !bg-[hsl(var(--after-hours-cream))] px-7 font-semibold !text-[hsl(var(--hp-ink))] hover:!bg-[hsl(var(--hp-lilac))]"
               >
                 {isSubmitting ? "Joining…" : "Send my code"}
               </Button>
@@ -177,7 +177,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid gap-10 border-b border-[hsl(var(--after-hours-cream)/0.18)] py-10 md:grid-cols-12 md:gap-10 lg:py-12">
+        <div className="grid gap-10 border-b border-[hsl(var(--hp-purple)/0.18)] py-10 md:grid-cols-12 md:gap-10 lg:py-12">
           <div className="min-w-0 md:col-span-5">
             <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
               Visit Hair Pinns
@@ -211,17 +211,17 @@ const Footer = () => {
             <p className="mt-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
               Salon hours
             </p>
-            <dl className="mt-3 grid grid-cols-2 border-t border-[hsl(var(--after-hours-cream)/0.18)] text-sm sm:max-w-md">
+            <dl className="mt-3 grid grid-cols-2 border-t border-[hsl(var(--hp-purple)/0.18)] text-sm sm:max-w-md">
               {salonHours.map(([day, hours]) => (
-                <div key={day} className="flex min-h-11 items-center justify-between gap-3 border-b border-[hsl(var(--after-hours-cream)/0.14)] py-2 odd:pr-4 even:pl-4">
-                  <dt className="text-[hsl(var(--after-hours-cream)/0.58)]">{day}</dt>
+                <div key={day} className="flex min-h-11 items-center justify-between gap-3 border-b border-[hsl(var(--hp-purple)/0.14)] py-2 odd:pr-4 even:pl-4">
+                  <dt className="text-[hsl(var(--hp-ink)/0.58)]">{day}</dt>
                   <dd>{hours}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <nav className="grid min-w-0 grid-cols-2 gap-7 md:col-span-7 md:border-l md:border-[hsl(var(--after-hours-cream)/0.18)] md:pl-10 lg:gap-12 lg:pl-14" aria-label="Footer navigation">
+          <nav className="grid min-w-0 grid-cols-2 gap-7 md:col-span-7 md:border-l md:border-[hsl(var(--hp-purple)/0.18)] md:pl-10 lg:gap-12 lg:pl-14" aria-label="Footer navigation">
             <div>
               <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
                 Shop & learn
@@ -245,7 +245,7 @@ const Footer = () => {
           </nav>
         </div>
 
-        <div className="pt-8 text-xs text-[hsl(var(--after-hours-cream)/0.58)]">
+        <div className="pt-8 text-xs text-[hsl(var(--hp-ink)/0.58)]">
           <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
             <div>
               <p>© {new Date().getFullYear()} Hair Pinns. All rights reserved. Est. by Jena Pinn.</p>
@@ -255,7 +255,7 @@ const Footer = () => {
                   href="https://munyal.com.au"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center text-[hsl(var(--after-hours-cream)/0.8)] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
+                  className="inline-flex min-h-11 items-center text-[hsl(var(--hp-ink)/0.8)] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
                 >
                   Munyal
                 </a>
@@ -268,7 +268,7 @@ const Footer = () => {
               <Link to="/terms" className={linkClass}>Terms</Link>
             </nav>
           </div>
-          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 uppercase tracking-[0.16em] text-[0.62rem] text-[hsl(var(--after-hours-cream)/0.68)]" aria-label="Accepted payment methods">
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 uppercase tracking-[0.16em] text-[0.62rem] text-[hsl(var(--hp-ink)/0.68)]" aria-label="Accepted payment methods">
             <span>Visa</span>
             <span>Mastercard</span>
             <span>Afterpay</span>

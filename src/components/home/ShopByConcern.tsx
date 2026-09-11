@@ -5,9 +5,11 @@ import SectionHeader from "@/components/design-system/SectionHeader";
 import { SHOP_BY_HAIR_NEED } from "@/config/commerceNavigation";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import useViewportImageGate from "@/hooks/useViewportImageGate";
+import { useCollectionArtwork } from "@/hooks/useCollectionArtwork";
 
 const ShopByConcern = () => {
   const { targetRef: listRef, imagesEnabled } = useViewportImageGate<HTMLUListElement>();
+  const { artwork } = useCollectionArtwork(SHOP_BY_HAIR_NEED.map(item => item.handle));
 
   return (
   <Section
@@ -24,12 +26,12 @@ const ShopByConcern = () => {
     />
 
     <ul ref={listRef} className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
-      {SHOP_BY_HAIR_NEED.map((concern) => (
+      {SHOP_BY_HAIR_NEED.map(item => ({ ...item, image: artwork[item.handle]?.url || '/placeholder.svg' })).map((concern) => (
         <li key={concern.handle} className="min-w-[78%] snap-start sm:min-w-0">
           <Link
             to={concern.href}
             aria-label={`Shop ${concern.name.toLowerCase()}`}
-            className="group block h-full overflow-hidden border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[hsl(var(--after-hours-paper))] pt-3 text-[hsl(var(--after-hours-plum))] transition-colors duration-200 hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-4"
+            className="group block h-full overflow-hidden border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[hsl(var(--after-hours-paper))] pt-3 text-[hsl(var(--hp-ink))] transition-colors duration-200 hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-4"
           >
             <div className="aspect-[4/3] overflow-hidden bg-muted">
               <picture>
@@ -54,7 +56,7 @@ const ShopByConcern = () => {
             </div>
             <div className="p-5">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="font-heading text-xl text-[hsl(var(--after-hours-plum))]">{concern.name}</h3>
+                <h3 className="font-heading text-xl text-[hsl(var(--hp-ink))]">{concern.name}</h3>
                 <ArrowRight className="h-4 w-4 shrink-0 text-[hsl(var(--after-hours-copper))] transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </div>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{concern.description}</p>
@@ -67,7 +69,7 @@ const ShopByConcern = () => {
     <div className="mt-8 text-center">
       <Link
         to="/collections"
-        className="inline-flex min-h-11 items-center gap-2 border-b border-[hsl(var(--after-hours-copper))] font-semibold text-[hsl(var(--after-hours-plum))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-4"
+        className="inline-flex min-h-11 items-center gap-2 border-b border-[hsl(var(--after-hours-copper))] font-semibold text-[hsl(var(--hp-ink))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-4"
       >
         Choose another way to shop
         <ArrowRight className="h-4 w-4" aria-hidden="true" />

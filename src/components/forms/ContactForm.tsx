@@ -164,8 +164,8 @@ const ContactForm = ({
   const stateShellClass = variant === "editorial"
     ? "border-y border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-10 text-center"
     : "rounded-card p-8 text-center";
-  const editorialButtonClass = "!min-h-12 !rounded-none !border-[hsl(var(--after-hours-plum)/0.42)] !bg-transparent !px-5 !text-sm !font-semibold !text-[hsl(var(--after-hours-plum))] hover:!border-[hsl(var(--after-hours-copper))] hover:!bg-transparent";
-  const editorialSubmitClass = "!min-h-12 !rounded-none !bg-[hsl(var(--after-hours-plum))] !px-5 !text-sm !font-semibold !text-[hsl(var(--after-hours-cream))] hover:!bg-[hsl(var(--after-hours-copper))]";
+  const editorialButtonClass = "!min-h-12 !rounded-none !border-[hsl(var(--after-hours-plum)/0.42)] !bg-transparent !px-5 !text-sm !font-semibold !text-[hsl(var(--hp-ink))] hover:!border-[hsl(var(--after-hours-copper))] hover:!bg-transparent";
+  const editorialSubmitClass = "!min-h-12 !rounded-none !bg-[hsl(var(--hp-purple))] !px-5 !text-sm !font-semibold !text-white hover:!bg-brand-600";
   const editorialFieldClass = variant === "editorial" ? "!rounded-none !border-[hsl(var(--after-hours-plum)/0.32)] !bg-transparent focus-visible:!ring-[hsl(var(--after-hours-copper))]" : "";
   if (hasError) {
     return <div className={`${stateShellClass} bg-destructive/10 border-destructive/20 ${className}`}>

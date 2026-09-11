@@ -31,6 +31,7 @@ test('a unique product photograph changes the option, price and merchandise adde
   await page.locator('button').filter({ has: page.locator('img[alt="Minnie Mouse"]') }).click();
   await expect(page.getByRole('combobox', { name: 'Style' })).toContainText('Minnie Mouse');
   await expect(page.locator('main').getByText('$24.95', { exact: true }).first()).toBeVisible();
+  await expect(page.locator('main').getByText('$24.95', { exact: true }).first()).toHaveCSS('color', 'rgb(117, 61, 145)');
   const request = page.waitForRequest(req => req.url().endsWith('/api/checkout') && req.postDataJSON()?.action === 'add');
   await page.locator('[data-product-purchase-actions]').getByRole('button', { name: 'Add to Bag', exact: true }).click();
   expect((await request).postDataJSON().lines).toEqual([{ merchandiseId: variants[1].id, quantity: 1 }]);
@@ -49,4 +50,17 @@ test('a gallery-only photograph does not change the selected style', async ({ pa
   await expect(page.getByRole('combobox', { name: 'Style' })).toContainText('Minnie Mouse');
   await page.locator('button').filter({ has: page.locator('img[alt="Brush collection"]') }).click();
   await expect(page.getByRole('combobox', { name: 'Style' })).toContainText('Minnie Mouse');
+});
+
+test('mobile photographs stay in one compact row above product options', async ({ page }) => {
+  await page.setViewportSize({ width: 344, height: 844 });
+  await page.goto('/products/wet-brush-test');
+  const thumbnails = page.locator('[data-product-thumbnails]');
+  await expect(thumbnails).toBeVisible();
+  const bounds = await thumbnails.boundingBox();
+  expect(bounds!.height).toBeLessThanOrEqual(100);
+  const buttons = await thumbnails.locator('button').all();
+  const tops = await Promise.all(buttons.map(button => button.evaluate(el => el.getBoundingClientRect().top)));
+  expect(Math.max(...tops) - Math.min(...tops)).toBeLessThan(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(344);
 });

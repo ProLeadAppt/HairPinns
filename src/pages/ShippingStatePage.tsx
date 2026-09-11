@@ -324,7 +324,7 @@ const ShippingStatePage = () => {
                     <p className="text-sm text-foreground leading-relaxed mb-3">
                       {pick.reason}
                     </p>
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
                       Shop the range
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </span>

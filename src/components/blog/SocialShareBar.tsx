@@ -40,8 +40,8 @@ const SocialShareBar = ({ url, title, variant = "fixed" }: SocialShareBarProps) 
     ? "flex flex-wrap gap-2"
     : "fixed bottom-8 right-8 z-40 hidden flex-col gap-3 lg:flex";
   const controlClass = variant === "inline"
-    ? "flex h-11 w-11 items-center justify-center border border-[hsl(var(--after-hours-copper)/0.55)] text-[hsl(var(--after-hours-cream))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]"
-    : "flex h-11 w-11 items-center justify-center border border-[hsl(var(--after-hours-cream)/0.24)] bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream)/0.72)] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))]";
+    ? "flex h-11 w-11 items-center justify-center border border-[hsl(var(--after-hours-copper)/0.55)] text-[hsl(var(--hp-ink))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]"
+    : "flex h-11 w-11 items-center justify-center border border-[hsl(var(--hp-lilac))] bg-white !text-[hsl(var(--hp-purple))] transition-colors hover:bg-[hsl(var(--hp-lavender))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]";
 
   return (
     <div className={wrapperClass} data-share-variant={variant}>

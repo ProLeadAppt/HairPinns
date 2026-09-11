@@ -580,7 +580,7 @@ const ProductDetail = () => {
                       <button
                         type="button"
                         onClick={prevImage}
-                        className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--after-hours-plum))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                        className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--hp-ink))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Previous image"
                       >
                         <ChevronLeft className="w-5 h-5" />
@@ -588,7 +588,7 @@ const ProductDetail = () => {
                       <button
                         type="button"
                         onClick={nextImage}
-                        className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--after-hours-plum))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                        className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--hp-ink))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Next image"
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -599,7 +599,7 @@ const ProductDetail = () => {
                   {/* Dots Indicator — the visible pill is 8px tall, but the
                        interactive hit-area is 44×44 (transparent padding) to
                        meet WCAG/Lighthouse tap-target. */}
-                  {images.length > 1 && (
+                  {images.length > 1 && images.length <= 6 && (
                     <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
                       {images.map((_: any, index: number) => (
                         <button
@@ -622,9 +622,10 @@ const ProductDetail = () => {
                   )}
                 </div>
 
-                {/* Thumbnail Grid */}
+                {/* One scrollable row keeps options and price close to the product
+                    on mobile, even for products with many style photographs. */}
                 {images.length > 1 && (
-                  <div className="grid grid-cols-4 gap-2 sm:gap-3">
+                  <div className="flex gap-2 overflow-x-auto pb-2 sm:gap-3" data-product-thumbnails="" role="group" aria-label="Product photographs — scroll for more">
                     {images.map((image: any, index: number) => (
                       <button
                         key={index}
@@ -632,7 +633,7 @@ const ProductDetail = () => {
                         onClick={() => selectImage(index)}
                         aria-label={variantsForImage(image).length === 1 ? `Select ${variantsForImage(image)[0].title} — image ${index + 1}` : `View gallery image ${index + 1} (does not change selected options)`}
                         aria-pressed={index === currentImage}
-                        className={`aspect-square overflow-hidden border transition-all ${
+                        className={`h-[72px] w-[72px] shrink-0 overflow-hidden border transition-all sm:h-20 sm:w-20 ${
                           index === currentImage ? "border-[hsl(var(--after-hours-plum))]" : "border-[hsl(var(--after-hours-plum)/0.14)] hover:border-[hsl(var(--after-hours-plum)/0.4)]"
                         }`}
                       >
@@ -665,10 +666,10 @@ const ProductDetail = () => {
               {/* Right: Product Info */}
               <div className="min-w-0 space-y-6 lg:pt-2">
                 <div>
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">
                     Product / {product.vendor || "Hair Pinns"}
                   </p>
-                  <h1 className="mt-4 max-w-[24ch] font-heading text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.025em] text-[hsl(var(--after-hours-plum))]">
+                  <h1 className="mt-4 max-w-[24ch] font-heading text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.025em] text-[hsl(var(--hp-ink))]">
                     {product.title}
                   </h1>
                 </div>
@@ -676,20 +677,20 @@ const ProductDetail = () => {
                 <div className="border-y border-[hsl(var(--after-hours-plum)/0.18)] py-4">
                   <div className="flex items-end justify-between gap-4">
                     <div className="flex flex-wrap items-baseline gap-3">
-                      <span className="font-heading text-3xl text-[hsl(var(--after-hours-plum))]">
+                      <span className="font-heading text-3xl text-[hsl(var(--hp-purple))]">
                         {activeVariant ? formatPrice(Number.isFinite(price) ? price : 0, "AUD") : "Choose an option"}
                       </span>
                       {compareAtPrice && compareAtPrice > price && (
-                        <span className="text-sm text-[hsl(var(--after-hours-plum)/0.58)] line-through">
+                        <span className="text-sm text-[hsl(var(--hp-ink)/0.58)] line-through">
                           {formatPrice(compareAtPrice, "AUD")}
                         </span>
                       )}
                     </div>
-                    <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${isAvailable ? "text-[hsl(var(--after-hours-plum)/0.72)]" : "text-destructive"}`}>
+                    <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${isAvailable ? "text-[hsl(var(--hp-ink)/0.72)]" : "text-destructive"}`}>
                       {activeVariant ? availability.label : "Option unavailable"}
                     </p>
                   </div>
-                  <p className="mt-2 text-xs text-[hsl(var(--after-hours-plum)/0.62)]">Australian dollars. Tax included.</p>
+                  <p className="mt-2 text-xs text-[hsl(var(--hp-ink)/0.62)]">Australian dollars. Tax included.</p>
                 </div>
 
                 {visibleOptionNames.map((optionName) => (
@@ -697,7 +698,7 @@ const ProductDetail = () => {
                     <label
                       id={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}-label`}
                       htmlFor={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}`}
-                      className="text-sm font-medium text-[hsl(var(--after-hours-plum))]"
+                      className="text-sm font-medium text-[hsl(var(--hp-ink))]"
                     >
                       {optionName}
                     </label>
@@ -739,7 +740,7 @@ const ProductDetail = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="min-h-12 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.35)] bg-transparent text-[hsl(var(--after-hours-plum))] shadow-none"
+                    className="min-h-12 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.35)] bg-transparent text-[hsl(var(--hp-ink))] shadow-none"
                     onClick={handleBuyNow}
                     disabled={!isAvailable || buyingNow}
                   >
@@ -749,17 +750,17 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="border-y border-[hsl(var(--after-hours-plum)/0.18)] py-3">
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Shipping across Australia</p>
-                  <dl className="mt-2 text-sm text-[hsl(var(--after-hours-plum)/0.72)]">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Shipping across Australia</p>
+                  <dl className="mt-2 text-sm text-[hsl(var(--hp-ink)/0.72)]">
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Standard</dt><dd>$9.95 · 3–5 business days</dd></div>
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Express</dt><dd>$14.95 · 1–2 business days</dd></div>
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</dt><dd>Free standard</dd></div>
                   </dl>
-                  <Link to="/policies/shipping" className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--after-hours-plum))] underline underline-offset-4">Read shipping policy</Link>
+                  <Link to="/policies/shipping" className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--hp-ink))] underline underline-offset-4">Read shipping policy</Link>
                 </div>
 
                 <div>
-                  <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Payment options</p>
+                  <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Payment options</p>
                   <SilentErrorBoundary>
                     <PaymentBadges compact />
                   </SilentErrorBoundary>
@@ -818,7 +819,7 @@ const ProductDetail = () => {
                           <ol className="space-y-3">
                             {howTo.step.map((step, i) => (
                               <li key={i} className="flex gap-3">
-                                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.3)] text-xs font-semibold text-[hsl(var(--after-hours-plum))]">{i + 1}</span>
+                                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.3)] text-xs font-semibold text-[hsl(var(--hp-ink))]">{i + 1}</span>
                                 <div>
                                   <p className="text-sm font-medium text-heading">{step.name}</p>
                                   <p className="text-sm text-muted-foreground">{step.text}</p>
@@ -905,12 +906,12 @@ const ProductDetail = () => {
 
         {/* Inline product share close */}
         {product && (
-          <section data-product-share-close="" className="border-b border-[hsl(var(--after-hours-cream)/0.14)] bg-[hsl(var(--after-hours-near-black))] py-12 text-[hsl(var(--after-hours-cream))] lg:py-16">
+          <section data-product-share-close="" className="border-b border-[hsl(var(--hp-ink)/0.14)] bg-[hsl(var(--hp-lavender))] py-12 text-[hsl(var(--hp-ink))] lg:py-16">
             <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-[1.2fr_0.8fr] md:items-end lg:px-8">
               <div>
                 <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">Share / Product</p>
-                <h2 className="mt-3 max-w-[15ch] font-heading text-[clamp(2.35rem,4vw,4.5rem)] leading-[0.95] tracking-[-0.035em] text-[hsl(var(--after-hours-cream))]">Send this shelf find</h2>
-                <p className="mt-4 max-w-xl text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.72)]">Share {product.title} or keep the link for later.</p>
+                <h2 className="mt-3 max-w-[15ch] font-heading text-[clamp(2.35rem,4vw,4.5rem)] leading-[0.95] tracking-[-0.035em] text-[hsl(var(--hp-ink))]">Send this shelf find</h2>
+                <p className="mt-4 max-w-xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Share {product.title} or keep the link for later.</p>
               </div>
               <div className="md:justify-self-end">
                 <SocialShareBar variant="inline" url={`https://hairpinns.com/products/${handle}`} title={product.title} />

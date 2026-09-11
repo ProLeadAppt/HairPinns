@@ -132,10 +132,10 @@ const ProductRecommendations = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-5 md:grid-cols-[0.7fr_1.3fr] md:items-end">
           <div>
-            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">Continue / Product shelf</p>
-            <h2 id="product-recommendations-heading" className="mt-3 max-w-[12ch] font-heading text-[clamp(2.45rem,5vw,4.8rem)] leading-[0.94] tracking-[-0.04em] text-[hsl(var(--after-hours-plum))]">{heading}</h2>
+            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">Continue / Product shelf</p>
+            <h2 id="product-recommendations-heading" className="mt-3 max-w-[12ch] font-heading text-[clamp(2.45rem,5vw,4.8rem)] leading-[0.94] tracking-[-0.04em] text-[hsl(var(--hp-ink))]">{heading}</h2>
           </div>
-          <p className="max-w-xl text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.68)] md:justify-self-end">{note}</p>
+          <p className="max-w-xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.68)] md:justify-self-end">{note}</p>
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 lg:mt-14">
@@ -149,7 +149,7 @@ const ProductRecommendations = ({
 
             return (
               <article data-recommended-product="" key={product.slug || product.id} className="flex min-w-0 flex-col border-t border-[hsl(var(--after-hours-plum)/0.2)] pt-3">
-                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.7)]">{String(index + 1).padStart(2, "0")}</p>
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.7)]">{String(index + 1).padStart(2, "0")}</p>
                 <Link to={`/products/${product.slug}`} className="mt-3 block aspect-square overflow-hidden bg-[hsl(var(--after-hours-cream))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-plum))]">
                   <picture className="block h-full w-full">
                     {isRemoteImage && (
@@ -173,16 +173,16 @@ const ProductRecommendations = ({
                 </Link>
 
                 <div className="flex flex-1 flex-col pt-4">
-                  <h3 className="line-clamp-2 min-h-[2.6rem] font-heading text-base leading-tight text-[hsl(var(--after-hours-plum))] sm:text-xl">
-                    <Link to={`/products/${product.slug}`} className="!text-[hsl(var(--after-hours-plum))] hover:underline hover:underline-offset-4">{product.title}</Link>
+                  <h3 className="line-clamp-2 min-h-[2.6rem] font-heading text-base leading-tight text-[hsl(var(--hp-ink))] sm:text-xl">
+                    <Link to={`/products/${product.slug}`} className="!text-[hsl(var(--hp-ink))] hover:underline hover:underline-offset-4">{product.title}</Link>
                   </h3>
                   <div className="mt-3 flex flex-wrap items-baseline gap-2">
-                    {priceText && <p className="text-sm font-semibold text-[hsl(var(--after-hours-plum))] sm:text-base">{priceText}</p>}
-                    {compareText && <p className="text-xs text-[hsl(var(--after-hours-plum)/0.72)] line-through">{compareText}</p>}
+                    {priceText && <p className="text-sm font-semibold text-[hsl(var(--hp-ink))] sm:text-base">{priceText}</p>}
+                    {compareText && <p className="text-xs text-[hsl(var(--hp-ink)/0.72)] line-through">{compareText}</p>}
                   </div>
                   <Link
                     to={`/products/${product.slug}`}
-                    className="mt-auto inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.35)] pt-4 text-sm font-semibold text-[hsl(var(--after-hours-plum))]"
+                    className="mt-auto inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.35)] pt-4 text-sm font-semibold text-[hsl(var(--hp-ink))]"
                   >
                     View product
                   </Link>
@@ -192,14 +192,14 @@ const ProductRecommendations = ({
           })}
 
           <article data-recommendation-catalogue="" className="flex min-w-0 flex-col border-t border-[hsl(var(--after-hours-plum)/0.2)] pt-3 md:hidden">
-            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.7)]">04</p>
-            <div className="mt-3 flex aspect-square flex-col justify-between bg-[hsl(var(--after-hours-plum))] p-4 text-[hsl(var(--after-hours-cream))]">
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.7)]">04</p>
+            <div className="mt-3 flex aspect-square flex-col justify-between bg-[hsl(var(--hp-lavender))] p-4 text-[hsl(var(--hp-ink))]">
               <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-copper))]">All products</p>
               <p className="font-heading text-2xl leading-[0.95]">Keep browsing</p>
             </div>
             <Link
               to="/collections"
-              className="mt-auto inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.35)] pt-4 text-sm font-semibold !text-[hsl(var(--after-hours-plum))]"
+              className="mt-auto inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.35)] pt-4 text-sm font-semibold !text-[hsl(var(--hp-ink))]"
             >
               Browse catalogue
             </Link>

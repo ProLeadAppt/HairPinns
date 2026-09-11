@@ -107,7 +107,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
       <Header />
       
       <main id="main-content" tabIndex={-1} ref={revealRef as any} data-blog-article="">
-        <div className="border-b border-[hsl(var(--after-hours-cream)/0.16)] bg-[hsl(var(--after-hours-plum))] px-4 pt-5 sm:px-6 lg:px-8">
+        <div className="border-b border-[hsl(var(--hp-ink)/0.16)] bg-[hsl(var(--hp-lavender))] px-4 pt-5 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-[78rem]">
             <Breadcrumbs
               items={[
@@ -120,26 +120,26 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           </div>
         </div>
 
-        <section className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]" aria-labelledby="article-title">
+        <section className="bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]" aria-labelledby="article-title">
           <div className="mx-auto grid max-w-[78rem] lg:min-h-[44rem] lg:grid-cols-[0.53fr_0.47fr]">
             <div className="flex flex-col justify-between px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 xl:pr-16">
               <div>
                 <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Journal / {post.category}</p>
-                <h1 id="article-title" className="mt-6 max-w-[13ch] font-heading text-[clamp(3.1rem,7vw,6.8rem)] font-semibold leading-[0.89] tracking-[-0.055em] text-[hsl(var(--after-hours-cream))]">
+                <h1 id="article-title" className="mt-6 max-w-[13ch] font-heading text-[clamp(3.1rem,7vw,6.8rem)] font-semibold leading-[0.89] tracking-[-0.055em] text-[hsl(var(--hp-ink))]">
                   {post.title}
                 </h1>
-                <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.74)]">
+                <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.74)]">
                   {post.excerpt}
                 </p>
               </div>
-              <dl className="mt-12 grid grid-cols-3 border-y border-[hsl(var(--after-hours-cream)/0.22)] py-5 text-[hsl(var(--after-hours-cream))]">
-                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.55)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
-                <div className="border-l border-[hsl(var(--after-hours-cream)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.55)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd></div>
-                <div className="border-l border-[hsl(var(--after-hours-cream)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-cream)/0.55)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
+              <dl className="mt-12 grid grid-cols-3 border-y border-[hsl(var(--hp-ink)/0.22)] py-5 text-[hsl(var(--hp-ink))]">
+                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
+                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd></div>
+                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
               </dl>
             </div>
 
-            <picture className="block min-h-[26rem] overflow-hidden border-t border-[hsl(var(--after-hours-cream)/0.18)] bg-[hsl(var(--after-hours-cream)/0.08)] lg:border-l lg:border-t-0">
+            <picture className="block min-h-[26rem] overflow-hidden border-t border-[hsl(var(--hp-ink)/0.18)] bg-[hsl(var(--after-hours-cream)/0.08)] lg:border-l lg:border-t-0">
             <source
               type="image/webp"
               srcSet={[
@@ -184,18 +184,18 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           )}
 
           {/* Introduction with drop cap effect */}
-          <p className="post-intro mb-12 border-b border-[hsl(var(--after-hours-plum)/0.22)] pb-10 font-heading text-[clamp(1.5rem,3vw,2.15rem)] leading-[1.35] text-[hsl(var(--after-hours-plum))] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-6xl first-letter:text-[hsl(var(--after-hours-copper))]">
+          <p className="post-intro mb-12 border-b border-[hsl(var(--after-hours-plum)/0.22)] pb-10 font-heading text-[clamp(1.5rem,3vw,2.15rem)] leading-[1.35] text-[hsl(var(--hp-ink))] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-6xl first-letter:text-[hsl(var(--after-hours-copper))]">
             {renderInlineLinks(post.content.introduction)}
           </p>
 
           {/* Content Sections */}
           {post.content.sections.map((section, index) => (
             <div key={index} className="reveal mb-16">
-              <p className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.52)]">{String(index + 1).padStart(2, "0")} /</p>
-              <h2 className="mb-6 mt-4 max-w-[17ch] font-heading text-[clamp(2.2rem,5vw,4rem)] font-normal leading-[0.98] tracking-[-0.04em] text-[hsl(var(--after-hours-plum))]">
+              <p className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.52)]">{String(index + 1).padStart(2, "0")} /</p>
+              <h2 className="mb-6 mt-4 max-w-[17ch] font-heading text-[clamp(2.2rem,5vw,4rem)] font-normal leading-[0.98] tracking-[-0.04em] text-[hsl(var(--hp-ink))]">
                 {section.heading}
               </h2>
-              <p className="max-w-[65ch] text-[1.06rem] leading-8 text-[hsl(var(--after-hours-plum)/0.78)]">
+              <p className="max-w-[65ch] text-[1.06rem] leading-8 text-[hsl(var(--hp-ink)/0.78)]">
                 {renderInlineLinks(section.content)}
               </p>
 
@@ -239,17 +239,17 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
 
           {visibleFaqs.length > 0 && (
             <div className="reveal mt-20 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-10">
-              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.62)]">Questions from the chair</p>
-              <h2 className="mb-8 mt-4 max-w-[12ch] font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
+              <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.62)]">Questions from the chair</p>
+              <h2 className="mb-8 mt-4 max-w-[12ch] font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">
                 Frequently Asked Questions
               </h2>
               <div className="border-t border-[hsl(var(--after-hours-plum)/0.24)]">
                 {visibleFaqs.map((faq, index) => (
                   <div key={index} className="border-b border-[hsl(var(--after-hours-plum)/0.2)] py-7">
-                    <h3 className="font-heading text-xl font-normal text-[hsl(var(--after-hours-plum))]">
+                    <h3 className="font-heading text-xl font-normal text-[hsl(var(--hp-ink))]">
                       {faq.question}
                     </h3>
-                    <p className="mb-4 mt-3 leading-7 text-[hsl(var(--after-hours-plum)/0.74)]">
+                    <p className="mb-4 mt-3 leading-7 text-[hsl(var(--hp-ink)/0.74)]">
                       {faq.answer}
                     </p>
                     <FaqFeedbackWidget question={faq.question} />
@@ -266,7 +266,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           <div className="mt-12 pt-8 border-t border-border">
             <Link
               to="/blog"
-              className="group inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--after-hours-plum))] transition-colors hover:text-[hsl(var(--after-hours-copper))]"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-[hsl(var(--hp-ink))] transition-colors hover:text-[hsl(var(--after-hours-copper))]"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               Back to All Articles

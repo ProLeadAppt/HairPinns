@@ -19,9 +19,9 @@ const ReviewChoices = ({ rating, source }: ReviewChoicesProps) => {
   return (
     <section
       aria-label="Choose how to share your feedback"
-      className="border-t border-[hsl(var(--after-hours-cream)/0.28)] pt-7"
+      className="border-t border-[hsl(var(--hp-ink)/0.28)] pt-7"
     >
-      <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.72)]">
+      <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.72)]">
         Choose either option
       </p>
       <div className="mt-5 grid gap-px bg-[hsl(var(--after-hours-cream)/0.24)] md:grid-cols-2">
@@ -40,7 +40,7 @@ const ReviewChoices = ({ rating, source }: ReviewChoicesProps) => {
             <h2 className="mt-8 font-heading text-2xl font-semibold leading-tight" style={{ color: "hsl(var(--after-hours-plum))" }}>
               {REVIEW_CHOICES[0].title}
             </h2>
-            <p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.76)]">
+            <p className="mt-3 text-sm leading-6 text-[hsl(var(--hp-ink)/0.76)]">
               {REVIEW_CHOICES[0].description}
             </p>
           </div>
@@ -64,7 +64,7 @@ const ReviewChoices = ({ rating, source }: ReviewChoicesProps) => {
             <h2 className="mt-8 font-heading text-2xl font-semibold leading-tight" style={{ color: "hsl(var(--after-hours-plum))" }}>
               Private feedback
             </h2>
-            <p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.76)]">
+            <p className="mt-3 text-sm leading-6 text-[hsl(var(--hp-ink)/0.76)]">
               {REVIEW_CHOICES[1].description}
             </p>
           </div>
@@ -74,7 +74,7 @@ const ReviewChoices = ({ rating, source }: ReviewChoicesProps) => {
           </span>
         </Link>
       </div>
-      <p className="mt-5 text-xs leading-5 text-[hsl(var(--after-hours-cream)/0.64)]">
+      <p className="mt-5 text-xs leading-5 text-[hsl(var(--hp-ink)/0.64)]">
         Both options are available for every experience and every rating. Private feedback is sent directly to Hair Pinns.
       </p>
     </section>

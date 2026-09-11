@@ -131,7 +131,7 @@ const Glossary = () => {
                           <p className="mt-2 text-sm">
                             <Link
                               to={term.link.href}
-                              className="font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
+                              className="font-medium text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
                             >
                               {term.link.label} →
                             </Link>

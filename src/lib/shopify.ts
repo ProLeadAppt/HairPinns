@@ -36,10 +36,10 @@ function getEndpoint(): string {
 export async function fetchShopify<T>(
   query: string,
   variables: Record<string, any> = {},
-  options: { cache?: boolean } = {}
+  options: { cache?: boolean; timeoutMs?: number } = {}
 ): Promise<T> {
   const shouldCache = options.cache !== false;
-  const cacheKey = JSON.stringify({ query, variables });
+  const cacheKey = JSON.stringify({ query, variables, timeoutMs: options.timeoutMs });
   if (shouldCache) {
     const cached = shopifyRequestCache.get(cacheKey);
     if (cached) {
@@ -50,24 +50,32 @@ export async function fetchShopify<T>(
   const request = (async () => {
     const endpoint = getEndpoint();
     const token = storefrontToken || '';
+    const controller = new AbortController();
+    const timeout = options.timeoutMs
+      ? setTimeout(() => controller.abort(), options.timeoutMs)
+      : undefined;
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": token,
+        },
+        body: JSON.stringify({ query, variables }),
+        signal: controller.signal,
+      });
 
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": token,
-      },
-      body: JSON.stringify({ query, variables }),
-    });
+      const json = await res.json();
 
-    const json = await res.json();
+      if (json.errors) {
+        console.error("Shopify API errors:", json.errors);
+        throw new Error(JSON.stringify(json.errors));
+      }
 
-    if (json.errors) {
-      console.error("Shopify API errors:", json.errors);
-      throw new Error(JSON.stringify(json.errors));
+      return json.data as T;
+    } finally {
+      if (timeout !== undefined) clearTimeout(timeout);
     }
-
-    return json.data as T;
   })();
 
   if (shouldCache) shopifyRequestCache.set(cacheKey, request);

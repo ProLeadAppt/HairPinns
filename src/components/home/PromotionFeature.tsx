@@ -13,23 +13,23 @@ export default function PromotionFeature() {
     <section
       data-home-promotion=""
       aria-labelledby="sitewide-sale-home-heading"
-      className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]"
+      className="bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]"
     >
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1.25fr)_minmax(19rem,0.75fr)] lg:items-end lg:gap-16 lg:px-8 lg:py-20">
         <div>
-          <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.88)]">Now on / site-wide</p>
+          <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.88)]">Now on / site-wide</p>
           <h2 id="sitewide-sale-home-heading" className="mt-5 max-w-[14ch] font-heading text-4xl font-semibold leading-[0.96] sm:text-5xl lg:text-6xl">
             {promotion.headline}
           </h2>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-[hsl(var(--after-hours-cream)/0.82)] sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-[hsl(var(--hp-ink)/0.82)] sm:text-lg">
             {promotion.body}
           </p>
         </div>
 
-        <div className="border-t border-[hsl(var(--after-hours-cream)/0.25)] pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+        <div className="border-t border-[hsl(var(--hp-ink)/0.25)] pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
           <div className="flex items-start gap-4">
             <ShoppingBag className="mt-1 h-6 w-6 flex-none text-[hsl(var(--after-hours-copper))]" aria-hidden="true" />
-            <p className="text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.78)]">
+            <p className="text-sm leading-6 text-[hsl(var(--hp-ink)/0.78)]">
               {promotion.supportingText}
             </p>
           </div>
@@ -39,7 +39,7 @@ export default function PromotionFeature() {
             data-cta-placement="home_promotion_feature"
             data-cta-offer={promotion.id}
             onClick={() => trackPromoClick("home_promotion_feature", window.location.pathname)}
-            className="mt-7 flex min-h-12 items-center justify-between border border-[hsl(var(--after-hours-copper))] px-5 py-3 text-sm font-semibold text-[hsl(var(--after-hours-cream))] transition-colors hover:bg-[hsl(var(--after-hours-copper))] hover:text-[hsl(var(--after-hours-near-black))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--after-hours-plum))]"
+            className="mt-7 flex min-h-12 items-center justify-between border border-[hsl(var(--after-hours-copper))] px-5 py-3 text-sm font-semibold text-[hsl(var(--hp-ink))] transition-colors hover:bg-[hsl(var(--hp-lilac))] hover:text-[hsl(var(--after-hours-near-black))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--after-hours-plum))]"
           >
             {promotion.ctaLabel}
             <ArrowRight className="h-5 w-5" aria-hidden="true" />

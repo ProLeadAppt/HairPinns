@@ -53,23 +53,23 @@ const Blog = () => {
       />
       <Header />
 
-      <div className="border-b border-[hsl(var(--after-hours-cream)/0.16)] bg-[hsl(var(--after-hours-plum))] px-4 pt-5 sm:px-6 lg:px-8">
+      <div className="border-b border-[hsl(var(--hp-ink)/0.16)] bg-[hsl(var(--hp-lavender))] px-4 pt-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[78rem]">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Journal" }]} variant="dark" />
         </div>
       </div>
 
       <main id="main-content" tabIndex={-1} data-blog-index="">
-        <section className="bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]" aria-labelledby="journal-title">
+        <section className="bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]" aria-labelledby="journal-title">
           <div className="mx-auto grid max-w-[78rem] gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-[0.68fr_0.32fr] lg:gap-20 lg:px-8 lg:pb-24 lg:pt-20">
             <div>
               <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Hair Pinns / The journal</p>
-              <h1 id="journal-title" className="mt-5 max-w-[10ch] font-heading text-[clamp(3.6rem,9vw,8rem)] font-semibold leading-[0.87] tracking-[-0.06em] text-[hsl(var(--after-hours-cream))]">
+              <h1 id="journal-title" className="mt-5 max-w-[10ch] font-heading text-[clamp(3.6rem,9vw,8rem)] font-semibold leading-[0.87] tracking-[-0.06em] text-[hsl(var(--hp-ink))]">
                 Good hair starts with honest advice.
               </h1>
             </div>
-            <div className="self-end border-t border-[hsl(var(--after-hours-cream)/0.3)] pt-6">
-              <p className="max-w-[31rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.76)]">
+            <div className="self-end border-t border-[hsl(var(--hp-ink)/0.3)] pt-6">
+              <p className="max-w-[31rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.76)]">
                 The advice Jena gives behind the chair, written down. Hair care, product notes, salon answers, and practical routines for Australian hair.
               </p>
               <p className="mt-8 text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-copper))]">
@@ -82,7 +82,7 @@ const Blog = () => {
         <nav aria-label="Filter journal stories" className="sticky top-16 z-30 border-b border-[hsl(var(--after-hours-plum)/0.2)] bg-[hsl(var(--after-hours-paper)/0.96)] backdrop-blur-sm">
           <div className="mx-auto max-w-[78rem] overflow-x-auto px-4 sm:px-6 lg:px-8">
             <div className="flex min-w-max items-center gap-7 py-4">
-              <span className="font-mono text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.5)]">Filter /</span>
+              <span className="font-mono text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.5)]">Filter /</span>
               {categories.map((category) => {
                 const isActive = activeCategory === category;
                 return (
@@ -94,7 +94,7 @@ const Blog = () => {
                       setVisibleCount(12);
                     }}
                     aria-pressed={isActive}
-                    className={`min-h-11 border-b py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] transition-colors ${isActive ? "border-[hsl(var(--after-hours-copper))] text-[hsl(var(--after-hours-plum))]" : "border-transparent text-[hsl(var(--after-hours-plum)/0.58)] hover:border-[hsl(var(--after-hours-plum)/0.34)] hover:text-[hsl(var(--after-hours-plum))]"}`}
+                    className={`min-h-11 border-b py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] transition-colors ${isActive ? "border-[hsl(var(--after-hours-copper))] text-[hsl(var(--hp-ink))]" : "border-transparent text-[hsl(var(--hp-ink)/0.58)] hover:border-[hsl(var(--after-hours-plum)/0.34)] hover:text-[hsl(var(--hp-ink))]"}`}
                   >
                     {category === "all" ? "All stories" : category}
                   </button>
@@ -117,12 +117,12 @@ const Blog = () => {
             <div className="mx-auto max-w-[78rem] px-4 sm:px-6 lg:px-8">
               <div className="grid gap-6 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-5 md:grid-cols-[0.72fr_1.28fr] md:items-end">
                 <div>
-                  <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.68)]">02 / From Jena’s chair</p>
-                  <h2 id="all-stories-title" className="mt-4 max-w-[9ch] font-heading text-[clamp(2.8rem,7vw,6rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--after-hours-plum))]">
+                  <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.68)]">02 / From Jena’s chair</p>
+                  <h2 id="all-stories-title" className="mt-4 max-w-[9ch] font-heading text-[clamp(2.8rem,7vw,6rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--hp-ink))]">
                     Notes worth keeping.
                   </h2>
                 </div>
-                <p className="max-w-[38rem] text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.66)] md:justify-self-end">
+                <p className="max-w-[38rem] text-sm leading-6 text-[hsl(var(--hp-ink)/0.66)] md:justify-self-end">
                   Filter by concern or browse the full journal. Every guide is grounded in the questions clients ask in the Bangor salon.
                 </p>
               </div>
@@ -136,7 +136,7 @@ const Blog = () => {
                   <button
                     type="button"
                     onClick={() => setVisibleCount((count) => count + 12)}
-                    className="inline-flex min-h-12 items-center justify-between gap-10 border border-[hsl(var(--after-hours-plum)/0.36)] px-5 text-sm font-semibold text-[hsl(var(--after-hours-plum))] transition-colors hover:border-[hsl(var(--after-hours-copper))]"
+                    className="inline-flex min-h-12 items-center justify-between gap-10 border border-[hsl(var(--after-hours-plum)/0.36)] px-5 text-sm font-semibold text-[hsl(var(--hp-ink))] transition-colors hover:border-[hsl(var(--after-hours-copper))]"
                     aria-label={`Show more journal stories. ${remainingPosts.length - visibleCount} remaining`}
                   >
                     <span>Show more stories</span>
@@ -146,7 +146,7 @@ const Blog = () => {
               ) : null}
 
               <details className="mt-12 border-y border-[hsl(var(--after-hours-plum)/0.24)] py-5">
-                <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-[hsl(var(--after-hours-plum))]">
+                <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-[hsl(var(--hp-ink))]">
                   Browse all journal guides
                 </summary>
                 <ul className="grid gap-x-8 pt-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -154,7 +154,7 @@ const Blog = () => {
                     <li key={post.slug} className="border-t border-[hsl(var(--after-hours-plum)/0.14)]">
                       <Link
                         to={`/blog/${post.slug}`}
-                        className="flex min-h-11 items-center py-2 text-sm leading-5 text-[hsl(var(--after-hours-plum)/0.78)] hover:text-[hsl(var(--after-hours-copper))]"
+                        className="flex min-h-11 items-center py-2 text-sm leading-5 text-[hsl(var(--hp-ink)/0.78)] hover:text-[hsl(var(--after-hours-copper))]"
                       >
                         {post.title}
                       </Link>
@@ -166,22 +166,22 @@ const Blog = () => {
           </section>
         ) : null}
 
-        <section className="bg-[hsl(var(--after-hours-near-black))] text-[hsl(var(--after-hours-cream))]">
+        <section className="bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]">
           <div className="mx-auto grid max-w-[78rem] gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.65fr_0.35fr] lg:gap-20 lg:px-8 lg:py-24">
             <div>
               <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Need a human answer?</p>
-              <h2 className="mt-5 max-w-[12ch] font-heading text-[clamp(3rem,6vw,6rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--after-hours-cream))]">
+              <h2 className="mt-5 max-w-[12ch] font-heading text-[clamp(3rem,6vw,6rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--hp-ink))]">
                 Bring the question to Jena.
               </h2>
             </div>
-            <div className="self-end border-t border-[hsl(var(--after-hours-cream)/0.28)] pt-6">
-              <p className="text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.7)]">For advice that needs a closer look, book a consultation at Hair Pinns in Bangor.</p>
+            <div className="self-end border-t border-[hsl(var(--hp-ink)/0.28)] pt-6">
+              <p className="text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">For advice that needs a closer look, book a consultation at Hair Pinns in Bangor.</p>
               <a
                 href={BOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackBookingClick("blog_cta", "/blog")}
-                className="mt-7 flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-copper))] hover:no-underline"
+                className="mt-7 flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--hp-lilac))] hover:no-underline"
               >
                 Book with Jena <span aria-hidden="true">↗</span>
               </a>

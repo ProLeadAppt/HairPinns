@@ -124,7 +124,7 @@ const BestSellers = () => {
             asChild
             variant="ghost"
             size="lg"
-            className="min-h-12 rounded-none border-b border-[hsl(var(--after-hours-plum))] px-0 font-semibold text-[hsl(var(--after-hours-plum))] hover:bg-transparent hover:text-[hsl(var(--after-hours-copper))]"
+            className="min-h-12 rounded-none border-b border-[hsl(var(--after-hours-plum))] px-0 font-semibold text-[hsl(var(--hp-ink))] hover:bg-transparent hover:text-[hsl(var(--after-hours-copper))]"
           >
             <Link to="/collections">Shop all products <span aria-hidden="true">→</span></Link>
           </Button>
@@ -137,17 +137,17 @@ const BestSellers = () => {
 const ShelfHeader = () => (
   <header className="mb-12 grid gap-6 border-t border-[hsl(var(--after-hours-plum)/0.18)] pt-6 sm:mb-14 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-12">
     <div>
-      <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
+      <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">
         02 / Jena’s shelf
       </p>
       <h2
         id="popular-picks-title"
-        className="max-w-[13ch] font-heading text-[clamp(2.45rem,7vw,5.4rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]"
+        className="max-w-[13ch] font-heading text-[clamp(2.45rem,7vw,5.4rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--hp-ink))]"
       >
         Popular picks from the shelf
       </h2>
     </div>
-    <p className="max-w-[38rem] text-[0.98rem] leading-7 text-[hsl(var(--after-hours-plum)/0.72)] lg:pb-1">
+    <p className="max-w-[38rem] text-[0.98rem] leading-7 text-[hsl(var(--hp-ink)/0.72)] lg:pb-1">
       The products clients ask about after the chair. Salon-tested, plainly explained, and selected by Jena.
     </p>
   </header>
@@ -209,7 +209,7 @@ const ProductCard = ({
             data-image-pending={imagesEnabled ? undefined : "true"}
           />
         </picture>
-        <span className="absolute left-3 top-3 bg-[hsl(var(--after-hours-paper)/0.94)] px-2.5 py-1.5 text-[0.58rem] font-semibold tracking-[0.16em] text-[hsl(var(--after-hours-plum))] backdrop-blur-sm sm:left-4 sm:top-4">
+        <span className="absolute left-3 top-3 bg-[hsl(var(--after-hours-paper)/0.94)] px-2.5 py-1.5 text-[0.58rem] font-semibold tracking-[0.16em] text-[hsl(var(--hp-ink))] backdrop-blur-sm sm:left-4 sm:top-4">
           {String(index).padStart(2, "0")}
         </span>
         {!product.availableForSale && (
@@ -220,10 +220,10 @@ const ProductCard = ({
       </Link>
 
       <div className="flex flex-1 flex-col pt-4">
-        <h3 className="text-[0.98rem] sm:text-lg min-w-0 font-heading font-semibold leading-tight text-[hsl(var(--after-hours-plum))]">
+        <h3 className="text-[0.98rem] sm:text-lg min-w-0 font-heading font-semibold leading-tight text-[hsl(var(--hp-ink))]">
           <Link
             to={`/products/${product.slug}`}
-            className="!text-[hsl(var(--after-hours-plum))] transition-colors hover:!text-[hsl(var(--after-hours-copper))]"
+            className="!text-[hsl(var(--hp-ink))] transition-colors hover:!text-[hsl(var(--after-hours-copper))]"
           >
             {product.title}
           </Link>
@@ -246,7 +246,7 @@ const ProductCard = ({
                 {product.pricePrefix}{priceText}
               </p>
               {compareText && (
-                <p className="text-xs font-medium text-[hsl(var(--after-hours-plum)/0.52)] line-through decoration-[hsl(var(--after-hours-plum)/0.25)]">
+                <p className="text-xs font-medium text-[hsl(var(--hp-ink)/0.52)] line-through decoration-[hsl(var(--after-hours-plum)/0.25)]">
                   {compareText}
                 </p>
               )}

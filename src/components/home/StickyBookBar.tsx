@@ -45,7 +45,7 @@ const StickyBookBar = () => {
   return (
     <div
       ref={dockRef}
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-[hsl(var(--after-hours-copper)/0.72)] bg-[hsl(var(--after-hours-cream)/0.97)] text-[hsl(var(--after-hours-plum))] shadow-[0_-10px_28px_-18px_hsl(var(--after-hours-near-black)/0.5)] backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-[hsl(var(--after-hours-copper)/0.72)] bg-[hsl(var(--after-hours-cream)/0.97)] text-[hsl(var(--hp-ink))] shadow-[0_-10px_28px_-18px_hsl(var(--after-hours-near-black)/0.5)] backdrop-blur lg:hidden"
       role="region"
       aria-label="Quick shop bar"
       data-mobile-action-dock=""
@@ -78,7 +78,7 @@ const StickyBookBar = () => {
             asChild
             variant="outline"
             size="default"
-            className="min-h-12 shrink-0 rounded-none border-[hsl(var(--after-hours-plum))] bg-transparent px-3 font-semibold text-[hsl(var(--after-hours-plum))] shadow-none hover:bg-[hsl(var(--after-hours-copper)/0.18)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-2"
+            className="min-h-12 shrink-0 rounded-none border-[hsl(var(--after-hours-plum))] bg-transparent px-3 font-semibold text-[hsl(var(--hp-ink))] shadow-none hover:bg-[hsl(var(--after-hours-copper)/0.18)] focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-2"
           >
             <a
               href={BOOK_URL}

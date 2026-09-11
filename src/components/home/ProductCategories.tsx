@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
-import { getAllCollections } from "@/lib/shopify";
+import { FEATURED_BRANDS } from "@/config/commerceNavigation";
+import { getCollectionArtwork } from "@/lib/collectionArtwork";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
@@ -10,16 +11,6 @@ const buildShopifySrcSet = (url: string, widths: number[]) =>
 
 const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
-
-// Real Shopify product photos — no AI/logo collection images
-const categoryImageOverrides: Record<string, string> = {
-  "juuce-botanicals": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
-  "pure-certified-organic-hair-care": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Pure-034.jpg?v=1744176510",
-  "wet-brush-detanglers": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998",
-  "qiqi": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029",
-  "aromaganic": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-14.jpg?v=1746832701",
-  "island-vibes-tanning": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IslandVibesTanningDeepBangingBronzeDIYFoam.webp?v=1742170894",
-};
 
 const ProductCategories = () => {
   const [collections, setCollections] = useState<any[]>([]);
@@ -30,39 +21,11 @@ const ProductCategories = () => {
 
     const fetchCollections = async () => {
       try {
-        const allCollections = await getAllCollections(20);
-
-        // Filter for main product categories
-        // (Aromaganic dropped from the home grid 2026-06-22 — Jena wants
-        //  Juuce-only on the homepage. The collection still exists in
-        //  Shopify at /collections/aromaganic for anyone linking directly.)
-        const mainCategories = [
-          'juuce',
-          'pure',
-          'wet-brush',
-          'qiqi',
-          'island-vibes',
-        ];
-
-        const filtered = allCollections
-          .filter((c: any) => {
-            const h = c.handle?.toLowerCase() || "";
-            return mainCategories.some(cat => h.includes(cat));
-          })
-          .slice(0, 6)
-          .map((c: any) => {
-            const handle = c.handle?.toLowerCase() || "";
-            const override = categoryImageOverrides[handle];
-            const firstProductImg = c.products?.edges?.[0]?.node?.images?.edges?.[0]?.node?.url;
-            return {
-              id: c.id,
-              handle: c.handle,
-              title: c.title,
-              description: c.description,
-              image: override || firstProductImg || "/placeholder.svg",
-              productCount: c.products?.edges?.length || 0,
-            };
-          });
+        const artwork = await getCollectionArtwork(FEATURED_BRANDS.map(brand => brand.handle));
+        const filtered = FEATURED_BRANDS.map(brand => ({
+          id: brand.handle, handle: brand.handle, title: brand.name,
+          description: brand.description, image: artwork[brand.handle]?.url || '/placeholder.svg',
+        }));
 
         if (!isMounted) return;
         setCollections(filtered);
@@ -158,4 +121,3 @@ const ProductCategories = () => {
 };
 
 export default ProductCategories;
-

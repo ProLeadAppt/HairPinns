@@ -92,7 +92,7 @@ const Terms = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Contact</h2>
             <p className="text-foreground leading-relaxed">
               Questions about these terms? Contact us at{" "}
-              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
+              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 hairpinns1@gmail.com
               </a>
               .

@@ -30,6 +30,15 @@ export function installChatViewportGuard() {
       #lc_text-widget--btn,
       #lc_text-widget--box,
       .lc_text-widget--prompt { pointer-events: auto !important; }
+      #lc_text-widget--btn {
+        background-color: hsl(var(--hp-purple, 280 40.7767% 40.3922%)) !important;
+        color: white !important;
+      }
+      #lc_text-widget--box {
+        background-color: white !important;
+        color: hsl(var(--hp-ink, 278.4 25.2525% 19.4118%)) !important;
+        border-color: hsl(var(--hp-lilac, 279.1304 37.7049% 88.0392%)) !important;
+      }
       @media (max-width: 1023px) {
         :host([data-active="true"]) #lc_text-widget {
           top: calc(var(--hp-chat-viewport-top, 0px) + 12px + env(safe-area-inset-top)) !important;

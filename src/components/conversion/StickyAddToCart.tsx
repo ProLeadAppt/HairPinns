@@ -66,9 +66,9 @@ const StickyAddToCart = ({
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-[hsl(var(--after-hours-plum))]">{productTitle}</p>
+          <p className="truncate text-sm font-semibold text-[hsl(var(--hp-ink))]">{productTitle}</p>
           {Number.isFinite(price) && price > 0 && (
-            <p className="font-heading text-lg text-[hsl(var(--after-hours-plum))]">${price.toFixed(2)}</p>
+            <p className="font-heading text-lg text-[hsl(var(--hp-ink))]">${price.toFixed(2)}</p>
           )}
         </div>
         <Button

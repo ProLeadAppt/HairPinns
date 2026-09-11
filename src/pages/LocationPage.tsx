@@ -85,7 +85,7 @@ const LocationPage = () => {
         ]}
       />
 
-      <div className="editorial-route min-h-screen bg-[hsl(var(--after-hours-paper))] text-[hsl(var(--after-hours-plum))]" data-location-page="">
+      <div className="editorial-route min-h-screen bg-[hsl(var(--after-hours-paper))] text-[hsl(var(--hp-ink))]" data-location-page="">
         <Header />
         <main id="main-content" tabIndex={-1}>
           <div className="border-b border-[hsl(var(--after-hours-plum)/0.18)]">
@@ -98,30 +98,30 @@ const LocationPage = () => {
             </div>
           </div>
 
-          <section className="bg-[hsl(var(--after-hours-plum))] py-20 text-[hsl(var(--after-hours-cream))] md:py-28" data-location-hero="">
+          <section className="bg-[hsl(var(--hp-lavender))] py-20 text-[hsl(var(--hp-ink))] md:py-28" data-location-hero="">
             <div className="container-custom px-4 sm:px-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
               <div className="max-w-4xl">
                 <p className="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-[hsl(var(--after-hours-copper))]">
                   {travelCopy.heroLabel}
                 </p>
-                <h1 className="max-w-3xl font-heading text-[clamp(2.8rem,7vw,5.8rem)] leading-[0.98] text-[hsl(var(--after-hours-cream))]">
+                <h1 className="max-w-3xl font-heading text-[clamp(2.8rem,7vw,5.8rem)] leading-[0.98] text-[hsl(var(--hp-ink))]">
                   Hairdresser near {locationData.name}
                 </h1>
-                <p className="mt-7 max-w-2xl text-lg leading-relaxed text-[hsl(var(--after-hours-cream)/0.82)]">
+                <p className="mt-7 max-w-2xl text-lg leading-relaxed text-[hsl(var(--hp-ink)/0.82)]">
                   One-on-one salon care with Jena for colour, blonding, smoothing, cuts and styling from the Bangor salon.
                 </p>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <Button asChild size="xl" className="rounded-none bg-[hsl(var(--after-hours-copper))] text-[hsl(var(--after-hours-near-black))] hover:bg-[hsl(var(--after-hours-cream))]">
+                  <Button asChild size="xl" className="rounded-none bg-[hsl(var(--hp-purple))] !text-white hover:bg-brand-600">
                     <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("location_hero", `/areas/${slug}`)}>
                       {BOOK_CTA_LABEL}
                     </a>
                   </Button>
-                  <Button asChild size="xl" variant="outline" className="rounded-none border-[hsl(var(--after-hours-cream)/0.45)] bg-transparent text-[hsl(var(--after-hours-cream))] hover:bg-[hsl(var(--after-hours-cream))] hover:text-[hsl(var(--after-hours-plum))]">
+                  <Button asChild size="xl" variant="outline" className="rounded-none border-[hsl(var(--hp-ink)/0.45)] bg-transparent text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--after-hours-cream))] hover:text-[hsl(var(--hp-ink))]">
                     <a href={BUSINESS_NAP.phone.tel}><Phone className="mr-2 h-5 w-5" />Call {BUSINESS_NAP.phone.display}</a>
                   </Button>
                 </div>
               </div>
-              <aside className="border-l border-[hsl(var(--after-hours-cream)/0.28)] pl-6 text-sm" aria-label="Salon location and proof">
+              <aside className="border-l border-[hsl(var(--hp-ink)/0.28)] pl-6 text-sm" aria-label="Salon location and proof">
                 <dl>
                   <dt className="uppercase tracking-[0.18em] text-[hsl(var(--after-hours-muted))]">Salon</dt>
                   <dd className="mt-2 font-heading text-2xl">Hair Pinns, Bangor</dd>
@@ -157,14 +157,14 @@ const LocationPage = () => {
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[hsl(var(--after-hours-copper))]">Salon menu</p>
                   <h2 className="mt-4 font-heading text-h2">Services available at Hair Pinns</h2>
-                  <p className="mt-4 leading-relaxed text-[hsl(var(--after-hours-plum)/0.74)]">Explore the current Hair Pinns menu and book live availability through Fresha.</p>
+                  <p className="mt-4 leading-relaxed text-[hsl(var(--hp-ink)/0.74)]">Explore the current Hair Pinns menu and book live availability through Fresha.</p>
                 </div>
                 <ol className="border-t border-[hsl(var(--after-hours-plum)/0.2)]">
                   {locationData.popularServices.map((service, index) => (
                     <li key={service} className="grid grid-cols-[2rem_1fr] items-center gap-x-4 border-b border-[hsl(var(--after-hours-plum)/0.2)] py-5 sm:grid-cols-[2.5rem_1fr_auto]">
                       <span className="text-xs text-[hsl(var(--after-hours-copper))]">0{index + 1}</span>
                       <span className="font-heading text-xl">{service}</span>
-                      <Link to="/services" className="col-start-2 min-h-11 justify-self-start py-3 text-sm font-semibold text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))] sm:col-start-auto">View menu</Link>
+                      <Link to="/services" className="col-start-2 min-h-11 justify-self-start py-3 text-sm font-semibold text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))] sm:col-start-auto">View menu</Link>
                     </li>
                   ))}
                 </ol>
@@ -183,7 +183,7 @@ const LocationPage = () => {
                   {locationData.faqs.map((faq) => (
                     <details key={faq.question} className="group border-b border-[hsl(var(--after-hours-plum)/0.2)] py-5">
                       <summary className="min-h-11 cursor-pointer list-none pr-8 font-heading text-lg font-semibold">{faq.question}</summary>
-                      <div className="max-w-3xl pb-2 pt-3 leading-relaxed text-[hsl(var(--after-hours-plum)/0.78)]">
+                      <div className="max-w-3xl pb-2 pt-3 leading-relaxed text-[hsl(var(--hp-ink)/0.78)]">
                         <p>{faq.answer}</p>
                         <FaqFeedbackWidget question={faq.question} />
                       </div>
@@ -194,18 +194,18 @@ const LocationPage = () => {
             </section>
           ) : null}
 
-          <section className="bg-[hsl(var(--after-hours-near-black))] py-16 text-[hsl(var(--after-hours-cream))] md:py-24" data-location-visit="">
+          <section className="bg-[hsl(var(--hp-lavender))] py-16 text-[hsl(var(--hp-ink))] md:py-24" data-location-visit="">
             <div className="container-custom px-4 sm:px-6 grid gap-10 lg:grid-cols-2">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[hsl(var(--after-hours-copper))]">Visit Hair Pinns</p>
-                <h2 className="mt-4 font-heading text-h2 text-[hsl(var(--after-hours-cream))]">{getLocationJourneyHeading(locationData)}</h2>
-                <p className="mt-5 text-lg text-[hsl(var(--after-hours-cream)/0.78)]">{travelCopy.visitNote}</p>
+                <h2 className="mt-4 font-heading text-h2 text-[hsl(var(--hp-ink))]">{getLocationJourneyHeading(locationData)}</h2>
+                <p className="mt-5 text-lg text-[hsl(var(--hp-ink)/0.78)]">{travelCopy.visitNote}</p>
               </div>
               <div className="flex flex-col justify-end gap-3 sm:flex-row lg:justify-start">
-                <Button asChild size="lg" className="rounded-none bg-[hsl(var(--after-hours-copper))] text-[hsl(var(--after-hours-near-black))] hover:bg-[hsl(var(--after-hours-cream))]">
+                <Button asChild size="lg" className="rounded-none bg-[hsl(var(--hp-purple))] !text-white hover:bg-brand-600">
                   <a href={ENTITY_REGISTRY.profiles.google.directionsUrl} target="_blank" rel="noopener noreferrer"><MapPin className="mr-2 h-5 w-5" />Get directions</a>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-none border-[hsl(var(--after-hours-cream)/0.4)] bg-transparent text-[hsl(var(--after-hours-cream))] hover:bg-[hsl(var(--after-hours-cream))] hover:text-[hsl(var(--after-hours-plum))]">
+                <Button asChild size="lg" variant="outline" className="rounded-none border-[hsl(var(--hp-ink)/0.4)] bg-transparent text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--after-hours-cream))] hover:text-[hsl(var(--hp-ink))]">
                   <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("location_close", `/areas/${slug}`)}>{BOOK_CTA_LABEL}</a>
                 </Button>
               </div>
@@ -218,9 +218,9 @@ const LocationPage = () => {
               <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
                 {locationData.nearbyLocations.map((nearbySlug) => {
                   const nearby = getLocationData(nearbySlug);
-                  return nearby ? <Link key={nearbySlug} to={`/areas/${nearbySlug}`} className="min-h-11 py-3 font-semibold text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">{nearby.name}</Link> : null;
+                  return nearby ? <Link key={nearbySlug} to={`/areas/${nearbySlug}`} className="min-h-11 py-3 font-semibold text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">{nearby.name}</Link> : null;
                 })}
-                <Link to="/areas" className="min-h-11 py-3 font-semibold text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">All service areas</Link>
+                <Link to="/areas" className="min-h-11 py-3 font-semibold text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">All service areas</Link>
               </div>
             </div>
           </nav>

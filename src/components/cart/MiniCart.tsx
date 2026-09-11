@@ -142,14 +142,14 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
         data-mini-cart=""
         className="flex w-full flex-col gap-0 border-l border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-cream))] p-0 sm:max-w-[30rem] [&>button]:hidden"
       >
-        <header className="flex min-h-24 items-center justify-between border-b border-[hsl(var(--after-hours-cream)/0.16)] bg-[hsl(var(--after-hours-plum))] px-5 py-4 text-[hsl(var(--after-hours-cream))] sm:px-7">
+        <header className="flex min-h-24 items-center justify-between border-b border-[hsl(var(--hp-ink)/0.16)] bg-[hsl(var(--hp-lavender))] px-5 py-4 text-[hsl(var(--hp-ink))] sm:px-7">
           <div>
-            <p className="after-hours-kicker text-[hsl(var(--after-hours-cream)/0.66)]">Hair Pinns</p>
-            <SheetTitle className="mt-1 font-heading text-3xl font-semibold text-[hsl(var(--after-hours-cream))]">
+            <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.66)]">Hair Pinns</p>
+            <SheetTitle className="mt-1 font-heading text-3xl font-semibold text-[hsl(var(--hp-ink))]">
               Your bag{hasItems ? ` / ${itemCount}` : ""}
             </SheetTitle>
           </div>
-          <button type="button" onClick={onClose} className="flex h-11 w-11 items-center justify-center border border-[hsl(var(--after-hours-cream)/0.34)]" aria-label="Close cart">
+          <button type="button" onClick={onClose} className="flex h-11 w-11 items-center justify-center border border-[hsl(var(--hp-ink)/0.34)]" aria-label="Close cart">
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </header>
@@ -168,24 +168,24 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
               ))}
             </div>
           ) : cartError ? (
-            <div data-cart-error="" className="border-y border-[hsl(var(--after-hours-plum)/0.25)] py-8 text-[hsl(var(--after-hours-plum))]">
+            <div data-cart-error="" className="border-y border-[hsl(var(--after-hours-plum)/0.25)] py-8 text-[hsl(var(--hp-ink))]">
               <p className="font-heading text-2xl font-semibold">Bag unavailable</p>
-              <p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.76)]">{cartError}</p>
+              <p className="mt-3 text-sm leading-6 text-[hsl(var(--hp-ink)/0.76)]">{cartError}</p>
               <Link to="/collections" onClick={onClose} className="mt-6 flex min-h-11 items-center justify-between border border-[hsl(var(--after-hours-plum)/0.4)] px-4 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-plum))" }}>
                 Browse products <span aria-hidden="true">→</span>
               </Link>
             </div>
           ) : hasItems ? (
-            <div data-cart-lines="" className="text-[hsl(var(--after-hours-plum))]">
+            <div data-cart-lines="" className="text-[hsl(var(--hp-ink))]">
               {activeSitewidePromotion && (
                 <section
                   data-cart-sitewide-promotion=""
                   aria-label="Site-wide buy two get one free offer"
-                  className="mb-6 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[#f3e8df] p-4"
+                  className="mb-6 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[hsl(var(--hp-lavender))] p-4"
                 >
-                  <p className="after-hours-kicker text-[hsl(var(--after-hours-plum))]">Site-wide sale</p>
+                  <p className="after-hours-kicker text-[hsl(var(--hp-ink))]">Site-wide sale</p>
                   <p className="mt-2 font-heading text-xl font-semibold">Buy 2 products. Get the cheapest of your 3 free.</p>
-                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.74)]">
+                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--hp-ink)/0.74)]">
                     Add any three products to your bag, then enter code <strong>SALE</strong> at checkout. Cannot be combined with another discount.
                   </p>
                   <Link
@@ -202,10 +202,10 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
                 <section
                   data-cart-promotion=""
                   aria-label="Free extra offer"
-                  className="mb-6 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[#f3e8df] p-4"
+                  className="mb-6 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[hsl(var(--hp-lavender))] p-4"
                 >
                   <p className="font-heading text-xl font-semibold">Your free extra is waiting.</p>
-                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.74)]">
+                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--hp-ink)/0.74)]">
                     {promotionMessage} One free extra per order. The discount is applied automatically when the offer is valid.
                   </p>
                   <Link
@@ -238,19 +238,19 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
                         </div>
                       )}
                       <div className="min-w-0 pt-1">
-                        <p className="font-mono text-[0.65rem] text-[hsl(var(--after-hours-plum)/0.62)]">{String(index + 1).padStart(2, "0")}</p>
+                        <p className="font-mono text-[0.65rem] text-[hsl(var(--hp-ink)/0.62)]">{String(index + 1).padStart(2, "0")}</p>
                         {productPath ? (
                           <Link to={productPath} onClick={onClose} className="mt-2 block font-heading text-lg font-semibold leading-tight" style={{ color: "hsl(var(--after-hours-plum))" }}>{merchandise.product.title || "Product"}</Link>
                         ) : (
                           <p className="mt-2 font-heading text-lg font-semibold leading-tight">{merchandise?.product?.title || "Product"}</p>
                         )}
-                        {variantTitle && <p className="mt-1 text-xs text-[hsl(var(--after-hours-plum)/0.7)]">{variantTitle}</p>}
+                        {variantTitle && <p className="mt-1 text-xs text-[hsl(var(--hp-ink)/0.7)]">{variantTitle}</p>}
                         <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                           <span>Qty {node.quantity}</span>
                           <span className="font-semibold">{formatPrice(price * node.quantity, lineCurrency)}</span>
                         </div>
                       </div>
-                      <button type="button" className="flex h-11 w-11 items-center justify-center self-start text-[hsl(var(--after-hours-plum)/0.7)] hover:text-destructive disabled:opacity-50" onClick={() => handleRemoveLine(node.id)} disabled={removingLineId === node.id} aria-label={`Remove ${merchandise?.product?.title || "item"} from bag`}>
+                      <button type="button" className="flex h-11 w-11 items-center justify-center self-start text-[hsl(var(--hp-ink)/0.7)] hover:text-destructive disabled:opacity-50" onClick={() => handleRemoveLine(node.id)} disabled={removingLineId === node.id} aria-label={`Remove ${merchandise?.product?.title || "item"} from bag`}>
                         {removingLineId === node.id ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-b-transparent" aria-hidden="true" /> : <Trash2 className="h-4 w-4" aria-hidden="true" />}
                       </button>
                     </li>
@@ -266,32 +266,32 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
                 <div className="mt-4 h-1 bg-[hsl(var(--after-hours-plum)/0.16)]" role="progressbar" aria-label="Free standard shipping progress" aria-valuemin={0} aria-valuemax={150} aria-valuenow={Math.min(subtotal, 150)}>
                   <div className="h-full bg-[hsl(var(--after-hours-copper))]" style={{ width: `${shippingProgress}%` }} />
                 </div>
-                <p className="mt-4 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.7)]">Standard shipping is $9.95. Free standard shipping applies from $150.</p>
+                <p className="mt-4 text-xs leading-5 text-[hsl(var(--hp-ink)/0.7)]">Standard shipping is $9.95. Free standard shipping applies from $150.</p>
                 <Link to="/policies/shipping" onClick={onClose} className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold underline underline-offset-4" style={{ color: "hsl(var(--after-hours-plum))" }}>Shipping details</Link>
               </section>
 
-              <div className="py-6 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.72)]">
+              <div className="py-6 text-xs leading-5 text-[hsl(var(--hp-ink)/0.72)]">
                 <Link to="/policies/returns" onClick={onClose} className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4" style={{ color: "hsl(var(--after-hours-plum))" }}>14-day returns on unopened products</Link>
               </div>
             </div>
           ) : (
-            <div data-cart-empty="" className="py-10 text-[hsl(var(--after-hours-plum))]">
+            <div data-cart-empty="" className="py-10 text-[hsl(var(--hp-ink))]">
               {activeSitewidePromotion && (
                 <section
                   data-cart-sitewide-promotion=""
                   aria-label="Site-wide buy two get one free offer"
-                  className="mb-8 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[#f3e8df] p-4"
+                  className="mb-8 border border-[hsl(var(--after-hours-copper)/0.65)] bg-[hsl(var(--hp-lavender))] p-4"
                 >
-                  <p className="after-hours-kicker text-[hsl(var(--after-hours-plum))]">Site-wide sale</p>
+                  <p className="after-hours-kicker text-[hsl(var(--hp-ink))]">Site-wide sale</p>
                   <p className="mt-2 font-heading text-xl font-semibold">Pick any three. The cheapest is free.</p>
-                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.74)]">
+                  <p className="mt-2 text-xs leading-5 text-[hsl(var(--hp-ink)/0.74)]">
                     Add any three products to your bag, then enter code <strong>SALE</strong> at checkout. Cannot be combined with another discount.
                   </p>
                 </section>
               )}
-              <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.66)]">Nothing here yet</p>
+              <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.66)]">Nothing here yet</p>
               <h3 className="mt-4 max-w-[9ch] font-heading text-4xl font-semibold leading-[0.95]">Your bag is empty.</h3>
-              <p className="mt-5 max-w-[24rem] text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.74)]">Browse Jena’s product shelf or shop the full catalogue.</p>
+              <p className="mt-5 max-w-[24rem] text-sm leading-6 text-[hsl(var(--hp-ink)/0.74)]">Browse Jena’s product shelf or shop the full catalogue.</p>
               <Link to="/collections" onClick={onClose} className="mt-7 flex min-h-12 items-center justify-between bg-[hsl(var(--after-hours-plum))] px-5 py-3 text-sm font-semibold" style={{ color: "hsl(var(--after-hours-cream))" }}>
                 Browse products <span aria-hidden="true">→</span>
               </Link>
@@ -299,7 +299,7 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
           )}
         </div>
 
-        <footer data-cart-checkout="" className="border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[#efe5df] px-5 py-5 text-[hsl(var(--after-hours-plum))] sm:px-7">
+        <footer data-cart-checkout="" className="border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[hsl(var(--hp-lavender))] px-5 py-5 text-[hsl(var(--hp-ink))] sm:px-7">
           {hasItems && (
             <div className="mb-4 flex items-baseline justify-between gap-4">
               <span className="text-sm">Subtotal</span>
@@ -311,7 +311,7 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
             <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </button>
           <button type="button" className="mt-2 flex min-h-11 w-full items-center justify-center text-sm font-semibold underline underline-offset-4" onClick={onClose}>Continue shopping</button>
-          {hasItems && <p className="mt-3 text-center text-[0.68rem] leading-4 text-[hsl(var(--after-hours-plum)/0.66)]">Shipping and any taxes are confirmed in Shopify checkout.</p>}
+          {hasItems && <p className="mt-3 text-center text-[0.68rem] leading-4 text-[hsl(var(--hp-ink)/0.66)]">Shipping and any taxes are confirmed in Shopify checkout.</p>}
         </footer>
       </SheetContent>
     </Sheet>
