@@ -11,6 +11,7 @@ test.beforeEach(async ({ page }) => {
       const root = host.attachShadow({mode:'open'});
       root.innerHTML = '<style>#lc_text-widget{position:fixed;bottom:50%;right:80px;transform:translateY(50%);padding-bottom:70px;z-index:2147483000} #lc_text-widget--box{display:none;width:340px;height:660px;background:white;border:1px solid purple;box-sizing:border-box} :host([data-active="true"]) #lc_text-widget--box{display:block} #lc_text-widget--btn{position:fixed;bottom:50%;right:-60px;transform:translateY(50%);height:58px;width:58px}</style><div id="lc_text-widget"><div id="lc_text-widget--box"><button aria-label="Close chat panel">Close</button><p>Choose a chat option</p></div><button id="lc_text-widget--btn" aria-label="Open chat">Chat</button></div>';
       root.querySelector('#lc_text-widget--btn').onclick = () => { host.dataset.active = 'true'; };
+      root.querySelector('#lc_text-widget--box').insertAdjacentHTML('afterbegin', '<div class="lc_text-widget--header-wrapper" style="background:linear-gradient(purple,magenta);color:white">Have a question?</div>');
       root.querySelector('[aria-label="Close chat panel"]').onclick = () => { host.dataset.active = 'false'; };
       document.body.append(host);
     })();`,
@@ -48,6 +49,8 @@ for (const width of [344, 390, 768]) {
       await expect(page.getByRole('button', {name:'Close chat panel'})).toBeInViewport();
     };
     await expect(panel).toBeVisible();
+    await expect(page.locator('.lc_text-widget--header-wrapper')).toHaveCSS('background-color', 'rgb(117, 61, 145)');
+    await expect(page.locator('.lc_text-widget--header-wrapper')).toHaveCSS('background-image', 'none');
     await assertFits(844);
     await page.setViewportSize({width,height:430});
     await expect.poll(async () => (await panel.boundingBox())!.height).toBeLessThanOrEqual(406);
