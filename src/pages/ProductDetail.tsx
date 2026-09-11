@@ -21,7 +21,7 @@ import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { buildMetaDescription } from "@/lib/metadata";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
-import { getCartId } from "@/lib/cartManagement";
+import { addCartLines } from "@/lib/cartApi";
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { notify } from "@/hooks/use-toast";
 
@@ -37,6 +37,7 @@ import { useImagePreload } from "@/components/ImagePreloader";
 import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema, generateHowToSchema } from "@/lib/schema";
 import { getProductHowTo } from "@/data/productHowTo";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
+import { getProductAvailability } from "@/lib/productAvailability";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -211,38 +212,9 @@ const ProductDetail = () => {
     setAddingToCart(true);
     
     try {
-      const existingCartId = getCartId();
-
-      // Call Edge Function to add to cart (retry once without cart ID if stale)
-      let response: Response | null = null;
-      let useCartId = existingCartId;
-      for (let attempt = 0; attempt < 2; attempt++) {
-        response = await fetch('/api/checkout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lines: [{ merchandiseId: activeVariantId, quantity: 1 }],
-            ...(useCartId && { cartId: useCartId }),
-          }),
-        });
-        if (response.ok) break;
-        // If cart ID is stale, retry with a fresh cart
-        if (attempt === 0 && existingCartId) {
-          useCartId = null;
-          localStorage.removeItem('hp_cart_id');
-        }
-      }
-
-      if (!response || !response.ok) {
-        throw new Error('Failed to add to cart');
-      }
-
-      const { checkoutUrl, cartId } = await response.json();
-      
-      // Store cart ID for future additions
-      if (cartId) {
-        localStorage.setItem('hp_cart_id', cartId);
-      }
+      const cart = await addCartLines([{ merchandiseId: activeVariantId, quantity: 1 }]);
+      const cartId = cart.id;
+      const checkoutUrl = cart.checkoutUrl;
       
       // Track add_to_cart to GHL and cart abandonment
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
@@ -281,7 +253,7 @@ const ProductDetail = () => {
       });
       
       notify.success("Added to bag!");
-      window.dispatchEvent(new CustomEvent("hp:openMiniCart"));
+      window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cart, cartId } }));
     } catch (error: any) {
       console.error("Add to bag failed:", error);
       notify.error("We couldn't add this to your bag. Please try again or contact us.");
@@ -430,7 +402,8 @@ const ProductDetail = () => {
   const compareAtPrice = activeVariant?.compareAtPrice?.amount
     ? parseFloat(activeVariant.compareAtPrice.amount)
     : null;
-  const isAvailable = activeVariant?.availableForSale ?? false;
+  const availability = getProductAvailability(activeVariant);
+  const isAvailable = availability.canPurchase;
 
   const currentImg = images[currentImage];
 
@@ -486,7 +459,7 @@ const ProductDetail = () => {
           sku: activeVariant?.sku || product.id?.split("/")?.pop() || product.handle || "",
           productID: product.id,
           gtin: activeVariant?.barcode || undefined,
-          availability: isAvailable ? "InStock" : "OutOfStock",
+          availability: availability.schema,
           // productType reflects Shopify's product taxonomy ("Shampoo",
           // "Conditioner", "Treatment") - Google uses this for product
           // categorization in Merchant Listings.
@@ -697,7 +670,7 @@ const ProductDetail = () => {
                       )}
                     </div>
                     <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${isAvailable ? "text-[hsl(var(--after-hours-plum)/0.72)]" : "text-destructive"}`}>
-                      {isAvailable ? "Available online" : "Sold out"}
+                      {availability.label}
                     </p>
                   </div>
                   <p className="mt-2 text-xs text-[hsl(var(--after-hours-plum)/0.62)]">Australian dollars. Tax included.</p>

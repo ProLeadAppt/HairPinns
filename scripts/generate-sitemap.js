@@ -17,6 +17,12 @@ import {
 import { isIndexableRoute } from './route-policy.js';
 import { isRetiredProductHandle } from './retired-products.js';
 import { writeShopifyRouteCache } from './shopify-route-cache.js';
+import { collectShopifyConnection } from './shopify-pagination.js';
+import {
+  CHRISTMAS_PRODUCTS,
+  isPublicCollectionHandle,
+  PUBLIC_COLLECTION_HANDLES,
+} from '../src/config/commerceNavigation.data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -67,7 +73,7 @@ function url(loc, changefreq = 'weekly', priority = 0.8, lastmod, images = []) {
 async function fetchShopify(query, variables = {}) {
   const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
   const token = process.env.VITE_SF_STOREFRONT_TOKEN || '';
-  const version = process.env.VITE_SF_API_VERSION || '2025-01';
+  const version = process.env.VITE_SF_API_VERSION || '2026-07';
   if (!token) throw new Error('[sitemap] Missing Shopify Storefront token');
   const endpoint = `https://${domain}/api/${version}/graphql.json`;
   const res = await fetch(endpoint, {
@@ -90,8 +96,8 @@ async function getShopifyProducts() {
   // Fetch handle + title + first 5 images per product so we can embed
   // <image:image> entries in the sitemap. Google uses these for Image
   // search discovery and faster indexing of product photos.
-  const data = await fetchShopify(`
-    query { products(first: 250) {
+  const query = `
+    query sitemapProducts($after: String) { products(first: 100, after: $after) {
       edges { node {
         handle
         title
@@ -100,30 +106,51 @@ async function getShopifyProducts() {
           edges { node { url altText } }
         }
       }}
+      pageInfo { hasNextPage endCursor }
     }}
-  `);
-  const products = (data?.products?.edges || []).map((e) => ({
-    handle: e.node.handle,
-    title: e.node.title,
-    updatedAt: e.node.updatedAt,
-    images: (e.node.images?.edges || [])
-      .map((ie) => ({ url: ie.node.url, altText: ie.node.altText || e.node.title }))
+  `;
+  const nodes = await collectShopifyConnection(
+    async (after) => (await fetchShopify(query, { after }))?.products,
+    'products',
+  );
+  const products = nodes.map((node) => ({
+    handle: node.handle,
+    title: node.title,
+    updatedAt: node.updatedAt,
+    images: (node.images?.edges || [])
+      .map((ie) => ({ url: ie.node.url, altText: ie.node.altText || node.title }))
       .filter((img) => img.url),
   })).filter((p) => p.handle && !isRetiredProductHandle(p.handle));
   if (products.length === 0) throw new Error('[sitemap] Shopify returned no products; refusing an incomplete sitemap');
+  const missingChristmasProducts = CHRISTMAS_PRODUCTS
+    .map((product) => product.handle)
+    .filter((handle) => !products.some((product) => product.handle === handle));
+  if (missingChristmasProducts.length > 0) {
+    throw new Error(`[sitemap] Required Christmas products are missing: ${missingChristmasProducts.join(', ')}`);
+  }
   return products;
 }
 
 async function getShopifyCollections() {
-  const data = await fetchShopify(`
-    query { collections(first: 50) {
+  const query = `
+    query sitemapCollections($after: String) { collections(first: 100, after: $after) {
       edges { node { handle updatedAt } }
+      pageInfo { hasNextPage endCursor }
     }}
-  `);
-  const collections = data?.collections?.edges
-    ?.map((edge) => ({ handle: edge.node.handle, updatedAt: edge.node.updatedAt }))
-    .filter((entry) => entry.handle) || [];
+  `;
+  const nodes = await collectShopifyConnection(
+    async (after) => (await fetchShopify(query, { after }))?.collections,
+    'collections',
+  );
+  const collections = nodes
+    .map((node) => ({ handle: node.handle, updatedAt: node.updatedAt }))
+    .filter((entry) => entry.handle && isPublicCollectionHandle(entry.handle));
   if (collections.length === 0) throw new Error('[sitemap] Shopify returned no collections; refusing an incomplete sitemap');
+  const missingRequiredCollections = PUBLIC_COLLECTION_HANDLES
+    .filter((handle) => !collections.some((collection) => collection.handle === handle));
+  if (missingRequiredCollections.length > 0) {
+    throw new Error(`[sitemap] Required Shopify collections are missing: ${missingRequiredCollections.join(', ')}`);
+  }
   return collections;
 }
 
@@ -170,9 +197,6 @@ async function main() {
   const collectionFreshness = new Map(
     collectionEntries.map((entry) => [entry.handle, entry.updatedAt]),
   );
-  if (!collectionFreshness.has('jenas-daily-trio')) {
-    collectionFreshness.set('jenas-daily-trio', gitLastMod('src/data/jenasDailyTrio.ts'));
-  }
   collectionFreshness.forEach((updatedAt, handle) => {
     urls.push(url(`${BASE}/collections/${handle}`, 'weekly', 0.8, updatedAt));
   });

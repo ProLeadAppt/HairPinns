@@ -436,6 +436,14 @@ test('after-hours header preserves commerce paths across tablet and desktop navi
     '/collections/heat-protection',
     '/collections/blonde-bombshells',
     '/collections/pump-up-the-volume',
+    '/collections/shampoo-conditioners',
+    '/collections/hair-treatments-masks',
+    '/collections/hair-styling-products',
+    '/collections/hair-tools-brushes',
+    '/collections/juuce-botanicals',
+    '/collections/pure-certified-organic-hair-care',
+    '/collections/qiqi',
+    '/collections/aromaganic',
     '/blog', '/about', '/services', '/contact',
     'https://www.fresha.com/a/hair-pinns-bangor-studio-bangor-60-goorgool-road-eb7ff3lb',
   ]);
@@ -467,9 +475,18 @@ test('after-hours header preserves commerce paths across tablet and desktop navi
     '/collections/blonde-bombshells',
     '/collections/pump-up-the-volume',
     '/collections/curly-girlys',
+    '/collections/scalp-health-care',
+    '/collections/colour-treated-hair',
+    '/collections/shampoo-conditioners',
+    '/collections/hair-treatments-masks',
+    '/collections/hair-styling-products',
+    '/collections/hair-tools-brushes',
+    '/collections/haircare-bundles-gift-sets',
+    '/collections/hair-pinns-accessories',
     '/collections/juuce-botanicals',
-    '/collections/qiqi',
     '/collections/pure-certified-organic-hair-care',
+    '/collections/qiqi',
+    '/collections/aromaganic',
     '/collections/wet-brush-detanglers',
     '/collections',
   ]);
@@ -564,14 +581,14 @@ test('persisted cart count hydrates before the drawer opens and mutable cart rea
     },
   });
 
-  await page.route('**/graphql.json', async (route) => {
+  await page.route('**/api/checkout', async (route) => {
     const body = route.request().postDataJSON();
-    if (body.query.includes('query getCart')) {
+    if (body.action === 'get') {
       cartReads += 1;
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ data: { cart: makeCart(cartReads) } }),
+        body: JSON.stringify({ cart: makeCart(cartReads) }),
       });
       return;
     }
@@ -593,9 +610,9 @@ test('late cart hydration cannot overwrite a newer cart count event', async ({ p
   await page.addInitScript(() => localStorage.setItem('hp_cart_id', 'gid://shopify/Cart/race-test'));
 
   let releaseHydration: (() => void) | undefined;
-  await page.route('**/graphql.json', async (route) => {
+  await page.route('**/api/checkout', async (route) => {
     const body = route.request().postDataJSON();
-    if (!body.query.includes('query getCart')) {
+    if (body.action !== 'get') {
       await route.continue();
       return;
     }
@@ -607,15 +624,13 @@ test('late cart hydration cannot overwrite a newer cart count event', async ({ p
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({
-        data: {
-          cart: {
-            id: 'gid://shopify/Cart/race-test',
-            checkoutUrl: 'https://checkout.example.test',
-            lines: { edges: [{ node: { id: 'stale-line', quantity: 1 } }] },
-            cost: {
-              subtotalAmount: { amount: '34.95', currencyCode: 'AUD' },
-              totalAmount: { amount: '34.95', currencyCode: 'AUD' },
-            },
+        cart: {
+          id: 'gid://shopify/Cart/race-test',
+          checkoutUrl: 'https://checkout.example.test',
+          lines: { edges: [{ node: { id: 'stale-line', quantity: 1 } }] },
+          cost: {
+            subtotalAmount: { amount: '34.95', currencyCode: 'AUD' },
+            totalAmount: { amount: '34.95', currencyCode: 'AUD' },
           },
         },
       }),
@@ -627,7 +642,16 @@ test('late cart hydration cannot overwrite a newer cart count event', async ({ p
   await expect(visibleCartButton).toHaveCount(1);
   await expect.poll(() => Boolean(releaseHydration)).toBe(true);
   await page.evaluate(() => {
-    window.dispatchEvent(new CustomEvent('hp:cartCountUpdate', { detail: { count: 3 } }));
+    window.dispatchEvent(new CustomEvent('hp:openMiniCart', { detail: { cart: {
+      id: 'gid://shopify/Cart/newer',
+      checkoutUrl: 'https://checkout.example.test/newer',
+      totalQuantity: 3,
+      lines: { edges: [{ node: { id: 'new-line', quantity: 3 } }] },
+      cost: {
+        subtotalAmount: { amount: '104.85', currencyCode: 'AUD' },
+        totalAmount: { amount: '104.85', currencyCode: 'AUD' },
+      },
+    } } }));
   });
   await expect(page.locator('button[aria-label="View cart, 3 items"]:visible')).toHaveCount(1);
 
@@ -692,17 +716,18 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
   });
   let removalBody: Record<string, unknown> | null = null;
 
-  await page.route('**/graphql.json', async (route) => {
+  await page.route('**/api/checkout', async (route) => {
     const body = route.request().postDataJSON();
-    if (body.query.includes('query getCart')) {
-      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: { cart: makeCart([lineOne, lineTwo]) } }) });
+    if (body.action === 'get') {
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: makeCart([lineOne, lineTwo]) }) });
+      return;
+    }
+    if (body.action === 'remove') {
+      removalBody = body;
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: makeCart([lineTwo]) }) });
       return;
     }
     await route.continue();
-  });
-  await page.route('**/api/checkout', async (route) => {
-    removalBody = route.request().postDataJSON();
-    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: makeCart([lineTwo]) }) });
   });
 
   await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
@@ -730,7 +755,7 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
   expect(Math.round(removeBox?.height || 0)).toBeGreaterThanOrEqual(44);
   await removeFirst.click();
   await expect(drawer.locator('[data-cart-lines] li')).toHaveCount(1);
-  expect(removalBody).toEqual({ cartId: 'gid://shopify/Cart/after-hours-test', removeLineIds: ['line-1'] });
+  expect(removalBody).toEqual({ action: 'remove', cartId: 'gid://shopify/Cart/after-hours-test', lineIds: ['line-1'] });
   await expect(drawer.getByRole('heading', { name: 'Your bag / 1' })).toBeVisible();
 
   const checkout = drawer.getByRole('button', { name: 'Checkout' });

@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
-import { SHOP_BY_CONCERN } from "@/config/commerceNavigation";
+import { SHOP_BY_HAIR_NEED } from "@/config/commerceNavigation";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import useViewportImageGate from "@/hooks/useViewportImageGate";
 
@@ -19,17 +19,17 @@ const ShopByConcern = () => {
     <SectionHeader
       tagline="Not sure where to start?"
       title="Start with what your hair needs."
-      subtitle="Shop Jena's salon-tested shelf by concern, then narrow it down from there."
+      subtitle="Shop Jena's salon-selected shelf by hair need, then narrow it down from there."
       display
     />
 
-    <ul ref={listRef} className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-5">
-      {SHOP_BY_CONCERN.map((concern) => (
+    <ul ref={listRef} className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
+      {SHOP_BY_HAIR_NEED.map((concern) => (
         <li key={concern.handle} className="min-w-[78%] snap-start sm:min-w-0">
           <Link
             to={concern.href}
             aria-label={`Shop ${concern.name.toLowerCase()}`}
-            className="group block h-full overflow-hidden rounded-2xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="group block h-full overflow-hidden border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[hsl(var(--after-hours-paper))] pt-3 text-[hsl(var(--after-hours-plum))] transition-colors duration-200 hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-4"
           >
             <div className="aspect-[4/3] overflow-hidden bg-muted">
               <picture>
@@ -54,8 +54,8 @@ const ShopByConcern = () => {
             </div>
             <div className="p-5">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="font-heading text-xl text-heading">{concern.name}</h3>
-                <ArrowRight className="h-4 w-4 shrink-0 text-brand-500 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <h3 className="font-heading text-xl text-[hsl(var(--after-hours-plum))]">{concern.name}</h3>
+                <ArrowRight className="h-4 w-4 shrink-0 text-[hsl(var(--after-hours-copper))] transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </div>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{concern.description}</p>
             </div>
@@ -67,9 +67,9 @@ const ShopByConcern = () => {
     <div className="mt-8 text-center">
       <Link
         to="/collections"
-        className="inline-flex min-h-11 items-center gap-2 font-semibold text-brand-600 underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-4"
+        className="inline-flex min-h-11 items-center gap-2 border-b border-[hsl(var(--after-hours-copper))] font-semibold text-[hsl(var(--after-hours-plum))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-4"
       >
-        Browse every collection
+        Choose another way to shop
         <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </Link>
     </div>

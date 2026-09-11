@@ -1,3 +1,15 @@
+import {
+  CHRISTMAS_PRODUCTS as CHRISTMAS_PRODUCTS_DATA,
+  FEATURED_BRANDS as FEATURED_BRANDS_DATA,
+  HIDDEN_COLLECTION_HANDLES as HIDDEN_COLLECTION_HANDLES_DATA,
+  isPublicCollectionHandle as isPublicCollectionHandleData,
+  PUBLIC_COLLECTION_HANDLES as PUBLIC_COLLECTION_HANDLES_DATA,
+  SECONDARY_BRANDS as SECONDARY_BRANDS_DATA,
+  SHOP_BY_HAIR_NEED as SHOP_BY_HAIR_NEED_DATA,
+  SHOP_BY_PRODUCT as SHOP_BY_PRODUCT_DATA,
+  SHOP_TAXONOMY as SHOP_TAXONOMY_DATA,
+} from "./commerceNavigation.data.js";
+
 export interface CommerceDestination {
   name: string;
   shortName: string;
@@ -7,52 +19,30 @@ export interface CommerceDestination {
   image: string;
 }
 
-export const SHOP_BY_CONCERN: CommerceDestination[] = [
-  {
-    name: "Frizz Control",
-    shortName: "Frizz",
-    handle: "frizz-free-must-haves",
-    href: "/collections/frizz-free-must-haves",
-    description: "Smoothing care for humidity, flyaways and rough ends.",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DAA9BE23-75CA-4B08-8C44-F572D7EA7DB9.jpg?v=1747084029",
-  },
-  {
-    name: "Heat Protection",
-    shortName: "Heat",
-    handle: "heat-protection",
-    href: "/collections/heat-protection",
-    description: "Protection for blow-dries, hot tools and summer sun.",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-042.jpg?v=1744250283",
-  },
-  {
-    name: "Blonde Care",
-    shortName: "Blonde",
-    handle: "blonde-bombshells",
-    href: "/collections/blonde-bombshells",
-    description: "Purple care, repair and shine for lighter hair.",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-057.jpg?v=1744178135",
-  },
-  {
-    name: "Volume & Fine Hair",
-    shortName: "Volume",
-    handle: "pump-up-the-volume",
-    href: "/collections/pump-up-the-volume",
-    description: "Lightweight care for body, lift and fuller-looking hair.",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-067.jpg?v=1744178179",
-  },
-  {
-    name: "Curly Hair",
-    shortName: "Curls",
-    handle: "curly-girlys",
-    href: "/collections/curly-girlys",
-    description: "Moisture and definition for waves, curls and coils.",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-011.jpg?v=1744178942",
-  },
-];
+export interface CommerceTaxonomyGroup {
+  id: "hair-need" | "product" | "brand";
+  label: string;
+  heading: string;
+  description: string;
+  destinations: CommerceDestination[];
+  secondaryDestinations?: CommerceDestination[];
+}
 
-export const FEATURED_BRANDS = [
-  { name: "Juuce", href: "/collections/juuce-botanicals" },
-  { name: "QIQI", href: "/collections/qiqi" },
-  { name: "Pure Organic", href: "/collections/pure-certified-organic-hair-care" },
-  { name: "Wet Brush", href: "/collections/wet-brush-detanglers" },
-] as const;
+export interface SeasonalProductDestination {
+  name: string;
+  handle: string;
+  href: string;
+}
+
+export const SHOP_BY_HAIR_NEED = SHOP_BY_HAIR_NEED_DATA as CommerceDestination[];
+// Backwards-compatible alias while existing imports move from "concern" to
+// the clearer customer-facing term "hair need".
+export const SHOP_BY_CONCERN = SHOP_BY_HAIR_NEED;
+export const SHOP_BY_PRODUCT = SHOP_BY_PRODUCT_DATA as CommerceDestination[];
+export const FEATURED_BRANDS = FEATURED_BRANDS_DATA as CommerceDestination[];
+export const SECONDARY_BRANDS = SECONDARY_BRANDS_DATA as CommerceDestination[];
+export const SHOP_TAXONOMY = SHOP_TAXONOMY_DATA as CommerceTaxonomyGroup[];
+export const CHRISTMAS_PRODUCTS = CHRISTMAS_PRODUCTS_DATA as SeasonalProductDestination[];
+export const HIDDEN_COLLECTION_HANDLES = HIDDEN_COLLECTION_HANDLES_DATA as string[];
+export const PUBLIC_COLLECTION_HANDLES = PUBLIC_COLLECTION_HANDLES_DATA as string[];
+export const isPublicCollectionHandle = isPublicCollectionHandleData as (handle?: string) => boolean;

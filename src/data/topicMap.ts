@@ -296,7 +296,6 @@ export const topics: Topic[] = [
       'winter-hair-care-sydney-2026',
       'christmas-hair-gifts-2026',
       'when-do-i-use-a-leave-in-conditioner',
-      'christmas-gift-packs-at-hair-pinns',
     ],
     collectionSlugs: ['juuce-botanicals', 'pure-certified-organic-hair-care'],
     serviceSlugs: [],

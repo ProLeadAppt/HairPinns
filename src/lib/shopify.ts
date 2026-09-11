@@ -133,6 +133,7 @@ export async function getProductByHandle(handle: string) {
               sku
               barcode
               availableForSale
+              quantityAvailable
               price {
                 amount
                 currencyCode
@@ -196,6 +197,10 @@ export async function getCollectionByHandle(handle: string) {
                   amount
                   currencyCode
                 }
+                maxVariantPrice {
+                  amount
+                  currencyCode
+                }
               }
               compareAtPriceRange {
                 minVariantPrice {
@@ -212,12 +217,25 @@ export async function getCollectionByHandle(handle: string) {
                   }
                 }
               }
-              variants(first: 10) {
+              variants(first: 100) {
                 edges {
                   node {
                     id
+                    title
                     availableForSale
+                    quantityAvailable
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    compareAtPrice {
+                      amount
+                      currencyCode
+                    }
                   }
+                }
+                pageInfo {
+                  hasNextPage
                 }
               }
             }

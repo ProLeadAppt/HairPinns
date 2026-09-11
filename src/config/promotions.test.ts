@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   DEFAULT_HEADER_PROMOTION,
   FREE_EXTRA_PROMOTION,
+  SITEWIDE_B2G1_PROMOTION,
   getActivePromotion,
+  getActiveSitewidePromotion,
   getCheckoutDiscountCodes,
   getHeaderPromotion,
   getPromotionCartState,
@@ -46,6 +48,28 @@ describe("free-extra promotion configuration", () => {
       message: "Free shipping on orders over $150",
       href: "/collections",
     });
+  });
+});
+
+describe("ended site-wide buy two get one promotion", () => {
+  it("remains disabled after the campaign ends", () => {
+    expect(SITEWIDE_B2G1_PROMOTION).toMatchObject({
+      id: "sitewide_buy_two_get_one_2026_08",
+      enabled: false,
+      landingPath: "/collections",
+      discountCode: "SALE",
+      endsAt: null,
+      stackingAllowed: false,
+    });
+    expect(getActiveSitewidePromotion(new Date("2026-08-18T23:59:59+10:00"))).toBeNull();
+    expect(getActiveSitewidePromotion(new Date("2026-08-19T00:00:00+10:00"))).toBeNull();
+    expect(getActiveSitewidePromotion(new Date("2026-09-02T16:00:00+10:00"))).toBeNull();
+  });
+
+  it("falls back to the evergreen shipping banner", () => {
+    expect(getHeaderPromotion(new Date("2026-09-02T16:00:00+10:00"))).toEqual(
+      DEFAULT_HEADER_PROMOTION,
+    );
   });
 });
 

@@ -13,10 +13,22 @@
 [functions]
   directory = "netlify/functions"
 
+# Shopify catalogue webhooks invoke this asynchronously. The function verifies
+# Shopify's HMAC, waits briefly for Storefront propagation, then queues one
+# fresh static catalogue build.
+[functions.shopify-catalog-sync-background]
+  background = true
+
 # API route first so /api/checkout always hits the function (not the SPA)
 [[redirects]]
   from = "/api/checkout"
   to = "/.netlify/functions/checkout"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/shopify-catalog-sync"
+  to = "/.netlify/functions/shopify-catalog-sync-background"
   status = 200
   force = true
 
@@ -269,10 +281,36 @@
   status = 301
   force = true
 
-# Retired seasonal article. Preserve historic links and send shoppers to the
-# live product catalogue rather than rendering stale gift-pack claims.
+# Retired seasonal article. Preserve historic links and send readers to the
+# verified 2026 Christmas guide.
 [[redirects]]
   from = "/blog/christmas-gift-packs-at-hair-pinns"
+  to = "/blog/christmas-hair-gifts-2026/"
+  status = 301
+  force = true
+
+# Expired campaign and operational collections stay in Shopify for recovery,
+# but are not public catalogue destinations.
+[[redirects]]
+  from = "/collections/hair-care-must-haves-sale-items"
+  to = "/collections/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collections/free-extra-eligible"
+  to = "/collections/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collections/free-extra-gifts"
+  to = "/collections/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collections/best-sellers-march"
   to = "/collections/"
   status = 301
   force = true
@@ -563,6 +601,20 @@
   status = 200
   force = true
 
+# Daily Trio is intentionally paused and noindexed, but its existing links
+# must resolve to the truthful paused-state page instead of a hard 404.
+[[redirects]]
+  from = "/collections/jenas-daily-trio"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/collections/jenas-daily-trio/"
+  to = "/index.html"
+  status = 200
+  force = true
+
 # Unknown routes must return a real HTTP 404. Every public route is
 # prerendered, so valid documents are served before this final fallback.
 [[redirects]]
@@ -651,8 +703,14 @@
 # Required for checkout function:
 #   - SHOPIFY_MYSHOPIFY_DOMAIN: Your Shopify store domain (e.g., femtat-zu.myshopify.com)
 #   - SF_STOREFRONT_TOKEN: Your Shopify Storefront API access token
-#   - SF_API_VERSION: Shopify API version (e.g., 2025-01)
+#   - SF_API_VERSION: Shopify API version (e.g., 2026-07)
+# Required for signed Shopify catalogue rebuilds:
+#   - SHOPIFY_CATALOG_WEBHOOK_SECRET: Shopify webhook signing secret
+#   - NETLIFY_CATALOG_BUILD_HOOK_URL: Secret production build-hook URL
+#   - SHOPIFY_CATALOG_BUILD_DELAY_MS: Optional propagation delay (default 60000)
+#   - SHOPIFY_CATALOG_BUILD_COOLDOWN_MS: Optional coalescing window (default 300000)
+#   - SHOPIFY_CATALOG_WORKER_LEASE_MS: Optional durable worker lease (default 840000)
+#   - SHOPIFY_CATALOG_MAX_BUILDS_PER_RUN: Optional trailing-build cap (default 3)
 # Optional:
 #   - VITE_GHL_INBOUND_WEBHOOK_URL: GoHighLevel webhook URL for form submissions
 #   - VITE_SHOP_DOMAIN: Your shop domain (e.g., hairpinns.com)
-

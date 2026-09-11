@@ -917,6 +917,7 @@ export interface CollectionPageData {
     image?: string;
     price?: string;
     currency?: string;
+    availability?: 'InStock' | 'BackOrder' | 'OutOfStock';
   }>;
 }
 
@@ -960,7 +961,7 @@ export const generateCollectionPageSchema = (collection: CollectionPageData) => 
             '@type': 'Offer',
             price: item.price,
             priceCurrency: item.currency || 'AUD',
-            availability: 'https://schema.org/InStock',
+            availability: `https://schema.org/${item.availability || 'InStock'}`,
             url: item.url,
           },
         }),

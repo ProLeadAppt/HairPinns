@@ -269,6 +269,9 @@ test('mobile menu and sticky action remain commerce first', async ({ page }) => 
   await expect(shopAllLink).toHaveAttribute('href', '/collections');
   const frizzLink = menu.getByRole('link', { name: 'Shop frizz control' });
   await expect(frizzLink).toHaveAttribute('href', '/collections/frizz-free-must-haves');
+  await expect(menu.getByRole('link', { name: 'Shop hair pinns' })).toHaveAttribute('href', '/collections/hair-pinns-accessories');
+  await expect(menu.getByRole('link', { name: 'Shop island vibes' })).toHaveAttribute('href', '/collections/island-vibes-tanning');
+  await expect(menu.getByRole('link', { name: 'Shop poppet locks' })).toHaveAttribute('href', '/collections/poppet-locks-reuseable-hair-extension-ponytails');
   await expect(menu.getByRole('link', { name: 'Salon services' })).toHaveAttribute('href', '/services');
 
   await frizzLink.click();
@@ -297,6 +300,48 @@ test('mobile menu and sticky action remain commerce first', async ({ page }) => 
     }
   });
   await expect(bar).toHaveCount(0);
+});
+
+test('featured brand catalogue remains visible and responsive', async ({ page }) => {
+  const viewports = [
+    { width: 344, height: 882 },
+    { width: 390, height: 844 },
+    { width: 768, height: 1024 },
+    { width: 1440, height: 900 },
+  ];
+
+  const expectedBrands = [
+    'Hair Pinns',
+    'Juuce',
+    'Pure',
+    'QIQI',
+    'Aromaganic',
+    'Wet Brush',
+    'Island Vibes',
+    'Poppet Locks',
+  ];
+
+  for (const viewport of viewports) {
+    await page.setViewportSize(viewport);
+    await page.goto('/collections', { waitUntil: 'domcontentloaded' });
+    await page.getByRole('tab', { name: 'Brand' }).click();
+
+    const brandPanel = page.getByRole('tabpanel', { name: 'Brand' });
+    await expect(brandPanel.locator('h3')).toHaveText(expectedBrands);
+    await expect(brandPanel.getByRole('link', { name: /Hair Pinns/i }).first()).toHaveAttribute(
+      'href',
+      '/collections/hair-pinns-accessories',
+    );
+    await expect(brandPanel.getByRole('link', { name: /Island Vibes/i }).first()).toHaveAttribute(
+      'href',
+      '/collections/island-vibes-tanning',
+    );
+    await expect(brandPanel.getByRole('link', { name: /Poppet Locks/i }).first()).toHaveAttribute(
+      'href',
+      '/collections/poppet-locks-reuseable-hair-extension-ponytails',
+    );
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(viewport.width);
+  }
 });
 
 test('sticky commerce bar yields to the contained salon close and restores above it', async ({ page }) => {

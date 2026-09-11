@@ -40,7 +40,7 @@ export const projectConfig = {
   shopify: {
     domain: import.meta.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com',
     storefrontToken: import.meta.env.VITE_SF_STOREFRONT_TOKEN || '',
-    apiVersion: import.meta.env.VITE_SF_API_VERSION || '2025-01',
+    apiVersion: import.meta.env.VITE_SF_API_VERSION || '2026-07',
     storeUrl: `https://${import.meta.env.VITE_SHOP_DOMAIN || 'hairpinns.com'}`,
     shopDomain: import.meta.env.VITE_SHOP_DOMAIN || 'hairpinns.com',
   },
