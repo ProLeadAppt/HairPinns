@@ -170,13 +170,13 @@ const Index = () => {
         {/* 1. Hero */}
         <HeroHome />
 
-        {/* 2. Trust bar — 3 quiet signals, lots of air */}
+        {/* 2. Trust bar, 3 quiet signals, lots of air */}
         <HeroSocialProofBar />
 
         {/* 3. Time-boxed commerce offer; self-hides outside its configured window */}
         <PromotionFeature />
 
-        {/* 4. Shop by concern — fast intent routing before the product grid */}
+        {/* 4. Shop by concern, fast intent routing before the product grid */}
         <DeferredSection
           rootMargin="0px"
           fallback={<div className="h-24" aria-hidden="true" />}
@@ -186,7 +186,7 @@ const Index = () => {
           </Suspense>
         </DeferredSection>
 
-        {/* 4. Best Sellers — live Shopify inventory and quick add */}
+        {/* 4. Best Sellers, live Shopify inventory and quick add */}
         <DeferredSection
           className="reveal"
           fallback={
@@ -224,7 +224,7 @@ const Index = () => {
           </Suspense>
         </DeferredSection>
 
-        {/* 7. Contained salon path — kept deliberately near the close */}
+        {/* 7. Contained salon path, kept deliberately near the close */}
         <DeferredSection fallback={null}>
           <Suspense fallback={null}>
             <BookingBanner />

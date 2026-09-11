@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * PullQuote — large italic Playfair editorial quote with a subtle rose-gold
+ * PullQuote, large italic Playfair editorial quote with a subtle rose-gold
  * ornament above. Use as a 1-per-page editorial beat, never in-line.
  *
  *   <PullQuote attribution="Jena · Hair Pinns">
@@ -34,7 +34,7 @@ const PullQuote = ({
         {children}
         {attribution && (
           <cite className="pull-quote-attribution not-italic">
-            — {attribution}
+, {attribution}
           </cite>
         )}
       </blockquote>

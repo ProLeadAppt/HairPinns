@@ -51,15 +51,15 @@ const post = {
         },
         {
           question: "Is the Wet Brush good for extensions?",
-          answer: "Yes — it's the only brush Jena recommends for tape-in, micro-bead, and keratin-bond extensions. Start from the ends, work up, never yank from the root.",
+          answer: "Yes, it's the only brush Jena recommends for tape-in, micro-bead, and keratin-bond extensions. Start from the ends, work up, never yank from the root.",
         },
         {
-          question: "Wet Brush vs Tangle Teezer — which is better?",
+          question: "Wet Brush vs Tangle Teezer, which is better?",
           answer: "Both work. Wet Brush has a handle (easier for some), Tangle Teezer is handle-less (palm grip). For long hair, Jena prefers Wet Brush. For short or one-handed use, Tangle Teezer wins.",
         },
         {
           question: "How long does a Wet Brush last?",
-          answer: "6-12 months with regular use, depending on hair thickness. The bristles lose flexibility over time. Once they don't flex back, replace it — a worn brush is just a comb.",
+          answer: "6-12 months with regular use, depending on hair thickness. The bristles lose flexibility over time. Once they don't flex back, replace it, a worn brush is just a comb.",
         }
       ],
     },

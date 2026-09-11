@@ -90,7 +90,7 @@ const Header = () => {
                 <source media="(max-width: 640px)" srcSet={hairPinnsLogoCompact} />
                 <img
                   src={hairPinnsLogoFull}
-                  alt="Hair Pinns — Happy Hair Specialist"
+                  alt="Hair Pinns, Happy Hair Specialist"
                   className="h-10 w-auto sm:h-12 xl:h-11"
                   loading="eager"
                   decoding="async"

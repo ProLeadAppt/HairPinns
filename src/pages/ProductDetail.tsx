@@ -227,14 +227,14 @@ const ProductDetail = () => {
   // Handle add to bag - use server-side Edge Function
   const handleAddToBag = async () => {
     if (!activeVariantId || !product?.variants.edges.some((edge: any) => edge.node.id === activeVariantId && edge.node.availableForSale)) return;
-    
+
     setAddingToCart(true);
-    
+
     try {
       const cart = await addCartLines([{ merchandiseId: activeVariantId, quantity: 1 }]);
       const cartId = cart.id;
       const checkoutUrl = cart.checkoutUrl;
-      
+
       // Track add_to_cart to GHL and cart abandonment
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
@@ -245,7 +245,7 @@ const ProductDetail = () => {
         product_title: product.title,
         price,
       });
-      
+
       // Track cart creation for abandonment recovery
       if (cartId && checkoutUrl) {
         await trackCartCreated(
@@ -261,7 +261,7 @@ const ProductDetail = () => {
           "AUD"
         );
       }
-      
+
       void trackAddToCart({
         product_id: product.id,
         title: product.title,
@@ -270,7 +270,7 @@ const ProductDetail = () => {
         currency: "AUD",
         quantity: 1,
       });
-      
+
       notify.success("Added to bag!");
       window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cart, cartId } }));
     } catch (error: any) {
@@ -284,9 +284,9 @@ const ProductDetail = () => {
   // Handle buy now - server-side checkout
   const handleBuyNow = async () => {
     if (!activeVariantId || !product?.variants.edges.some((edge: any) => edge.node.id === activeVariantId && edge.node.availableForSale)) return;
-    
+
     setBuyingNow(true);
-    
+
     try {
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
@@ -306,7 +306,7 @@ const ProductDetail = () => {
           quantity: 1,
         }],
       });
-      
+
       // A top-level form navigation lets the browser follow Netlify's 303 to
       // Shopify. A fetch() request follows cross-origin redirects under CORS
       // and can fail before JavaScript ever receives the checkout URL.
@@ -365,7 +365,7 @@ const ProductDetail = () => {
             {/* h1 kept (visually as a spinner caption) so prerender snapshots
                 captured during slow Shopify responses still satisfy the SEO
                 smoke test. Page is noindex, so this title never reaches an
-                index — it's purely a structural-integrity backstop. */}
+                index, it's purely a structural-integrity backstop. */}
             <h1 className="sr-only">Loading product</h1>
             <p className="text-muted-foreground">Loading product...</p>
           </div>
@@ -380,7 +380,7 @@ const ProductDetail = () => {
       <div className="min-h-screen bg-background">
         <SEOHead
           title={`Product not found: ${handle ?? "unknown"} | Hair Pinns`}
-          description="This product doesn't exist or has been removed. Browse our full hair care range at Hair Pinns — shipped Australia-wide."
+          description="This product doesn't exist or has been removed. Browse our full hair care range at Hair Pinns, shipped Australia-wide."
           canonical={`https://hairpinns.com/products/${handle ?? ""}`}
           noIndex={true}
         />
@@ -526,17 +526,17 @@ const ProductDetail = () => {
         hrefLang="en-AU"
         schemaJson={productSchemas}
       />
-      
+
       <Header />
-      
+
 
       {/* Exit Intent Modal */}
       {/* ExitIntentModal removed */}
-      
+
       <main id="main-content" tabIndex={-1}>
         {/* Breadcrumbs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { label: 'Home', href: '/' },
               { label: 'Collections', href: '/collections' },
@@ -544,7 +544,7 @@ const ProductDetail = () => {
             ]}
           />
         </div>
-        
+
         {/* Product Section */}
         <section data-product-detail-core="" className="border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper))] py-6 md:py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -581,7 +581,7 @@ const ProductDetail = () => {
                     />
                   </picture>
                   </button>
-                  
+
                   {/* Navigation arrows: 44px targets, visible on touch devices. */}
                   {images.length > 1 && (
                     <>
@@ -604,7 +604,7 @@ const ProductDetail = () => {
                     </>
                   )}
 
-                  {/* Dots Indicator — the visible pill is 8px tall, but the
+                  {/* Dots Indicator, the visible pill is 8px tall, but the
                        interactive hit-area is 44×44 (transparent padding) to
                        meet WCAG/Lighthouse tap-target. */}
                   {images.length > 1 && images.length <= 6 && (
@@ -633,13 +633,13 @@ const ProductDetail = () => {
                 {/* One scrollable row keeps options and price close to the product
                     on mobile, even for products with many style photographs. */}
                 {images.length > 1 && (
-                  <div className="flex gap-2 overflow-x-auto pb-2 sm:gap-3" data-product-thumbnails="" role="group" aria-label="Product photographs — scroll for more">
+                  <div className="flex gap-2 overflow-x-auto pb-2 sm:gap-3" data-product-thumbnails="" role="group" aria-label="Product photographs, scroll for more">
                     {images.map((image: any, index: number) => (
                       <button
                         key={index}
                         type="button"
                         onClick={() => selectImage(index)}
-                        aria-label={variantsForImage(image).length === 1 ? `Select ${variantsForImage(image)[0].title} — image ${index + 1}` : `View gallery image ${index + 1} (does not change selected options)`}
+                        aria-label={variantsForImage(image).length === 1 ? `Select ${variantsForImage(image)[0].title}, image ${index + 1}` : `View gallery image ${index + 1} (does not change selected options)`}
                         aria-pressed={index === currentImage}
                         className={`h-[72px] w-[72px] shrink-0 overflow-hidden border transition-all sm:h-20 sm:w-20 ${
                           index === currentImage ? "border-[hsl(var(--after-hours-plum))]" : "border-[hsl(var(--after-hours-plum)/0.14)] hover:border-[hsl(var(--after-hours-plum)/0.4)]"

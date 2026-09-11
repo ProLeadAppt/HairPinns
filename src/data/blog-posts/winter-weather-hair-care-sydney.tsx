@@ -47,7 +47,7 @@ const post = {
       faqSection: [
         {
           question: "How do I stop my hair going frizzy in Sydney humidity?",
-          answer: "Three things: a sulfate-free shampoo (Juuce Smoothing or Pure Precious), a silicone-free smoothing serum, and a microfibre towel. Skip the heavy butters — they attract water from the air and make frizz worse in our climate.",
+          answer: "Three things: a sulfate-free shampoo (Juuce Smoothing or Pure Precious), a silicone-free smoothing serum, and a microfibre towel. Skip the heavy butters, they attract water from the air and make frizz worse in our climate.",
         },
         {
           question: "What's the best shampoo for frizzy hair in Australia?",

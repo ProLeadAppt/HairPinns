@@ -537,7 +537,7 @@ export const generateHowToSchema = (howTo: HowToData) => {
 
 
 /**
- * Person schema for Jena Pinn — E-E-A-T author authority.
+ * Person schema for Jena Pinn, E-E-A-T author authority.
  * Emitted on every blog post authored by Jena and referenced by `author` in
  * Article/BlogPosting schemas via the Meet Jena bio URL.
  */
@@ -1182,7 +1182,7 @@ export const getOpeningHoursSpecification = () =>
   getRegistryOpeningHoursSpecification();
 
 /**
- * DefinedTermSet schema for /glossary — gives AI overviews and search
+ * DefinedTermSet schema for /glossary, gives AI overviews and search
  * engines a structured definition list to cite for "what is X" queries.
  */
 export const generateDefinedTermSetSchema = (terms: Array<{
@@ -1194,7 +1194,7 @@ export const generateDefinedTermSetSchema = (terms: Array<{
   '@type': 'DefinedTermSet',
   '@id': `${BASE_URL}/glossary#termset`,
   name: 'Hair Care Glossary | Hair Pinns',
-  description: 'Plain-English definitions of common hair-care terms, treatments, colour techniques and products — from Jena at Hair Pinns Bangor.',
+  description: 'Plain-English definitions of common hair-care terms, treatments, colour techniques and products, from Jena at Hair Pinns Bangor.',
   url: `${BASE_URL}/glossary`,
   hasDefinedTerm: terms.map((t) => ({
     '@type': 'DefinedTerm',

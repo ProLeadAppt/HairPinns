@@ -93,7 +93,7 @@ const Updates = () => {
               </h1>
             </div>
             <p className="border-t border-[hsl(var(--hp-ink)/0.24)] pt-5 text-base leading-7 text-[hsl(var(--hp-ink)/0.74)]">
-              The public versions of Hair Pinns emails—salon news, useful hair advice and product updates—without customer details or private tracking links.
+              The public versions of Hair Pinns emails, salon news, useful hair advice and product updates, without customer details or private tracking links.
             </p>
           </div>
         </section>

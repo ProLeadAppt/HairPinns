@@ -149,7 +149,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'whats-a-straight-up-smoothing-treatment',
     title: "What's a Straight Up Smoothing Treatment?",
-    excerpt: 'Smooth, soft, frizz-free hair with QIQI Vega — a hair-friendly smoothing system with no harsh chemicals, no downtime, and results that last up to 6 months.',
+    excerpt: 'Smooth, soft, frizz-free hair with QIQI Vega, a hair-friendly smoothing system with no harsh chemicals, no downtime, and results that last up to 6 months.',
     category: 'Treatments',
     date: 'September 02, 2025',
     readTime: '5 min read',
@@ -339,7 +339,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'keratin-smoothing-sydney-prices-brands',
     title: 'Keratin Smoothing Sydney: Prices, Brands & What You Actually Get',
-    excerpt: "A stylist's honest breakdown of keratin smoothing in Sydney — what you pay, what brands work, and the difference between Straight Up, QIQI Vega, and Nanoplasty.",
+    excerpt: "A stylist's honest breakdown of keratin smoothing in Sydney, what you pay, what brands work, and the difference between Straight Up, QIQI Vega, and Nanoplasty.",
     category: 'Treatments',
     date: 'April 19, 2026',
     readTime: '10 min read',
@@ -349,7 +349,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-menai',
     title: 'Best Hair Salon Near Menai: What the Locals Say',
-    excerpt: "Looking for a hair salon near Menai? Here's what locals actually value — and why Hair Pinns in Bangor is the short drive worth making.",
+    excerpt: "Looking for a hair salon near Menai? Here's what locals actually value, and why Hair Pinns in Bangor is the short drive worth making.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '5 min read',
@@ -359,7 +359,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'hair-extensions-bangor',
     title: 'Hair Extensions in Bangor: Salon-Grade vs DIY Clip-Ins',
-    excerpt: "Thinking about hair extensions in Bangor? Here's an honest breakdown of tape-ins, clip-ins, and ponytail extensions — what works, what doesn't, and where to shop.",
+    excerpt: "Thinking about hair extensions in Bangor? Here's an honest breakdown of tape-ins, clip-ins, and ponytail extensions, what works, what doesn't, and where to shop.",
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '6 min read',
@@ -369,7 +369,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'juuce-vs-pure-organic-shampoo',
     title: 'Juuce vs Pure Organic Shampoo: Which Is Right for Your Hair?',
-    excerpt: "A stylist's honest comparison of Juuce and Pure Organic shampoos — ingredients, performance, price, and which one actually suits your hair type.",
+    excerpt: "A stylist's honest comparison of Juuce and Pure Organic shampoos, ingredients, performance, price, and which one actually suits your hair type.",
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '8 min read',
@@ -379,7 +379,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-shampoo-colour-treated-hair-australia',
     title: 'Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)',
-    excerpt: "A stylist's guide to the best shampoos for colour-treated hair in Australia — what actually keeps colour vibrant, what strips it, and what to buy.",
+    excerpt: "A stylist's guide to the best shampoos for colour-treated hair in Australia, what actually keeps colour vibrant, what strips it, and what to buy.",
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '9 min read',
@@ -399,7 +399,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'wet-brush-vs-tangle-teezer',
     title: 'Wet Brush vs Tangle Teezer: Honest Comparison (From a Stylist)',
-    excerpt: "Wet Brush vs Tangle Teezer — which detangling brush is actually worth it? An honest side-by-side from a stylist who's used both for a decade.",
+    excerpt: "Wet Brush vs Tangle Teezer, which detangling brush is actually worth it? An honest side-by-side from a stylist who's used both for a decade.",
     category: 'Products',
     date: 'April 19, 2026',
     readTime: '5 min read',
@@ -409,7 +409,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'keratin-vs-brazilian-blowout-vs-straight-up',
     title: 'Keratin vs Brazilian Blowout vs Straight Up: Which One?',
-    excerpt: 'The three main smoothing treatments explained — true keratin, Brazilian blowout, and amino-acid Straight Up Smoothing. Which fits your hair and budget?',
+    excerpt: 'The three main smoothing treatments explained, true keratin, Brazilian blowout, and amino-acid Straight Up Smoothing. Which fits your hair and budget?',
     category: 'Treatments',
     date: 'April 19, 2026',
     readTime: '8 min read',
@@ -429,7 +429,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'how-long-does-keratin-smoothing-last',
     title: 'How Long Does Keratin Smoothing Actually Last?',
-    excerpt: 'A direct answer to how long keratin smoothing lasts — by treatment type, aftercare, and the single biggest factor that determines whether you get 4 weeks or 12.',
+    excerpt: 'A direct answer to how long keratin smoothing lasts, by treatment type, aftercare, and the single biggest factor that determines whether you get 4 weeks or 12.',
     category: 'Treatments',
     date: 'April 19, 2026',
     readTime: '4 min read',
@@ -499,7 +499,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'how-to-recover-hair-from-box-dye-damage',
     title: 'How to Recover Hair From Box Dye Damage',
-    excerpt: "A stylist's honest guide to recovering hair from box dye damage — what the process actually looks like, how long it takes, and how much it costs in the Sutherland Shire.",
+    excerpt: "A stylist's honest guide to recovering hair from box dye damage, what the process actually looks like, how long it takes, and how much it costs in the Sutherland Shire.",
     category: 'Colour',
     date: 'April 19, 2026',
     readTime: '9 min read',
@@ -579,7 +579,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'summer-hair-care-australia-beach-sun-salt',
     title: 'Summer Hair Care in Australia: Beach, Sun, Salt Guide',
-    excerpt: "A stylist's complete guide to summer hair care in Australia — how to protect your hair from sun, salt, chlorine, and humidity, and the products that actually work.",
+    excerpt: "A stylist's complete guide to summer hair care in Australia, how to protect your hair from sun, salt, chlorine, and humidity, and the products that actually work.",
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '7 min read',
@@ -589,7 +589,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'winter-hair-care-sydney-2026',
     title: 'Winter Hair Care for Sydney Weather (2026 Guide)',
-    excerpt: "A stylist's guide to winter hair care in Sydney — dealing with dry heat, wind, cold rain, and the specific problems Sydney winter causes for coloured and treated hair.",
+    excerpt: "A stylist's guide to winter hair care in Sydney, dealing with dry heat, wind, cold rain, and the specific problems Sydney winter causes for coloured and treated hair.",
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '6 min read',
@@ -599,7 +599,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'school-formal-hair-trends-2026',
     title: "School Formal Hair Trends 2026: What's In and How to Book",
-    excerpt: "A stylist's guide to 2026 school formal hair trends — what's in, what photographs well, how to prep, and when to book so you're not disappointed.",
+    excerpt: "A stylist's guide to 2026 school formal hair trends, what's in, what photographs well, how to prep, and when to book so you're not disappointed.",
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '6 min read',
@@ -619,7 +619,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'beating-frizz-sydney-humidity',
     title: "Beating Frizz in Sydney Humidity: A Stylist's Complete Guide",
-    excerpt: "A stylist's complete guide to beating frizz in Sydney humidity — why it happens, what actually works, and the salon treatments that give you months of smooth hair.",
+    excerpt: "A stylist's complete guide to beating frizz in Sydney humidity, why it happens, what actually works, and the salon treatments that give you months of smooth hair.",
     category: 'Seasonal',
     date: 'April 19, 2026',
     readTime: '7 min read',
@@ -629,7 +629,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'when-do-i-use-a-leave-in-conditioner',
     title: "When Do I Use a Leave-In Conditioner? A Stylist's Honest Guide",
-    excerpt: "A stylist's honest guide to when you should use a leave-in conditioner, how often, and which one suits your hair type — plus the leave-in mistakes most people make.",
+    excerpt: "A stylist's honest guide to when you should use a leave-in conditioner, how often, and which one suits your hair type, plus the leave-in mistakes most people make.",
     category: 'Education',
     date: 'May 14, 2026',
     readTime: '5 min read',

@@ -18,7 +18,7 @@ const post = {
         },
         {
           heading: "Who might compare sulfate-free options?",
-          content: "People often ask after colour or smoothing services, or when their hair feels dry after washing. Curly and textured hair routines may also favour a different balance of cleansing and conditioning. If you have persistent itching, flaking, eczema or another scalp condition, product advice is not a diagnosis—speak with an appropriate health professional and check the full label before use."
+          content: "People often ask after colour or smoothing services, or when their hair feels dry after washing. Curly and textured hair routines may also favour a different balance of cleansing and conditioning. If you have persistent itching, flaking, eczema or another scalp condition, product advice is not a diagnosis, speak with an appropriate health professional and check the full label before use."
         },
         {
           heading: "A current option Jena has verified",
@@ -26,11 +26,11 @@ const post = {
         },
         {
           heading: "Do not rely on a product category alone",
-          content: "A shampoo described as colour care, smoothing aftercare, organic or gentle is not automatically sulfate-free. That is why this guide no longer groups products together from broad marketing descriptions. Check the current ingredient panel, the manufacturer’s current information and the exact product page—not an old list or a similarly named formula."
+          content: "A shampoo described as colour care, smoothing aftercare, organic or gentle is not automatically sulfate-free. That is why this guide no longer groups products together from broad marketing descriptions. Check the current ingredient panel, the manufacturer’s current information and the exact product page, not an old list or a similarly named formula."
         },
         {
           heading: "What should you check before buying?",
-          content: "Start with the concern you are solving: colour maintenance, build-up, dryness, curl care or post-service aftercare. Then check the ingredient panel on the current bottle, directions, availability and any instructions supplied with your salon service. Lather is not a reliable shortcut—different non-sulfate cleansers can still create foam."
+          content: "Start with the concern you are solving: colour maintenance, build-up, dryness, curl care or post-service aftercare. Then check the ingredient panel on the current bottle, directions, availability and any instructions supplied with your salon service. Lather is not a reliable shortcut, different non-sulfate cleansers can still create foam."
         },
         {
           heading: "Let the routine do the work",

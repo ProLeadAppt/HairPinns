@@ -1,5 +1,5 @@
 /**
- * Topic map — single source of truth for cross-content-type linking.
+ * Topic map, single source of truth for cross-content-type linking.
  *
  * Every topic has:
  *   - A canonical hub page (a service or collection)
@@ -30,7 +30,7 @@ export type TopicSlug =
 export interface Topic {
   slug: TopicSlug;
   name: string;
-  /** Hub page — service slug (cat/svc) OR a collection slug. */
+  /** Hub page, service slug (cat/svc) OR a collection slug. */
   hub:
     | { kind: 'service'; path: string; label: string }
     | { kind: 'collection'; slug: string; label: string };

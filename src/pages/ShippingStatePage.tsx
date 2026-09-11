@@ -45,7 +45,7 @@ interface NormalisedLocation {
   name: string;
   /** State abbreviation for states, state code for cities. */
   shortCode: string;
-  /** Postcode range (states only — cities show city + state name instead). */
+  /** Postcode range (states only, cities show city + state name instead). */
   scopeLabel: string;
   standardDeliveryDays: string;
   expressDeliveryDays: string;
@@ -66,7 +66,7 @@ interface NormalisedLocation {
 }
 
 function normaliseLocation(slug: string): NormalisedLocation | undefined {
-  // Cities first — capital-city slugs would otherwise shadow nothing, but if
+  // Cities first, capital-city slugs would otherwise shadow nothing, but if
   // a city slug ever clashes with a future state slug (unlikely) we want the
   // city to win because it's the higher-intent surface.
   const city = getShippingCityData(slug);

@@ -49,7 +49,7 @@ export const trackPromoClick = async (placement: string, source_page: string) =>
 };
 
 export const trackBookingClick = async (placement: string, source_page: string) => {
-  // GA4 event — runs synchronously, used as a conversion in GA4 admin
+  // GA4 event, runs synchronously, used as a conversion in GA4 admin
   if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
     (window as any).gtag("event", "begin_booking", {
       placement,

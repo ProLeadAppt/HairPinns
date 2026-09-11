@@ -6,7 +6,7 @@
 export const HOMEPAGE_PICKS_COLLECTION_HANDLE = "hair-pinns-homepage-picks";
 
 /**
- * Frizz-Free Must-Haves collection — products from this collection appear in the hero grid.
+ * Frizz-Free Must-Haves collection, products from this collection appear in the hero grid.
  * @see https://hairpinns.com/collections/frizz-free-must-haves
  */
 export const FRIZZ_FREE_COLLECTION_HANDLE: string | null = "frizz-free-must-haves";
@@ -23,7 +23,7 @@ export const ABOVE_FOLD_HERO_PRODUCT_HANDLES: string[] = [
 ];
 
 /**
- * Best Sellers product handles — when set, overrides BEST_SELLERS_COLLECTION_HANDLE.
+ * Best Sellers product handles, when set, overrides BEST_SELLERS_COLLECTION_HANDLE.
  * Jena updates this list from analytics (add-to-cart, views, time on page).
  * Order = popularity (first = most popular). Leave empty to use the collection.
  * Product handle = URL slug, e.g. from /products/juuce-bond-repair-shampoo use "juuce-bond-repair-shampoo"

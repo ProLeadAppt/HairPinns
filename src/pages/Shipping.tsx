@@ -34,13 +34,13 @@ const Shipping = () => {
         ]}
       />
       <Header />
-      
+
       <main id="main-content" tabIndex={-1} className="flex-grow">
         <Section className="pt-xl">
           <SectionHeader as="h1" title="Shipping Policy" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-foreground leading-relaxed mb-6">
-              At Hair Pinns, we get your hair care products to you 
+              At Hair Pinns, we get your hair care products to you
               as quickly and safely as possible.
             </p>
 
@@ -100,7 +100,7 @@ const Shipping = () => {
               Local Sutherland Shire customers may also choose in-store pickup at no additional cost.
             </p>
 
-            {/* State landing pages — each has unique delivery times, climate-
+            {/* State landing pages, each has unique delivery times, climate-
                 appropriate product picks, and FAQs for that state's hair-care
                 challenges. Internal links here help crawlers discover the
                 cluster. */}
@@ -134,7 +134,7 @@ const Shipping = () => {
           </div>
         </Section>
       </main>
-      
+
       <Footer />
     </div>
   );

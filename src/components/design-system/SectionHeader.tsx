@@ -6,7 +6,7 @@ interface SectionHeaderProps {
   /** Optional italic Playfair tagline that appears between eyebrow and title.
    *  The hero/brand uses this for "Hair care from someone who actually does hair." */
   tagline?: string;
-  /** Small-caps gold label above the title. e.g. "01 — what we make" */
+  /** Small-caps gold label above the title. e.g. "01, what we make" */
   eyebrow?: string;
   align?: "left" | "center" | "right";
   className?: string;

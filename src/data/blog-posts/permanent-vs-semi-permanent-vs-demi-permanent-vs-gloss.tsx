@@ -59,7 +59,7 @@ const post = {
       faqSection: [
         {
           question: "Is Hair Pinns a real salon I can visit?",
-          answer: "Yes — Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+          answer: "Yes, Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
         },
         {
           question: "What services does Hair Pinns offer?",
@@ -67,11 +67,11 @@ const post = {
         },
         {
           question: "Do you ship products Australia-wide?",
-          answer: "Yes — free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
+          answer: "Yes, free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
         },
         {
           question: "Can I book a free consultation?",
-          answer: "Yes — every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
+          answer: "Yes, every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
         },
         {
           question: "What payment methods do you accept?",

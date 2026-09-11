@@ -3,7 +3,7 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "how-to-recover-hair-from-box-dye-damage",
     title: "How to Recover Hair From Box Dye Damage",
-    excerpt: "A stylist's honest guide to recovering hair from box dye damage — what the process actually looks like, how long it takes, and how much it costs in the Sutherland Shire.",
+    excerpt: "A stylist's honest guide to recovering hair from box dye damage, what the process actually looks like, how long it takes, and how much it costs in the Sutherland Shire.",
     category: "Colour",
     date: "April 19, 2026",
     readTime: "9 min read",
@@ -18,27 +18,27 @@ const post = {
         },
         {
           heading: "Step 1: The Consultation (Not the Service)",
-          content: "Before any colour goes on, I do a consultation — strand test, porosity check, and history-taking. I need to know every product on your hair in the last 12 months. Henna, box dye, semi-permanent, 'natural' colours from the health food store — all of it matters. Some ingredients (henna especially) react violently with salon lighteners and can cause hair to literally smoke. This is why reputable salons refuse to colour over unknown home treatments without testing first. Don't hide anything — I can't help you if I don't know what's on the hair."
+          content: "Before any colour goes on, I do a consultation, strand test, porosity check, and history-taking. I need to know every product on your hair in the last 12 months. Henna, box dye, semi-permanent, 'natural' colours from the health food store, all of it matters. Some ingredients (henna especially) react violently with salon lighteners and can cause hair to literally smoke. This is why reputable salons refuse to colour over unknown home treatments without testing first. Don't hide anything, I can't help you if I don't know what's on the hair."
         },
         {
-          heading: "Step 2: Visit One — Stabilise, Don't Lift",
-          content: "The first visit is almost never where we get to the final colour. It's the visit where we stabilise the hair — cut off the worst damaged ends, apply a colour-depositing toner or gloss to even out the tone, and do a bond-repair treatment. Goal: your hair is healthier, more even, and looks presentable, even if it's not the final shade. Cost: usually $200–$350 depending on length. Time: 2–3 hours."
+          heading: "Step 2: Visit One, Stabilise, Don't Lift",
+          content: "The first visit is almost never where we get to the final colour. It's the visit where we stabilise the hair, cut off the worst damaged ends, apply a colour-depositing toner or gloss to even out the tone, and do a bond-repair treatment. Goal: your hair is healthier, more even, and looks presentable, even if it's not the final shade. Cost: usually $200–$350 depending on length. Time: 2–3 hours."
         },
         {
-          heading: "Step 3: Visit Two — Gentle Progression",
-          content: "4–6 weeks after visit one, visit two starts the progression toward your goal colour. This might be low-lights to break up banding, a partial foil package to introduce dimension, or a gentle gloss for tone. We're still not going for 'the full transformation' — we're one step closer. Cost: $250–$400. Another bond-repair treatment goes in."
+          heading: "Step 3: Visit Two, Gentle Progression",
+          content: "4–6 weeks after visit one, visit two starts the progression toward your goal colour. This might be low-lights to break up banding, a partial foil package to introduce dimension, or a gentle gloss for tone. We're still not going for 'the full transformation', we're one step closer. Cost: $250–$400. Another bond-repair treatment goes in."
         },
         {
-          heading: "Step 4: Visit Three — Final Colour",
+          heading: "Step 4: Visit Three, Final Colour",
           content: "4–6 weeks after visit two, the final visit is where we land on your goal colour. By now the hair is healthier, more predictable, and can handle the final step (full balayage, a toner refresh, a cut to remove the last damaged length). Cost: $280–$450. Total cost across all three visits: $730–$1200. Total time: 10–14 weeks."
         },
         {
           heading: "Honest Answer: What If You Can't Wait That Long?",
-          content: "I get it — a wedding, a work event, a new job. If time matters more than optimal hair health, we can compress to two visits, or sometimes one if the damage is mild. I'll tell you the tradeoff upfront: faster means more aggressive, which means more damage, which means more ongoing conditioning and probably another cut 6 months down the track. Sometimes that's the right call for the situation. Sometimes it isn't. I'd rather you make that call with real information than not know what you're trading."
+          content: "I get it, a wedding, a work event, a new job. If time matters more than optimal hair health, we can compress to two visits, or sometimes one if the damage is mild. I'll tell you the tradeoff upfront: faster means more aggressive, which means more damage, which means more ongoing conditioning and probably another cut 6 months down the track. Sometimes that's the right call for the situation. Sometimes it isn't. I'd rather you make that call with real information than not know what you're trading."
         },
         {
           heading: "What to Do Between Appointments",
-          content: "Weekly bond-repair mask (Juuce Bond Repair is our salon favourite). Sulfate-free shampoo — no exceptions. Heat styling below 160°C with heat protection. A silk or satin pillowcase to reduce friction breakage. Absolutely no home colour during recovery, including 'just the roots' box dye. One more home dye job during a recovery process can undo a full visit's worth of work."
+          content: "Weekly bond-repair mask (Juuce Bond Repair is our salon favourite). Sulfate-free shampoo, no exceptions. Heat styling below 160°C with heat protection. A silk or satin pillowcase to reduce friction breakage. Absolutely no home colour during recovery, including 'just the roots' box dye. One more home dye job during a recovery process can undo a full visit's worth of work."
         },
         {
           heading: "A Client Case Study (Composite)",
@@ -59,7 +59,7 @@ const post = {
       },
       keyTakeaways: [
         "Box dye over previous colour causes unpredictable banding and patchy lift",
-        "Recovery is always multi-visit — 2–3 visits over 8–14 weeks",
+        "Recovery is always multi-visit, 2–3 visits over 8–14 weeks",
         "Visit one stabilises, visit two progresses, visit three lands the final colour",
         "Total cost in the Sutherland Shire: $730–$1200 depending on length and damage",
         "Weekly bond-repair mask and sulfate-free shampoo are non-negotiable between visits"
@@ -79,7 +79,7 @@ const post = {
         },
         {
           question: "Should I keep colouring my hair while it's recovering?",
-          answer: "No — let it rest for 6-8 weeks. Use a root touch-up spray or powder for the visible re-growth, and focus the salon visits on bond-repair treatments, not more colour.",
+          answer: "No, let it rest for 6-8 weeks. Use a root touch-up spray or powder for the visible re-growth, and focus the salon visits on bond-repair treatments, not more colour.",
         },
         {
           question: "Will a haircut fix box dye damage?",

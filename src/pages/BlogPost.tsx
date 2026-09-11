@@ -34,7 +34,7 @@ import {
 export const BlogPostTemplate = ({ post }: { post: any }) => {
   // Wire the IntersectionObserver that flips `.reveal` → `.reveal.visible`.
   // Without this, every `<div className="reveal">` in this template renders
-  // at opacity:0 and never appears — silently hiding every blog body section.
+  // at opacity:0 and never appears, silently hiding every blog body section.
   const revealRef = useScrollReveal();
 
   // Archived posts are 301'd to the live destination (collections page or homepage).
@@ -44,9 +44,9 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     return <Navigate to={post.redirectTo} replace />;
   }
 
-  const wordCount = 
+  const wordCount =
     post.content.introduction.split(/\s+/).filter((word) => word.length > 0).length +
-    post.content.sections.reduce((total, section) => 
+    post.content.sections.reduce((total, section) =>
       total + section.content.split(/\s+/).filter((word) => word.length > 0).length, 0
     );
 
@@ -105,7 +105,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
 
       <ProgressBar />
       <Header />
-      
+
       <main id="main-content" tabIndex={-1} ref={revealRef as any} data-blog-article="">
         <div className="border-b border-[hsl(var(--hp-ink)/0.16)] bg-[hsl(var(--hp-lavender))] px-4 pt-5 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-[78rem]">
@@ -201,7 +201,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
 
               {/* Insert Product Module after 3rd section */}
               {index === 2 && post.content.productModule && (
-                <ProductModule 
+                <ProductModule
                   title={post.content.productModule.title}
                   products={post.content.productModule.products}
                 />
@@ -212,7 +212,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
 
               {/* Insert CTA after 2nd section if available */}
               {index === 1 && post.cta && (
-                <BlogCTA 
+                <BlogCTA
                   type={post.cta.type}
                   servicePath={post.cta.servicePath}
                   productPath={post.cta.productPath}
@@ -229,7 +229,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
 
           {/* Final CTA before FAQ */}
           {post.cta && (
-            <BlogCTA 
+            <BlogCTA
               type={post.cta.type}
               servicePath={post.cta.servicePath}
               productPath={post.cta.productPath}
@@ -259,7 +259,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
             </div>
           )}
 
-          {/* Author bio — E-E-A-T anchor matching the Person JSON-LD */}
+          {/* Author bio, E-E-A-T anchor matching the Person JSON-LD */}
           <AuthorBio />
 
           {/* Back to Blog */}

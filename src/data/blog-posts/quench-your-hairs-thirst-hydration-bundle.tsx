@@ -55,15 +55,15 @@ const post = {
         },
         {
           question: "Is the Quench bundle good for colour-treated hair?",
-          answer: "Yes — every product in the bundle is colour-safe and sulfate-free. It's the exact aftercare Jena recommends for clients who colour and want their tone to last longer.",
+          answer: "Yes, every product in the bundle is colour-safe and sulfate-free. It's the exact aftercare Jena recommends for clients who colour and want their tone to last longer.",
         },
         {
           question: "How long does the Quench bundle last?",
-          answer: "8-10 weeks with normal use (3-4 washes a week). The mask is the fastest to be used up — it's the one clients tend to over-indulge in.",
+          answer: "8-10 weeks with normal use (3-4 washes a week). The mask is the fastest to be used up, it's the one clients tend to over-indulge in.",
         },
         {
           question: "Does the Quench bundle help with frizz?",
-          answer: "Yes — the leave-in mask and silk pillowcase combo addresses the two biggest frizz causes: dehydration and friction. Most clients see a difference in two washes.",
+          answer: "Yes, the leave-in mask and silk pillowcase combo addresses the two biggest frizz causes: dehydration and friction. Most clients see a difference in two washes.",
         }
       ],
     },

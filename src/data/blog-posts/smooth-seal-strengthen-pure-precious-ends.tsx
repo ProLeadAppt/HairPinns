@@ -47,7 +47,7 @@ const post = {
       faqSection: [
         {
           question: "What does Pure Precious Ends do?",
-          answer: "A targeted treatment for the oldest, most porous part of the hair — the last 5-10cm. It binds split ends, adds shine, and stops breakage creeping up the shaft.",
+          answer: "A targeted treatment for the oldest, most porous part of the hair, the last 5-10cm. It binds split ends, adds shine, and stops breakage creeping up the shaft.",
         },
         {
           question: "How often should I use Pure Precious Ends?",
@@ -63,7 +63,7 @@ const post = {
         },
         {
           question: "Does Pure Precious Ends work on colour-treated hair?",
-          answer: "Yes — it's colour-safe and slightly acidic, which closes the cuticle after colour and locks pigment in. Jena uses it as a finishing step on every colour client.",
+          answer: "Yes, it's colour-safe and slightly acidic, which closes the cuticle after colour and locks pigment in. Jena uses it as a finishing step on every colour client.",
         }
       ],
     },

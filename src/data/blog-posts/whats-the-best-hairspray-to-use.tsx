@@ -47,7 +47,7 @@ const post = {
       faqSection: [
         {
           question: "What's the best hairspray to use?",
-          answer: "A flexible-hold, humidity-resistant aerosol with a fine mist. Jena's pick is Goldwell Dual Senses — it brushes out cleanly, doesn't flake, and holds through Sydney humidity.",
+          answer: "A flexible-hold, humidity-resistant aerosol with a fine mist. Jena's pick is Goldwell Dual Senses, it brushes out cleanly, doesn't flake, and holds through Sydney humidity.",
         },
         {
           question: "What's the difference between flexible and firm hold hairspray?",
@@ -59,11 +59,11 @@ const post = {
         },
         {
           question: "Is aerosol hairspray bad for the environment?",
-          answer: "Modern aerosols are CFC-free and VOC-compliant. The bigger environmental cost is over-use — a 2-second burst is enough. Hold the can 30cm away for a fine, even mist.",
+          answer: "Modern aerosols are CFC-free and VOC-compliant. The bigger environmental cost is over-use, a 2-second burst is enough. Hold the can 30cm away for a fine, even mist.",
         },
         {
           question: "Can hairspray be used on dry shampoo days?",
-          answer: "Yes — a light mist of flexible hold over dry shampoo at the roots sets volume and stops the powdery look. Less is more, brush through after 30 seconds.",
+          answer: "Yes, a light mist of flexible hold over dry shampoo at the roots sets volume and stops the powdery look. Less is more, brush through after 30 seconds.",
         }
       ],
     },

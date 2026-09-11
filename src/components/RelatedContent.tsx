@@ -27,7 +27,7 @@ interface RelatedContentProps {
 /**
  * Cross-content-type "related" block. Pulls blog posts, services, and
  * collection pages from the topicMap so every page feeds traffic into
- * its topic cluster. Renders nothing if no matches — safe to drop in
+ * its topic cluster. Renders nothing if no matches, safe to drop in
  * anywhere.
  */
 const RelatedContent = ({

@@ -1,5 +1,5 @@
 /**
- * Hair-care glossary — plain-English definitions targeting "what is X"
+ * Hair-care glossary, plain-English definitions targeting "what is X"
  * search queries and AI Overviews. Each entry powers the /glossary page
  * AND a DefinedTerm schema entry under DefinedTermSet JSON-LD.
  *
@@ -7,7 +7,7 @@
  *  - 1–3 sentences
  *  - Plain English, no jargon-on-jargon
  *  - First answer in first sentence (AI Overviews truncate at 1–2 sentences)
- *  - Honest about trade-offs (Jena's voice — no marketing fluff)
+ *  - Honest about trade-offs (Jena's voice, no marketing fluff)
  */
 
 export interface GlossaryTerm {
@@ -85,7 +85,7 @@ export const glossary: GlossaryTerm[] = [
     id: "toner",
     term: "Toner",
     definition:
-      "A semi-permanent colour service that neutralises unwanted tones in lightened hair — pulling out brass, warmth or yellow. Lasts 4–8 weeks; needed every 6–8 weeks to keep blondes cool.",
+      "A semi-permanent colour service that neutralises unwanted tones in lightened hair, pulling out brass, warmth or yellow. Lasts 4–8 weeks; needed every 6–8 weeks to keep blondes cool.",
     category: "colour",
   },
   {
@@ -99,7 +99,7 @@ export const glossary: GlossaryTerm[] = [
     id: "colour-correction",
     term: "Colour correction",
     definition:
-      "Specialist multi-step service to fix unwanted colour outcomes — box-dye disasters, brassy blonde, banded foils, uneven regrowth. Often takes 2–3 sessions because doing it safely matters more than doing it fast.",
+      "Specialist multi-step service to fix unwanted colour outcomes, box-dye disasters, brassy blonde, banded foils, uneven regrowth. Often takes 2–3 sessions because doing it safely matters more than doing it fast.",
     category: "colour",
   },
   {
@@ -115,7 +115,7 @@ export const glossary: GlossaryTerm[] = [
     id: "sulfate-free",
     term: "Sulphate-free shampoo",
     definition:
-      "Shampoo formulated without sodium lauryl sulphate or sodium laureth sulphate — the harsh detergents that strip colour and smoothing treatments. Essential after any colour or smoothing service if you want your investment to last.",
+      "Shampoo formulated without sodium lauryl sulphate or sodium laureth sulphate, the harsh detergents that strip colour and smoothing treatments. Essential after any colour or smoothing service if you want your investment to last.",
     category: "products",
   },
   {
@@ -130,7 +130,7 @@ export const glossary: GlossaryTerm[] = [
     id: "heat-protectant",
     term: "Heat protectant",
     definition:
-      "A leave-in spray, cream or oil that creates a thermal barrier between hair and hot tools (blow-dryer, straightener, curling iron). Non-negotiable before any heat styling — Juuce Heat Shield is the salon favourite.",
+      "A leave-in spray, cream or oil that creates a thermal barrier between hair and hot tools (blow-dryer, straightener, curling iron). Non-negotiable before any heat styling, Juuce Heat Shield is the salon favourite.",
     link: { label: "Juuce Heat Shield", href: "/collections/juuce-botanicals" },
     category: "products",
   },
@@ -145,7 +145,7 @@ export const glossary: GlossaryTerm[] = [
     id: "clarifying-shampoo",
     term: "Clarifying shampoo",
     definition:
-      "A deeper-cleaning shampoo that strips build-up from product, oil, chlorine and hard water. Used once every 2–4 weeks, not daily. Don't use it on freshly coloured or smoothed hair — it'll fade the result.",
+      "A deeper-cleaning shampoo that strips build-up from product, oil, chlorine and hard water. Used once every 2–4 weeks, not daily. Don't use it on freshly coloured or smoothed hair, it'll fade the result.",
     category: "products",
   },
 
@@ -161,7 +161,7 @@ export const glossary: GlossaryTerm[] = [
     id: "hair-texture",
     term: "Hair texture",
     definition:
-      "The thickness of a single hair strand — fine, medium or coarse. Different from density (how many strands you have). Fine hair needs lighter products to avoid being weighed down; coarse hair needs richer ones.",
+      "The thickness of a single hair strand, fine, medium or coarse. Different from density (how many strands you have). Fine hair needs lighter products to avoid being weighed down; coarse hair needs richer ones.",
     category: "techniques",
   },
   {
@@ -175,7 +175,7 @@ export const glossary: GlossaryTerm[] = [
     id: "hair-density",
     term: "Hair density",
     definition:
-      "How many individual hair strands you have on your scalp — fine, medium or thick. Different from texture (strand thickness). High-density hair needs heavier products and more frequent cuts to remove weight; low-density hair needs volume-friendly formulas.",
+      "How many individual hair strands you have on your scalp, fine, medium or thick. Different from texture (strand thickness). High-density hair needs heavier products and more frequent cuts to remove weight; low-density hair needs volume-friendly formulas.",
     category: "techniques",
   },
   {
@@ -189,7 +189,7 @@ export const glossary: GlossaryTerm[] = [
     id: "co-wash",
     term: "Co-wash (conditioner-only washing)",
     definition:
-      "Washing hair with a cleansing conditioner instead of shampoo, designed for curly, coily or very dry hair that doesn't tolerate frequent shampooing. Use every second or third wash, not as a permanent shampoo replacement — scalp build-up still needs clearing.",
+      "Washing hair with a cleansing conditioner instead of shampoo, designed for curly, coily or very dry hair that doesn't tolerate frequent shampooing. Use every second or third wash, not as a permanent shampoo replacement, scalp build-up still needs clearing.",
     category: "care",
   },
 
@@ -206,14 +206,14 @@ export const glossary: GlossaryTerm[] = [
     id: "k18",
     term: "K18",
     definition:
-      "A leave-in molecular-repair treatment that uses a bioactive peptide to reconnect broken polypeptide chains inside the hair. Used as a 4-minute mask after every chemical service. Strong on damaged, over-processed hair — comparable in goal to Olaplex but a different chemistry.",
+      "A leave-in molecular-repair treatment that uses a bioactive peptide to reconnect broken polypeptide chains inside the hair. Used as a 4-minute mask after every chemical service. Strong on damaged, over-processed hair, comparable in goal to Olaplex but a different chemistry.",
     category: "treatments",
   },
   {
     id: "hair-botox",
     term: "Hair botox",
     definition:
-      "A misleading marketing name — there's no actual botox in it. It's a deep conditioning and filler treatment that smooths and plumps damaged hair with proteins, peptides and emollients. Lasts 4–8 weeks. Less smoothing than keratin, more conditioning.",
+      "A misleading marketing name, there's no actual botox in it. It's a deep conditioning and filler treatment that smooths and plumps damaged hair with proteins, peptides and emollients. Lasts 4–8 weeks. Less smoothing than keratin, more conditioning.",
     category: "treatments",
   },
   {
@@ -236,14 +236,14 @@ export const glossary: GlossaryTerm[] = [
     id: "demi-permanent",
     term: "Demi-permanent colour",
     definition:
-      "Sits between semi and permanent — uses low-volume developer (no ammonia) and lasts 12–24 washes. Won't lift natural colour but deposits tone evenly. Ideal for blending greys, tone correction, and gloss services.",
+      "Sits between semi and permanent, uses low-volume developer (no ammonia) and lasts 12–24 washes. Won't lift natural colour but deposits tone evenly. Ideal for blending greys, tone correction, and gloss services.",
     category: "colour",
   },
   {
     id: "permanent-colour",
     term: "Permanent colour",
     definition:
-      "Uses ammonia and developer to open the cuticle, lift natural colour, and deposit new colour molecules. Lasts until it grows out — regrowth needs touching up every 4–8 weeks. The only option that can lighten dark natural hair.",
+      "Uses ammonia and developer to open the cuticle, lift natural colour, and deposit new colour molecules. Lasts until it grows out, regrowth needs touching up every 4–8 weeks. The only option that can lighten dark natural hair.",
     category: "colour",
   },
   {

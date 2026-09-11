@@ -10,7 +10,7 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
     author: "Jena Pinn",
     content: {
-      introduction: "'How much does a full head of foils cost in Sydney?' The range is wider than most people realise — $180 at budget salons to $700+ at premium ones. Here's what actually drives the price and what to expect at each tier.",
+      introduction: "'How much does a full head of foils cost in Sydney?' The range is wider than most people realise, $180 at budget salons to $700+ at premium ones. Here's what actually drives the price and what to expect at each tier.",
       sections: [
         {
           heading: "The Sydney Price Range (April 2026)",
@@ -18,11 +18,11 @@ const post = {
         },
         {
           heading: "What Makes Prices Different",
-          content: "Hair length — anything below shoulders costs less; anything below waist costs considerably more. Hair thickness — thick hair needs more foils and more colour. Starting colour — going from dark to blonde requires multiple processes and more time. Toner — a quality toner adds $30–$80 but makes a massive visual difference. Cut and blowdry — often bundled, sometimes extra. Senior stylist premium — some salons charge more for specific stylists. Always ask whether the quoted price includes toner, cut, and blowdry."
+          content: "Hair length, anything below shoulders costs less; anything below waist costs considerably more. Hair thickness, thick hair needs more foils and more colour. Starting colour, going from dark to blonde requires multiple processes and more time. Toner, a quality toner adds $30–$80 but makes a massive visual difference. Cut and blowdry, often bundled, sometimes extra. Senior stylist premium, some salons charge more for specific stylists. Always ask whether the quoted price includes toner, cut, and blowdry."
         },
         {
           heading: "Hidden Fees to Watch For",
-          content: "'Long hair surcharge' — can add $50–$150. 'Thick hair surcharge' — another $30–$80. Tone or 'glaze' as a separate line item ($30–$80). Bond-builder additive (Olaplex, etc.) as extra ($30–$50). Some salons quote 'from $220' but bill $450 after all the add-ons. Ask for the total estimate including your specific hair length and thickness before booking."
+          content: "'Long hair surcharge', can add $50–$150. 'Thick hair surcharge', another $30–$80. Tone or 'glaze' as a separate line item ($30–$80). Bond-builder additive (Olaplex, etc.) as extra ($30–$50). Some salons quote 'from $220' but bill $450 after all the add-ons. Ask for the total estimate including your specific hair length and thickness before booking."
         },
         {
           heading: "What You Actually Get at Hair Pinns",
@@ -41,13 +41,13 @@ const post = {
         "Budget: $180–$280. Mid-tier: $300–$450. Premium: $450–$700+.",
         "Watch for hidden fees: long-hair surcharge, toner extra, bond-builder extra",
         "Always ask for total estimate including your specific length and thickness",
-        "Hair Pinns: $420 for mid-length, all inclusive — no hidden charges",
-        "Mid-tier is the sweet spot for quality — budget risks fade and damage"
+        "Hair Pinns: $420 for mid-length, all inclusive, no hidden charges",
+        "Mid-tier is the sweet spot for quality, budget risks fade and damage"
       ],
       faqSection: [
         {
           question: "How much do full head foils cost in Sydney?",
-          answer: "$280-$450 at Hair Pinns, depending on hair length, density, and whether toner is included. The price is published online — no hidden costs at the till.",
+          answer: "$280-$450 at Hair Pinns, depending on hair length, density, and whether toner is included. The price is published online, no hidden costs at the till.",
         },
         {
           question: "How long do full head foils take?",

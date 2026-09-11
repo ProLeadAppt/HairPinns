@@ -11,15 +11,15 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Sutherland and searching for a hair salon, you have plenty of options in town — but a lot of Sutherland locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Sutherland, and honest answers about whether we're worth the drive.",
+      introduction: "If you're in Sutherland and searching for a hair salon, you have plenty of options in town, but a lot of Sutherland locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Sutherland, and honest answers about whether we're worth the drive.",
       sections: [
         {
           heading: "Why Sutherland Locals Drive to Bangor",
-          content: "Hair Pinns is 10–12 minutes from central Sutherland via Old Illawarra Road — generally faster than trying to find parking in central Sutherland during peak hours. Free parking out the front of the salon. Several of our regulars make the drive because the parking and the predictable time beats the convenience of walking distance in the Sutherland CBD."
+          content: "Hair Pinns is 10–12 minutes from central Sutherland via Old Illawarra Road, generally faster than trying to find parking in central Sutherland during peak hours. Free parking out the front of the salon. Several of our regulars make the drive because the parking and the predictable time beats the convenience of walking distance in the Sutherland CBD."
         },
         {
           heading: "What Sutherland Clients Tell Us They Value",
-          content: "Three things come up every time from Sutherland locals: (1) They want one stylist per visit, consistently — not a rotating team where no one remembers the last conversation. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing — full service menu public, no surprise fees at checkout. (3) They want long-term hair health prioritised over the single-service sale. Most Sutherland clients have been with us for several years."
+          content: "Three things come up every time from Sutherland locals: (1) They want one stylist per visit, consistently, not a rotating team where no one remembers the last conversation. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing, full service menu public, no surprise fees at checkout. (3) They want long-term hair health prioritised over the single-service sale. Most Sutherland clients have been with us for several years."
         },
         {
           heading: "Services Popular with Sutherland Locals",
@@ -31,7 +31,7 @@ const post = {
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
-          content: "Totally fair. Most of our Sutherland clients first booked us for one specific service — usually a colour correction or smoothing treatment — while keeping their existing salon for routine cuts. After two or three visits, most switch fully. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          content: "Totally fair. Most of our Sutherland clients first booked us for one specific service, usually a colour correction or smoothing treatment, while keeping their existing salon for routine cuts. After two or three visits, most switch fully. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
         }
       ],
       quickAnswer: {
@@ -43,7 +43,7 @@ const post = {
         "Free parking out the front beats central Sutherland parking hunts",
         "Popular Sutherland bookings: full colour packages, smoothing, event blowdries",
         "Transparent pricing and stylist continuity drive most switch-over decisions",
-        "Try one service first — no membership required"
+        "Try one service first, no membership required"
       ],
       faqSection: [
         {
@@ -56,7 +56,7 @@ const post = {
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
         },
         {
           question: "Is Hair Pinns good for older clients?",

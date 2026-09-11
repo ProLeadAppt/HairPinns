@@ -11,7 +11,7 @@ const services = [
   {
     icon: Palette,
     title: "Color & Highlights",
-    description: "Full-head foils, half-head, balayage, root touch-up. I do the colour, then the cut and blow-dry in the same appointment — no two trips, no surprise cost. From A$130.",
+    description: "Full-head foils, half-head, balayage, root touch-up. I do the colour, then the cut and blow-dry in the same appointment, no two trips, no surprise cost. From A$130.",
     price: "From $130",
   },
   {
@@ -37,10 +37,10 @@ const ServicesSection = () => {
               What I actually do in the chair.
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Four things I'm good at, priced honestly. If it isn't on this list, ask — I probably do it, I just don't list it on the homepage.
+              Four things I'm good at, priced honestly. If it isn't on this list, ask, I probably do it, I just don't list it on the homepage.
             </p>
           </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <Card key={index} className="shadow-soft hover:shadow-medium transition-smooth border-border">

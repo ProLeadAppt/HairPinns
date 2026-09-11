@@ -97,7 +97,7 @@ const Footer = () => {
             <Link to="/" className="inline-flex min-h-11 items-center" aria-label="Hair Pinns home">
               <img
                 src={hairPinnsLogo}
-                alt="Hair Pinns — Happy Hair Specialist"
+                alt="Hair Pinns, Happy Hair Specialist"
                 className="h-14 w-auto "
                 loading="lazy"
                 decoding="async"
@@ -141,7 +141,7 @@ const Footer = () => {
               Get Jena's best hair advice.
             </h2>
             <p id="footer-newsletter-note" className="mt-3 max-w-xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.68)]">
-              Practical hair advice, product news and salon updates—sent only when there is something useful to share.
+              Practical hair advice, product news and salon updates, sent only when there is something useful to share.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="mt-6 grid max-w-2xl gap-3 sm:grid-cols-[1fr_auto]">
               <input

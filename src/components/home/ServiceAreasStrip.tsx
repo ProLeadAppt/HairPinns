@@ -13,7 +13,7 @@ import { locationPages } from "@/data/locationPages";
  *
  * Why: every visitor within ~20km of Bangor is the prime customer. Naming
  * the suburbs they live in (with proper page links) is the fastest way to
- * convert "is this for me?" into "they're 6 minutes from me — yes."
+ * convert "is this for me?" into "they're 6 minutes from me, yes."
  */
 
 const ANCHOR_SUBURBS: { slug: string; distance: string }[] = [

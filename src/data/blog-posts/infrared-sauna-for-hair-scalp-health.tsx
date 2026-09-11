@@ -44,11 +44,11 @@ const post = {
         },
         {
           question: "Is infrared sauna good for hair growth?",
-          answer: "Yes — the increased scalp circulation feeds the follicle, and the deep sweat clears sebum buildup that can clog it. Jena's clients at Hair Pinns notice less shedding and faster growth after 4-6 weekly sessions.",
+          answer: "Yes, the increased scalp circulation feeds the follicle, and the deep sweat clears sebum buildup that can clog it. Jena's clients at Hair Pinns notice less shedding and faster growth after 4-6 weekly sessions.",
         },
         {
           question: "How often should I do infrared sauna for hair and skin benefits?",
-          answer: "Twice a week for the first month, then weekly to maintain. A 30-40 minute session at 50-60°C is the sweet spot — longer isn't better.",
+          answer: "Twice a week for the first month, then weekly to maintain. A 30-40 minute session at 50-60°C is the sweet spot, longer isn't better.",
         },
         {
           question: "Is infrared sauna safe with coloured hair?",
@@ -56,7 +56,7 @@ const post = {
         },
         {
           question: "Can I use infrared sauna on the same day as a hair appointment?",
-          answer: "Yes, and Jena actually recommends it — book a smoothing treatment, then sauna. The heat sets the treatment deeper into the cuticle for longer-lasting results.",
+          answer: "Yes, and Jena actually recommends it, book a smoothing treatment, then sauna. The heat sets the treatment deeper into the cuticle for longer-lasting results.",
         }
       ],
     },

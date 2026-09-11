@@ -26,12 +26,12 @@ const Testimonial = ({
     return (
       <div className="flex mb-4">
         {[...Array(5)].map((_, i) => (
-          <Star 
-            key={i} 
+          <Star
+            key={i}
             className={cn(
               "w-4 h-4",
               i < rating ? "text-[hsl(var(--star-color))] fill-current" : "text-muted-foreground"
-            )} 
+            )}
           />
         ))}
       </div>
@@ -47,8 +47,8 @@ const Testimonial = ({
       </blockquote>
       <div className="flex items-center">
         {avatar && (
-          <img 
-            src={avatar} 
+          <img
+            src={avatar}
             alt={author}
             className="w-12 h-12 rounded-full object-cover mr-4"
               loading="lazy"
@@ -85,7 +85,7 @@ const Testimonial = ({
           "{quote}"
         </blockquote>
         <cite className="text-muted-foreground not-italic">
-          — {author}{title && `, ${title}`}
+, {author}{title && `, ${title}`}
         </cite>
       </div>
     );

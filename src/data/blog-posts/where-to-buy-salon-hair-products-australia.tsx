@@ -64,11 +64,11 @@ const post = {
         },
         {
           question: "What should I look for when buying professional hair products online in Australia?",
-          answer: "Choose retailers that stock genuine professional brands like Juuce, QIQI, Pure, and Wet Brush. Look for someone who actually uses and tests the products — not just selling whatever makes money. Verify they ship Australia-wide with clear delivery times, offer a free shipping threshold, and have a hassle-free returns policy. And ask if the person behind it actually cares about hair."
+          answer: "Choose retailers that stock genuine professional brands like Juuce, QIQI, Pure, and Wet Brush. Look for someone who actually uses and tests the products, not just selling whatever makes money. Verify they ship Australia-wide with clear delivery times, offer a free shipping threshold, and have a hassle-free returns policy. And ask if the person behind it actually cares about hair."
         },
         {
           question: "Does Hair Pinns really ship to all of Australia?",
-          answer: "Yes. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra — every state and territory. Free shipping on orders over $150. Every product is personally chosen by Jena since 2009. We've been looking after hair for years, so you're not just buying products, you're getting the salon experience delivered to your door."
+          answer: "Yes. We ship to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, every state and territory. Free shipping on orders over $150. Every product is personally chosen by Jena since 2009. We've been looking after hair for years, so you're not just buying products, you're getting the salon experience delivered to your door."
         },
         {
           question: "What professional brands can I trust for at-home hair care?",
