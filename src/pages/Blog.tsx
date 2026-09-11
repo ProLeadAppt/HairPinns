@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Search, X } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
 import { generateWebPageSchema, generateBreadcrumbSchema, generateBlogItemListSchema } from "@/lib/schema";
 import Header from "@/components/Header";
@@ -10,15 +11,18 @@ import { blogSummaries } from "@/data/blogSummaries";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
+import { filterBlogSummaries } from "@/lib/blogSearch";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(12);
+  const [searchQuery, setSearchQuery] = useState("");
   const visiblePosts = blogSummaries.filter((post) => !post.archived);
   const categories = ["all", ...Array.from(new Set(visiblePosts.map((post) => post.category)))];
+  const searchedPosts = filterBlogSummaries(visiblePosts, searchQuery);
   const filteredPosts = activeCategory === "all"
-    ? visiblePosts
-    : visiblePosts.filter((post) => post.category === activeCategory);
+    ? searchedPosts
+    : searchedPosts.filter((post) => post.category === activeCategory);
   const featuredPost = filteredPosts[0];
   const remainingPosts = filteredPosts.slice(1);
   const displayedPosts = remainingPosts.slice(0, visibleCount);
@@ -80,9 +84,35 @@ const Blog = () => {
         </section>
 
         <nav aria-label="Filter journal stories" className="sticky top-16 z-30 border-b border-[hsl(var(--after-hours-plum)/0.2)] bg-[hsl(var(--after-hours-paper)/0.96)] backdrop-blur-sm">
-          <div className="mx-auto max-w-[78rem] overflow-x-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[78rem] px-4 sm:px-6 lg:px-8">
+            <div className="relative border-b border-[hsl(var(--after-hours-plum)/0.14)] py-3">
+              <label htmlFor="journal-search" className="sr-only">Search journal stories</label>
+              <Search className="pointer-events-none absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-[hsl(var(--hp-ink)/0.56)]" aria-hidden="true" />
+              <input
+                id="journal-search"
+                type="search"
+                value={searchQuery}
+                onChange={(event) => {
+                  setSearchQuery(event.target.value);
+                  setVisibleCount(12);
+                }}
+                placeholder="Search hair advice, products or services"
+                className="min-h-11 w-full bg-transparent pl-7 pr-12 text-sm text-[hsl(var(--hp-ink))] outline-none placeholder:text-[hsl(var(--hp-ink)/0.5)] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[hsl(var(--after-hours-copper))]"
+              />
+              {searchQuery ? (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-[hsl(var(--hp-ink)/0.68)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]"
+                  aria-label="Clear journal search"
+                >
+                  <X className="h-4 w-4" aria-hidden="true" />
+                </button>
+              ) : null}
+            </div>
+            <div className="overflow-x-auto">
             <div className="flex min-w-max items-center gap-7 py-4">
-              <span className="font-mono text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.5)]">Filter /</span>
+              <span className="font-mono text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.5)]">{filteredPosts.length} found /</span>
               {categories.map((category) => {
                 const isActive = activeCategory === category;
                 return (
@@ -101,8 +131,28 @@ const Blog = () => {
                 );
               })}
             </div>
+            </div>
           </div>
         </nav>
+
+        {filteredPosts.length === 0 ? (
+          <section className="bg-[hsl(var(--after-hours-paper))] py-14 sm:py-20" aria-live="polite">
+            <div className="mx-auto max-w-[78rem] px-4 sm:px-6 lg:px-8">
+              <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.66)]">No matching notes</p>
+              <h2 className="mt-4 font-heading text-3xl text-[hsl(var(--hp-ink))]">Try a broader hair question.</h2>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery("");
+                  setActiveCategory("all");
+                }}
+                className="mt-6 min-h-11 border-b border-[hsl(var(--after-hours-copper))] text-sm font-semibold text-[hsl(var(--hp-ink))]"
+              >
+                Clear search and filters
+              </button>
+            </div>
+          </section>
+        ) : null}
 
         {featuredPost ? (
           <section className="bg-[hsl(var(--after-hours-paper))] py-12 sm:py-16 lg:py-24">

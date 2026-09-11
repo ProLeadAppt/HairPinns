@@ -6,7 +6,27 @@ export type BlogSearchResult = BlogSummary & {
   score: number;
 };
 
-const normalise = (value: string) => value.toLowerCase().trim();
+const normalise = (value: string) => value
+  .normalize("NFKD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .toLowerCase()
+  .trim();
+
+export const filterBlogSummaries = (posts: BlogSummary[], query: string): BlogSummary[] => {
+  const terms = normalise(query).split(/\s+/).filter(Boolean);
+  if (terms.length === 0) return posts;
+
+  return posts.filter((post) => {
+    const searchable = normalise([
+      post.title,
+      post.excerpt,
+      post.category,
+      post.author,
+      post.slug.replace(/-/g, " "),
+    ].join(" "));
+    return terms.every((term) => searchable.includes(term));
+  });
+};
 
 const scorePost = (post: BlogSummary, terms: string[]) => {
   const title = normalise(post.title);

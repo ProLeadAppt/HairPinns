@@ -561,6 +561,21 @@ test('shop and journal navigation appear early in the mobile journey', async ({ 
   expect(journalFilters?.y).toBeLessThan(560);
 });
 
+test('journal search finds advice by topic and recovers from no results', async ({ page }) => {
+  await page.goto('/blog', { waitUntil: 'domcontentloaded' });
+
+  const search = page.getByRole('searchbox', { name: 'Search journal stories' });
+  await expect(search).toBeVisible();
+  await search.fill('heat damage');
+  await expect(page.getByRole('heading', { name: /Prevent Heat Damage/i }).first()).toBeVisible();
+
+  await search.fill('query-that-cannot-match-any-hair-guide');
+  await expect(page.getByRole('heading', { name: 'Try a broader hair question.' })).toBeVisible();
+  await page.getByRole('button', { name: 'Clear search and filters' }).click();
+  await expect(search).toHaveValue('');
+  await expect(page.getByText(/field notes \/ Bangor, NSW/)).toBeVisible();
+});
+
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect.poll(() => page.evaluate(() =>
