@@ -56,8 +56,7 @@ const REQUESTED_PORT = resolveRequestedPort(argMap);
 // was battle-tested in production. Keep them in sync with whatever the
 // live site injects (third-party widgets change shape occasionally).
 const STRIPPERS = [
-  // Ionic / LeadConnector custom elements (open + close tags, separate replaces
-  // because JS doesn't backreference across different tag names well)
+  // Defensive custom-element cleanup for any legacy prerendered markup.
   { name: 'ionic-custom-elements', re: /<[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)\b[^>]*>[\s\S]*?<\/[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)>/gi },
   { name: 'slot-fb', re: /<slot-fb[^>]*>[\s\S]*?<\/slot-fb>/gi },
   // Ionic-injected style block
@@ -66,9 +65,6 @@ const STRIPPERS = [
   { name: 'recaptcha-meta', re: /<meta http-equiv="origin-trial"[^>]*>/gi },
   { name: 'recaptcha-script', re: /<script[^>]*recaptcha[^>]*><\/script>/gi },
   { name: 'recaptcha-gstatic', re: /<script[^>]*gstatic\.com\/recaptcha[^>]*><\/script>/gi },
-  // LeadConnector runtime
-  { name: 'leadconnector-script', re: /<script[^>]*leadconnectorhq\.com[^>]*>[\s\S]*?<\/script>/gi },
-  { name: 'leadconnector-link', re: /<link[^>]*leadconnectorhq\.com[^>]*>/gi },
   { name: 'bunny-fonts', re: /<link[^>]*fonts\.bunny\.net[^>]*>/gi },
   // Chromium adds these for every dynamic import executed during capture.
   // Shipping them would eagerly preload route and below-fold chunks for real

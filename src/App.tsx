@@ -3,10 +3,8 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import LeadConnectorWidget from "./components/LeadConnectorWidget";
 import TrackingGate from "./components/tracking/TrackingGate";
 import { FloatingActionsProvider } from "@/contexts/FloatingActionsContext";
-import { initCartAbandonmentMonitoring } from "@/lib/cartAbandonment";
 import {
   markNotificationRendererReady,
   NOTIFICATION_RENDERER_EVENT,
@@ -34,7 +32,6 @@ const Updates = lazy(() => import("./pages/Updates"));
 const UpdatePost = lazy(() => import("./pages/UpdatePost"));
 const Contact = lazy(() => import("./pages/Contact"));
 const OrderConfirmation = lazy(() => import("./pages/OrderConfirmation"));
-const Confirm = lazy(() => import("./pages/Confirm"));
 const Shipping = lazy(() => import("./pages/Shipping"));
 const Returns = lazy(() => import("./pages/Returns"));
 const Privacy = lazy(() => import("./pages/Privacy"));
@@ -113,40 +110,6 @@ const AppContent = () => {
     };
   }, [notificationsReady]);
 
-  useEffect(() => {
-    const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
-      cancelIdleCallback?: (id: number) => number;
-    };
-
-    let cancelled = false;
-    const start = () => {
-      if (cancelled) return;
-      try {
-        initCartAbandonmentMonitoring();
-      } catch (error) {
-        console.warn('[App] Failed to initialize cart abandonment monitoring:', error);
-      }
-    };
-
-    let handle: number | undefined;
-    if (typeof w.requestIdleCallback === 'function') {
-      handle = w.requestIdleCallback(start, { timeout: 5000 });
-    } else {
-      handle = window.setTimeout(start, 5000);
-    }
-
-    return () => {
-      cancelled = true;
-      if (typeof handle === 'number' && typeof w.cancelIdleCallback === 'function') {
-        w.cancelIdleCallback(handle);
-      }
-      if (typeof handle === 'number') {
-        window.clearTimeout(handle);
-      }
-    };
-  }, []);
-
   return (
     <>
       {notificationsReady ? (
@@ -157,7 +120,6 @@ const AppContent = () => {
       <FloatingActionsProvider>
         <BrowserRouter>
           <CartProvider>
-            <LeadConnectorWidget />
             <ScrollToTop />
             <ScrollToTopButton />
             <TrackingGate />
@@ -180,7 +142,6 @@ const AppContent = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/offers/free-extra" element={<OfferFreeExtra />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
-              <Route path="/confirm" element={<Confirm />} />
               <Route path="/suburbs/:suburb" element={<SuburbRedirect />} />
               <Route path="/areas" element={<AreasIndex />} />
               <Route path="/areas/:slug" element={<LocationPage />} />

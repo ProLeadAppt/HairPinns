@@ -232,19 +232,10 @@ const Collections = () => {
               <h2 className="mt-4 max-w-[12ch] font-heading text-4xl leading-[0.98] text-[hsl(var(--hp-ink))] md:text-5xl">Not sure what's right for your hair?</h2>
             </div>
             <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-5">
-              <p className="text-base leading-7 text-[hsl(var(--hp-ink)/0.74)]">Chat with Isabella for product guidance or call Jena for personalised advice.</p>
+              <p className="text-base leading-7 text-[hsl(var(--hp-ink)/0.74)]">Send Jena your product question or call for personalised advice.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <Button
-                  variant="default"
-                  size="lg"
-                  onClick={() => {
-                    const bubble = document.querySelector("[data-chat-bubble]") as HTMLElement;
-                    bubble?.click();
-                    window.hpCapture?.("chat_clicked", { source: "collections_cta" });
-                  }}
-                  className="min-h-11 w-full rounded-none bg-[hsl(var(--after-hours-plum))] px-8 text-[hsl(var(--after-hours-cream))] sm:w-auto"
-                >
-                  Chat with Isabella
+                <Button variant="default" size="lg" asChild className="min-h-11 w-full rounded-none bg-[hsl(var(--hp-purple))] px-8 text-white sm:w-auto">
+                  <Link to="/contact">Ask Jena</Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild className="min-h-11 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.35)] px-8 sm:w-auto">
                   <a href={BUSINESS_NAP.phone.tel}>Call Jena now</a>

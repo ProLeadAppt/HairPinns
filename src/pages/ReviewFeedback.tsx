@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { CheckCircle2, ExternalLink, Send } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { getHpCapture } from "@/lib/loadHpCapture";
+import { submitNetlifyForm } from "@/lib/netlifyForms";
 import {
   GOOGLE_REVIEW_URL,
   normaliseReviewRating,
@@ -45,21 +45,13 @@ const ReviewFeedback = () => {
     setErrorMessage("");
 
     try {
-      const hpCapture = await getHpCapture();
-      const success = await hpCapture.postToGHL(
-        {
-          form_name: "review_feedback",
-          name: formData.name,
-          email: formData.email,
-          message: formData.feedback,
-          rating,
-          consent_marketing: false,
-        },
-        { event: "review_feedback" },
-      );
-      if (!success) {
-        throw new Error("Feedback delivery failed");
-      }
+      await submitNetlifyForm("hair-pinns-review-feedback", {
+        name: formData.name,
+        email: formData.email,
+        feedback: formData.feedback,
+        rating,
+        source_page: window.location.href,
+      });
       sessionStorage.removeItem(SESSION_DRAFT_KEY);
       setIsSubmitted(true);
     } catch (error) {

@@ -30,7 +30,6 @@ import PaymentBadges from "@/components/product/PaymentBadges";
 import StickyAddToCart from "@/components/conversion/StickyAddToCart";
 import ProductRecommendations from "@/components/product/ProductRecommendations";
 import { SilentErrorBoundary } from "@/components/ErrorBoundary";
-import { trackCartCreated } from "@/lib/cartAbandonment";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
 import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema, generateHowToSchema } from "@/lib/schema";
@@ -233,9 +232,8 @@ const ProductDetail = () => {
     try {
       const cart = await addCartLines([{ merchandiseId: activeVariantId, quantity: 1 }]);
       const cartId = cart.id;
-      const checkoutUrl = cart.checkoutUrl;
 
-      // Track add_to_cart to GHL and cart abandonment
+      // Track the confirmed Shopify cart mutation in browser analytics.
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
 
@@ -245,22 +243,6 @@ const ProductDetail = () => {
         product_title: product.title,
         price,
       });
-
-      // Track cart creation for abandonment recovery
-      if (cartId && checkoutUrl) {
-        await trackCartCreated(
-          cartId,
-          checkoutUrl,
-          [{
-            id: activeVariantId,
-            title: product.title,
-            price: price,
-            quantity: 1,
-          }],
-          price,
-          "AUD"
-        );
-      }
 
       void trackAddToCart({
         product_id: product.id,

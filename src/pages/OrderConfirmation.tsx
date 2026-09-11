@@ -112,18 +112,6 @@ const OrderConfirmation = () => {
       // Fire client-side purchase event (non-blocking)
       const trackPurchase = async () => {
         try {
-          const hpCaptureModule = await import("@/lib/hpCapture");
-          const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
-          
-          await hpCapture.trackEvent("purchase_client", {
-            order_id: order.order_id,
-            subtotal: order.subtotal,
-            total: order.total,
-            currency: order.currency,
-            items: order.items,
-            item_count: order.items.reduce((sum, item) => sum + item.quantity, 0),
-          });
-
           // Track purchase pixels (NO PII)
           pixelTracking.trackPurchase({
             orderId: order.order_id,

@@ -31,7 +31,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - 17 salon service-area pages
 - 20 Australian shipping pages
 - 21 product collections
-- 120 products
+- 119 products
 
 ## Primary links
 
@@ -210,7 +210,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-shampoo/
 - https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-conditioner/
 - https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-shampoo/
-- https://hairpinns.com/products/beat-heat-guard-shield-duo/
 - https://hairpinns.com/products/juuce-20-in-one-miracle/
 - https://hairpinns.com/products/juuce-amp-it-up-volume/
 - https://hairpinns.com/products/juuce-anti-dandruff-shampoo/

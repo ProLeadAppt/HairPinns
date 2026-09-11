@@ -4,9 +4,6 @@ const mocks = vi.hoisted(() => ({
   getCartId: vi.fn(),
   saveCartId: vi.fn(),
   trackAddToCart: vi.fn(),
-  trackCartCreated: vi.fn(),
-  getHpCapture: vi.fn(),
-  trackQuickAddClicked: vi.fn(),
   notifySuccess: vi.fn(),
   notifyError: vi.fn(),
 }));
@@ -17,12 +14,6 @@ vi.mock("./cartManagement", () => ({
 }));
 vi.mock("./ecommerceTracking", () => ({
   trackAddToCart: mocks.trackAddToCart,
-}));
-vi.mock("./cartAbandonment", () => ({
-  trackCartCreated: mocks.trackCartCreated,
-}));
-vi.mock("./loadHpCapture", () => ({
-  getHpCapture: mocks.getHpCapture,
 }));
 vi.mock("@/hooks/use-toast", () => ({
   notify: {
@@ -46,12 +37,7 @@ describe("quickAddToCart analytics boundary", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.getCartId.mockReturnValue(null);
-    mocks.getHpCapture.mockResolvedValue({
-      trackQuickAddClicked: mocks.trackQuickAddClicked,
-    });
-    mocks.trackQuickAddClicked.mockResolvedValue(true);
     mocks.trackAddToCart.mockResolvedValue(undefined);
-    mocks.trackCartCreated.mockResolvedValue(undefined);
   });
 
   it("emits add_to_cart once after Shopify confirms the cart mutation", async () => {

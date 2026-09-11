@@ -1,15 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
-  getHpCapture: vi.fn(),
-  hpQueueEvent: vi.fn(),
   trackProductView: vi.fn(),
   trackAddToCart: vi.fn(),
   trackBeginCheckout: vi.fn(),
-}));
-
-vi.mock("./loadHpCapture", () => ({
-  getHpCapture: mocks.getHpCapture,
 }));
 
 vi.mock("./pixelTracking", () => ({
@@ -38,11 +32,9 @@ const item = {
 describe("ecommerceTracking", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.getHpCapture.mockResolvedValue({ queueEvent: mocks.hpQueueEvent });
-    mocks.hpQueueEvent.mockResolvedValue(true);
   });
 
-  it("sends view_item to pixels and preserves the product-view GHL event", async () => {
+  it("sends view_item to browser pixels", async () => {
     await trackProductView(item);
 
     expect(mocks.trackProductView).toHaveBeenCalledOnce();
@@ -52,21 +44,9 @@ describe("ecommerceTracking", () => {
       price: item.price,
       currency: item.currency,
     });
-    expect(mocks.hpQueueEvent).toHaveBeenCalledWith(
-      "micro_conversion_product_view",
-      expect.objectContaining({
-        product_id: item.product_id,
-        variant_id: item.variant_id,
-        product_title: item.title,
-        price: item.price,
-        currency: item.currency,
-      }),
-    );
   });
 
-  it("sends add_to_cart to pixels even when GHL delivery fails", async () => {
-    mocks.hpQueueEvent.mockRejectedValueOnce(new Error("GHL unavailable"));
-
+  it("sends add_to_cart to browser pixels", async () => {
     await expect(trackAddToCart(item)).resolves.toBeUndefined();
 
     expect(mocks.trackAddToCart).toHaveBeenCalledOnce();
@@ -79,7 +59,7 @@ describe("ecommerceTracking", () => {
     });
   });
 
-  it("sends begin_checkout with complete GA4 line items and the existing GHL summary", async () => {
+  it("sends begin_checkout with complete GA4 line items", async () => {
     await trackBeginCheckout({
       cart_total: 49.9,
       item_count: 2,
@@ -100,13 +80,5 @@ describe("ecommerceTracking", () => {
         },
       ],
     });
-    expect(mocks.hpQueueEvent).toHaveBeenCalledWith(
-      "begin_checkout",
-      expect.objectContaining({
-        cart_total: 49.9,
-        item_count: 2,
-        currency: "AUD",
-      }),
-    );
   });
 });

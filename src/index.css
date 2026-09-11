@@ -732,17 +732,8 @@ main#main-content:focus-visible {
   margin: 0 0 2rem 0;
 }
 
-/* LeadConnector leaves its custom element mounted while hidden. In Firefox
-   and WebKit that transparent host can otherwise sit above product dialogs
-   and swallow clicks before the widget is opened. */
-chat-widget[aria-hidden="true"],
-chat-widget[data-aria-hidden="true"] {
-  pointer-events: none !important;
-}
-
 /* Floating-layer contract. The observer-backed coordinator publishes the
-   mobile dock's measured height so third-party chat and first-party controls
-   share the same occupied bottom space. */
+   mobile dock's measured height for the scroll control. */
 .floating-scroll-top {
   bottom: calc(
     var(--mobile-action-dock-height, 0px)
@@ -751,30 +742,9 @@ chat-widget[data-aria-hidden="true"] {
   );
 }
 
-@media (max-width: 1023px) {
-  /* Never transform the custom-element host: doing so creates a containing
-     block for the vendor's fixed panel and moves it with the document. This
-     bottom offset supports fixed-host launchers; the current middle-right
-     shadow launcher keeps its vendor position and its panel has a guard. */
-  html[data-mobile-action-dock-visible="true"] chat-widget:not([data-active="true"]):not([aria-hidden="true"]):not([data-aria-hidden="true"]) {
-    bottom: calc(
-      var(--mobile-action-dock-height, 0px)
-      + env(safe-area-inset-bottom)
-      + 0.75rem
-    ) !important;
-    transition: none !important;
-  }
-}
-
 @media (min-width: 1024px) {
   .floating-scroll-top {
     bottom: 2rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html[data-mobile-action-dock-visible="true"] chat-widget {
-    transition: none !important;
   }
 }
 

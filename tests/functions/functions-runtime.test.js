@@ -23,8 +23,8 @@ describe("Netlify function runtime contract", () => {
     expect(() => importInNodeRuntime("test.js")).not.toThrow();
   });
 
-  it("loads the GHL capture relay in an untransformed Node ES-module runtime", () => {
-    expect(() => importInNodeRuntime("ghl-capture.js", "default")).not.toThrow();
+  it("loads the Shopify newsletter relay in an untransformed Node ES-module runtime", () => {
+    expect(() => importInNodeRuntime("newsletter-subscribe.js", "default")).not.toThrow();
   });
 
   it("loads the Shopify catalogue sync background function in Node", () => {

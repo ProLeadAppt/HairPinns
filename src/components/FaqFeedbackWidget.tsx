@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { getHpCapture } from "@/lib/loadHpCapture";
 
 interface FaqFeedbackWidgetProps {
   faqId?: string;
@@ -14,10 +13,8 @@ const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
   const handleFeedback = async (helpful: boolean) => {
     setIsSubmitting(true);
     try {
-      const hpCapture = await getHpCapture();
-      await hpCapture.trackEvent("faq_feedback", {
+      window.gtag?.("event", "faq_feedback", {
         faq_id: faqId || "unknown",
-        faq_question: question,
         helpful,
       });
       setFeedback(helpful ? "yes" : "no");

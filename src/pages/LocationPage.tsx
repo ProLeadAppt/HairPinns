@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { MapPin, Phone, Quote } from "lucide-react";
 import Header from "@/components/Header";
@@ -26,29 +25,6 @@ import { resolveVenueReviewProof } from "@/lib/venueReviewProof";
 const LocationPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const locationData = slug ? getLocationData(slug) : undefined;
-
-  useEffect(() => {
-    if (!slug || !locationData) return;
-    const sessionKey = `location_view_${slug}`;
-    if (sessionStorage.getItem(sessionKey)) return;
-
-    const trackPageView = async () => {
-      try {
-        const hpCaptureModule = await import("@/lib/hpCapture");
-        const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
-        await hpCapture.trackEvent("location_page_view", {
-          location: slug,
-          location_name: locationData.name,
-          source_page: window.location.href,
-        });
-        sessionStorage.setItem(sessionKey, "true");
-      } catch (error) {
-        console.error("Error tracking location page view:", error);
-      }
-    };
-
-    void trackPageView();
-  }, [slug, locationData]);
 
   if (!locationData) return <Navigate to="/areas" replace />;
 

@@ -1,6 +1,5 @@
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
-import { toast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 
 interface BlogCTAProps {
@@ -14,43 +13,23 @@ const actionClass = "flex min-h-12 items-center justify-between gap-5 bg-[hsl(va
 const secondaryClass = "flex min-h-12 items-center justify-between gap-5 border border-[hsl(var(--hp-ink)/0.34)] px-5 text-sm font-semibold !text-[hsl(var(--hp-ink))] hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] hover:no-underline";
 
 const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) => {
-  const guideToBubble = () => {
-    window.hpCapture?.("ai_agent_interaction", { agent: "isabella", action: "chat_bubble_prompted", location: "blog_cta" });
-    const selectors = ['div[id*="chat-widget"]', 'div[class*="chat-widget"]', "[data-chat-bubble]", 'button[aria-label*="chat"]'];
-    for (const selector of selectors) {
-      const element = document.querySelector(selector) as HTMLElement | null;
-      if (element && element.tagName !== "IFRAME") {
-        element.style.outline = "2px solid hsl(var(--after-hours-copper))";
-        element.style.outlineOffset = "4px";
-        window.setTimeout(() => {
-          element.style.outline = "";
-          element.style.outlineOffset = "";
-        }, 2500);
-        break;
-      }
-    }
-    toast({ title: "Chat with Isabella", description: "Use the chat bubble at the bottom-right to start." });
-  };
-
-  const trackPhoneClick = () => window.hpCapture?.("ai_agent_interaction", { agent: "jena", action: "phone_clicked", location: "blog_cta" });
-
   let title = customText || "Need a closer look?";
   let body = "Bring the question to Jena for practical advice based on your hair, routine, and goals.";
   let actions: React.ReactNode = null;
 
   if (type === "call-jena") {
     title = customText || "Questions about this service?";
-    actions = <a href={BUSINESS_NAP.phone.tel} onClick={trackPhoneClick} className={actionClass}>Call Jena: {BUSINESS_NAP.phone.display}<span aria-hidden="true">↗</span></a>;
+    actions = <a href={BUSINESS_NAP.phone.tel} className={actionClass}>Call Jena: {BUSINESS_NAP.phone.display}<span aria-hidden="true">↗</span></a>;
   } else if (type === "chat-isabella") {
     title = customText || "Want a quick answer?";
-    body = "Isabella can help with product recommendations and booking questions at any time.";
-    actions = <button type="button" onClick={guideToBubble} className={actionClass}>Chat with Isabella<span aria-hidden="true">→</span></button>;
+    body = "Send Jena your question and she will point you in the right direction.";
+    actions = <Link to="/contact" className={actionClass}>Ask Jena<span aria-hidden="true">→</span></Link>;
   } else if (type === "service" && servicePath) {
     title = customText || "Considering this service?";
     actions = (
       <div className="grid gap-3 sm:grid-cols-2">
         <Link to={servicePath} className={actionClass}>View service details<span aria-hidden="true">→</span></Link>
-        <a href={BUSINESS_NAP.phone.tel} onClick={trackPhoneClick} className={secondaryClass}>Call to book<span aria-hidden="true">↗</span></a>
+        <a href={BUSINESS_NAP.phone.tel} className={secondaryClass}>Call to book<span aria-hidden="true">↗</span></a>
       </div>
     );
   } else if (type === "product" && productPath) {
@@ -74,11 +53,5 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
     </aside>
   );
 };
-
-declare global {
-  interface Window {
-    hpCapture?: (event: string, data: Record<string, any>) => void;
-  }
-}
 
 export default BlogCTA;

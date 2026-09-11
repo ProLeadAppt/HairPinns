@@ -11,6 +11,7 @@ import ConsentRow from "@/components/forms/ConsentRow";
 import { pixelTracking } from "@/lib/pixelTracking";
 import { z } from "zod";
 import { BUSINESS_NAP } from "@/config/businessConfig";
+import { submitNetlifyForm } from "@/lib/netlifyForms";
 interface ContactFormProps {
   formName?: string;
   title?: string;
@@ -103,30 +104,16 @@ const ContactForm = ({
       // Find readable topic label
       const topicLabel = topics.find(t => t.value === formData.topic)?.label || formData.topic;
 
-      // Build payload for hpCapture (flat; library will enrich and route to Zapier)
-      const payload: Record<string, any> = {
-        form_name: formName,
+      await submitNetlifyForm("hair-pinns-contact", {
         name: formData.name,
-        first_name: formData.name.split(' ')[0] || formData.name,
-        last_name: formData.name.split(' ').slice(1).join(' ') || '',
         email: formData.email,
         phone: formData.phone,
+        topic: showTopic ? topicLabel : "",
         message: formData.message,
-        consent_marketing: formData.consent,
-        source_page: typeof window !== 'undefined' ? window.location.href : ''
-      };
-      if (showTopic) {
-        payload.topic = formData.topic;
-        payload.topic_label = topicLabel;
-      }
-      const hpCaptureModule = await import("@/lib/hpCapture");
-      const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
-      const success = await hpCapture.postToZapier(payload, {
-        event: "contact_form_submit"
+        marketing_consent: formData.consent,
+        source_page: window.location.href,
+        form_context: formName,
       });
-      if (!success) {
-        throw new Error("Zapier submission failed");
-      }
 
       // Track GA4 generate_lead event
       if (typeof window.gtag === 'function') {

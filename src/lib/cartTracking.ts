@@ -1,11 +1,9 @@
 /**
  * Cart & Checkout Tracking Utilities
  * 
- * Non-blocking event tracking for e-commerce behaviors.
- * These events don't collect PII, only behavioral data.
+ * Non-blocking browser analytics for ecommerce behaviour.
+ * These events do not collect PII.
  */
-
-import { getHpCapture } from "./loadHpCapture";
 
 export interface CartItem {
   product_id: string;
@@ -18,54 +16,41 @@ export interface CartItem {
 
 /**
  * Track "Add to Cart" event
- * Fires non-blocking Zapier event with product details
+ * Fires a non-blocking GA4 event with product details.
  */
 export async function trackAddToCart(item: CartItem): Promise<void> {
-  try {
-    const hpCapture = await getHpCapture();
-    await hpCapture.trackEvent("add_to_cart", {
+  window.gtag?.("event", "add_to_cart", {
+    currency: item.currency || "AUD",
+    value: item.price * item.quantity,
+    items: [{
       product_id: item.product_id,
-      product_title: item.product_title,
+      item_name: item.product_title,
       price: item.price,
-      variant: item.variant || "default",
       quantity: item.quantity,
-      currency: item.currency || "AUD",
-    });
-  } catch (error) {
-    // Silent fail - don't disrupt user experience
-    console.error("[Cart Tracking] Failed to track add_to_cart:", error);
-  }
+      item_variant: item.variant || "default",
+    }],
+  });
 }
 
 /**
  * Track "Begin Checkout" event
- * Fires non-blocking Zapier event with cart summary
+ * Fires a non-blocking GA4 event with the cart summary.
  */
 export async function trackBeginCheckout(
   cartItems: CartItem[],
   cartTotal: number
 ): Promise<void> {
-  try {
-    // Build line items summary
-    const lineItemsSummary = cartItems.map((item) => ({
-      product_id: item.product_id,
-      product_title: item.product_title,
+  window.gtag?.("event", "begin_checkout", {
+    currency: "AUD",
+    value: cartTotal,
+    items: cartItems.map((item) => ({
+      item_id: item.product_id,
+      item_name: item.product_title,
       quantity: item.quantity,
       price: item.price,
-      line_total: item.price * item.quantity,
-    }));
-
-    const hpCapture = await getHpCapture();
-    await hpCapture.trackEvent("begin_checkout", {
-      cart_line_items: lineItemsSummary,
-      cart_total: cartTotal,
-      cart_count: cartItems.reduce((sum, item) => sum + item.quantity, 0),
-      currency: "AUD",
-    });
-  } catch (error) {
-    // Silent fail - don't disrupt user experience
-    console.error("[Cart Tracking] Failed to track begin_checkout:", error);
-  }
+      item_variant: item.variant || "default",
+    })),
+  });
 }
 
 /**
@@ -77,17 +62,11 @@ export async function trackViewProduct(
   productTitle: string,
   price: number
 ): Promise<void> {
-  try {
-    const hpCapture = await getHpCapture();
-    await hpCapture.trackEvent("view_product", {
-      product_id: productId,
-      product_title: productTitle,
-      price: price,
-      currency: "AUD",
-    });
-  } catch (error) {
-    console.error("[Cart Tracking] Failed to track view_product:", error);
-  }
+  window.gtag?.("event", "view_item", {
+    currency: "AUD",
+    value: price,
+    items: [{ item_id: productId, item_name: productTitle, price }],
+  });
 }
 
 /**

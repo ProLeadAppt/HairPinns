@@ -359,14 +359,13 @@ assert.doesNotMatch(scrollTopSource, /transition-all/, 'Scroll-to-top control mu
 assert.doesNotMatch(indexCss, /font-family:\s*"Fraunces"|fraunces-(?:italic-)?latin\.woff2/, 'Global typography must use one Playfair editorial face without loading legacy Fraunces');
 
 const footerSource = await readFile(path.join(ROOT, 'src/components/Footer.tsx'), 'utf8');
-const leadConnectorSource = await readFile(path.join(ROOT, 'src/components/LeadConnectorWidget.tsx'), 'utf8');
 assert.match(footerSource, /data-home-footer=""/, 'Footer must expose a stable marker for floating-control suppression');
 assert.match(footerSource, /bg-\[hsl\(var\(--hp-lavender\)\)\][\s\S]*text-\[hsl\(var\(--hp-ink\)/, 'Footer must use a light lavender surface and readable ink');
 assert.match(footerSource, /src=\{hairPinnsLogo\}/, 'Footer must retain the real Hair Pinns logo');
 assert.doesNotMatch(footerSource, /brightness-0 invert/, 'The logo must remain recognisable in its original colours on the light footer');
-assert.match(footerSource, /form_name: 'newsletter_footer'[\s\S]*consent_marketing: true[\s\S]*event: 'newsletter_subscription'/, 'Footer newsletter must retain GHL capture, consent, and attribution');
-assert.match(leadConnectorSource, /leadconnector-widget-loader[\s\S]*data-widget-id[\s\S]*setTimeout\(load, 8000\)/, 'Application widget loader must retain intent loading and the eight-second fallback');
-assert.doesNotMatch(footerSource, /leadconnectorhq|data-widget-id/, 'Footer must not own application-level LeadConnector loading');
+assert.match(footerSource, /subscribeToNewsletter[\s\S]*source: "footer"/, 'Footer newsletter must retain Shopify subscriber capture');
+assert.match(footerSource, /agree to receive Hair Pinns emails[\s\S]*unsubscribe any time/, 'Footer newsletter must retain explicit consent wording');
+assert.doesNotMatch(footerSource, /leadconnectorhq|data-widget-id|hpCapture/, 'Footer must not load or send data to GoHighLevel');
 assert.match(footerSource, /ENTITY_REGISTRY\.profiles\.instagram[\s\S]*ENTITY_REGISTRY\.profiles\.facebook/, 'Footer must retain registry-backed first-party social destinations');
 assert.match(footerSource, /BUSINESS_NAP\.address\.street[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*BUSINESS_NAP\.phone\.sms[\s\S]*BUSINESS_NAP\.phone\.whatsapp/, 'Footer must retain canonical address, phone, SMS, and WhatsApp contacts');
 for (const route of ['/collections', '/blog', '/policies/shipping', '/policies/returns', '/faq', '/glossary', '/services', '/booking', '/about', '/areas', '/contact', '/privacy', '/terms']) {
@@ -413,7 +412,7 @@ assert.match(collectionsSource, /role="tablist"[\s\S]*activePath[\s\S]*role="tab
 assert.match(collectionsSource, /CHRISTMAS_PRODUCTS\.map/, 'Collection index must expose the removable Christmas products');
 assert.match(collectionsSource, /\/collections\/haircare-bundles-gift-sets/, 'Collection index must link its seasonal feature to Bundles & Gifts');
 assert.doesNotMatch(collectionsSource, /Jena.?s Daily Trio|10% saving|Search collections|Sort collections/, 'Paused Daily Trio and the redundant collection search/sort controls must stay off the shop hub');
-assert.match(collectionsSource, /collections_cta[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*BOOK_URL/, 'Collection advice close must preserve chat attribution, phone, and booking routes');
+assert.match(collectionsSource, /to="\/contact"[\s\S]*BUSINESS_NAP\.phone\.tel[\s\S]*BOOK_URL/, 'Collection advice close must preserve contact, phone, and booking routes');
 assert.doesNotMatch(collectionsSource, /product-count|Most Products/, 'Collection index must not rank by incomplete GraphQL product counts');
 assert.doesNotMatch(collectionsSource, /bg-gradient-to|radial-gradient|rounded-3xl|rounded-2xl/, 'Collection index must not regress to gradient or rounded template panels');
 assert.doesNotMatch(collectionsSource, /text-\[(?:0\.62|0\.66)rem\][^\n]*after-hours-copper/, 'Small collection labels need stronger than decorative copper contrast');
@@ -547,7 +546,7 @@ assert.match(contactSource, /generateFAQPageSchema\(contactFaqs\)/, 'Contact FAQ
 assert.match(contactSource, /trackBookingClick\("contact_close", "\/contact"\)/, 'Contact booking close must preserve attribution');
 assert.match(floatingActionsSource, /\[data-contact-page\]/, 'Contact journey must suppress the floating scroll-to-top control');
 assert.doesNotMatch(contactSource, /new Date\(|businessInfo|Open now|Currently closed|rear entrance|Wheelchair accessible|available 24\/7|within 24 hours/, 'Contact page must not restore browser-time status, duplicate business data, or unsupported access and response claims');
-for (const formContract of ['postToZapier', 'contact_form_submit', "window.gtag('event', 'generate_lead'", 'pixelTracking.trackFormSubmission', 'contactSchema.safeParse', 'Send Another Message']) {
+for (const formContract of ['submitNetlifyForm("hair-pinns-contact"', "window.gtag('event', 'generate_lead'", 'pixelTracking.trackFormSubmission', 'contactSchema.safeParse', 'Send Another Message']) {
   assert.ok(contactFormSource.includes(formContract), `Contact form must preserve operational contract: ${formContract}`);
 }
 assert.match(contactFormSource, /variant\?: "default" \| "editorial"[\s\S]*variant === "editorial"/, 'Contact form must preserve default styling and expose the editorial shell');

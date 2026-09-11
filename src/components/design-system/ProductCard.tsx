@@ -109,13 +109,6 @@ const ProductCard = ({
       <div
         className="relative aspect-square overflow-hidden bg-muted cursor-pointer"
         onClick={handleViewProduct}
-        onMouseEnter={() => {
-          // Track hover for analytics
-          if (handle && typeof window !== 'undefined') {
-            const { hpCapture } = require("@/lib/hpCapture");
-            hpCapture.trackProductHover(handle, name).catch(() => {});
-          }
-        }}
       >
         <picture className="block w-full h-full">
           <source

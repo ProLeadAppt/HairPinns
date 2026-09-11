@@ -8,6 +8,7 @@ import { BUSINESS_NAP, BUSINESS_WEEK_DISPLAY as salonHours } from "@/config/busi
 import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import hairPinnsLogo from "@/assets/images/hair-pinns-logo-full.webp";
+import { subscribeToNewsletter } from "@/lib/newsletterSubscription";
 
 const shopLinks = [
   ["Shop products", "/collections"],
@@ -49,29 +50,21 @@ const Footer = () => {
 
     setIsSubmitting(true);
     try {
-      const { hpCapture } = await import("@/lib/hpCapture");
-      const success = await hpCapture.postToGHL({
-        form_name: 'newsletter_footer',
+      await subscribeToNewsletter({
         email,
         company,
-        consent_marketing: true,
-      }, {
-        event: 'newsletter_subscription'
+        source: "footer",
       });
 
-      if (success) {
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', 'generate_lead', { method: 'newsletter' });
-        }
-
-        toast({
-          title: "You're on the list.",
-          description: "Look out for practical hair advice and product news from Jena.",
-        });
-        setEmail("");
-      } else {
-        throw new Error('Submission failed');
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', { method: 'newsletter' });
       }
+
+      toast({
+        title: "You're in.",
+        description: "Your welcome email and 15% code should arrive shortly.",
+      });
+      setEmail("");
     } catch (error) {
       console.error("Newsletter signup error:", error);
       toast({
@@ -157,6 +150,7 @@ const Footer = () => {
               </label>
               <Input
                 id="footer-newsletter-email"
+                name="email"
                 type="email"
                 placeholder="Email address"
                 value={email}
@@ -174,6 +168,12 @@ const Footer = () => {
               >
                 {isSubmitting ? "Joining…" : "Join the list"}
               </Button>
+              <p className="text-xs leading-5 text-[hsl(var(--hp-ink)/0.62)] sm:col-span-2">
+                By joining, you agree to receive Hair Pinns emails. You can unsubscribe any time. See our{' '}
+                <Link to="/privacy" className="underline underline-offset-4 hover:text-[hsl(var(--hp-purple))]">
+                  privacy policy
+                </Link>.
+              </p>
             </form>
           </div>
         </div>
