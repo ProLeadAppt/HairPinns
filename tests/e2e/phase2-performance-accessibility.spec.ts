@@ -242,7 +242,7 @@ test('notification runtime waits for user intent before loading', async ({ page 
   expect(await findSonnerScripts()).toEqual([]);
 
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  const newsletterSubmit = page.getByRole('button', { name: 'Send my code' });
+  const newsletterSubmit = page.getByRole('button', { name: 'Join the list' });
   await expect(newsletterSubmit).toBeVisible();
   await newsletterSubmit.click();
 

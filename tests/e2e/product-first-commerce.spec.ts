@@ -413,9 +413,10 @@ test('after-hours footer closes with complete commerce, salon, and legal paths',
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await page.waitForTimeout(100);
 
-  await expect(footer.getByRole('heading', { name: 'Take 10% off your first order.' })).toBeVisible();
-  const newsletter = footer.getByRole('textbox', { name: 'Email address for 10% off newsletter signup' });
-  const subscribe = footer.getByRole('button', { name: 'Send my code' });
+  await expect(footer.getByRole('heading', { name: "Get Jena's best hair advice." })).toBeVisible();
+  await expect(footer).not.toContainText(/10%|discount code|sale/i);
+  const newsletter = footer.getByRole('textbox', { name: 'Email address for Hair Pinns newsletter signup' });
+  const subscribe = footer.getByRole('button', { name: 'Join the list' });
   await expect(newsletter).toHaveAttribute('aria-describedby', 'footer-newsletter-note');
   expect((await newsletter.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
   expect((await subscribe.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
@@ -453,7 +454,7 @@ test('after-hours footer closes with complete commerce, salon, and legal paths',
     };
   });
   expect(metrics.height).toBeLessThan(1800);
-  expect(metrics.background).toBe('rgb(24, 0, 31)');
+  expect(metrics.background).toBe('rgb(247, 241, 250)');
   expect(metrics.minTarget).toBeGreaterThanOrEqual(44);
   expect(metrics.linkCount).toBe(23);
   await expect(page.getByRole('button', { name: 'Scroll to top' })).toHaveCount(0);

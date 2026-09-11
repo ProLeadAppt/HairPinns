@@ -65,7 +65,7 @@ const Footer = () => {
 
         toast({
           title: "You're on the list.",
-          description: "Check your inbox — your 10% off code is on its way.",
+          description: "Look out for practical hair advice and product news from Jena.",
         });
         setEmail("");
       } else {
@@ -137,10 +137,10 @@ const Footer = () => {
               From behind the chair
             </p>
             <h2 className="mt-4 max-w-[12ch] font-heading text-[clamp(2rem,6vw,4.5rem)] leading-[0.98] tracking-[-0.04em] text-[hsl(var(--hp-ink))]">
-              Take 10% off your first order.
+              Get Jena's best hair advice.
             </h2>
             <p id="footer-newsletter-note" className="mt-3 max-w-xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.68)]">
-              Practical hair advice and product news from Jena. Your code arrives by email.
+              Practical hair advice, product news and salon updates—sent only when there is something useful to share.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="mt-6 grid max-w-2xl gap-3 sm:grid-cols-[1fr_auto]">
               <input
@@ -152,7 +152,7 @@ const Footer = () => {
                 className="absolute -left-[9999px] h-px w-px opacity-0"
               />
               <label htmlFor="footer-newsletter-email" className="sr-only">
-                Email address for 10% off newsletter signup
+                Email address for Hair Pinns newsletter signup
               </label>
               <Input
                 id="footer-newsletter-email"
@@ -171,7 +171,7 @@ const Footer = () => {
                 disabled={isSubmitting}
                 className="h-12 rounded-none !bg-[hsl(var(--after-hours-cream))] px-7 font-semibold !text-[hsl(var(--hp-ink))] hover:!bg-[hsl(var(--hp-lilac))]"
               >
-                {isSubmitting ? "Joining…" : "Send my code"}
+                {isSubmitting ? "Joining…" : "Join the list"}
               </Button>
             </form>
           </div>
