@@ -27,12 +27,6 @@
   force = true
 
 [[redirects]]
-  from = "/api/newsletter-subscribe"
-  to = "/.netlify/functions/newsletter-subscribe"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/api/shopify-catalog-sync"
   to = "/.netlify/functions/shopify-catalog-sync-background"
   status = 200
