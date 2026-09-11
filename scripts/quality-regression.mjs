@@ -266,6 +266,15 @@ assert.match(indexCss, /--hp-lavender:\s*280 47\.3684% 96\.2745%/, 'Jena’s lig
 assert.match(indexCss, /--hp-purple:\s*280 40\.7767% 40\.3922%/, 'Jena’s brighter purple must remain a shared token');
 assert.match(indexCss, /--after-hours-copper:\s*var\(--hp-purple\)/, 'Legacy copper accents must use Jena’s purple palette');
 
+const ogImageSource = await readFile(path.join(ROOT, 'scripts/generate-og-images.mjs'), 'utf8');
+assert.doesNotMatch(
+  ogImageSource,
+  /#(?:E8A87C|C4A575|D4A574|A97B8F)\b/i,
+  'Open Graph artwork must not restore the retired orange, tan or dusty-mauve palette',
+);
+assert.match(ogImageSource, /#753D91/, 'Open Graph artwork must use Jena’s brighter purple');
+assert.match(ogImageSource, /#F7F1FA/, 'Open Graph artwork must use Jena’s light lavender');
+
 const heroSource = await readFile(path.join(ROOT, 'src/components/home/HeroHome.tsx'), 'utf8');
 assert.match(heroSource, /Shop Jena's shelf/, 'Hero CTA must expose its visible shopping label');
 assert.doesNotMatch(heroSource, /aria-label="Shop Jena's product shelf"/, 'Hero CTA accessible name must exactly preserve its visible label');
