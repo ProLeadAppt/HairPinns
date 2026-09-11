@@ -346,6 +346,7 @@ const ProductDetail = () => {
 
   const variantEdges = product?.variants?.edges ?? [];
   const images = (product?.images?.edges ?? []).map((e: any) => e?.node).filter(Boolean);
+  const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
 
   if (loading) {
     return (
@@ -415,6 +416,7 @@ const ProductDetail = () => {
     : null;
   const availability = getProductAvailability(activeVariant);
   const isAvailable = availability.canPurchase;
+  const isDigitalProduct = activeVariant?.requiresShipping === false;
 
   const currentImg = images[currentImage];
 
@@ -447,6 +449,19 @@ const ProductDetail = () => {
     { suffix: "Shipped Australia-wide. Free shipping over $150." },
   );
 
+  const productFaqs = isDigitalProduct
+    ? [
+        { question: `What is ${product.title}?`, answer: product.description || `${product.title} is a digital Hair Pinns product.` },
+        { question: `How is ${product.title} delivered?`, answer: `${product.title} is delivered digitally by email, so no physical shipping is required.` },
+        { question: `What can ${product.title} be used for?`, answer: `${product.title} can be redeemed online for products sold by Hair Pinns.` },
+      ]
+    : [
+        { question: `What is ${product.title}?`, answer: `${(product.description || `${product.title} - Professional hair care product from Hair Pinns`).substring(0, 250)} Hair Pinns ships ${product.title} Australia-wide. Free shipping over $150.` },
+        { question: `Where can I buy ${product.title} in Australia?`, answer: `Hair Pinns ships ${product.title} Australia-wide with free shipping on orders over $150. Picked by Jena since 2009. Available now at hairpinns.com.` },
+        { question: `Does ${product.title} ship to Melbourne, Brisbane, Perth or Sydney?`, answer: `Yes. Hair Pinns ships ${product.title} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping over $150. Every state and territory.` },
+        { question: `Is ${product.title} available in Australia?`, answer: `Yes. ${product.title} is available in Australia from Hair Pinns. Shipped Australia-wide with free shipping on orders over $150.` },
+      ];
+
   const productSchemas = [
     generateBreadcrumbSchema([
       { name: "Home", url: "https://hairpinns.com/" },
@@ -471,6 +486,7 @@ const ProductDetail = () => {
           productID: product.id,
           gtin: activeVariant?.barcode || undefined,
           availability: availability.schema,
+          requiresShipping: activeVariant?.requiresShipping !== false,
           // productType reflects Shopify's product taxonomy ("Shampoo",
           // "Conditioner", "Treatment") - Google uses this for product
           // categorization in Merchant Listings.
@@ -481,12 +497,7 @@ const ProductDetail = () => {
         return {};
       }
     })(),
-    generateFAQPageSchema([
-      { question: `What is ${product.title}?`, answer: `${(product.description || `${product.title} - Professional hair care product from Hair Pinns`).substring(0, 250)} Hair Pinns ships ${product.title} Australia-wide. Free shipping over $150.` },
-      { question: `Where can I buy ${product.title} in Australia?`, answer: `Hair Pinns ships ${product.title} Australia-wide with free shipping on orders over $150. Picked by Jena since 2009. Available now at hairpinns.com.` },
-      { question: `Does ${product.title} ship to Melbourne, Brisbane, Perth or Sydney?`, answer: `Yes. Hair Pinns ships ${product.title} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping over $150. Every state and territory.` },
-      { question: `Is ${product.title} available in Australia?`, answer: `Yes. ${product.title} is available in Australia from Hair Pinns. Shipped Australia-wide with free shipping on orders over $150.` },
-    ]),
+    generateFAQPageSchema(productFaqs),
     generateWebPageSchema({
       name: product.title,
       description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,

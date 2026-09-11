@@ -142,6 +142,7 @@ export async function getProductByHandle(handle: string) {
               barcode
               availableForSale
               quantityAvailable
+              requiresShipping
               price {
                 amount
                 currencyCode
@@ -232,6 +233,7 @@ export async function getCollectionByHandle(handle: string) {
                     title
                     availableForSale
                     quantityAvailable
+                    requiresShipping
                     price {
                       amount
                       currencyCode

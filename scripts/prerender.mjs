@@ -31,7 +31,7 @@ import http from 'http';
 import { resolve, dirname, join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { collectRoutes } from './collect-prerender-routes.js';
-import { isTransientBrowserError, isTransientPrerenderRouteError } from './prerender-retry.mjs';
+import { commercePrerenderIssue, isTransientBrowserError, isTransientPrerenderRouteError } from './prerender-retry.mjs';
 import { getListeningPort, resolveRequestedPort } from './prerender-port.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -379,6 +379,8 @@ async function main() {
             }
             const rawHtml = await page.content();
             const cleanedHtml = postProcessHtml(rawHtml);
+            const commerceIssue = commercePrerenderIssue(route, cleanedHtml);
+            if (commerceIssue) throw new Error(commerceIssue);
             // Sanity checks: must have <h1>, <title>, meta description, JSON-LD
             const h1Count = (cleanedHtml.match(/<h1\b/gi) || []).length;
             const jsonLdCount = (cleanedHtml.match(/<script[^>]*type=["']application\/ld\+json["']/gi) || []).length;

@@ -642,6 +642,7 @@ export interface EnhancedProductData extends ProductData {
   size?: string;
   weight?: string;
   manufacturer?: string;
+  requiresShipping?: boolean;
   inProductGroupWithID?: string;
   additionalProperty?: Array<{
     name: string;
@@ -665,7 +666,9 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
     brand: {
       '@type': 'Brand',
       name: product.brand || 'Hair Pinns',
-      url: BASE_URL,
+      ...((product.brand || 'Hair Pinns').trim().toLocaleLowerCase('en-AU') === 'hair pinns'
+        ? { url: BASE_URL }
+        : {}),
     },
     category: product.category || 'Hair Care',
     offers: {
@@ -694,40 +697,42 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
       )
         .toISOString()
         .split('T')[0],
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '9.95',
-          currency: 'AUD',
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'AU',
-        },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 1,
-            maxValue: 2,
-            unitCode: 'DAY',
+      ...(product.requiresShipping === false ? {} : {
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '9.95',
+            currency: 'AUD',
           },
-          transitTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 3,
-            maxValue: 5,
-            unitCode: 'DAY',
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'AU',
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 1,
+              maxValue: 2,
+              unitCode: 'DAY',
+            },
+            transitTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 3,
+              maxValue: 5,
+              unitCode: 'DAY',
+            },
           },
         },
-      },
-      hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'AU',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 14,
-        returnMethod: 'https://schema.org/ReturnByMail',
-      },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'AU',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+          merchantReturnDays: 14,
+          returnMethod: 'https://schema.org/ReturnByMail',
+        },
+      }),
       seller: {
         '@type': 'Organization',
         name: 'Hair Pinns',

@@ -539,6 +539,14 @@ test('product routes prioritise their own image instead of unrelated or raw prel
   const primaryImage = page.locator('[data-product-detail-core] picture img').first();
   await expect(primaryImage).toHaveAttribute('fetchpriority', 'high');
   await expect(primaryImage).toHaveJSProperty('complete', true);
+
+  const productSchemas = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts.flatMap((script) => {
+      const parsed = JSON.parse(script.textContent || '{}');
+      return parsed['@graph'] || [parsed];
+    }).filter((schema) => schema['@type'] === 'Product'),
+  );
+  expect(productSchemas).toHaveLength(1);
 });
 
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {

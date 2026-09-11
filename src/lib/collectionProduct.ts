@@ -15,11 +15,15 @@ export function mapCollectionProduct(product: any) {
   const hasMultipleVariants = Boolean(product?.variants?.pageInfo?.hasNextPage) || variantEdges.length !== 1;
   const singleVariant = hasMultipleVariants ? null : variantEdges[0]?.node;
   const availableVariants = variantEdges.map((edge: any) => edge?.node).filter((variant: any) => variant?.availableForSale);
+  const allAvailableVariantsDigital = availableVariants.length > 0
+    && availableVariants.every((variant: any) => variant.requiresShipping === false);
 
   const availability = singleVariant
     ? getProductAvailability(singleVariant)
     : !product?.availableForSale
       ? { canPurchase: false, label: "Sold out" as const, schema: "OutOfStock" as const }
+      : allAvailableVariantsDigital
+        ? { canPurchase: true, label: "Available online" as const, schema: "InStock" as const }
       : !product?.variants?.pageInfo?.hasNextPage
         && availableVariants.length > 0
         && availableVariants.every((variant: any) => typeof variant.quantityAvailable === "number" && variant.quantityAvailable <= 0)

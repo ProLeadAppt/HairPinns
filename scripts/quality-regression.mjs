@@ -179,6 +179,11 @@ assert.match(searchResults, /<SEOHead[\s\S]*?noIndex=\{true\}/, 'Internal search
 
 const sitemapGenerator = await readFile(path.join(ROOT, 'scripts/generate-sitemap.js'), 'utf8');
 assert.doesNotMatch(sitemapGenerator, /urls\.push\(url\(`\$\{BASE\}\/search/);
+assert.doesNotMatch(
+  sitemapGenerator,
+  /urls\.push\(url\(`\$\{BASE\}\/reviews/,
+  'The noindex review funnel must not be submitted in the sitemap',
+);
 assert.doesNotMatch(sitemapGenerator, /urls\.push\(url\(`\$\{BASE\}\/(?:llms|llm|humans|ai|\.well-known)/);
 assert.match(sitemapGenerator, /canonicalSiteUrl/, 'Sitemap URLs must use the canonical trailing-slash helper');
 
@@ -229,11 +234,7 @@ assert.doesNotMatch(indexHtml, /fonts\.googleapis\.com|fonts\.gstatic\.com/, 'Cr
 assert.doesNotMatch(indexHtml, /googletagmanager\.com\/gtag\/js/, 'GA4 must not compete with first paint');
 assert.match(indexHtml, /gtag\(['"]config['"],\s*['"]G-N6Y1TJMWGG['"]\)/, 'GA4 config must be queued before deferred events');
 assert.doesNotMatch(indexHtml, /rel="preload"[^>]+hero-poster\.avif/, 'Do not preload the desktop video poster as the mobile LCP image');
-assert.match(indexHtml, /rel="preload"[^>]+href="[^"]*hero-journal-mobile-640w\.avif"/, 'Preload the cropped mobile hero LCP image');
-const responsiveHeroPreload = indexHtml.match(/imagesrcset="([^"]+)"/)?.[1] ?? '';
-for (const candidate of ['hero-journal-640w.avif', 'hero-journal-1280w.avif', 'hero-journal-1440w.avif']) {
-  assert.ok(responsiveHeroPreload.includes(candidate), `Responsive hero preload is missing ${candidate}`);
-}
+assert.doesNotMatch(indexHtml, /rel="preload"[^>]+as="image"/, 'Global image preloads must not compete with route-specific LCP images');
 
 const trackingScripts = await readFile(path.join(ROOT, 'src/components/tracking/TrackingScripts.tsx'), 'utf8');
 assert.match(trackingScripts, /googletagmanager\.com\/gtag\/js/, 'Deferred tracking must still load GA4');
@@ -249,6 +250,7 @@ assert.match(heroSource, /Shop Jena's shelf/, 'Hero CTA must expose its visible 
 assert.doesNotMatch(heroSource, /aria-label="Shop Jena's product shelf"/, 'Hero CTA accessible name must exactly preserve its visible label');
 assert.match(heroSource, /hero-journal-640w\.avif[\s\S]*?srcSet=/, 'Hero must use the approved responsive first-party finish image');
 assert.match(heroSource, /hero-journal-mobile-640w\.avif/, 'Mobile hero must avoid decoding pixels that CSS immediately crops away');
+assert.match(heroSource, /loading="eager"[\s\S]*?fetchpriority="high"/, 'Homepage hero must prioritise its own LCP image');
 assert.match(heroSource, /Selected by Jena/, 'Hero must preserve Jena as the human trust signature');
 assert.doesNotMatch(heroSource, /hero-reel|<video/, 'Hero art direction must not be replaced after LCP by unrelated video footage');
 assert.doesNotMatch(heroSource, /["']Fraunces["']/, 'Hero must not pull the optional Fraunces family into the critical path');
@@ -602,6 +604,17 @@ assert.match(trackingGateSource, /addEventListener\(["']pointerdown["']/, 'User 
 
 const netlify = await readFile(path.join(ROOT, 'netlify.toml'), 'utf8');
 assert.doesNotMatch(netlify, /searchatlas|sa\.searchatlas\.com|dashboard\.searchatlas\.com/i, 'SearchAtlas remains in CSP');
+const robotsText = await readFile(path.join(ROOT, 'public/robots.txt'), 'utf8');
+assert.equal(
+  (robotsText.match(/^User-agent:/gm) || []).length,
+  1,
+  'Robots rules must remain in one universal group so crawl controls apply consistently',
+);
+assert.match(
+  robotsText,
+  /^User-agent: \*\s+[\s\S]*Disallow: \/checkout/m,
+  'Transactional crawl rules must belong to the universal robots group',
+);
 const netlifyExactFromPaths = new Set(
   [...netlify.matchAll(/from\s*=\s*"(\/[^"]+)"/g)]
     .map((match) => match[1])
