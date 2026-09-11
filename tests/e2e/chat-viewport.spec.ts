@@ -59,3 +59,25 @@ for (const width of [344, 390, 768]) {
     await assertFits(430);
   });
 }
+
+test('collapsed chat transparent padding does not intercept shopping controls', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 844 });
+  await page.goto('/');
+  await page.evaluate(() => document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
+  await expect(page.getByRole('button', { name: 'Open chat', exact: true })).toBeVisible();
+  await page.evaluate(() => {
+    const root = document.querySelector('chat-widget')!.shadowRoot!;
+    // The real collapsed vendor wrapper retains its prompt width plus 70px
+    // empty padding. That invisible rectangle must not consume page clicks.
+    (root.querySelector('#lc_text-widget') as HTMLElement).style.width = '301px';
+    const target = document.createElement('button');
+    target.textContent = 'Shopping click-through probe';
+    target.style.cssText = 'position:fixed;right:200px;top:50%;width:130px;height:30px;z-index:1000';
+    target.onclick = () => { target.textContent = 'Shopping action reached'; };
+    document.body.append(target);
+  });
+  await page.getByRole('button', { name: 'Shopping click-through probe' }).click({ timeout: 3000 });
+  await expect(page.getByRole('button', { name: 'Shopping action reached' })).toBeVisible();
+  await page.getByRole('button', { name: 'Open chat', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Close chat panel' })).toBeVisible();
+});

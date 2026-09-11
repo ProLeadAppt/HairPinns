@@ -20,6 +20,10 @@ The real widget used host ID `leadconnector-widget-loader`, `data-active` for op
 
 The guard depends on the inspected vendor shadow DOM IDs. Re-test it when LeadConnector changes the widget; it does not alter conversation, voice or routing settings.
 
+Deployed smoke testing also reproduced an invisible collapsed-chat wrapper intercepting the purchase button. Its 301px-wide wrapper included 70px of empty padding. A regression test failed with “chat-widget intercepts pointer events”; the guard now makes only the actual launcher, prompt and expanded panel interactive, allowing empty padding to pass clicks through.
+
+The first preview build passed and the original 45 focused Chromium/Firefox/WebKit checks passed. Public homepage, collections, Wet Brush and Pure Christmas pages returned 200 with production canonicals; sitemap returned 200. The follow-up click-through fix requires a fresh preview and real server-backed cart acceptance before release.
+
 ## Release boundaries
 
 - Production rollback: `6a9c03d359d7260f22463756` (approved brand update).

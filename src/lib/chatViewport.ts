@@ -2,8 +2,8 @@ const STYLE_ID = 'hair-pinns-chat-viewport';
 
 /**
  * Compatibility guard for the inspected LeadConnector middle-right layout.
- * Its open shadow root exposes no responsive spacing part. Scope overrides to
- * verified IDs and the expanded state; do not change routing, fields or audio.
+ * Use the inspected open shadow root for the responsive compatibility guard.
+ * Scope overrides to verified elements; do not change routing, fields or audio.
  * Keep the vendor-owned launcher position when collapsed.
  */
 export function installChatViewportGuard() {
@@ -24,6 +24,12 @@ export function installChatViewportGuard() {
     style = document.createElement('style');
     style.id = STYLE_ID;
     style.textContent = `
+      /* The vendor wrapper includes invisible prompt/launcher padding.
+         Only painted interactive surfaces may intercept storefront clicks. */
+      #lc_text-widget { pointer-events: none !important; }
+      #lc_text-widget--btn,
+      #lc_text-widget--box,
+      .lc_text-widget--prompt { pointer-events: auto !important; }
       @media (max-width: 1023px) {
         :host([data-active="true"]) #lc_text-widget {
           top: calc(var(--hp-chat-viewport-top, 0px) + 12px + env(safe-area-inset-top)) !important;
