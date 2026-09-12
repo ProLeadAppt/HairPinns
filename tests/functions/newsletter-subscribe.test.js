@@ -105,6 +105,24 @@ describe("newsletter subscriber relay", () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
+  it("preserves existing subscribers without another consent event or welcome trigger", async () => {
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(shopifyResponse({
+        customerSet: {
+          customer: { id: "gid://shopify/Customer/1", emailMarketingConsent: { marketingState: "SUBSCRIBED" } },
+          userErrors: [],
+        },
+      }))
+      .mockResolvedValueOnce(shopifyResponse({ tagsAdd: { userErrors: [] } }));
+    vi.stubGlobal("fetch", fetchMock);
+    expect((await handler(requestFor())).status).toBe(202);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const tagging = JSON.parse(fetchMock.mock.calls[1][1].body);
+    expect(tagging.query).toContain("WebsiteSubscriberTag");
+    expect(tagging.query).not.toContain("customerEmailMarketingConsentUpdate");
+    expect(tagging.variables.tags).toEqual(["website-subscriber"]);
+  });
+
   it("rejects missing consent, invalid origins and oversized payloads", async () => {
     vi.stubGlobal("fetch", vi.fn());
 

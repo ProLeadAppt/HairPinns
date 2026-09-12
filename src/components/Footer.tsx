@@ -62,7 +62,7 @@ const Footer = () => {
 
       toast({
         title: "You're in.",
-        description: "Your welcome email and 15% code should arrive shortly.",
+        description: "You're on the list. New here? Look out for your welcome email and first-order code.",
       });
       setEmail("");
     } catch (error) {

@@ -13,6 +13,6 @@ describe("footer newsletter subscription", () => {
   });
 
   it("sets an accurate welcome-offer expectation", () => {
-    expect(source).toContain("Your welcome email and 15% code should arrive shortly.");
+    expect(source).toContain("You're on the list. New here? Look out for your welcome email and first-order code.");
   });
 });

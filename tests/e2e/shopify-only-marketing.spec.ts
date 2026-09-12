@@ -41,7 +41,7 @@ test('footer signup sends explicit consent to the Shopify subscription endpoint'
   await footer.getByLabel('Email address for Hair Pinns newsletter signup').fill('reader@example.com');
   await footer.getByRole('button', { name: 'Join the list' }).click();
 
-  await expect(page.getByText('Your welcome email and 15% code should arrive shortly.')).toBeVisible();
+  await expect(page.getByText("You're on the list. New here? Look out for your welcome email and first-order code.")).toBeVisible();
   expect(submittedPayload).toMatchObject({
     contact: { email: 'reader@example.com' },
     context: {

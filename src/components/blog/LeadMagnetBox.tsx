@@ -16,7 +16,7 @@ const LeadMagnetBox = () => {
       if (typeof window.gtag === "function") {
         window.gtag("event", "generate_lead", { method: "newsletter_blog" });
       }
-      toast({ title: "You’re in", description: "Your welcome email and 15% code should arrive shortly." });
+      toast({ title: "You’re in", description: "You're on the list. New here? Look out for your welcome email and first-order code." });
       setEmail("");
     } catch {
       toast({ title: "Submission Error", description: "We couldn’t process your subscription. Please try again or call us.", variant: "destructive" });

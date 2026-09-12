@@ -97,7 +97,7 @@ const upsertShopifySubscriber = async (email) => {
   const upsertData = await shopifyGraphql(
     `mutation WebsiteSubscriberUpsert($identifier: CustomerSetIdentifiers, $input: CustomerSetInput!) {
       customerSet(identifier: $identifier, input: $input) {
-        customer { id }
+        customer { id emailMarketingConsent { marketingState } }
         userErrors { field message }
       }
     }`,
@@ -113,6 +113,20 @@ const upsertShopifySubscriber = async (email) => {
   }
 
   const customerId = upsert.customer.id;
+  // Re-submitting an already subscribed email must not reset its consent date
+  // or emit another subscription event (and another welcome email).
+  if (upsert.customer.emailMarketingConsent?.marketingState === "SUBSCRIBED") {
+    const tagging = await shopifyGraphql(
+      `mutation WebsiteSubscriberTag($customerId: ID!, $tags: [String!]!) {
+        tagsAdd(id: $customerId, tags: $tags) { userErrors { message } }
+      }`,
+      { customerId, tags: [WEBSITE_SUBSCRIBER_TAG] },
+    );
+    if (!tagging?.tagsAdd || tagging.tagsAdd.userErrors?.length) {
+      throw new Error("ShopifySubscriberTagFailed");
+    }
+    return;
+  }
   const consentData = await shopifyGraphql(
     `mutation WebsiteSubscriberConsent(
       $input: CustomerEmailMarketingConsentUpdateInput!
