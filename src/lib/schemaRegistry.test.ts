@@ -40,6 +40,10 @@ describe("canonical schema graph", () => {
     expect(generatePlaceSchema()["@id"]).toBe(ENTITY_REGISTRY.ids.place);
   });
 
+  it("does not advertise the retired sitelinks search action", () => {
+    expect(generateWebSiteSchema()).not.toHaveProperty("potentialAction");
+  });
+
   it("keeps the salon URL, NAP, coordinates, hours, and profiles canonical on area renders", () => {
     const schema = generateLocalBusinessSchema(
       "https://hairpinns.com/areas/menai-2234/",

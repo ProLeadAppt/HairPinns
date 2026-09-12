@@ -125,7 +125,11 @@ const schemaPublisher = () => ({
 });
 
 /**
- * WebSite schema with SearchAction - enables sitelinks search box in Google
+ * Site identity for search engines and answer engines.
+ *
+ * Google retired the sitelinks search box in November 2024. Keeping a
+ * SearchAction here causes crawlers to request the literal URL-template
+ * placeholder, which Search Console then reports as a soft 404.
  */
 export const generateWebSiteSchema = () => ({
   '@context': 'https://schema.org',
@@ -133,14 +137,6 @@ export const generateWebSiteSchema = () => ({
   '@id': ENTITY_REGISTRY.ids.webSite,
   name: ENTITY_REGISTRY.business.name,
   url: BASE_URL,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
 });
 
 export const generateOrganizationSchema = () => ({

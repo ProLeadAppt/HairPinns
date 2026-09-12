@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface GalleryImage {
   src: string;
@@ -17,13 +17,13 @@ const ImageGallery = ({ images, columns = 3, variant = "default" }: ImageGallery
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const closeRef = useRef<HTMLButtonElement | null>(null);
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     const returnIndex = lightboxIdx;
     setLightboxIdx(null);
     window.setTimeout(() => {
       if (returnIndex !== null) triggerRefs.current[returnIndex]?.focus();
     }, 0);
-  };
+  }, [lightboxIdx]);
 
   useEffect(() => {
     if (lightboxIdx === null) return;
@@ -33,7 +33,7 @@ const ImageGallery = ({ images, columns = 3, variant = "default" }: ImageGallery
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [lightboxIdx]);
+  }, [closeLightbox, lightboxIdx]);
 
   const gridCols = {
     2: "grid-cols-2",
