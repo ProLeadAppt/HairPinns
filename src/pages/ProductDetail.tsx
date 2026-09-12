@@ -29,6 +29,7 @@ import SocialShareBar from "@/components/blog/SocialShareBar";
 import PaymentBadges from "@/components/product/PaymentBadges";
 import StickyAddToCart from "@/components/conversion/StickyAddToCart";
 import ProductRecommendations from "@/components/product/ProductRecommendations";
+import ProductReviews from "@/components/product/ProductReviews";
 import { SilentErrorBoundary } from "@/components/ErrorBoundary";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
@@ -872,6 +873,8 @@ const ProductDetail = () => {
           ) : null}
         </Dialog>
 
+
+        {product && <SilentErrorBoundary><ProductReviews key={product.id} productId={product.id} title={product.title} /></SilentErrorBoundary>}
 
         {/* Product Recommendations - wrapped so failures don't break product page */}
         {product && (

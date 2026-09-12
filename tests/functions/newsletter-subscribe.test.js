@@ -2,6 +2,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import handler, { config } from "../../netlify/functions/newsletter-subscribe.js";
 
+const originalNewsletterClientId = process.env.SHOPIFY_NEWSLETTER_CLIENT_ID;
+const originalNewsletterClientSecret = process.env.SHOPIFY_NEWSLETTER_CLIENT_SECRET;
+
 const validPayload = {
   contact: { email: "reader@example.com" },
   context: {
@@ -29,6 +32,11 @@ const shopifyResponse = (data) =>
 
 describe("newsletter subscriber relay", () => {
   beforeEach(() => {
+    // Netlify injects production client credentials into local CLI builds.
+    // Keep this unit suite on its explicit test token so no test attempts a
+    // real OAuth exchange and the missing-token case remains deterministic.
+    delete process.env.SHOPIFY_NEWSLETTER_CLIENT_ID;
+    delete process.env.SHOPIFY_NEWSLETTER_CLIENT_SECRET;
     process.env.SHOPIFY_MYSHOPIFY_DOMAIN = "femtat-zu.myshopify.com";
     process.env.SHOPIFY_ADMIN_ACCESS_TOKEN = "test-admin-token";
   });
@@ -36,6 +44,10 @@ describe("newsletter subscriber relay", () => {
   afterEach(() => {
     delete process.env.SHOPIFY_MYSHOPIFY_DOMAIN;
     delete process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
+    if (originalNewsletterClientId === undefined) delete process.env.SHOPIFY_NEWSLETTER_CLIENT_ID;
+    else process.env.SHOPIFY_NEWSLETTER_CLIENT_ID = originalNewsletterClientId;
+    if (originalNewsletterClientSecret === undefined) delete process.env.SHOPIFY_NEWSLETTER_CLIENT_SECRET;
+    else process.env.SHOPIFY_NEWSLETTER_CLIENT_SECRET = originalNewsletterClientSecret;
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
   });

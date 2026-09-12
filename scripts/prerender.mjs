@@ -50,6 +50,7 @@ const DRY_RUN = argMap['dry-run'] === 'true';
 const CONCURRENCY = parseInt(argMap.concurrency || '4', 10);
 const TIMEOUT_MS = parseInt(argMap.timeout || '60000', 10);
 const REQUESTED_PORT = resolveRequestedPort(argMap);
+const ONLY_ROUTE = argMap.route ? `/${argMap.route.replace(/^\/+|\/+$/g, '')}` : null;
 
 // ----- third-party pollution to strip from rendered HTML -----
 // Mirrors the regexes from the old rollup-plugin's postProcess. Each one
@@ -263,10 +264,14 @@ async function main() {
     if (/^\/(about|contact|services|booking|blog|faq|reviews|collections|areas|search|sitemap)$/.test(r)) return 1;
     return 2;
   };
-  const routes = [...new Set(allRoutes)].sort((a, b) => {
+  const routes = [...new Set(allRoutes)].filter((route) => !ONLY_ROUTE || route === ONLY_ROUTE).sort((a, b) => {
     const oa = order(a), ob = order(b);
     return oa !== ob ? oa - ob : a.localeCompare(b);
   });
+
+  if (ONLY_ROUTE && routes.length === 0) {
+    throw new Error(`[prerender] Requested route is not in the route manifest: ${ONLY_ROUTE}`);
+  }
 
   console.log(`[prerender] ${routes.length} routes, concurrency=${CONCURRENCY}, timeout=${TIMEOUT_MS}ms, dryRun=${DRY_RUN}`);
 
