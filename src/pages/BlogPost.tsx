@@ -121,25 +121,29 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
         </div>
 
         <section className="bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]" aria-labelledby="article-title">
-          <div className="mx-auto grid max-w-[78rem] lg:min-h-[44rem] lg:grid-cols-[0.53fr_0.47fr]">
-            <div className="flex flex-col justify-between px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 xl:pr-16">
+          <div className="mx-auto grid max-w-[78rem] lg:grid-cols-[0.58fr_0.42fr]">
+            <div className="flex flex-col justify-between px-4 py-8 sm:px-6 sm:py-12 lg:px-8 xl:pr-12">
               <div>
                 <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Journal / {post.category}</p>
-                <h1 id="article-title" className="mt-6 max-w-[13ch] font-heading text-[clamp(3.1rem,7vw,6.8rem)] font-semibold leading-[0.89] tracking-[-0.055em] text-[hsl(var(--hp-ink))]">
+                <h1 id="article-title" className="mt-4 max-w-[24ch] font-heading text-[clamp(2rem,4vw,4rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[hsl(var(--hp-ink))]">
                   {post.title}
                 </h1>
-                <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.74)]">
+                <p className="mt-5 max-w-[42rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.74)]">
                   {post.excerpt}
                 </p>
               </div>
-              <dl className="mt-12 grid grid-cols-3 border-y border-[hsl(var(--hp-ink)/0.22)] py-5 text-[hsl(var(--hp-ink))]">
+              <nav aria-label="Article shortcuts" className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-[hsl(var(--hp-purple))]">
+                <a href="#article-content" className="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">Read the guide</a>
+                {post.content.productModule && <a href="#article-products" className="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">See the product picks</a>}
+              </nav>
+              <dl className="mt-6 grid grid-cols-3 border-y border-[hsl(var(--hp-ink)/0.22)] py-4 text-[hsl(var(--hp-ink))]">
                 <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
                 <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd></div>
                 <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
               </dl>
             </div>
 
-            <picture className="block min-h-[26rem] overflow-hidden border-t border-[hsl(var(--hp-ink)/0.18)] bg-[hsl(var(--after-hours-cream)/0.08)] lg:border-l lg:border-t-0">
+            <picture className="block h-60 overflow-hidden border-t border-[hsl(var(--hp-ink)/0.18)] bg-[hsl(var(--hp-lilac))] sm:h-80 lg:h-full lg:min-h-[30rem] lg:border-l lg:border-t-0">
             <source
               type="image/webp"
               srcSet={[
@@ -148,7 +152,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
                 1200,
                 1600,
               ].map((width) => `${shopifyImageWebp(post.image, width)} ${width}w`).join(", ")}
-              sizes="(max-width: 1023px) 100vw, 47vw"
+              sizes="(max-width: 1023px) 100vw, 42vw"
             />
             <img
               src={shopifyImage(post.image, 1600)}
@@ -159,20 +163,20 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
                 1600,
               ].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
               alt={post.title}
-              className="h-full min-h-[26rem] w-full object-cover lg:min-h-[44rem]"
+              className="h-full w-full object-cover"
               loading="eager"
               fetchpriority="high"
               decoding="async"
               width="1600"
               height="900"
-              sizes="(max-width: 1023px) 100vw, 47vw"
+              sizes="(max-width: 1023px) 100vw, 42vw"
             />
           </picture>
           </div>
         </section>
 
         {/* Article Content */}
-        <article className="mx-auto max-w-[48rem] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <article id="article-content" tabIndex={-1} className="mx-auto max-w-[48rem] scroll-mt-28 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
           {/* Quick Answer Box - AI SEO Optimization */}
           {post.content.quickAnswer && (
             <div className="quick-answer">
@@ -192,19 +196,21 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           {post.content.sections.map((section, index) => (
             <div key={index} className="reveal mb-16">
               <p className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.52)]">{String(index + 1).padStart(2, "0")} /</p>
-              <h2 className="mb-6 mt-4 max-w-[17ch] font-heading text-[clamp(2.2rem,5vw,4rem)] font-normal leading-[0.98] tracking-[-0.04em] text-[hsl(var(--hp-ink))]">
+              <h2 className="mb-5 mt-4 max-w-[28ch] font-heading text-[clamp(1.65rem,3vw,2.6rem)] font-normal leading-[1.15] tracking-[-0.025em] text-[hsl(var(--hp-ink))]">
                 {section.heading}
               </h2>
               <p className="max-w-[65ch] text-[1.06rem] leading-8 text-[hsl(var(--hp-ink)/0.78)]">
                 {renderInlineLinks(section.content)}
               </p>
 
-              {/* Insert Product Module after 3rd section */}
-              {index === 2 && post.content.productModule && (
-                <ProductModule
-                  title={post.content.productModule.title}
-                  products={post.content.productModule.products}
-                />
+              {/* Keep the product shortcut usable on short and long guides. */}
+              {index === Math.min(2, post.content.sections.length - 1) && post.content.productModule && (
+                <div id="article-products" tabIndex={-1} className="scroll-mt-28">
+                  <ProductModule
+                    title={post.content.productModule.title}
+                    products={post.content.productModule.products}
+                  />
+                </div>
               )}
 
               {/* Insert Lead Magnet after 5th section */}

@@ -7,7 +7,7 @@ const post = {
     category: "Products",
     date: "September 12, 2026",
     readTime: "6 min read",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807",
+    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-12.jpg?v=1747030734",
     author: "Jena Pinn",
     content: {
       introduction: "Sulfate-free (or sulphate-free) is useful shopping information, but it is not a guarantee that one shampoo will suit every scalp or hair type. I reviewed this guide against current product and manufacturer information so you can compare labels carefully and [ask me before choosing](/contact) if you are unsure.",

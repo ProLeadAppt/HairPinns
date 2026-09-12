@@ -1,3 +1,5 @@
+import { getShopifyAdminAuth } from "../lib/shopify-admin-auth.js";
+
 const MAX_BODY_BYTES = 64 * 1024;
 const REQUEST_TIMEOUT_MS = 8_000;
 const SHOPIFY_API_VERSION = "2026-07";
@@ -54,20 +56,8 @@ const isValidPayload = (payload) => {
   );
 };
 
-const getShopifyConfig = () => {
-  const domain = (process.env.SHOPIFY_MYSHOPIFY_DOMAIN || "").trim().toLowerCase();
-  const token = (process.env.SHOPIFY_ADMIN_ACCESS_TOKEN || "").trim();
-
-  if (!/^[a-z0-9][a-z0-9-]*\.myshopify\.com$/.test(domain) || !token) {
-    return null;
-  }
-
-  return { domain, token };
-};
-
-const shopifyGraphql = async (query, variables) => {
-  const shopify = getShopifyConfig();
-  if (!shopify) throw new Error("ShopifyNotConfigured");
+const shopifyGraphql = async (query, variables, retryAuthentication = true) => {
+  const shopify = await getShopifyAdminAuth();
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
@@ -87,6 +77,12 @@ const shopifyGraphql = async (query, variables) => {
       },
     );
 
+    // An authentication rejection has not executed the mutation. Refresh once
+    // if a cached token was revoked early; never retry other mutation failures.
+    if (response.status === 401 && retryAuthentication) {
+      await getShopifyAdminAuth({ forceRefresh: true });
+      return shopifyGraphql(query, variables, false);
+    }
     if (!response.ok) throw new Error(`ShopifyHttp${response.status}`);
 
     const result = await response.json();

@@ -29,7 +29,6 @@ import blogImg28 from "@/assets/images/jena-headshot.webp";
 import blogImg29 from "@/assets/images/hair.pinns_1764061240_3773541646932413211_2244281067.avif";
 import blogImg30 from "@/assets/images/hair.pinns_1767571777_3802990165460423700_2244281067.avif";
 import blogImg31 from "@/assets/images/Juuce-038.webp";
-import blogImg32 from "@/assets/images/Aromaganic_Organic_Shampoo_Conditoner.webp";
 import blogImg33 from "@/assets/images/happy-woman-singing-into-hairbrush-home.webp";
 import blogImg34 from "@/assets/images/hair.pinns_1770026184_3823577053908243890_2244281067.avif";
 import blogImg35 from "@/assets/images/front-view-man-hair-slugging-night-routine.webp";
@@ -393,7 +392,7 @@ export const blogSummaries: BlogSummary[] = [
     category: 'Products',
     date: 'September 12, 2026',
     readTime: '6 min read',
-    image: blogImg32,
+    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-12.jpg?v=1747030734',
     author: 'Jena Pinn',
   },
   {
