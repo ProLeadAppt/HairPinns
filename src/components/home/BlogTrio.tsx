@@ -46,7 +46,7 @@ const GuideImage = ({
 };
 
 const GuideMeta = ({ post }: { post: HomeFeaturedGuide }) => (
-  <p className="text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.68)]">
+  <p className="text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.68)]">
     {post.category} <span aria-hidden="true">/</span> {post.readTime}
   </p>
 );
@@ -58,29 +58,29 @@ const BlogTrio = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[hsl(var(--after-hours-paper))] py-16 text-[hsl(var(--after-hours-plum))] sm:py-20 lg:py-28"
+      className="bg-[hsl(var(--after-hours-paper))] py-16 text-[hsl(var(--hp-ink))] sm:py-20 lg:py-28"
       aria-labelledby="guide-desk-title"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <header className="mb-12 grid gap-6 border-t border-[hsl(var(--after-hours-plum)/0.2)] pt-6 lg:mb-16 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-12">
           <div>
-            <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
+            <p className="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">
               04 / Read, learn, ask
             </p>
             <h2
               id="guide-desk-title"
-              className="max-w-[12ch] font-heading text-[clamp(2.7rem,8vw,5.8rem)] font-normal leading-[0.94] tracking-[-0.05em] text-[hsl(var(--after-hours-plum))]"
+              className="max-w-[12ch] font-heading text-[clamp(2.7rem,8vw,5.8rem)] font-normal leading-[0.94] tracking-[-0.05em] text-[hsl(var(--hp-ink))]"
             >
               Notes from behind the chair.
             </h2>
           </div>
           <div className="lg:pb-2">
-            <p className="max-w-md text-base leading-7 text-[hsl(var(--after-hours-plum)/0.72)] sm:text-lg sm:leading-8">
+            <p className="max-w-md text-base leading-7 text-[hsl(var(--hp-ink)/0.72)] sm:text-lg sm:leading-8">
               Straight answers to the hair questions that come up in Jena’s chair, written to help between appointments.
             </p>
             <Link
               to="/blog"
-              className="mt-6 hidden min-h-11 items-center justify-between border-b border-[hsl(var(--after-hours-plum)/0.45)] text-sm font-semibold !text-[hsl(var(--after-hours-plum))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] lg:flex"
+              className="mt-6 hidden min-h-11 items-center justify-between border-b border-[hsl(var(--after-hours-plum)/0.45)] text-sm font-semibold !text-[hsl(var(--hp-ink))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] lg:flex"
             >
               <span>View all guides</span>
               <span aria-hidden="true">↗</span>
@@ -99,13 +99,13 @@ const BlogTrio = () => {
               </div>
               <div className="border-b border-[hsl(var(--after-hours-plum)/0.22)] pb-7 pt-6">
                 <GuideMeta post={leadPost} />
-                <h3 className="mt-3 max-w-[18ch] font-heading text-3xl font-semibold leading-[1.02] tracking-[-0.025em] !text-[hsl(var(--after-hours-plum))] sm:text-4xl">
+                <h3 className="mt-3 max-w-[18ch] font-heading text-3xl font-semibold leading-[1.02] tracking-[-0.025em] !text-[hsl(var(--hp-ink))] sm:text-4xl">
                   {leadPost.title}
                 </h3>
-                <p className="mt-4 max-w-2xl text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.72)] sm:text-base sm:leading-7">
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)] sm:text-base sm:leading-7">
                   {leadPost.excerpt}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-3 text-sm font-semibold !text-[hsl(var(--after-hours-plum))]">
+                <span className="mt-5 inline-flex items-center gap-3 text-sm font-semibold !text-[hsl(var(--hp-ink))]">
                   Read guide <span aria-hidden="true">→</span>
                 </span>
               </div>
@@ -130,13 +130,13 @@ const BlogTrio = () => {
                         0{index + 2}
                       </span>
                     </div>
-                    <h3 className="mt-3 font-heading text-[1.15rem] font-semibold leading-[1.08] tracking-[-0.015em] !text-[hsl(var(--after-hours-plum))] sm:text-2xl">
+                    <h3 className="mt-3 font-heading text-[1.15rem] font-semibold leading-[1.08] tracking-[-0.015em] !text-[hsl(var(--hp-ink))] sm:text-2xl">
                       {post.title}
                     </h3>
-                    <p className="mt-3 line-clamp-3 text-[0.78rem] leading-5 text-[hsl(var(--after-hours-plum)/0.7)] sm:text-sm sm:leading-6">
+                    <p className="mt-3 line-clamp-3 text-[0.78rem] leading-5 text-[hsl(var(--hp-ink)/0.7)] sm:text-sm sm:leading-6">
                       {post.excerpt}
                     </p>
-                    <span className="mt-4 hidden items-center gap-2 text-sm font-semibold !text-[hsl(var(--after-hours-plum))] sm:inline-flex">
+                    <span className="mt-4 hidden items-center gap-2 text-sm font-semibold !text-[hsl(var(--hp-ink))] sm:inline-flex">
                       Read guide <span aria-hidden="true">→</span>
                     </span>
                   </div>
@@ -148,7 +148,7 @@ const BlogTrio = () => {
 
         <Link
           to="/blog"
-          className="mt-10 flex min-h-12 items-center justify-between border-b border-t border-[hsl(var(--after-hours-plum)/0.34)] text-sm font-semibold !text-[hsl(var(--after-hours-plum))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] lg:hidden"
+          className="mt-10 flex min-h-12 items-center justify-between border-b border-t border-[hsl(var(--after-hours-plum)/0.34)] text-sm font-semibold !text-[hsl(var(--hp-ink))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] lg:hidden"
         >
           <span>View all guides</span>
           <span aria-hidden="true">↗</span>

@@ -124,7 +124,7 @@ export default function ProductSearch({
   return (
     <div ref={searchRef} data-predictive-search="" className="relative w-full">
       <form role="search" onSubmit={submitSearch} className="relative">
-        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[hsl(var(--after-hours-plum)/0.62)]" aria-hidden="true" />
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[hsl(var(--hp-ink)/0.62)]" aria-hidden="true" />
         <label htmlFor={inputId} className="sr-only">Search products and articles</label>
         <input
           id={inputId}
@@ -145,20 +145,20 @@ export default function ProductSearch({
           aria-controls={panelVisible ? suggestionsId : undefined}
           aria-describedby={`${inputId}-hint`}
           autoComplete="off"
-          className="h-11 w-full border border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-2 pl-10 pr-12 text-sm text-[hsl(var(--after-hours-plum))] outline-none placeholder:text-[hsl(var(--after-hours-plum)/0.54)] focus:border-[hsl(var(--after-hours-plum))] focus:ring-2 focus:ring-[hsl(var(--after-hours-copper)/0.45)]"
+          className="h-11 w-full border border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-2 pl-10 pr-12 text-sm text-[hsl(var(--hp-ink))] outline-none placeholder:text-[hsl(var(--hp-ink)/0.54)] focus:border-[hsl(var(--after-hours-plum))] focus:ring-2 focus:ring-[hsl(var(--after-hours-copper)/0.45)]"
         />
         <span id={`${inputId}-hint`} className="sr-only">Enter at least two characters. Press Enter for all results.</span>
         {query && (
-          <button type="button" onClick={clearSearch} className="absolute right-0 top-0 flex h-11 w-11 items-center justify-center text-[hsl(var(--after-hours-plum)/0.66)] hover:text-[hsl(var(--after-hours-plum))]" aria-label="Clear search">
+          <button type="button" onClick={clearSearch} className="absolute right-0 top-0 flex h-11 w-11 items-center justify-center text-[hsl(var(--hp-ink)/0.66)] hover:text-[hsl(var(--hp-ink))]" aria-label="Clear search">
             <X className="h-4 w-4" aria-hidden="true" />
           </button>
         )}
       </form>
 
       {panelVisible && (
-        <section id={suggestionsId} data-search-suggestions="" aria-label="Search suggestions" className="absolute right-0 top-full z-50 mt-2 max-h-[min(32rem,70vh)] w-[min(26rem,calc(100vw-2rem))] overflow-y-auto border border-[hsl(var(--after-hours-plum)/0.3)] bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))] shadow-[0_1rem_3rem_hsl(var(--after-hours-plum)/0.18)]">
+        <section id={suggestionsId} data-search-suggestions="" aria-label="Search suggestions" className="absolute right-0 top-full z-50 mt-2 max-h-[min(32rem,70vh)] w-[min(26rem,calc(100vw-2rem))] overflow-y-auto border border-[hsl(var(--after-hours-plum)/0.3)] bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--hp-ink))] shadow-[0_1rem_3rem_hsl(var(--after-hours-plum)/0.18)]">
           <div className="flex items-center justify-between border-b border-[hsl(var(--after-hours-plum)/0.16)] px-4 py-3">
-            <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.65)]">Search / {trimmedQuery}</p>
+            <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.65)]">Search / {trimmedQuery}</p>
             {!isSearching && hasSearched && !searchError && <span className="font-mono text-[0.64rem]">{suggestionCount} found</span>}
           </div>
 
@@ -167,13 +167,13 @@ export default function ProductSearch({
           ) : searchError ? (
             <div data-search-error="" className="px-4 py-7">
               <p className="font-heading text-lg font-semibold">Products could not load.</p>
-              <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.7)]">Press Enter to open the full search page, or try again.</p>
+              <p className="mt-2 text-xs leading-5 text-[hsl(var(--hp-ink)/0.7)]">Press Enter to open the full search page, or try again.</p>
             </div>
           ) : results.length > 0 || articles.length > 0 ? (
             <div>
               {results.length > 0 && (
                 <div data-search-products="">
-                  <p className="border-b border-[hsl(var(--after-hours-plum)/0.14)] px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.64)]">Products</p>
+                  <p className="border-b border-[hsl(var(--after-hours-plum)/0.14)] px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.64)]">Products</p>
                   <ul>
                     {results.map((product, index) => {
                       const image = product.images?.edges?.[0]?.node;
@@ -184,7 +184,7 @@ export default function ProductSearch({
                               <img src={image?.url || "/placeholder.svg"} alt={image?.altText || product.title} width="104" height="104" loading="lazy" decoding="async" className="h-full w-full object-contain" />
                             </div>
                             <div className="min-w-0">
-                              <span className="font-mono text-[0.58rem] text-[hsl(var(--after-hours-plum)/0.55)]">{String(index + 1).padStart(2, "0")}</span>
+                              <span className="font-mono text-[0.58rem] text-[hsl(var(--hp-ink)/0.55)]">{String(index + 1).padStart(2, "0")}</span>
                               <p className="line-clamp-2 font-heading text-sm font-semibold leading-tight">{product.title}</p>
                             </div>
                             <span className="text-xs font-semibold">{productPrice(product)}</span>
@@ -198,7 +198,7 @@ export default function ProductSearch({
 
               {articles.length > 0 && (
                 <div data-search-articles="">
-                  <p className="border-b border-[hsl(var(--after-hours-plum)/0.14)] px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.64)]">Jena’s guides</p>
+                  <p className="border-b border-[hsl(var(--after-hours-plum)/0.14)] px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.64)]">Jena’s guides</p>
                   <ul>
                     {articles.map((article) => (
                       <li key={article.slug} className="border-b border-[hsl(var(--after-hours-plum)/0.14)]">
@@ -215,7 +215,7 @@ export default function ProductSearch({
           ) : hasSearched ? (
             <div data-search-empty="" className="px-4 py-8">
               <p className="font-heading text-xl font-semibold">No matching products or guides.</p>
-              <p className="mt-2 text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.7)]">Check the spelling or press Enter to continue.</p>
+              <p className="mt-2 text-xs leading-5 text-[hsl(var(--hp-ink)/0.7)]">Check the spelling or press Enter to continue.</p>
             </div>
           ) : null}
 

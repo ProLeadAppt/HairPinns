@@ -59,7 +59,7 @@ const post = {
         },
         {
           question: "Does lamellar technology work on coloured hair?",
-          answer: "Yes — it's colour-safe, sulfate-free, and slightly acidic, so it closes the cuticle after colour. Jena uses lamellar water on every client as a finishing step.",
+          answer: "Yes, it's colour-safe, sulfate-free, and slightly acidic, so it closes the cuticle after colour. Jena uses lamellar water on every client as a finishing step.",
         },
         {
           question: "Is Juuce lamellar technology different from other brands?",

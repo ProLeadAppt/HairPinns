@@ -32,34 +32,38 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Premium Salon Design Tokens */
-    --brand-100: 300 60% 96%;              /* #F8EEF8 — pale lavender (Save 10% badge bg) */
-    --brand-200: 300 50% 88%;              /* #EAD1EA — soft purple border */
-    --brand-500: 300 34% 50%;              /* #8B4A8B — primary brand */
-    --brand-600: 300 37% 42%;              /* #733C73 - 8% darker */
-    --brand-700: 300 40% 28%;              /* #5A1E5A — WCAG AA body text on light (~10:1) */
-    --text: 302 17% 16%;                   /* #2A2230 */
-    --heading: 304 32% 13%;                /* #241327 */
-    --muted: 302 9% 56%;                   /* #8E8196 */
-    --bg: 300 75% 99%;                     /* #FCFAFE */
+    color-scheme: light;
+    /* Jena's September refresh: light surfaces, lilac framing, purple actions. */
+    --hp-white: 0 0% 100%;
+    --hp-lavender: 280 47.3684% 96.2745%;   /* #F7F1FA */
+    --hp-lilac: 279.1304 37.7049% 88.0392%; /* #E4D5EC */
+    --hp-purple: 280 40.7767% 40.3922%;    /* #753D91 */
+    --hp-ink: 278.4 25.2525% 19.4118%;     /* #35253E */
+    --brand-100: var(--hp-lavender);
+    --brand-200: var(--hp-lilac);
+    --brand-500: var(--hp-purple);
+    --brand-600: 280 41% 34%;
+    --brand-700: var(--hp-ink);
+    --text: var(--hp-ink);
+    --heading: var(--hp-ink);
+    --muted: 278 14% 40%;
+    --bg: var(--hp-white);
     --card: 0 0% 100%;                     /* #FFFFFF */
-    --accent: 300 43% 95%;                 /* #F6ECF8 */
-    --link: 300 34% 50%;                   /* Brand purple */
+    --accent: var(--hp-lavender);
+    --link: var(--hp-purple);
 
-    /* Rose-gold accent — used surgically (CTAs on hover, price, small editorial flourishes).
-       Keep distinct from --brand-500 so the homepage has a SECOND colour beat that
-       reads as warm/luxurious without competing with the brand purple. */
-    --gold: 17 49% 53%;                    /* #C68057 */
-    --gold-soft: 17 49% 95%;               /* Tint background for taglines/quotes */
+    /* Compatibility aliases remove copper/orange from older components too. */
+    --gold: var(--hp-purple);
+    --gold-soft: var(--hp-lavender);
 
     /* After-Hours editorial system. Semantic tokens let later homepage
        sections share the same visual grammar without copying raw values. */
-    --after-hours-plum: 305 35% 13%;        /* #2D162B */
-    --after-hours-near-black: 288 100% 6%;  /* #18001E */
-    --after-hours-cream: 32 31% 93%;        /* #F5EEE6 */
-    --after-hours-paper: 270 67% 99%;       /* #FCFAFE */
-    --after-hours-copper: 21 47% 55%;       /* #BD7650 */
-    --after-hours-muted: 312 13% 79%;       /* #D1C1CD */
+    --after-hours-plum: var(--hp-purple);
+    --after-hours-near-black: var(--brand-600);
+    --after-hours-cream: var(--hp-white);
+    --after-hours-paper: var(--hp-white);
+    --after-hours-copper: var(--hp-purple);
+    --after-hours-muted: var(--hp-lilac);
     --after-hours-mist: 193 15% 66%;        /* #9EB1B6 */
 
     /* Premium Shadows & Effects */
@@ -68,13 +72,13 @@ All colors MUST be HSL.
     --container: 1200px;
     
     /* Semantic UI Colors */
-    --star-color: 45 93% 58%;              /* Gold for ratings */
+    --star-color: var(--hp-purple);
     --success: 142 71% 45%;                /* Success green */
     --success-bg: 142 76% 96%;
     --success-fg: 142 71% 25%;
-    --warning: 38 92% 50%;                 /* Warning amber */
-    --warning-bg: 38 100% 96%;
-    --warning-fg: 38 92% 30%;
+    --warning: var(--hp-purple);
+    --warning-bg: var(--hp-lavender);
+    --warning-fg: var(--hp-ink);
 
     /* Radii - Premium salon */
     --radius-btn: 24px;
@@ -95,8 +99,8 @@ All colors MUST be HSL.
     --muted-bg: 210 20% 96%;
     --muted-foreground: 216 7% 28%;         /* WCAG-safe on every light bg; visible at 12px */
     --accent-color: var(--accent);
-    --accent-foreground: 0 0% 100%;
-    --accent-text: 0 0% 100%;
+    --accent-foreground: var(--hp-ink);
+    --accent-text: var(--hp-ink);
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 210 20% 90%;
@@ -156,32 +160,8 @@ All colors MUST be HSL.
     --sidebar-ring: var(--brand-500);
   }
 
-  .dark {
-    /* Dark mode with Hair Pinns brand consistency */
-    --bg: 210 10% 5%;
-    --text: 0 0% 90%;
-    --heading: 0 0% 95%;
-    --background: var(--bg);
-    --foreground: var(--text);
-    --card: 210 10% 8%;
-    --card-foreground: var(--text);
-    --popover: 210 10% 8%;
-    --popover-foreground: var(--text);
-    --primary: var(--brand-500);
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 10% 12%;
-    --secondary-foreground: var(--text);
-    --muted-bg: 210 10% 15%;
-    --muted-foreground: 210 10% 65%;
-    --accent-color: var(--accent);
-    --accent-foreground: 0 0% 100%;
-    --accent-text: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 210 10% 15%;
-    --input: 210 10% 18%;
-    --ring: var(--brand-500);
-  }
+  /* Jena's approved storefront has one light identity. Retired dark-mode
+     overrides must not restore dark panels for an older saved preference. */
 }
 
 /* Skip link for accessibility - visible on focus */
@@ -752,17 +732,8 @@ main#main-content:focus-visible {
   margin: 0 0 2rem 0;
 }
 
-/* LeadConnector leaves its custom element mounted while hidden. In Firefox
-   and WebKit that transparent host can otherwise sit above product dialogs
-   and swallow clicks before the widget is opened. */
-chat-widget[aria-hidden="true"],
-chat-widget[data-aria-hidden="true"] {
-  pointer-events: none !important;
-}
-
 /* Floating-layer contract. The observer-backed coordinator publishes the
-   mobile dock's measured height so third-party chat and first-party controls
-   share the same occupied bottom space. */
+   mobile dock's measured height for the scroll control. */
 .floating-scroll-top {
   bottom: calc(
     var(--mobile-action-dock-height, 0px)
@@ -771,28 +742,9 @@ chat-widget[data-aria-hidden="true"] {
   );
 }
 
-@media (max-width: 1023px) {
-  html[data-mobile-action-dock-visible="true"] chat-widget:not([aria-hidden="true"]):not([data-aria-hidden="true"]) {
-    translate: 0 calc(
-      -1 * (
-        var(--mobile-action-dock-height, 0px)
-        + env(safe-area-inset-bottom)
-        + 0.75rem
-      )
-    ) !important;
-    transition: none !important;
-  }
-}
-
 @media (min-width: 1024px) {
   .floating-scroll-top {
     bottom: 2rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html[data-mobile-action-dock-visible="true"] chat-widget {
-    transition: none !important;
   }
 }
 
@@ -809,14 +761,24 @@ chat-widget[data-aria-hidden="true"] {
    its geometry directly; this class must not mask gradients, radii, or shadows. */
 .editorial-route {
   background: hsl(var(--after-hours-paper));
-  color: hsl(var(--after-hours-plum));
+  color: hsl(var(--hp-ink));
 }
 .editorial-route main {
   background: hsl(var(--after-hours-paper));
-  color: hsl(var(--after-hours-plum));
+  color: hsl(var(--hp-ink));
 }
 .editorial-route.editorial-route--dark,
 .editorial-route.editorial-route--dark main {
-  background: hsl(var(--after-hours-plum));
-  color: hsl(var(--after-hours-cream));
+  background: hsl(var(--hp-lavender));
+  color: hsl(var(--hp-ink));
+}
+
+/* Jena's reference uses compact, readable mobile display headings throughout,
+   including historical service and journal pages with oversized utility sizes. */
+@media (max-width: 639px) {
+  main h1 {
+    font-size: clamp(2rem, 8.5vw, 2.625rem) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.025em !important;
+  }
 }

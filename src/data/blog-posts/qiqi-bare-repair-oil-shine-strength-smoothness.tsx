@@ -47,7 +47,7 @@ const post = {
         },
         {
           question: "Can I use QIQI Bare Repair Oil every day?",
-          answer: "Yes — a pea-sized amount is enough. More than that and fine hair looks greasy by lunchtime. Jena's rule: 'If you can feel it in your hand, you've used too much.'",
+          answer: "Yes, a pea-sized amount is enough. More than that and fine hair looks greasy by lunchtime. Jena's rule: 'If you can feel it in your hand, you've used too much.'",
         },
         {
           question: "Is QIQI Bare Repair Oil heat-protective?",
@@ -55,7 +55,7 @@ const post = {
         },
         {
           question: "Does QIQI Bare Repair Oil work on extensions?",
-          answer: "Yes — it's silicone-light and safe on human-hair extensions, tape-ins, and keratin bonds. Avoid the bond or tape area, focus on mid-lengths to ends.",
+          answer: "Yes, it's silicone-light and safe on human-hair extensions, tape-ins, and keratin bonds. Avoid the bond or tape area, focus on mid-lengths to ends.",
         },
         {
           question: "What's the difference between QIQI Bare Repair and the Juuce Smoothing serum?",

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Reveal — wraps the existing `.reveal` scroll-reveal system.
+ * Reveal, wraps the existing `.reveal` scroll-reveal system.
  *
  * The `useScrollReveal` hook in src/hooks/useScrollReveal.ts already adds
  * `visible` to any element with the `.reveal` class inside the <main>

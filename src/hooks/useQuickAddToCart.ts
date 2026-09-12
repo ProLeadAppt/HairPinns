@@ -14,7 +14,7 @@ import { trackAddToCart } from "@/lib/ecommerceTracking";
  *  - Tracks add_to_cart via the same ecommerceTracking module the PDP uses
  *  - Surfaces toast feedback (success / error)
  *
- * The PDP uses the same primitives — this hook is the card-context wrapper.
+ * The PDP uses the same primitives, this hook is the card-context wrapper.
  */
 export function useQuickAddToCart() {
   const [busy, setBusy] = useState(false);
@@ -45,7 +45,7 @@ export function useQuickAddToCart() {
         window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cart, cartId: cart.id } }));
       } catch (err) {
         console.error("[useQuickAddToCart] add failed:", err);
-        notify.error("Couldn't add to bag — please try again.");
+        notify.error("Couldn't add to bag, please try again.");
       } finally {
         setBusy(false);
       }

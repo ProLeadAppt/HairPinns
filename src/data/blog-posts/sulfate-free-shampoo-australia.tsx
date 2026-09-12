@@ -2,87 +2,85 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
     slug: "sulfate-free-shampoo-australia",
-    title: "The Best Sulfate-Free Shampoos Available in Australia",
-    excerpt: "What sulfate-free really means, why it matters for coloured, curly, or sensitive-scalp hair, and the best options shipped Australia-wide.",
+    title: "Sulfate-Free Shampoo Australia: What ‘Sulphate Free’ Really Means",
+    excerpt: "A practical guide to sulfate-free shampoo in Australia, including what to check on the label and one current option verified by Jena.",
     category: "Products",
-    date: "April 19, 2026",
-    readTime: "7 min read",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-1.jpg?v=1746879807",
+    date: "September 12, 2026",
+    readTime: "6 min read",
+    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Aromaganics-12.jpg?v=1747030734",
     author: "Jena Pinn",
     content: {
-      introduction: "'Sulfate-free' is the most misused label in shampoo marketing. A lot of products claim it while still containing harsh cleansing agents. Here's what sulfate-free actually means, why it matters for certain hair types, and the real sulfate-free options [I stock at Hair Pinns](/blog/meet-jena-15-years-sutherland-shire) and recommend to clients across Australia.",
+      introduction: "Sulfate-free (or sulphate-free) is useful shopping information, but it is not a guarantee that one shampoo will suit every scalp or hair type. I reviewed this guide against current product and manufacturer information so you can compare labels carefully and [ask me before choosing](/contact) if you are unsure.",
       sections: [
         {
-          heading: "What Are Sulfates, Really?",
-          content: "Sulfates are detergents that create foam and strip oils from hair. The common ones are sodium lauryl sulfate (SLS) and sodium laureth sulfate (SLES). They're effective cleansers. Maybe too effective. On colour-treated hair, they strip colour molecules. On curly hair, they strip the natural oils that define curl pattern. On sensitive scalps, they cause irritation and dryness. That's why sulfate-free matters for specific hair types. Not because sulfates are 'toxic' (they're not). Because they cause specific problems for specific hair."
+          heading: "What does sulfate-free mean?",
+          content: "On hair-care packaging, sulfate-free usually means the formula does not use common sulfate cleansers such as sodium lauryl sulfate (SLS) or sodium laureth sulfate (SLES). It does not mean the shampoo contains no cleansing ingredients, and it does not automatically make one formula better than another. The complete ingredient list and how your hair responds are more useful than the front label alone."
         },
         {
-          heading: "Who Actually Needs Sulfate-Free?",
-          content: "Colour-treated hair. Sulfates fade colour fast. Anyone with a smoothing treatment or keratin treatment. Sulfates strip the treatment, making a $500+ service last 4 weeks instead of 12. Curly and wavy hair. Sulfates strip natural oils that hold curl shape. Sensitive scalps or eczema-prone skin. Sulfates irritate. Fine hair that gets flyaway. Sulfate-free shampoos tend to be gentler and less drying. If none of these apply to you, a sulfate shampoo is fine."
+          heading: "Who might compare sulfate-free options?",
+          content: "People often ask after colour or smoothing services, or when their hair feels dry after washing. Curly and textured hair routines may also favour a different balance of cleansing and conditioning. If you have persistent itching, flaking, eczema or another scalp condition, product advice is not a diagnosis, speak with an appropriate health professional and check the full label before use."
         },
         {
-          heading: "Marketing Traps. Not All 'Sulfate-Free' Is Equal",
-          content: "Some shampoos replace SLS with cocamidopropyl betaine or sodium cocoyl isethionate. Technically not sulfates, but still relatively harsh. Worse, some label themselves 'sulfate-free' while containing sodium coco-sulfate (which is a sulfate, just derived from coconut). Read the full ingredient list. Look for surfactants like decyl glucoside, coco-glucoside, or sodium lauroyl sarcosinate. These are genuinely gentle sulfate alternatives."
+          heading: "A current option Jena has verified",
+          content: "Aromaganic P’Mint Hair Scalp Renewal Shampoo is currently published and available from Hair Pinns. The manufacturer’s current ingredient list does not list SLS or SLES. It is positioned as a refreshing clarifying shampoo, so choose it for that purpose rather than assuming every sulfate-free formula is interchangeable. Product formulas can change; the bottle you receive remains the final reference."
         },
         {
-          heading: "Best Sulfate-Free Shampoos Available at Hair Pinns",
-          content: "1. Pure Precious Shampoo ($41.95). Certified organic, gentle cleansing, and our most-sold sulfate-free shampoo. Pair with Pure Precious Conditioner ($41.95) for the full routine. 2. Aromaganic Pmint Hair Scalp Renewal Shampoo ($32.95). Sulfate-free with peppermint for sensitive scalps. The matching conditioner is $29.95. 3. QIQI Shampoo ($69.95). Formulated specifically for post-smoothing maintenance. Pairs with QIQI Conditioner ($69.95) and Bare Repair Oil ($81.95). 4. Pure Uplift Volume Shampoo ($41.95). Lightweight sulfate-free formula for fine or limp hair. All shipped Australia-wide from Hair Pinns with free shipping over $150."
+          heading: "Do not rely on a product category alone",
+          content: "A shampoo described as colour care, smoothing aftercare, organic or gentle is not automatically sulfate-free. That is why this guide no longer groups products together from broad marketing descriptions. Check the current ingredient panel, the manufacturer’s current information and the exact product page, not an old list or a similarly named formula."
         },
         {
-          heading: "What to Expect Switching to Sulfate-Free",
-          content: "Less foam. That's not a bug. It's the point. Sulfates create the rich lather most people associate with clean. Sulfate-free shampoos foam less but clean just as well. It takes 2 or 3 washes to adjust mentally. Some people also notice their hair feels different during the first week or two while their scalp's oil production rebalances."
+          heading: "What should you check before buying?",
+          content: "Start with the concern you are solving: colour maintenance, build-up, dryness, curl care or post-service aftercare. Then check the ingredient panel on the current bottle, directions, availability and any instructions supplied with your salon service. Lather is not a reliable shortcut, different non-sulfate cleansers can still create foam."
         },
         {
-          heading: "Pair With the Right Conditioner and Mask",
-          content: "Sulfate-free shampoos are gentler, which means your conditioner and mask need to do slightly more work. Pure Sacred Mask ($45.95) weekly for deep hydration. Or a leave-in like Pure Precious Ends. Sulfate-free isn't a single product decision. It's a routine decision."
+          heading: "Let the routine do the work",
+          content: "Shampoo is only one part of the result. The right wash frequency, conditioner, treatment and heat protection depend on your hair and what has already been done in the salon. If you send Jena your hair concern and current routine, she can help narrow the shelf without making promises a label cannot support."
         }
       ],
       productModule: {
-        title: "Best sulfate-free shampoos. Australia-wide shipping",
+        title: "A current sulfate-free option",
         products: [
-          { name: "Pure Precious Shampoo", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Certified organic, gentle sulfate-free cleansing" },
-          { name: "Aromaganic Pmint Shampoo", link: "https://hairpinns.com/collections/aromaganic", description: "Peppermint, sulfate-free, sensitive-scalp friendly" },
-          { name: "QIQI Shampoo", link: "https://hairpinns.com/collections/qiqi", description: "Specifically for post-smoothing maintenance" }
+          { name: "Aromaganic P’Mint Hair Scalp Renewal Shampoo", link: "/products/aromaganic-pmint-hair-scalp-renewal-shampoo", description: "Current manufacturer ingredient information does not list SLS or SLES" }
         ]
       },
       quickAnswer: {
-        question: "What are the best sulfate-free shampoos in Australia?",
-        answer: "The best sulfate-free shampoos at Hair Pinns include Pure Precious Shampoo ($41.95, certified organic), Aromaganic Pmint Hair Scalp Renewal Shampoo ($32.95, sensitive-scalp friendly), and QIQI Shampoo ($69.95, post-smoothing care). All available with free Australia-wide shipping on orders over $150."
+        question: "Which sulfate-free shampoo can I buy from Hair Pinns?",
+        answer: "Aromaganic P’Mint Hair Scalp Renewal Shampoo is the current Hair Pinns option Jena has checked against manufacturer ingredient information. Its current list does not include SLS or SLES. Always check the bottle because formulas can change."
       },
       keyTakeaways: [
-        "Sulfates strip colour, smoothing treatments, and natural oils from curly hair",
-        "Not all 'sulfate-free' labels are honest. Read the full ingredient list",
-        "Our picks: Pure Precious, Aromaganic Pmint, QIQI Shampoo, Pure Uplift Volume",
-        "Expect less foam and a short adjustment period after switching",
-        "Pair with a weekly mask and leave-in for full effectiveness"
+        "Sulfate-free usually refers to common sulfate cleansers such as SLS and SLES",
+        "The front label is not a substitute for the complete current ingredient list",
+        "Aromaganic P’Mint is the current option verified for this guide",
+        "Lather alone does not tell you whether a formula is sulfate-free",
+        "Choose shampoo as part of a complete routine, not as an isolated claim"
       ],
       faqSection: [
         {
-          question: "Is sulfate-free shampoo really better?",
-          answer: "For coloured, keratin-treated, or curly hair: yes. Sulfates (SLS, SLES) are harsh detergents that strip colour, lift the cuticle, and dry the scalp. For oily, fine, non-coloured hair, regular shampoo is fine.",
+          question: "Is sulfate-free shampoo better for everyone?",
+          answer: "No. It is one formulation choice, not a universal quality score. Match the complete shampoo formula to your hair, scalp and any salon aftercare instructions.",
         },
         {
-          question: "What's the best sulfate-free shampoo in Australia?",
-          answer: "Pure Precious Shampoo ($41.95) is our most-sold sulfate-free option. QIQI Shampoo ($69.95) is the pick for post-smoothing maintenance. Aromaganic Pmint ($32.95) works well for sensitive scalps. All salon-grade, all stocked at Hair Pinns.",
+          question: "Are sulfate-free and sulphate-free the same thing?",
+          answer: "Yes. Sulfate is the spelling commonly used in the United States; sulphate is common in Australian and British English. Product searches and labels may use either form.",
         },
         {
-          question: "Is sulfate-free shampoo safe for kids?",
-          answer: "Yes. It's actually the recommended choice for kids. Children's scalps are more sensitive, and most childhood hair issues (itch, flake, dry scalp) improve within weeks of switching to sulfate-free.",
+          question: "Does sulfate-free shampoo still clean hair?",
+          answer: "Yes. A sulfate-free shampoo uses other cleansing ingredients. How cleansing it feels depends on the full formula, how much you use and what is on your hair.",
         },
         {
           question: "Does sulfate-free shampoo lather less?",
-          answer: "Yes, by design. Lather comes from sulfates. Less lather doesn't mean less cleaning. The active cleansers in sulfate-free formulas work differently: they encapsulate dirt and oil, then rinse away.",
+          answer: "Sometimes, but not always. Non-sulfate cleansing systems can also foam, so lather is not a reliable way to confirm the label.",
         },
         {
-          question: "Can I use sulfate-free shampoo on oily hair?",
-          answer: "Yes. Use less, focus on the scalp, and double-shampoo. The first wash removes build-up, the second actually cleans. Most people with oily hair use too much product, not the wrong one.",
+          question: "How can I check whether a shampoo is sulfate-free?",
+          answer: "Read the current bottle and manufacturer ingredient information for the exact formula. If you are avoiding a specific ingredient, send Hair Pinns a photo of the label before ordering.",
         }
       ],
     },
     cta: {
       type: "product",
-      productPath: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
-      customText: "Shop sulfate-free shampoos Australia-wide"
+      productPath: "/products/aromaganic-pmint-hair-scalp-renewal-shampoo",
+      customText: "View the current verified option"
     }
   } as const;
 

@@ -235,7 +235,7 @@ const Services = () => {
           title: "Complete Pamper Package",
           duration: "1h",
           serviceCount: "2 services",
-          description: "Scalp cleanse, deep conditioning under heat or with a hot towel, scalp massage, then a blow-dry finish. Book it when your hair feels heavy or your week has been heavy. A$62 for the lot.\n\nIf you want a real reset, ask me to scope your scalp before and after — most clients can see the difference straight away.",
+          description: "Scalp cleanse, deep conditioning under heat or with a hot towel, scalp massage, then a blow-dry finish. Book it when your hair feels heavy or your week has been heavy. A$62 for the lot.\n\nIf you want a real reset, ask me to scope your scalp before and after, most clients can see the difference straight away.",
           price: "A$ 62"
         }
       ]
@@ -360,7 +360,7 @@ const Services = () => {
         {
           title: "Step 1- Cleanse, Treat & Heat",
           duration: "1h 20min",
-          description: "Perfectly Straight Hair That Lasts\nInstantly boost your confidence in just a few hours. Lose that unmanageable mop forever and wake up every morning feeling sexy and looking good with beautiful straight hair.\nIn just two hours and lasting for months, transform your hair with a market leading hair straightening treatment that's quick, easy and completely natural – using eco friendly, hair-protecting products for the very best results.\nPlease book both Step 1 & 2. These are both completed at time of your appointment & are just split to allow for processing time.",
+          description: "Want straighter hair with less work each morning? Straight Up is completed in two parts during the same appointment. Please book both Step 1 and Step 2 so enough processing and finishing time is reserved. If you are not sure whether it suits your hair, book a consultation with Jena first.",
           price: "Free"
         },
         {
@@ -505,7 +505,7 @@ const Services = () => {
 
   // Aggregate every bookable service for AI overviews + sitelinks.
   // Prices already publicly visible on Services + ServiceDetail pages, so
-  // emitting them in schema adds no new disclosure — just machine-readability.
+  // emitting them in schema adds no new disclosure, just machine-readability.
   const serviceItemListSchema = generateServiceItemListSchema(
     serviceDetailData.flatMap((category) =>
       category.services.map((svc) => ({

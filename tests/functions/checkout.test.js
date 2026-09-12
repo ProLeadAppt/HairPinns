@@ -105,6 +105,44 @@ describe("checkout function action contract", () => {
     expect(JSON.parse(fetchSpy.mock.calls[1][1].body).variables.input.lines).toEqual([line]);
   });
 
+  it("updates a cart line quantity and returns Shopify's complete cart snapshot", async () => {
+    const updatedCart = { ...shopifyCart, totalQuantity: 3 };
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(
+      new Response(JSON.stringify({
+        data: { cartLinesUpdate: { cart: updatedCart, userErrors: [] } },
+      }), { status: 200, headers: { "Content-Type": "application/json" } }),
+    );
+
+    const response = await handler(eventFor({
+      action: "update",
+      cartId: shopifyCart.id,
+      lines: [{ id: "gid://shopify/CartLine/1", quantity: 3 }],
+    }), {});
+
+    expect(response.statusCode).toBe(200);
+    expect(JSON.parse(response.body)).toEqual({
+      cart: updatedCart,
+      cartId: updatedCart.id,
+      checkoutUrl: updatedCart.checkoutUrl,
+    });
+    const request = JSON.parse(fetchSpy.mock.calls[0][1].body);
+    expect(request.query).toContain("cartLinesUpdate");
+    expect(request.variables.lines).toEqual([{ id: "gid://shopify/CartLine/1", quantity: 3 }]);
+  });
+
+  it("rejects an invalid updated quantity before contacting Shopify", async () => {
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+    const response = await handler(eventFor({
+      action: "update",
+      cartId: shopifyCart.id,
+      lines: [{ id: "gid://shopify/CartLine/1", quantity: 0 }],
+    }), {});
+
+    expect(response.statusCode).toBe(400);
+    expect(JSON.parse(response.body)).toMatchObject({ code: "INVALID_UPDATE_LINES" });
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
   it("rejects an unknown action", async () => {
     const response = await handler(eventFor({ action: "replace" }), {});
     expect(response.statusCode).toBe(400);

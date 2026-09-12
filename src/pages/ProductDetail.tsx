@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -29,11 +29,10 @@ import SocialShareBar from "@/components/blog/SocialShareBar";
 import PaymentBadges from "@/components/product/PaymentBadges";
 import StickyAddToCart from "@/components/conversion/StickyAddToCart";
 import ProductRecommendations from "@/components/product/ProductRecommendations";
+import ProductReviews from "@/components/product/ProductReviews";
 import { SilentErrorBoundary } from "@/components/ErrorBoundary";
-import { trackCartCreated } from "@/lib/cartAbandonment";
 import { formatPrice } from "@/lib/utils";
 import { getOGImage } from "@/lib/sitemap";
-import { useImagePreload } from "@/components/ImagePreloader";
 import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema, generateHowToSchema } from "@/lib/schema";
 import { getProductHowTo } from "@/data/productHowTo";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
@@ -45,8 +44,14 @@ const buildShopifySrcSet = (url: string, widths: number[]) =>
 const buildShopifyWebpSrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImageWebp(url, width)} ${width}w`).join(", ");
 
+const imagesMatch = (left: any, right: any): boolean => Boolean(left && right && (
+  (left.id && right.id && left.id === right.id) || (left.url && right.url && left.url === right.url)
+));
+
 const ProductDetail = () => {
   const { handle } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedVariant = searchParams.get("variant");
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentImage, setCurrentImage] = useState(0);
@@ -90,7 +95,10 @@ const ProductDetail = () => {
           setProduct(productData);
 
           const variants = productData.variants.edges;
-          const firstAvailableVariant = variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
+          const linkedId = new URLSearchParams(window.location.search).get("variant");
+          const firstAvailableVariant = linkedId
+            ? variants.find((v: any) => v.node.id === linkedId || v.node.id.split('/').pop() === linkedId)?.node
+            : variants.find((v: any) => v.node.availableForSale)?.node || variants[0]?.node;
           const viewPrice = parseFloat(
             firstAvailableVariant?.price?.amount
               || productData.priceRange?.minVariantPrice?.amount
@@ -124,17 +132,6 @@ const ProductDetail = () => {
             localStorage.setItem("hp_recent_products", JSON.stringify(filtered.slice(0, 8)));
           } catch {}
 
-          // Set first available variant as default
-          if (firstAvailableVariant) {
-            setActiveVariantId(firstAvailableVariant.id);
-
-            // Set default selected options
-            const defaultOptions: Record<string, string> = {};
-            (firstAvailableVariant.selectedOptions || []).forEach((opt: any) => {
-              defaultOptions[opt.name] = opt.value;
-            });
-            setSelectedOptions(defaultOptions);
-          }
         }
       } catch (error) {
         if (!isMounted) return;
@@ -154,6 +151,40 @@ const ProductDetail = () => {
       clearTimeout(timeoutId);
     };
   }, [handle]);
+
+  // Honour direct links (including sold-out options) and same-page URL changes.
+  // An invalid link must not quietly select a different item for purchase.
+  useEffect(() => {
+    if (!product) return;
+    const variants = product.variants.edges.map((edge: any) => edge.node);
+    const variant = requestedVariant
+      ? variants.find((item: any) => item.id === requestedVariant || item.id.split('/').pop() === requestedVariant)
+      : variants.find((item: any) => item.availableForSale) || variants[0];
+    setActiveVariantId(variant?.id ?? null);
+    setSelectedOptions(Object.fromEntries((variant?.selectedOptions || []).map((option: any) => [option.name, option.value])));
+    const index = product.images?.edges?.findIndex((edge: any) => imagesMatch(edge.node, variant?.image)) ?? -1;
+    setCurrentImage(index >= 0 ? index : 0);
+  }, [product, requestedVariant]);
+
+  const selectVariant = (variant: any) => {
+    setActiveVariantId(variant.id);
+    setSelectedOptions(Object.fromEntries((variant.selectedOptions || []).map((option: any) => [option.name, option.value])));
+    const index = product.images?.edges?.findIndex((edge: any) => imagesMatch(edge.node, variant.image)) ?? -1;
+    if (index >= 0) setCurrentImage(index);
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('variant', variant.id.split('/').pop());
+    setSearchParams(nextParams, { replace: true, preventScrollReset: true });
+  };
+
+  const variantsForImage = (image: any) => (product?.variants?.edges || [])
+    .map((edge: any) => edge.node).filter((variant: any) => imagesMatch(image, variant.image));
+
+  const selectImage = (index: number) => {
+    setCurrentImage(index);
+    const matching = variantsForImage(product.images.edges[index]?.node);
+    // Shared or lifestyle images cannot identify an exact purchasable variant.
+    if (matching.length === 1) selectVariant(matching[0]);
+  };
 
   // Prerender fallback: if Shopify is slow or stalls entirely, inject the
   // readiness marker after a short grace period so the build can snapshot the
@@ -189,34 +220,21 @@ const ProductDetail = () => {
       );
     });
 
-    if (matchingVariant) {
-      setActiveVariantId(matchingVariant.node.id);
-
-      // Update image to match variant if available
-      const variantImage = matchingVariant.node.image;
-      if (variantImage && product.images?.edges) {
-        const imageIndex = product.images.edges.findIndex(
-          (edge: any) => edge.node.id === variantImage.id || edge.node.url === variantImage.url
-        );
-        if (imageIndex !== -1) {
-          setCurrentImage(imageIndex);
-        }
-      }
-    }
+    if (matchingVariant) selectVariant(matchingVariant.node);
+    else setActiveVariantId(null);
   };
 
   // Handle add to bag - use server-side Edge Function
   const handleAddToBag = async () => {
-    if (!activeVariantId || !product) return;
-    
+    if (!activeVariantId || !product?.variants.edges.some((edge: any) => edge.node.id === activeVariantId && edge.node.availableForSale)) return;
+
     setAddingToCart(true);
-    
+
     try {
       const cart = await addCartLines([{ merchandiseId: activeVariantId, quantity: 1 }]);
       const cartId = cart.id;
-      const checkoutUrl = cart.checkoutUrl;
-      
-      // Track add_to_cart to GHL and cart abandonment
+
+      // Track the confirmed Shopify cart mutation in browser analytics.
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
 
@@ -226,23 +244,7 @@ const ProductDetail = () => {
         product_title: product.title,
         price,
       });
-      
-      // Track cart creation for abandonment recovery
-      if (cartId && checkoutUrl) {
-        await trackCartCreated(
-          cartId,
-          checkoutUrl,
-          [{
-            id: activeVariantId,
-            title: product.title,
-            price: price,
-            quantity: 1,
-          }],
-          price,
-          "AUD"
-        );
-      }
-      
+
       void trackAddToCart({
         product_id: product.id,
         title: product.title,
@@ -251,7 +253,7 @@ const ProductDetail = () => {
         currency: "AUD",
         quantity: 1,
       });
-      
+
       notify.success("Added to bag!");
       window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cart, cartId } }));
     } catch (error: any) {
@@ -264,10 +266,10 @@ const ProductDetail = () => {
 
   // Handle buy now - server-side checkout
   const handleBuyNow = async () => {
-    if (!activeVariantId || !product) return;
-    
+    if (!activeVariantId || !product?.variants.edges.some((edge: any) => edge.node.id === activeVariantId && edge.node.availableForSale)) return;
+
     setBuyingNow(true);
-    
+
     try {
       const activeVariant = product.variants?.edges?.find((e: any) => e.node.id === activeVariantId)?.node;
       const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
@@ -287,7 +289,7 @@ const ProductDetail = () => {
           quantity: 1,
         }],
       });
-      
+
       // A top-level form navigation lets the browser follow Netlify's 303 to
       // Shopify. A fetch() request follows cross-origin redirects under CORS
       // and can fail before JavaScript ever receives the checkout URL.
@@ -316,19 +318,18 @@ const ProductDetail = () => {
   const nextImage = () => {
     const edges = product?.images?.edges;
     if (!edges?.length) return;
-    setCurrentImage((prev) => (prev + 1) % edges.length);
+    selectImage((currentImage + 1) % edges.length);
   };
 
   const prevImage = () => {
     const edges = product?.images?.edges;
     if (!edges?.length) return;
-    setCurrentImage((prev) => (prev - 1 + edges.length) % edges.length);
+    selectImage((currentImage - 1 + edges.length) % edges.length);
   };
 
   const variantEdges = product?.variants?.edges ?? [];
   const images = (product?.images?.edges ?? []).map((e: any) => e?.node).filter(Boolean);
   const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
-  useImagePreload(imageUrls.slice(0, 2));
 
   if (loading) {
     return (
@@ -347,7 +348,7 @@ const ProductDetail = () => {
             {/* h1 kept (visually as a spinner caption) so prerender snapshots
                 captured during slow Shopify responses still satisfy the SEO
                 smoke test. Page is noindex, so this title never reaches an
-                index — it's purely a structural-integrity backstop. */}
+                index, it's purely a structural-integrity backstop. */}
             <h1 className="sr-only">Loading product</h1>
             <p className="text-muted-foreground">Loading product...</p>
           </div>
@@ -362,7 +363,7 @@ const ProductDetail = () => {
       <div className="min-h-screen bg-background">
         <SEOHead
           title={`Product not found: ${handle ?? "unknown"} | Hair Pinns`}
-          description="This product doesn't exist or has been removed. Browse our full hair care range at Hair Pinns — shipped Australia-wide."
+          description="This product doesn't exist or has been removed. Browse our full hair care range at Hair Pinns, shipped Australia-wide."
           canonical={`https://hairpinns.com/products/${handle ?? ""}`}
           noIndex={true}
         />
@@ -391,19 +392,14 @@ const ProductDetail = () => {
     );
   }
 
-  // Get active variant details (null-safe) - fallback to first variant if activeVariantId doesn't match
-  let activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
-  if (!activeVariant && variantEdges.length > 0) {
-    // Selected variant no longer exists - prefer first available variant
-    const firstAvailable = variantEdges.find((e: any) => e.node.availableForSale)?.node || variantEdges[0]?.node;
-    activeVariant = firstAvailable;
-  }
+  const activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
   const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
   const compareAtPrice = activeVariant?.compareAtPrice?.amount
     ? parseFloat(activeVariant.compareAtPrice.amount)
     : null;
   const availability = getProductAvailability(activeVariant);
   const isAvailable = availability.canPurchase;
+  const isDigitalProduct = activeVariant?.requiresShipping === false;
 
   const currentImg = images[currentImage];
 
@@ -436,6 +432,19 @@ const ProductDetail = () => {
     { suffix: "Shipped Australia-wide. Free shipping over $150." },
   );
 
+  const productFaqs = isDigitalProduct
+    ? [
+        { question: `What is ${product.title}?`, answer: product.description || `${product.title} is a digital Hair Pinns product.` },
+        { question: `How is ${product.title} delivered?`, answer: `${product.title} is delivered digitally by email, so no physical shipping is required.` },
+        { question: `What can ${product.title} be used for?`, answer: `${product.title} can be redeemed online for products sold by Hair Pinns.` },
+      ]
+    : [
+        { question: `What is ${product.title}?`, answer: `${(product.description || `${product.title} - Professional hair care product from Hair Pinns`).substring(0, 250)} Hair Pinns ships ${product.title} Australia-wide. Free shipping over $150.` },
+        { question: `Where can I buy ${product.title} in Australia?`, answer: `Hair Pinns ships ${product.title} Australia-wide with free shipping on orders over $150. Picked by Jena since 2009. Available now at hairpinns.com.` },
+        { question: `Does ${product.title} ship to Melbourne, Brisbane, Perth or Sydney?`, answer: `Yes. Hair Pinns ships ${product.title} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping over $150. Every state and territory.` },
+        { question: `Is ${product.title} available in Australia?`, answer: `Yes. ${product.title} is available in Australia from Hair Pinns. Shipped Australia-wide with free shipping on orders over $150.` },
+      ];
+
   const productSchemas = [
     generateBreadcrumbSchema([
       { name: "Home", url: "https://hairpinns.com/" },
@@ -460,6 +469,7 @@ const ProductDetail = () => {
           productID: product.id,
           gtin: activeVariant?.barcode || undefined,
           availability: availability.schema,
+          requiresShipping: activeVariant?.requiresShipping !== false,
           // productType reflects Shopify's product taxonomy ("Shampoo",
           // "Conditioner", "Treatment") - Google uses this for product
           // categorization in Merchant Listings.
@@ -470,12 +480,7 @@ const ProductDetail = () => {
         return {};
       }
     })(),
-    generateFAQPageSchema([
-      { question: `What is ${product.title}?`, answer: `${(product.description || `${product.title} - Professional hair care product from Hair Pinns`).substring(0, 250)} Hair Pinns ships ${product.title} Australia-wide. Free shipping over $150.` },
-      { question: `Where can I buy ${product.title} in Australia?`, answer: `Hair Pinns ships ${product.title} Australia-wide with free shipping on orders over $150. Picked by Jena since 2009. Available now at hairpinns.com.` },
-      { question: `Does ${product.title} ship to Melbourne, Brisbane, Perth or Sydney?`, answer: `Yes. Hair Pinns ships ${product.title} to Melbourne, Brisbane, Perth, Sydney, and all of Australia. Free shipping over $150. Every state and territory.` },
-      { question: `Is ${product.title} available in Australia?`, answer: `Yes. ${product.title} is available in Australia from Hair Pinns. Shipped Australia-wide with free shipping on orders over $150.` },
-    ]),
+    generateFAQPageSchema(productFaqs),
     generateWebPageSchema({
       name: product.title,
       description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
@@ -504,17 +509,17 @@ const ProductDetail = () => {
         hrefLang="en-AU"
         schemaJson={productSchemas}
       />
-      
+
       <Header />
-      
+
 
       {/* Exit Intent Modal */}
       {/* ExitIntentModal removed */}
-      
+
       <main id="main-content" tabIndex={-1}>
         {/* Breadcrumbs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { label: 'Home', href: '/' },
               { label: 'Collections', href: '/collections' },
@@ -522,7 +527,7 @@ const ProductDetail = () => {
             ]}
           />
         </div>
-        
+
         {/* Product Section */}
         <section data-product-detail-core="" className="border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper))] py-6 md:py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -559,14 +564,14 @@ const ProductDetail = () => {
                     />
                   </picture>
                   </button>
-                  
+
                   {/* Navigation arrows: 44px targets, visible on touch devices. */}
                   {images.length > 1 && (
                     <>
                       <button
                         type="button"
                         onClick={prevImage}
-                        className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--after-hours-plum))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                        className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--hp-ink))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Previous image"
                       >
                         <ChevronLeft className="w-5 h-5" />
@@ -574,7 +579,7 @@ const ProductDetail = () => {
                       <button
                         type="button"
                         onClick={nextImage}
-                        className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--after-hours-plum))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                        className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.28)] bg-[hsl(var(--after-hours-paper)/0.94)] text-[hsl(var(--hp-ink))] transition-opacity md:opacity-0 md:group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         aria-label="Next image"
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -582,16 +587,16 @@ const ProductDetail = () => {
                     </>
                   )}
 
-                  {/* Dots Indicator — the visible pill is 8px tall, but the
+                  {/* Dots Indicator, the visible pill is 8px tall, but the
                        interactive hit-area is 44×44 (transparent padding) to
                        meet WCAG/Lighthouse tap-target. */}
-                  {images.length > 1 && (
+                  {images.length > 1 && images.length <= 6 && (
                     <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
                       {images.map((_: any, index: number) => (
                         <button
                           key={index}
                           type="button"
-                          onClick={() => setCurrentImage(index)}
+                          onClick={() => selectImage(index)}
                           className="group/dot w-11 h-11 flex items-center justify-center focus-visible:outline-none"
                           aria-label={`View image ${index + 1}`}
                           aria-current={index === currentImage ? "true" : undefined}
@@ -608,15 +613,18 @@ const ProductDetail = () => {
                   )}
                 </div>
 
-                {/* Thumbnail Grid */}
+                {/* One scrollable row keeps options and price close to the product
+                    on mobile, even for products with many style photographs. */}
                 {images.length > 1 && (
-                  <div className="grid grid-cols-4 gap-2 sm:gap-3">
+                  <div className="flex gap-2 overflow-x-auto pb-2 sm:gap-3" data-product-thumbnails="" role="group" aria-label="Product photographs, scroll for more">
                     {images.map((image: any, index: number) => (
                       <button
                         key={index}
-                        onClick={() => setCurrentImage(index)}
-                        aria-label={`View thumbnail ${index + 1}`}
-                        className={`aspect-square overflow-hidden border transition-all ${
+                        type="button"
+                        onClick={() => selectImage(index)}
+                        aria-label={variantsForImage(image).length === 1 ? `Select ${variantsForImage(image)[0].title}, image ${index + 1}` : `View gallery image ${index + 1} (does not change selected options)`}
+                        aria-pressed={index === currentImage}
+                        className={`h-[72px] w-[72px] shrink-0 overflow-hidden border transition-all sm:h-20 sm:w-20 ${
                           index === currentImage ? "border-[hsl(var(--after-hours-plum))]" : "border-[hsl(var(--after-hours-plum)/0.14)] hover:border-[hsl(var(--after-hours-plum)/0.4)]"
                         }`}
                       >
@@ -649,10 +657,10 @@ const ProductDetail = () => {
               {/* Right: Product Info */}
               <div className="min-w-0 space-y-6 lg:pt-2">
                 <div>
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.76)]">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">
                     Product / {product.vendor || "Hair Pinns"}
                   </p>
-                  <h1 className="mt-4 max-w-[13ch] font-heading text-[clamp(3rem,7vw,5.8rem)] leading-[0.91] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">
+                  <h1 className="mt-4 max-w-[24ch] font-heading text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.025em] text-[hsl(var(--hp-ink))]">
                     {product.title}
                   </h1>
                 </div>
@@ -660,20 +668,20 @@ const ProductDetail = () => {
                 <div className="border-y border-[hsl(var(--after-hours-plum)/0.18)] py-4">
                   <div className="flex items-end justify-between gap-4">
                     <div className="flex flex-wrap items-baseline gap-3">
-                      <span className="font-heading text-3xl text-[hsl(var(--after-hours-plum))]">
-                        {formatPrice(Number.isFinite(price) ? price : 0, "AUD")}
+                      <span className="font-heading text-3xl text-[hsl(var(--hp-purple))]">
+                        {activeVariant ? formatPrice(Number.isFinite(price) ? price : 0, "AUD") : "Choose an option"}
                       </span>
                       {compareAtPrice && compareAtPrice > price && (
-                        <span className="text-sm text-[hsl(var(--after-hours-plum)/0.58)] line-through">
+                        <span className="text-sm text-[hsl(var(--hp-ink)/0.58)] line-through">
                           {formatPrice(compareAtPrice, "AUD")}
                         </span>
                       )}
                     </div>
-                    <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${isAvailable ? "text-[hsl(var(--after-hours-plum)/0.72)]" : "text-destructive"}`}>
-                      {availability.label}
+                    <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${isAvailable ? "text-[hsl(var(--hp-ink)/0.72)]" : "text-destructive"}`}>
+                      {activeVariant ? availability.label : "Option unavailable"}
                     </p>
                   </div>
-                  <p className="mt-2 text-xs text-[hsl(var(--after-hours-plum)/0.62)]">Australian dollars. Tax included.</p>
+                  <p className="mt-2 text-xs text-[hsl(var(--hp-ink)/0.62)]">Australian dollars. Tax included.</p>
                 </div>
 
                 {visibleOptionNames.map((optionName) => (
@@ -681,7 +689,7 @@ const ProductDetail = () => {
                     <label
                       id={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}-label`}
                       htmlFor={`product-option-${optionName.replace(/\s+/g, '-').toLowerCase()}`}
-                      className="text-sm font-medium text-[hsl(var(--after-hours-plum))]"
+                      className="text-sm font-medium text-[hsl(var(--hp-ink))]"
                     >
                       {optionName}
                     </label>
@@ -705,6 +713,9 @@ const ProductDetail = () => {
                   </div>
                 ))}
 
+                {!activeVariant && <p role="status" className="text-sm text-destructive">This option is not available. Please choose a style above; no alternative has been added to your bag.</p>}
+                {images.length > 1 && <p className="text-sm text-muted-foreground">Select a labelled style to choose your brush or product. Gallery-only photographs do not change your selection.</p>}
+
                 <div data-product-purchase-actions="" className="space-y-3">
                   <Button
                     variant="primary"
@@ -720,7 +731,7 @@ const ProductDetail = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="min-h-12 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.35)] bg-transparent text-[hsl(var(--after-hours-plum))] shadow-none"
+                    className="min-h-12 w-full rounded-none border-[hsl(var(--after-hours-plum)/0.35)] bg-transparent text-[hsl(var(--hp-ink))] shadow-none"
                     onClick={handleBuyNow}
                     disabled={!isAvailable || buyingNow}
                   >
@@ -730,17 +741,17 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="border-y border-[hsl(var(--after-hours-plum)/0.18)] py-3">
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Shipping across Australia</p>
-                  <dl className="mt-2 text-sm text-[hsl(var(--after-hours-plum)/0.72)]">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Shipping across Australia</p>
+                  <dl className="mt-2 text-sm text-[hsl(var(--hp-ink)/0.72)]">
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Standard</dt><dd>$9.95 · 3–5 business days</dd></div>
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Express</dt><dd>$14.95 · 1–2 business days</dd></div>
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</dt><dd>Free standard</dd></div>
                   </dl>
-                  <Link to="/policies/shipping" className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--after-hours-plum))] underline underline-offset-4">Read shipping policy</Link>
+                  <Link to="/policies/shipping" className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--hp-ink))] underline underline-offset-4">Read shipping policy</Link>
                 </div>
 
                 <div>
-                  <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--after-hours-plum)/0.76)]">Payment options</p>
+                  <p className="mb-3 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Payment options</p>
                   <SilentErrorBoundary>
                     <PaymentBadges compact />
                   </SilentErrorBoundary>
@@ -799,7 +810,7 @@ const ProductDetail = () => {
                           <ol className="space-y-3">
                             {howTo.step.map((step, i) => (
                               <li key={i} className="flex gap-3">
-                                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.3)] text-xs font-semibold text-[hsl(var(--after-hours-plum))]">{i + 1}</span>
+                                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-[hsl(var(--after-hours-plum)/0.3)] text-xs font-semibold text-[hsl(var(--hp-ink))]">{i + 1}</span>
                                 <div>
                                   <p className="text-sm font-medium text-heading">{step.name}</p>
                                   <p className="text-sm text-muted-foreground">{step.text}</p>
@@ -863,6 +874,8 @@ const ProductDetail = () => {
         </Dialog>
 
 
+        {product && <SilentErrorBoundary><ProductReviews key={product.id} productId={product.id} title={product.title} /></SilentErrorBoundary>}
+
         {/* Product Recommendations - wrapped so failures don't break product page */}
         {product && (
           <SilentErrorBoundary>
@@ -886,12 +899,12 @@ const ProductDetail = () => {
 
         {/* Inline product share close */}
         {product && (
-          <section data-product-share-close="" className="border-b border-[hsl(var(--after-hours-cream)/0.14)] bg-[hsl(var(--after-hours-near-black))] py-12 text-[hsl(var(--after-hours-cream))] lg:py-16">
+          <section data-product-share-close="" className="border-b border-[hsl(var(--hp-ink)/0.14)] bg-[hsl(var(--hp-lavender))] py-12 text-[hsl(var(--hp-ink))] lg:py-16">
             <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-[1.2fr_0.8fr] md:items-end lg:px-8">
               <div>
                 <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">Share / Product</p>
-                <h2 className="mt-3 max-w-[15ch] font-heading text-[clamp(2.35rem,4vw,4.5rem)] leading-[0.95] tracking-[-0.035em] text-[hsl(var(--after-hours-cream))]">Send this shelf find</h2>
-                <p className="mt-4 max-w-xl text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.72)]">Share {product.title} or keep the link for later.</p>
+                <h2 className="mt-3 max-w-[15ch] font-heading text-[clamp(2.35rem,4vw,4.5rem)] leading-[0.95] tracking-[-0.035em] text-[hsl(var(--hp-ink))]">Send this shelf find</h2>
+                <p className="mt-4 max-w-xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Share {product.title} or keep the link for later.</p>
               </div>
               <div className="md:justify-self-end">
                 <SocialShareBar variant="inline" url={`https://hairpinns.com/products/${handle}`} title={product.title} />

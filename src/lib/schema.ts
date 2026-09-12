@@ -537,7 +537,7 @@ export const generateHowToSchema = (howTo: HowToData) => {
 
 
 /**
- * Person schema for Jena Pinn — E-E-A-T author authority.
+ * Person schema for Jena Pinn, E-E-A-T author authority.
  * Emitted on every blog post authored by Jena and referenced by `author` in
  * Article/BlogPosting schemas via the Meet Jena bio URL.
  */
@@ -642,6 +642,7 @@ export interface EnhancedProductData extends ProductData {
   size?: string;
   weight?: string;
   manufacturer?: string;
+  requiresShipping?: boolean;
   inProductGroupWithID?: string;
   additionalProperty?: Array<{
     name: string;
@@ -665,7 +666,9 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
     brand: {
       '@type': 'Brand',
       name: product.brand || 'Hair Pinns',
-      url: BASE_URL,
+      ...((product.brand || 'Hair Pinns').trim().toLocaleLowerCase('en-AU') === 'hair pinns'
+        ? { url: BASE_URL }
+        : {}),
     },
     category: product.category || 'Hair Care',
     offers: {
@@ -694,40 +697,42 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
       )
         .toISOString()
         .split('T')[0],
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '9.95',
-          currency: 'AUD',
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'AU',
-        },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 1,
-            maxValue: 2,
-            unitCode: 'DAY',
+      ...(product.requiresShipping === false ? {} : {
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '9.95',
+            currency: 'AUD',
           },
-          transitTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 3,
-            maxValue: 5,
-            unitCode: 'DAY',
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'AU',
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 1,
+              maxValue: 2,
+              unitCode: 'DAY',
+            },
+            transitTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 3,
+              maxValue: 5,
+              unitCode: 'DAY',
+            },
           },
         },
-      },
-      hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'AU',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 14,
-        returnMethod: 'https://schema.org/ReturnByMail',
-      },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'AU',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+          merchantReturnDays: 14,
+          returnMethod: 'https://schema.org/ReturnByMail',
+        },
+      }),
       seller: {
         '@type': 'Organization',
         name: 'Hair Pinns',
@@ -1177,7 +1182,7 @@ export const getOpeningHoursSpecification = () =>
   getRegistryOpeningHoursSpecification();
 
 /**
- * DefinedTermSet schema for /glossary — gives AI overviews and search
+ * DefinedTermSet schema for /glossary, gives AI overviews and search
  * engines a structured definition list to cite for "what is X" queries.
  */
 export const generateDefinedTermSetSchema = (terms: Array<{
@@ -1189,7 +1194,7 @@ export const generateDefinedTermSetSchema = (terms: Array<{
   '@type': 'DefinedTermSet',
   '@id': `${BASE_URL}/glossary#termset`,
   name: 'Hair Care Glossary | Hair Pinns',
-  description: 'Plain-English definitions of common hair-care terms, treatments, colour techniques and products — from Jena at Hair Pinns Bangor.',
+  description: 'Plain-English definitions of common hair-care terms, treatments, colour techniques and products, from Jena at Hair Pinns Bangor.',
   url: `${BASE_URL}/glossary`,
   hasDefinedTerm: terms.map((t) => ({
     '@type': 'DefinedTerm',

@@ -31,7 +31,7 @@ import http from 'http';
 import { resolve, dirname, join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { collectRoutes } from './collect-prerender-routes.js';
-import { isTransientBrowserError, isTransientPrerenderRouteError } from './prerender-retry.mjs';
+import { commercePrerenderIssue, isTransientBrowserError, isTransientPrerenderRouteError } from './prerender-retry.mjs';
 import { getListeningPort, resolveRequestedPort } from './prerender-port.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -50,14 +50,14 @@ const DRY_RUN = argMap['dry-run'] === 'true';
 const CONCURRENCY = parseInt(argMap.concurrency || '4', 10);
 const TIMEOUT_MS = parseInt(argMap.timeout || '60000', 10);
 const REQUESTED_PORT = resolveRequestedPort(argMap);
+const ONLY_ROUTE = argMap.route ? `/${argMap.route.replace(/^\/+|\/+$/g, '')}` : null;
 
 // ----- third-party pollution to strip from rendered HTML -----
 // Mirrors the regexes from the old rollup-plugin's postProcess. Each one
 // was battle-tested in production. Keep them in sync with whatever the
 // live site injects (third-party widgets change shape occasionally).
 const STRIPPERS = [
-  // Ionic / LeadConnector custom elements (open + close tags, separate replaces
-  // because JS doesn't backreference across different tag names well)
+  // Defensive custom-element cleanup for any legacy prerendered markup.
   { name: 'ionic-custom-elements', re: /<[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)\b[^>]*>[\s\S]*?<\/[a-z-]+-(chat|message|conversation|feedback|form|input|pane|selection|widget)>/gi },
   { name: 'slot-fb', re: /<slot-fb[^>]*>[\s\S]*?<\/slot-fb>/gi },
   // Ionic-injected style block
@@ -66,9 +66,6 @@ const STRIPPERS = [
   { name: 'recaptcha-meta', re: /<meta http-equiv="origin-trial"[^>]*>/gi },
   { name: 'recaptcha-script', re: /<script[^>]*recaptcha[^>]*><\/script>/gi },
   { name: 'recaptcha-gstatic', re: /<script[^>]*gstatic\.com\/recaptcha[^>]*><\/script>/gi },
-  // LeadConnector runtime
-  { name: 'leadconnector-script', re: /<script[^>]*leadconnectorhq\.com[^>]*>[\s\S]*?<\/script>/gi },
-  { name: 'leadconnector-link', re: /<link[^>]*leadconnectorhq\.com[^>]*>/gi },
   { name: 'bunny-fonts', re: /<link[^>]*fonts\.bunny\.net[^>]*>/gi },
   // Chromium adds these for every dynamic import executed during capture.
   // Shipping them would eagerly preload route and below-fold chunks for real
@@ -267,10 +264,14 @@ async function main() {
     if (/^\/(about|contact|services|booking|blog|faq|reviews|collections|areas|search|sitemap)$/.test(r)) return 1;
     return 2;
   };
-  const routes = [...new Set(allRoutes)].sort((a, b) => {
+  const routes = [...new Set(allRoutes)].filter((route) => !ONLY_ROUTE || route === ONLY_ROUTE).sort((a, b) => {
     const oa = order(a), ob = order(b);
     return oa !== ob ? oa - ob : a.localeCompare(b);
   });
+
+  if (ONLY_ROUTE && routes.length === 0) {
+    throw new Error(`[prerender] Requested route is not in the route manifest: ${ONLY_ROUTE}`);
+  }
 
   console.log(`[prerender] ${routes.length} routes, concurrency=${CONCURRENCY}, timeout=${TIMEOUT_MS}ms, dryRun=${DRY_RUN}`);
 
@@ -379,6 +380,8 @@ async function main() {
             }
             const rawHtml = await page.content();
             const cleanedHtml = postProcessHtml(rawHtml);
+            const commerceIssue = commercePrerenderIssue(route, cleanedHtml);
+            if (commerceIssue) throw new Error(commerceIssue);
             // Sanity checks: must have <h1>, <title>, meta description, JSON-LD
             const h1Count = (cleanedHtml.match(/<h1\b/gi) || []).length;
             const jsonLdCount = (cleanedHtml.match(/<script[^>]*type=["']application\/ld\+json["']/gi) || []).length;

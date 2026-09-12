@@ -83,6 +83,12 @@ for (const file of htmlFiles) {
   if (!hasDescription) issues.push('no meta description');
   if (!hasCanonical && !noIndex) issues.push('no canonical');
   if (jsonLdCount === 0 && !noIndex) issues.push('no JSON-LD');
+  if (/^\/products\/[^/]+\/?$/.test(normalisedRoute) && noIndex) issues.push('published product is noindex');
+  if (
+    /^\/collections\/[^/]+\/?$/.test(normalisedRoute)
+    && normalisedRoute.replace(/\/$/, '') !== '/collections/jenas-daily-trio'
+    && noIndex
+  ) issues.push('published collection is noindex');
   if (hasCapturedDynamicPreloads) issues.push('captured dynamic modulepreloads');
 
   findings.push({

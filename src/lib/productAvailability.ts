@@ -3,6 +3,7 @@ export type ProductAvailabilitySchema = "InStock" | "BackOrder" | "OutOfStock";
 export interface ShopifyVariantAvailability {
   availableForSale?: boolean | null;
   quantityAvailable?: number | null;
+  requiresShipping?: boolean | null;
 }
 
 export interface ProductAvailabilityState {
@@ -21,6 +22,12 @@ export function getProductAvailability(
 ): ProductAvailabilityState {
   if (!variant?.availableForSale) {
     return { canPurchase: false, label: "Sold out", schema: "OutOfStock" };
+  }
+
+  // Shopify gift cards and other digital products are not inventory-backed.
+  // A zero quantity therefore means "not tracked", not "on backorder".
+  if (variant.requiresShipping === false) {
+    return { canPurchase: true, label: "Available online", schema: "InStock" };
   }
 
   if (typeof variant.quantityAvailable === "number" && variant.quantityAvailable <= 0) {

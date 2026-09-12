@@ -135,7 +135,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         quickAnswer: "The Long/Thick Straight Up Smoothing treatment is designed for hair past shoulders or dense texture, delivering exceptional frizz reduction and lasting smoothness for 3–5 months. It uses extended application time and professional heat sealing for complete coverage.",
         duration: "2h 20min",
         price: "A$ 349",
-        description: "For hair past your shoulders, or thick hair that eats a straightener in 20 minutes. Longer application time and full-heat coverage. Stays smooth for 3-5 months on most hair types — your morning routine drops to 'wash and walk out'.",
+        description: "For hair past your shoulders, or thick hair that eats a straightener in 20 minutes. Longer application time and full-heat coverage. Stays smooth for 3-5 months on most hair types, your morning routine drops to 'wash and walk out'.",
         metaDescription: "Long/thick hair Straight Up Smoothing in Bangor. Natural smoothing for thick or long hair, 2h 20min, $349. Book at Hair Pinns NSW.",
         whatsIncluded: [
           "Extended treatment time for thorough coverage",
@@ -296,7 +296,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         quickAnswer: "The Full Head of Foils package includes a full head of foil highlights, precision cut, and professional blow-dry for a complete blonde transformation. Typically takes 2h 45min and is ideal for dramatic lightening or all-over dimension.",
         duration: "2h 45min",
         price: "A$ 267",
-        description: "Our signature blonde package combining a full head of foils, precision cut, and professional blow-dry. Transform your look with dimensional highlights that add depth, brightness, and that sun-kissed glow.",
+        description: "A full head of foils, precision cut and professional blow-dry in one appointment. Jena will talk through the tone, brightness and maintenance before starting so the result suits your hair and routine.",
         metaDescription: "Full head foils package Bangor. Blonde highlights with cut & blow-dry, 2h 45min, $267. Expert colour by Jena at Hair Pinns NSW.",
         whatsIncluded: [
           "Full head of foil highlights",
@@ -520,7 +520,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         duration: "2h 30min",
         price: "A$ 205",
         description: "Freshen up your look with regrowth or full colour, plus a cut and blowdry for women with long hair. Enjoy a complete service designed especially for long-haired clients.",
-        metaDescription: "Long hair colour package Bangor. Full colour or regrowth with cut & blow-dry, 2h 30min, $205. Transform your long hair at Hair Pinns.",
+        metaDescription: "Long hair colour package in Bangor. Full colour or regrowth with cut and blow-dry, 2h 30min, $205 at Hair Pinns.",
         whatsIncluded: [
           "Regrowth or full head colour",
           "Colour consultation and formulation",

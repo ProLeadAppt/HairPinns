@@ -36,19 +36,19 @@ const post = {
       faqSection: [
         {
           question: "What is QIQI Vega?",
-          answer: "A formaldehyde-free smoothing treatment that uses a vegan protein complex to relax curl and seal the cuticle. Lasts 3-5 months, no downtime, no fumes — safe for pregnant clients and colour-treated hair.",
+          answer: "A formaldehyde-free smoothing treatment that uses a vegan protein complex to relax curl and seal the cuticle. Lasts 3-5 months, no downtime, no fumes, safe for pregnant clients and colour-treated hair.",
         },
         {
           question: "What is Nanoplasty?",
           answer: "A keratin treatment that uses nano-amino acids to fill gaps in the cuticle and seal the hair shaft. Lasts 4-6 months, builds strength with each application, but contains a small amount of formaldehyde derivative.",
         },
         {
-          question: "QIQI Vega vs Nanoplasty — which is better?",
+          question: "QIQI Vega vs Nanoplasty, which is better?",
           answer: "Fine, bleached, or very damaged hair: QIQI Vega. Thicker, coarse, frizz-prone virgin hair: Nanoplasty. Jena does a free 10-minute strand test in consultation to confirm which your hair will take best.",
         },
         {
           question: "Can I do QIQI Vega at home?",
-          answer: "No — it's a professional service. The active ingredients need precise timing, heat activation, and a flat-iron seal at 230°C. A home version is a smoothing mask, not the same treatment.",
+          answer: "No, it's a professional service. The active ingredients need precise timing, heat activation, and a flat-iron seal at 230°C. A home version is a smoothing mask, not the same treatment.",
         },
         {
           question: "How much do QIQI Vega and Nanoplasty cost in Sydney?",

@@ -242,7 +242,7 @@ test('notification runtime waits for user intent before loading', async ({ page 
   expect(await findSonnerScripts()).toEqual([]);
 
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  const newsletterSubmit = page.getByRole('button', { name: 'Send my code' });
+  const newsletterSubmit = page.getByRole('button', { name: 'Join the list' });
   await expect(newsletterSubmit).toBeVisible();
   await newsletterSubmit.click();
 
@@ -265,6 +265,45 @@ test('operational routes still render the React application', async ({ page }) =
     expect(response?.status()).toBe(200);
     await expect(page.locator('#root')).not.toBeEmpty();
   }
+});
+
+test('returning customers receive one cache recovery reload without losing local state', async ({ page }) => {
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('hp_cart_id')) {
+      localStorage.setItem('hp_cart_id', 'gid://shopify/Cart/returning-customer');
+      localStorage.setItem('hp_recent_products', JSON.stringify(['wet-brush-original-detangler']));
+    }
+  });
+
+  let topLevelNavigations = 0;
+  page.on('framenavigated', frame => {
+    if (frame === page.mainFrame()) topLevelNavigations += 1;
+  });
+
+  await page.goto('/collections?source=returning', { waitUntil: 'domcontentloaded' });
+  const initialNavigations = topLevelNavigations;
+  await page.evaluate(() => {
+    navigator.serviceWorker.dispatchEvent(new MessageEvent('message', {
+      data: { type: 'sw-killswitch-reload' },
+    }));
+  });
+  await page.waitForFunction(() => !window.location.search.includes('__sw_killed'));
+  await expect.poll(() => topLevelNavigations).toBeGreaterThan(initialNavigations);
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('hp_cart_id')))
+    .toBe('gid://shopify/Cart/returning-customer');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('hp_recent_products')))
+    .toBe(JSON.stringify(['wet-brush-original-detangler']));
+
+  await page.waitForTimeout(750);
+  const recoveredNavigations = topLevelNavigations;
+  await page.evaluate(() => {
+    navigator.serviceWorker.dispatchEvent(new MessageEvent('message', {
+      data: { type: 'sw-killswitch-reload' },
+    }));
+  });
+  await page.waitForTimeout(500);
+  expect(topLevelNavigations).toBe(recoveredNavigations);
+  expect(new URL(page.url()).searchParams.get('source')).toBe('returning');
 });
 
 test('shared business claims and schemas stay truthful', async ({ page }) => {
@@ -520,6 +559,90 @@ test('mobile header defers desktop-only enhancement chunks until they are needed
   await expect.poll(() => requestedChunks.some((url) => url.includes('/ShopDropdown-'))).toBe(true);
 });
 
+test('product routes prioritise their own image instead of unrelated or raw preloads', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/products/wet-brush-kids-detangler', { waitUntil: 'networkidle' });
+
+  const imagePreloads = await page.evaluate(() =>
+    performance.getEntriesByType('resource')
+      .filter((entry) => entry.initiatorType === 'link')
+      .map((entry) => entry.name)
+      .filter((url) => /\.(?:avif|webp|png|jpe?g)(?:\?|$)/i.test(url)),
+  );
+
+  expect(imagePreloads.some((url) => url.includes('hero-journal'))).toBe(false);
+  expect(imagePreloads.some((url) =>
+    url.includes('cdn.shopify.com') && !/[?&]width=\d+/.test(url),
+  )).toBe(false);
+
+  const primaryImage = page.locator('[data-product-detail-core] picture img').first();
+  await expect(primaryImage).toHaveAttribute('fetchpriority', 'high');
+  await expect(primaryImage).toHaveJSProperty('complete', true);
+
+  const productSchemas = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts.flatMap((script) => {
+      const parsed = JSON.parse(script.textContent || '{}');
+      return parsed['@graph'] || [parsed];
+    }).filter((schema) => schema['@type'] === 'Product'),
+  );
+  expect(productSchemas).toHaveLength(1);
+});
+
+test('shop and journal navigation appear early in the mobile journey', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  await page.goto('/collections', { waitUntil: 'networkidle' });
+  const shopTabs = await page.getByRole('tablist', { name: 'Ways to shop' }).boundingBox();
+  expect(shopTabs?.y).toBeLessThan(560);
+
+  await page.goto('/blog', { waitUntil: 'networkidle' });
+  const journalFilters = await page.getByRole('navigation', { name: 'Filter journal stories' }).boundingBox();
+  expect(journalFilters?.y).toBeLessThan(560);
+});
+
+test('journal search finds advice by topic and recovers from no results', async ({ page }) => {
+  await page.goto('/blog', { waitUntil: 'domcontentloaded' });
+
+  const search = page.getByRole('searchbox', { name: 'Search journal stories' });
+  await expect(search).toBeVisible();
+  await search.fill('heat damage');
+  await expect(page.getByRole('heading', { name: /Prevent Heat Damage/i }).first()).toBeVisible();
+
+  await search.fill('query-that-cannot-match-any-hair-guide');
+  await expect(page.getByRole('heading', { name: 'Try a broader hair question.' })).toBeVisible();
+  await page.getByRole('button', { name: 'Clear search and filters' }).click();
+  await expect(search).toHaveValue('');
+  await expect(page.getByText(/field notes \/ Bangor, NSW/)).toBeVisible();
+});
+
+test('refreshed sulfate-free guide uses current verified product evidence', async ({ page }) => {
+  await page.goto('/blog/sulfate-free-shampoo-australia', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('heading', { level: 1, name: /What ‘Sulphate Free’ Really Means/ })).toBeVisible();
+  await expect(page.getByText(/current Hair Pinns option Jena has checked/)).toBeVisible();
+  await expect(page.getByRole('link', { name: /Aromaganic P’Mint Hair Scalp Renewal Shampoo/ })).toHaveAttribute(
+    'href',
+    '/products/aromaganic-pmint-hair-scalp-renewal-shampoo',
+  );
+  await expect(page.locator('main article').first()).not.toContainText(/QIQI Shampoo|most-sold|\$\d+(?:\.\d{2})?/);
+
+  const schemaTypes = await page.locator('script[type="application/ld+json"]').evaluateAll(scripts =>
+    scripts.flatMap(script => {
+      try {
+        const value = JSON.parse(script.textContent || '{}');
+        const entries = Array.isArray(value) ? value : [value];
+        return entries.flatMap(entry => [
+          entry?.['@type'],
+          ...(Array.isArray(entry?.['@graph']) ? entry['@graph'].map((node: any) => node?.['@type']) : []),
+        ]).filter(Boolean);
+      } catch {
+        return [];
+      }
+    }),
+  );
+  expect(schemaTypes).toContain('BlogPosting');
+  expect(schemaTypes).toContain('FAQPage');
+});
+
 test('GA4 configuration is queued before the provider script is deferred', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect.poll(() => page.evaluate(() =>
@@ -715,6 +838,7 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
     },
   });
   let removalBody: Record<string, unknown> | null = null;
+  let updateBody: Record<string, unknown> | null = null;
 
   await page.route('**/api/checkout', async (route) => {
     const body = route.request().postDataJSON();
@@ -725,6 +849,15 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
     if (body.action === 'remove') {
       removalBody = body;
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: makeCart([lineTwo]) }) });
+      return;
+    }
+    if (body.action === 'update') {
+      updateBody = body;
+      const updatedLine = { ...lineOne, node: { ...lineOne.node, quantity: 3 } };
+      const updatedCart = makeCart([updatedLine, lineTwo]);
+      updatedCart.cost.subtotalAmount.amount = '154.80';
+      updatedCart.cost.totalAmount.amount = '154.80';
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ cart: updatedCart }) });
       return;
     }
     await route.continue();
@@ -748,6 +881,19 @@ test('after-hours cart preserves Shopify lines, removal and truthful checkout ha
   await expect(drawer.getByRole('link', { name: '14-day returns on unopened products' })).toHaveAttribute('href', '/policies/returns');
   await expect(drawer.getByText('You might also like')).toHaveCount(0);
   await expect(drawer.getByText(/Estimated delivery/)).toHaveCount(0);
+
+  const increaseFirst = drawer.getByRole('button', { name: 'Increase Juuce Bond Repair Shampoo quantity' });
+  const increaseBox = await increaseFirst.boundingBox();
+  expect(Math.round(increaseBox?.width || 0)).toBeGreaterThanOrEqual(44);
+  expect(Math.round(increaseBox?.height || 0)).toBeGreaterThanOrEqual(44);
+  await increaseFirst.click();
+  await expect(drawer.getByRole('heading', { name: 'Your bag / 4' })).toBeVisible();
+  await expect(drawer.getByText('$154.8', { exact: true }).first()).toBeVisible();
+  expect(updateBody).toEqual({
+    action: 'update',
+    cartId: 'gid://shopify/Cart/after-hours-test',
+    lines: [{ id: 'line-1', quantity: 3 }],
+  });
 
   const removeFirst = drawer.getByRole('button', { name: 'Remove Juuce Bond Repair Shampoo from bag' });
   const removeBox = await removeFirst.boundingBox();

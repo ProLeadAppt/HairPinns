@@ -63,7 +63,7 @@ const post = {
         },
         {
           question: "Are salon shampoos harder to replace than supermarket ones?",
-          answer: "Yes — they don't have the strong synthetic fragrance that masks age. This is a sign of clean formulation, not a fault. Mark the open date with a Sharpie on the lid.",
+          answer: "Yes, they don't have the strong synthetic fragrance that masks age. This is a sign of clean formulation, not a fault. Mark the open date with a Sharpie on the lid.",
         }
       ],
     },

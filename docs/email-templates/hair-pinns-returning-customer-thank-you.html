@@ -1,0 +1,82 @@
+<!--
+  Hair Pinns returning-customer thank-you email.
+  Intended for the second-order branch of Shopify Messaging's
+  "Thank customers after they purchase" automation.
+  Send after payment, separately from Shopify's transactional order confirmation.
+  Paste the inner table into a Shopify Messaging Custom Liquid section.
+  Replace LOGO_URL with the approved Hair Pinns logo asset selected in Shopify.
+
+  Subject: Look who’s back 💜
+  Preview: Thank you for choosing Hair Pinns again. It genuinely means a lot.
+-->
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+  Thank you for choosing Hair Pinns again. It genuinely means a lot.
+</div>
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#F7F1FA;margin:0;padding:0;">
+  <tr>
+    <td align="center" style="padding:28px 14px;">
+      <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:600px;background:#FFFFFF;border:1px solid #E4D5EC;">
+        <tr>
+          <td align="center" style="padding:30px 24px 22px;">
+            <a href="https://hairpinns.com/?utm_source=shopify_email&amp;utm_medium=email&amp;utm_campaign=returning_customer_thank_you&amp;utm_content=logo" style="text-decoration:none;">
+              <img src="LOGO_URL" width="190" alt="Hair Pinns, Happy Hair Specialist" style="display:block;width:190px;max-width:100%;height:auto;border:0;">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td style="height:5px;background:#753D91;font-size:0;line-height:0;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="padding:42px 34px 12px;text-align:left;">
+            <p style="margin:0 0 14px;font-family:Arial,sans-serif;font-size:11px;line-height:16px;font-weight:700;letter-spacing:2.2px;color:#753D91;">WELCOME BACK</p>
+            <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:42px;line-height:46px;font-weight:400;color:#35253E;">Look who’s back.</h1>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:16px 34px 8px;font-family:Arial,sans-serif;font-size:16px;line-height:25px;color:#35253E;">
+            <p style="margin:0 0 16px;">Hi {{ customer.first_name | default: 'lovely' }},</p>
+            <p style="margin:0 0 16px;">Jena here. I spotted your name come through again and did a little happy dance.</p>
+            <p style="margin:0 0 16px;">Thank you for coming back to Hair Pinns. Repeat orders mean a lot to a small business, and I never take them for granted.</p>
+            <p style="margin:0;">I’ll get your order packed carefully. You’ll receive another email when it is on the way.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:26px 34px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#F7F1FA;border:1px solid #E4D5EC;">
+              <tr>
+                <td style="padding:26px;text-align:left;">
+                  <p style="margin:0 0 9px;font-family:Arial,sans-serif;font-size:12px;line-height:17px;font-weight:700;letter-spacing:1.8px;color:#753D91;">NEED A HAND?</p>
+                  <p style="margin:0 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:28px;line-height:34px;color:#35253E;">You know where I am.</p>
+                  <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:24px;color:#5E4D66;">If your hair has changed, a product is not behaving or you want help building a routine, reply and ask me. No silly questions and no hard sell.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 34px 34px;text-align:left;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td bgcolor="#753D91" style="background:#753D91;">
+                  <a href="https://hairpinns.com/collections/?utm_source=shopify_email&amp;utm_medium=email&amp;utm_campaign=returning_customer_thank_you&amp;utm_content=shop" style="display:inline-block;padding:15px 25px;font-family:Arial,sans-serif;font-size:15px;line-height:19px;font-weight:700;color:#FFFFFF;text-decoration:none;">See what’s on Jena’s shelf</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 34px 36px;font-family:Arial,sans-serif;font-size:16px;line-height:25px;color:#35253E;">
+            <p style="margin:0 0 18px;">Thanks for trusting me with your hair again.</p>
+            <p style="margin:0;">Jena x</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:24px 34px;background:#E4D5EC;font-family:Arial,sans-serif;font-size:11px;line-height:18px;color:#5E4D66;text-align:center;">
+            <p style="margin:0 0 8px;">Hair Pinns, 60 Goorgool Road, Bangor NSW 2234</p>
+            <p style="margin:0;">You received this because you placed another order with Hair Pinns.</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

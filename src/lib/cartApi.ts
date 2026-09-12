@@ -41,9 +41,15 @@ export interface CartInputLine {
   quantity: number;
 }
 
+export interface CartUpdateLine {
+  id: string;
+  quantity: number;
+}
+
 type CartActionRequest =
   | { action: "get"; cartId: string }
   | { action: "add"; cartId?: string; lines: CartInputLine[] }
+  | { action: "update"; cartId: string; lines: CartUpdateLine[] }
   | { action: "remove"; cartId: string; lineIds: string[] }
   | { action: "checkout"; cartId: string; discountCodes?: string[] };
 
@@ -117,6 +123,15 @@ export async function addCartLines(
 export async function removeCartLines(cartId: string, lineIds: string[]): Promise<CartSnapshot> {
   try {
     return persistCart(await postCartAction({ action: "remove", cartId, lineIds }));
+  } catch (error) {
+    if (isStaleCartError(error)) clearCartId();
+    throw error;
+  }
+}
+
+export async function updateCartLines(cartId: string, lines: CartUpdateLine[]): Promise<CartSnapshot> {
+  try {
+    return persistCart(await postCartAction({ action: "update", cartId, lines }));
   } catch (error) {
     if (isStaleCartError(error)) clearCartId();
     throw error;

@@ -45,7 +45,7 @@ interface NormalisedLocation {
   name: string;
   /** State abbreviation for states, state code for cities. */
   shortCode: string;
-  /** Postcode range (states only — cities show city + state name instead). */
+  /** Postcode range (states only, cities show city + state name instead). */
   scopeLabel: string;
   standardDeliveryDays: string;
   expressDeliveryDays: string;
@@ -66,7 +66,7 @@ interface NormalisedLocation {
 }
 
 function normaliseLocation(slug: string): NormalisedLocation | undefined {
-  // Cities first — capital-city slugs would otherwise shadow nothing, but if
+  // Cities first, capital-city slugs would otherwise shadow nothing, but if
   // a city slug ever clashes with a future state slug (unlikely) we want the
   // city to win because it's the higher-intent surface.
   const city = getShippingCityData(slug);
@@ -324,7 +324,7 @@ const ShippingStatePage = () => {
                     <p className="text-sm text-foreground leading-relaxed mb-3">
                       {pick.reason}
                     </p>
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
                       Shop the range
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </span>

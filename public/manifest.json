@@ -4,8 +4,8 @@
   "description": "Hair care by Jena. Shipped anywhere in Australia.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F5EEE6",
-  "theme_color": "#2D162B",
+  "background_color": "#F7F1FA",
+  "theme_color": "#753D91",
   "orientation": "portrait-primary",
   "icons": [
     {

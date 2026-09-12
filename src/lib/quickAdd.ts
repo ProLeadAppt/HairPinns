@@ -6,8 +6,6 @@
 
 import { addCartLines } from "./cartApi";
 import { trackAddToCart } from "./ecommerceTracking";
-import { trackCartCreated } from "./cartAbandonment";
-import { getHpCapture } from "./loadHpCapture";
 import { notify } from "@/hooks/use-toast";
 
 export interface QuickAddProduct {
@@ -36,10 +34,6 @@ export async function quickAddToCart(
     const cartId = cart.id;
     const checkoutUrl = cart.checkoutUrl;
 
-    // Track quick add clicked
-    const hpCapture = await getHpCapture();
-    await hpCapture.trackQuickAddClicked(productId, productTitle, "hero").catch(() => {});
-
     // Track add_to_cart event
     void trackAddToCart({
       product_id: productId,
@@ -49,22 +43,6 @@ export async function quickAddToCart(
       currency,
       quantity,
     });
-
-    // Track cart creation for abandonment recovery
-    if (cartId && checkoutUrl) {
-      await trackCartCreated(
-        cartId,
-        checkoutUrl,
-        [{
-          id: variantId,
-          title: productTitle,
-          price,
-          quantity,
-        }],
-        price * quantity,
-        currency
-      );
-    }
 
     // Show success toast
     notify.success(`${productTitle} added to bag!`, {

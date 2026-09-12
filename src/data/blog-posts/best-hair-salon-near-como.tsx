@@ -11,15 +11,15 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-042.jpg?v=1744250283",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Como and searching for a hair salon, the options nearest you are limited — which is why a lot of Como locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Como, and honest answers about whether we're the right fit.",
+      introduction: "If you're in Como and searching for a hair salon, the options nearest you are limited, which is why a lot of Como locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Como, and honest answers about whether we're the right fit.",
       sections: [
         {
           heading: "Why Como Locals Drive to Bangor",
-          content: "Hair Pinns is 8–10 minutes from Como via Como Bridge and the Princes Highway. Free parking out the front of the salon — no meter hunting. Como sits on the bridge between the Sutherland Shire proper and the St George area; heading south to Bangor is usually quicker than heading north into busier suburbs."
+          content: "Hair Pinns is 8–10 minutes from Como via Como Bridge and the Princes Highway. Free parking out the front of the salon, no meter hunting. Como sits on the bridge between the Sutherland Shire proper and the St George area; heading south to Bangor is usually quicker than heading north into busier suburbs."
         },
         {
           heading: "What Como Clients Tell Us They Value",
-          content: "Three things come up with Como clients: (1) They want one stylist every visit who remembers their hair history — not rotating staff where every visit starts from scratch. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing on a public menu — no surprise fees. (3) They want low-maintenance results — colour that grows out gracefully, cuts that don't need a blowdry to look right. Most Como clients stay long-term because the results hold up."
+          content: "Three things come up with Como clients: (1) They want one stylist every visit who remembers their hair history, not rotating staff where every visit starts from scratch. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing on a public menu, no surprise fees. (3) They want low-maintenance results, colour that grows out gracefully, cuts that don't need a blowdry to look right. Most Como clients stay long-term because the results hold up."
         },
         {
           heading: "Services Popular with Como Locals",
@@ -40,10 +40,10 @@ const post = {
       },
       keyTakeaways: [
         "Hair Pinns Bangor is 8–10 minutes from Como via Como Bridge",
-        "Free parking out the front — no meter hunting",
+        "Free parking out the front, no meter hunting",
         "Popular Como bookings: full head foils, mid-length cut-and-blowdry, smoothing",
         "Stylist continuity and transparent pricing drive switch-over decisions",
-        "Try one service first — no membership required"
+        "Try one service first, no membership required"
       ],
       faqSection: [
         {
@@ -56,7 +56,7 @@ const post = {
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
         },
         {
           question: "Is Hair Pinns good for older clients?",

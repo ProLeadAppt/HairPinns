@@ -51,7 +51,7 @@ export const homeFeaturedGuides: HomeFeaturedGuide[] = [
   {
     slug: "whats-a-straight-up-smoothing-treatment",
     title: "What's a Straight Up Smoothing Treatment?",
-    excerpt: "Smooth, soft, frizz-free hair with QIQI Vega — a hair-friendly smoothing system with no harsh chemicals, no downtime, and results that last up to 6 months.",
+    excerpt: "Smooth, soft, frizz-free hair with QIQI Vega, a hair-friendly smoothing system with no harsh chemicals, no downtime, and results that last up to 6 months.",
     category: "Treatments",
     readTime: "5 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-050.jpg?v=1744178399",

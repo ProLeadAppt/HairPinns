@@ -77,7 +77,7 @@ const PostPurchaseModule = ({ pairsWith = [] }: PostPurchaseModuleProps) => {
                 {product.title}
               </h3>
               {/*
-               * Same price-hide guard as the trio + product card —
+               * Same price-hide guard as the trio + product card,
                * post-purchase upsell must never show "$0.00" (Jena
                * flagged "zero next to the amount" in mid-2026).
                */}

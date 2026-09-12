@@ -34,7 +34,7 @@ interface SEOHeadProps {
    * fetch resolves.
    */
   prerenderReady?: boolean;
-  /** Kept for back-compat; ignored — add custom tags via the imperative API */
+  /** Kept for back-compat; ignored, add custom tags via the imperative API */
   children?: ReactNode;
 }
 
@@ -57,7 +57,7 @@ const canonicalizeSchemaUrls = (value: unknown): unknown => {
  * Centralises all SEO-related head tags. We bypass react-helmet entirely and
  * inject tags directly into document.head via DOM APIs because:
  *
- *   1. react-helmet's async flush race-conditions with Puppeteer prerender —
+ *   1. react-helmet's async flush race-conditions with Puppeteer prerender,
  *      especially on pages with many tags (e.g. the homepage with 9 schemas).
  *   2. react-helmet silently drops <script> tags with string content during
  *      client render, so JSON-LD never lands in the DOM.
@@ -131,7 +131,7 @@ export const SEOHead = ({
     addMeta({ name: 'description', content: resolvedDescription });
     addMeta({ 'http-equiv': 'content-language', content: 'en-AU' });
 
-    // Geo targeting — explicit AU signals for the wider search ecosystem.
+    // Geo targeting, explicit AU signals for the wider search ecosystem.
     // Hair Pinns ships only within Australia and the salon is in Bangor NSW,
     // so we lean into these signals rather than presenting as a generic
     // English site. Coordinates come from the canonical entity registry and
@@ -182,7 +182,7 @@ export const SEOHead = ({
     // JSON-LD schemas
     if (schemaJSON) addScript(schemaJSON);
 
-    // Prerender-ready marker — Puppeteer waits for this element before
+    // Prerender-ready marker, Puppeteer waits for this element before
     // snapshotting. Only inject when the caller signals the page is in its
     // final, indexable state (`prerenderReady !== false`). Transient loading
     // screens pass `prerenderReady={false}` so the marker only fires once the

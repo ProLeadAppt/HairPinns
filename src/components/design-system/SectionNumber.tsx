@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 
 /**
- * SectionNumber — the hairline + small-caps editorial divider that breaks
- * the homepage into a magazine-style sequence: "01 — what we make".
+ * SectionNumber, the hairline + small-caps editorial divider that breaks
+ * the homepage into a magazine-style sequence: "01, what we make".
  *
  * Use between sections (NOT inside) to give the page a sense of rhythm.
  *
@@ -19,7 +19,7 @@ const SectionNumber = ({ index, label, className }: SectionNumberProps) => {
     <div className={cn("section-number", className)}>
       <span className="section-number-label">
         <span className="section-number-index">{index}</span>
-        <span>— {label}</span>
+        <span>, {label}</span>
       </span>
     </div>
   );

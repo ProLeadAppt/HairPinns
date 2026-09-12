@@ -24,7 +24,7 @@ import jenaSignatureWebp320 from "@/assets/images/jena-signature-320w.webp";
 const HeroHome = () => (
   <section
     className="relative overflow-hidden"
-    style={{ background: "hsl(var(--after-hours-plum))" }}
+    style={{ background: "hsl(var(--hp-lavender))" }}
   >
     <div className="grid min-h-[calc(100svh-4rem)] lg:min-h-[calc(100svh-5.25rem)] lg:grid-cols-[minmax(0,47%)_minmax(0,53%)]">
       <div className="order-2 relative flex items-center px-4 pb-24 pt-8 sm:px-6 sm:py-14 lg:order-1 lg:px-[clamp(3rem,6vw,6.5rem)] lg:py-20">
@@ -53,9 +53,9 @@ const HeroHome = () => (
           </div>
 
           <h1
-            className="m-0 text-[clamp(2.8rem,12.6vw,4rem)] font-normal leading-[0.94] tracking-[-0.05em] sm:text-[clamp(3.6rem,8vw,5.6rem)] lg:text-[clamp(4.1rem,6.4vw,6.7rem)]"
+            className="m-0 text-[clamp(2rem,9vw,2.625rem)] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-[clamp(2.8rem,5vw,4.25rem)]"
             style={{
-              color: "hsl(var(--after-hours-cream))",
+              color: "hsl(var(--hp-ink))",
               fontFamily: '"Playfair Display", serif',
             }}
           >
@@ -71,7 +71,7 @@ const HeroHome = () => (
 
           <p
             className="mt-6 max-w-[36rem] text-[0.94rem] leading-7 sm:mt-8 sm:text-[1.05rem]"
-            style={{ color: "hsl(var(--after-hours-muted))" }}
+            style={{ color: "hsl(var(--hp-ink))" }}
           >
             A short shelf of salon-tested hair care, chosen to make your next
             routine easier to understand.
@@ -81,7 +81,7 @@ const HeroHome = () => (
             <Button
               asChild
               size="lg"
-              className="min-h-12 rounded-[2px] border-0 !bg-[hsl(var(--after-hours-cream))] px-5 text-[0.82rem] font-semibold !text-[hsl(var(--after-hours-plum))] shadow-none transition-colors hover:!bg-[hsl(var(--after-hours-copper))] sm:min-h-[3.25rem] sm:px-7"
+              className="min-h-12 rounded-[2px] border-0 !bg-[hsl(var(--hp-purple))] px-5 text-[0.82rem] font-semibold !text-white shadow-none transition-colors hover:!bg-[hsl(var(--brand-600))] sm:min-h-[3.25rem] sm:px-7"
             >
               <Link
                 to="/collections"
@@ -103,14 +103,14 @@ const HeroHome = () => (
               href={BOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-b border-white/50 py-2 text-[0.82rem] text-white/85 transition-colors hover:border-white hover:text-white"
+              className="inline-flex min-h-11 items-center border-b border-[hsl(var(--hp-purple)/0.5)] py-2 text-[0.82rem] text-[hsl(var(--hp-ink))] transition-colors hover:text-[hsl(var(--hp-purple))]"
               onClick={() => trackBookingClick("hero_home_secondary", window.location.pathname)}
             >
               Book the Bangor salon
             </a>
           </div>
 
-          <div className="mt-8 flex max-w-md items-center gap-3 border-t border-white/20 pt-5 sm:mt-11 sm:gap-4 sm:pt-6">
+          <div className="mt-8 flex max-w-md items-center gap-3 border-t border-[hsl(var(--hp-lilac))] pt-5 sm:mt-11 sm:gap-4 sm:pt-6">
             <picture className="shrink-0">
               <source
                 type="image/avif"
@@ -136,7 +136,7 @@ const HeroHome = () => (
               <p
                 className="m-0 text-[1rem] font-semibold leading-tight sm:text-[1.08rem]"
                 style={{
-                  color: "hsl(var(--after-hours-cream))",
+                  color: "hsl(var(--hp-ink))",
                   fontFamily: '"Playfair Display", serif',
                 }}
               >
@@ -144,7 +144,7 @@ const HeroHome = () => (
               </p>
               <p
                 className="m-0 mt-1 text-[0.56rem] uppercase tracking-[0.14em] sm:text-[0.62rem]"
-                style={{ color: "hsl(var(--after-hours-muted))" }}
+                style={{ color: "hsl(var(--hp-ink))" }}
               >
                 Owner · Hairdresser · Bangor
               </p>
@@ -153,7 +153,7 @@ const HeroHome = () => (
         </div>
       </div>
 
-      <div className="order-1 relative min-h-[42svh] overflow-hidden lg:order-2 lg:min-h-full">
+      <div className="order-1 relative min-h-[38svh] overflow-hidden rounded-bl-[3rem] lg:order-2 lg:min-h-full lg:rounded-bl-[7rem]">
         <picture>
           <source
             media="(max-width: 767px)"
@@ -210,14 +210,6 @@ const HeroHome = () => (
         >
           Jena's chair · Bangor
         </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-y-0 left-0 hidden w-24 lg:block"
-          style={{
-            background:
-              "linear-gradient(90deg, hsl(var(--after-hours-plum)) 0%, transparent 100%)",
-          }}
-        />
       </div>
     </div>
   </section>

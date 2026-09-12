@@ -11,15 +11,15 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Cronulla and searching for a hair salon, you've got choices up and down the beach — but several Cronulla locals make the drive to Bangor because Hair Pinns specialises in the exact problems beach-and-sun hair faces. Here's what matters when you're picking a salon close to Cronulla, and honest answers about whether we're the right fit.",
+      introduction: "If you're in Cronulla and searching for a hair salon, you've got choices up and down the beach, but several Cronulla locals make the drive to Bangor because Hair Pinns specialises in the exact problems beach-and-sun hair faces. Here's what matters when you're picking a salon close to Cronulla, and honest answers about whether we're the right fit.",
       sections: [
         {
           heading: "Why Cronulla Locals Drive to Bangor",
-          content: "Hair Pinns is 15–18 minutes from central Cronulla via Kingsway and Old Illawarra Road. Free parking right out the front — no hunting for a meter. Several of our regulars drive from Cronulla because the parking and the predictable timing is worth the extra few minutes compared to the Cronulla CBD parking situation."
+          content: "Hair Pinns is 15–18 minutes from central Cronulla via Kingsway and Old Illawarra Road. Free parking right out the front, no hunting for a meter. Several of our regulars drive from Cronulla because the parking and the predictable timing is worth the extra few minutes compared to the Cronulla CBD parking situation."
         },
         {
           heading: "What Cronulla Clients Tell Us They Value",
-          content: "Three things come up every time from Cronulla clients: (1) They want a stylist who understands beach-and-sun hair — salt, chlorine, UV exposure destroy colour and texture faster than most salons account for. (2) They want transparent pricing — no surprise fees at checkout. (3) They want a salon that plays the long game, not one pushing this week's special. Cronulla clients especially tend to stay 3+ years once they switch."
+          content: "Three things come up every time from Cronulla clients: (1) They want a stylist who understands beach-and-sun hair, salt, chlorine, UV exposure destroy colour and texture faster than most salons account for. (2) They want transparent pricing, no surprise fees at checkout. (3) They want a salon that plays the long game, not one pushing this week's special. Cronulla clients especially tend to stay 3+ years once they switch."
         },
         {
           heading: "Services Popular with Cronulla Locals",
@@ -31,7 +31,7 @@ const post = {
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair enough. Most of our Cronulla clients first came for one specific service — usually a smoothing treatment for beach hair or a colour correction — while keeping their existing salon for everything else. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          content: "Fair enough. Most of our Cronulla clients first came for one specific service, usually a smoothing treatment for beach hair or a colour correction, while keeping their existing salon for everything else. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
         }
       ],
       quickAnswer: {
@@ -43,7 +43,7 @@ const post = {
         "Free parking out the front beats the Cronulla CBD parking hunt",
         "Cronulla clients especially benefit from smoothing, bond-repair, and beach-ready blonde services",
         "Stylist continuity lets us plan around your actual lifestyle",
-        "Try one service first — no membership required"
+        "Try one service first, no membership required"
       ],
       faqSection: [
         {
@@ -56,7 +56,7 @@ const post = {
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
         },
         {
           question: "Is Hair Pinns good for older clients?",

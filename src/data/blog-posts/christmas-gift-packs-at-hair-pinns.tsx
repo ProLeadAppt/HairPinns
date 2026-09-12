@@ -45,11 +45,11 @@ const post = {
       faqSection: [
         {
           question: "What's in the Hair Pinns Christmas gift packs?",
-          answer: "Three sizes — $45, $75, and $120. Each combines a Jena-curated shampoo, conditioner, and either a Wet Brush, treatment mask, or styling oil. Wrapped in a keepsake box with a handwritten note from Jena.",
+          answer: "Three sizes, $45, $75, and $120. Each combines a Jena-curated shampoo, conditioner, and either a Wet Brush, treatment mask, or styling oil. Wrapped in a keepsake box with a handwritten note from Jena.",
         },
         {
           question: "Do you ship gift packs with a card?",
-          answer: "Yes — add a message at checkout and Jena writes it by hand. We can also ship direct to the recipient with no pricing in the box, so it's a true gift experience.",
+          answer: "Yes, add a message at checkout and Jena writes it by hand. We can also ship direct to the recipient with no pricing in the box, so it's a true gift experience.",
         },
         {
           question: "What's the cut-off for Christmas delivery in Australia?",
@@ -57,11 +57,11 @@ const post = {
         },
         {
           question: "Can I build a custom gift pack?",
-          answer: "Yes — for orders over $75, pick any shampoo + conditioner + one accessory and we'll wrap it. Email jena@hairpinns.com with the items and we'll send you a custom link.",
+          answer: "Yes, for orders over $75, pick any shampoo + conditioner + one accessory and we'll wrap it. Email jena@hairpinns.com with the items and we'll send you a custom link.",
         },
         {
           question: "Do gift packs include a discount code for the recipient?",
-          answer: "Yes — every gift pack includes a 15% off code for the recipient's first salon booking at Hair Pinns, valid for 90 days.",
+          answer: "Yes, every gift pack includes a 15% off code for the recipient's first salon booking at Hair Pinns, valid for 90 days.",
         }
       ],
     },

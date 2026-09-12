@@ -29,4 +29,9 @@ describe('Shopify connection pagination', () => {
     const fetchPage = vi.fn().mockResolvedValue({ edges: [], pageInfo: { hasNextPage: false, endCursor: null } });
     await expect(collectShopifyConnection(fetchPage, 'products')).rejects.toThrow('refusing an incomplete build');
   });
+
+  it('allows an intentionally empty editorial collection', async () => {
+    const fetchPage = vi.fn().mockResolvedValue({ edges: [], pageInfo: { hasNextPage: false, endCursor: null } });
+    await expect(collectShopifyConnection(fetchPage, 'updates', { allowEmpty: true })).resolves.toEqual([]);
+  });
 });

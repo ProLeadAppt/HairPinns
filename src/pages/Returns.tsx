@@ -75,7 +75,7 @@ const Returns = () => {
                 { step: 4, text: "Refund processed within 5-7 business days" },
               ].map((s) => (
                 <div key={s.step} className="flex items-center gap-3">
-                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[hsl(var(--after-hours-plum))] text-xs font-bold text-[hsl(var(--after-hours-cream))]">{s.step}</div>
+                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[hsl(var(--hp-lavender))] text-xs font-bold text-[hsl(var(--hp-ink))]">{s.step}</div>
                   <p className="text-foreground text-sm">{s.text}</p>
                 </div>
               ))}
@@ -89,11 +89,11 @@ const Returns = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Questions?</h2>
             <p className="text-foreground leading-relaxed">
               Contact us at{" "}
-              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
+              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 hairpinns1@gmail.com
               </a>{" "}
               or{" "}
-              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
+              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 {BUSINESS_NAP.phone.display}
               </a>
               .

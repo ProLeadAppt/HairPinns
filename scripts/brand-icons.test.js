@@ -11,8 +11,8 @@ describe("Hair Pinns browser and app icons", () => {
       await readFile(path.join(root, "public/manifest.json"), "utf8"),
     );
 
-    expect(manifest.theme_color).toBe("#2D162B");
-    expect(manifest.background_color).toBe("#F5EEE6");
+    expect(manifest.theme_color).toBe("#753D91");
+    expect(manifest.background_color).toBe("#F7F1FA");
 
     for (const icon of manifest.icons) {
       const [expectedWidth, expectedHeight] = icon.sizes.split("x").map(Number);

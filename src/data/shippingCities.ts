@@ -27,7 +27,7 @@ import { BUSINESS_NAP } from "@/config/businessConfig";
  */
 
 export interface ShippingCityData {
-  /** URL slug — kebab-case city name (e.g. "melbourne", "gold-coast"). */
+  /** URL slug, kebab-case city name (e.g. "melbourne", "gold-coast"). */
   slug: string;
   /** Display name. */
   name: string;

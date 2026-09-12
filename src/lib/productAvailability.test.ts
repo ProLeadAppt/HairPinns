@@ -18,6 +18,18 @@ describe("getProductAvailability", () => {
     });
   });
 
+  it("does not label a sellable digital product as backordered", () => {
+    expect(getProductAvailability({
+      availableForSale: true,
+      quantityAvailable: 0,
+      requiresShipping: false,
+    })).toEqual({
+      canPurchase: true,
+      label: "Available online",
+      schema: "InStock",
+    });
+  });
+
   it("blocks variants Shopify reports as unavailable", () => {
     expect(getProductAvailability({ availableForSale: false, quantityAvailable: 0 })).toEqual({
       canPurchase: false,

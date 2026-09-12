@@ -14,15 +14,15 @@ const post = {
       sections: [
         {
           heading: "How Often You Actually Need a Haircut",
-          content: "Short hair (pixie, bob): every 4–6 weeks. The shape loses definition quickly and a trim keeps it looking styled. Mid-length hair: every 8–10 weeks. Balances shape maintenance with growing out. Long hair: every 10–12 weeks minimum for a dusting, 12–14 weeks for a proper trim. Curly hair: every 10–12 weeks regardless of length — dry cutting every few months keeps curl shape intact. Damaged or colour-treated hair: every 6–8 weeks to stop split ends travelling up the shaft."
+          content: "Short hair (pixie, bob): every 4–6 weeks. The shape loses definition quickly and a trim keeps it looking styled. Mid-length hair: every 8–10 weeks. Balances shape maintenance with growing out. Long hair: every 10–12 weeks minimum for a dusting, 12–14 weeks for a proper trim. Curly hair: every 10–12 weeks regardless of length, dry cutting every few months keeps curl shape intact. Damaged or colour-treated hair: every 6–8 weeks to stop split ends travelling up the shaft."
         },
         {
           heading: "Sign 1: Ends Feel 'Stringy' or Wispy",
-          content: "Healthy ends feel the same density as mid-lengths. When the ends feel thinner, stringy, or wispy — that's split ends travelling up the hair shaft. Once splits start, they get worse until cut off. Waiting an extra month means losing an extra inch when you finally book."
+          content: "Healthy ends feel the same density as mid-lengths. When the ends feel thinner, stringy, or wispy, that's split ends travelling up the hair shaft. Once splits start, they get worse until cut off. Waiting an extra month means losing an extra inch when you finally book."
         },
         {
           heading: "Sign 2: Styling Takes Longer or Doesn't Hold",
-          content: "Your hair knows the shape it was cut in. When that shape grows out, styling becomes harder — the blowdry takes longer, curls don't hold, the part won't sit. If your styling routine has quietly gotten longer over a few months, your cut is growing out."
+          content: "Your hair knows the shape it was cut in. When that shape grows out, styling becomes harder, the blowdry takes longer, curls don't hold, the part won't sit. If your styling routine has quietly gotten longer over a few months, your cut is growing out."
         },
         {
           heading: "Sign 3: Layers Look Flat or Undefined",
@@ -34,11 +34,11 @@ const post = {
         },
         {
           heading: "Sign 5: Hair Feels Dry and Products Don't Work",
-          content: "Damaged ends don't absorb product. If your conditioner, leave-in, or mask feels like it's sitting on your hair instead of absorbing, the ends are damaged enough that they can't hold moisture anymore. Only a cut fixes this — no treatment brings damaged hair back."
+          content: "Damaged ends don't absorb product. If your conditioner, leave-in, or mask feels like it's sitting on your hair instead of absorbing, the ends are damaged enough that they can't hold moisture anymore. Only a cut fixes this, no treatment brings damaged hair back."
         },
         {
           heading: "Don't Grow Out Hair Without Trimming",
-          content: "The biggest mistake when growing hair: skipping trims entirely. Ends split, splits travel up the shaft, and eventually you have to cut more to remove damage than if you'd trimmed every 10–12 weeks. Even growing hair needs a 1cm trim every 3 months to stay healthy. Mention 'dusting — just the ends' and a good stylist will trim minimally."
+          content: "The biggest mistake when growing hair: skipping trims entirely. Ends split, splits travel up the shaft, and eventually you have to cut more to remove damage than if you'd trimmed every 10–12 weeks. Even growing hair needs a 1cm trim every 3 months to stay healthy. Mention 'dusting, just the ends' and a good stylist will trim minimally."
         }
       ],
       quickAnswer: {
@@ -67,7 +67,7 @@ const post = {
         },
         {
           question: "Is it bad to go a year without a haircut?",
-          answer: "For very long hair, no — but the ends will be visibly split and the overall shape will be uneven. A trim every 4-6 months keeps the ends healthy without losing length.",
+          answer: "For very long hair, no, but the ends will be visibly split and the overall shape will be uneven. A trim every 4-6 months keeps the ends healthy without losing length.",
         },
         {
           question: "How do I tell my stylist what I want?",

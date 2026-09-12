@@ -18,6 +18,7 @@ const Sitemap = () => {
         { title: "Booking", url: "/booking" },
         { title: "Contact", url: "/contact" },
         { title: "Blog", url: "/blog" },
+        { title: "Email updates", url: "/updates" },
       ]
     },
     {
@@ -121,7 +122,7 @@ const Sitemap = () => {
                   className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-6"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h2 className="text-xl font-heading font-semibold text-heading">
@@ -152,7 +153,7 @@ const Sitemap = () => {
             </p>
             <a
               href="/sitemap.xml"
-              className="font-semibold text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
+              className="font-semibold text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
               target="_blank"
               rel="noopener noreferrer"
             >

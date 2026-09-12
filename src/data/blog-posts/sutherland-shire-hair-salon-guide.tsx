@@ -18,11 +18,11 @@ const post = {
         },
         {
           heading: "Look for Honesty About What You Can't Have (Yet)",
-          content: "The best stylists will tell you no. If your hair isn't healthy enough for platinum blonde, you need someone who'll say 'we'll get there over three sessions' — not 'sure, we can do it today.' I've rebuilt more bond-damaged hair from box dye and over-processed balayage than any other single issue. Honest salons cost less long-term because they don't create damage they later charge to fix."
+          content: "The best stylists will tell you no. If your hair isn't healthy enough for platinum blonde, you need someone who'll say 'we'll get there over three sessions', not 'sure, we can do it today.' I've rebuilt more bond-damaged hair from box dye and over-processed balayage than any other single issue. Honest salons cost less long-term because they don't create damage they later charge to fix."
         },
         {
           heading: "Check the Products They Use and Sell",
-          content: "A salon that only sells generic supermarket brands, or pushes whatever gives them the biggest retail margin, isn't invested in your hair between visits. Look for salons that stock professional ranges they actually use on clients — Juuce, Pure, QIQI, Aromaganic. Ask what the stylist uses at home. If they can't answer, the retail is for show."
+          content: "A salon that only sells generic supermarket brands, or pushes whatever gives them the biggest retail margin, isn't invested in your hair between visits. Look for salons that stock professional ranges they actually use on clients, Juuce, Pure, QIQI, Aromaganic. Ask what the stylist uses at home. If they can't answer, the retail is for show."
         },
         {
           heading: "Reviews Should Mention Service, Not Just Results",
@@ -33,7 +33,7 @@ const post = {
           content: "If a salon is 40 minutes away at 5pm on a Thursday, you'll cancel. The best salon is the one you'll keep going to. Hair Pinns is in Bangor, central to Menai, Illawong, Alfords Point, Sutherland, Miranda, and Cronulla. Free parking outside. Evening appointments Wednesday and Thursday. Small things that add up to showing up consistently."
         },
         {
-          heading: "Specialties Matter — Not Every Salon Does Every Service Well",
+          heading: "Specialties Matter, Not Every Salon Does Every Service Well",
           content: "A Sutherland Shire salon that claims to specialise in everything usually specialises in nothing. Look for clear signals: 'We're known for blonde', 'Our smoothing treatments are our thing', 'We cut curly hair dry'. At Hair Pinns our three specialties are colour and blonding, Straight Up Smoothing treatments, and precision cuts. If you want perm, extensions installation, or hair systems, I'll happily refer you on to someone in the Shire who does that well."
         },
         {
@@ -48,14 +48,14 @@ const post = {
       keyTakeaways: [
         "Good salons spend 15 minutes on consultation before touching your hair",
         "Honesty about what your hair can handle is the #1 sign of expertise",
-        "Check what the stylist personally uses — not just what they sell",
+        "Check what the stylist personally uses, not just what they sell",
         "Reviews that mention service and honesty beat before/after photos",
         "A specialist beats a generalist for colour, smoothing, or cuts"
       ],
       faqSection: [
         {
           question: "What should I ask a Sutherland Shire salon before booking my first appointment?",
-          answer: "Ask about their consultation process — good salons spend 15 minutes asking about your routine, history, and what you actually want before touching your hair. Ask what products they stock and use, and check whether a stylist can tell you what they personally use at home. Look at their reviews for language about service and honesty, not just before/after photos. And ask about their specialties — a salon that claims to do everything well usually does nothing well."
+          answer: "Ask about their consultation process, good salons spend 15 minutes asking about your routine, history, and what you actually want before touching your hair. Ask what products they stock and use, and check whether a stylist can tell you what they personally use at home. Look at their reviews for language about service and honesty, not just before/after photos. And ask about their specialties, a salon that claims to do everything well usually does nothing well."
         },
         {
           question: "How do I know if a Sutherland Shire salon is being honest about what my hair can handle?",
@@ -67,7 +67,7 @@ const post = {
         },
         {
           question: "What's the real test of whether a Sutherland Shire salon is trustworthy?",
-          answer: "Would you send your best friend there with a colour emergency? A box dye disaster, a wedding tomorrow, foils gone brassy the day before work. If you'd trust them with the hard stuff, they're the right salon for the easy stuff too. That's how we test ourselves at Hair Pinns — we specialise in the fixes and the transformations."
+          answer: "Would you send your best friend there with a colour emergency? A box dye disaster, a wedding tomorrow, foils gone brassy the day before work. If you'd trust them with the hard stuff, they're the right salon for the easy stuff too. That's how we test ourselves at Hair Pinns, we specialise in the fixes and the transformations."
         }
       ]
     },

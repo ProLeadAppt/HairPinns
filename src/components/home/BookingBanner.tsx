@@ -10,14 +10,14 @@ import jenaWorkingWebp1170 from "@/assets/images/jena-working-1170w.webp";
 const BookingBanner = () => {
   return (
     <section
-      className="overflow-hidden bg-[hsl(var(--after-hours-plum))] text-[hsl(var(--after-hours-cream))]"
+      className="overflow-hidden bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]"
       aria-labelledby="salon-close-title"
       data-home-booking-close=""
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
         <div className="grid gap-10 md:landscape:grid-cols-12 md:landscape:items-stretch md:landscape:gap-0 lg:grid-cols-12 lg:items-stretch lg:gap-0">
           <figure className="min-w-0 md:landscape:col-span-7 lg:col-span-7">
-            <div className="h-full border border-[hsl(var(--after-hours-cream)/0.25)] p-2 sm:p-3">
+            <div className="h-full border border-[hsl(var(--hp-purple)/0.25)] p-2 sm:p-3">
               <picture className="block aspect-[4/3] min-h-0 overflow-hidden bg-[hsl(var(--after-hours-cream)/0.08)] md:landscape:h-full md:landscape:aspect-auto lg:h-full lg:aspect-auto">
                 <source
                   type="image/avif"
@@ -40,39 +40,39 @@ const BookingBanner = () => {
                 />
               </picture>
             </div>
-            <figcaption className="flex items-center justify-between gap-4 border-b border-[hsl(var(--after-hours-cream)/0.22)] py-4">
-              <span className="font-heading text-lg text-[hsl(var(--after-hours-cream))]">Jena at work</span>
+            <figcaption className="flex items-center justify-between gap-4 border-b border-[hsl(var(--hp-purple)/0.22)] py-4">
+              <span className="font-heading text-lg text-[hsl(var(--hp-ink))]">Jena at work</span>
               <span className="text-right text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-copper))]">
                 Hair Pinns / Bangor
               </span>
             </figcaption>
           </figure>
 
-          <div className="flex min-w-0 flex-col md:landscape:col-span-5 md:landscape:border-b md:landscape:border-r md:landscape:border-t md:landscape:border-[hsl(var(--after-hours-cream)/0.25)] md:landscape:p-8 lg:col-span-5 lg:border-b lg:border-r lg:border-t lg:border-[hsl(var(--after-hours-cream)/0.25)] lg:p-10 xl:p-12">
+          <div className="flex min-w-0 flex-col md:landscape:col-span-5 md:landscape:border-b md:landscape:border-r md:landscape:border-t md:landscape:border-[hsl(var(--hp-purple)/0.25)] md:landscape:p-8 lg:col-span-5 lg:border-b lg:border-r lg:border-t lg:border-[hsl(var(--hp-purple)/0.25)] lg:p-10 xl:p-12">
             <p className="mb-6 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">
               05 / Visit the salon
             </p>
             <h2
               id="salon-close-title"
-              className="max-w-[9ch] font-heading text-[clamp(3rem,10vw,5.6rem)] font-normal leading-[0.92] tracking-[-0.05em] text-[hsl(var(--after-hours-cream))] md:landscape:text-5xl"
+              className="max-w-[9ch] font-heading text-[clamp(2rem,5vw,3.6rem)] font-normal leading-[1.08] tracking-[-0.05em] text-[hsl(var(--hp-ink))] md:landscape:text-5xl"
             >
               Come in and see me.
             </h2>
-            <p className="mt-7 max-w-md text-base leading-7 text-[hsl(var(--after-hours-cream)/0.74)] sm:text-lg sm:leading-8">
+            <p className="mt-7 max-w-md text-base leading-7 text-[hsl(var(--hp-ink)/0.74)] sm:text-lg sm:leading-8">
               Book online any time through Fresha. Colour, cuts, and smoothing treatments in Jena’s Bangor salon.
             </p>
 
-            <dl className="mt-10 divide-y divide-[hsl(var(--after-hours-cream)/0.2)] border-t border-[hsl(var(--after-hours-cream)/0.2)] text-sm">
+            <dl className="mt-10 divide-y divide-[hsl(var(--hp-purple)/0.2)] border-t border-[hsl(var(--hp-purple)/0.2)] text-sm">
               <div className="grid grid-cols-[5rem_minmax(0,1fr)] gap-4 py-4">
                 <dt className="text-[0.61rem] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--after-hours-copper))]">Visit</dt>
-                <dd className="text-[hsl(var(--after-hours-cream)/0.86)]">{BUSINESS_NAP.address.full}</dd>
+                <dd className="text-[hsl(var(--hp-ink)/0.86)]">{BUSINESS_NAP.address.full}</dd>
               </div>
               <div className="grid grid-cols-[5rem_minmax(0,1fr)] gap-4 py-4">
                 <dt className="text-[0.61rem] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--after-hours-copper))]">Call</dt>
                 <dd>
                   <a
                     href={BUSINESS_NAP.phone.tel}
-                    className="inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-cream)/0.45)] !text-[hsl(var(--after-hours-cream))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] sm:min-h-0"
+                    className="inline-flex min-h-11 items-center border-b border-[hsl(var(--hp-purple)/0.45)] !text-[hsl(var(--hp-ink))] transition-colors hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))] sm:min-h-0"
                   >
                     {BUSINESS_NAP.phone.display}
                   </a>
@@ -80,7 +80,7 @@ const BookingBanner = () => {
               </div>
               <div className="grid grid-cols-[5rem_minmax(0,1fr)] gap-4 py-4">
                 <dt className="text-[0.61rem] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--after-hours-copper))]">Booking</dt>
-                <dd className="text-[hsl(var(--after-hours-cream)/0.86)]">Managed securely through Fresha</dd>
+                <dd className="text-[hsl(var(--hp-ink)/0.86)]">Managed securely through Fresha</dd>
               </div>
             </dl>
 
@@ -89,12 +89,12 @@ const BookingBanner = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackBookingClick("booking_banner", window.location.pathname)}
-              className="mt-9 inline-flex min-h-12 w-full items-center justify-between gap-6 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--after-hours-plum))] transition-colors hover:bg-[hsl(var(--after-hours-copper))] sm:w-auto lg:mt-auto"
+              className="mt-9 inline-flex min-h-12 w-full items-center justify-between gap-6 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--hp-ink))] transition-colors hover:bg-[hsl(var(--hp-lilac))] sm:w-auto lg:mt-auto"
             >
               <span>{BOOK_CTA_LABEL}</span>
               <span aria-hidden="true">↗</span>
             </a>
-            <p className="mt-4 text-xs leading-5 text-[hsl(var(--after-hours-cream)/0.62)]">
+            <p className="mt-4 text-xs leading-5 text-[hsl(var(--hp-ink)/0.62)]">
               Opens Hair Pinns on Fresha in a new tab.
             </p>
           </div>

@@ -6,49 +6,55 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://hairpinns.com/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/about/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/booking/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/contact/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/blog/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hairpinns.com/updates/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://hairpinns.com/areas/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -58,116 +64,110 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hairpinns.com/reviews/</loc>
-    <lastmod>2026-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://hairpinns.com/faq/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/glossary/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/smoothing/mid-length-straight-up-smoothing/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/smoothing/long-thick-straight-up-smoothing/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/smoothing/straight-up-smoothing-teens/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/foil-packages/full-head-foils-package/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/foil-packages/half-head-foils-cut-blowdry/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/foil-packages/quarter-head-foils-cut-blowdry/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/colouring-packages/long-hair-colour-package/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/colouring-packages/mid-length-colour-package/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/colouring-packages/short-hair-colour-package/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/long-hair-wash-cut-blowdry/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/mid-length-wash-cut-blowdry/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/short-wash-cut-blowdry/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/cut-packages/kids-cut-blowdry-bundle/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/kids-formal/primary-formal-hairstyle/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/services/kids-formal/high-school-formal-hairstyle/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/juuce-botanicals/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -179,7 +179,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/collections/wet-brush-detanglers/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -191,7 +191,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/collections/aromaganic/</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -221,7 +221,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/collections/heat-protection/</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -245,13 +245,13 @@
   </url>
   <url>
     <loc>https://hairpinns.com/collections/frizz-free-must-haves/</loc>
-    <lastmod>2026-08-09</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/haircare-bundles-gift-sets/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -263,7 +263,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/collections/hair-treatments-masks/</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -275,19 +275,19 @@
   </url>
   <url>
     <loc>https://hairpinns.com/collections/colour-treated-hair/</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/hair-tools-brushes/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/collections/hair-styling-products/</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -496,98 +496,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hairpinns.com/products/beat-heat/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587</image:loc>
-      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-hair-pinns.webp?v=1747026587</image:loc>
-      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560</image:loc>
-      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/juuce-haircare-product-new-heat-shield-straightening-oil-spray-styling-finishing-200ml-hair-pinns-scaled.webp?v=1747026587</image:loc>
-      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697</image:loc>
-      <image:title>Shield, Guard &amp; Protect with our Trio Super Set</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/products/beat-heat-guard-shield-duo/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697</image:loc>
-      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-guard-shield-duo-hair-pinns.webp?v=1747030697</image:loc>
-      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-guard-shield-duo-hair-pinns-beach.webp?v=1747030697</image:loc>
-      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-essentials-hair-care-bundle-heat-guard-heat-shield-solar-enz-hair-pinns-vibrant.webp?v=1747030697</image:loc>
-      <image:title>Beat Heat Guard &amp; Shield Duo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/products/beat-heat-shield-enz-duo/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560</image:loc>
-      <image:title>Beat Heat Shield Enz Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-shield-enz-duo-hair-pinns.webp?v=1747030560</image:loc>
-      <image:title>Beat Heat Shield Enz Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-shield-enz-duo-hair-pinns-beach.webp?v=1747030560</image:loc>
-      <image:title>Beat Heat Shield Enz Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-essentials-hair-care-bundle-heat-guard-heat-shield-solar-enz-hair-pinns-vibrant_4d587fb2-7d17-4ba8-a08d-ec7db21a791c.webp?v=1747030560</image:loc>
-      <image:title>Beat Heat Shield Enz Duo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://hairpinns.com/products/beat-heat-solar-guard-duo/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-120.jpg?v=1747030506</image:loc>
-      <image:title>Beat Heat Solar Guard Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-enz-guard-duo-hair-pinns.webp?v=1747030506</image:loc>
-      <image:title>Beat Heat Solar Guard Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-hair-care-bundle-enz-guard-duo-hair-pinns-beach.webp?v=1747030506</image:loc>
-      <image:title>Beat Heat Solar Guard Duo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/beat-heat-essentials-hair-care-bundle-heat-guard-heat-shield-solar-enz-hair-pinns-vibrant_ef9d9ba3-77af-4ce7-8c5a-43fd240f9d0d.webp?v=1747030506</image:loc>
-      <image:title>Beat Heat Solar Guard Duo</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://hairpinns.com/products/juuce-20-in-one-miracle/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -607,7 +515,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/juuce-amp-it-up-volume/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -1452,6 +1360,32 @@
     </image:image>
   </url>
   <url>
+    <loc>https://hairpinns.com/products/wet-brush-shower-detangler/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998</image:loc>
+      <image:title>Wet Brush Shower Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/AAFF8384-CB63-439C-A5B0-0A6FFA2E5239.jpg?v=1746739385</image:loc>
+      <image:title>Wet Brush Shower Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/17429D3E-A218-4DA1-B0BA-FC58C80555F2.jpg?v=1746739385</image:loc>
+      <image:title>Wet Brush Shower Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C70F52BC-FC38-4625-AE8C-07D7E2926AEB.jpg?v=1746739385</image:loc>
+      <image:title>Wet Brush Shower Detangler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/6B322005-3689-4876-824E-2343703E722B.jpg?v=1746739385</image:loc>
+      <image:title>Wet Brush Shower Detangler</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://hairpinns.com/products/pure-forever-blonde-shampoo/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1867,7 +1801,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-paddle-detangler/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -1885,21 +1819,9 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-detangler/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG_8358.webp?v=1788433577</image:loc>
-      <image:title>Wet Brush Pro Detangler</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG-8508.jpg?v=1788442173</image:loc>
-      <image:title>Wet Brush Pro Detangler</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG_8356.webp?v=1788433578</image:loc>
-      <image:title>Wet Brush Pro Detangler</image:title>
-    </image:image>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG-8510.webp?v=1788442234</image:loc>
       <image:title>Wet Brush Pro Detangler</image:title>
@@ -1929,7 +1851,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-original-detangler/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -2009,7 +1931,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-kids-detangler/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -2057,7 +1979,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/mini-mermaid-pony/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -2181,7 +2103,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/wet-brush-pro-shine-enhancer/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -2190,10 +2112,6 @@
     </image:image>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/BF7E31A8-700D-4E5C-80F3-67D029DBAFEE.webp?v=1777887839</image:loc>
-      <image:title>Wet Brush Pro Shine Enhancer &amp; Smooth Styler</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Wet_Brush_Shine_Enhancer_Light_Blue_Marble.jpg?v=1750910096</image:loc>
       <image:title>Wet Brush Pro Shine Enhancer &amp; Smooth Styler</image:title>
     </image:image>
   </url>
@@ -2261,7 +2179,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/aromaganic-clean-hair-colour-organics/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -2401,13 +2319,9 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/festive-finish-gift-set-duo/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/312B7AAB-0E77-46E4-B322-608FDC3FD4BD.webp?v=1788468862</image:loc>
-      <image:title>Festive Finish Gift Set Duo</image:title>
-    </image:image>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/5FFE1A38-FE7A-4381-8732-75CFA2FAF811.webp?v=1788468862</image:loc>
       <image:title>Festive Finish Gift Set Duo</image:title>
@@ -2437,33 +2351,33 @@
   </url>
   <url>
     <loc>https://hairpinns.com/products/christmas-packs/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/JuuceChristmasPackCover.jpg?v=1758073380</image:loc>
-      <image:title>Juuce Christmas Packs</image:title>
+      <image:title>Juuce Christmas Trio Packs 2026</image:title>
     </image:image>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Miracle_Smooth_Kaktis_BONUS.jpg?v=1758073412</image:loc>
-      <image:title>Juuce Christmas Packs</image:title>
+      <image:title>Juuce Christmas Trio Packs 2026</image:title>
     </image:image>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Peppermint_Smooth_Enz.jpg?v=1758073412</image:loc>
-      <image:title>Juuce Christmas Packs</image:title>
+      <image:title>Juuce Christmas Trio Packs 2026</image:title>
     </image:image>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Radiant_Colour_Solar_Enz.jpg?v=1758073412</image:loc>
-      <image:title>Juuce Christmas Packs</image:title>
+      <image:title>Juuce Christmas Trio Packs 2026</image:title>
     </image:image>
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Silver_Blonde_Smooth_Enz.jpg?v=1758073412</image:loc>
-      <image:title>Juuce Christmas Packs</image:title>
+      <image:title>Juuce Christmas Trio Packs 2026</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://hairpinns.com/products/pure-christmas-packs-2025/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -2483,7 +2397,7 @@
       <image:title>Pure Christmas Packs</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Goddess_sacred_mask.jpg?v=1758074745</image:loc>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Colour_Angel_sacred_mask.jpg?v=1758074761</image:loc>
       <image:title>Pure Christmas Packs</image:title>
     </image:image>
   </url>
@@ -2524,16 +2438,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hairpinns.com/products/goodbye-frizz-quad/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/IMG-9966.png?v=1772843030</image:loc>
-      <image:title>Goodbye Frizz Quad</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://hairpinns.com/products/pure-volumizing-spray/</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2541,6 +2445,20 @@
     <image:image>
       <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/DA3D1C4E-7FC2-4FB1-A4D7-F41DCCC3AD8F.jpg?v=1773527271</image:loc>
       <image:title>Pure Volumizing Spray</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hairpinns.com/products/juuce-duo-gift-packs/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/12252D49-604F-4C1A-98DA-C1AD2B88A01F.png?v=1788992789</image:loc>
+      <image:title>Juuce Duo Gift Packs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C6E099F5-5324-442D-B8FB-26E95E31673E.png?v=1788992850</image:loc>
+      <image:title>Juuce Duo Gift Packs</image:title>
     </image:image>
   </url>
   <url>
@@ -2833,7 +2751,7 @@
   </url>
   <url>
     <loc>https://hairpinns.com/blog/sulfate-free-shampoo-australia/</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -3055,73 +2973,73 @@
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/sydney/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/melbourne/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/brisbane/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/perth/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/adelaide/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/hobart/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/darwin/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/canberra/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/gold-coast/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/newcastle/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/wollongong/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hairpinns.com/shipping-to/geelong/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -154,6 +154,30 @@ async function getShopifyCollections() {
   return collections;
 }
 
+async function getShopifyUpdates() {
+  const query = `
+    query sitemapUpdates($after: String) {
+      blog(handle: "updates") {
+        articles(first: 100, after: $after, sortKey: PUBLISHED_AT, reverse: true) {
+          edges { node { handle publishedAt } }
+          pageInfo { hasNextPage endCursor }
+        }
+      }
+    }
+  `;
+  const firstPage = await fetchShopify(query, { after: null });
+  if (!firstPage?.blog) throw new Error('[sitemap] Required Shopify blog "updates" is missing');
+
+  const nodes = await collectShopifyConnection(async (after) => {
+    if (after === null) return firstPage.blog.articles;
+    return (await fetchShopify(query, { after }))?.blog?.articles;
+  }, 'updates', { allowEmpty: true });
+
+  return nodes
+    .map((article) => ({ handle: article.handle, publishedAt: article.publishedAt }))
+    .filter((article) => article.handle);
+}
+
 async function main() {
   const urls = [];
 
@@ -165,9 +189,9 @@ async function main() {
   const contactMod = gitLastMod('src/pages/Contact.tsx');
   const colMod = gitLastMod('src/pages/Collections.tsx');
   const blogIdxMod = gitLastMod('src/pages/Blog.tsx');
+  const updatesIdxMod = gitLastMod('src/pages/Updates.tsx');
   const areasIdxMod = gitLastMod('src/pages/AreasIndex.tsx');
   const faqMod = gitLastMod('src/pages/FAQ.tsx');
-  const reviewsMod = gitLastMod('src/pages/Reviews.tsx');
   const glossaryMod = gitLastMod('src/pages/Glossary.tsx');
 
   // Core pages
@@ -178,10 +202,15 @@ async function main() {
   urls.push(url(`${BASE}/contact`, 'monthly', 0.8, contactMod));
   urls.push(url(`${BASE}/collections`, 'weekly', 0.9, colMod));
   urls.push(url(`${BASE}/blog`, 'weekly', 0.8, blogIdxMod));
+  urls.push(url(`${BASE}/updates`, 'weekly', 0.6, updatesIdxMod));
+
+  const updateEntries = await getShopifyUpdates();
+  updateEntries.forEach((entry) => {
+    urls.push(url(`${BASE}/updates/${entry.handle}`, 'monthly', 0.55, entry.publishedAt));
+  });
 
   urls.push(url(`${BASE}/areas`, 'monthly', 0.9, areasIdxMod));
   urls.push(url(`${BASE}/sitemap`, 'monthly', 0.5));
-  urls.push(url(`${BASE}/reviews`, 'monthly', 0.7, reviewsMod));
   urls.push(url(`${BASE}/faq`, 'monthly', 0.8, faqMod));
   urls.push(url(`${BASE}/glossary`, 'monthly', 0.8, glossaryMod));
 

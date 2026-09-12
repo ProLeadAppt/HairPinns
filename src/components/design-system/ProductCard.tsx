@@ -43,12 +43,12 @@ const ProductCard = ({
   className
 }: ProductCardProps) => {
   const [isAddingToCart, setIsAddingToCart] = useState(false);
-  
+
   const handleAddToCart = async () => {
     if (!inStock) return;
-    
+
     setIsAddingToCart(true);
-    
+
     try {
       if (onAddToCart) {
         await onAddToCart();
@@ -66,7 +66,7 @@ const ProductCard = ({
       setIsAddingToCart(false);
     }
   };
-  
+
   const handleViewProduct = () => {
     if (onViewProduct) {
       onViewProduct();
@@ -76,17 +76,17 @@ const ProductCard = ({
   };
   const renderRating = () => {
     if (!rating) return null;
-    
+
     return (
       <div className="flex items-center gap-1 mb-2">
         <div className="flex">
           {[...Array(5)].map((_, i) => (
-            <Star 
-              key={i} 
+            <Star
+              key={i}
               className={cn(
                 "w-3 h-3",
                 i < Math.floor(rating) ? "text-[hsl(var(--star-color))] fill-current" : "text-muted-foreground"
-              )} 
+              )}
             />
           ))}
         </div>
@@ -106,16 +106,9 @@ const ProductCard = ({
       className
     )}>
       {/* Image Container - Clickable */}
-      <div 
+      <div
         className="relative aspect-square overflow-hidden bg-muted cursor-pointer"
         onClick={handleViewProduct}
-        onMouseEnter={() => {
-          // Track hover for analytics
-          if (handle && typeof window !== 'undefined') {
-            const { hpCapture } = require("@/lib/hpCapture");
-            hpCapture.trackProductHover(handle, name).catch(() => {});
-          }
-        }}
       >
         <picture className="block w-full h-full">
           <source
@@ -139,21 +132,21 @@ const ProductCard = ({
             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         </picture>
-        
+
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
           {badge && <Badge variant="accent" size="sm">{badge}</Badge>}
           {!inStock && <Badge variant="destructive" size="sm">Out of Stock</Badge>}
         </div>
-        
+
         {/* Favorite Button */}
         {onToggleFavorite && (
           <button
             onClick={onToggleFavorite}
             className={cn(
               "absolute top-3 right-3 p-2 rounded-full transition-colors duration-fast",
-              isFavorite 
-                ? "bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-400" 
+              isFavorite
+                ? "bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-400"
                 : "bg-background/80 text-muted-foreground hover:bg-background hover:text-foreground"
             )}
             aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
@@ -166,19 +159,19 @@ const ProductCard = ({
       {/* Content */}
       <div className="p-4">
         {renderRating()}
-        
+
         <h3 className="font-medium text-foreground mb-2 line-clamp-2">
           {name}
         </h3>
-        
+
         {description && (
           <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
             {description}
           </p>
         )}
-        
+
         {/*
-         * Price — when Shopify returns no parseable amount (uncommon, but
+         * Price, when Shopify returns no parseable amount (uncommon, but
          * happens for newly-created products with no variant or a
          * rate-limited / failed fetch), hide the $0 entirely instead of
          * showing "$0.00 next to the amount" which Jena flagged. Card
@@ -209,7 +202,7 @@ const ProductCard = ({
             </div>
           );
         })()}
-        
+
         {/* Actions */}
         <div className="flex gap-2">
           <Button

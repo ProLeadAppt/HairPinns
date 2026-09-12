@@ -55,11 +55,11 @@ const post = {
         },
         {
           question: "Can I colour my hair after Straight Up Smoothing?",
-          answer: "Yes, but wait 2 weeks. The cuticle needs time to settle. Always do a strand test — colour can grab differently on smoothed hair, especially if it's been pre-lightened.",
+          answer: "Yes, but wait 2 weeks. The cuticle needs time to settle. Always do a strand test, colour can grab differently on smoothed hair, especially if it's been pre-lightened.",
         },
         {
           question: "How long does Straight Up Smoothing last?",
-          answer: "6 months on fine hair, 9-12 months on coarse or virgin hair. The treatment grows out with your natural curl, so it's not 'gone' — it just returns gradually at the root.",
+          answer: "6 months on fine hair, 9-12 months on coarse or virgin hair. The treatment grows out with your natural curl, so it's not 'gone', it just returns gradually at the root.",
         },
         {
           question: "Is Straight Up Smoothing safe for coloured hair?",

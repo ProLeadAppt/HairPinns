@@ -3,14 +3,14 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "keratin-vs-brazilian-blowout-vs-straight-up",
     title: "Keratin vs Brazilian Blowout vs Straight Up: Which One?",
-    excerpt: "The three main smoothing treatments explained — true keratin, Brazilian blowout, and amino-acid Straight Up Smoothing. Which fits your hair and budget?",
+    excerpt: "The three main smoothing treatments explained, true keratin, Brazilian blowout, and amino-acid Straight Up Smoothing. Which fits your hair and budget?",
     category: "Treatments",
     date: "April 19, 2026",
     readTime: "8 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697",
     author: "Jena Pinn",
     content: {
-      introduction: "People use 'keratin', 'Brazilian blowout', and 'smoothing' interchangeably — but they're not the same treatment. The differences matter: formaldehyde content, durability, effect on curl pattern, and aftercare requirements are all different. Here's an honest breakdown from someone who offers the amino-acid version (Straight Up Smoothing) and has referred clients out for the other two.",
+      introduction: "People use 'keratin', 'Brazilian blowout', and 'smoothing' interchangeably, but they're not the same treatment. The differences matter: formaldehyde content, durability, effect on curl pattern, and aftercare requirements are all different. Here's an honest breakdown from someone who offers the amino-acid version (Straight Up Smoothing) and has referred clients out for the other two.",
       sections: [
         {
           heading: "The Three Categories, Clearly Defined",
@@ -18,7 +18,7 @@ const post = {
         },
         {
           heading: "Which Keeps Natural Movement, Which Flattens It?",
-          content: "Straight Up Smoothing: keeps waves and natural volume — it reduces frizz and adds shine without making hair poker-straight. Best for clients who like their natural texture but want it more manageable. Keratin treatment: depending on formulation, can keep some movement or make hair completely straight. Ask your stylist specifically which result you'll get. Brazilian blowout: traditionally makes hair quite straight with minimal curl remaining. Less flexible on 'I want to keep my waves' requests."
+          content: "Straight Up Smoothing: keeps waves and natural volume, it reduces frizz and adds shine without making hair poker-straight. Best for clients who like their natural texture but want it more manageable. Keratin treatment: depending on formulation, can keep some movement or make hair completely straight. Ask your stylist specifically which result you'll get. Brazilian blowout: traditionally makes hair quite straight with minimal curl remaining. Less flexible on 'I want to keep my waves' requests."
         },
         {
           heading: "Price Comparison in Sydney (2026)",
@@ -30,7 +30,7 @@ const post = {
         },
         {
           heading: "Damage Profile",
-          content: "Straight Up Smoothing: minimal damage — it's essentially a deep conditioning treatment with smoothing active ingredients. Keratin treatment: low damage if done correctly, but the high-heat sealing step (230°C flat iron) causes cumulative damage over years of retreatments. Brazilian blowout: slightly higher damage risk due to the protein-concentrate formula; some clients report brittleness after multiple applications. Nanoplasty: designed to restore rather than damage — actually improves hair condition with each treatment."
+          content: "Straight Up Smoothing: minimal damage, it's essentially a deep conditioning treatment with smoothing active ingredients. Keratin treatment: low damage if done correctly, but the high-heat sealing step (230°C flat iron) causes cumulative damage over years of retreatments. Brazilian blowout: slightly higher damage risk due to the protein-concentrate formula; some clients report brittleness after multiple applications. Nanoplasty: designed to restore rather than damage, actually improves hair condition with each treatment."
         },
         {
           heading: "Which One Should You Choose?",
@@ -38,14 +38,14 @@ const post = {
         },
         {
           heading: "Book a Consultation First",
-          content: "Any smoothing treatment is a commitment. The best salons offer a free 15-minute consultation to assess your hair's condition, discuss results you want, and recommend the right treatment. Come with photos of looks you like. Mention any previous chemical services (colour, relaxer, previous smoothing). We'll match the treatment to your hair — not the other way around."
+          content: "Any smoothing treatment is a commitment. The best salons offer a free 15-minute consultation to assess your hair's condition, discuss results you want, and recommend the right treatment. Come with photos of looks you like. Mention any previous chemical services (colour, relaxer, previous smoothing). We'll match the treatment to your hair, not the other way around."
         }
       ],
       productModule: {
-        title: "Aftercare — what we use",
+        title: "Aftercare, what we use",
         products: [
           { name: "QIQI Bare Repair Oil", link: "https://hairpinns.com/collections/qiqi", description: "Seals cuticle, extends treatment life" },
-          { name: "Pure Precious Ends", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Leave-in — the difference between 8 weeks and 12 weeks" },
+          { name: "Pure Precious Ends", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Leave-in, the difference between 8 weeks and 12 weeks" },
           { name: "Juuce Heat Shield", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Non-negotiable heat protection for any smoothed hair" }
         ]
       },
@@ -62,7 +62,7 @@ const post = {
       ],
       faqSection: [
         {
-          question: "Keratin vs Brazilian Blowout vs Straight Up — which should I get?",
+          question: "Keratin vs Brazilian Blowout vs Straight Up, which should I get?",
           answer: "Brazilian Blowout: soft, natural, lasts 3 months, OK for coloured hair. Keratin: stronger hold, lasts 4-6 months, takes 2-3 hours. Straight Up Smoothing: permanent, lasts 6-12 months, single 3-4 hour service. Jena does a free 10-minute consultation to match your hair to the right one.",
         },
         {
@@ -75,11 +75,11 @@ const post = {
         },
         {
           question: "Can I switch from one to another?",
-          answer: "Yes — they're compatible. The most common switch is Brazilian Blowout → Straight Up once a client decides they want a permanent solution. Wait 3 months between services to avoid over-processing.",
+          answer: "Yes, they're compatible. The most common switch is Brazilian Blowout → Straight Up once a client decides they want a permanent solution. Wait 3 months between services to avoid over-processing.",
         },
         {
           question: "Do any of these treatments work on short hair?",
-          answer: "All three work on hair 5cm+ from the root. For very short hair, Jena recommends a smoothing mask + Japanese hair Botox instead — easier to maintain, less commitment.",
+          answer: "All three work on hair 5cm+ from the root. For very short hair, Jena recommends a smoothing mask + Japanese hair Botox instead, easier to maintain, less commitment.",
         }
       ],
     },

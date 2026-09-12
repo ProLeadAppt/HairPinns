@@ -34,13 +34,13 @@ const Shipping = () => {
         ]}
       />
       <Header />
-      
+
       <main id="main-content" tabIndex={-1} className="flex-grow">
         <Section className="pt-xl">
           <SectionHeader as="h1" title="Shipping Policy" />
           <div className="max-w-3xl mx-auto prose prose-lg">
             <p className="text-foreground leading-relaxed mb-6">
-              At Hair Pinns, we get your hair care products to you 
+              At Hair Pinns, we get your hair care products to you
               as quickly and safely as possible.
             </p>
 
@@ -63,7 +63,7 @@ const Shipping = () => {
                 <p className="text-xs text-muted-foreground">1-2 business days</p>
               </div>
               <div className="border border-[hsl(var(--after-hours-copper)/0.45)] bg-[hsl(var(--after-hours-cream))] p-4 text-center">
-                <p className="text-sm font-medium text-[hsl(var(--after-hours-plum))]">Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</p>
+                <p className="text-sm font-medium text-[hsl(var(--hp-ink))]">Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</p>
                 <p className="text-xl font-bold text-[hsl(var(--after-hours-copper))]">FREE</p>
                 <p className="text-xs text-muted-foreground">Standard delivery</p>
               </div>
@@ -79,7 +79,7 @@ const Shipping = () => {
                 { step: "Enjoy", desc: "At your door" },
               ].map((s, i) => (
                 <div key={s.step} className="flex flex-col items-center text-center flex-1">
-                  <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-[hsl(var(--after-hours-plum))] text-xs font-bold text-[hsl(var(--after-hours-cream))]">{i + 1}</div>
+                  <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-[hsl(var(--hp-lavender))] text-xs font-bold text-[hsl(var(--hp-ink))]">{i + 1}</div>
                   <p className="text-xs font-medium text-heading">{s.step}</p>
                   <p className="text-[10px] text-muted-foreground">{s.desc}</p>
                 </div>
@@ -92,7 +92,7 @@ const Shipping = () => {
             </p>
             <p className="text-foreground leading-relaxed mb-4">
               We deliver to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra, Gold Coast, Newcastle, Wollongong and all of Australia.{" "}
-              <a href="/blog/hair-products-melbourne-brisbane-perth-australia" className="font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
+              <a href="/blog/hair-products-melbourne-brisbane-perth-australia" className="font-medium text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 Read our guide to hair products Melbourne, Brisbane & Perth
               </a>.
             </p>
@@ -100,7 +100,7 @@ const Shipping = () => {
               Local Sutherland Shire customers may also choose in-store pickup at no additional cost.
             </p>
 
-            {/* State landing pages — each has unique delivery times, climate-
+            {/* State landing pages, each has unique delivery times, climate-
                 appropriate product picks, and FAQs for that state's hair-care
                 challenges. Internal links here help crawlers discover the
                 cluster. */}
@@ -122,11 +122,11 @@ const Shipping = () => {
             <h2 className="text-h2 font-heading text-heading mt-8 mb-4">Questions?</h2>
             <p className="text-foreground leading-relaxed">
               For any shipping inquiries, please contact us at{" "}
-              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
+              <a href="mailto:hairpinns1@gmail.com" className="text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 hairpinns1@gmail.com
               </a>{" "}
               or call{" "}
-              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
+              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]">
                 {BUSINESS_NAP.phone.display}
               </a>
               .
@@ -134,7 +134,7 @@ const Shipping = () => {
           </div>
         </Section>
       </main>
-      
+
       <Footer />
     </div>
   );

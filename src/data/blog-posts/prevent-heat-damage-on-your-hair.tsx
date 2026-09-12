@@ -48,15 +48,15 @@ const post = {
       faqSection: [
         {
           question: "What's the best way to prevent heat damage on hair?",
-          answer: "Always use a heat protectant (like Juuce Heat Shield), keep tools below 180°C, and never straighten the same section more than twice. The single biggest win is switching to a microfibre towel — cotton rubs and roughs the cuticle, microfibre absorbs and protects.",
+          answer: "Always use a heat protectant (like Juuce Heat Shield), keep tools below 180°C, and never straighten the same section more than twice. The single biggest win is switching to a microfibre towel, cotton rubs and roughs the cuticle, microfibre absorbs and protects.",
         },
         {
           question: "Do heat protectants actually work?",
-          answer: "Yes — the active ingredients (cyclomethicone, dimethicone) form a film that absorbs up to 220°C before transferring heat to the hair shaft. Without one, every 10°C above 150°C causes cumulative protein damage you can't see for 6 months.",
+          answer: "Yes, the active ingredients (cyclomethicone, dimethicone) form a film that absorbs up to 220°C before transferring heat to the hair shaft. Without one, every 10°C above 150°C causes cumulative protein damage you can't see for 6 months.",
         },
         {
           question: "What temperature should I set my straightener or curler to?",
-          answer: "150°C for fine or colour-treated hair, 180°C for normal, and never above 200°C. If your tool only goes to 230°C, don't crank it — section smaller and pass once, not three times.",
+          answer: "150°C for fine or colour-treated hair, 180°C for normal, and never above 200°C. If your tool only goes to 230°C, don't crank it, section smaller and pass once, not three times.",
         },
         {
           question: "Is it OK to blow-dry hair every day?",
@@ -64,7 +64,7 @@ const post = {
         },
         {
           question: "Does the Bamcha towel really stop frizz?",
-          answer: "Yes — it's woven tight enough to absorb water without rubbing the cuticle rough. Cotton towels rough the cuticle open (that's the frizz), microfibre closes it. One swap, visible difference in two washes.",
+          answer: "Yes, it's woven tight enough to absorb water without rubbing the cuticle rough. Cotton towels rough the cuticle open (that's the frizz), microfibre closes it. One swap, visible difference in two washes.",
         }
       ],
     },

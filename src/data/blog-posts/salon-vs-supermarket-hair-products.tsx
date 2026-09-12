@@ -59,11 +59,11 @@ const post = {
         },
         {
           question: "Is it worth paying more for salon shampoo?",
-          answer: "If you colour your hair, get keratin smoothing, or use heat tools — yes. A $30 salon bottle lasts 6-8 weeks (sulfate-free, concentrated formulas) and protects the treatments that cost hundreds. A $6 supermarket bottle strips them in weeks.",
+          answer: "If you colour your hair, get keratin smoothing, or use heat tools, yes. A $30 salon bottle lasts 6-8 weeks (sulfate-free, concentrated formulas) and protects the treatments that cost hundreds. A $6 supermarket bottle strips them in weeks.",
         },
         {
           question: "Do salon products work for every hair type?",
-          answer: "Yes — that's why Jena personally curates the range at Hair Pinns. Fine, coarse, curly, colour-treated, or chemically straightened: there's a salon match for each, and the consultation is free if you're unsure.",
+          answer: "Yes, that's why Jena personally curates the range at Hair Pinns. Fine, coarse, curly, colour-treated, or chemically straightened: there's a salon match for each, and the consultation is free if you're unsure.",
         },
         {
           question: "Can I mix salon and supermarket products?",
@@ -71,7 +71,7 @@ const post = {
         },
         {
           question: "How do I know if a product is genuinely salon-grade?",
-          answer: "Check the ingredient list — salon products list active ingredients in the first five positions. If 'aqua' and 'sodium lauryl sulfate' are top, it's a supermarket formula in a fancy bottle.",
+          answer: "Check the ingredient list, salon products list active ingredients in the first five positions. If 'aqua' and 'sodium lauryl sulfate' are top, it's a supermarket formula in a fancy bottle.",
         }
       ],
     },

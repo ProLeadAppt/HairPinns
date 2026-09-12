@@ -112,18 +112,6 @@ const OrderConfirmation = () => {
       // Fire client-side purchase event (non-blocking)
       const trackPurchase = async () => {
         try {
-          const hpCaptureModule = await import("@/lib/hpCapture");
-          const hpCapture = hpCaptureModule.default || hpCaptureModule.hpCapture;
-          
-          await hpCapture.trackEvent("purchase_client", {
-            order_id: order.order_id,
-            subtotal: order.subtotal,
-            total: order.total,
-            currency: order.currency,
-            items: order.items,
-            item_count: order.items.reduce((sum, item) => sum + item.quantity, 0),
-          });
-
           // Track purchase pixels (NO PII)
           pixelTracking.trackPurchase({
             orderId: order.order_id,
@@ -277,11 +265,11 @@ const OrderConfirmation = () => {
             {/* Support */}
             <p className="text-sm text-muted-foreground mt-8">
               Questions about your order?{" "}
-              <a href="/contact" className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
+              <a href="/contact" className="text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
                 Contact us
               </a>{" "}
               or call{" "}
-              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
+              <a href={BUSINESS_NAP.phone.tel} className="text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">
                 {BUSINESS_NAP.phone.display}
               </a>
             </p>

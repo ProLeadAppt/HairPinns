@@ -69,4 +69,24 @@ describe("collection product card mapping", () => {
     expect(card.hasMultipleVariants).toBe(true);
     expect(card.quickAddVariantId).toBeNull();
   });
+
+  it("keeps a multi-denomination digital gift card in stock", () => {
+    const card = mapCollectionProduct({
+      ...baseProduct,
+      handle: "hair-pinns-gift-card",
+      variants: {
+        edges: [
+          { node: { id: "25", title: "$25", availableForSale: true, quantityAvailable: 0, requiresShipping: false, price: { amount: "25.00", currencyCode: "AUD" } } },
+          { node: { id: "50", title: "$50", availableForSale: true, quantityAvailable: 0, requiresShipping: false, price: { amount: "50.00", currencyCode: "AUD" } } },
+        ],
+        pageInfo: { hasNextPage: false },
+      },
+    });
+
+    expect(card.availability).toEqual({
+      canPurchase: true,
+      label: "Available online",
+      schema: "InStock",
+    });
+  });
 });

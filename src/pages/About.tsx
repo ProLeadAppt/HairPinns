@@ -139,15 +139,15 @@ const About = () => {
       </div>
 
       <main id="main-content" data-about-page="" tabIndex={-1}>
-        <section data-about-hero="" className="overflow-hidden bg-[hsl(var(--after-hours-near-black))] text-[hsl(var(--after-hours-cream))]" aria-labelledby="about-title">
+        <section data-about-hero="" className="overflow-hidden bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]" aria-labelledby="about-title">
           <div className="mx-auto grid max-w-7xl lg:min-h-[760px] lg:grid-cols-[1.04fr_0.96fr]">
             <div className="flex flex-col justify-between px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20 xl:pl-8 xl:pr-16">
               <div>
                 <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">About / Jena Pinn</p>
-                <h1 id="about-title" className="mt-6 max-w-[10ch] font-heading text-[clamp(3.5rem,12vw,7.4rem)] font-normal leading-[0.88] tracking-[-0.055em] text-[hsl(var(--after-hours-cream))]">
+                <h1 id="about-title" className="mt-6 max-w-[10ch] font-heading text-[clamp(3.5rem,12vw,7.4rem)] font-normal leading-[0.88] tracking-[-0.055em] text-[hsl(var(--hp-ink))]">
                   Hair care, without the hard sell.
                 </h1>
-                <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--after-hours-cream)/0.76)] sm:text-lg sm:leading-8">
+                <p className="mt-8 max-w-[42rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.76)] sm:text-lg sm:leading-8">
                   I’m Jena, founder and hairdresser at Hair Pinns in Bangor. I started in salons at 13, qualified at 17, and opened my own home salon in December 2009.
                 </p>
               </div>
@@ -158,23 +158,23 @@ const About = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackBookingClick("about_hero", "/about")}
-                  className="inline-flex min-h-12 items-center justify-between gap-6 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--after-hours-plum))] transition-colors hover:bg-[hsl(var(--after-hours-copper))] sm:min-w-52"
+                  className="inline-flex min-h-12 items-center justify-between gap-6 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--hp-ink))] transition-colors hover:bg-[hsl(var(--hp-lilac))] sm:min-w-52"
                 >
                   <span>{BOOK_CTA_LABEL}</span><span aria-hidden="true">↗</span>
                 </a>
-                <Link to="/collections" className="inline-flex min-h-12 items-center gap-3 border-b border-[hsl(var(--after-hours-cream)/0.48)] text-sm font-semibold !text-[hsl(var(--after-hours-cream))] hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))]">
+                <Link to="/collections" className="inline-flex min-h-12 items-center gap-3 border-b border-[hsl(var(--hp-ink)/0.48)] text-sm font-semibold !text-[hsl(var(--hp-ink))] hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))]">
                   Shop Jena’s shelf <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>
 
-            <figure className="relative min-w-0 border-t border-[hsl(var(--after-hours-cream)/0.18)] lg:border-l lg:border-t-0">
+            <figure className="relative min-w-0 border-t border-[hsl(var(--hp-ink)/0.18)] lg:border-l lg:border-t-0">
               <picture className="block aspect-[4/5] h-full min-h-[500px] overflow-hidden bg-[hsl(var(--after-hours-cream)/0.08)] lg:aspect-auto">
                 <source type="image/avif" srcSet={`${jenaFounderAvif540} 540w, ${jenaFounderAvif1080} 1080w`} sizes="(max-width: 1023px) 100vw, 48vw" />
                 <source type="image/webp" srcSet={`${jenaFounderWebp540} 540w, ${jenaFounderWebp1080} 1080w`} sizes="(max-width: 1023px) 100vw, 48vw" />
                 <img src={jenaFounderWebp1080} alt="Jena, founder and hairdresser at Hair Pinns in Bangor" width="1080" height="1080" className="h-full w-full object-cover object-[center_38%]" fetchpriority="high" decoding="async" />
               </picture>
-              <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-4 bg-[hsl(var(--after-hours-near-black)/0.9)] px-4 py-4 backdrop-blur-sm sm:px-6">
+              <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-4 bg-[hsl(var(--hp-lavender)/0.96)] px-4 py-4 text-[hsl(var(--hp-ink))] backdrop-blur-sm sm:px-6">
                 <span className="font-heading text-xl">Jena</span>
                 <span className="text-right text-[0.61rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-copper))]">Founder / hairdresser</span>
               </figcaption>
@@ -190,37 +190,37 @@ const About = () => {
                 <source type="image/webp" srcSet={`${jenaWorkingWebp480} 480w, ${jenaWorkingWebp800} 800w, ${jenaWorkingWebp1170} 1170w`} sizes="(max-width: 1023px) calc(100vw - 2rem), 38vw" />
                 <img src={jenaWorkingWebp1170} alt="Jena working with a client at Hair Pinns" width="1170" height="1463" className="h-full w-full object-cover" loading="lazy" decoding="async" />
               </picture>
-              <figcaption className="border-b border-[hsl(var(--after-hours-plum)/0.22)] py-3 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-plum)/0.7)]">Behind the chair / Bangor</figcaption>
+              <figcaption className="border-b border-[hsl(var(--after-hours-plum)/0.22)] py-3 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.7)]">Behind the chair / Bangor</figcaption>
             </figure>
 
             <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.72)]">01 / The story</p>
-              <h2 id="about-story-title" className="mt-5 max-w-[11ch] font-heading text-[clamp(2.8rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">A small salon built around listening.</h2>
-              <div className="mt-8 max-w-[42rem] space-y-5 text-base leading-7 text-[hsl(var(--after-hours-plum)/0.78)]">
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.72)]">01 / The story</p>
+              <h2 id="about-story-title" className="mt-5 max-w-[11ch] font-heading text-[clamp(2.8rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">A small salon built around listening.</h2>
+              <div className="mt-8 max-w-[42rem] space-y-5 text-base leading-7 text-[hsl(var(--hp-ink)/0.78)]">
                 <p>Hair Pinns began as a home salon and grew through clients returning, referring friends, and trusting me with the long work of getting their hair right.</p>
                 <p>Beautiful hair starts with understanding what you want, what your hair can safely do, and what will still work in your real routine. Sometimes that means a transformation. Sometimes it means doing less.</p>
                 <p>The salon is still intentionally personal. You are not passed through a production line, and I do not recommend a service or product just because it is the most expensive option.</p>
               </div>
-              <dl className="mt-10 grid grid-cols-3 border-y border-[hsl(var(--after-hours-plum)/0.22)] py-5 text-[hsl(var(--after-hours-plum))]">
-                <div><dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.64)]">Opened</dt><dd className="mt-2 font-heading text-2xl">2009</dd></div>
-                <div className="border-l border-[hsl(var(--after-hours-plum)/0.18)] pl-4"><dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.64)]">Salon</dt><dd className="mt-2 font-heading text-2xl">Bangor</dd></div>
-                <div className="border-l border-[hsl(var(--after-hours-plum)/0.18)] pl-4"><dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--after-hours-plum)/0.64)]">Orders</dt><dd className="mt-2 font-heading text-2xl">Australia</dd></div>
+              <dl className="mt-10 grid grid-cols-3 border-y border-[hsl(var(--after-hours-plum)/0.22)] py-5 text-[hsl(var(--hp-ink))]">
+                <div><dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.64)]">Opened</dt><dd className="mt-2 font-heading text-2xl">2009</dd></div>
+                <div className="border-l border-[hsl(var(--after-hours-plum)/0.18)] pl-4"><dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.64)]">Salon</dt><dd className="mt-2 font-heading text-2xl">Bangor</dd></div>
+                <div className="border-l border-[hsl(var(--after-hours-plum)/0.18)] pl-4"><dt className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.64)]">Orders</dt><dd className="mt-2 font-heading text-2xl">Australia</dd></div>
               </dl>
             </div>
           </div>
         </section>
 
-        <section className="bg-[hsl(var(--after-hours-plum))] py-16 text-[hsl(var(--after-hours-cream))] lg:py-24" aria-labelledby="standards-title">
+        <section className="bg-[hsl(var(--hp-lavender))] py-16 text-[hsl(var(--hp-ink))] lg:py-24" aria-labelledby="standards-title">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">02 / How I work</p>
-            <h2 id="standards-title" className="mt-5 max-w-[15ch] font-heading text-[clamp(2.8rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--after-hours-cream))]">The right plan is better than the biggest appointment.</h2>
-            <ol className="mt-12 grid gap-8 border-t border-[hsl(var(--after-hours-cream)/0.22)] pt-8 md:grid-cols-3 md:gap-10">
+            <h2 id="standards-title" className="mt-5 max-w-[15ch] font-heading text-[clamp(2.8rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">The right plan is better than the biggest appointment.</h2>
+            <ol className="mt-12 grid gap-8 border-t border-[hsl(var(--hp-ink)/0.22)] pt-8 md:grid-cols-3 md:gap-10">
               {standards.map((standard) => (
                 <li key={standard.number} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 md:block">
                   <span className="pt-1 text-[0.62rem] font-semibold tracking-[0.18em] text-[hsl(var(--after-hours-copper))]">{standard.number}</span>
                   <div className="md:mt-5">
-                    <h3 className="font-heading text-xl leading-tight text-[hsl(var(--after-hours-cream))]">{standard.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.7)]">{standard.body}</p>
+                    <h3 className="font-heading text-xl leading-tight text-[hsl(var(--hp-ink))]">{standard.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">{standard.body}</p>
                   </div>
                 </li>
               ))}
@@ -232,10 +232,10 @@ const About = () => {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-5 border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
               <div>
-                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.72)]">03 / Work from the chair</p>
-                <h2 id="work-title" className="mt-4 font-heading text-[clamp(2.8rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">The work.</h2>
+                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.72)]">03 / Work from the chair</p>
+                <h2 id="work-title" className="mt-4 font-heading text-[clamp(2.8rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">The work.</h2>
               </div>
-              <p className="max-w-xl text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.7)] md:justify-self-end">Salon, colour, smoothing, cutting, and styling from Hair Pinns in Bangor.</p>
+              <p className="max-w-xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)] md:justify-self-end">Salon, colour, smoothing, cutting, and styling from Hair Pinns in Bangor.</p>
             </div>
             <div className="mt-10 lg:mt-14">
               <ImageGallery columns={3} images={galleryImages} variant="editorial" />
@@ -246,10 +246,10 @@ const About = () => {
         <section className="bg-[hsl(var(--after-hours-cream))] py-16 lg:py-24" aria-labelledby="specialties-title">
           <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
             <div className="lg:col-span-5">
-              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.72)]">04 / Behind the shelf</p>
-              <h2 id="specialties-title" className="mt-5 max-w-[11ch] font-heading text-[clamp(2.8rem,7vw,5.6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--after-hours-plum))]">Products earn their place here.</h2>
-              <p className="mt-7 max-w-[38rem] text-base leading-7 text-[hsl(var(--after-hours-plum)/0.76)]">I stock the brands and formulas I am prepared to use behind the chair. The online shelf is deliberately smaller than a warehouse catalogue because selection is part of the service.</p>
-              <Link to="/collections" className="mt-8 inline-flex min-h-12 items-center justify-between gap-8 border-b border-[hsl(var(--after-hours-plum)/0.42)] text-sm font-semibold !text-[hsl(var(--after-hours-plum))] hover:border-[hsl(var(--after-hours-copper))] sm:min-w-56">
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.72)]">04 / Behind the shelf</p>
+              <h2 id="specialties-title" className="mt-5 max-w-[11ch] font-heading text-[clamp(2.8rem,7vw,5.6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">Products earn their place here.</h2>
+              <p className="mt-7 max-w-[38rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.76)]">I stock the brands and formulas I am prepared to use behind the chair. The online shelf is deliberately smaller than a warehouse catalogue because selection is part of the service.</p>
+              <Link to="/collections" className="mt-8 inline-flex min-h-12 items-center justify-between gap-8 border-b border-[hsl(var(--after-hours-plum)/0.42)] text-sm font-semibold !text-[hsl(var(--hp-ink))] hover:border-[hsl(var(--after-hours-copper))] sm:min-w-56">
                 Shop the shelf <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -259,42 +259,42 @@ const About = () => {
           </div>
 
           <div className="mx-auto mt-14 max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h3 className="font-heading text-2xl text-[hsl(var(--after-hours-plum))]">What I work on most</h3>
+            <h3 className="font-heading text-2xl text-[hsl(var(--hp-ink))]">What I work on most</h3>
             <div className="mt-6 grid gap-x-8 md:grid-cols-3">
               {specialties.map((specialty) => (
                 <article key={specialty.title} className="border-t border-[hsl(var(--after-hours-plum)/0.22)] py-5">
-                  <h4 className="font-heading text-xl text-[hsl(var(--after-hours-plum))]">{specialty.title}</h4>
-                  <p className="mt-3 text-sm leading-6 text-[hsl(var(--after-hours-plum)/0.7)]">{specialty.body}</p>
+                  <h4 className="font-heading text-xl text-[hsl(var(--hp-ink))]">{specialty.title}</h4>
+                  <p className="mt-3 text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">{specialty.body}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section data-about-close="" className="bg-[hsl(var(--after-hours-near-black))] py-16 text-[hsl(var(--after-hours-cream))] lg:py-24" aria-labelledby="about-close-title">
+        <section data-about-close="" className="bg-[hsl(var(--hp-lavender))] py-16 text-[hsl(var(--hp-ink))] lg:py-24" aria-labelledby="about-close-title">
           <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
             <div className="lg:col-span-6">
               <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-copper))]">05 / Visit or ask</p>
-              <h2 id="about-close-title" className="mt-5 max-w-[12ch] font-heading text-[clamp(3rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--after-hours-cream))]">Ready to talk about your hair?</h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-[hsl(var(--after-hours-cream)/0.72)]">Book through Fresha, call the salon, or browse the professional hair care I stock.</p>
+              <h2 id="about-close-title" className="mt-5 max-w-[12ch] font-heading text-[clamp(3rem,7vw,6rem)] leading-[0.92] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">Ready to talk about your hair?</h2>
+              <p className="mt-6 max-w-xl text-base leading-7 text-[hsl(var(--hp-ink)/0.72)]">Book through Fresha, call the salon, or browse the professional hair care I stock.</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("about_close", "/about")} className="inline-flex min-h-12 items-center justify-between gap-6 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-copper))] sm:min-w-52">
+                <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("about_close", "/about")} className="inline-flex min-h-12 items-center justify-between gap-6 bg-[hsl(var(--after-hours-cream))] px-5 text-sm font-semibold !text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--hp-lilac))] sm:min-w-52">
                   <span>{BOOK_CTA_LABEL}</span><span aria-hidden="true">↗</span>
                 </a>
-                <a href={BUSINESS_NAP.phone.tel} className="inline-flex min-h-12 items-center border-b border-[hsl(var(--after-hours-cream)/0.44)] text-sm font-semibold !text-[hsl(var(--after-hours-cream))] hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))]">{BUSINESS_NAP.phone.display}</a>
+                <a href={BUSINESS_NAP.phone.tel} className="inline-flex min-h-12 items-center border-b border-[hsl(var(--hp-ink)/0.44)] text-sm font-semibold !text-[hsl(var(--hp-ink))] hover:border-[hsl(var(--after-hours-copper))] hover:!text-[hsl(var(--after-hours-copper))]">{BUSINESS_NAP.phone.display}</a>
               </div>
-              <address className="mt-8 not-italic text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.68)]">{BUSINESS_NAP.address.full}</address>
+              <address className="mt-8 not-italic text-sm leading-6 text-[hsl(var(--hp-ink)/0.68)]">{BUSINESS_NAP.address.full}</address>
             </div>
 
             <div className="lg:col-span-5 lg:col-start-8">
-              <h3 className="border-b border-[hsl(var(--after-hours-cream)/0.24)] pb-4 font-heading text-2xl text-[hsl(var(--after-hours-cream))]">Frequently asked</h3>
+              <h3 className="border-b border-[hsl(var(--hp-ink)/0.24)] pb-4 font-heading text-2xl text-[hsl(var(--hp-ink))]">Frequently asked</h3>
               <div className="divide-y divide-[hsl(var(--after-hours-cream)/0.2)]">
                 {aboutFaqs.map((faq) => (
                   <details key={faq.question} className="group py-4">
-                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-5 text-sm font-semibold text-[hsl(var(--after-hours-cream))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
+                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-5 text-sm font-semibold text-[hsl(var(--hp-ink))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
                       <span>{faq.question}</span><span className="text-[hsl(var(--after-hours-copper))] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
                     </summary>
-                    <p className="pb-2 pr-8 text-sm leading-6 text-[hsl(var(--after-hours-cream)/0.7)]">{faq.answer}</p>
+                    <p className="pb-2 pr-8 text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">{faq.answer}</p>
                   </details>
                 ))}
               </div>

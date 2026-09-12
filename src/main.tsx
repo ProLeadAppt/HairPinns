@@ -15,9 +15,18 @@ import "./index.css";
 //     from disk and the site stays broken even after the SW is gone.
 // Once everyone has rotated through, public/sw.js can be deleted entirely.
 if ('serviceWorker' in navigator) {
+  const recoverySessionKey = 'hp_sw_killswitch_reloaded';
   // Listen for the kill-switch reload signal.
   navigator.serviceWorker.addEventListener('message', (event) => {
     if (event.data?.type === 'sw-killswitch-reload') {
+      // Some browsers can deliver the activation message more than once while
+      // multiple old tabs are being claimed. One reload per tab is sufficient.
+      try {
+        if (sessionStorage.getItem(recoverySessionKey) === '1') return;
+        sessionStorage.setItem(recoverySessionKey, '1');
+      } catch {
+        // Continue with the URL guard when session storage is unavailable.
+      }
       // Cache-buster query forces a network round-trip for index.html, which
       // pulls in the fresh asset hashes. Once we land on the bustered URL,
       // strip the param so subsequent loads don't carry it forever.

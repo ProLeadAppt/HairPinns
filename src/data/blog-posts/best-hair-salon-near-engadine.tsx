@@ -11,7 +11,7 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-064.jpg?v=1744178553",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Engadine and searching for a hair salon, the local options work for most people — but a lot of Engadine clients drive to Bangor for Hair Pinns because of the combination of consistency, honest pricing, and services that cover the whole family. Here's what matters when you're picking a salon close to Engadine, and honest answers about whether we're the right fit.",
+      introduction: "If you're in Engadine and searching for a hair salon, the local options work for most people, but a lot of Engadine clients drive to Bangor for Hair Pinns because of the combination of consistency, honest pricing, and services that cover the whole family. Here's what matters when you're picking a salon close to Engadine, and honest answers about whether we're the right fit.",
       sections: [
         {
           heading: "Why Engadine Locals Drive to Bangor",
@@ -19,7 +19,7 @@ const post = {
         },
         {
           heading: "What Engadine Clients Tell Us They Value",
-          content: "Three things come up with Engadine clients: (1) They want stylist continuity — seeing the same person every visit who knows their hair history and can adjust as hair changes over time. At Hair Pinns, that's Jena or her trusted team who've been here for years. (2) They want transparent pricing on a public menu. (3) They want a salon that works for the whole family — kids' cuts, mum's colour, seniors' wash-and-set. Engadine clients especially appreciate that we cover the full age range well."
+          content: "Three things come up with Engadine clients: (1) They want stylist continuity, seeing the same person every visit who knows their hair history and can adjust as hair changes over time. At Hair Pinns, that's Jena or her trusted team who've been here for years. (2) They want transparent pricing on a public menu. (3) They want a salon that works for the whole family, kids' cuts, mum's colour, seniors' wash-and-set. Engadine clients especially appreciate that we cover the full age range well."
         },
         {
           heading: "Services Popular with Engadine Locals",
@@ -31,7 +31,7 @@ const post = {
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair. Most of our Engadine clients first came for one service — often a kids cut or a gentle senior colour — while keeping their existing salon for other services. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          content: "Fair. Most of our Engadine clients first came for one service, often a kids cut or a gentle senior colour, while keeping their existing salon for other services. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
         }
       ],
       quickAnswer: {
@@ -43,7 +43,7 @@ const post = {
         "Free parking out the front, no meter hunting",
         "Popular Engadine bookings: family cut packages, kids cuts, seniors colour",
         "One stylist who knows your hair across multiple generations",
-        "Try one service first — no membership required"
+        "Try one service first, no membership required"
       ],
       faqSection: [
         {
@@ -56,7 +56,7 @@ const post = {
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
         },
         {
           question: "Is Hair Pinns good for older clients?",

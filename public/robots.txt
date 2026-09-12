@@ -1,81 +1,14 @@
 # Hair Pinns — robots.txt
 # https://hairpinns.com
-# Last updated: 2026-06-22
+# Last updated: 2026-09-11
 
 User-agent: *
 Allow: /
 
 # AI Crawlers — explicitly allowed for AEO/GEO visibility.
-# These user-agents are welcome to ingest our content for retrieval,
-# summarisation, and answer-engine use. See /ai.txt for full policy.
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: Claude-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: Diffbot
-Allow: /
-
-User-agent: DuckAssistBot
-Allow: /
-
-User-agent: Meta-ExternalAgent
-Allow: /
-
-User-agent: Meta-ExternalFetcher
-Allow: /
-
-User-agent: FacebookBot
-Allow: /
-
-User-agent: MistralAI-User
-Allow: /
-
-User-agent: YouBot
-Allow: /
+# All named AI agents are covered by this universal allow rule and may ingest
+# public content for retrieval, summarisation and answer-engine use. Keeping a
+# single group also ensures the protections below apply to every crawler.
 
 # Allow the well-known and LLM discovery paths explicitly.
 Allow: /.well-known/

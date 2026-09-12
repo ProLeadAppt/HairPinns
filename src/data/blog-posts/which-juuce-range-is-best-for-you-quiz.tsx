@@ -43,7 +43,7 @@ const post = {
         },
         {
           question: "Is Juuce a professional brand?",
-          answer: "Yes — Australian-owned, salon-only, used in 4,000+ Australian salons. You can only buy Juuce through stockists like Hair Pinns, not in supermarkets or chemists.",
+          answer: "Yes, Australian-owned, salon-only, used in 4,000+ Australian salons. You can only buy Juuce through stockists like Hair Pinns, not in supermarkets or chemists.",
         },
         {
           question: "What's the difference between Juuce and Pure Organic?",
@@ -51,11 +51,11 @@ const post = {
         },
         {
           question: "Are Juuce products tested on animals?",
-          answer: "No — Juuce is cruelty-free and vegan certified. The full range is plant-based, including the protein complexes.",
+          answer: "No, Juuce is cruelty-free and vegan certified. The full range is plant-based, including the protein complexes.",
         },
         {
           question: "Can I use Juuce on extensions?",
-          answer: "Yes — every Juuce product is safe on human-hair extensions. Avoid the bond or tape area with conditioner (slide it off, don't scrub).",
+          answer: "Yes, every Juuce product is safe on human-hair extensions. Avoid the bond or tape area with conditioner (slide it off, don't scrub).",
         }
       ],
     },

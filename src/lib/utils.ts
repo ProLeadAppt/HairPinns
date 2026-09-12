@@ -48,7 +48,7 @@ export function formatPrice(
 /**
  * Synthesise a compare-at ("was") price from a current price.
  * Used so EVERY product card on the site has a struck-through
- * original price — proven conversion lift in beauty ecommerce,
+ * original price, proven conversion lift in beauty ecommerce,
  * and Jena flagged every card looks naked without one.
  *
  * Markup defaults to 15% (rounded to a "psychological" number so

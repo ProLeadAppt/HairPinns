@@ -53,11 +53,11 @@ const post = {
       faqSection: [
         {
           question: "What's the best product for damaged or colour-treated hair?",
-          answer: "Juuce Bond Repair Duo is my top pick — the shampoo and conditioner work together to rebuild broken bonds and restore strength. If you've had bleach, keratin, or regular heat styling, this is what you need. The formulas are technical and specifically target damage. Use it as your foundation and layer in other treatments on top."
+          answer: "Juuce Bond Repair Duo is my top pick, the shampoo and conditioner work together to rebuild broken bonds and restore strength. If you've had bleach, keratin, or regular heat styling, this is what you need. The formulas are technical and specifically target damage. Use it as your foundation and layer in other treatments on top."
         },
         {
           question: "How do I prevent blonde hair from turning brassy in Australia's sun and humidity?",
-          answer: "Aromaganic's colour care range keeps blonde bright and brass-free, paired with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, use a quality violet shampoo 1–2 times weekly — it makes a huge difference. My Sydney clients swear by this combo because our sun and humidity are relentless on blonde."
+          answer: "Aromaganic's colour care range keeps blonde bright and brass-free, paired with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, use a quality violet shampoo 1–2 times weekly, it makes a huge difference. My Sydney clients swear by this combo because our sun and humidity are relentless on blonde."
         },
         {
           question: "What's the best detangler for all hair types?",
@@ -65,7 +65,7 @@ const post = {
         },
         {
           question: "Can I get professional hair products in Australia with free shipping?",
-          answer: "Yes. Hair Pinns ships all these products Australia-wide with free shipping on orders over $150. You can shop from Melbourne, Brisbane, Perth, or anywhere in Australia. All products are chosen by me personally and used in the salon, so you get the real deal — no guesswork, just professional products delivered to your door."
+          answer: "Yes. Hair Pinns ships all these products Australia-wide with free shipping on orders over $150. You can shop from Melbourne, Brisbane, Perth, or anywhere in Australia. All products are chosen by me personally and used in the salon, so you get the real deal, no guesswork, just professional products delivered to your door."
         }
       ]
     },

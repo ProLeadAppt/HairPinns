@@ -1,7 +1,7 @@
 import { Scissors, Truck, Shield } from "lucide-react";
 
 /**
- * HeroSocialProofBar — editorial-soft rev.
+ * HeroSocialProofBar, editorial-soft rev.
  *
  * The bar lives under the hero and carries the trust signals so the hero
  * itself can stay a single beat (one portrait, one headline, one CTA).

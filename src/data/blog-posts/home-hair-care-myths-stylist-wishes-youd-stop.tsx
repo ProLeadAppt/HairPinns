@@ -14,11 +14,11 @@ const post = {
       sections: [
         {
           heading: "Myth: You Need to Wash Your Hair Every Day",
-          content: "Most people over-wash. Washing strips natural oils (sebum) that protect and moisturise the hair shaft. For fine straight hair, every 2–3 days is enough. For thick or wavy hair, 2–3 times a week. For curly hair, once a week plus co-washes. Greasy-feeling hair in the first week of washing less is the scalp rebalancing — push through it and it settles in 2–3 weeks."
+          content: "Most people over-wash. Washing strips natural oils (sebum) that protect and moisturise the hair shaft. For fine straight hair, every 2–3 days is enough. For thick or wavy hair, 2–3 times a week. For curly hair, once a week plus co-washes. Greasy-feeling hair in the first week of washing less is the scalp rebalancing, push through it and it settles in 2–3 weeks."
         },
         {
           heading: "Myth: Trimming Makes Hair Grow Faster",
-          content: "Trimming doesn't change growth rate — hair grows at the root, not the tip. What trimming does do is prevent splits from travelling up the shaft, which means more hair stays on your head instead of breaking off. So yes, trim every 10–12 weeks if you're growing hair out. But you're preventing loss, not accelerating growth."
+          content: "Trimming doesn't change growth rate, hair grows at the root, not the tip. What trimming does do is prevent splits from travelling up the shaft, which means more hair stays on your head instead of breaking off. So yes, trim every 10–12 weeks if you're growing hair out. But you're preventing loss, not accelerating growth."
         },
         {
           heading: "Myth: 100 Brush Strokes a Night for Shiny Hair",
@@ -30,7 +30,7 @@ const post = {
         },
         {
           heading: "Myth: Natural Oils Fix Damage",
-          content: "Coconut oil, argan oil, castor oil — all helpful for moisture and sealing the cuticle. None of them repair damage. Damage is broken disulfide bonds inside the hair shaft, and once bonds are broken, only professional bond-repair products (Juuce Bond Repair, Olaplex-type treatments) can rebuild them. Natural oils sit on top of the hair — they mask damage, they don't fix it. The fix is a bond-repair mask weekly plus a trim of anything beyond repair."
+          content: "Coconut oil, argan oil, castor oil, all helpful for moisture and sealing the cuticle. None of them repair damage. Damage is broken disulfide bonds inside the hair shaft, and once bonds are broken, only professional bond-repair products (Juuce Bond Repair, Olaplex-type treatments) can rebuild them. Natural oils sit on top of the hair, they mask damage, they don't fix it. The fix is a bond-repair mask weekly plus a trim of anything beyond repair."
         },
         {
           heading: "Myth: Expensive Shampoo Is Always Better",
@@ -46,7 +46,7 @@ const post = {
         answer: "The biggest home hair care myths are: needing to wash daily, trimming speeds up growth, 100 brush strokes for shine, cold water rinses add shine, natural oils repair damage, and expensive shampoo is always better. What actually works: sulfate-free shampoo, conditioner on mid-lengths, weekly bond-repair mask, heat protection, and regular trims."
       },
       keyTakeaways: [
-        "Over-washing strips natural oils — most hair needs every 2–3 days max",
+        "Over-washing strips natural oils, most hair needs every 2–3 days max",
         "Trimming prevents breakage, it doesn't speed up growth",
         "Natural oils mask damage, they don't repair broken bonds",
         "Sulfate-free shampoo is the single biggest home-care upgrade",
@@ -55,23 +55,23 @@ const post = {
       faqSection: [
         {
           question: "Is brushing 100 strokes a day good for hair?",
-          answer: "No — that's an old myth that causes breakage. 5-10 strokes from mid-lengths to ends is enough. More than that and you rough the cuticle, which causes frizz and split ends.",
+          answer: "No, that's an old myth that causes breakage. 5-10 strokes from mid-lengths to ends is enough. More than that and you rough the cuticle, which causes frizz and split ends.",
         },
         {
           question: "Does cutting hair make it grow faster?",
-          answer: "No — hair grows from the follicle, not the ends. Trimming removes split ends, which makes hair LOOK longer and healthier, but it doesn't change the growth rate.",
+          answer: "No, hair grows from the follicle, not the ends. Trimming removes split ends, which makes hair LOOK longer and healthier, but it doesn't change the growth rate.",
         },
         {
           question: "Is it true that you should switch shampoos regularly?",
-          answer: "No — once you find a shampoo that works, stick with it. Switching every few weeks confuses the scalp and can cause flare-ups. The 'switch to avoid build-up' advice is marketing, not science.",
+          answer: "No, once you find a shampoo that works, stick with it. Switching every few weeks confuses the scalp and can cause flare-ups. The 'switch to avoid build-up' advice is marketing, not science.",
         },
         {
           question: "Does cold water rinse really make hair shinier?",
-          answer: "Yes — cold water closes the cuticle, which reflects light better (shinier) and locks colour in. A 30-second cold rinse at the end of every wash makes a visible difference.",
+          answer: "Yes, cold water closes the cuticle, which reflects light better (shinier) and locks colour in. A 30-second cold rinse at the end of every wash makes a visible difference.",
         },
         {
           question: "Is it bad to brush wet hair?",
-          answer: "It's bad to brush with a regular comb — that's where mid-lengths breakage comes from. A Wet Brush is designed for wet hair. Use one, brush from ends to roots, never yank.",
+          answer: "It's bad to brush with a regular comb, that's where mid-lengths breakage comes from. A Wet Brush is designed for wet hair. Use one, brush from ends to roots, never yank.",
         }
       ],
     },

@@ -48,11 +48,11 @@ const post = {
         },
         {
           question: "What hair products should I use in Brisbane's subtropical climate?",
-          answer: "Brisbane's heat and humidity demand products that protect against both. Bond repair, colour protection, and smoothing aftercare are all available with free shipping over $150. The subtropical climate is similar to Sydney's, so the same routines work — sulfate-free shampoo, heat protection, and weekly masks make a huge difference."
+          answer: "Brisbane's heat and humidity demand products that protect against both. Bond repair, colour protection, and smoothing aftercare are all available with free shipping over $150. The subtropical climate is similar to Sydney's, so the same routines work, sulfate-free shampoo, heat protection, and weekly masks make a huge difference."
         },
         {
           question: "Can I get professional hair products shipped to Perth and Western Australia?",
-          answer: "Absolutely. Perth and Western Australia are fully covered. Whether you're in Perth CBD, Fremantle, or regional WA, your order arrives in 3–5 business days standard or 1–2 days express. Free shipping over $150. No exceptions — your best hair is a click away no matter where you are in Australia."
+          answer: "Absolutely. Perth and Western Australia are fully covered. Whether you're in Perth CBD, Fremantle, or regional WA, your order arrives in 3–5 business days standard or 1–2 days express. Free shipping over $150. No exceptions, your best hair is a click away no matter where you are in Australia."
         },
         {
           question: "Why should I buy hair products from Hair Pinns instead of a big retailer?",

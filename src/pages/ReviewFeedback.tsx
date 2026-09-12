@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { CheckCircle2, ExternalLink, Send } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { getHpCapture } from "@/lib/loadHpCapture";
+import { submitNetlifyForm } from "@/lib/netlifyForms";
 import {
   GOOGLE_REVIEW_URL,
   normaliseReviewRating,
@@ -45,21 +45,13 @@ const ReviewFeedback = () => {
     setErrorMessage("");
 
     try {
-      const hpCapture = await getHpCapture();
-      const success = await hpCapture.postToGHL(
-        {
-          form_name: "review_feedback",
-          name: formData.name,
-          email: formData.email,
-          message: formData.feedback,
-          rating,
-          consent_marketing: false,
-        },
-        { event: "review_feedback" },
-      );
-      if (!success) {
-        throw new Error("Feedback delivery failed");
-      }
+      await submitNetlifyForm("hair-pinns-review-feedback", {
+        name: formData.name,
+        email: formData.email,
+        feedback: formData.feedback,
+        rating,
+        source_page: window.location.href,
+      });
       sessionStorage.removeItem(SESSION_DRAFT_KEY);
       setIsSubmitted(true);
     } catch (error) {
@@ -71,7 +63,7 @@ const ReviewFeedback = () => {
   };
 
   return (
-    <div className="editorial-route min-h-screen bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--after-hours-plum))]">
+    <div className="editorial-route min-h-screen bg-[hsl(var(--after-hours-cream))] text-[hsl(var(--hp-ink))]">
       <SEOHead
         title="Private Feedback | Hair Pinns"
         description="Send private feedback directly to Hair Pinns."
@@ -89,11 +81,11 @@ const ReviewFeedback = () => {
       <main id="main-content" tabIndex={-1}>
         <div className="mx-auto grid max-w-[78rem] gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[0.38fr_0.62fr] lg:gap-20 lg:px-8 lg:py-24">
           <aside>
-            <p className="after-hours-kicker text-[hsl(var(--after-hours-plum)/0.68)]">Direct to Hair Pinns</p>
+            <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.68)]">Direct to Hair Pinns</p>
             <h1 className="mt-5 max-w-[8ch] font-heading text-[clamp(3.4rem,6vw,6.6rem)] font-semibold leading-[0.9] tracking-[-0.055em]">
               Private feedback.
             </h1>
-            <p className="mt-7 max-w-[30rem] text-base leading-7 text-[hsl(var(--after-hours-plum)/0.76)]">
+            <p className="mt-7 max-w-[30rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.76)]">
               Your comments go directly to Hair Pinns. A rating is optional, and choosing private feedback does not prevent you from reviewing publicly.
             </p>
             {rating && (
@@ -118,7 +110,7 @@ const ReviewFeedback = () => {
               <div aria-live="polite">
                 <CheckCircle2 aria-hidden="true" className="h-8 w-8 text-[hsl(var(--after-hours-copper))]" />
                 <h2 className="mt-8 max-w-[12ch] font-heading text-4xl font-semibold leading-tight">Thank you for sharing it privately.</h2>
-                <p className="mt-5 max-w-[38rem] text-base leading-7 text-[hsl(var(--after-hours-plum)/0.76)]">
+                <p className="mt-5 max-w-[38rem] text-base leading-7 text-[hsl(var(--hp-ink)/0.76)]">
                   Your message has been sent to Hair Pinns. If you also want to share your experience publicly, the Google option remains available.
                 </p>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -149,7 +141,7 @@ const ReviewFeedback = () => {
                   {isSubmitting ? "Sending…" : "Send private feedback"}
                   <Send aria-hidden="true" className="h-4 w-4" />
                 </button>
-                <p className="text-xs leading-5 text-[hsl(var(--after-hours-plum)/0.62)]">Only your feedback message is saved in this tab. It is cleared after submission or when the tab closes.</p>
+                <p className="text-xs leading-5 text-[hsl(var(--hp-ink)/0.62)]">Only your feedback message is saved in this tab. It is cleared after submission or when the tab closes.</p>
               </form>
             )}
           </section>

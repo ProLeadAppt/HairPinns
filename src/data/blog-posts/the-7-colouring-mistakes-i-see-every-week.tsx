@@ -14,19 +14,19 @@ const post = {
       sections: [
         {
           heading: "Mistake 1: Box Dye Over Previously-Coloured Hair",
-          content: "Box dye contains a one-size-fits-all developer strength that doesn't know what's already on your hair. If you've had foils, balayage, or any professional colour, box dye reacts unpredictably — I've seen blondes turn green, brunettes turn orange, and previously-healthy hair come out like straw. If you need to cover regrowth between salon appointments, ask your stylist for a root tint take-home kit mixed to your formula. Safe, consistent, and won't wreck the colour underneath."
+          content: "Box dye contains a one-size-fits-all developer strength that doesn't know what's already on your hair. If you've had foils, balayage, or any professional colour, box dye reacts unpredictably, I've seen blondes turn green, brunettes turn orange, and previously-healthy hair come out like straw. If you need to cover regrowth between salon appointments, ask your stylist for a root tint take-home kit mixed to your formula. Safe, consistent, and won't wreck the colour underneath."
         },
         {
           heading: "Mistake 2: Bleaching at Home to 'Save Money'",
-          content: "Home bleach damage is the single most common reason clients book a consultation. The maths never works out — a $30 home bleach kit that goes wrong turns into $400–$800 of colour correction over 2–3 visits, plus 6+ months of extra conditioning. I'd rather you booked a quarter-head foil package ($200ish) than touched a home bleach kit. Every time."
+          content: "Home bleach damage is the single most common reason clients book a consultation. The maths never works out, a $30 home bleach kit that goes wrong turns into $400–$800 of colour correction over 2–3 visits, plus 6+ months of extra conditioning. I'd rather you booked a quarter-head foil package ($200ish) than touched a home bleach kit. Every time."
         },
         {
           heading: "Mistake 3: Washing Hair Too Soon After Colour",
-          content: "The first wash after colour sets how long the colour holds. Most people wash within 24 hours — colour pigments are still settling into the cortex for 48–72 hours after the service. Waiting 72 hours before the first wash, then washing with a sulfate-free shampoo, adds weeks to the colour's life. One small change, big payoff."
+          content: "The first wash after colour sets how long the colour holds. Most people wash within 24 hours, colour pigments are still settling into the cortex for 48–72 hours after the service. Waiting 72 hours before the first wash, then washing with a sulfate-free shampoo, adds weeks to the colour's life. One small change, big payoff."
         },
         {
           heading: "Mistake 4: Using Regular Shampoo on Coloured Hair",
-          content: "Sulfates (SLS, SLES) strip colour. Faster than sun, faster than heat, faster than anything else. If your shampoo lathers aggressively and leaves hair 'squeaky clean', it's stripping colour. Switch to a sulfate-free shampoo — we stock Juuce, Pure, and Aromaganic sulfate-free ranges at the salon. The difference in colour longevity is dramatic: 4 weeks vs 8–10."
+          content: "Sulfates (SLS, SLES) strip colour. Faster than sun, faster than heat, faster than anything else. If your shampoo lathers aggressively and leaves hair 'squeaky clean', it's stripping colour. Switch to a sulfate-free shampoo, we stock Juuce, Pure, and Aromaganic sulfate-free ranges at the salon. The difference in colour longevity is dramatic: 4 weeks vs 8–10."
         },
         {
           heading: "Mistake 5: Going Too Light in One Session",
@@ -38,7 +38,7 @@ const post = {
         },
         {
           heading: "Mistake 7: Chasing Instagram Colours on Wrong Base",
-          content: "Pinterest and Instagram colour inspiration is amazing, but the photo you're showing me was taken on a model with a naturally level-7 blonde base, professional lighting, and a fresh service. If your base is level-4 dark brunette, achieving that exact photo takes 2–3 sessions and will look different in real light. I'll always tell you what's achievable and what isn't — and what the photo is hiding. Pick colour based on your own base, not someone else's."
+          content: "Pinterest and Instagram colour inspiration is amazing, but the photo you're showing me was taken on a model with a naturally level-7 blonde base, professional lighting, and a fresh service. If your base is level-4 dark brunette, achieving that exact photo takes 2–3 sessions and will look different in real light. I'll always tell you what's achievable and what isn't, and what the photo is hiding. Pick colour based on your own base, not someone else's."
         },
         {
           heading: "A Quick Story: The Most-Common Fix",

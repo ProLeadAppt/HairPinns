@@ -25,7 +25,7 @@ const semanticDelegates = new Map([
 ]);
 const shellExemptions = new Set(['SuburbRedirect']);
 const banned = [
-  ['legacy brand utility', /(?:^|[\s"'])(?:(?:[a-z-]+):)*(?:bg|text|border|from|via|to)-brand-/m],
+  ['retired copper/orange colour', /#(?:bd7650|8b3f20|efe5df|f3e8df)\b|(?:bg|text|border)-(?:orange|amber)-/i],
   ['gradient treatment', /(?:bg-gradient|linear-gradient\()/],
   ['template card radius', /rounded-(?:card|2xl|3xl)/],
   ['heavy floating shadow', /(?:shadow-2xl|hover:shadow)/],

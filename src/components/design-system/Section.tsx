@@ -5,10 +5,10 @@ interface SectionProps {
   className?: string;
   variant?: "default" | "muted" | "accent" | "gold" | "transparent";
   /** Padding scale:
-   *  - "sm" | "md" | "lg" | "xl" — old scale (8/12/16/20) for backwards-compat
-   *  - "editorial" — uses the new 96px rhythm
-   *  - "editorial-lg" — 128px rhythm (major beats)
-   *  - "editorial-xl" — 160px rhythm (pull-quote, full-bleed)
+   *  - "sm" | "md" | "lg" | "xl", old scale (8/12/16/20) for backwards-compat
+   *  - "editorial", uses the new 96px rhythm
+   *  - "editorial-lg", 128px rhythm (major beats)
+   *  - "editorial-xl", 160px rhythm (pull-quote, full-bleed)
    */
   padding?: "sm" | "md" | "lg" | "xl" | "editorial" | "editorial-lg" | "editorial-xl";
   maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
@@ -37,7 +37,7 @@ const Section = ({
     transparent: "bg-transparent",
   };
 
-  // Old scale — kept so existing call sites keep working unchanged.
+  // Old scale, kept so existing call sites keep working unchanged.
   const paddings = {
     sm: "py-8",
     md: "py-12",
@@ -45,7 +45,7 @@ const Section = ({
     xl: "py-20",
   };
 
-  // New editorial rhythm — far more generous. Mobile auto-dials back via CSS.
+  // New editorial rhythm, far more generous. Mobile auto-dials back via CSS.
   const editorialPaddings = {
     editorial: "section-rhythm-md",
     "editorial-lg": "section-rhythm-lg",
@@ -72,7 +72,7 @@ const Section = ({
       <div className="section-number mb-10">
         <span className="section-number-label">
           <span className="section-number-index">{number.index}</span>
-          <span>— {number.label}</span>
+          <span>, {number.label}</span>
         </span>
       </div>
     );

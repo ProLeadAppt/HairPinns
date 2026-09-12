@@ -11,19 +11,19 @@ const post = {
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-120.jpg?v=1747030506",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Illawong and searching for a hair salon, you have options — but the feedback we hear from Illawong locals who've become Hair Pinns regulars tends to be the same: 'Wish I'd found you sooner.' Here's what matters when you're picking a salon close to Illawong, and honest answers about whether we're the right fit.",
+      introduction: "If you're in Illawong and searching for a hair salon, you have options, but the feedback we hear from Illawong locals who've become Hair Pinns regulars tends to be the same: 'Wish I'd found you sooner.' Here's what matters when you're picking a salon close to Illawong, and honest answers about whether we're the right fit.",
       sections: [
         {
           heading: "Why Illawong Locals Drive to Bangor",
-          content: "Hair Pinns is a short drive from Illawong via Alfords Point Road and Fowler Road — generally under 10 minutes without traffic. Free parking right out the front of the salon. For most Illawong postcodes it's faster than heading into Miranda or Sutherland and trying to find parking. A good portion of our regulars come from the Illawong and Menai areas combined."
+          content: "Hair Pinns is a short drive from Illawong via Alfords Point Road and Fowler Road, generally under 10 minutes without traffic. Free parking right out the front of the salon. For most Illawong postcodes it's faster than heading into Miranda or Sutherland and trying to find parking. A good portion of our regulars come from the Illawong and Menai areas combined."
         },
         {
           heading: "What Illawong Clients Tell Us They Value",
-          content: "Three things come up in every new-client consultation from the Illawong area: (1) They want the same stylist every time — not a rotating roster. At Hair Pinns you see Jena every visit, or her trusted team who've been here for years. (2) They want transparent pricing on a public menu, no surprise fees. (3) They want a salon that treats their hair like a long-term investment, not a quick transaction. Long-standing client relationships are how we measure whether we're doing the job right."
+          content: "Three things come up in every new-client consultation from the Illawong area: (1) They want the same stylist every time, not a rotating roster. At Hair Pinns you see Jena every visit, or her trusted team who've been here for years. (2) They want transparent pricing on a public menu, no surprise fees. (3) They want a salon that treats their hair like a long-term investment, not a quick transaction. Long-standing client relationships are how we measure whether we're doing the job right."
         },
         {
           heading: "Services Popular with Illawong Locals",
-          content: "The most-booked services for Illawong clients: Straight Up Smoothing (keeps frizz down through Sydney humidity for 8–12 weeks), full head foils for blonde maintenance, and weekend appointments — we know the Illawong commute is tighter on weekdays. We also do kids cuts and formal styling. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
+          content: "The most-booked services for Illawong clients: Straight Up Smoothing (keeps frizz down through Sydney humidity for 8–12 weeks), full head foils for blonde maintenance, and weekend appointments, we know the Illawong commute is tighter on weekdays. We also do kids cuts and formal styling. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
         },
         {
           heading: "Why the Illawong Trip Works",
@@ -31,7 +31,7 @@ const post = {
         },
         {
           heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair. Most of our Illawong clients first came for one specific service — usually smoothing or a colour fix — while keeping their existing salon for everything else. After a few visits, they switched fully. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no hard sell."
+          content: "Fair. Most of our Illawong clients first came for one specific service, usually smoothing or a colour fix, while keeping their existing salon for everything else. After a few visits, they switched fully. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no hard sell."
         }
       ],
       quickAnswer: {
@@ -42,7 +42,7 @@ const post = {
         "Hair Pinns Bangor is a short drive from Illawong via Alfords Point Road",
         "Free parking, stylist continuity, transparent pricing",
         "Popular Illawong bookings: Straight Up Smoothing, full head foils, weekends",
-        "Try a single service first — no membership required",
+        "Try a single service first, no membership required",
         "Most clients stay 3+ years once they switch"
       ],
       faqSection: [
@@ -56,7 +56,7 @@ const post = {
         },
         {
           question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability — if you see a slot, take it.",
+          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
         },
         {
           question: "Is Hair Pinns good for older clients?",

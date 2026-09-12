@@ -5,7 +5,7 @@ import SectionNumber from "@/components/design-system/SectionNumber";
 import { Link } from "react-router-dom";
 
 // Real salon editorial photos already in the bundle. We use these as a
-// "styling reference" demo (not a fake before/after claim) — the slider
+// "styling reference" demo (not a fake before/after claim), the slider
 // reveals a basin wash vs an in-chair finish, both shot at the Bangor salon.
 // Honest framing: "styling reference", not "transformation proof".
 
@@ -131,14 +131,14 @@ const BeforeAfterShowcase = () => {
           </h2>
           <p className="text-body text-muted-foreground mb-4">
             Drag the slider to see natural hair on the left, finished
-            styling on the right. Real photos from the Bangor salon — not
+            styling on the right. Real photos from the Bangor salon, not
             stock, not filtered. Just the kind of result you can book in
             for.
           </p>
           <ul className="space-y-2 text-sm text-foreground/80">
             <li className="flex items-start gap-2">
               <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-              <span>Every finish is built with the products on the shelf — nothing locked away in a back room.</span>
+              <span>Every finish is built with the products on the shelf, nothing locked away in a back room.</span>
             </li>
             <li className="flex items-start gap-2">
               <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
@@ -175,9 +175,9 @@ const BeforeAfterShowcase = () => {
                   onTouchStart={startDrag}
                   role="group"
                   aria-roledescription="image comparison slider"
-                  aria-label={`${pair.label} — use the slider to compare natural hair with the finished style`}
+                  aria-label={`${pair.label}, use the slider to compare natural hair with the finished style`}
                 >
-                  {/* "After" — full bleed */}
+                  {/* "After", full bleed */}
                   <picture className="absolute inset-0">
                     <source srcSet={pair.after} type="image/avif" />
                     <img
@@ -192,7 +192,7 @@ const BeforeAfterShowcase = () => {
                     />
                   </picture>
 
-                  {/* "Before" — clipped from the left */}
+                  {/* "Before", clipped from the left */}
                   <div
                     className="absolute inset-0 overflow-hidden"
                     style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
@@ -220,7 +220,7 @@ const BeforeAfterShowcase = () => {
                     Styled
                   </span>
 
-                  {/* Slider handle — focusable, keyboard-driven. */}
+                  {/* Slider handle, focusable, keyboard-driven. */}
                   <div
                     id={sliderId}
                     role="slider"
@@ -241,7 +241,7 @@ const BeforeAfterShowcase = () => {
                     </div>
                   </div>
 
-                  {/* Screen-reader-only status — polite so it doesn't interrupt. */}
+                  {/* Screen-reader-only status, polite so it doesn't interrupt. */}
                   <span id={liveId} className="sr-only" aria-live="polite">
                     Showing {position}% of the styled result.
                   </span>

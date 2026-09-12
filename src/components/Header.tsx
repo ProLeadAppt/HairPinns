@@ -15,8 +15,8 @@ const ProductSearch = lazy(() => import("@/components/product/ProductSearch"));
 const ShopDropdown = lazy(() => import("@/components/navigation/ShopDropdown"));
 const MobileMenuSheet = lazy(() => import("@/components/navigation/MobileMenuSheet"));
 
-const navLinkClass = "inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--after-hours-plum))] transition-colors duration-fast hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2";
-const mobileNavLinkClass = "inline-flex min-h-11 items-center border-t border-[hsl(var(--after-hours-plum)/0.16)] text-lg font-medium text-[hsl(var(--after-hours-plum))] transition-colors duration-fast hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500";
+const navLinkClass = "inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--hp-ink))] transition-colors duration-fast hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2";
+const mobileNavLinkClass = "inline-flex min-h-11 items-center border-t border-[hsl(var(--after-hours-plum)/0.16)] text-lg font-medium text-[hsl(var(--hp-ink))] transition-colors duration-fast hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500";
 
 const Header = () => {
   const { openCart, itemCount } = useCart();
@@ -57,7 +57,7 @@ const Header = () => {
   return (
     <>
       {showPromo && (
-        <div className="relative min-h-11 border-b border-[hsl(var(--after-hours-copper)/0.5)] bg-[hsl(var(--after-hours-near-black))] text-[hsl(var(--after-hours-cream))]">
+        <div className="relative min-h-11 border-b border-[hsl(var(--after-hours-copper)/0.5)] bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]">
           <Link
             to={headerPromotion.href}
             data-cta="header-promo-strip"
@@ -66,7 +66,7 @@ const Header = () => {
             onClick={() =>
               trackPromoClick("header_promo_strip", typeof window !== "undefined" ? window.location.pathname : "/")
             }
-            className="flex min-h-11 items-center justify-center px-14 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--after-hours-cream))] transition-colors duration-fast hover:text-[hsl(var(--after-hours-copper))]"
+            className="flex min-h-11 items-center justify-center px-14 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink))] transition-colors duration-fast hover:text-brand-500 focus-visible:ring-brand-500"
             aria-label={`Shop the current Hair Pinns offer: ${headerPromotion.message}`}
           >
             {headerPromotion.message}
@@ -74,7 +74,7 @@ const Header = () => {
           <button
             type="button"
             onClick={() => setShowPromo(false)}
-            className="absolute right-1 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center text-[hsl(var(--after-hours-cream)/0.8)] transition-colors hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]"
+            className="absolute right-1 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center text-[hsl(var(--hp-ink))] transition-colors hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
             aria-label="Dismiss promo banner"
           >
             <X className="h-4 w-4" />
@@ -82,7 +82,7 @@ const Header = () => {
         </div>
       )}
 
-      <header className="sticky top-0 z-50 h-16 border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-cream)/0.97)] text-[hsl(var(--after-hours-plum))] backdrop-blur-sm">
+      <header className="sticky top-0 z-50 h-16 border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-cream)/0.97)] text-[hsl(var(--hp-ink))] backdrop-blur-sm">
         <div className="mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-full items-center gap-2 xl:gap-5">
             <Link to="/" className="inline-flex min-h-11 flex-shrink-0 items-center" aria-label="Hair Pinns home">
@@ -90,7 +90,7 @@ const Header = () => {
                 <source media="(max-width: 640px)" srcSet={hairPinnsLogoCompact} />
                 <img
                   src={hairPinnsLogoFull}
-                  alt="Hair Pinns — Happy Hair Specialist"
+                  alt="Hair Pinns, Happy Hair Specialist"
                   className="h-10 w-auto sm:h-12 xl:h-11"
                   loading="eager"
                   decoding="async"
@@ -114,9 +114,9 @@ const Header = () => {
               <Link to="/contact" className={navLinkClass}>Contact</Link>
             </nav>
 
-            <div className="mx-3 hidden min-w-0 max-w-[18rem] flex-1 xl:block 2xl:max-w-sm [&_input]:h-11 [&_input]:rounded-none [&_input]:border-[hsl(var(--after-hours-plum)/0.28)] [&_input]:bg-transparent [&_input]:text-[hsl(var(--after-hours-plum))]">
+            <div className="mx-3 hidden min-w-0 max-w-[18rem] flex-1 xl:block 2xl:max-w-sm [&_input]:h-11 [&_input]:rounded-none [&_input]:border-[hsl(var(--after-hours-plum)/0.28)] [&_input]:bg-transparent [&_input]:text-[hsl(var(--hp-ink))]">
               {showDesktopEnhancements ? (
-                <Suspense fallback={<div className="flex h-11 items-center border border-[hsl(var(--after-hours-plum)/0.28)] px-3 text-sm text-[hsl(var(--after-hours-plum)/0.58)]">Search products and articles...</div>}>
+                <Suspense fallback={<div className="flex h-11 items-center border border-[hsl(var(--after-hours-plum)/0.28)] px-3 text-sm text-[hsl(var(--hp-ink)/0.58)]">Search products and articles...</div>}>
                   <ProductSearch placeholder="Search products and articles..." maxResults={6} />
                 </Suspense>
               ) : null}
@@ -128,7 +128,7 @@ const Header = () => {
                 size="sm"
                 onClick={(event) => openCart(event.currentTarget)}
                 aria-label={itemCount > 0 ? `View cart, ${itemCount} item${itemCount === 1 ? "" : "s"}` : "View cart"}
-                className="relative min-h-11 rounded-none px-3 text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]"
+                className="relative min-h-11 rounded-none px-3 text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]"
               >
                 <ShoppingCart className="h-4 w-4" />
                 Cart
@@ -138,7 +138,7 @@ const Header = () => {
                   </span>
                 )}
               </Button>
-              <Button asChild variant="outline" size="sm" className="min-h-11 rounded-none border-[hsl(var(--after-hours-copper))] bg-transparent px-4 text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-plum))] hover:text-[hsl(var(--after-hours-cream))]">
+              <Button asChild variant="outline" size="sm" className="min-h-11 rounded-none border-[hsl(var(--after-hours-copper))] bg-transparent px-4 text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--after-hours-plum))] hover:text-white">
                 <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_desktop", window.location.pathname)}>
                   <Calendar className="h-4 w-4" />
                   {BOOK_CTA_LABEL}
@@ -152,7 +152,7 @@ const Header = () => {
                 size="icon"
                 onClick={(event) => openCart(event.currentTarget)}
                 aria-label={itemCount > 0 ? `View cart, ${itemCount} item${itemCount === 1 ? "" : "s"}` : "View cart"}
-                className="relative h-11 w-11 rounded-none text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]"
+                className="relative h-11 w-11 rounded-none text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]"
               >
                 <ShoppingCart className="h-5 w-5" />
                 {itemCount > 0 && (
@@ -166,7 +166,7 @@ const Header = () => {
                 ref={mobileMenuTriggerRef}
                 variant="ghost"
                 size="icon"
-                className="h-11 w-11 flex-shrink-0 rounded-none text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]"
+                className="h-11 w-11 flex-shrink-0 rounded-none text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--after-hours-plum)/0.07)]"
                 aria-expanded={mobileMenuOpen}
                 aria-haspopup="dialog"
                 onClick={() => {
@@ -198,19 +198,19 @@ const Header = () => {
                     <nav className="mt-6" aria-label="Mobile navigation">
                       <div className="mb-6 [&_input]:h-11 [&_input]:rounded-none [&_input]:border-[hsl(var(--after-hours-plum)/0.28)] [&_input]:bg-transparent">
                         {mobileMenuOpen ? (
-                          <Suspense fallback={<div className="flex h-11 items-center border border-[hsl(var(--after-hours-plum)/0.28)] px-3 text-sm text-[hsl(var(--after-hours-plum)/0.58)]">Search products and articles...</div>}>
+                          <Suspense fallback={<div className="flex h-11 items-center border border-[hsl(var(--after-hours-plum)/0.28)] px-3 text-sm text-[hsl(var(--hp-ink)/0.58)]">Search products and articles...</div>}>
                             <ProductSearch placeholder="Search shop + guides" maxResults={5} />
                           </Suspense>
                         ) : null}
                       </div>
 
-                      <Link ref={mobileMenuFirstLinkRef} to="/collections" onClick={() => setMobileMenuOpen(false)} className="inline-flex min-h-11 items-center font-heading text-2xl text-[hsl(var(--after-hours-plum))] hover:text-brand-600">
+                      <Link ref={mobileMenuFirstLinkRef} to="/collections" onClick={() => setMobileMenuOpen(false)} className="inline-flex min-h-11 items-center font-heading text-2xl text-[hsl(var(--hp-ink))] hover:text-brand-600">
                         Shop all products
                       </Link>
                       <div className="mt-5 space-y-5" aria-label="Shop categories">
                         {SHOP_TAXONOMY.map((group) => (
                           <div key={group.id}>
-                            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--after-hours-plum)/0.7)]">Shop by {group.label.toLowerCase()}</p>
+                            <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.7)]">Shop by {group.label.toLowerCase()}</p>
                             <div className="mt-2 grid grid-cols-2 border-t border-[hsl(var(--after-hours-plum)/0.18)]">
                               {(group.id === "brand" ? group.destinations : group.destinations.slice(0, 4)).map((destination, index) => (
                                 <Link
@@ -218,7 +218,7 @@ const Header = () => {
                                   to={destination.href}
                                   onClick={() => setMobileMenuOpen(false)}
                                   aria-label={`Shop ${destination.name.toLowerCase()}`}
-                                  className="inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.18)] pr-2 text-sm font-medium text-[hsl(var(--after-hours-plum))] transition-colors hover:text-brand-600 even:pl-3"
+                                  className="inline-flex min-h-11 items-center border-b border-[hsl(var(--after-hours-plum)/0.18)] pr-2 text-sm font-medium text-[hsl(var(--hp-ink))] transition-colors hover:text-brand-600 even:pl-3"
                                 >
                                   <span className="mr-2 text-[0.62rem] text-[hsl(var(--after-hours-copper))]">0{index + 1}</span>
                                   {destination.shortName}
@@ -249,7 +249,7 @@ const Header = () => {
                           <ShoppingCart className="h-5 w-5" />
                           Cart
                         </Button>
-                        <Button asChild variant="outline" size="lg" className="min-h-11 w-full rounded-none border-[hsl(var(--after-hours-copper))] bg-transparent text-[hsl(var(--after-hours-plum))] hover:bg-[hsl(var(--after-hours-plum))] hover:text-[hsl(var(--after-hours-cream))]">
+                        <Button asChild variant="outline" size="lg" className="min-h-11 w-full rounded-none border-[hsl(var(--after-hours-copper))] bg-transparent text-[hsl(var(--hp-ink))] hover:bg-[hsl(var(--after-hours-plum))] hover:text-white">
                           <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick("header_mobile", window.location.pathname)}>
                             <Calendar className="h-5 w-5" />
                             {BOOK_CTA_LABEL}

@@ -51,7 +51,7 @@ const Glossary = () => {
   const webPageSchema = generateWebPageSchema({
     name: "Hair Care Glossary | Hair Pinns",
     description:
-      "Plain-English hair-care glossary — keratin treatments, full head foils, bond repair, toner, sulphate-free, lamellar and more. Defined by Jena at Hair Pinns Bangor.",
+      "Plain-English hair-care glossary, keratin treatments, full head foils, bond repair, toner, sulphate-free, lamellar and more. Defined by Jena at Hair Pinns Bangor.",
     url: "https://hairpinns.com/glossary",
   });
 
@@ -59,7 +59,7 @@ const Glossary = () => {
     <div className="editorial-route min-h-screen flex flex-col bg-background">
       <SEOHead
         title="Hair Care Glossary | Plain-English Hair Terms | Hair Pinns"
-        description="Hair-care terms explained simply by a 20-year salon owner. Keratin, full head foils, bond repair, toner, sulphate-free, lamellar treatment and more — what they actually mean and when to use them."
+        description="Hair-care terms explained simply by a 20-year salon owner. Keratin, full head foils, bond repair, toner, sulphate-free, lamellar treatment and more, what they actually mean and when to use them."
         canonical="https://hairpinns.com/glossary"
         ogImage={getOGImage("default")}
         ogType="website"
@@ -131,7 +131,7 @@ const Glossary = () => {
                           <p className="mt-2 text-sm">
                             <Link
                               to={term.link.href}
-                              className="font-medium text-[hsl(var(--after-hours-plum))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
+                              className="font-medium text-[hsl(var(--hp-ink))] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
                             >
                               {term.link.label} →
                             </Link>

@@ -115,7 +115,7 @@ const QuickViewModal = ({ productHandle, open, onClose }: QuickViewModalProps) =
                 <h2 className="text-2xl font-heading font-bold text-heading mb-2">
                   {product.title}
                 </h2>
-                {/* No fake ratings — only show when real review system exists */}
+                {/* No fake ratings, only show when real review system exists */}
               </div>
 
               {/* Price */}

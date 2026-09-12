@@ -18,13 +18,13 @@ const post = {
         },
         {
           heading: "Pricing",
-          content: "Teens: $214\nMid-length: $324\nLong: $349\n\nStraight Up Smoothing lasts 12 weeks on most hair. Less wash-day effort, no straightener every morning, no humidity freakout. Book a colour-and-smooth combo and we'll do both in one visit — saves you a return trip.\n\nJena 0416037663\nE: hairpinns1@gmail.com"
+          content: "Teens: $214\nMid-length: $324\nLong: $349\n\nStraight Up Smoothing lasts 12 weeks on most hair. Less wash-day effort, no straightener every morning, no humidity freakout. Book a colour-and-smooth combo and we'll do both in one visit, saves you a return trip.\n\nJena 0416037663\nE: hairpinns1@gmail.com"
         }
       ],
       faqSection: [
         {
           question: "How do I stop my hair going frizzy in Sydney humidity?",
-          answer: "Three things: a sulfate-free shampoo (Juuce Smoothing or Pure Precious), a silicone-free smoothing serum, and a microfibre towel. Skip the heavy butters — they attract water from the air and make frizz worse in our climate.",
+          answer: "Three things: a sulfate-free shampoo (Juuce Smoothing or Pure Precious), a silicone-free smoothing serum, and a microfibre towel. Skip the heavy butters, they attract water from the air and make frizz worse in our climate.",
         },
         {
           question: "What's the best shampoo for frizzy hair in Australia?",

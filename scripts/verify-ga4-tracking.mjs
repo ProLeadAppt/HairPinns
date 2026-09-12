@@ -31,14 +31,6 @@ const miniCart = readFileSync(
   resolve(root, 'src/components/cart/MiniCart.tsx'),
   'utf8',
 );
-const projectConfig = readFileSync(
-  resolve(root, 'src/config/projectConfig.ts'),
-  'utf8',
-);
-const ghlRelay = readFileSync(
-  resolve(root, 'netlify/functions/ghl-capture.js'),
-  'utf8',
-);
 
 const collectSourceFiles = (directory) => readdirSync(directory, { withFileTypes: true })
   .flatMap((entry) => {
@@ -63,29 +55,9 @@ if (!indexHtml.includes("gtag('config', 'G-N6Y1TJMWGG')")) {
   failures.push('index.html does not configure GA4 with G-N6Y1TJMWGG.');
 }
 
-if (!envExample.includes('GHL_INBOUND_WEBHOOK_URL=')) {
-  failures.push('.env.example does not document the server-only GHL relay secret.');
-}
-
-if (envExample.includes('VITE_GHL_INBOUND_WEBHOOK_URL=')) {
-  failures.push('.env.example exposes the private GHL webhook as a public Vite variable.');
-}
-
-if (clientSource.includes('VITE_GHL_INBOUND_WEBHOOK_URL')) {
-  failures.push('Client source still references the obsolete public GHL webhook variable.');
-}
-
-if (/services\.leadconnectorhq\.com\/hooks\//.test(clientSource)) {
-  failures.push('Client source contains a private HighLevel webhook URL.');
-}
-
-if (!projectConfig.includes("inboundWebhookUrl: '/api/ghl-capture'")) {
-  failures.push('projectConfig.ts does not route CRM capture through the same-origin relay.');
-}
-
-for (const relayGuard of ['rateLimit', 'isAllowedOrigin', 'hasKnownContact']) {
-  if (!ghlRelay.includes(relayGuard)) {
-    failures.push(`ghl-capture.js is missing ${relayGuard}.`);
+for (const removedIntegration of ['leadconnectorhq', 'msgsndr.com', 'GHL_INBOUND_WEBHOOK_URL', 'hpCapture']) {
+  if (clientSource.includes(removedIntegration)) {
+    failures.push(`Client source still contains retired GoHighLevel integration marker: ${removedIntegration}.`);
   }
 }
 
