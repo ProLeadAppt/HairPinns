@@ -24,8 +24,10 @@ const formatDate = (value: string) => new Intl.DateTimeFormat("en-AU", {
   timeZone: "Australia/Sydney",
 }).format(new Date(value));
 
-const UpdatePost = () => {
-  const { handle } = useParams();
+const UpdatePost = ({ blogHandle = "updates", basePath = "/updates" }: { blogHandle?: string; basePath?: string }) => {
+  const params = useParams();
+  const handle = params.handle || params.slug;
+  const sectionLabel = basePath === "/blog" ? "Journal" : "Updates";
   const [article, setArticle] = useState<ShopifyPublicArticle | null>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "missing" | "failed">("loading");
 
@@ -35,7 +37,7 @@ const UpdatePost = () => {
       setStatus("missing");
       return () => { active = false; };
     }
-    getPublicArticle("updates", handle)
+    getPublicArticle(blogHandle, handle)
       .then((result) => {
         if (!active) return;
         setArticle(result);
@@ -46,7 +48,7 @@ const UpdatePost = () => {
         if (active) setStatus("failed");
       });
     return () => { active = false; };
-  }, [handle]);
+  }, [handle, blogHandle]);
 
   const cleanHtml = useMemo(
     () => sanitisePublicArticleHtml(article?.contentHtml || ""),
@@ -62,7 +64,7 @@ const UpdatePost = () => {
         <SEOHead
           title={failed ? "Update temporarily unavailable | Hair Pinns" : "Loading update | Hair Pinns"}
           description="Hair Pinns updates from Jena in Bangor, NSW."
-          canonical={"https://hairpinns.com/updates/" + (handle || "")}
+          canonical={"https://hairpinns.com" + basePath + "/" + (handle || "")}
           noIndex
           prerenderReady={failed}
         />
@@ -84,7 +86,7 @@ const UpdatePost = () => {
     );
   }
 
-  const canonical = "https://hairpinns.com/updates/" + article.handle;
+  const canonical = "https://hairpinns.com" + basePath + "/" + article.handle;
   const description = article.seo?.description || publicExcerpt(article.excerpt, cleanHtml, 155);
   const author = article.author?.name || "Jena Pinn";
   const wordCount = cleanHtml.replace(/<[^>]+>/g, " ").trim().split(/\s+/).filter(Boolean).length;
@@ -101,7 +103,7 @@ const UpdatePost = () => {
     }),
     generateBreadcrumbSchema([
       { name: "Home", url: "https://hairpinns.com/" },
-      { name: "Updates", url: "https://hairpinns.com/updates" },
+      { name: sectionLabel, url: "https://hairpinns.com" + basePath },
       { name: article.title, url: canonical },
     ]),
   ];
@@ -119,7 +121,7 @@ const UpdatePost = () => {
       <Header />
       <div className="border-b border-[hsl(var(--hp-ink)/0.14)] bg-[hsl(var(--hp-lavender))] px-4 pt-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[78rem]">
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Updates", href: "/updates" }, { label: article.title }]} variant="dark" />
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: sectionLabel, href: basePath }, { label: article.title }]} variant="dark" />
         </div>
       </div>
       <main id="main-content" tabIndex={-1} data-public-update="">
@@ -127,7 +129,7 @@ const UpdatePost = () => {
           <header className="bg-[hsl(var(--hp-lavender))]">
             <div className="mx-auto grid max-w-[78rem] gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.62fr_0.38fr] lg:items-end lg:px-8 lg:py-24">
               <div>
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-purple))]">Hair Pinns / Public edition</p>
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-purple))]">Hair Pinns / {sectionLabel}</p>
                 <h1 className="mt-5 max-w-[15ch] font-heading text-[clamp(3rem,7vw,6.5rem)] font-semibold leading-[0.92] tracking-[-0.05em]">{article.title}</h1>
               </div>
               <dl className="grid grid-cols-2 border-y border-[hsl(var(--hp-ink)/0.2)] py-5 text-sm">
@@ -169,7 +171,7 @@ const UpdatePost = () => {
         <section className="bg-[hsl(var(--hp-lavender))]">
           <div className="mx-auto flex max-w-[78rem] flex-col gap-5 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
             <p className="max-w-2xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">This public edition is designed to be shared. It contains no recipient details, unsubscribe token or private preview link.</p>
-            <Link to="/updates" className="inline-flex min-h-11 items-center font-semibold text-[hsl(var(--hp-purple))]">All Hair Pinns updates <span className="ml-2" aria-hidden="true">→</span></Link>
+            <Link to={basePath} className="inline-flex min-h-11 items-center font-semibold text-[hsl(var(--hp-purple))]">Back to the {sectionLabel.toLowerCase()} <span className="ml-2" aria-hidden="true">→</span></Link>
           </div>
         </section>
       </main>

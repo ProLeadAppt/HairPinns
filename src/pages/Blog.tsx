@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, X } from "lucide-react";
 import { getOGImage } from "@/lib/sitemap";
@@ -12,12 +12,31 @@ import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
 import { filterBlogSummaries } from "@/lib/blogSearch";
+import { getPublicBlog, publicExcerpt } from "@/lib/shopifyContent";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(12);
   const [searchQuery, setSearchQuery] = useState("");
-  const visiblePosts = blogSummaries.filter((post) => !post.archived);
+  const [shopifyPosts, setShopifyPosts] = useState<typeof blogSummaries>([]);
+  const [contentLoading, setContentLoading] = useState(true);
+  useEffect(() => {
+    let active = true;
+    getPublicBlog("blogs").then((blog) => {
+      if (!active) return;
+      const legacySlugs = new Set(blogSummaries.map((post) => post.slug));
+      setShopifyPosts((blog?.articles.nodes || []).filter((article) => !legacySlugs.has(article.handle)).map((article) => ({
+        slug: article.handle, title: article.title,
+        excerpt: publicExcerpt(article.excerpt, article.contentHtml),
+        image: article.image?.url || getOGImage("blog"),
+        date: article.publishedAt, author: article.author?.name || "Jena Pinn",
+        category: "Hair care", readTime: "3 min read",
+      })));
+    }).catch((error) => console.error("Shopify journal unavailable:", error))
+      .finally(() => { if (active) setContentLoading(false); });
+    return () => { active = false; };
+  }, []);
+  const visiblePosts = [...shopifyPosts, ...blogSummaries.filter((post) => !post.archived)];
   const categories = ["all", ...Array.from(new Set(visiblePosts.map((post) => post.category)))];
   const searchedPosts = filterBlogSummaries(visiblePosts, searchQuery);
   const filteredPosts = activeCategory === "all"
@@ -54,6 +73,7 @@ const Blog = () => {
         ogImage={getOGImage("blog")}
         ogType="website"
         schemaJson={schemas}
+        prerenderReady={!contentLoading}
       />
       <Header />
 

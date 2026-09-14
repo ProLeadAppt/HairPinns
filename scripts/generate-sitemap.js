@@ -154,10 +154,10 @@ async function getShopifyCollections() {
   return collections;
 }
 
-async function getShopifyUpdates() {
+async function getShopifyUpdates(blogHandle = 'updates') {
   const query = `
-    query sitemapUpdates($after: String) {
-      blog(handle: "updates") {
+    query sitemapUpdates($after: String, $blogHandle: String!) {
+      blog(handle: $blogHandle) {
         articles(first: 100, after: $after, sortKey: PUBLISHED_AT, reverse: true) {
           edges { node { handle publishedAt } }
           pageInfo { hasNextPage endCursor }
@@ -165,12 +165,12 @@ async function getShopifyUpdates() {
       }
     }
   `;
-  const firstPage = await fetchShopify(query, { after: null });
+  const firstPage = await fetchShopify(query, { after: null, blogHandle });
   if (!firstPage?.blog) throw new Error('[sitemap] Required Shopify blog "updates" is missing');
 
   const nodes = await collectShopifyConnection(async (after) => {
     if (after === null) return firstPage.blog.articles;
-    return (await fetchShopify(query, { after }))?.blog?.articles;
+    return (await fetchShopify(query, { after, blogHandle }))?.blog?.articles;
   }, 'updates', { allowEmpty: true });
 
   return nodes
@@ -265,6 +265,10 @@ async function main() {
   parseBlogFreshness(blogContent).filter(({ slug }) => isIndexableRoute(`/blog/${slug}`)).forEach(({ slug, lastmod }) => {
     urls.push(url(`${BASE}/blog/${slug}`, 'monthly', 0.6, lastmod));
   });
+  const existingBlogSlugs = new Set(parseBlogFreshness(blogContent).map(({ slug }) => slug));
+  const shopifyBlogArticles = await getShopifyUpdates('blogs');
+  shopifyBlogArticles.filter(({ handle }) => !existingBlogSlugs.has(handle) && isIndexableRoute(`/blog/${handle}`))
+    .forEach(({ handle, publishedAt }) => urls.push(url(`${BASE}/blog/${handle}`, 'monthly', 0.6, publishedAt)));
 
   // State-by-state shipping landing pages — one per AU state/territory.
   // Source of truth: src/data/shippingStates.ts. High priority because
