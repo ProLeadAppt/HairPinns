@@ -19,6 +19,19 @@
 [functions.shopify-catalog-sync-background]
   background = true
 
+# Recover links already sent in the Christmas email. Keep campaign queries.
+[[redirects]]
+  from = "/products/juuce-christmas-packs"
+  to = "/products/christmas-packs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/juuce-christmas-packs/"
+  to = "/products/christmas-packs/"
+  status = 301
+  force = true
+
 # API route first so /api/checkout always hits the function (not the SPA)
 [[redirects]]
   from = "/api/checkout"
