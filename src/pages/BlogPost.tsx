@@ -23,6 +23,7 @@ import { topicsForBlogPost } from "@/data/topicMap";
 import { renderInlineLinks } from "@/lib/renderInlineLinks";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { buildMetaDescription } from "@/lib/metadata";
+import UpdatePost from "@/pages/UpdatePost";
 import {
   generateOrganizationSchema,
   generateBlogPostSchema,
@@ -335,7 +336,7 @@ const BlogPost = () => {
   }, [loader, loaderKey]);
 
   if (!loader) {
-    return <Navigate to="/404" replace />;
+    return <UpdatePost blogHandle="blogs" basePath="/blog" />;
   }
 
   if (loadError) {

@@ -104,16 +104,16 @@ async function fetchShopifyHandles(type) {
   return handles;
 }
 
-async function fetchUpdateArticleHandles() {
+async function fetchUpdateArticleHandles(blogHandle = 'updates') {
   const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
   const token = process.env.VITE_SF_STOREFRONT_TOKEN || '';
   const version = process.env.VITE_SF_API_VERSION || '2026-07';
   if (!token) throw new Error('[prerender] Missing Shopify Storefront token while collecting public updates');
 
-  const query = `query updateHandles($after: String) {
-    blog(handle: "updates") {
+  const query = `query updateHandles($after: String, $blogHandle: String!) {
+    blog(handle: $blogHandle) {
       articles(first: 100, after: $after, sortKey: PUBLISHED_AT, reverse: true) {
-        edges { node { handle } }
+        edges { node { handle publishedAt } }
         pageInfo { hasNextPage endCursor }
       }
     }
@@ -126,7 +126,7 @@ async function fetchUpdateArticleHandles() {
         'Content-Type': 'application/json',
         'X-Shopify-Storefront-Access-Token': token,
       },
-      body: JSON.stringify({ query, variables: { after } }),
+      body: JSON.stringify({ query, variables: { after, blogHandle } }),
     });
     if (!response.ok) throw new Error(`[prerender] Shopify updates request failed with HTTP ${response.status}`);
     const payload = await response.json();
@@ -137,7 +137,8 @@ async function fetchUpdateArticleHandles() {
     return payload.data.blog.articles;
   }, 'updates', { allowEmpty: true });
 
-  return nodes.map((node) => node.handle).filter(Boolean);
+  return nodes.filter((node) => blogHandle !== 'blogs' || Date.parse(node.publishedAt) >= Date.parse('2026-09-12T00:00:00Z'))
+    .map((node) => node.handle).filter(Boolean);
 }
 
 export async function collectRoutes() {
@@ -169,6 +170,9 @@ export async function collectRoutes() {
 
   const updateHandles = await fetchUpdateArticleHandles();
   updateHandles.forEach((handle) => routes.push(`/updates/${handle}`));
+  const shopifyBlogHandles = await fetchUpdateArticleHandles('blogs');
+  shopifyBlogHandles.map((handle) => `/blog/${handle}`).filter(isIndexableRoute)
+    .forEach((route) => routes.push(route));
 
   // State-level shipping landing pages — one per AU state/territory. Auto-
   // discovered from src/data/shippingStates.ts so adding a new entry there
