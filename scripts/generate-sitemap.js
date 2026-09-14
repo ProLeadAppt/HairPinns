@@ -174,6 +174,7 @@ async function getShopifyUpdates(blogHandle = 'updates') {
   }, 'updates', { allowEmpty: true });
 
   return nodes
+    .filter((article) => blogHandle !== 'blogs' || Date.parse(article.publishedAt) >= Date.parse('2026-09-12T00:00:00Z'))
     .map((article) => ({ handle: article.handle, publishedAt: article.publishedAt }))
     .filter((article) => article.handle);
 }

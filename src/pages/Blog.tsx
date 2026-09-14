@@ -13,6 +13,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
 import { filterBlogSummaries } from "@/lib/blogSearch";
 import { getPublicBlog, publicExcerpt } from "@/lib/shopifyContent";
+import { SHOPIFY_JOURNAL_START } from "@/config/journalPublication";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -25,7 +26,7 @@ const Blog = () => {
     getPublicBlog("blogs").then((blog) => {
       if (!active) return;
       const legacySlugs = new Set(blogSummaries.map((post) => post.slug));
-      setShopifyPosts((blog?.articles.nodes || []).filter((article) => !legacySlugs.has(article.handle)).map((article) => ({
+      setShopifyPosts((blog?.articles.nodes || []).filter((article) => !legacySlugs.has(article.handle) && Date.parse(article.publishedAt) >= Date.parse(SHOPIFY_JOURNAL_START)).map((article) => ({
         slug: article.handle, title: article.title,
         excerpt: publicExcerpt(article.excerpt, article.contentHtml),
         image: article.image?.url || getOGImage("blog"),

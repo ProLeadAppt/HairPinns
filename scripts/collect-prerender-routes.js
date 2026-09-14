@@ -113,7 +113,7 @@ async function fetchUpdateArticleHandles(blogHandle = 'updates') {
   const query = `query updateHandles($after: String, $blogHandle: String!) {
     blog(handle: $blogHandle) {
       articles(first: 100, after: $after, sortKey: PUBLISHED_AT, reverse: true) {
-        edges { node { handle } }
+        edges { node { handle publishedAt } }
         pageInfo { hasNextPage endCursor }
       }
     }
@@ -137,7 +137,8 @@ async function fetchUpdateArticleHandles(blogHandle = 'updates') {
     return payload.data.blog.articles;
   }, 'updates', { allowEmpty: true });
 
-  return nodes.map((node) => node.handle).filter(Boolean);
+  return nodes.filter((node) => blogHandle !== 'blogs' || Date.parse(node.publishedAt) >= Date.parse('2026-09-12T00:00:00Z'))
+    .map((node) => node.handle).filter(Boolean);
 }
 
 export async function collectRoutes() {
