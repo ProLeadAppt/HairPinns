@@ -148,4 +148,56 @@ describe("checkout function action contract", () => {
     expect(response.statusCode).toBe(400);
     expect(JSON.parse(response.body)).toMatchObject({ code: "INVALID_ACTION" });
   });
+
+  it('saves campaign labels on a new cart and decorates checkout without recipient data', async () => {
+    const attributes = [{ key: 'hp_utm_source', value: 'shopify_email' }, { key: 'hp_utm_campaign', value: 'tips' }];
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(new Response(JSON.stringify({
+      data: { cartCreate: { cart: { ...shopifyCart, attributes }, userErrors: [] } },
+    })));
+    const response = await handler(eventFor({ action: 'add', lines: [{ merchandiseId: 'gid://shopify/ProductVariant/1', quantity: 1 }],
+      campaign: { utm_source: 'shopify_email', utm_campaign: 'tips', email: 'private@example.test', token: 'secret' },
+    }));
+    expect(response.statusCode).toBe(200);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(fetchSpy.mock.calls[0][1].body).variables.input.attributes).toEqual(attributes);
+    const url = new URL(JSON.parse(response.body).checkoutUrl);
+    expect(url.searchParams.get('utm_campaign')).toBe('tips');
+    expect(url.searchParams.has('email')).toBe(false);
+  });
+
+  it('updates campaign on existing checkout while preserving unrelated cart attributes', async () => {
+    const cart = { ...shopifyCart, attributes: [{ key: 'gift_note', value: 'Keep' }, { key: 'hp_utm_content', value: 'old' }] };
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { cart } })))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { cartAttributesUpdate: { cart, userErrors: [] } } })));
+    const response = await handler(eventFor({ action: 'checkout', cartId: cart.id, campaign: { utm_source: 'email' } }));
+    expect(response.statusCode).toBe(200);
+    expect(JSON.parse(fetchSpy.mock.calls[1][1].body).variables.attributes).toEqual([
+      { key: 'gift_note', value: 'Keep' }, { key: 'hp_utm_source', value: 'email' },
+    ]);
+  });
+
+  it('still returns usable checkout if saving attribution fails', async () => {
+    vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { cart: shopifyCart } })))
+      .mockRejectedValueOnce(new Error('attribution unavailable'));
+    const response = await handler(eventFor({ action: 'checkout', cartId: shopifyCart.id, campaign: { utm_source: 'email' } }));
+    expect(response.statusCode).toBe(200);
+    expect(JSON.parse(response.body).checkoutUrl).toContain('utm_source=email');
+  });
+
+  it('preserves campaign on the Buy Now form redirect', async () => {
+    const attributes = [{ key: 'hp_utm_source', value: 'email' }];
+    vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(new Response(JSON.stringify({
+      data: { cartCreate: { cart: { ...shopifyCart, attributes }, userErrors: [] } },
+    })));
+    const response = await handler({ httpMethod: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      queryStringParameters: { redirect: 'true' }, body: new URLSearchParams({
+        lines: JSON.stringify([{ merchandiseId: 'gid://shopify/ProductVariant/1', quantity: 1 }]),
+        campaign: JSON.stringify({ utm_source: 'email' }),
+      }).toString(),
+    });
+    expect(response.statusCode).toBe(303);
+    expect(response.headers.Location).toContain('utm_source=email');
+  });
 });

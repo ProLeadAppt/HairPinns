@@ -7,6 +7,8 @@
  * working while callers migrate to the action contract.
  */
 
+import { sanitiseCampaign, campaignAttributes, checkoutWithCampaign } from '../../shared/campaignAttribution.js';
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -25,6 +27,7 @@ const CART_FIELDS = `
   id
   checkoutUrl
   totalQuantity
+  attributes { key value }
   discountCodes { code applicable }
   lines(first: 100) {
     edges {
@@ -66,13 +69,13 @@ const isStaleMessage = (message = '', code = '') => {
     || normalised.includes('invalid cart');
 };
 
-async function fetchShopify(query, variables) {
+async function fetchShopify(query, variables, timeoutMs = 10000) {
   if (!SHOPIFY_ENDPOINT || !SF_STOREFRONT_TOKEN) {
     throw new CheckoutError('Shopify configuration is unavailable.', 500, 'SHOPIFY_CONFIGURATION');
   }
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 10000);
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(SHOPIFY_ENDPOINT, {
       method: 'POST',
@@ -138,12 +141,12 @@ async function cartGet(cartId) {
   return data.cart;
 }
 
-async function cartCreate(lines) {
+async function cartCreate(lines, campaign = {}) {
   const data = await fetchShopify(
     `mutation cartCreate($input: CartInput!) {
       cartCreate(input: $input) { cart { ${CART_FIELDS} } userErrors { field message code } }
     }`,
-    { input: { lines, buyerIdentity: { countryCode: 'AU' } } },
+    { input: { lines, buyerIdentity: { countryCode: 'AU' }, attributes: campaignAttributes(campaign) } },
   );
   assertUserErrors(data.cartCreate);
   return data.cartCreate.cart;
@@ -217,6 +220,7 @@ function parseBody(event) {
       action: params.get('action') || undefined,
       cartId: params.get('cartId') || undefined,
       lines: (() => { try { return JSON.parse(params.get('lines') || '[]'); } catch { return []; } })(),
+      campaign: (() => { try { return JSON.parse(params.get('campaign') || '{}'); } catch { return {}; } })(),
     };
   }
   try {
@@ -256,9 +260,34 @@ function validateUpdateLines(lines) {
   }
 }
 
-function responseForCart(cart) {
+async function attachCampaign(cart, campaign) {
+  const incoming = campaignAttributes(campaign);
+  if (!incoming.length) return cart;
+  const existing = cart.attributes || [];
+  if (incoming.every(({ key, value }) => existing.some((entry) => entry.key === key && entry.value === value))
+    && existing.filter(({ key }) => key.startsWith('hp_utm_')).length === incoming.length) return cart;
+  try {
+    const data = await fetchShopify(
+      `mutation cartAttributesUpdate($cartId: ID!, $attributes: [AttributeInput!]!) {
+        cartAttributesUpdate(cartId: $cartId, attributes: $attributes) {
+          cart { ${CART_FIELDS} } userErrors { field message code }
+        }
+      }`,
+      { cartId: cart.id, attributes: [...existing.filter(({ key }) => !key.startsWith('hp_utm_')), ...incoming] },
+      1500,
+    );
+    assertUserErrors(data.cartAttributesUpdate);
+    return data.cartAttributesUpdate.cart || cart;
+  } catch {
+    // Attribution cannot turn a successful bag mutation into a failed purchase.
+    console.warn('[Checkout] Campaign attributes could not be saved.');
+    return cart;
+  }
+}
+
+function responseForCart(cart, campaign = {}) {
   if (!cart?.id) throw new CheckoutError('Shopify returned an incomplete bag.', 502, 'INVALID_CART_RESPONSE');
-  const checkoutUrl = ensureShopifyCheckoutUrl(cart.checkoutUrl);
+  const checkoutUrl = checkoutWithCampaign(ensureShopifyCheckoutUrl(cart.checkoutUrl), campaign);
   const snapshot = { ...cart, checkoutUrl: checkoutUrl || cart.checkoutUrl || '' };
   return {
     cart: snapshot,
@@ -277,6 +306,7 @@ export const handler = async (event) => {
 
   try {
     const body = parseBody(event);
+    const campaign = sanitiseCampaign(body.campaign);
     const action = inferLegacyAction(body);
     if (!['get', 'add', 'update', 'remove', 'checkout'].includes(action)) {
       throw new CheckoutError('Action must be get, add, update, remove or checkout.', 400, 'INVALID_ACTION');
@@ -294,10 +324,10 @@ export const handler = async (event) => {
           cart = await cartLinesAdd(cartId, body.lines);
         } catch (error) {
           if (!(error instanceof CheckoutError) || error.code !== 'STALE_CART') throw error;
-          cart = await cartCreate(body.lines);
+          cart = await cartCreate(body.lines, campaign);
         }
       } else {
-        cart = await cartCreate(body.lines);
+        cart = await cartCreate(body.lines, campaign);
       }
     } else if (action === 'update') {
       if (!cartId) throw new CheckoutError('A cartId is required.', 400, 'INVALID_CART_ID');
@@ -317,7 +347,8 @@ export const handler = async (event) => {
         : await cartGet(cartId);
     }
 
-    const result = responseForCart(cart);
+    if (action === 'add' || action === 'checkout') cart = await attachCampaign(cart, campaign);
+    const result = responseForCart(cart, campaign);
     if (event.queryStringParameters?.redirect === 'true') {
       if (!result.checkoutUrl) {
         throw new CheckoutError('Checkout is temporarily unavailable.', 502, 'CHECKOUT_URL_MISSING');
