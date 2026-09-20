@@ -22,6 +22,7 @@ import { buildMetaDescription } from "@/lib/metadata";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { addCartLines } from "@/lib/cartApi";
+import { getCampaign } from '@/lib/campaignAttribution';
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { notify } from "@/hooks/use-toast";
 
@@ -303,6 +304,12 @@ const ProductDetail = () => {
       linesInput.name = 'lines';
       linesInput.value = JSON.stringify([{ merchandiseId: activeVariantId, quantity: 1 }]);
       form.appendChild(linesInput);
+
+      const campaignInput = document.createElement('input');
+      campaignInput.type = 'hidden';
+      campaignInput.name = 'campaign';
+      campaignInput.value = JSON.stringify(getCampaign());
+      form.appendChild(campaignInput);
 
       document.body.appendChild(form);
       form.submit();

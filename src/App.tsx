@@ -4,6 +4,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import TrackingGate from "./components/tracking/TrackingGate";
+import CampaignCapture from "./components/tracking/CampaignCapture";
 import { FloatingActionsProvider } from "@/contexts/FloatingActionsContext";
 import {
   markNotificationRendererReady,
@@ -119,6 +120,7 @@ const AppContent = () => {
       ) : null}
       <FloatingActionsProvider>
         <BrowserRouter>
+          <CampaignCapture />
           <CartProvider>
             <ScrollToTop />
             <ScrollToTopButton />
