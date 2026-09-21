@@ -1,3 +1,4 @@
+import { FREE_SHIPPING_THRESHOLD as FREE_STANDARD_SHIPPING } from "@/config/shippingConfig";
 import { useState } from "react";
 import { ArrowRight, Minus, Plus, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -22,7 +23,6 @@ export interface MiniCartProps {
   subtotal?: number;
 }
 
-const FREE_STANDARD_SHIPPING = 150;
 
 export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: MiniCartProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -283,9 +283,9 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
               <section data-cart-shipping="" className="border-b border-[hsl(var(--after-hours-plum)/0.2)] py-7" aria-label="Free standard shipping progress">
                 <div className="flex items-start justify-between gap-4 text-sm font-semibold">
                   <p>{remainingForShipping === 0 ? "Free standard shipping unlocked" : `${formatPrice(remainingForShipping, currency)} until free standard shipping`}</p>
-                  <span className="font-mono text-xs">$150</span>
+                  <span className="font-mono text-xs">${FREE_STANDARD_SHIPPING}</span>
                 </div>
-                <div className="mt-4 h-1 bg-[hsl(var(--after-hours-plum)/0.16)]" role="progressbar" aria-label="Free standard shipping progress" aria-valuemin={0} aria-valuemax={150} aria-valuenow={Math.min(subtotal, 150)}>
+                <div className="mt-4 h-1 bg-[hsl(var(--after-hours-plum)/0.16)]" role="progressbar" aria-label="Free standard shipping progress" aria-valuemin={0} aria-valuemax={FREE_STANDARD_SHIPPING} aria-valuenow={Math.min(subtotal, FREE_STANDARD_SHIPPING)}>
                   <div className="h-full bg-[hsl(var(--after-hours-copper))]" style={{ width: `${shippingProgress}%` }} />
                 </div>
                 <p className="mt-4 text-xs leading-5 text-[hsl(var(--hp-ink)/0.7)]">Standard shipping is $9.95. Free standard shipping applies from $150.</p>

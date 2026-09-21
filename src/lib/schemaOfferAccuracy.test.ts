@@ -9,6 +9,14 @@ const product = {
 
 describe('product offer accuracy', () => {
   for (const [name, generate] of Object.entries({ basic: generateProductSchema, enhanced: generateEnhancedProductSchema })) {
+    it.each([['149.99', '9.95'], ['150.00', '0'], ['175.00', '0']])(
+      `${name} declares the existing standard shipping threshold for price %s`,
+      (price, expectedShipping) => {
+        const offer = generate({ ...product, price }).offers;
+        expect(offer.price).toBe(price);
+        expect(offer.shippingDetails.shippingRate.value).toBe(expectedShipping);
+      },
+    );
     it(`${name} retains the offer without inventing expiry or nationwide transit promises`, () => {
       const offer = generate(product).offers;
       expect(offer.price).toBe('34.95');

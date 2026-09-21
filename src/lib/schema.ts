@@ -1,3 +1,5 @@
+import { FREE_SHIPPING_THRESHOLD } from "@/config/shippingConfig";
+
 // Schema.org JSON-LD utilities for SEO
 
 interface BreadcrumbItem {
@@ -333,7 +335,7 @@ export const generateProductSchema = (product: ProductData) => {
         },
         shippingRate: {
           '@type': 'MonetaryAmount',
-          value: '9.95',
+          value: Number(product.price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
           currency: 'AUD',
         },
       },
@@ -673,7 +675,7 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
           '@type': 'OfferShippingDetails',
           shippingRate: {
             '@type': 'MonetaryAmount',
-            value: '9.95',
+            value: Number(product.price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
             currency: 'AUD',
           },
           shippingDestination: {
