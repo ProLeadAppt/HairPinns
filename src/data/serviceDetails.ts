@@ -53,24 +53,23 @@ export const serviceDetailData: ServiceCategoryData[] = [
       {
         slug: "mid-length-straight-up-smoothing",
         title: "Mid-Length Straight Up Smoothing Treatment",
-        tagline: "Natural hair smoothing that lasts for months",
-        quickAnswer: "The Mid-Length Straight Up Smoothing treatment is a natural, eco-friendly hair smoothing service that turns frizzy hair into sleek, manageable results lasting 3–5 months. It includes deep cleansing, treatment application, heat activation, and professional blow-dry.",
+        tagline: "Discuss a smoother finish for mid-length hair",
+        quickAnswer: "Straight Up Smoothing starts with a consultation about your hair history and desired finish. The exact formula, suitability, aftercare and maintenance need to be confirmed before treatment.",
         duration: "2h 20min",
         price: "A$ 324",
-        description: "Turn frizzy, unmanageable hair into sleek, smooth hair with our mid-length Straight Up Smoothing treatment. This natural, eco-friendly treatment delivers salon-smooth results that last for months.",
-        metaDescription: "Mid-length Straight Up Smoothing treatment in Bangor. Natural hair smoothing, 2h 20min, $324. Book your appointment with Jena at Hair Pinns.",
+        description: "Looking for easier styling or less frizz? Talk through the finish you want with Jena, including whether you want to retain wave. Your colour history and current hair condition help determine whether this service is suitable.",
+        metaDescription: "Mid-length Straight Up Smoothing in Bangor. Discuss your hair history, desired finish and aftercare with Jena before booking at Hair Pinns.",
         whatsIncluded: [
           "Deep cleansing hair wash",
-          "Natural smoothing treatment application",
-          "Heat activation for lasting results",
+          "Professional treatment application",
+          "Finishing to suit the selected treatment",
           "Professional blow-dry and straighten",
           "Take-home hair mask to prolong results"
         ],
         whoItsFor: [
-          "Anyone with frizzy or unmanageable mid-length hair",
-          "Those wanting to reduce daily styling time",
-          "People seeking a natural alternative to harsh chemicals",
-          "Clients looking for long-lasting smoothness (3-5 months)"
+          "Clients with mid-length hair considering texture control",
+          "Clients who want to discuss frizz and styling goals",
+          "Clients whose hair is assessed as suitable for the selected formula"
         ],
         process: [
           {
@@ -79,7 +78,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
           },
           {
             step: "Treatment Application",
-            description: "The natural Straight Up formula is applied section by section, ensuring even coverage."
+            description: "The selected formula is applied according to its professional instructions after suitability is assessed."
           },
           {
             step: "Seal & Style",
@@ -87,29 +86,27 @@ export const serviceDetailData: ServiceCategoryData[] = [
           }
         ],
         benefits: [
-          "Eliminates frizz and flyaways",
-          "Reduces blow-dry time by up to 70%",
-          "Natural, eco-friendly ingredients",
-          "Results last 3-5 months",
-          "Hair feels soft, silky, and manageable",
-          "Works on all hair types"
+          "A consultation about your preferred finish",
+          "A treatment plan based on your hair history",
+          "Professional application and styling",
+          "Aftercare advice for the selected treatment"
         ],
         faqs: [
           {
-            question: "How long does the Straight Up Smoothing treatment last?",
-            answer: "Typically 3-5 months depending on your hair type, maintenance routine, and how often you wash your hair. Using the take-home mask helps prolong results."
+            question: "How long will the result last?",
+            answer: "That depends on the exact service and starting hair condition. Some QIQI services can permanently alter the treated hair. Ask what result to expect and how regrowth will be managed."
           },
           {
-            question: "Can I colour my hair before or after this treatment?",
-            answer: "Yes! We recommend colouring your hair at least one week before the smoothing treatment. You can also colour after, but wait at least 2 weeks."
+            question: "Can I colour my hair around the appointment?",
+            answer: "Discuss your colour and bleach plans before booking. QIQI notes that artificial colour may shift. Timing must follow the exact treatment and colour-service instructions."
           },
           {
-            question: "Is this treatment safe for all hair types?",
-            answer: "Absolutely! The Straight Up formula is natural and gentle, making it suitable for all hair types including colour-treated, fine, thick, or chemically-treated hair."
+            question: "Is smoothing suitable for everyone?",
+            answer: "No blanket suitability promise is appropriate. QIQI advises against treating excessively damaged hair that cannot tolerate the process. Tell Jena about previous chemical services and any concerns before treatment."
           },
           {
             question: "Will my hair be completely straight?",
-            answer: "The treatment smooths and reduces frizz while maintaining your hair's natural body. It won't give you pin-straight hair like a relaxer, but it will be much more manageable and smooth."
+            answer: "Discuss the finish you want before treatment. Do not assume every smoothing appointment preserves your natural curl or that a changed curl pattern will wash out."
           }
         ],
         relatedServices: [
@@ -118,28 +115,44 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "superior-conditioning-treatment"
         ],
         homeCareBundles: {
-          title: 'Keep your smoothing going for months at home',
-          intro: "Sulphate-free aftercare is non-negotiable. Use this routine and you'll stretch the result to four to five months instead of two.",
+          title: "Plan your aftercare with Jena",
+          intro: "Choose home care for your hair and the treatment actually used. Confirm the routine before adding products to your order.",
           products: [
-          { name: 'QIQI Bare Repair Oil', link: 'https://hairpinns.com/products/qiqi-bare-repair-oil', reason: 'Seals the cuticle after each wash. Five drops, mid-lengths to ends.' },
-          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily finishing oil. Adds shine, fights humidity.' },
-          { name: 'Pure Sacred Mask', link: 'https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment', reason: "Weekly deep hydration treatment. Use Sunday night, you'll feel the difference Monday." },
-          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Non-negotiable before any heat tool. Sulphate-free aftercare means nothing if you fry it with a straightener.' }
+            {
+              name: "QIQI Bare Repair Oil",
+              link: "https://hairpinns.com/products/qiqi-bare-repair-oil",
+              reason: "Check the product directions and ask how it fits your finishing routine."
+            },
+            {
+              name: "Juuce Botanic Oil Serum",
+              link: "https://hairpinns.com/products/juuce-botanic-oil-serum",
+              reason: "Check the product directions and ask how it fits your finishing routine."
+            },
+            {
+              name: "Pure Sacred Mask",
+              link: "https://hairpinns.com/products/pure-sacred-mask-hydrating-hair-treatment",
+              reason: "Ask whether this conditioning treatment suits your current routine."
+            },
+            {
+              name: "Juuce Heat Shield",
+              link: "https://hairpinns.com/products/juuce-heat-shield",
+              reason: "Follow the directions for heat styling and the tools you use."
+            }
           ]
         }
       },
       {
         slug: "long-thick-straight-up-smoothing",
         title: "Long/Thick Straight Up Smoothing Treatment",
-        tagline: "Maximum smoothing power for long or thick hair",
-        quickAnswer: "The Long/Thick Straight Up Smoothing treatment is designed for hair past shoulders or dense texture, delivering exceptional frizz reduction and lasting smoothness for 3–5 months. It uses extended application time and professional heat sealing for complete coverage.",
+        tagline: "Discuss texture control for long or thick hair",
+        quickAnswer: "The long/thick Straight Up appointment allows for hair length and density. Confirm suitability, the intended finish and maintenance with Jena before booking.",
         duration: "2h 20min",
         price: "A$ 349",
-        description: "For hair past your shoulders, or thick hair that eats a straightener in 20 minutes. Longer application time and full-heat coverage. Stays smooth for 3-5 months on most hair types, your morning routine drops to 'wash and walk out'.",
-        metaDescription: "Long/thick hair Straight Up Smoothing in Bangor. Natural smoothing for thick or long hair, 2h 20min, $349. Book at Hair Pinns NSW.",
+        description: "Long or dense hair needs a plan that accounts for its condition, previous treatments and the finish you want. Bring your colour history and discuss application, styling and aftercare before the service.",
+        metaDescription: "Straight Up Smoothing for long or thick hair in Bangor. Discuss suitability, finish and aftercare with Jena at Hair Pinns.",
         whatsIncluded: [
           "Extended treatment time for thorough coverage",
-          "Natural Straight Up smoothing formula",
+          "Selected professional treatment formula",
           "Professional heat sealing process",
           "Luxury blow-dry and styling",
           "Premium take-home hair mask",
@@ -166,12 +179,10 @@ export const serviceDetailData: ServiceCategoryData[] = [
           }
         ],
         benefits: [
-          "Dramatic frizz reduction for thick hair",
-          "Makes morning routine effortless",
-          "Natural ingredients won't damage hair",
-          "Lasts 3-5 months with proper care",
-          "Leaves hair soft, shiny, and healthy",
-          "Significant time-saving on daily styling"
+          "A plan that accounts for length and density",
+          "Professional sectioning and application",
+          "A discussion of the finish you want",
+          "Aftercare and maintenance guidance"
         ],
         faqs: [
           {
@@ -180,11 +191,11 @@ export const serviceDetailData: ServiceCategoryData[] = [
           },
           {
             question: "My hair is both long AND thick. Is this the right treatment?",
-            answer: "Yes! This is specifically designed for hair that's long, thick, or both. We'll ensure complete coverage no matter how much hair you have."
+            answer: "This appointment is intended for long or thick hair. Jena still needs to assess its condition and history before confirming the treatment."
           },
           {
             question: "Can I still tie my hair up after the treatment?",
-            answer: "For the first 3 days, keep your hair down and avoid tying it up, using clips, or tucking behind your ears. After that, style as normal!"
+            answer: "Follow the aftercare instructions for the exact formula and service used. Confirm washing, tying up and styling guidance before leaving the appointment."
           }
         ],
         relatedServices: [
@@ -193,47 +204,62 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "superior-conditioning-treatment"
         ],
         homeCareBundles: {
-          title: 'Long and thick hair needs the full aftercare kit',
-          intro: "Long thick hair drinks product. You'll get through more, but the math still wins. Salon smoothing plus this routine gives four to five months versus two months of just hoping.",
+          title: "Home care for long or thick hair",
+          intro: "Ask which products and amounts suit your hair and the treatment used. Buying a bundle does not guarantee a particular result or lifespan.",
           products: [
-          { name: 'QIQI Bare Repair Oil', link: 'https://hairpinns.com/products/qiqi-bare-repair-oil', reason: 'Seals the cuticle. Long hair needs more drops than mid-length, work it through evenly.' },
-          { name: 'Juuce Super Soft Hydration Moisture Mask', link: 'https://hairpinns.com/products/juuce-super-soft-hydration-moisture-mask', reason: 'Weekly deep mask. Long hair loses moisture fastest at the ends, this puts it back.' },
-          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily finishing oil. Sydney humidity test passed.' },
-          { name: 'Juuce Heat Shield', link: 'https://hairpinns.com/products/juuce-heat-shield', reason: 'Heat protection is the difference between four months and ten weeks.' }
+            {
+              name: "QIQI Bare Repair Oil",
+              link: "https://hairpinns.com/products/qiqi-bare-repair-oil",
+              reason: "Check the product directions and ask how it fits your finishing routine."
+            },
+            {
+              name: "Juuce Super Soft Hydration Moisture Mask",
+              link: "https://hairpinns.com/products/juuce-super-soft-hydration-moisture-mask",
+              reason: "Ask whether this conditioning treatment suits your current routine."
+            },
+            {
+              name: "Juuce Botanic Oil Serum",
+              link: "https://hairpinns.com/products/juuce-botanic-oil-serum",
+              reason: "Check the product directions and ask how it fits your finishing routine."
+            },
+            {
+              name: "Juuce Heat Shield",
+              link: "https://hairpinns.com/products/juuce-heat-shield",
+              reason: "Follow the directions for heat styling and the tools you use."
+            }
           ]
         }
       },
       {
         slug: "straight-up-smoothing-teens",
         title: "Straight Up Smoothing for Teens",
-        tagline: "Perfect treatment to tame your teen's mane",
-        quickAnswer: "Straight Up Smoothing for Teens is a gentle, natural smoothing treatment priced for ages 13–17, taming frizzy hair without harsh chemicals. Results last 3–5 months and reduce daily styling time for school.",
+        tagline: "Confirm age eligibility and suitability before booking",
+        quickAnswer: "Contact Jena before booking teen smoothing. QIQI states that its ProCtrl products must not be used on anyone under 16. Age eligibility, hair history and the exact treatment must be checked first.",
         duration: "2h 20min",
         price: "A$ 234",
-        description: "A gentle, natural smoothing treatment specially priced for teens who want to manage frizzy hair without harsh chemicals. Perfect for school-age clients seeking easier, more manageable hair.",
-        metaDescription: "Teen hair smoothing treatment Bangor. Natural frizz control for teens, 2h 20min, $234. Safe, gentle smoothing at Hair Pinns.",
+        description: "Teen smoothing needs an individual consultation. Confirm the exact formula and its age requirements with Jena before booking. QIQI’s current ProCtrl guidance excludes under-16s; this listing is not a promise of suitability for every teenager.",
+        metaDescription: "Considering teen smoothing in Bangor? Confirm age eligibility, hair condition and the exact treatment with Jena before booking at Hair Pinns.",
         whatsIncluded: [
           "Teen-friendly consultation",
-          "Gentle natural smoothing treatment",
+          "Treatment only after eligibility and suitability are confirmed",
           "Heat-activated sealing process",
           "Professional styling",
           "Take-home maintenance mask",
           "Tips for easy at-home care"
         ],
         whoItsFor: [
-          "Teens aged 13-17 with frizzy hair",
-          "Young clients wanting easier morning routines",
-          "Parents seeking a safe, natural option",
-          "Students preparing for formals or special events"
+          "Older teens whose age meets the selected product requirements",
+          "Clients whose hair is assessed as suitable",
+          "Families wanting to discuss styling options before booking"
         ],
         process: [
           {
             step: "Friendly Consultation",
-            description: "We chat about your hair goals and explain the whole process so you feel comfortable and excited."
+            description: "Confirm age eligibility, previous treatments and the desired finish before deciding whether to proceed."
           },
           {
             step: "Treatment Time",
-            description: "The natural formula is applied while we chat about school, friends, or whatever you like! It's a relaxing experience."
+            description: "If suitable, the selected professional formula is applied according to its instructions."
           },
           {
             step: "Style & Go",
@@ -241,29 +267,27 @@ export const serviceDetailData: ServiceCategoryData[] = [
           }
         ],
         benefits: [
-          "Faster morning routines before school",
-          "Boosts confidence with smoother hair",
-          "Natural, gentle ingredients",
-          "Parents love the safety profile",
-          "Results last through multiple school terms",
-          "No harsh chemicals or strong fumes"
+          "An individual consultation before treatment",
+          "Clear age and suitability checks",
+          "A discussion of styling goals",
+          "Product-specific aftercare guidance"
         ],
         faqs: [
           {
-            question: "Is this treatment safe for teens?",
-            answer: "Absolutely! The Straight Up formula is completely natural and eco-friendly with no harsh chemicals. It's perfectly safe for teens and we've treated countless young clients with fantastic results."
+            question: "Is this treatment suitable for every teenager?",
+            answer: "No. QIQI’s current ProCtrl guidance excludes anyone under 16. Contact Jena to confirm the exact product, age eligibility and hair assessment before booking."
           },
           {
-            question: "Will it damage my teenager's hair?",
-            answer: "Not at all. In fact, teens often find their hair feels healthier after the treatment because it's enriched with natural oils and proteins."
+            question: "Can you guarantee it will not damage hair?",
+            answer: "No universal no-damage guarantee is made. Suitability depends on hair condition, treatment history and the process used. A consultation may lead to a different service or no treatment."
           },
           {
-            question: "How long before a school formal should we book this?",
-            answer: "We recommend 1-2 weeks before the formal. This gives the treatment time to settle and your hair will be in perfect condition for styling on the big day."
+            question: "When should we book before a formal?",
+            answer: "Discuss the event date and desired hairstyle with Jena before choosing an appointment. Confirm any treatment, colour and styling schedule together."
           },
           {
-            question: "Can my teen still play sports after the treatment?",
-            answer: "Yes! After the first 3 days (when you should keep hair dry), your teen can return to all normal activities including swimming and sports."
+            question: "When can I wash, swim or play sports?",
+            answer: "Ask for the instructions that apply to the exact treatment. Do not rely on a generic three-day waiting rule."
           }
         ],
         relatedServices: [
@@ -272,13 +296,29 @@ export const serviceDetailData: ServiceCategoryData[] = [
           "superior-conditioning-treatment"
         ],
         homeCareBundles: {
-          title: 'Teen-friendly routine, parent-approved',
-          intro: "I've tested everything I sell on my own teen clients and these are the four products that actually get used at home instead of sitting in the shower untouched.",
+          title: "Discuss a simple home-care routine",
+          intro: "Choose products only after the treatment and aftercare requirements are confirmed.",
           products: [
-          { name: 'QIQI Bare Repair Oil', link: 'https://hairpinns.com/products/qiqi-bare-repair-oil', reason: "A few drops after each wash. Teens love that it's not greasy and the bottle lasts." },
-          { name: 'Juuce Botanic Oil Serum', link: 'https://hairpinns.com/products/juuce-botanic-oil-serum', reason: 'Daily smoothness. School mornings get easier.' },
-          { name: 'Wet Brush Original Detangler', link: 'https://hairpinns.com/products/wet-brush-original-detangler', reason: 'Detangles wet hair without breaking. Teen hair is more fragile than people think.' },
-          { name: 'Pure hair care', link: 'https://hairpinns.com/collections/pure-certified-organic-hair-care', reason: 'Browse the current Pure range for leave-in care suited to your hair and routine.' }
+            {
+              name: "QIQI Bare Repair Oil",
+              link: "https://hairpinns.com/products/qiqi-bare-repair-oil",
+              reason: "Check the product directions and ask how it fits your finishing routine."
+            },
+            {
+              name: "Juuce Botanic Oil Serum",
+              link: "https://hairpinns.com/products/juuce-botanic-oil-serum",
+              reason: "Check the product directions and ask how it fits your finishing routine."
+            },
+            {
+              name: "Wet Brush Original Detangler",
+              link: "https://hairpinns.com/products/wet-brush-original-detangler",
+              reason: "A detangling option; use gentle technique and follow the brush instructions."
+            },
+            {
+              name: "Pure hair care",
+              link: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+              reason: "Browse the current Pure range for leave-in care suited to your hair and routine."
+            }
           ]
         }
       }
