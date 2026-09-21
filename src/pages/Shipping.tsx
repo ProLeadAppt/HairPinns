@@ -5,16 +5,11 @@ import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
-import { generateBreadcrumbSchema, generateFAQPageSchema } from "@/lib/schema";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { shippingStates } from "@/data/shippingStates";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 
-const SHIPPING_FAQS = [
-  { question: "Do you ship to Melbourne?", answer: "Yes. Hair Pinns ships professional hair care to Melbourne, Brisbane, Perth, Sydney, Adelaide, Darwin, Hobart, Canberra and all of Australia. Free shipping on orders over $150." },
-  { question: "Is shipping free to Brisbane?", answer: "Yes. Free standard shipping on orders over $150. Brisbane, Queensland and all Australian states and territories are covered." },
-  { question: "How long does delivery take to Perth?", answer: "Standard shipping: 3-5 business days. Express: 1-2 business days. Perth and Western Australia are fully covered." },
-  { question: "Do you ship to Australia only?", answer: "Yes. We ship to Australia only. Every state and territory: NSW, VIC, QLD, WA, SA, TAS, NT, and ACT. No international shipping." },
-];
+
 
 const Shipping = () => {
   return (
@@ -30,7 +25,6 @@ const Shipping = () => {
             { name: "Policies", url: "https://hairpinns.com/policies" },
             { name: "Shipping", url: "https://hairpinns.com/policies/shipping" },
           ]),
-          generateFAQPageSchema(SHIPPING_FAQS),
         ]}
       />
       <Header />
@@ -55,12 +49,12 @@ const Shipping = () => {
               <div className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-4 text-center">
                 <p className="text-sm text-muted-foreground">Standard</p>
                 <p className="text-xl font-bold text-heading">$9.95</p>
-                <p className="text-xs text-muted-foreground">3-5 business days</p>
+                <p className="text-xs text-muted-foreground">See destination estimates below</p>
               </div>
               <div className="border border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] p-4 text-center">
                 <p className="text-sm text-muted-foreground">Express</p>
                 <p className="text-xl font-bold text-heading">$14.95</p>
-                <p className="text-xs text-muted-foreground">1-2 business days</p>
+                <p className="text-xs text-muted-foreground">Timing varies by destination</p>
               </div>
               <div className="border border-[hsl(var(--after-hours-copper)/0.45)] bg-[hsl(var(--after-hours-cream))] p-4 text-center">
                 <p className="text-sm font-medium text-[hsl(var(--hp-ink))]">Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</p>
@@ -74,8 +68,8 @@ const Shipping = () => {
             <div className="flex items-center justify-between max-w-lg mx-auto mb-8">
               {[
                 { step: "Order", desc: "Place your order" },
-                { step: "Pack", desc: "1-2 days processing" },
-                { step: "Ship", desc: "3-5 days delivery" },
+                { step: "Pack", desc: "1-2 business days processing" },
+                { step: "Ship", desc: "Delivery varies by destination" },
                 { step: "Enjoy", desc: "At your door" },
               ].map((s, i) => (
                 <div key={s.step} className="flex flex-col items-center text-center flex-1">
@@ -98,6 +92,10 @@ const Shipping = () => {
             </p>
             <p className="text-foreground leading-relaxed mb-6">
               Local Sutherland Shire customers may also choose in-store pickup at no additional cost.
+            </p>
+
+            <p className="text-sm text-muted-foreground mb-4">
+              Delivery times below are estimates after dispatch. Allow 1-2 business days for processing.
             </p>
 
             {/* State landing pages, each has unique delivery times, climate-
