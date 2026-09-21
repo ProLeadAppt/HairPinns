@@ -842,6 +842,27 @@
     Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=2592000"
 
+# Internal search is interactive and excluded from prerendering/sitemaps.
+# Direct links and refreshes must still open the working search interface.
+[[redirects]]
+  from = "/search"
+  to = "/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/search/"
+  to = "/index.html"
+  status = 200
+  force = true
+[[headers]]
+  for = "/search"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+[[headers]]
+  for = "/search/"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
 # Query/state-dependent operational pages must reach the React application on
 # direct visits and refreshes. They remain noindex at the component level.
 [[redirects]]
