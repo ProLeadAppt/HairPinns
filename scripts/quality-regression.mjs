@@ -656,7 +656,7 @@ for (const route of exactRouterPaths) {
   );
 }
 assert.match(netlify, /from\s*=\s*"\/suburbs\/\*"[\s\S]*?status\s*=\s*301/, 'Legacy suburb routes need an edge redirect');
-for (const operationalPath of ['/confirm', '/order-confirmation', '/reviews/feedback', '/reviews/google']) {
+for (const operationalPath of ['/search', '/search/', '/confirm', '/order-confirmation', '/reviews/feedback', '/reviews/google']) {
   const escaped = operationalPath.replaceAll('/', '\\/');
   assert.match(
     netlify,
@@ -665,6 +665,8 @@ for (const operationalPath of ['/confirm', '/order-confirmation', '/reviews/feed
   );
 }
 for (const [noindexPath, robotsPolicy] of [
+  ['/search', 'noindex, follow'],
+  ['/search/', 'noindex, follow'],
   ['/confirm', 'noindex, nofollow'],
   ['/order-confirmation', 'noindex, nofollow'],
   ['/reviews', 'noindex, follow'],

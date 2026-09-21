@@ -951,22 +951,11 @@ export const generateCollectionPageSchema = (collection: CollectionPageData) => 
     schema.mainEntity.itemListElement = collection.items.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      item: {
-        '@type': 'Product',
-        name: item.name,
-        description: item.description,
-        url: item.url,
-        image: item.image,
-        ...(item.price && {
-          offers: {
-            '@type': 'Offer',
-            price: item.price,
-            priceCurrency: item.currency || 'AUD',
-            availability: `https://schema.org/${item.availability || 'InStock'}`,
-            url: item.url,
-          },
-        }),
-      },
+      // Collection pages describe a list; merchant offers belong on product pages.
+      name: item.name,
+      description: item.description,
+      url: item.url,
+      image: item.image,
     }));
   }
 
@@ -997,20 +986,9 @@ export const generateSearchResultsItemListSchema = (data: {
   itemListElement: data.items.map((item, index) => ({
     '@type': 'ListItem',
     position: index + 1,
-    item: {
-      '@type': 'Product',
-      name: item.name,
-      url: `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
-      image: item.image,
-      ...(item.price !== undefined && {
-        offers: {
-          '@type': 'Offer',
-          price: item.price,
-          priceCurrency: item.currency || 'AUD',
-          availability: 'https://schema.org/InStock',
-        },
-      }),
-    },
+    name: item.name,
+    url: `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
+    image: item.image,
   })),
 });
 

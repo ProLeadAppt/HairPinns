@@ -90,13 +90,13 @@ const RelatedContent = ({
     ? "group block min-h-32 border-t border-[hsl(var(--after-hours-plum)/0.22)] py-4 text-[hsl(var(--hp-ink))] transition-colors hover:border-[hsl(var(--after-hours-copper))]"
     : "group block rounded-md border border-border bg-card p-4 hover:border-brand-500 transition-colors";
   const labelClass = editorial
-    ? "text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.7)]"
+    ? "text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.72)]"
     : "text-xs uppercase tracking-wide text-brand-500 font-medium";
   const titleClass = editorial
     ? "mt-3 font-heading text-xl leading-tight text-[hsl(var(--hp-ink))] group-hover:underline group-hover:underline-offset-4"
     : "mt-2 text-base font-semibold text-foreground group-hover:text-brand-500 transition-colors";
   const metaClass = editorial
-    ? "mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.66)]"
+    ? "mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]"
     : "mt-1 text-sm text-muted-foreground";
 
   return (
@@ -106,7 +106,7 @@ const RelatedContent = ({
           {heading}
         </h2>
         {topicNames && (
-          <p className={editorial ? "mb-8 mt-3 text-sm text-[hsl(var(--hp-ink)/0.66)]" : "text-sm text-muted-foreground mb-6"}>More on {topicNames}</p>
+          <p className={editorial ? "mb-8 mt-3 text-sm text-[hsl(var(--hp-ink)/0.72)]" : "text-sm text-muted-foreground mb-6"}>More on {topicNames}</p>
         )}
 
         <div className={editorial ? "grid grid-cols-1 gap-x-8 md:grid-cols-2 lg:grid-cols-3" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}>

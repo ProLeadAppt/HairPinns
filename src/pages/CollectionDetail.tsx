@@ -25,7 +25,7 @@ import { buildMetaDescription } from "@/lib/metadata";
 import { generateCollectionPageSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateWebPageSchema } from "@/lib/schema";
 import { getCollectionFAQs } from "@/data/collectionFAQs";
 import SEOHead from "@/components/SEOHead";
-import { useImagePreload } from "@/components/ImagePreloader";
+import { shopifyImageWebp } from "@/lib/shopifyImage";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { mapCollectionProduct } from "@/lib/collectionProduct";
@@ -204,7 +204,7 @@ const CollectionDetail = () => {
     return 0;
   });
 
-  useImagePreload(sortedProducts.slice(0, 2).map((p) => p.image).filter(Boolean));
+  // Responsive image candidates below avoid preloading full-size Shopify originals.
 
   if (loading) {
     return (
@@ -415,7 +415,8 @@ const CollectionDetail = () => {
         </section>}
 
         {/* Products Grid */}
-        <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14">
+        <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14" aria-labelledby="collection-products-heading">
+          <h2 id="collection-products-heading" className="sr-only">Products in {collectionTitle}</h2>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {sortedProducts.length === 0 ? (
               <div className="text-center py-12">
@@ -425,7 +426,7 @@ const CollectionDetail = () => {
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:gap-x-8 lg:grid-cols-3">
-                {sortedProducts.map((product) => (
+                {sortedProducts.map((product, index) => (
                   <article 
                     key={product.id} 
                     className="group flex min-w-0 flex-col border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-3"
@@ -436,18 +437,21 @@ const CollectionDetail = () => {
                       className="relative block aspect-square overflow-hidden bg-[hsl(var(--after-hours-cream))] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset"
                     >
                       <img
-                        src={product.image}
+                        src={shopifyImageWebp(product.image, 640)}
+                        srcSet={[320, 480, 640, 960].map((width) => `${shopifyImageWebp(product.image, width)} ${width}w`).join(", ")}
                         alt={product.title}
                         className="h-full w-full object-contain transition-opacity duration-slow group-hover:opacity-90"
-                        loading="lazy"
+                        loading={index < 2 ? "eager" : "lazy"}
+                        fetchPriority={index < 2 ? "high" : "auto"}
+                        decoding="async"
                         width="600"
                         height="600"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 639px) calc((100vw - 48px) / 2), (max-width: 1023px) calc((100vw - 80px) / 2), (max-width: 1279px) calc((100vw - 128px) / 3), 384px"
                       />
                       {(!product.availableForSale || product.availability?.schema === "OutOfStock") && (
                         <Badge
                           variant="destructive"
-                          className="absolute top-3 left-3"
+                          className="absolute top-3 left-3 bg-[hsl(var(--hp-ink))] text-white hover:bg-[hsl(var(--hp-ink))]"
                         >
                           Out of Stock
                         </Badge>
@@ -496,7 +500,7 @@ const CollectionDetail = () => {
                           );
                         })()}
                       </div>
-                      <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--hp-ink)/0.62)]">Afterpay &middot; Zip available</p>
+                      <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--hp-ink)/0.76)]">Afterpay &middot; Zip available</p>
 
                       {/* Actions */}
                       <div className="mt-auto flex gap-2 border-t border-[hsl(var(--after-hours-plum)/0.14)] pt-3">
@@ -588,12 +592,15 @@ const CollectionDetail = () => {
             return (
               <section className="py-12 border-t border-border">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <h3 className="text-lg font-heading font-semibold text-heading mb-6">Recently viewed</h3>
+                  <h2 className="text-lg font-heading font-semibold text-heading mb-6">Recently viewed</h2>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {recent.map((p: any) => (
                       <Link key={p.slug} to={`/products/${p.slug}`} className="group">
                         <div className="mb-2 aspect-square overflow-hidden bg-[hsl(var(--after-hours-cream))]">
-                          <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy"
+                          <img src={shopifyImageWebp(p.image, 640)}
+                            srcSet={[320, 480, 640].map((width) => `${shopifyImageWebp(p.image, width)} ${width}w`).join(", ")}
+                            sizes="(max-width: 639px) calc((100vw - 48px) / 2), (max-width: 1279px) calc((100vw - 112px) / 4), 288px"
+                            alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy"
               decoding="async"
               width="800"
               height="800"
