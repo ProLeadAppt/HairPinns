@@ -321,11 +321,6 @@ export const generateProductSchema = (product: ProductData) => {
       availability: product.availability
         ? `https://schema.org/${product.availability}`
         : 'https://schema.org/InStock',
-      priceValidUntil: new Date(
-        new Date().setFullYear(new Date().getFullYear() + 1)
-      )
-        .toISOString()
-        .split('T')[0],
       eligibleRegion: {
         '@type': 'Country',
         name: 'Australia',
@@ -340,21 +335,6 @@ export const generateProductSchema = (product: ProductData) => {
           '@type': 'MonetaryAmount',
           value: '9.95',
           currency: 'AUD',
-        },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 1,
-            maxValue: 2,
-            unitCode: 'DAY',
-          },
-          transitTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 3,
-            maxValue: 5,
-            unitCode: 'DAY',
-          },
         },
       },
       hasMerchantReturnPolicy: {
@@ -688,11 +668,6 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
         '@type': 'Country',
         name: 'AU',
       },
-      priceValidUntil: new Date(
-        new Date().setFullYear(new Date().getFullYear() + 1)
-      )
-        .toISOString()
-        .split('T')[0],
       ...(product.requiresShipping === false ? {} : {
         shippingDetails: {
           '@type': 'OfferShippingDetails',
@@ -704,21 +679,6 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
           shippingDestination: {
             '@type': 'DefinedRegion',
             addressCountry: 'AU',
-          },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 1,
-              maxValue: 2,
-              unitCode: 'DAY',
-            },
-            transitTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 3,
-              maxValue: 5,
-              unitCode: 'DAY',
-            },
           },
         },
         hasMerchantReturnPolicy: {
