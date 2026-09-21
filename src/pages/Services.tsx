@@ -62,14 +62,14 @@ const Services = () => {
           title: "Long/Thick Straight Up Smoothing Treatment",
           duration: "2h 20min",
           serviceCount: "2 services",
-          description: "Straight Up is the first natural hair smoothing treatment\nThis package includes the 2.5 hour pampering session where you leave feeling great with smooth and silky hair and a take home hair mask to prolong your amazing results",
+          description: "Discuss the intended finish, hair history and aftercare with Jena before choosing this service.",
           price: "A$ 349"
         },
         {
           title: "Straight Up Smoothing for Teens",
           duration: "2h 20min",
           serviceCount: "2 services",
-          description: "The perfect treatment for your Teen who needs to tame her mane",
+          description: "Confirm age eligibility and suitability with Jena before booking. QIQI ProCtrl products are not for under-16s.",
           price: "A$ 234"
         }
       ]
