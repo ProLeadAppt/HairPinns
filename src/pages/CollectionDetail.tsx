@@ -415,7 +415,8 @@ const CollectionDetail = () => {
         </section>}
 
         {/* Products Grid */}
-        <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14">
+        <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14" aria-labelledby="collection-products-heading">
+          <h2 id="collection-products-heading" className="sr-only">Products in {collectionTitle}</h2>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {sortedProducts.length === 0 ? (
               <div className="text-center py-12">
@@ -450,7 +451,7 @@ const CollectionDetail = () => {
                       {(!product.availableForSale || product.availability?.schema === "OutOfStock") && (
                         <Badge
                           variant="destructive"
-                          className="absolute top-3 left-3"
+                          className="absolute top-3 left-3 bg-[hsl(var(--hp-ink))] text-white hover:bg-[hsl(var(--hp-ink))]"
                         >
                           Out of Stock
                         </Badge>
@@ -499,7 +500,7 @@ const CollectionDetail = () => {
                           );
                         })()}
                       </div>
-                      <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--hp-ink)/0.62)]">Afterpay &middot; Zip available</p>
+                      <p className="mb-3 text-[0.66rem] leading-4 text-[hsl(var(--hp-ink)/0.76)]">Afterpay &middot; Zip available</p>
 
                       {/* Actions */}
                       <div className="mt-auto flex gap-2 border-t border-[hsl(var(--after-hours-plum)/0.14)] pt-3">
@@ -591,7 +592,7 @@ const CollectionDetail = () => {
             return (
               <section className="py-12 border-t border-border">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <h3 className="text-lg font-heading font-semibold text-heading mb-6">Recently viewed</h3>
+                  <h2 className="text-lg font-heading font-semibold text-heading mb-6">Recently viewed</h2>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {recent.map((p: any) => (
                       <Link key={p.slug} to={`/products/${p.slug}`} className="group">

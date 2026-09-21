@@ -572,6 +572,151 @@
   status = 301
   force = true
 
+# Additional GSC noindex-history aliases: matched article titles and public Shopify IDs.
+[[redirects]]
+  from = "/blog/qiqi-bare-repair-oil-shine-strength-amp-smoothness-in-a-bottle"
+  to = "/blog/qiqi-bare-repair-oil-shine-strength-smoothness/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/qiqi-bare-repair-oil-shine-strength-amp-smoothness-in-a-bottle"
+  to = "/blog/qiqi-bare-repair-oil-shine-strength-smoothness/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/%F0%9F%92%96-why-a-wet-brush-is-a-must-have-in-every-hair-routine"
+  to = "/blog/why-wet-brush-is-a-must-have/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/%F0%9F%92%96-why-a-wet-brush-is-a-must-have-in-every-hair-routine"
+  to = "/blog/why-wet-brush-is-a-must-have/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/winter-weather-hair-care-in-sydney-why-it-matters-amp-how-to-protect-your-hair"
+  to = "/blog/winter-weather-hair-care-sydney/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/winter-weather-hair-care-in-sydney-why-it-matters-amp-how-to-protect-your-hair"
+  to = "/blog/winter-weather-hair-care-sydney/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/%F0%9F%94%A5-why-heat-protection-is-essential-for-healthy-hair"
+  to = "/blog/why-heat-protection-is-essential/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/%F0%9F%94%A5-why-heat-protection-is-essential-for-healthy-hair"
+  to = "/blog/why-heat-protection-is-essential/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/what-s-the-best-hairspray-to-use"
+  to = "/blog/whats-the-best-hairspray-to-use/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/what-s-the-best-hairspray-to-use"
+  to = "/blog/whats-the-best-hairspray-to-use/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/which-range-is-best-for-you"
+  to = "/blog/which-juuce-range-is-best-for-you-quiz/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/which-range-is-best-for-you"
+  to = "/blog/which-juuce-range-is-best-for-you-quiz/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/infrared-sauna-for-hair-amp-scalp-health-yes-it-s-a-thing"
+  to = "/blog/infrared-sauna-for-hair-scalp-health/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/infrared-sauna-for-hair-amp-scalp-health-yes-it-s-a-thing"
+  to = "/blog/infrared-sauna-for-hair-scalp-health/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/the-secret-behind-that-steamy-towel-moment-%F0%9F%94%A5%F0%9F%92%86"
+  to = "/blog/the-secret-behind-that-steamy-towel-moment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/the-secret-behind-that-steamy-towel-moment-%F0%9F%94%A5%F0%9F%92%86"
+  to = "/blog/the-secret-behind-that-steamy-towel-moment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/what-s-a-straight-up-smoothing-treatment"
+  to = "/blog/whats-a-straight-up-smoothing-treatment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/what-s-a-straight-up-smoothing-treatment"
+  to = "/blog/whats-a-straight-up-smoothing-treatment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/supermarket-vs-salon-hair-products"
+  to = "/blog/salon-vs-supermarket-hair-products/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/supermarket-vs-salon-hair-products"
+  to = "/blog/salon-vs-supermarket-hair-products/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/%F0%9F%8E%81-christmas-gift-packs-at-hair-pinns-%F0%9F%8E%81"
+  to = "/blog/christmas-hair-gifts-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179726713013"
+  to = "/products/head-massager/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8241104322741"
+  to = "/products/pure-colour-optimising-treatments/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/10186283679925"
+  to = "/products/flyaway-serum-baby-hair-control-smooth-hair-solution/"
+  status = 301
+  force = true
+
 # Legacy Shopify blog URL slug mismatches -> canonical React routes.
 # These must come BEFORE the /blogs/blogs/* wildcard so the specific match wins.
 # Bing had these long-form/punctuated slugs indexed and they don't map 1:1 to current slugs.
