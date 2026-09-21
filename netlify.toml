@@ -342,6 +342,236 @@
   status = 301
   force = true
 
+# GSC legacy URLs verified against current public Shopify productID values.
+# Exact identities only; unknown and discontinued IDs retain a real 404.
+[[redirects]]
+  from = "/products/8177294508213"
+  to = "/products/aromaganic-smooth-hair-super-silky-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179152355509"
+  to = "/products/pure-forever-blonde-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8182164127925"
+  to = "/products/purple-wide-tooth-combs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179590824117"
+  to = "/products/pure-uplift-volume-conditioner/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179569000629"
+  to = "/products/pure-miracle-renew-conditioner/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179590430901"
+  to = "/products/pure-uplift-volume-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177296277685"
+  to = "/products/juuce-shimmer-shine-spray/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177296801973"
+  to = "/products/juuce-tame-curls-smooth/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177295950005"
+  to = "/products/juuce-miracle-smooth-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177294934197"
+  to = "/products/juuce-amp-it-up-volume/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179719602357"
+  to = "/products/silicon-travel-bottle-duo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8226917744821"
+  to = "/products/toner-masks/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177295720629"
+  to = "/products/juuce-knot-knotty-detangler/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8180068516021"
+  to = "/products/wet-brush-original-detangler/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179570606261"
+  to = "/products/pure-miracle-renew-hair-treatmentt/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179366133941"
+  to = "/products/lamellar-vitality-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179152715957"
+  to = "/products/pure-forever-blonde-conditioner/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177295130805"
+  to = "/products/juuce-bond-blonde-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179593674933"
+  to = "/products/pure-guardian-angel/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177294278837"
+  to = "/products/aromaganic-pumpd-hair-full-volume-conditioner/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179570802869"
+  to = "/products/pure-sacred-mask-hydrating-hair-treatment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179593904309"
+  to = "/products/pure-flourish-leave-in-treatment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179596230837"
+  to = "/products/hair-pinns-gift-card/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177296048309"
+  to = "/products/juuce-peppermint-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177296769205"
+  to = "/products/juuce-super-soft-hydration-moisture-mask/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179569262773"
+  to = "/products/pure-colour-angel-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177295294645"
+  to = "/products/juuce-control-sculpt-lotion/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177295360181"
+  to = "/products/juuce-deep-cleanse-shampoo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179366985909"
+  to = "/products/lamellar-vitality-conditioner/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8178756616373"
+  to = "/products/wet-brush-shower-detangler/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/10186280435893"
+  to = "/products/tame-texture-wax-stick/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177295261877"
+  to = "/products/juuce-botanic-oil-serum/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/10193217290421"
+  to = "/products/festive-finish-gift-set-duo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177296179381"
+  to = "/products/juuce-repair-1-minute-treatment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8179364790453"
+  to = "/products/lamellar-vitality-glass-hair-treatment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/8177294901429"
+  to = "/products/juuce-20-in-one-miracle/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collections/juuce"
+  to = "/collections/juuce-botanicals/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blogs/blogs/%F0%9F%8E%81-christmas-gift-packs-at-hair-pinns-%F0%9F%8E%81"
+  to = "/blog/christmas-hair-gifts-2026/"
+  status = 301
+  force = true
+
 # Legacy Shopify blog URL slug mismatches -> canonical React routes.
 # These must come BEFORE the /blogs/blogs/* wildcard so the specific match wins.
 # Bing had these long-form/punctuated slugs indexed and they don't map 1:1 to current slugs.
@@ -469,6 +699,13 @@
 [[redirects]]
   from = "/collections/:collection/products/:handle"
   to = "/products/:handle"
+  status = 301
+  force = true
+
+# Preserve the privacy-request destination instead of the broad /pages homepage fallback.
+[[redirects]]
+  from = "/pages/data-sharing-opt-out"
+  to = "/privacy/"
   status = 301
   force = true
 
@@ -604,6 +841,27 @@
   [headers.values]
     Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=2592000"
+
+# Internal search is interactive and excluded from prerendering/sitemaps.
+# Direct links and refreshes must still open the working search interface.
+[[redirects]]
+  from = "/search"
+  to = "/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/search/"
+  to = "/index.html"
+  status = 200
+  force = true
+[[headers]]
+  for = "/search"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+[[headers]]
+  for = "/search/"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
 
 # Query/state-dependent operational pages must reach the React application on
 # direct visits and refreshes. They remain noindex at the component level.
