@@ -1,90 +1,93 @@
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
-    slug: "bond-repair-vs-protein-treatment-difference",
-    title: "Bond Repair vs Protein Treatment: They Don't Do The Same Job",
-    excerpt: "Half my client consultations start with 'I've been doing protein treatments and my hair is getting worse, why?' Because protein treatments and bond repair fix different things. Here's how to know which one your hair actually needs.",
-    category: "Treatments",
-    date: "May 8, 2026",
-    readTime: "5 min read",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-064.jpg?v=1744178553",
-    author: "Jena Pinn",
-    content: {
-      introduction: "Half my client consultations start with the same sentence. 'My hair feels weak, I've been using a protein treatment every week, why is it getting worse?' Because protein treatments and bond repair are not the same thing. Using the wrong one makes damage worse, not better. Let me clear this up so you can pick the right product for what your hair actually needs.",
-      sections: [
-        {
-          heading: "Bond repair rebuilds the inside of your hair",
-          content: "Bond repair products target the disulfide bonds inside the hair shaft. These are the structural bonds that get broken by bleach, permanent colour, perms, and heat over 230 degrees. When they break, the hair becomes weak and stretches further than it should before snapping. Bond repair active ingredients (Olaplex bis-amino, K18 peptide, Juuce wheat-protein bond fix) bridge across these broken bonds and let the hair regain structural strength from the inside out."
-        },
-        {
-          heading: "Protein treatment fills holes on the surface",
-          content: "Protein treatments work on the outside of the hair shaft, not the inside. They deposit hydrolysed protein (usually keratin, sometimes silk or wheat) into surface gaps in the cuticle. The result is that the hair feels stronger, smoother, and looks shinier within hours of application. The protein is sitting on top of the hair, filling in damage, not actually rebuilding it. It washes off over four to six washes, then needs reapplying."
-        },
-        {
-          heading: "How to tell which one your hair needs (the stretch test)",
-          content: "Take a single strand of hair from a hairbrush or pull one from your head. Hold it between thumb and forefinger of each hand and stretch it slowly. If it stretches a long way then snaps without bouncing back, your hair needs bond repair. The internal bonds are broken and there's no elastic recovery. If it barely stretches before snapping (feels brittle and dry), your hair needs hydration first, then maybe protein. If it stretches normally and bounces back, your hair is fine, save your money."
-        },
-        {
-          heading: "Why too much protein actually breaks hair",
-          content: "Protein overload is a real thing and I see it constantly. Symptoms include hair that feels straw-like, ends that snap with the lightest touch, hair that won't hold a curl or style, and a weird coated feeling after washing. It happens when you keep applying protein to hair that's already protein-saturated. The protein hardens the cuticle to the point where it becomes brittle. The fix is to stop using protein products immediately, switch to deep hydration (Pure Sacred Mask, Juuce Super Soft Hydration Mask) for two to three weeks, then reassess."
-        },
-        {
-          heading: "When to use both, in what order",
-          content: "Hair with chemical damage often needs both, in the right sequence. First, hydrate for one to two weeks to bring moisture back. Second, bond repair for three to four weeks to rebuild internal structure. Third, add protein treatments occasionally as a finishing layer to give the cuticle a smooth surface. Most people do this in the wrong order, leading with protein on dehydrated hair, which is why they feel like things keep getting worse."
-        },
-        {
-          heading: "The quick decision shortcut",
-          content: "If your hair has been bleached, permanently coloured, or chemically smoothed in the last six months, lead with bond repair. Juuce Bond Repair shampoo and conditioner as your daily routine, plus Olaplex No.3 weekly. If your hair is naturally fine and limp and you want more substance, occasional protein treatments work well, but not weekly. If your hair feels brittle and dry, do not add more protein. Hydrate first with weekly deep masks, then reassess in three weeks."
-        }
-      ],
-      productModule: {
-        title: "What I use for each job",
-        products: [
-          { name: "Juuce Bond Repair Shampoo & Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Daily routine for chemically damaged hair. Rebuilds internal bonds over weeks." },
-          { name: "Pure Sacred Mask", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Weekly deep hydration. Use this if your hair feels dry, before any protein treatment." },
-          { name: "Juuce Super Soft Hydration Moisture Mask", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Lightweight weekly hydration for fine hair that can't handle heavy masks." }
-        ]
+  "slug": "bond-repair-vs-protein-treatment-difference",
+  "title": "Bond Repair vs Protein Treatment: How to Choose",
+  "excerpt": "Compare bond repair and protein treatments by formula, directions and your hair history, without relying on a home stretch test.",
+  "category": "Treatments",
+  "date": "May 8, 2026",
+  "readTime": "4 min read",
+  "image": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-064.jpg?v=1744178553",
+  "author": "Jena Pinn",
+  "content": {
+    "introduction": "Bond repair and protein treatments are not interchangeable labels, but they are not opposites either. The useful comparison is the exact formula, what the product is designed to do and how it is used. Start with your hair history and current routine rather than a rule that every bleached head needs the same treatment.",
+    "sections": [
+      {
+        "heading": "What is the difference?",
+        "content": "Bond repair describes a product’s intended approach to damaged hair. Protein treatment describes a formula containing proteins or protein fragments. Those categories can overlap. A bottle can be marketed for bond repair and also contain hydrolysed protein, so the name alone will not tell you how it works or where it belongs in your routine."
       },
-      quickAnswer: {
-        question: "What's the difference between bond repair and protein treatment?",
-        answer: "Bond repair targets broken disulfide bonds inside the hair shaft, the kind broken by bleach or heat, and rebuilds strength from within. Protein treatment deposits hydrolysed protein on the outside of the hair, filling cuticle gaps and giving a temporary stronger feel. Bond repair compounds with consistent use over weeks. Protein treatment washes off over four to six washes. Most chemically damaged hair needs bond repair as the foundation, with occasional protein treatments as a finishing layer."
+      {
+        "heading": "Protein is not always just a surface coating",
+        "content": "Protein ingredients vary in size. [K18’s explanation of proteins and peptides](https://www.k18hair.com/blogs/consumer/is-k18-a-protein) distinguishes larger proteins from smaller hydrolysed fragments, which can behave differently within the hair fibre. That makes “bond repair works inside, protein only sits outside” too simple. A manufacturer’s explanation of its own technology also does not establish that every competing product works the same way."
       },
-      keyTakeaways: [
-        "Bond repair rebuilds inside the hair shaft, protein treatment fills holes on the surface",
-        "Stretch test: long stretch then snap means bond repair, brittle no-stretch snap means hydration",
-        "Protein overload is real and causes the brittle straw-feel people mistake for needing more protein",
-        "Right order on damaged hair: hydrate first, bond repair second, protein occasionally as a finish",
-        "Chemically treated hair almost always needs bond repair first, not protein"
-      ],
-      faqSection: [
+      {
+        "heading": "A real example of overlapping labels",
+        "content": "[Juuce’s current Bond Repair Shampoo information](https://juucehair.com/products/bond-repair-shampoo) lists hydrolysed rice protein alongside its bond-repair ingredients. It is an example of why these are not two mutually exclusive shopping categories. Check the exact bottle and current ingredient panel, especially if you are avoiding a particular ingredient. Do not infer the conditioner’s complete formula from the matching shampoo."
+      },
+      {
+        "heading": "Do not choose a treatment from a home stretch test",
+        "content": "Pulling a strand until it snaps does not identify which ingredient you need. Before buying another treatment, note your recent colour or smoothing services, heat styling, washing routine and what has changed about your hair. Bring that information and your current product labels to a [hair-care consultation](/contact/). It gives Jena a useful starting point without turning one strand into a diagnosis."
+      },
+      {
+        "heading": "What if a treatment leaves hair feeling stiff?",
+        "content": "A stiff, coated or dry feel is a reason to review the product and routine, not proof that your hair is “protein-saturated”. Do not keep adding treatments to chase a label. Check the amount, frequency and rinse-out instructions, and pause the product that is not suiting you while you seek advice. There is no fixed two-week hydration programme or universal protein-free recovery schedule to prescribe from a description alone."
+      },
+      {
+        "heading": "Can you use bond repair and protein together?",
+        "content": "Some routines include both; others already combine them in one formula. Follow the directions for each exact product rather than stacking several treatments on the same wash. A shampoo, pre-wash treatment and leave-in mask are different steps. Our [Olaplex, K18 and Juuce comparison](/blog/olaplex-vs-k18-vs-juuce-bond-repair/) explains that practical distinction. Start with the concern you want to address and a routine you can maintain."
+      }
+    ],
+    "productModule": {
+      "title": "Compare current Juuce products",
+      "products": [
         {
-          question: "Is Hair Pinns a real salon I can visit?",
-          answer: "Yes, Hair Pinns is in Bangor, NSW, and has been at the same location since 2009. You can book online or call for a free 10-minute consultation.",
+          "name": "Juuce Bond Repair Shampoo",
+          "link": "/products/juuce-bond-repair-shampoo/",
+          "description": "A wash-step option marketed by Juuce for damaged hair. Check the current product details and bottle directions."
         },
         {
-          question: "What services does Hair Pinns offer?",
-          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
-        },
-        {
-          question: "Do you ship products Australia-wide?",
-          answer: "Yes, free shipping on orders over $150, flat $10 under that. Same-day dispatch for orders placed before 1pm AEDT.",
-        },
-        {
-          question: "Can I book a free consultation?",
-          answer: "Yes, every new client gets a free 10-minute consultation, redeemable on the first service. Online booking shows real-time availability.",
-        },
-        {
-          question: "What payment methods do you accept?",
-          answer: "Visa, Mastercard, AmEx, Afterpay (4 interest-free payments), and cash. Afterpay is available on all services and products.",
+          "name": "Juuce Bond Repair Conditioner",
+          "link": "/products/juuce-bond-repair-conditioner/",
+          "description": "A rinse-out conditioner in the same range. Choose it according to your hair and current routine."
         }
-      ],
+      ]
     },
-    cta: {
-      type: "product",
-      productPath: "https://hairpinns.com/collections/juuce-botanicals",
-      customText: "Shop bond repair and hydration"
-    }
-  } as const;
+    "quickAnswer": {
+      "question": "What is the difference between bond repair and protein treatment?",
+      "answer": "Bond-repair products and protein treatments can overlap. Protein-containing formulas differ, and some products marketed for bond repair also include hydrolysed protein. Compare the exact ingredients, intended use and directions rather than choosing from the label alone."
+    },
+    "keyTakeaways": [
+      "Bond repair and protein categories can overlap",
+      "Check the exact formula, not just the range name",
+      "A home stretch test cannot select a treatment for you",
+      "Follow product-specific directions rather than a fixed multi-brand schedule",
+      "Ask for help with your hair history and current routine"
+    ],
+    "faqSection": [
+      {
+        "question": "Does all bleached hair need the same bond treatment?",
+        "answer": "No. The right routine depends on the service history, condition of the hair and the exact products. A blanket daily or weekly schedule is not a substitute for that assessment."
+      },
+      {
+        "question": "Is Juuce Bond Repair Shampoo protein-free?",
+        "answer": "The manufacturer’s current ingredient list includes hydrolysed rice protein. Check the bottle you receive because formulas can change."
+      },
+      {
+        "question": "Can I replace conditioner with a bond treatment?",
+        "answer": "Do not assume so. Some treatments are used before shampoo, while others are leave-in products. Follow the specific directions, including whether and when conditioner is used."
+      },
+      {
+        "question": "How long will a treatment take to work?",
+        "answer": "There is no single timeline across different formulas and starting hair conditions. Follow the directions and review whether the product is helping rather than promising a fixed number of washes."
+      }
+    ]
+  },
+  "cta": {
+    "type": "product",
+    "productPath": "/products/juuce-bond-repair-shampoo/",
+    "customText": "View Juuce Bond Repair Shampoo"
+  }
+} as const;
 
 export default function BlogPostPage() {
   return <BlogPostTemplate post={post as any} />;
