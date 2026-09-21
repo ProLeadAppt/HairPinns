@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { generateCollectionPageSchema } from "./schema";
 
-describe("collection product availability schema", () => {
-  it("preserves backorder and sold-out states in collection offers", () => {
+describe("collection listing schema", () => {
+  it("lists backorder and sold-out products without creating merchant offers", () => {
     const schema = generateCollectionPageSchema({
       name: "Bundles & Gifts",
       description: "Gift packs selected by Hair Pinns.",
@@ -25,11 +25,10 @@ describe("collection product availability schema", () => {
       ],
     });
 
-    expect(schema.mainEntity.itemListElement[0].item.offers.availability).toBe(
-      "https://schema.org/BackOrder",
-    );
-    expect(schema.mainEntity.itemListElement[1].item.offers.availability).toBe(
-      "https://schema.org/OutOfStock",
-    );
+    expect(schema.mainEntity.itemListElement.map((item: { url: string }) => item.url)).toEqual([
+      "https://hairpinns.com/products/christmas-pack/",
+      "https://hairpinns.com/products/unavailable-pack/",
+    ]);
+    expect(JSON.stringify(schema)).not.toContain('"offers"');
   });
 });
