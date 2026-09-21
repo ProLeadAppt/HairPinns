@@ -1,6 +1,6 @@
 # Hair Pinns — robots.txt
 # https://hairpinns.com
-# Last updated: 2026-09-11
+# Last updated: 2026-09-21
 
 User-agent: *
 Allow: /
@@ -30,20 +30,8 @@ Disallow: /dev/
 Disallow: /reviews/feedback
 Disallow: /reviews/google
 
-# Disallow query parameters that create duplicate content.
-# Shopify variant/pagination/locale params generate near-infinite URL permutations
-# that all canonicalise to the same product/collection page. Search Console
-# (2026-05) flagged 182 URLs as "Alternative page with proper canonical tag" -
-# canonicals were working but crawl budget was being wasted on the dupes.
-Disallow: /*?*utm_*
-Disallow: /*?*fbclid=*
-Disallow: /*?*gclid=*
-Disallow: /*?*sort=*
-Disallow: /*?*filter=*
-Disallow: /*?*variant=*
-Disallow: /*?*phcursor=*
-Disallow: /*?*country=*
-Disallow: /*?*currency=*
+# Let crawlers read canonical tags on public parameterised URLs.
+# Blocking these URLs prevents consolidation and can leave URL-only results.
 
 # Shopify infrastructure URLs that should never be indexed.
 Disallow: /web-pixels*
