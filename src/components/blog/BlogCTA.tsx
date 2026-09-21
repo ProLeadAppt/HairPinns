@@ -48,7 +48,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
     <aside className="my-16 bg-[hsl(var(--hp-lavender))] px-5 py-9 text-[hsl(var(--hp-ink))] sm:px-8 sm:py-10" aria-label="Next step">
       <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">A useful next step</p>
       <h2 className="mt-4 max-w-[14ch] font-heading text-[clamp(2.2rem,5vw,3.7rem)] font-normal leading-[0.96] tracking-[-0.04em] text-[hsl(var(--hp-ink))]">{title}</h2>
-      <p className="mt-5 max-w-[42rem] text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">{body}</p>
+      <p className="mt-5 max-w-[42rem] text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">{body}</p>
       <div className="mt-7 border-t border-[hsl(var(--hp-ink)/0.24)] pt-6">{actions}</div>
     </aside>
   );

@@ -39,11 +39,11 @@ const BlogCard = ({ post, size = "regular", index }: BlogCardProps) => {
         </div>
 
         <div className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-3 py-5 sm:grid-cols-[3rem_minmax(0,1fr)]">
-          <span className="pt-1 font-mono text-[0.62rem] font-semibold tracking-[0.16em] text-[hsl(var(--hp-ink)/0.58)]">
+          <span className="pt-1 font-mono text-[0.62rem] font-semibold tracking-[0.16em] text-[hsl(var(--hp-ink)/0.72)]">
             {typeof index === "number" ? String(index + 1).padStart(2, "0") : "HP"}
           </span>
           <div>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.62rem] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--hp-ink)/0.64)]">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.62rem] font-semibold uppercase tracking-[0.15em] text-[hsl(var(--hp-ink)/0.72)]">
               <span>{post.category}</span>
               <span aria-hidden="true">/</span>
               <span>{post.readTime}</span>
@@ -51,10 +51,10 @@ const BlogCard = ({ post, size = "regular", index }: BlogCardProps) => {
             <h3 className={`mt-3 max-w-[19ch] font-heading font-normal leading-[1.05] tracking-[-0.025em] transition-colors group-hover:text-[hsl(var(--after-hours-copper))] ${isLarge ? "text-3xl sm:text-4xl" : "text-[1.65rem] sm:text-3xl"}`}>
               {post.title}
             </h3>
-            <p className="mt-4 line-clamp-3 max-w-[48ch] text-sm leading-6 text-[hsl(var(--hp-ink)/0.7)]">
+            <p className="mt-4 line-clamp-3 max-w-[48ch] text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">
               {post.excerpt}
             </p>
-            <div className="mt-5 flex items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.16)] pt-3 text-[0.66rem] font-semibold uppercase tracking-[0.13em] text-[hsl(var(--hp-ink)/0.68)]">
+            <div className="mt-5 flex items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.16)] pt-3 text-[0.66rem] font-semibold uppercase tracking-[0.13em] text-[hsl(var(--hp-ink)/0.72)]">
               <span>{post.date}</span>
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">Read →</span>
             </div>
