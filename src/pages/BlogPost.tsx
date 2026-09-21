@@ -138,9 +138,9 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
                 {post.content.productModule && <a href="#article-products" className="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">See the product picks</a>}
               </nav>
               <dl className="mt-6 grid grid-cols-3 border-y border-[hsl(var(--hp-ink)/0.22)] py-4 text-[hsl(var(--hp-ink))]">
-                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
-                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd></div>
-                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.55)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
+                <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
+                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd></div>
+                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
               </dl>
             </div>
 
@@ -196,7 +196,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           {/* Content Sections */}
           {post.content.sections.map((section, index) => (
             <div key={index} className="reveal mb-16">
-              <p className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.52)]">{String(index + 1).padStart(2, "0")} /</p>
+              <p className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-ink)/0.72)]">{String(index + 1).padStart(2, "0")} /</p>
               <h2 className="mb-5 mt-4 max-w-[28ch] font-heading text-[clamp(1.65rem,3vw,2.6rem)] font-normal leading-[1.15] tracking-[-0.025em] text-[hsl(var(--hp-ink))]">
                 {section.heading}
               </h2>
@@ -246,7 +246,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
 
           {visibleFaqs.length > 0 && (
             <div className="reveal mt-20 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-10">
-              <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.62)]">Questions from the chair</p>
+              <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.72)]">Questions from the chair</p>
               <h2 className="mb-8 mt-4 max-w-[12ch] font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">
                 Frequently Asked Questions
               </h2>

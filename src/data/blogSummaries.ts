@@ -381,7 +381,7 @@ export const blogSummaries: BlogSummary[] = [
     excerpt: "A stylist's guide to the best shampoos for colour-treated hair in Australia, what actually keeps colour vibrant, what strips it, and what to buy.",
     category: 'Products',
     date: 'April 19, 2026',
-    readTime: '9 min read',
+    readTime: '6 min read',
     image: blogImg31,
     author: 'Jena Pinn',
   },
