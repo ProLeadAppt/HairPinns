@@ -35,6 +35,12 @@
 # Shopify Messaging uses the primary domain for unsubscribe links. Route only
 # those token-bearing URLs to Shopify, which processes the opt-out.
 [[redirects]]
+  from = "/services/account/unsubscribe"
+  to = "https://femtat-zu.myshopify.com/services/account/unsubscribe"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/account/unsubscribe"
   to = "https://femtat-zu.myshopify.com/account/unsubscribe"
   status = 302
