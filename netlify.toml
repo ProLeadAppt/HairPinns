@@ -567,7 +567,7 @@
   force = true
 
 [[redirects]]
-  from = "/blogs/blogs/🎁-christmas-gift-packs-at-hair-pinns-🎁"
+  from = "/blogs/blogs/%F0%9F%8E%81-christmas-gift-packs-at-hair-pinns-%F0%9F%8E%81"
   to = "/blog/christmas-hair-gifts-2026/"
   status = 301
   force = true
