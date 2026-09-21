@@ -1,5 +1,6 @@
 # API routes - must come before SPA catch-all
 # Shopify Messaging opt-out URLs need Shopify's unsubscribe handler.
+/services/account/unsubscribe https://femtat-zu.myshopify.com/services/account/unsubscribe 302!
 /account/unsubscribe     https://femtat-zu.myshopify.com/account/unsubscribe         302!
 /account/unsubscribe/*   https://femtat-zu.myshopify.com/account/unsubscribe/:splat  302!
 /api/checkout  /.netlify/functions/checkout  200
