@@ -702,6 +702,13 @@
   status = 301
   force = true
 
+# Preserve the privacy-request destination instead of the broad /pages homepage fallback.
+[[redirects]]
+  from = "/pages/data-sharing-opt-out"
+  to = "/privacy/"
+  status = 301
+  force = true
+
 # Legacy Shopify static pages (/pages/<slug>) -> current React routes.
 # Specific mappings first, then a catch-all for any other historic /pages/ URL.
 [[redirects]]
