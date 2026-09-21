@@ -217,10 +217,10 @@ export const blogSummaries: BlogSummary[] = [
   },
   {
     slug: 'why-wet-brush-is-a-must-have',
-    title: '💖 Why a Wet Brush Is a Must-Have in Every Hair Routine',
-    excerpt: "Did you know your hair is at its most fragile when it's wet? That's why the right brush matters.",
+    title: 'A gentler way to detangle your hair',
+    excerpt: "Start at the ends, work in small sections and pause when your brush catches.",
     category: 'Products',
-    date: 'July 13, 2025',
+    date: 'September 21, 2026',
     readTime: '3 min read',
     image: blogImg15,
     author: 'Jena Pinn',

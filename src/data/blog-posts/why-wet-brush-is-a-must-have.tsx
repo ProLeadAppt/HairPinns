@@ -1,79 +1,72 @@
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
-    slug: "why-wet-brush-is-a-must-have",
-    title: "💖 Why a Wet Brush Is a Must-Have in Every Hair Routine",
-    excerpt: "Did you know your hair is at its most fragile when it's wet? That's why the right brush matters.",
-    category: "Products",
-    date: "July 13, 2025",
-    readTime: "3 min read",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998",
-    author: "Jena Pinn",
-    content: {
-      introduction: "Did you know your hair is at its most fragile when it's wet? That's why tugging a regular brush through wet hair can lead to unnecessary breakage, split ends, and hair fall, especially if your hair is fine, coloured, curly, or damaged.",
-      sections: [
-        {
-          heading: "So… what makes the Wet Brush different?",
-          content: "Wet Brushes are specifically designed to detangle gently without causing damage, even on soaking wet, delicate strands."
-        },
-        {
-          heading: "✅ Here's why we love them at Hair Pinns:",
-          content: "Ultra-soft, flexible bristles\nThe IntelliFlex® bristles bend as needed to gently loosen knots without pulling or snapping your hair.\n\nSafe for all hair types\nWhether your hair is curly, straight, thick, fine, or somewhere in between, Wet Brushes work with your hair, not against it.\n\nKid & curl friendly\nNo more tears or tantrums! Great for sensitive scalps, kids, and anyone with curls that tangle easily.\n\nPerfect for treatments\nUse your Wet Brush to evenly distribute leave-ins, masks, or oils through damp hair without overworking it.\n\nSalon-approved + original quality\nWe only stock the original Wet Brush, no knock-offs. You'll notice the difference with every stroke."
-        },
-        {
-          heading: "💡 Hair Tip:",
-          content: "Always start brushing from the ends and gently work your way up, especially when hair is wet."
-        },
-        {
-          heading: "🛍️ Shop Our Range",
-          content: "Shop our range of original Wet Brushes here: https://hairpinns.com/collections/wet-brush-detanglers"
-        }
-      ],
-      productModule: {
-        title: "Shop Wet Brush Collection",
-        products: [
-          {
-            name: "Original Wet Brush",
-            link: "/collections/wet-brush-detanglers",
-            description: "Gentle detangling for all hair types"
-          },
-          {
-            name: "Browse Accessories",
-            link: "/collections/hair-pinns-accessories",
-            description: "Hair tools and care essentials"
-          }
-        ]
+  "slug": "why-wet-brush-is-a-must-have",
+  "title": "A gentler way to detangle your hair",
+  "excerpt": "Start at the ends, work in small sections and pause when your brush catches.",
+  "category": "Products",
+  "date": "September 21, 2026",
+  "readTime": "3 min read",
+  "image": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Accessories-016.jpg?v=1746738998",
+  "author": "Jena Pinn",
+  "content": {
+    "introduction": "To detangle hair gently, work through the ends of a small section first, then move upwards as the tangles clear. If your brush catches, pause. Pulling harder is not the next step. The right timing and tool depend on your hair and any salon aftercare instructions.",
+    "sections": [
+      {
+        "heading": "Your knots don’t need a wrestling match",
+        "content": "You’re getting ready, the brush gets stuck and suddenly you’re negotiating with the back of your head. Before you reach for another product, have a look at how you’re brushing. A smaller section and a slower start can make the routine much more manageable."
       },
-      faqSection: [
-        {
-          question: "Why is the Wet Brush a must-have?",
-          answer: "The IntelliFlex bristles detangle wet hair without pulling or breaking. Regular combs snag on wet hair, and that's where 80% of mid-lengths breakage comes from. One Wet Brush ends the issue.",
-        },
-        {
-          question: "Can the Wet Brush be used on dry hair?",
-          answer: "Yes, and it's actually gentler than most detangling brushes on dry hair too. The flexible bristles flex around knots instead of dragging through them.",
-        },
-        {
-          question: "Is the Wet Brush good for extensions?",
-          answer: "Yes, it's the only brush Jena recommends for tape-in, micro-bead, and keratin-bond extensions. Start from the ends, work up, never yank from the root.",
-        },
-        {
-          question: "Wet Brush vs Tangle Teezer, which is better?",
-          answer: "Both work. Wet Brush has a handle (easier for some), Tangle Teezer is handle-less (palm grip). For long hair, Jena prefers Wet Brush. For short or one-handed use, Tangle Teezer wins.",
-        },
-        {
-          question: "How long does a Wet Brush last?",
-          answer: "6-12 months with regular use, depending on hair thickness. The bristles lose flexibility over time. Once they don't flex back, replace it, a worn brush is just a comb.",
-        }
-      ],
-    },
-    cta: {
-      type: "product",
-      productPath: "https://hairpinns.com/collections/wet-brush-detanglers",
-      customText: "Shop Wet Brush Detanglers"
-    }
-  } as const;
+      {
+        "heading": "1. Start with a section you can manage",
+        "content": "Rather than tackling the whole lot at once, separate a small section. Gently work through the ends before moving a little further up. Keep working in stages instead of dragging from the roots straight through a knot."
+      },
+      {
+        "heading": "2. If it catches, stop",
+        "content": "Pause and ease the knot apart gently. Don’t keep pulling over the same spot. If your usual routine includes a detangling product, use it as directed. More bottles and more force aren’t automatically a better routine. If the hair is badly matted or detangling hurts, ask your hairdresser for help rather than forcing it."
+      },
+      {
+        "heading": "3. Match the routine to your hair",
+        "content": "There isn’t one wet-or-dry rule that suits everyone. Curls, extensions and salon-treated hair can need different handling. Follow the aftercare you’ve been given, including which tool to use and when to detangle. If you’re unsure, ask before changing your routine."
+      },
+      {
+        "heading": "Do you actually need a new brush?",
+        "content": "If your current brush is suitable and in good condition, try changing your technique first. If you are looking for a detangling brush, the Wet Brush Original Detangler is one option in the Hair Pinns shop. Choose your preferred style on the product page and check its price and availability before adding it to your bag. Availability varies by style, so check your selected option."
+      },
+      {
+        "heading": "A detangler is not automatically a heat-styling brush",
+        "content": "Check the instructions for your exact brush before using it with a hairdryer. Different Wet Brush ranges have different purposes. Don’t assume a brush designed for detangling is also designed for blow-drying."
+      },
+      {
+        "heading": "What if the knots keep coming back?",
+        "content": "Tell me when it happens, after washing, overnight or during the day, and what you’re using now. That’s a much more useful starting point than guessing which bottle you need next. You can contact Hair Pinns in Bangor for help choosing a routine."
+      }
+    ],
+    "faqSection": [
+      {
+        "question": "Where do I start?",
+        "answer": "At the ends of a manageable section, moving upwards as the tangles clear."
+      },
+      {
+        "question": "Should I brush harder if it catches?",
+        "answer": "No. Pause and gently work through the knot."
+      },
+      {
+        "question": "Is this suitable for extensions?",
+        "answer": "Follow your extension-specific aftercare and ask your stylist which tool is suitable."
+      },
+      {
+        "question": "Do I need to buy a brush to try this?",
+        "answer": "No. Start by checking your technique and whether your existing tool is suitable."
+      }
+    ]
+  },
+  "cta": {
+    "type": "product",
+    "productPath": "/products/wet-brush-original-detangler/",
+    "customText": "Browse Wet Brush styles"
+  }
+};
 
 export default function BlogPostPage() {
-  return <BlogPostTemplate post={post as any} />;
+  return <BlogPostTemplate post={post} />;
 }
