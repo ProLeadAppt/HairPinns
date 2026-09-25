@@ -10,6 +10,7 @@ import { BOOK_URL } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 import {
   CHRISTMAS_PRODUCTS,
+  DIY_KIDS_GIFTS,
   SHOP_TAXONOMY,
   type CommerceDestination,
 } from "@/config/commerceNavigation";
@@ -209,6 +210,9 @@ const Collections = () => {
               <p className="mt-5 max-w-md text-sm leading-6 text-[hsl(var(--hp-ink))]">Browse the current Juuce and Pure packs, plus the Festive Finish duo. Product pages show the latest options and availability.</p>
               <Link to="/collections/haircare-bundles-gift-sets" className="mt-7 inline-flex min-h-11 items-center gap-3 border-b border-[hsl(var(--hp-purple))] text-sm font-semibold text-[hsl(var(--hp-ink))] hover:text-[hsl(var(--hp-purple))]">
                 Browse bundles & gifts<ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link to={DIY_KIDS_GIFTS.href} className="mt-3 flex min-h-11 items-center gap-3 text-sm font-semibold text-[hsl(var(--hp-purple))] underline underline-offset-4">
+                {DIY_KIDS_GIFTS.name}<ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
             <ol className="border-t border-[hsl(var(--hp-purple)/0.24)]">

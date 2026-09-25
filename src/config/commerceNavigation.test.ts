@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   CHRISTMAS_PRODUCTS,
+  DIY_KIDS_GIFTS,
   FEATURED_BRANDS,
   HIDDEN_COLLECTION_HANDLES,
   PUBLIC_COLLECTION_HANDLES,
@@ -50,6 +51,12 @@ describe("commerce navigation taxonomy", () => {
       href: "/collections/hair-pinns-accessories",
     });
     expect(PUBLIC_COLLECTION_HANDLES).toContain("hair-pinns-accessories");
+  });
+
+  it("keeps Jena's build-your-own kids collection in required public discovery", () => {
+    expect(DIY_KIDS_GIFTS.href).toBe("/collections/diy-kids-gift-packs");
+    expect(PUBLIC_COLLECTION_HANDLES).toContain(DIY_KIDS_GIFTS.handle);
+    expect(SHOP_TAXONOMY.flatMap(({ destinations }) => destinations).some(({ handle }) => handle === DIY_KIDS_GIFTS.handle)).toBe(false);
   });
 
   it("links the three seasonal products directly", () => {

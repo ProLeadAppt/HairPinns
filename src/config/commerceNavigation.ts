@@ -1,5 +1,6 @@
 import {
   CHRISTMAS_PRODUCTS as CHRISTMAS_PRODUCTS_DATA,
+  DIY_KIDS_GIFTS as DIY_KIDS_GIFTS_DATA,
   FEATURED_BRANDS as FEATURED_BRANDS_DATA,
   HIDDEN_COLLECTION_HANDLES as HIDDEN_COLLECTION_HANDLES_DATA,
   isPublicCollectionHandle as isPublicCollectionHandleData,
@@ -43,6 +44,7 @@ export const FEATURED_BRANDS = FEATURED_BRANDS_DATA as CommerceDestination[];
 export const SECONDARY_BRANDS = SECONDARY_BRANDS_DATA as CommerceDestination[];
 export const SHOP_TAXONOMY = SHOP_TAXONOMY_DATA as CommerceTaxonomyGroup[];
 export const CHRISTMAS_PRODUCTS = CHRISTMAS_PRODUCTS_DATA as SeasonalProductDestination[];
+export const DIY_KIDS_GIFTS = DIY_KIDS_GIFTS_DATA as SeasonalProductDestination;
 export const HIDDEN_COLLECTION_HANDLES = HIDDEN_COLLECTION_HANDLES_DATA as string[];
 export const PUBLIC_COLLECTION_HANDLES = PUBLIC_COLLECTION_HANDLES_DATA as string[];
 export const isPublicCollectionHandle = isPublicCollectionHandleData as (handle?: string) => boolean;

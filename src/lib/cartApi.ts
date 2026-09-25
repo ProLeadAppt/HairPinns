@@ -39,6 +39,7 @@ export interface CartSnapshot {
 export interface CartInputLine {
   merchandiseId: string;
   quantity: number;
+  attributes?: { key: string; value: string }[];
 }
 
 export interface CartUpdateLine {

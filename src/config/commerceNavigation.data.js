@@ -99,6 +99,12 @@ export const CHRISTMAS_PRODUCTS = [
   { name: "Festive Finish Gift Set Duo", handle: "festive-finish-gift-set-duo", href: "/products/festive-finish-gift-set-duo" },
 ];
 
+export const DIY_KIDS_GIFTS = {
+  name: "Build a kids gift selection",
+  handle: "diy-kids-gift-packs",
+  href: "/collections/diy-kids-gift-packs",
+};
+
 export const HIDDEN_COLLECTION_HANDLES = [
   "hair-care-must-haves-sale-items",
   "free-extra-eligible",
@@ -112,7 +118,7 @@ export const PUBLIC_COLLECTION_HANDLES = [
   ...new Set(SHOP_TAXONOMY.flatMap((group) => [
     ...group.destinations.map((destination) => destination.handle),
     ...(group.secondaryDestinations || []).map((destination) => destination.handle),
-  ])),
+  ]).concat(DIY_KIDS_GIFTS.handle)),
 ];
 
 export const isPublicCollectionHandle = (handle) =>
