@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { addCartLines } from "@/lib/cartApi";
-import { buildGiftSelection, giftCategory, orderGiftProducts, sellableGiftVariants, type GiftCategory, type GiftChoice, type GiftProduct } from "@/lib/kidsGiftSelection";
+import { addCartLines, getCartSnapshot } from "@/lib/cartApi";
+import { getCartId } from "@/lib/cartManagement";
+import { buildGiftSelection, giftCategory, giftQuantitiesWereAdded, maxGiftQuantity, orderGiftProducts, sellableGiftVariants, type GiftCategory, type GiftChoice, type GiftProduct } from "@/lib/kidsGiftSelection";
 import { notify } from "@/hooks/use-toast";
 
 export default function KidsGiftPackBuilder({ products }: { products: GiftProduct[] }) {
@@ -12,15 +13,19 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
   const visibleProducts = activeCategory === "all" ? sellableProducts : sellableProducts.filter((product) => giftCategory(product) === activeCategory);
   const selection = buildGiftSelection(sellableProducts, choices);
   const itemCount = selection.lines.reduce((sum, line) => sum + line.quantity, 0);
+  const hasUnavailableChoice = Object.keys(choices).length !== selection.lines.length;
   const price = new Intl.NumberFormat("en-AU", { style: "currency", currency: selection.currency }).format(selection.subtotal);
 
   const addSelection = async () => {
-    if (!selection.lines.length || adding) return;
+    if (!selection.lines.length || adding || hasUnavailableChoice) return;
     setAdding(true);
     try {
+      const existingCartId = getCartId();
+      const before = existingCartId ? await getCartSnapshot(existingCartId).catch(() => null) : null;
       const cart = await addCartLines(selection.lines);
       window.dispatchEvent(new CustomEvent("hp:openMiniCart", { detail: { cart, cartId: cart.id } }));
-      notify.success(`${itemCount} ${itemCount === 1 ? "item" : "items"} added to your bag`);
+      if (giftQuantitiesWereAdded(before, cart, selection.lines)) notify.success(`${itemCount} ${itemCount === 1 ? "item" : "items"} added to your bag`);
+      else notify.error("Shopify adjusted an item to available stock. Please check the quantities in your bag.");
     } catch {
       notify.error("We couldn't add your selection. Please check the options and try again.");
     } finally {
@@ -64,7 +69,8 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
                         value={choice?.variantId || ""}
                         onChange={(event) => setChoices((current) => {
                           const next = { ...current };
-                          if (event.target.value) next[product.id] = { variantId: event.target.value, quantity: current[product.id]?.quantity || 1 };
+                          const nextVariant = variants.find((variant) => variant.id === event.target.value);
+                          if (nextVariant) next[product.id] = { variantId: nextVariant.id, quantity: Math.min(current[product.id]?.quantity || 1, maxGiftQuantity(nextVariant)) };
                           else delete next[product.id];
                           return next;
                         })}
@@ -76,7 +82,7 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
                       {choice && <div className="mt-3 flex items-center gap-3">
                         <label htmlFor={`gift-qty-${product.id}`} className="text-sm font-medium text-[hsl(var(--hp-ink))]">Quantity</label>
                         <select id={`gift-qty-${product.id}`} value={choice.quantity} onChange={(event) => setChoices((current) => ({ ...current, [product.id]: { ...current[product.id], quantity: Number(event.target.value) } }))} className="min-h-11 border border-[hsl(var(--hp-purple)/0.5)] bg-white px-3 text-[hsl(var(--hp-ink))] focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">
-                          {[1, 2, 3, 4, 5].map((quantity) => <option key={quantity} value={quantity}>{quantity}</option>)}
+                          {Array.from({ length: selectedVariant ? maxGiftQuantity(selectedVariant) : 1 }, (_, index) => index + 1).map((quantity) => <option key={quantity} value={quantity}>{quantity}</option>)}
                         </select>
                       </div>}
                     </div>
@@ -86,8 +92,8 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
             </div>
             <div className="mt-8 border-t border-[hsl(var(--hp-lilac))] bg-white px-4 py-4 shadow-sm sm:px-6">
               <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div aria-live="polite"><p className="font-semibold text-[hsl(var(--hp-ink))]">{itemCount} {itemCount === 1 ? "item" : "items"} selected · {price}</p><p className="text-xs text-[hsl(var(--hp-ink)/0.72)]">Subtotal before delivery and any eligible Shopify discount. Final total appears in your bag.</p></div>
-                <button type="button" disabled={!selection.lines.length || adding} onClick={addSelection} className="min-h-12 bg-[hsl(var(--hp-purple))] px-8 font-semibold text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-ink))] disabled:cursor-not-allowed disabled:opacity-50">{adding ? "Adding to bag…" : "Add my selection to bag"}</button>
+                <div aria-live="polite"><p className="font-semibold text-[hsl(var(--hp-ink))]">{itemCount} {itemCount === 1 ? "item" : "items"} selected · {price}</p><p className="text-xs text-[hsl(var(--hp-ink)/0.72)]">Subtotal before delivery and any eligible Shopify discount. Final total appears in your bag.</p>{hasUnavailableChoice && <p className="mt-1 text-sm font-semibold text-[hsl(var(--hp-ink))]">One option or quantity has changed. Please choose an available one before adding your gift.</p>}</div>
+                <button type="button" disabled={!selection.lines.length || adding || hasUnavailableChoice} onClick={addSelection} className="min-h-12 bg-[hsl(var(--hp-purple))] px-8 font-semibold text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-ink))] disabled:cursor-not-allowed disabled:opacity-50">{adding ? "Adding to bag…" : "Add my selection to bag"}</button>
               </div>
             </div>
           </>

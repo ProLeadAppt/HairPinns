@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildGiftSelection, giftCategory, orderGiftProducts, sellableGiftVariants, type GiftProduct } from "./kidsGiftSelection";
+import { buildGiftSelection, giftCategory, giftQuantitiesWereAdded, maxGiftQuantity, orderGiftProducts, sellableGiftVariants, type GiftCartLike, type GiftProduct } from "./kidsGiftSelection";
 
 const products: GiftProduct[] = [
   { id: "p1", title: "Brush", handle: "brush", variants: { edges: [
@@ -14,6 +14,15 @@ const products: GiftProduct[] = [
 describe("kids gift selection", () => {
   it("offers only sellable Shopify variants", () => {
     expect(sellableGiftVariants(products[0]).map(({ id }) => id)).toEqual(["v1"]);
+  });
+
+  it("never offers more than known positive stock, while permitting Shopify backorders", () => {
+    const oneInStock = { ...products[0].variants!.edges[0].node, quantityAvailable: 1 };
+    expect(maxGiftQuantity(oneInStock)).toBe(1);
+    expect(buildGiftSelection([{ ...products[0], variants: { edges: [{ node: oneInStock }] } }], {
+      p1: { variantId: "v1", quantity: 3 },
+    }).lines).toEqual([]);
+    expect(maxGiftQuantity({ ...oneInStock, quantityAvailable: 0 })).toBe(5);
   });
 
   it("keeps the browsing groups predictable", () => {
@@ -49,5 +58,11 @@ describe("kids gift selection", () => {
       p1: { variantId: "v2", quantity: 1 },
       p2: { variantId: "v3", quantity: 0 },
     }).lines).toEqual([]);
+  });
+
+  it("flags Shopify's silent stock adjustment instead of claiming all items were added", () => {
+    const cart = (quantity: number): GiftCartLike => ({ lines: { edges: [{ node: { quantity, merchandise: { id: "v1" } } }] } });
+    expect(giftQuantitiesWereAdded(null, cart(1), [{ merchandiseId: "v1", quantity: 3 }])).toBe(false);
+    expect(giftQuantitiesWereAdded(cart(1), cart(2), [{ merchandiseId: "v1", quantity: 1 }])).toBe(true);
   });
 });
