@@ -30,6 +30,13 @@ export const sellableGiftVariants = (product: GiftProduct): GiftVariant[] =>
     .map(({ node }) => node)
     .filter((variant) => variant.availableForSale && Number.isFinite(Number(variant.price?.amount)));
 
+export const orderGiftProducts = (products: GiftProduct[]): GiftProduct[] => {
+  const categoryOrder: Record<GiftCategory, number> = { brushes: 0, ponytails: 1, extras: 2 };
+  return products
+    .filter((product) => sellableGiftVariants(product).length > 0)
+    .sort((a, b) => categoryOrder[giftCategory(a)] - categoryOrder[giftCategory(b)] || a.title.localeCompare(b.title, "en-AU"));
+};
+
 export function buildGiftSelection(products: GiftProduct[], choices: Record<string, GiftChoice>) {
   const lines: { merchandiseId: string; quantity: number; attributes: { key: string; value: string }[] }[] = [];
   let subtotal = 0;

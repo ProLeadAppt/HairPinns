@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { addCartLines } from "@/lib/cartApi";
-import { buildGiftSelection, giftCategory, sellableGiftVariants, type GiftCategory, type GiftChoice, type GiftProduct } from "@/lib/kidsGiftSelection";
+import { buildGiftSelection, giftCategory, orderGiftProducts, sellableGiftVariants, type GiftCategory, type GiftChoice, type GiftProduct } from "@/lib/kidsGiftSelection";
 import { notify } from "@/hooks/use-toast";
 
 export default function KidsGiftPackBuilder({ products }: { products: GiftProduct[] }) {
   const [choices, setChoices] = useState<Record<string, GiftChoice>>({});
   const [activeCategory, setActiveCategory] = useState<GiftCategory | "all">("all");
   const [adding, setAdding] = useState(false);
-  const sellableProducts = products.filter((product) => sellableGiftVariants(product).length > 0);
+  const sellableProducts = orderGiftProducts(products);
   const visibleProducts = activeCategory === "all" ? sellableProducts : sellableProducts.filter((product) => giftCategory(product) === activeCategory);
   const selection = buildGiftSelection(sellableProducts, choices);
   const itemCount = selection.lines.reduce((sum, line) => sum + line.quantity, 0);
@@ -33,7 +33,7 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="text-xs font-semibold uppercase tracking-[0.17em] text-[hsl(var(--hp-purple))]">Choose their favourites</p>
         <h2 id="kids-gift-builder-heading" className="mt-3 max-w-[18ch] font-heading text-3xl leading-tight text-[hsl(var(--hp-ink))] md:text-4xl">Make it their kind of gift.</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-[hsl(var(--hp-ink))]">Pick the products and colours they will actually use. We will add your choices to the bag together, with Shopify confirming the final total at checkout.</p>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-[hsl(var(--hp-ink))]">Pick the products and colours they will actually use. Jena will pack your selected items together as one gift. The exact choices go into your bag, with Shopify confirming the final total at checkout.</p>
         {sellableProducts.length === 0 ? (
           <p className="mt-8 text-sm">There are no items available to choose right now. <Link className="underline" to="/collections/haircare-bundles-gift-sets">Browse other gifts</Link>.</p>
         ) : (

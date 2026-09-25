@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildGiftSelection, giftCategory, sellableGiftVariants, type GiftProduct } from "./kidsGiftSelection";
+import { buildGiftSelection, giftCategory, orderGiftProducts, sellableGiftVariants, type GiftProduct } from "./kidsGiftSelection";
 
 const products: GiftProduct[] = [
   { id: "p1", title: "Brush", handle: "brush", variants: { edges: [
@@ -18,6 +18,16 @@ describe("kids gift selection", () => {
 
   it("keeps the browsing groups predictable", () => {
     expect(products.map(giftCategory)).toEqual(["brushes", "ponytails"]);
+  });
+
+  it("shows usable brushes and ponytails before other extras", () => {
+    const extra: GiftProduct = { id: "p3", title: "Hair extra", handle: "extra", variants: { edges: [
+      { node: { id: "v4", title: "Default Title", availableForSale: true, price: { amount: "8.00", currencyCode: "AUD" } } },
+    ] } };
+    const unavailable: GiftProduct = { id: "p4", title: "Other brush", handle: "other-brush", variants: { edges: [
+      { node: { id: "v5", title: "Pink", availableForSale: false, price: { amount: "8.00", currencyCode: "AUD" } } },
+    ] } };
+    expect(orderGiftProducts([extra, products[1], unavailable, products[0]]).map(({ id }) => id)).toEqual(["p1", "p2", "p3"]);
   });
 
   it("adds exact selected variants and quantities without browser-calculated discounts", () => {
