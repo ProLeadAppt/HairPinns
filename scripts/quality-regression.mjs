@@ -546,7 +546,7 @@ assert.match(contactSource, /generateFAQPageSchema\(contactFaqs\)/, 'Contact FAQ
 assert.match(contactSource, /trackBookingClick\("contact_close", "\/contact"\)/, 'Contact booking close must preserve attribution');
 assert.match(floatingActionsSource, /\[data-contact-page\]/, 'Contact journey must suppress the floating scroll-to-top control');
 assert.doesNotMatch(contactSource, /new Date\(|businessInfo|Open now|Currently closed|rear entrance|Wheelchair accessible|available 24\/7|within 24 hours/, 'Contact page must not restore browser-time status, duplicate business data, or unsupported access and response claims');
-for (const formContract of ['submitNetlifyForm("hair-pinns-contact"', "window.gtag('event', 'generate_lead'", 'pixelTracking.trackFormSubmission', 'contactSchema.safeParse', 'Send Another Message']) {
+for (const formContract of ['submitNetlifyForm("hair-pinns-contact"', 'trackContactLead()', 'contactSchema.safeParse', 'Send Another Message']) {
   assert.ok(contactFormSource.includes(formContract), `Contact form must preserve operational contract: ${formContract}`);
 }
 assert.match(contactFormSource, /variant\?: "default" \| "editorial"[\s\S]*variant === "editorial"/, 'Contact form must preserve default styling and expose the editorial shell');
@@ -656,7 +656,7 @@ for (const route of exactRouterPaths) {
   );
 }
 assert.match(netlify, /from\s*=\s*"\/suburbs\/\*"[\s\S]*?status\s*=\s*301/, 'Legacy suburb routes need an edge redirect');
-for (const operationalPath of ['/confirm', '/order-confirmation', '/reviews/feedback', '/reviews/google']) {
+for (const operationalPath of ['/search', '/search/', '/confirm', '/order-confirmation', '/reviews/feedback', '/reviews/google']) {
   const escaped = operationalPath.replaceAll('/', '\\/');
   assert.match(
     netlify,
@@ -665,6 +665,8 @@ for (const operationalPath of ['/confirm', '/order-confirmation', '/reviews/feed
   );
 }
 for (const [noindexPath, robotsPolicy] of [
+  ['/search', 'noindex, follow'],
+  ['/search/', 'noindex, follow'],
   ['/confirm', 'noindex, nofollow'],
   ['/order-confirmation', 'noindex, nofollow'],
   ['/reviews', 'noindex, follow'],

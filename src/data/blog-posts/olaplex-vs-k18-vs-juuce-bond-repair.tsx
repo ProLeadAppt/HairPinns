@@ -1,78 +1,93 @@
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
-    slug: "olaplex-vs-k18-vs-juuce-bond-repair",
-    title: "Olaplex vs K18 vs Juuce Bond Repair: What's Actually In The Bottle",
-    excerpt: "Three big bond repair brands and three different approaches. Here is how they differ and what to consider before choosing one.",
-    category: "Products",
-    date: "May 6, 2026",
-    readTime: "7 min read",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697",
-    author: "Jena Pinn",
-    content: {
-      introduction: "Bond repair is the most over-marketed and under-explained category in hair care. Three big brands dominate Australia: Olaplex, K18, and Juuce Bond Repair. Clients ask me weekly which one to use, and the honest answer depends on what kind of damage you actually have. Here's what's in each bottle, what they realistically do on damaged hair, and what I've seen them deliver in twenty years of running a salon.",
-      sections: [
+  "slug": "olaplex-vs-k18-vs-juuce-bond-repair",
+  "title": "Olaplex vs K18 vs Juuce: Compare Bond Repair Routines",
+  "excerpt": "Compare Olaplex, K18 and Juuce by product type, current directions and routine, with links to manufacturer guidance and current Juuce products.",
+  "category": "Products",
+  "date": "May 6, 2026",
+  "readTime": "4 min read",
+  "image": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697",
+  "author": "Jena Pinn",
+  "content": {
+    "introduction": "Olaplex, K18 and Juuce offer different products and routines. Compare the exact bottle and application steps before choosing: a pre-wash treatment, leave-in mask and shampoo-and-conditioner pair are not like-for-like replacements. Hair Pinns sells Juuce; the manufacturer links below help you check the other options without an unsupported “best” ranking.",
+    "sections": [
+      {
+        "heading": "Compare the product, not just the brand",
+        "content": "Each brand sells more than one product. For this comparison, the useful distinction is between an Olaplex pre-wash treatment, K18’s leave-in molecular repair mask and Juuce’s Bond Repair shampoo and conditioner. They occupy different steps, so comparing bottle prices or promising one overall winner misses how you would actually use them."
+      },
+      {
+        "heading": "Olaplex: check which No.3 formula you have",
+        "content": "[Olaplex’s current No.3PLUS page](https://olaplex.com/products/olaplex-n-3plus-complete-repair-treatment-100ml) describes a protein-free pre-wash treatment with a three-minute application before shampoo and conditioner. Its [older No.3 Hair Perfector guide](https://olaplex.com/blogs/manual/home-use-with-olaplex-no-3-hair-perfector) gives different instructions. Read the exact bottle you own rather than applying an old No.3 routine to every newer product. These are manufacturer directions, not a head-to-head performance result."
+      },
+      {
+        "heading": "K18: a leave-in treatment with its own routine",
+        "content": "[K18’s Australian guidance](https://k18hair.com.au/pages/faqs) describes a peptide-based leave-in mask and a four-minute treatment step. The brand provides an initial treatment routine followed by maintenance, so it should not be described as useful only on the day of a colour service. Follow the current mask directions for preparation and other products. Do not substitute a shampoo-and-conditioner schedule for a leave-in treatment’s instructions."
+      },
+      {
+        "heading": "Juuce: shampoo and conditioner for the wash routine",
+        "content": "Juuce markets its Bond Repair range for damaged hair. Its [shampoo ingredient list](https://juucehair.com/products/bond-repair-shampoo) includes hydrolysed rice protein; the earlier wheat-protein description in this guide was incorrect. The [conditioner has its own directions and ingredient panel](https://juucehair.com/products/bond-repair-conditioner). These are rinse-out wash steps, not the same format as an Olaplex pre-wash treatment or K18 leave-in mask. See the current Hair Pinns product pages below for the options available to buy."
+      },
+      {
+        "heading": "How to compare cost without guessing",
+        "content": "Use the current price, bottle size and the amount the directions say to apply. Your hair length, thickness and frequency of use affect how many applications a bottle provides. A shampoo and conditioner may replace existing wash products, while a separate treatment adds another step. Avoid fixed cost-per-wash rankings unless the quantities and routines are genuinely comparable."
+      },
+      {
+        "heading": "Choose a routine you can follow",
+        "content": "Start with what you already use and the concern you want to address. You do not need to buy all three brands to follow this guide. Check with Jena before combining unfamiliar treatments after a chemical service, and follow the exact formula’s directions. If the terminology is confusing, read [bond repair versus protein treatments](/blog/bond-repair-vs-protein-treatment-difference/) or [send your current routine and hair history](/contact/) for help choosing."
+      }
+    ],
+    "productModule": {
+      "title": "Compare current Juuce products",
+      "products": [
         {
-          heading: "What bond repair actually means",
-          content: "Hair is held together by three types of internal bonds. Hydrogen bonds (broken by water, reformed by drying), salt bonds (broken by pH changes), and disulfide bonds (broken by bleach, perms, smoothing chemistry, and heat over 230 degrees). When stylists talk about bond repair, they almost always mean the disulfide bonds. These are the ones that, once broken, do not reform on their own. Bond repair products try to recreate or replace them. The three big brands all do this in different ways, with different chemistry, at different price points."
+          "name": "Juuce Bond Repair Shampoo",
+          "link": "/products/juuce-bond-repair-shampoo/",
+          "description": "A wash-step option marketed by Juuce for damaged hair. Check the current product details and bottle directions."
         },
         {
-          heading: "Olaplex: the original, now retail-heavy",
-          content: "Olaplex No.3 is the at-home product most people know. The active ingredient is bis-aminopropyl diglycol dimaleate. In plain English, it's a small molecule that bridges across broken disulfide bonds and gives them something to hold onto while they reform. Olaplex was a salon-only product when it launched in 2014, then went retail, and the formula in the bottle you buy at Chemist Warehouse now is identical to what's used in salons. Works best as a pre-wash treatment left on for ten minutes. Realistic result on damaged hair after eight weeks of weekly use: noticeable strength, less breakage when brushing, slightly more shine. Not magic, but real."
-        },
-        {
-          heading: "K18: the newest, the boldest claims",
-          content: "K18 launched in 2020 with a heavy marketing budget and a peptide-based active called K18Peptide. The science claim is that the peptide is small enough to enter the hair shaft and re-link broken keratin chains. The four-minute leave-in mask is the headline product. Realistic result: works fastest of the three on freshly damaged hair (like the night you bleached it). Less impressive on damage that's been sitting for months. Heavy price tag, around $70 for the small mask in Australia. I keep it in the salon for emergency repairs the day of a chemical service, but I do not recommend it as a weekly home routine because the cost stops making sense."
-        },
-        {
-          heading: "Juuce Bond Repair: what I actually keep on my shelf",
-          content: "Juuce is the Australian brand I built most of my retail wall around. Bond Repair Shampoo and Bond Repair Conditioner use a quaternised wheat-protein-based bond fix that sits between Olaplex's mechanism and K18's. It's not as fast as K18 on day-of damage, but used as a daily shampoo and conditioner pair it builds up real strength over weeks. I have clients who have used the Juuce bond range for two years after bleach work and their hair looks better now than before they coloured it. The pricing is roughly half the cost-per-wash of Olaplex No.3 and a quarter of the K18 mask."
-        },
-        {
-          heading: "Which one for which damage",
-          content: "Fresh chemical damage (you just bleached, or you just got a perm): K18 mask, used within 72 hours of the service. Worth the cost for the speed. Ongoing chemical damage (regular colour client, ends are dry and brittle): Juuce bond repair as your daily shampoo and conditioner, plus Olaplex No.3 once a week. Heat-tool damage from straighteners and curling wands: Juuce bond repair daily plus a heat protectant before styling. Split ends and breakage with no chemical history: this is usually mechanical damage, not bond damage. Bond repair will help slightly but the real fix is reducing heat use and getting a cut every eight weeks."
-        },
-        {
-          heading: "Cost per use, honestly",
-          content: "Olaplex No.3: around $55 in Australia, lasts about ten uses, so $5.50 per treatment. K18 four-minute mask: around $70 for the small size, lasts about eight uses, so $8.75 per treatment. Juuce Bond Repair Shampoo and Conditioner duo: around $80 for both, lasts about fifty washes, so $1.60 per wash. If you only have budget for one, Juuce gives the most value because it replaces your daily shampoo and conditioner rather than being an add-on."
-        },
-        {
-          heading: "My recommendation by hair history",
-          content: "If you bleach or do major colour two or more times a year: Juuce Bond Repair shampoo and conditioner daily, K18 mask the day after each chemical service, Olaplex No.3 once a fortnight. If you colour once a year and use heat tools regularly: Juuce Bond Repair shampoo and conditioner three to four times a week, Olaplex No.3 once a fortnight. Skip the K18 unless you have an event. If your hair is virgin or minimally coloured: don't waste money on bond repair, focus on hydration. Pure Lamellar Vitality will do more for your hair than any of these three."
+          "name": "Juuce Bond Repair Conditioner",
+          "link": "/products/juuce-bond-repair-conditioner/",
+          "description": "A rinse-out conditioner in the same range. Choose it according to your hair and current routine."
         }
-      ],
-      productModule: {
-        title: "What I stock and use in the salon",
-        products: [
-          { name: "Juuce Bond Repair Shampoo", link: "https://hairpinns.com/collections/juuce-botanicals", description: "My daily recommendation for colour-treated or bleached hair. Builds strength over weeks." },
-          { name: "Juuce Bond Repair Conditioner", link: "https://hairpinns.com/collections/juuce-botanicals", description: "The matching half. Use both together for best results." },
-          { name: "Pure Sacred Mask", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Weekly hydrating mask to pair with bond repair. Bond repair fixes strength, hydration fixes shine." }
-        ]
-      },
-      quickAnswer: {
-        question: "Which is better, Olaplex, K18, or Juuce bond repair?",
-        answer: "None is universally best. K18 works fastest on fresh chemical damage and is worth the price the day of a bleach service. Olaplex No.3 is reliable for weekly maintenance on chemically treated hair. Juuce Bond Repair shampoo and conditioner is the most cost-effective option because it replaces your daily wash routine rather than being an extra step. For most clients with regular colour services, Juuce daily plus Olaplex weekly gives the best result for the lowest cost."
-      },
-      keyTakeaways: [
-        "K18 is fastest for day-of damage, around $70 for a small mask, best as an in-salon emergency repair",
-        "Olaplex No.3 is reliable for weekly home maintenance, around $5.50 per treatment",
-        "Juuce Bond Repair shampoo and conditioner is the daily routine I recommend, around $1.60 per wash",
-        "For colour clients twice a year or more: Juuce daily + Olaplex fortnightly + K18 post-bleach is the gold standard",
-        "If your hair is virgin or low-colour, skip bond repair and focus on hydration instead"
-      ],
-      faqSection: [
-        { question: "Does Olaplex really work or is it marketing?", answer: "It works, but not the way the marketing suggests. It doesn't 'rebuild' your hair to virgin condition. It bridges broken disulfide bonds and gives them structural support while they slowly re-link. Real result on bleached hair after eight to twelve weeks of weekly use: visibly less breakage, more strength when wet, slightly more shine. Don't expect transformation in one wash." },
-        { question: "Why is K18 so expensive?", answer: "The peptide active in K18 is patented and expensive to manufacture. The brand has also chosen a premium positioning. The science is real and the speed of effect on freshly damaged hair is genuinely impressive, but for ongoing weekly maintenance the cost-per-treatment math stops working compared to other brands." },
-        { question: "Can I use all three together?", answer: "Yes, and many of my clients do for the first few months after major chemical work. Juuce Bond Repair shampoo and conditioner daily, Olaplex No.3 once a week as a pre-wash treatment, K18 mask in the salon on the day of any new chemical service. The three target slightly different parts of the bond-repair process and stack well." },
-        { question: "How long until I see results from bond repair?", answer: "Realistic timelines: K18 shows a result the day you use it, but it doesn't compound. Olaplex shows results in four to six weeks of consistent weekly use. Juuce Bond Repair shows results in three to four weeks of daily use. None of these work overnight despite the marketing." }
       ]
     },
-    cta: {
-      type: "product",
-      productPath: "https://hairpinns.com/collections/juuce-botanicals",
-      customText: "Shop Juuce Bond Repair"
-    }
-  } as const;
+    "quickAnswer": {
+      "question": "Which is better: Olaplex, K18 or Juuce Bond Repair?",
+      "answer": "There is no universal winner from the brand name alone. Compare the exact product, application steps, current price and your existing routine. Olaplex pre-wash treatments, K18’s leave-in mask and Juuce’s rinse-out shampoo and conditioner serve different steps."
+    },
+    "keyTakeaways": [
+      "Compare exact products rather than whole brands",
+      "Check the bottle: older No.3 and current No.3PLUS directions differ",
+      "K18 provides both treatment and maintenance guidance",
+      "Juuce Bond Repair Shampoo lists hydrolysed rice protein",
+      "Bottle size and your usage matter more than invented cost-per-wash rankings"
+    ],
+    "faqSection": [
+      {
+        "question": "Should I use all three brands together?",
+        "answer": "Not automatically. Review the directions and your existing routine before adding overlapping products. Ask for advice about the specific combination rather than adopting a universal multi-brand schedule."
+      },
+      {
+        "question": "Is K18 only for freshly bleached hair?",
+        "answer": "K18’s Australian guidance includes an initial treatment routine and ongoing maintenance. This guide does not support restricting it to a fixed 72-hour window after a service."
+      },
+      {
+        "question": "Is Juuce Bond Repair the same product as Olaplex?",
+        "answer": "No. The products compared here have different formulas and application steps. Similar repair wording does not make a shampoo equivalent to a pre-wash treatment."
+      },
+      {
+        "question": "Does the most expensive bottle work best?",
+        "answer": "Price alone does not show whether a product suits your routine. Compare the exact formula, directions, size and expected usage, and avoid paying for extra steps you do not need."
+      }
+    ]
+  },
+  "cta": {
+    "type": "product",
+    "productPath": "/products/juuce-bond-repair-shampoo/",
+    "customText": "View Juuce Bond Repair Shampoo"
+  }
+} as const;
 
 export default function BlogPostPage() {
   return <BlogPostTemplate post={post as any} />;

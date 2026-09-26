@@ -13,7 +13,7 @@ const TipCallout = ({ content, title = "Jena’s note", icon = "lightbulb" }: Ti
     <aside className="my-12 grid grid-cols-[2.5rem_minmax(0,1fr)] gap-4 border-y border-[hsl(var(--after-hours-plum)/0.26)] py-7">
       <Icon className="mt-1 h-5 w-5 text-[hsl(var(--after-hours-copper))]" aria-hidden="true" />
       <div>
-        <h3 className="after-hours-kicker text-[hsl(var(--hp-ink)/0.64)]">{title}</h3>
+        <h3 className="after-hours-kicker text-[hsl(var(--hp-ink)/0.72)]">{title}</h3>
         <div className="mt-3 leading-7 text-[hsl(var(--hp-ink)/0.76)]">{typeof content === "string" ? <p>{content}</p> : content}</div>
       </div>
     </aside>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Mail, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import ConsentRow from "@/components/forms/ConsentRow";
-import { pixelTracking } from "@/lib/pixelTracking";
+import { trackContactLead } from "@/lib/contactTracking";
 import { z } from "zod";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 import { submitNetlifyForm } from "@/lib/netlifyForms";
@@ -46,6 +46,7 @@ const ContactForm = ({
     message: "",
     consent: false
   });
+  const submissionLocked = useRef(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -68,6 +69,7 @@ const ContactForm = ({
   }];
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submissionLocked.current) return;
     setErrors({});
 
     // Validate with zod
@@ -99,41 +101,24 @@ const ContactForm = ({
       return;
     }
 
+    submissionLocked.current = true;
     setIsSubmitting(true);
     try {
       // Find readable topic label
       const topicLabel = topics.find(t => t.value === formData.topic)?.label || formData.topic;
 
       await submitNetlifyForm("hair-pinns-contact", {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
+        name: validation.data.name,
+        email: validation.data.email,
+        phone: validation.data.phone || "",
         topic: showTopic ? topicLabel : "",
-        message: formData.message,
+        message: validation.data.message,
         marketing_consent: formData.consent,
         source_page: window.location.href,
         form_context: formName,
       });
-
-      // Track GA4 generate_lead event
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', { method: 'contact_form' });
-      }
-
-      // Track lead generation in pixels
-      await pixelTracking.trackFormSubmission({
-        email: formData.email,
-        phone: formData.phone,
-        firstName: formData.name.split(' ')[0],
-        lastName: formData.name.split(' ').slice(1).join(' '),
-        leadValue: 20
-      });
-      setIsSuccess(true);
-      toast({
-        title: "Message Sent!",
-        description: "Jena has received your message."
-      });
     } catch (error) {
+      submissionLocked.current = false;
       console.error("Contact form error:", error);
       setHasError(true);
       toast({
@@ -141,9 +126,15 @@ const ContactForm = ({
         description: "We couldn't send your message. Please try again or call us.",
         variant: "destructive"
       });
+      return;
     } finally {
       setIsSubmitting(false);
     }
+
+    // Netlify accepted the enquiry. Optional measurement cannot change that outcome.
+    setIsSuccess(true);
+    toast({ title: "Message Sent!", description: "Your message has been submitted to Hair Pinns." });
+    trackContactLead();
   };
   const shellClass = variant === "editorial"
     ? "border-y border-[hsl(var(--after-hours-plum)/0.28)] bg-transparent py-8"
@@ -180,13 +171,14 @@ const ContactForm = ({
     return <div className={`${stateShellClass} bg-accent/10 border-accent/20 ${className}`}>
         <CheckCircle2 className="w-16 h-16 text-accent mx-auto mb-4" />
         <h3 className="text-h2 font-heading text-heading mb-3">
-          Message Received!
+          Message Submitted!
         </h3>
         <p className="text-foreground mb-6">
-          Jena has received your message and will reply using the contact details you provided.
+          Your message has been submitted to Hair Pinns. Jena can reply using the contact details you provided.
         </p>
         <div className="space-y-3">
           <Button variant="outline" size="lg" onClick={() => {
+          submissionLocked.current = false;
           setIsSuccess(false);
           setFormData({
             name: "",

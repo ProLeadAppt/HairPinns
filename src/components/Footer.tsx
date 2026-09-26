@@ -168,7 +168,7 @@ const Footer = () => {
               >
                 {isSubmitting ? "Joining…" : "Join the list"}
               </Button>
-              <p className="text-xs leading-5 text-[hsl(var(--hp-ink)/0.62)] sm:col-span-2">
+              <p className="text-xs leading-5 text-[hsl(var(--hp-ink)/0.72)] sm:col-span-2">
                 By joining, you agree to receive Hair Pinns emails. You can unsubscribe any time. See our{' '}
                 <Link to="/privacy" className="underline underline-offset-4 hover:text-[hsl(var(--hp-purple))]">
                   privacy policy
@@ -215,7 +215,7 @@ const Footer = () => {
             <dl className="mt-3 grid grid-cols-2 border-t border-[hsl(var(--hp-purple)/0.18)] text-sm sm:max-w-md">
               {salonHours.map(([day, hours]) => (
                 <div key={day} className="flex min-h-11 items-center justify-between gap-3 border-b border-[hsl(var(--hp-purple)/0.14)] py-2 odd:pr-4 even:pl-4">
-                  <dt className="text-[hsl(var(--hp-ink)/0.58)]">{day}</dt>
+                  <dt className="text-[hsl(var(--hp-ink)/0.72)]">{day}</dt>
                   <dd>{hours}</dd>
                 </div>
               ))}
@@ -246,7 +246,7 @@ const Footer = () => {
           </nav>
         </div>
 
-        <div className="pt-8 text-xs text-[hsl(var(--hp-ink)/0.58)]">
+        <div className="pt-8 text-xs text-[hsl(var(--hp-ink)/0.72)]">
           <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
             <div>
               <p>© {new Date().getFullYear()} Hair Pinns. All rights reserved. Est. by Jena Pinn.</p>

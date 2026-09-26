@@ -1,4 +1,5 @@
 import { clearCartId, getCartId, saveCartId } from "./cartManagement";
+import { getCampaign } from './campaignAttribution';
 
 export interface CartMoney {
   amount: string;
@@ -70,10 +71,11 @@ export const isStaleCartError = (error: unknown): error is CartApiError =>
   error instanceof CartApiError && (error.status === 410 || error.code === "STALE_CART");
 
 async function postCartAction(payload: CartActionRequest): Promise<CartSnapshot> {
+  const campaign = payload.action === 'add' || payload.action === 'checkout' ? getCampaign() : {};
   const options: RequestInit = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(Object.keys(campaign).length ? { ...payload, campaign } : payload),
   };
   const origin = typeof window === "undefined" ? "http://localhost" : window.location.origin;
   let response = await fetch(new URL("/api/checkout", origin).href, options);

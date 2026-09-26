@@ -16,7 +16,7 @@ const AuthorBio = () => (
         />
       </Link>
       <div>
-        <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.6)]">The person behind the advice</p>
+        <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.72)]">The person behind the advice</p>
         <h2 id="author-bio-heading" className="mt-3 font-heading text-3xl font-normal leading-tight text-[hsl(var(--hp-ink))]">Written by Jena Pinn.</h2>
         <p className="mt-3 font-mono text-[0.66rem] uppercase tracking-[0.12em] text-[hsl(var(--after-hours-copper))]" aria-label="Verified salon owner, behind the chair since 2009">
           Verified salon owner · Behind the chair since 2009

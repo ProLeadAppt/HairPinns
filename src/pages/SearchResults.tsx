@@ -43,7 +43,11 @@ const SearchResults = () => {
 
   useEffect(() => {
     if (query && typeof window.gtag === "function") {
-      window.gtag("event", "search", { search_term: query });
+      try {
+        window.gtag("event", "search", { search_term: query });
+      } catch {
+        // Optional analytics must not prevent customers from searching.
+      }
     }
   }, [query]);
 

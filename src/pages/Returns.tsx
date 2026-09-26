@@ -3,14 +3,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/design-system/Section";
 import SectionHeader from "@/components/design-system/SectionHeader";
-import { generateBreadcrumbSchema, generateFAQPageSchema } from "@/lib/schema";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 
-const RETURNS_FAQS = [
-  { question: "Can I return hair products in Australia?", answer: "Yes. Hair Pinns offers 14-day returns on unopened hair care products. We ship Australia-wide and accept returns from all Australian states and territories. Contact us at hairpinns1@gmail.com to start a return." },
-  { question: "How do I return a product to Hair Pinns?", answer: "Contact us at hairpinns1@gmail.com with your order number. We'll send return authorization and instructions. Ship the item back using the provided label. Refunds are processed within 5-7 business days." },
-  { question: "What is the returns policy for hair care?", answer: "14-day returns on unopened products in original condition. Products must be unused with seals intact. Opened products, gift cards, and sale items cannot be returned. Refunds processed within 5-7 business days." },
-];
+
 
 const Returns = () => {
   return (
@@ -26,7 +22,6 @@ const Returns = () => {
             { name: "Policies", url: "https://hairpinns.com/policies" },
             { name: "Returns", url: "https://hairpinns.com/policies/returns" },
           ]),
-          generateFAQPageSchema(RETURNS_FAQS),
         ]}
       />
       <Header />

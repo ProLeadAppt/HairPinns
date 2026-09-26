@@ -1,3 +1,5 @@
+import { FREE_SHIPPING_THRESHOLD } from "@/config/shippingConfig";
+
 // Schema.org JSON-LD utilities for SEO
 
 interface BreadcrumbItem {
@@ -321,11 +323,6 @@ export const generateProductSchema = (product: ProductData) => {
       availability: product.availability
         ? `https://schema.org/${product.availability}`
         : 'https://schema.org/InStock',
-      priceValidUntil: new Date(
-        new Date().setFullYear(new Date().getFullYear() + 1)
-      )
-        .toISOString()
-        .split('T')[0],
       eligibleRegion: {
         '@type': 'Country',
         name: 'Australia',
@@ -338,23 +335,8 @@ export const generateProductSchema = (product: ProductData) => {
         },
         shippingRate: {
           '@type': 'MonetaryAmount',
-          value: '9.95',
+          value: Number(product.price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
           currency: 'AUD',
-        },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 1,
-            maxValue: 2,
-            unitCode: 'DAY',
-          },
-          transitTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 3,
-            maxValue: 5,
-            unitCode: 'DAY',
-          },
         },
       },
       hasMerchantReturnPolicy: {
@@ -688,37 +670,17 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
         '@type': 'Country',
         name: 'AU',
       },
-      priceValidUntil: new Date(
-        new Date().setFullYear(new Date().getFullYear() + 1)
-      )
-        .toISOString()
-        .split('T')[0],
       ...(product.requiresShipping === false ? {} : {
         shippingDetails: {
           '@type': 'OfferShippingDetails',
           shippingRate: {
             '@type': 'MonetaryAmount',
-            value: '9.95',
+            value: Number(product.price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
             currency: 'AUD',
           },
           shippingDestination: {
             '@type': 'DefinedRegion',
             addressCountry: 'AU',
-          },
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 1,
-              maxValue: 2,
-              unitCode: 'DAY',
-            },
-            transitTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 3,
-              maxValue: 5,
-              unitCode: 'DAY',
-            },
           },
         },
         hasMerchantReturnPolicy: {
@@ -951,22 +913,11 @@ export const generateCollectionPageSchema = (collection: CollectionPageData) => 
     schema.mainEntity.itemListElement = collection.items.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      item: {
-        '@type': 'Product',
-        name: item.name,
-        description: item.description,
-        url: item.url,
-        image: item.image,
-        ...(item.price && {
-          offers: {
-            '@type': 'Offer',
-            price: item.price,
-            priceCurrency: item.currency || 'AUD',
-            availability: `https://schema.org/${item.availability || 'InStock'}`,
-            url: item.url,
-          },
-        }),
-      },
+      // Collection pages describe a list; merchant offers belong on product pages.
+      name: item.name,
+      description: item.description,
+      url: item.url,
+      image: item.image,
     }));
   }
 
@@ -997,20 +948,9 @@ export const generateSearchResultsItemListSchema = (data: {
   itemListElement: data.items.map((item, index) => ({
     '@type': 'ListItem',
     position: index + 1,
-    item: {
-      '@type': 'Product',
-      name: item.name,
-      url: `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
-      image: item.image,
-      ...(item.price !== undefined && {
-        offers: {
-          '@type': 'Offer',
-          price: item.price,
-          priceCurrency: item.currency || 'AUD',
-          availability: 'https://schema.org/InStock',
-        },
-      }),
-    },
+    name: item.name,
+    url: `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url}`,
+    image: item.image,
   })),
 });
 

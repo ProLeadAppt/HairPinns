@@ -28,7 +28,7 @@ const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
 
   if (feedback) {
     return (
-      <div className="mt-4 flex items-center gap-2 border-t border-[hsl(var(--after-hours-plum)/0.16)] pt-4 text-xs text-[hsl(var(--hp-ink)/0.58)]">
+      <div className="mt-4 flex items-center gap-2 border-t border-[hsl(var(--after-hours-plum)/0.16)] pt-4 text-xs text-[hsl(var(--hp-ink)/0.72)]">
         <CheckCircle2 className="h-4 w-4 text-[hsl(var(--after-hours-copper))]" aria-hidden="true" />
         <span>Thank you for the feedback.</span>
       </div>
@@ -37,7 +37,7 @@ const FaqFeedbackWidget = ({ faqId, question }: FaqFeedbackWidgetProps) => {
 
   return (
     <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[hsl(var(--after-hours-plum)/0.16)] pt-4">
-      <span className="text-xs text-[hsl(var(--hp-ink)/0.58)]">Was this useful?</span>
+      <span className="text-xs text-[hsl(var(--hp-ink)/0.72)]">Was this useful?</span>
       <div className="flex gap-4">
         {[{ label: "Yes", value: true }, { label: "Not quite", value: false }].map((option) => (
           <button

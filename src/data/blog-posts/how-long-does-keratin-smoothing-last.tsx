@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "Other Factors That Shorten Treatment Life",
-          content: "Chlorine pool water (wear a swim cap or wet hair with clean water first). Sun exposure (UV breaks down treatment, use a UV filter leave-in). Heat styling above 200°C (cumulative damage to the treatment layer). Saltwater swimming (rinse thoroughly after). Hard water in Sydney (monthly clarifying mineral-removing treatment helps). Daily washing (stretch to every 3–4 days minimum)."
+          content: "Chlorine pool water (wear a swim cap or wet hair with clean water first). Sun exposure (UV breaks down treatment, use a UV filter leave-in). Heat styling above 200°C (cumulative damage to the treatment layer). Saltwater swimming (rinse thoroughly after). Check your local water information before assuming mineral build-up. Sydney Water classifies its average supply as soft; follow your smoothing aftercare instructions before using a clarifying treatment. Daily washing (stretch to every 3–4 days minimum)."
         },
         {
           heading: "Factors That Extend It",
