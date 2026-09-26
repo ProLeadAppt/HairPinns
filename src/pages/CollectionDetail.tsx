@@ -30,6 +30,7 @@ import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { mapCollectionProduct } from "@/lib/collectionProduct";
 import { addCartLines } from "@/lib/cartApi";
+import KidsGiftPackBuilder from "@/components/shop/KidsGiftPackBuilder";
 
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
@@ -308,6 +309,8 @@ const CollectionDetail = () => {
 
   const faqs = getCollectionFAQs(handle);
   const shouldShowControls = products.length >= 6;
+  const isKidsGiftCollection = handle === "diy-kids-gift-packs";
+  const isGiftCollection = handle === "haircare-bundles-gift-sets";
 
   const webPageSchema = generateWebPageSchema({
     name: collectionTitle,
@@ -378,8 +381,23 @@ const CollectionDetail = () => {
           </div>
         </section>
 
+        {isGiftCollection && (
+          <section className="border-b border-[hsl(var(--hp-lilac))] bg-[hsl(var(--hp-lavender))] py-8" aria-labelledby="kids-gift-link-heading">
+            <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.17em] text-[hsl(var(--hp-purple))]">A gift they get to choose</p>
+                <h2 id="kids-gift-link-heading" className="mt-2 font-heading text-2xl text-[hsl(var(--hp-ink))] md:text-3xl">Build a kids gift selection</h2>
+                <p className="mt-2 max-w-xl text-sm text-[hsl(var(--hp-ink))]">Choose from Jena's currently available brushes, ponytails and hair favourites.</p>
+              </div>
+              <Link to="/collections/diy-kids-gift-packs" className="inline-flex min-h-12 items-center justify-center bg-[hsl(var(--hp-purple))] px-6 font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-ink))]">Choose the items</Link>
+            </div>
+          </section>
+        )}
+
+        {isKidsGiftCollection && <KidsGiftPackBuilder products={(collection?.products?.edges || []).map((edge: { node: any }) => edge.node)} />}
+
         {/* Controls are only useful once a collection has enough products to compare. */}
-        {shouldShowControls && <section className="border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper))]">
+        {!isKidsGiftCollection && shouldShowControls && <section className="border-b border-[hsl(var(--after-hours-plum)/0.16)] bg-[hsl(var(--after-hours-paper))]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
               {/* Price & Sort */}
@@ -415,7 +433,7 @@ const CollectionDetail = () => {
         </section>}
 
         {/* Products Grid */}
-        <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14" aria-labelledby="collection-products-heading">
+        {!isKidsGiftCollection && <section className="bg-[hsl(var(--after-hours-paper))] py-10 md:py-14" aria-labelledby="collection-products-heading">
           <h2 id="collection-products-heading" className="sr-only">Products in {collectionTitle}</h2>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {sortedProducts.length === 0 ? (
@@ -544,7 +562,7 @@ const CollectionDetail = () => {
               </div>
             )}
           </div>
-        </section>
+        </section>}
 
         {collectionDescription.trim() !== collectionIntroduction.trim() && (
           <section className="border-t border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-10 md:py-14" aria-labelledby="about-collection-heading">

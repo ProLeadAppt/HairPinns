@@ -105,6 +105,24 @@ describe("checkout function action contract", () => {
     expect(JSON.parse(fetchSpy.mock.calls[1][1].body).variables.input.lines).toEqual([line]);
   });
 
+  it("preserves a kids gift selection label on the Shopify cart lines", async () => {
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(
+      new Response(JSON.stringify({ data: { cartCreate: { cart: shopifyCart, userErrors: [] } } }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }),
+    );
+    const line = {
+      merchandiseId: "gid://shopify/ProductVariant/1",
+      quantity: 1,
+      attributes: [{ key: "Gift selection", value: "DIY kids gift" }],
+    };
+
+    const response = await handler(eventFor({ action: "add", lines: [line] }), {});
+    expect(response.statusCode).toBe(200);
+    expect(JSON.parse(fetchSpy.mock.calls[0][1].body).variables.input.lines).toEqual([line]);
+  });
+
   it("updates a cart line quantity and returns Shopify's complete cart snapshot", async () => {
     const updatedCart = { ...shopifyCart, totalQuantity: 3 };
     const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(

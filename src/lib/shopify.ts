@@ -242,6 +242,10 @@ export async function getCollectionByHandle(handle: string) {
                       amount
                       currencyCode
                     }
+                    image {
+                      url
+                      altText
+                    }
                   }
                 }
                 pageInfo {
