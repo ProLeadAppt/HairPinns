@@ -80,7 +80,7 @@ Jena x
 
 Hair Pinns, Bangor NSW
 
-Link: destination above after release. Do not say "20% off", "limited stock", "packed for you" or "free extras" until the exact offer is approved and verified.
+Link: destination above after release. Jena has confirmed she packs selected items together, but do not promise a particular gift box, wrapping or free extras. Do not say "20% off" or "limited stock" until the exact offer and availability are approved and verified.
 
 Story sequence: 1) "A kids hair gift, minus the guesswork" 2) show two or three *actual* available options 3) "Pick their favourites" with public collection link after release.
 
