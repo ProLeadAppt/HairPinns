@@ -133,4 +133,20 @@ describe("getCollectionByHandle", () => {
     expect(body.query).toMatch(/variants\(first: 100\)[\s\S]*pageInfo\s*\{\s*hasNextPage/);
     expect(body.query).toMatch(/priceRange[\s\S]*maxVariantPrice/);
   });
+
+  it("refreshes collection availability on repeat visits in the same browser session", async () => {
+    const response = (availableForSale: boolean) => new Response(JSON.stringify({
+      data: { collection: { products: { edges: [{ node: { id: "gid://shopify/Product/stock-test", availableForSale } }] } } },
+    }), { status: 200 });
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(true))
+      .mockResolvedValueOnce(response(false));
+
+    const first = await getCollectionByHandle("gift-stock-refresh-test");
+    const second = await getCollectionByHandle("gift-stock-refresh-test");
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(first.products.edges[0].node.availableForSale).toBe(true);
+    expect(second.products.edges[0].node.availableForSale).toBe(false);
+  });
 });
