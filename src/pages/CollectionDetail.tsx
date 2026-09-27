@@ -74,7 +74,10 @@ const CollectionDetail = () => {
         // Versioned so cards cached before variant-count safety was introduced
         // can never expose an arbitrary quick-add action.
         const cacheKey = `hp_col_v2_${handle}`;
-        const cached = sessionStorage.getItem(cacheKey);
+        // Gift choices depend on current Shopify variant availability. Do not
+        // present a previous session's choices as current stock.
+        const inventorySensitive = handle === "diy-kids-gift-packs";
+        const cached = inventorySensitive ? null : sessionStorage.getItem(cacheKey);
         if (cached) {
           try {
             const parsed = JSON.parse(cached);
@@ -125,13 +128,15 @@ const CollectionDetail = () => {
         console.log("✅ Mapped products:", mappedProducts.length);
         setProducts(mappedProducts);
         
-        try {
-          sessionStorage.setItem(cacheKey, JSON.stringify({
-            collection: collectionData,
-            products: mappedProducts
-          }));
-        } catch (e) {
-          console.warn("Could not cache collection details", e);
+        if (!inventorySensitive) {
+          try {
+            sessionStorage.setItem(cacheKey, JSON.stringify({
+              collection: collectionData,
+              products: mappedProducts
+            }));
+          } catch (e) {
+            console.warn("Could not cache collection details", e);
+          }
         }
         
       } catch (error: any) {
