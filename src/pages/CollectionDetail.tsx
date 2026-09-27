@@ -31,10 +31,15 @@ import { topicsForCollection } from "@/data/topicMap";
 import { mapCollectionProduct } from "@/lib/collectionProduct";
 import { addCartLines } from "@/lib/cartApi";
 import KidsGiftPackBuilder from "@/components/shop/KidsGiftPackBuilder";
+import KidsGiftCollectionCard from "@/components/shop/KidsGiftCollectionCard";
+import { DIY_KIDS_GIFTS } from "@/config/commerceNavigation";
+import { useCollectionArtwork } from "@/hooks/useCollectionArtwork";
 
 const CollectionDetail = () => {
   const { slug } = useParams(); // Route uses :slug, not :handle
   const handle = slug; // But we'll use "handle" internally for clarity
+  const isGiftCollection = handle === "haircare-bundles-gift-sets";
+  const { artwork: giftArtwork, loading: giftArtworkLoading } = useCollectionArtwork(isGiftCollection ? [DIY_KIDS_GIFTS.handle] : []);
 
   const [priceRange, setPriceRange] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("default");
@@ -315,7 +320,6 @@ const CollectionDetail = () => {
   const faqs = getCollectionFAQs(handle);
   const shouldShowControls = products.length >= 6;
   const isKidsGiftCollection = handle === "diy-kids-gift-packs";
-  const isGiftCollection = handle === "haircare-bundles-gift-sets";
 
   const webPageSchema = generateWebPageSchema({
     name: collectionTitle,
@@ -343,6 +347,7 @@ const CollectionDetail = () => {
         ogType="website"
         hrefLang="en-AU"
         schemaJson={schemas}
+        prerenderReady={!giftArtworkLoading}
       />
       <Header />
       
@@ -385,19 +390,6 @@ const CollectionDetail = () => {
             
           </div>
         </section>
-
-        {isGiftCollection && (
-          <section className="border-b border-[hsl(var(--hp-lilac))] bg-[hsl(var(--hp-lavender))] py-8" aria-labelledby="kids-gift-link-heading">
-            <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.17em] text-[hsl(var(--hp-purple))]">A gift they get to choose</p>
-                <h2 id="kids-gift-link-heading" className="mt-2 font-heading text-2xl text-[hsl(var(--hp-ink))] md:text-3xl">Build a kids gift selection</h2>
-                <p className="mt-2 max-w-xl text-sm text-[hsl(var(--hp-ink))]">Choose from Jena's currently available brushes, ponytails and hair favourites.</p>
-              </div>
-              <Link to="/collections/diy-kids-gift-packs" className="inline-flex min-h-12 items-center justify-center bg-[hsl(var(--hp-purple))] px-6 font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-ink))]">Choose the items</Link>
-            </div>
-          </section>
-        )}
 
         {isKidsGiftCollection && <KidsGiftPackBuilder products={(collection?.products?.edges || []).map((edge: { node: any }) => edge.node)} />}
 
@@ -564,6 +556,7 @@ const CollectionDetail = () => {
                     </div>
                   </article>
                 ))}
+                {isGiftCollection && <KidsGiftCollectionCard artwork={giftArtwork[DIY_KIDS_GIFTS.handle]} />}
               </div>
             )}
           </div>
