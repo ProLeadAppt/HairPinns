@@ -260,7 +260,9 @@ export async function getCollectionByHandle(handle: string) {
   `;
 
   try {
-    const data = await fetchShopify<{ collection: any }>(query, { handle });
+    // Collection membership, prices and variant availability can change while
+    // a customer keeps this tab open. Do not retain responses across visits.
+    const data = await fetchShopify<{ collection: any }>(query, { handle }, { cache: false });
     if (data.collection?.products?.edges) {
       data.collection.products.edges = excludeRetiredProductEdges(data.collection.products.edges);
     }
