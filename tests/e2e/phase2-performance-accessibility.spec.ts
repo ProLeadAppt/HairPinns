@@ -1385,7 +1385,7 @@ test('after-hours service directory shows only verified public Fresha options at
   await expect(disclosure).not.toHaveAttribute('open', '');
   await disclosure.locator('summary').click();
   await expect(disclosure).toHaveAttribute('open', '');
-  await expect(disclosure.getByText('Straight Up is the first natural hair smoothing treatment', { exact: false })).toBeVisible();
+  await expect(disclosure.getByText('Discuss the intended finish, hair history and aftercare', { exact: false })).toBeVisible();
   await expect(detailedService.getByText('A$ 362', { exact: true })).toBeVisible();
   await expect(detailedService.getByText('2h 20min · 2 services', { exact: true })).toBeVisible();
 
@@ -1431,7 +1431,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
 
   await expect(page.locator('[data-service-detail-overview] h3')).toHaveCount(2);
   await expect(page.locator('[data-service-detail-process] li')).toHaveCount(3);
-  await expect(page.locator('[data-service-detail-benefits] li')).toHaveCount(6);
+  await expect(page.locator('[data-service-detail-benefits] li')).toHaveCount(4);
   await expect(page.locator('[data-service-detail-homecare] a')).toHaveCount(4);
   await expect(page.locator('[data-service-detail-related] a')).toHaveCount(3);
 
@@ -1440,7 +1440,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
   const firstFaq = faq.locator('details').first();
   await firstFaq.locator('summary').click();
   await expect(firstFaq).toHaveAttribute('open', '');
-  await expect(firstFaq.getByText('Typically 3-5 months', { exact: false })).toBeVisible();
+  await expect(firstFaq.getByText('That depends on the exact service and starting hair condition', { exact: false })).toBeVisible();
 
   const close = page.locator('[data-service-detail-close]');
   await close.scrollIntoViewIfNeeded();
