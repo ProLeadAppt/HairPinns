@@ -82,6 +82,7 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
                         <option value="">Not in my gift</option>
                         {variants.map((variant) => <option key={variant.id} value={variant.id}>{variant.title === "Default Title" ? "Add this item" : variant.title}</option>)}
                       </select>
+                      {variants.length > 20 && <Link to={`/products/${product.handle}`} className="mt-2 inline-block min-h-11 py-2 text-sm font-semibold text-[hsl(var(--hp-purple))] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">See all styles and photos before choosing</Link>}
                       {choice && <div className="mt-3 flex items-center gap-3">
                         <label htmlFor={`gift-qty-${product.id}`} className="text-sm font-medium text-[hsl(var(--hp-ink))]">Quantity</label>
                         <select id={`gift-qty-${product.id}`} value={choice.quantity} onChange={(event) => setChoices((current) => ({ ...current, [product.id]: { ...current[product.id], quantity: Number(event.target.value) } }))} className="min-h-11 border border-[hsl(var(--hp-purple)/0.5)] bg-white px-3 text-[hsl(var(--hp-ink))] focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">
