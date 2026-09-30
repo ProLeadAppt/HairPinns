@@ -59,7 +59,7 @@ test("service pages attribute venue-level Fresha proof without review schema", a
 
   const proof = page.locator('[data-review-proof-source="fresha"]');
   await expect(proof).toBeVisible();
-  await expect(proof).toContainText("Hair Pinns venue on Fresha: 5.0 from 936 reviews");
+  await expect(proof).toContainText("Hair Pinns venue on Fresha: 5.0 from 983 reviews");
   await expect(proof).toHaveAttribute("href", ENTITY_REGISTRY.profiles.fresha.venueUrl);
   await expect(page.getByRole("link", { name: /Book now/i }).first()).toBeVisible();
 

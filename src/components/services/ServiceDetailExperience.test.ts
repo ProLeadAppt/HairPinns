@@ -37,7 +37,7 @@ describe("ServiceDetailExperience review proof", () => {
     );
 
     expect(html).toContain('data-review-proof-source="fresha"');
-    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 936 reviews");
+    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 983 reviews");
     expect(html).toContain(BOOK_CTA_LABEL);
   });
 });
