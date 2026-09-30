@@ -95,7 +95,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
   return (
     <div className="min-h-screen bg-[hsl(var(--after-hours-paper))]">
       <SEOHead
-        title={`${post.title} | Hair Pinns Blog`}
+        title={post.seoTitle || `${post.title} | Hair Pinns Blog`}
         description={metaDescription}
         canonical={currentUrl}
         ogImage={post.image}

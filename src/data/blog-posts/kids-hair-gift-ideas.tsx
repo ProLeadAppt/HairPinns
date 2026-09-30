@@ -3,6 +3,7 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
   slug: "kids-hair-gift-ideas",
   title: "A kids hair gift they’ll actually use, without the guesswork",
+  seoTitle: "Kids hair gift ideas: choose a useful gift | Hair Pinns",
   excerpt: "Start with something useful, let them choose the fun bit, and skip the extras they won’t use. You can choose the current items and styles online, and I’ll pack your selected items together as one gift.",
   category: "Kids gifts",
   date: "September 30, 2026",
