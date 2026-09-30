@@ -76,6 +76,16 @@ export interface BlogSummary {
 
 export const blogSummaries: BlogSummary[] = [
   {
+    slug: 'kids-hair-gift-ideas',
+    title: 'A kids hair gift they’ll actually use, without the guesswork',
+    excerpt: 'Start with something useful, let them choose the fun bit, and skip the extras they won’t use. Choose the current items and styles online, and Jena will pack your selection together.',
+    category: 'Kids gifts',
+    date: 'September 30, 2026',
+    readTime: '3 min read',
+    image: 'https://cdn.shopify.com/s/files/1/0691/6079/6341/files/72B45C09-00EA-47C3-B2A5-ECF01250D6CE.webp?v=1752643490',
+    author: 'Jena Pinn',
+  },
+  {
     slug: 'best-hair-products-australia-2025',
     title: "Best Hair Products Australia 2025: Jena's Top Picks",
     excerpt: "Jena's top hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia, shipped nationwide.",
