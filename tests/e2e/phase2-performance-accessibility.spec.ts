@@ -1386,7 +1386,7 @@ test('after-hours service directory preserves the complete Fresha menu at Fold w
   await disclosure.locator('summary').click();
   await expect(disclosure).toHaveAttribute('open', '');
   await expect(disclosure.getByText('Straight Up is the first natural hair smoothing treatment', { exact: false })).toBeVisible();
-  await expect(detailedService.getByText('A$ 349', { exact: true })).toBeVisible();
+  await expect(detailedService.getByText('A$ 362', { exact: true })).toBeVisible();
   await expect(detailedService.getByText('2h 20min · 2 services', { exact: true })).toBeVisible();
 
   const close = page.locator('[data-services-close]');
@@ -1414,7 +1414,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
 
   const detail = page.locator('[data-service-detail]');
   await expect(detail.getByRole('heading', { level: 1, name: 'Mid-Length Straight Up Smoothing Treatment' })).toBeVisible();
-  await expect(page.locator('[data-service-detail-hero]').getByText('A$ 324', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-service-detail-hero]').getByText('A$ 339', { exact: true })).toBeVisible();
   await expect(page.locator('[data-service-detail-hero]').getByText('2h 20min', { exact: true })).toBeVisible();
   await expect(page.locator('[data-service-detail-hero] .speakable-quick-answer')).toBeVisible();
 
@@ -1456,7 +1456,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
     expect(parsedSchemas.some(schema => schema['@type'] === type)).toBe(true);
   }
   const serviceSchema = parsedSchemas.find(schema => schema['@type'] === 'Service');
-  expect(serviceSchema?.offers?.price).toBe('324');
+  expect(serviceSchema?.offers?.price).toBe('339');
   expect(serviceSchema?.offers?.priceCurrency).toBe('AUD');
 
   expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(11_000);

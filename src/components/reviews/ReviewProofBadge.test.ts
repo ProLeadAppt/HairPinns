@@ -17,7 +17,7 @@ describe("ReviewProofBadge", () => {
     );
 
     expect(html).toContain('data-review-proof-source="fresha"');
-    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 936 reviews");
+    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 983 reviews");
     expect(html).toContain(`href="${proof!.sourceUrl}"`);
     expect(html).not.toContain("AggregateRating");
   });

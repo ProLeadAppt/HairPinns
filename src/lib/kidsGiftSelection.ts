@@ -11,6 +11,8 @@ export interface GiftProduct {
   id: string;
   title: string;
   handle: string;
+  productType?: string | null;
+  tags?: string[] | null;
   images?: { edges: { node: { url: string; altText?: string | null } }[] };
   variants?: { edges: { node: GiftVariant }[] };
 }
@@ -18,12 +20,21 @@ export interface GiftProduct {
 export interface GiftChoice { variantId: string; quantity: number }
 export interface GiftCartLike { lines: { edges: { node: { quantity: number; merchandise: { id: string } } }[] } }
 
-export type GiftCategory = "brushes" | "ponytails" | "extras";
+export type GiftCategory = "brushes" | "bows" | "haircare" | "accessories";
+
+const GIFT_CATEGORIES: GiftCategory[] = ["brushes", "bows", "haircare", "accessories"];
 
 export const giftCategory = (product: GiftProduct): GiftCategory => {
-  if (/brush|detangl|comb/i.test(product.title)) return "brushes";
-  if (/ponytail|pony tail|piggy tail|hair extension/i.test(product.title)) return "ponytails";
-  return "extras";
+  // Jena can manage the grouping in Shopify without a website release.
+  const tagged = product.tags?.find((tag) => /^gift-category:/i.test(tag));
+  const taggedCategory = tagged?.split(":")[1]?.trim().toLowerCase();
+  if (GIFT_CATEGORIES.includes(taggedCategory as GiftCategory)) return taggedCategory as GiftCategory;
+
+  const descriptor = `${product.productType || ""} ${product.title}`;
+  if (/\b(brush|brushes|combs?|wet brush)\b/i.test(descriptor)) return "brushes";
+  if (/\b(bows?|scrunchies|scrunchie)\b/i.test(descriptor)) return "bows";
+  if (/\b(shampoo|conditioner|mask|treatment|serum|lacquer|wax|detangler|haircare|hair care)\b/i.test(descriptor)) return "haircare";
+  return "accessories";
 };
 
 export const sellableGiftVariants = (product: GiftProduct): GiftVariant[] =>
@@ -39,10 +50,10 @@ export const maxGiftQuantity = (variant: GiftVariant): number =>
     : 5;
 
 export const orderGiftProducts = (products: GiftProduct[]): GiftProduct[] => {
-  const categoryOrder: Record<GiftCategory, number> = { brushes: 0, ponytails: 1, extras: 2 };
+  const categoryOrder: Record<GiftCategory, number> = { brushes: 0, bows: 1, haircare: 2, accessories: 3 };
   return products
     .filter((product) => sellableGiftVariants(product).length > 0)
-    .sort((a, b) => categoryOrder[giftCategory(a)] - categoryOrder[giftCategory(b)] || a.title.localeCompare(b.title, "en-AU"));
+    .sort((a, b) => categoryOrder[giftCategory(a)] - categoryOrder[giftCategory(b)]);
 };
 
 export function buildGiftSelection(products: GiftProduct[], choices: Record<string, GiftChoice>) {

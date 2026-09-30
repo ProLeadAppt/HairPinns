@@ -29,8 +29,8 @@ const post = {
           content: "Professional lightener (about three times more expensive than box, and gentler), a developer matched to your hair history, foils for even heat distribution, a toner to neutralise unwanted warmth, and twenty years of knowing what your specific hair will do based on a five-minute consultation. I can see when previous colour is still sitting in your hair. I can spot where you've used heat tools too much. I can lift your roots three levels without scorching them, because I know how to time it."
         },
         {
-          heading: "The real cost over a year",
-          content: "A box-dye highlight kit is $30 and lasts about three months before the regrowth and fade get embarrassing. That's $120 a year in product, plus the fix-up I do every twelve to eighteen months which usually costs $400 to $700 because I'm correcting and lightening at the same time. So you're at $500 to $800 per year, with hair that's compromised the whole time. A full head of foils at Hair Pinns is $267 (price includes cut and blowdry) and you get six to eight months out of it. Two foil appointments a year is $534. Same total cost, much better hair, no corrections needed."
+          heading: "How to compare the cost",
+          content: "The box price is only one part of the decision. If a home colour does not turn out as expected, correcting it can take extra time and appointments. On the other hand, not everyone needs a full head of foils. Tell me what result you want and what you've used on your hair before, and I can explain the suitable options and current prices before you book."
         },
         {
           heading: "When DIY actually works",
@@ -47,13 +47,13 @@ const post = {
       },
       quickAnswer: {
         question: "Should I do highlights at home with a box-dye kit?",
-        answer: "No, in almost every case. Box-dye highlight kits cause banding, hot roots, and uneven patches because they have no temperature control, no proper sectioning, and you can't see the back of your own head. The annual cost works out the same as twice-yearly salon foils once you factor in the corrective colour I end up doing on damaged hair. Save the $30 kit for solid-shade root touch-ups on a base colour you already use, and book foils for anything involving lightening."
+        answer: "Home lightening can be difficult to place evenly, especially at the back of your head or over previous colour. If you're unsure what has already been used on your hair, ask a colourist before lightening it. Jena can talk through your options and give you a current price before you book."
       },
       keyTakeaways: [
         "Box-dye highlights cause four predictable problems: banding, hot roots, chemical breakage, and patches at the back",
         "Bathroom lighting and your own line of sight make even placement impossible at home",
-        "Salon foils give six to eight months of grow-out; box kits give three months tops",
-        "Annual cost is roughly the same once you add the corrective colour, but salon hair is healthier the whole time",
+        "How colour grows out depends on the placement, shade and your own hair",
+        "Compare the full service and likely maintenance, not just the price of a box kit",
         "Home colour is fine for solid root touch-ups or temporary glosses, not for any lightening"
       ],
       faqSection: [
