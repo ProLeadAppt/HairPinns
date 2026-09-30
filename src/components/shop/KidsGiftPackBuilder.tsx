@@ -44,10 +44,13 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
         ) : (
           <>
             <div className="mt-7 flex flex-wrap gap-2" aria-label="Filter gift choices">
-              {([ ["all", "All items"], ["brushes", "Brushes & combs"], ["ponytails", "Ponytails"], ["extras", "Little extras"] ] as const).map(([category, label]) => (
+              {([ ["all", "All items"], ["brushes", "Brushes & combs"], ["bows", "Bows"], ["haircare", "Haircare"], ["accessories", "Other accessories"] ] as const)
+                .filter(([category]) => category === "all" || sellableProducts.some((product) => giftCategory(product) === category))
+                .map(([category, label]) => (
                 <button key={category} type="button" aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)} className={`min-h-11 border px-4 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))] ${activeCategory === category ? "border-[hsl(var(--hp-purple))] bg-[hsl(var(--hp-purple))] text-white" : "border-[hsl(var(--hp-purple)/0.4)] bg-white text-[hsl(var(--hp-ink))]"}`}>{label}</button>
               ))}
             </div>
+            {visibleProducts.length === 0 && <p className="mt-6 text-sm text-[hsl(var(--hp-ink))]">There are no available items in this group right now. Choose another group to keep building your gift.</p>}
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {visibleProducts.map((product) => {
                 const variants = sellableGiftVariants(product);
@@ -79,6 +82,7 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
                         <option value="">Not in my gift</option>
                         {variants.map((variant) => <option key={variant.id} value={variant.id}>{variant.title === "Default Title" ? "Add this item" : variant.title}</option>)}
                       </select>
+                      {variants.length > 20 && <Link to={`/products/${product.handle}`} className="mt-2 inline-block min-h-11 py-2 text-sm font-semibold text-[hsl(var(--hp-purple))] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">See all styles and photos before choosing</Link>}
                       {choice && <div className="mt-3 flex items-center gap-3">
                         <label htmlFor={`gift-qty-${product.id}`} className="text-sm font-medium text-[hsl(var(--hp-ink))]">Quantity</label>
                         <select id={`gift-qty-${product.id}`} value={choice.quantity} onChange={(event) => setChoices((current) => ({ ...current, [product.id]: { ...current[product.id], quantity: Number(event.target.value) } }))} className="min-h-11 border border-[hsl(var(--hp-purple)/0.5)] bg-white px-3 text-[hsl(var(--hp-ink))] focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">

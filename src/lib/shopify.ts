@@ -122,7 +122,7 @@ export async function getProductByHandle(handle: string) {
             currencyCode
           }
         }
-        images(first: 50) {
+        images(first: 100) {
           edges {
             node {
               id
@@ -180,7 +180,7 @@ export async function getProductByHandle(handle: string) {
  */
 export async function getCollectionByHandle(handle: string) {
   const query = `
-    query getCollection($handle: String!) {
+    query getCollection($handle: String!, $cursor: String) {
       collection(handle: $handle) {
         id
         title
@@ -194,12 +194,18 @@ export async function getCollectionByHandle(handle: string) {
           width
           height
         }
-        products(first: 50) {
+        products(first: 50, after: $cursor) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
           edges {
             node {
               id
               title
               handle
+              productType
+              tags
               availableForSale
               priceRange {
                 minVariantPrice {
@@ -262,11 +268,31 @@ export async function getCollectionByHandle(handle: string) {
   try {
     // Collection membership, prices and variant availability can change while
     // a customer keeps this tab open. Do not retain responses across visits.
-    const data = await fetchShopify<{ collection: any }>(query, { handle }, { cache: false });
-    if (data.collection?.products?.edges) {
-      data.collection.products.edges = excludeRetiredProductEdges(data.collection.products.edges);
+    const first = await fetchShopify<{ collection: any }>(query, { handle, cursor: null }, { cache: false });
+    const collection = first.collection;
+    if (!collection?.products?.edges) return collection;
+
+    const allEdges = [...collection.products.edges];
+    let pageInfo = collection.products.pageInfo;
+    const seenCursors = new Set<string>();
+    while (pageInfo?.hasNextPage) {
+      const cursor = pageInfo.endCursor;
+      if (!cursor || seenCursors.has(cursor) || seenCursors.size >= 100) throw new Error(`Collection ${handle} pagination did not advance`);
+      seenCursors.add(cursor);
+      const next = await fetchShopify<{ collection: any }>(query, { handle, cursor }, { cache: false });
+      if (!next.collection?.products?.edges) throw new Error(`Collection ${handle} pagination returned no products`);
+      allEdges.push(...next.collection.products.edges);
+      pageInfo = next.collection.products.pageInfo;
     }
-    return data.collection;
+    const seenProducts = new Set<string>();
+    const uniqueEdges = allEdges.filter((edge) => {
+      if (seenProducts.has(edge.node.id)) return false;
+      seenProducts.add(edge.node.id);
+      return true;
+    });
+    collection.products.edges = excludeRetiredProductEdges(uniqueEdges);
+    collection.products.pageInfo = pageInfo;
+    return collection;
   } catch (error) {
     console.error(`Failed to fetch collection ${handle}:`, error);
     return null;

@@ -42,11 +42,11 @@ const HeroHome = () => (
             <span
               aria-hidden="true"
               className="h-px w-6 sm:w-9"
-              style={{ background: "hsl(var(--after-hours-copper))" }}
+              style={{ background: "hsl(var(--hp-purple))" }}
             />
             <p
               className="m-0 whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.13em] sm:text-[10px] sm:tracking-[0.2em]"
-              style={{ color: "hsl(var(--after-hours-copper))" }}
+              style={{ color: "hsl(var(--hp-purple))" }}
             >
               Salon-picked hair care · Shipped Australia-wide
             </p>
@@ -62,7 +62,7 @@ const HeroHome = () => (
             Hair care from someone who{" "}
             <em
               className="font-normal"
-              style={{ color: "hsl(var(--after-hours-copper))" }}
+              style={{ color: "hsl(var(--hp-purple))" }}
             >
               actually
             </em>{" "}
@@ -109,6 +109,14 @@ const HeroHome = () => (
               Book the Bangor salon
             </a>
           </div>
+
+          <Link
+            to="/collections/haircare-bundles-gift-sets"
+            className="mt-4 inline-flex min-h-11 items-center border-b border-[hsl(var(--hp-purple)/0.55)] py-2 text-sm font-semibold text-[hsl(var(--hp-purple))] hover:border-[hsl(var(--hp-purple))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]"
+            data-cta="home-gift-packs"
+          >
+            Christmas & gift packs <span className="ml-2" aria-hidden="true">→</span>
+          </Link>
 
           <div className="mt-8 flex max-w-md items-center gap-3 border-t border-[hsl(var(--hp-lilac))] pt-5 sm:mt-11 sm:gap-4 sm:pt-6">
             <picture className="shrink-0">
