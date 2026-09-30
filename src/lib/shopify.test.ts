@@ -11,7 +11,7 @@ vi.mock("@/config/projectConfig", () => ({
   },
 }));
 
-import { cartDiscountCodesUpdate, getCart, getCollectionByHandle } from "./shopify";
+import { cartDiscountCodesUpdate, getCart, getCollectionByHandle, getProductByHandle } from "./shopify";
 
 const cartResponse = (quantity: number) => ({
   data: {
@@ -112,6 +112,22 @@ describe("cartDiscountCodesUpdate", () => {
   });
 });
 
+describe("getProductByHandle", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("requests enough images and variants for Jena's published bow styles", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(
+      new Response(JSON.stringify({ data: { product: { id: "bow-product" } } }), { status: 200 }),
+    );
+    await getProductByHandle("hair-bows-choose-your-fave-size-style");
+    const body = JSON.parse(String((fetchMock.mock.calls[0][1] as RequestInit).body));
+    expect(body.query).toContain("images(first: 100)");
+    expect(body.query).toContain("variants(first: 100)");
+  });
+});
+
 describe("getCollectionByHandle", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -132,6 +148,23 @@ describe("getCollectionByHandle", () => {
     expect(body.query).toMatch(/variants\(first: 100\)[\s\S]*compareAtPrice\s*\{/);
     expect(body.query).toMatch(/variants\(first: 100\)[\s\S]*pageInfo\s*\{\s*hasNextPage/);
     expect(body.query).toMatch(/priceRange[\s\S]*maxVariantPrice/);
+    expect(body.query).toContain("productType");
+    expect(body.query).toContain("tags");
+    expect(body.query).toContain("after: $cursor");
+  });
+
+  it("loads every collection page without losing Shopify's product order", async () => {
+    const response = (edges: { node: { id: string } }[], hasNextPage: boolean, endCursor: string | null) =>
+      new Response(JSON.stringify({ data: { collection: { products: { edges, pageInfo: { hasNextPage, endCursor } } } } }), { status: 200 });
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response([{ node: { id: "first" } }], true, "cursor-one"))
+      .mockResolvedValueOnce(response([{ node: { id: "first" } }, { node: { id: "second" } }], false, "cursor-two"));
+
+    const collection = await getCollectionByHandle("many-kids-gifts");
+    expect(collection.products.edges.map(({ node }: { node: { id: string } }) => node.id)).toEqual(["first", "second"]);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const secondQuery = JSON.parse(String((fetchMock.mock.calls[1][1] as RequestInit).body));
+    expect(secondQuery.variables.cursor).toBe("cursor-one");
   });
 
   it("refreshes collection availability on repeat visits in the same browser session", async () => {

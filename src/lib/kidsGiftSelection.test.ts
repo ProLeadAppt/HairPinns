@@ -25,18 +25,23 @@ describe("kids gift selection", () => {
     expect(maxGiftQuantity({ ...oneInStock, quantityAvailable: 0 })).toBe(5);
   });
 
-  it("keeps the browsing groups predictable", () => {
-    expect(products.map(giftCategory)).toEqual(["brushes", "ponytails"]);
+  it("puts Shopify-tagged products in Jena's chosen group", () => {
+    expect(giftCategory({ ...products[1], tags: ["gift-category:bows"] })).toBe("bows");
+    expect(giftCategory({ ...products[0], tags: ["gift-category:haircare"] })).toBe("haircare");
+    expect(giftCategory({ ...products[0], tags: ["gift-category:unsupported"] })).toBe("brushes");
+    expect(products.map(giftCategory)).toEqual(["brushes", "accessories"]);
   });
 
-  it("shows usable brushes and ponytails before other extras", () => {
+  it("shows brushes, bows, haircare and other accessories in that order", () => {
     const extra: GiftProduct = { id: "p3", title: "Hair extra", handle: "extra", variants: { edges: [
       { node: { id: "v4", title: "Default Title", availableForSale: true, price: { amount: "8.00", currencyCode: "AUD" } } },
     ] } };
     const unavailable: GiftProduct = { id: "p4", title: "Other brush", handle: "other-brush", variants: { edges: [
       { node: { id: "v5", title: "Pink", availableForSale: false, price: { amount: "8.00", currencyCode: "AUD" } } },
     ] } };
-    expect(orderGiftProducts([extra, products[1], unavailable, products[0]]).map(({ id }) => id)).toEqual(["p1", "p2", "p3"]);
+    const bow = { ...extra, id: "p5", title: "Purple hair bow" };
+    const haircare = { ...extra, id: "p6", title: "Juuce Knot Knotty Detangler" };
+    expect(orderGiftProducts([extra, haircare, products[1], bow, unavailable, products[0]]).map(({ id }) => id)).toEqual(["p1", "p5", "p6", "p3", "p2"]);
   });
 
   it("adds exact selected variants and quantities without browser-calculated discounts", () => {

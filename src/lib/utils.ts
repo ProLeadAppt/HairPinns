@@ -39,8 +39,8 @@ export function formatPrice(
 
   const symbol = currencySymbols[currencyCode] || currencyCode;
 
-  // Format to 2 decimal places, remove trailing zeros
-  const formatted = numAmount.toFixed(2).replace(/\.?0+$/, "");
+  // Keep cents visible in the bag and throughout the storefront: $9.90, not $9.9.
+  const formatted = numAmount.toFixed(2);
 
   return `${symbol}${formatted}`;
 }
