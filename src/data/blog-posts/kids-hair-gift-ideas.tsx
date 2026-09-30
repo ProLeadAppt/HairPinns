@@ -10,11 +10,11 @@ const post = {
   image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/72B45C09-00EA-47C3-B2A5-ECF01250D6CE.webp?v=1752643490",
   author: "Jena Pinn",
   content: {
-    introduction: "Start with something useful, let them choose the fun bit, and skip the extras they won’t use. You can choose the current items and styles online, and I’ll pack your selected items together as one gift.",
+    introduction: "Buying for a kid who already has a cupboard full of stuff? You don’t need to add another random box to it. A brush they like, a colourful ponytail if that’s their thing, and perhaps one useful extra is a pretty good place to start. The trick is thinking about what they’ll reach for, not how much you can squeeze in.",
     sections: [
       {
         heading: "Start with their hair, not the prettiest box",
-        content: "Buying for a kid who already has a cupboard full of stuff? You don’t need to add another random box to it. A brush they like, a colourful ponytail if that’s their thing, and perhaps one useful extra is a pretty good place to start. The trick is thinking about what they’ll reach for, not how much you can squeeze in. Think about their normal morning. Is brushing the bit they avoid? Do they love choosing a different colour for their ponytail? Start there. The [Wet Brush Kids & Mini Detangler](/products/wet-brush-kids-detangler/?variant=45432815419573) has different styles to choose from. Check the current options, rather than assuming every colour or character is available. When you’re working through tangles, go gently from the ends and work up in small sections. Don’t try to win an argument with a knot. Hair tends to win that one.",
+        content: "Think about their normal morning. Is brushing the bit they avoid? Do they love choosing a different colour for their ponytail? Start there. The [Wet Brush Kids & Mini Detangler](/products/wet-brush-kids-detangler/?variant=45432815419573) has different styles to choose from. Check the current options, rather than assuming every colour or character is available. When you’re working through tangles, go gently from the ends and work up in small sections. Don’t try to win an argument with a knot. Hair tends to win that one.",
       },
       {
         heading: "Let them pick the fun bit",
