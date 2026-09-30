@@ -6,13 +6,13 @@ describe("venue review proof", () => {
     expect(
       resolveVenueReviewProof(
         { entityType: "service", entitySlug: "mid-length-straight-up-smoothing" },
-        "2026-07-26",
+        "2026-10-01",
       ),
     ).toMatchObject({
       source: "fresha",
       rating: 5,
-      reviewCount: 936,
-      label: "Hair Pinns venue on Fresha: 5.0 from 936 reviews",
+      reviewCount: 983,
+      label: "Hair Pinns venue on Fresha: 5.0 from 983 reviews",
     });
   });
 
@@ -20,7 +20,7 @@ describe("venue review proof", () => {
     expect(
       resolveVenueReviewProof(
         { entityType: "location", entitySlug: "como-2226" },
-        "2026-07-26",
+        "2026-10-01",
       ),
     ).toBeNull();
   });
@@ -29,7 +29,7 @@ describe("venue review proof", () => {
     expect(
       resolveVenueReviewProof(
         { entityType: "location", entitySlug: "bangor-2234" },
-        "2026-07-26",
+        "2026-10-01",
       )?.source,
     ).toBe("fresha");
   });
@@ -38,7 +38,7 @@ describe("venue review proof", () => {
     expect(
       resolveVenueReviewProof(
         { entityType: "service", entitySlug: "mid-length-straight-up-smoothing" },
-        "2026-10-26",
+        "2026-10-31",
       ),
     ).toBeNull();
   });

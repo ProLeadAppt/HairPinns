@@ -30,24 +30,22 @@ const serviceSlugMap: Record<string, string> = {
   "Long/Thick Straight Up Smoothing Treatment": "long-thick-straight-up-smoothing",
   "Straight Up Smoothing for Teens": "straight-up-smoothing-teens",
   "Full Head of Foils Package": "full-head-foils-package",
-  "1/2 Head of Foils, cut & blowdry": "half-head-foils-cut-blowdry",
-  "1/4 Head Foils, cut and blowdry": "quarter-head-foils-cut-blowdry",
+  "1/2 Head of Foils, Cut & Blow-dry": "half-head-foils-cut-blowdry",
+  "1/4 Head Foils, Cut & Blow-dry": "quarter-head-foils-cut-blowdry",
   "Long Hair Colour Package": "long-hair-colour-package",
   "Mid-Length Colour Package": "mid-length-colour-package",
   "Short Hair Colour Package": "short-hair-colour-package",
-  "Long Hair wash/cut/blow-dry": "long-hair-wash-cut-blowdry",
-  "Mid-length wash/cut/blow-dry": "mid-length-wash-cut-blowdry",
-  "Short wash/cut/blow-dry": "short-wash-cut-blowdry",
-  "Kids cut & blowdry bundle": "kids-cut-blowdry-bundle",
+  "Long Cut/Blow-dry": "long-hair-wash-cut-blowdry",
+  "Mid-Length Cut/Blowdry": "mid-length-wash-cut-blowdry",
+  "Short Hair Cut & Blowdry": "short-wash-cut-blowdry",
+  "Kids Cut & Blow-dry Bundle": "kids-cut-blowdry-bundle",
   "Primary Formal Hairstyle": "primary-formal-hairstyle",
   "High School Formal Hairstyle": "high-school-formal-hairstyle",
 };
 
-const Services = () => {
-  const [activeSection, setActiveSection] = useState("smoothing");
-
-  // Exact Fresha data - Source of Truth
-  const serviceCategories: ServiceCategory[] = [
+// Public Fresha booking prices are the reference for current appointments.
+// Unlisted legacy options need Jena's confirmation before returning to this menu.
+export const serviceCategories: ServiceCategory[] = [
     {
       id: "smoothing",
       title: "Straight Up Smoothing Treatments",
@@ -56,21 +54,21 @@ const Services = () => {
           title: "Mid-Length Straight Up Smoothing Treatment",
           duration: "2h 20min",
           serviceCount: "2 services",
-          price: "A$ 324"
+          price: "A$ 339"
         },
         {
           title: "Long/Thick Straight Up Smoothing Treatment",
           duration: "2h 20min",
           serviceCount: "2 services",
           description: "Discuss the intended finish, hair history and aftercare with Jena before choosing this service.",
-          price: "A$ 349"
+          price: "A$ 362"
         },
         {
           title: "Straight Up Smoothing for Teens",
           duration: "2h 20min",
           serviceCount: "2 services",
           description: "Confirm age eligibility and suitability with Jena before booking. QIQI ProCtrl products are not for under-16s.",
-          price: "A$ 234"
+          price: "A$ 289"
         }
       ]
     },
@@ -79,38 +77,38 @@ const Services = () => {
       title: "Foil Packages",
       services: [
         {
-          title: "Short Hair Colour+ Foils & cut/blowdry",
+          title: "Regrowth + Foils & cut/Blowdry for short/mid-length hair",
           duration: "2h 30min",
-          serviceCount: "3 services",
+          serviceCount: "2 services",
           description: "Root touch up, highlights, cut and blow-dry package",
-          price: "A$ 257"
+          price: "A$ 273"
         },
         {
-          title: "Long Hair Colour + Foils & cut/blowdry",
-          duration: "2h 45min",
-          serviceCount: "3 services",
-          price: "A$ 262"
+          title: "Regrowth + Foils & cut/blowdry for Long Hair",
+          duration: "2h 30min",
+          serviceCount: "2 services",
+          price: "A$ 283"
         },
         {
-          title: "1/4 Head Foils, cut and blowdry",
+          title: "1/4 Head Foils, Cut & Blow-dry",
           duration: "2h 15min",
-          serviceCount: "3 services",
+          serviceCount: "2 services",
           description: "Enhance your hair with a 1/4 head of foils, cut and blow-dry",
-          price: "A$ 202"
+          price: "A$ 223"
         },
         {
-          title: "1/2 Head of Foils, cut & blowdry",
+          title: "1/2 Head of Foils, Cut & Blow-dry",
           duration: "2h 15min",
-          serviceCount: "3 services",
+          serviceCount: "2 services",
           description: "Spice up is the perfect package that combines highlights, style cut and blowdry in one pampering session",
-          price: "A$ 237"
+          price: "A$ 253"
         },
         {
           title: "Full Head of Foils Package",
           duration: "2h 45min",
-          serviceCount: "3 services",
+          serviceCount: "2 services",
           description: "This package includes a full head of foils, style-cut & blow-dry",
-          price: "A$ 267"
+          price: "A$ 283"
         }
       ]
     },
@@ -120,22 +118,22 @@ const Services = () => {
       services: [
         {
           title: "Long Hair Colour Package",
-          duration: "2h 30min",
-          serviceCount: "3 services",
+          duration: "2h 15min",
+          serviceCount: "2 services",
           description: "Freshen up your look with regrowth or full colour, plus a cut and blowdry for women with long hair. Enjoy a complete service designed especially for long-haired clients.",
-          price: "A$ 205"
+          price: "A$ 213"
         },
         {
           title: "Mid-Length Colour Package",
           duration: "2h 15min",
-          serviceCount: "3 services",
+          serviceCount: "2 services",
           description: "Regrowth or full colour, cut and blowdry for mid length hair",
-          price: "A$ 178"
+          price: "A$ 198"
         },
         {
           title: "Short Hair Colour Package",
-          duration: "2h 15min",
-          serviceCount: "3 services",
+          duration: "2h",
+          serviceCount: "2 services",
           description: "Regrowth or full colour cut and blowdry for short hair",
           price: "A$ 184"
         }
@@ -146,29 +144,25 @@ const Services = () => {
       title: "Cut & Blow-dry Packages",
       services: [
         {
-          title: "Kids cut & blowdry bundle",
-          duration: "40min",
-          serviceCount: "2 services",
+          title: "Kids Cut & Blow-dry Bundle",
+          duration: "1h",
           description: "Pamper your kids with a deep cleanse shampoo, relaxing head massage and condition paired with a haircut and blowdry",
-          price: "A$ 54"
+          price: "A$ 67"
         },
         {
-          title: "Short wash/cut/blow-dry",
+          title: "Short Hair Cut & Blowdry",
+          duration: "45min",
+          price: "A$ 87"
+        },
+        {
+          title: "Mid-Length Cut/Blowdry",
           duration: "1h",
-          serviceCount: "2 services",
-          price: "A$ 79"
+          price: "A$ 94"
         },
         {
-          title: "Mid-length wash/cut/blow-dry",
+          title: "Long Cut/Blow-dry",
           duration: "1h",
-          serviceCount: "2 services",
-          price: "A$ 89"
-        },
-        {
-          title: "Long Hair wash/cut/blow-dry",
-          duration: "1h 15min",
-          serviceCount: "2 services",
-          price: "A$ 99"
+          price: "A$ 104"
         }
       ]
     },
@@ -177,35 +171,30 @@ const Services = () => {
       title: "Pretty Princess Braids",
       services: [
         {
-          title: "Little Princess Crown Braid",
+          title: "Coloured Hair Braids",
           duration: "20min",
-          price: "A$ 29"
-        },
-        {
-          title: "2 x Hair Braids with Coloured Extensions",
-          duration: "20min",
-          price: "A$ 45"
+          price: "from A$ 33"
         },
         {
           title: "Single Braid",
           duration: "15min",
           description: "Headband style braid or one directly down the centre of the head",
-          price: "A$ 20"
+          price: "A$ 25"
         },
         {
           title: "Double Braids",
           duration: "20min",
-          price: "A$ 30"
+          price: "A$ 35"
         },
         {
           title: "3-4 Braids (cornrows)",
           duration: "40min",
-          price: "A$ 40"
+          price: "A$ 45"
         },
         {
           title: "Custom Braided Hairstyle",
           duration: "1h",
-          price: "from A$ 50"
+          price: "from A$ 55"
         }
       ]
     },
@@ -217,7 +206,7 @@ const Services = () => {
           title: "Hot Towel Treatment Add On",
           duration: "10min",
           description: "Add a hot towel treatment to any service to relax, unwind and get the best results from a hair mask.",
-          price: "A$ 12.50"
+          price: "A$ 15"
         },
         {
           title: "Infrared Sauna",
@@ -229,15 +218,8 @@ const Services = () => {
           title: "Scalp Detox",
           duration: "1h",
           description: "Refresh your scalp with a gentle treatment designed to remove everyday buildup and impurities. Enjoy a soothing experience that leaves your hair feeling cleaner and your scalp revitalised. Perfect for anyone seeking a clean, balanced foundation for healthier hair.\nWe use a scope camera to check your scalp for impurities and build up then after the specialized cleanse and blowdry, we re-scope to show you the amazing results afterwards",
-          price: "A$ 62"
+          price: "A$ 74"
         },
-        {
-          title: "Complete Pamper Package",
-          duration: "1h",
-          serviceCount: "2 services",
-          description: "Scalp cleanse, deep conditioning under heat or with a hot towel, scalp massage, then a blow-dry finish. Book it when your hair feels heavy or your week has been heavy. A$62 for the lot.\n\nIf you want a real reset, ask me to scope your scalp before and after, most clients can see the difference straight away.",
-          price: "A$ 62"
-        }
       ]
     },
     {
@@ -246,30 +228,30 @@ const Services = () => {
       services: [
         {
           title: "Kids Blow-dry",
-          duration: "20min",
+          duration: "30min",
           description: "Spoil your kids with a deep cleanse shampoo, condition & blow-dry\nThis is great to give your kids a deep wash to remove any scalp build up and pamper them with knot-.free smooth hair",
-          price: "A$ 34"
+          price: "A$ 45"
         },
         {
           title: "Haircut",
-          description: "Mens, 20min, A$ 39\n\nWomens, 30min, A$ 54",
-          price: "from A$ 39"
+          description: "Choose your haircut option and check the current price when booking with Jena.",
+          price: "from A$ 45"
         },
         {
           title: "Hair Wash & dry off",
-          duration: "20min",
-          price: "A$ 15.50"
+          duration: "15min",
+          price: "A$ 19"
         },
         {
           title: "Fringe Trim",
-          duration: "10min",
+          duration: "15min",
           description: "Keep your fringe perfect and pop in for a quick trim",
-          price: "A$ 15.50"
+          price: "A$ 22.50"
         },
         {
           title: "Kids Haircuts",
-          description: "Boys/Girls 0-10 years old, 20min, A$ 24\n\nBoys/Girls 11-17 years old, 20min, A$ 32",
-          price: "from A$ 24"
+          description: "Choose the age-appropriate option and check the current price when booking with Jena.",
+          price: "from A$ 33"
         }
       ]
     },
@@ -280,42 +262,41 @@ const Services = () => {
         {
           title: "Add curls to other service",
           duration: "10min",
-          price: "A$ 24"
+          price: "A$ 27"
         },
         {
-          title: "GHD Curls SHORT",
+          title: "GHD Curls Short/Mid-Length",
           duration: "30min",
-          price: "A$ 52"
-        },
-        {
-          title: "Child Formal Hairstyle",
-          duration: "45min",
-          price: "A$ 59"
+          price: "A$ 49"
         },
         {
           title: "GHD Curls LONG",
           duration: "45min",
-          price: "A$ 67"
+          price: "A$ 64"
         },
         {
           title: "Upstyle SHORT",
           duration: "30min",
-          price: "A$ 87"
+          price: "A$ 89"
         },
         {
-          title: "Upstyle short/mid-length",
+          title: "Upstyle mid-length",
           duration: "45min",
-          price: "A$ 94"
+          price: "A$ 99"
         },
         {
           title: "Upstyle LONG",
           duration: "1h",
-          price: "A$ 107"
+          price: "A$ 104"
         },
         {
-          title: "Wedding PP",
+          title: "Wedding Hairstyles",
           duration: "1h",
-          price: "A$ 114"
+          price: "from A$ 114"
+        },
+        {
+          title: "Iron Straight Add On",
+          price: "A$ 24"
         }
       ]
     },
@@ -326,12 +307,12 @@ const Services = () => {
         {
           title: "Primary Formal Hairstyle",
           duration: "45min",
-          price: "A$ 59"
+          price: "A$ 69"
         },
         {
           title: "High School Formal Hairstyle",
           duration: "1h",
-          price: "A$ 69"
+          price: "A$ 79"
         }
       ]
     },
@@ -341,15 +322,9 @@ const Services = () => {
       services: [
         {
           title: "Superior Conditioning Treatment",
-          duration: "15min",
+          duration: "20min",
           description: "Enjoy a deep scalp cleanse & a superior conditioning masque under heat for deep hydration and long-lasting shine and smoothness.\nCan be added to any hair treatment",
-          price: "A$ 32"
-        },
-        {
-          title: "Express Miracle Treatment",
-          duration: "5min",
-          description: "Add a 1 minute miracle treatment & hot towel to any service and give your hair a new life :)\nWith the value of Moroccan clay, this treatment quickly binds to your hair creating the soft and silky hair you deserve in only 60 seconds",
-          price: "A$ 22"
+          price: "A$ 34"
         }
       ]
     },
@@ -366,80 +341,7 @@ const Services = () => {
         {
           title: "Step 2- Rinse, dry/straighten",
           duration: "2h",
-          price: "A$ 350"
-        },
-        {
-          title: "Rinse-out Colour",
-          duration: "10min",
-          description: "If not having cut or blow-dry, please select the rinse-out options to allow time.",
-          price: "Free"
-        },
-        {
-          title: "OSTEO",
-          duration: "1h",
-          price: "Free"
-        }
-      ]
-    },
-    {
-      id: "tints",
-      title: "Tints",
-      services: [
-        {
-          title: "Toner",
-          duration: "40min",
-          price: "from A$ 29"
-        },
-        {
-          title: "Men's Colour",
-          duration: "1h",
-          price: "A$ 49"
-        },
-        {
-          title: "Regrowth of Colour",
-          duration: "1h 10min",
-          price: "A$ 79"
-        },
-        {
-          title: "Full Colour Short Hair",
-          duration: "1h 15min",
-          price: "A$ 86"
-        },
-        {
-          title: "Full Colour Mid-length",
-          duration: "1h 15min",
-          price: "A$ 92"
-        },
-        {
-          title: "Full Colour Long Hair",
-          duration: "1h 15min",
-          price: "A$ 97"
-        },
-        {
-          title: "Regrowth colour + 20 foils",
-          duration: "1h 30min",
-          price: "A$ 154"
-        }
-      ]
-    },
-    {
-      id: "foils",
-      title: "Foils",
-      services: [
-        {
-          title: "1/4 head of foils",
-          duration: "1h 15min",
-          price: "A$ 99"
-        },
-        {
-          title: "1/2 head of foils",
-          duration: "1h 15min",
-          price: "A$ 134"
-        },
-        {
-          title: "Full Head of Foils",
-          duration: "1h 45min",
-          price: "A$ 164"
+          price: "A$ 419"
         }
       ]
     },
@@ -450,21 +352,24 @@ const Services = () => {
         {
           title: "Short Hair",
           duration: "30min",
-          price: "A$ 44"
+          price: "A$ 49"
         },
         {
           title: "Mid-length Hair",
           duration: "30min",
-          price: "A$ 49"
+          price: "A$ 54"
         },
         {
           title: "Long Hair",
           duration: "45min",
-          price: "A$ 54"
+          price: "A$ 59"
         }
       ]
     }
-  ];
+];
+
+const Services = () => {
+  const [activeSection, setActiveSection] = useState("smoothing");
 
   const totalServices = serviceCategories.reduce((total, category) => total + category.services.length, 0);
 
@@ -523,7 +428,7 @@ const Services = () => {
     <div className="min-h-screen bg-bg">
       <SEOHead
         title="Hair Services Bangor | Colour, Smoothing & Cuts | Hair Pinns"
-        description="Salon services: Straight Up Smoothing, Colour Packages, Cuts & Styling. Prices and times are exactly what you'll see when you book."
+        description="Explore Jena's salon services, from smoothing and colour to cuts and styling. Check the current options and total price in Fresha before confirming your booking."
         canonical="https://hairpinns.com/services"
         ogImage={getOGImage('service')}
         ogType="website"

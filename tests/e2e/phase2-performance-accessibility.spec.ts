@@ -1342,19 +1342,19 @@ test('after-hours About journey keeps founder proof truthful and bookable at Fol
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 });
 
-test('after-hours service directory preserves the complete Fresha menu at Fold width', async ({ page }) => {
+test('after-hours service directory shows only verified public Fresha options at Fold width', async ({ page }) => {
   test.setTimeout(60_000);
   await page.setViewportSize({ width: 344, height: 882 });
   await page.goto('/services');
 
   const main = page.locator('[data-services-page]');
   await expect(main.getByRole('heading', { level: 1, name: 'Find the right time in Jena’s chair.' })).toBeVisible();
-  await expect(page.locator('[data-services-hero]').getByText('59', { exact: true })).toBeVisible();
-  await expect(page.locator('[data-services-hero]').getByText('14', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-services-hero]').getByText('44', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-services-hero]').getByText('12', { exact: true })).toBeVisible();
 
   const categoryNav = page.locator('[data-services-nav]');
   const categoryLinks = categoryNav.getByRole('link');
-  await expect(categoryLinks).toHaveCount(14);
+  await expect(categoryLinks).toHaveCount(12);
   await expect(categoryLinks.first()).toHaveAttribute('href', '#smoothing');
   await expect(categoryLinks.last()).toHaveAttribute('href', '#blow-dry');
   for (const link of await categoryLinks.all()) {
@@ -1364,11 +1364,11 @@ test('after-hours service directory preserves the complete Fresha menu at Fold w
   }
 
   const directory = page.locator('[data-services-directory]');
-  await expect(directory.locator(':scope > section')).toHaveCount(14);
+  await expect(directory.locator(':scope > section')).toHaveCount(12);
   const serviceRows = directory.locator('article');
-  await expect(serviceRows).toHaveCount(59);
+  await expect(serviceRows).toHaveCount(44);
   const bookingLinks = directory.locator('a[aria-label^="Book "]');
-  await expect(bookingLinks).toHaveCount(59);
+  await expect(bookingLinks).toHaveCount(44);
   await expect(directory.getByRole('link', { name: 'Service guide' })).toHaveCount(15);
 
   const firstBooking = bookingLinks.first();
@@ -1386,7 +1386,7 @@ test('after-hours service directory preserves the complete Fresha menu at Fold w
   await disclosure.locator('summary').click();
   await expect(disclosure).toHaveAttribute('open', '');
   await expect(disclosure.getByText('Straight Up is the first natural hair smoothing treatment', { exact: false })).toBeVisible();
-  await expect(detailedService.getByText('A$ 349', { exact: true })).toBeVisible();
+  await expect(detailedService.getByText('A$ 362', { exact: true })).toBeVisible();
   await expect(detailedService.getByText('2h 20min · 2 services', { exact: true })).toBeVisible();
 
   const close = page.locator('[data-services-close]');
@@ -1414,7 +1414,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
 
   const detail = page.locator('[data-service-detail]');
   await expect(detail.getByRole('heading', { level: 1, name: 'Mid-Length Straight Up Smoothing Treatment' })).toBeVisible();
-  await expect(page.locator('[data-service-detail-hero]').getByText('A$ 324', { exact: true })).toBeVisible();
+  await expect(page.locator('[data-service-detail-hero]').getByText('A$ 339', { exact: true })).toBeVisible();
   await expect(page.locator('[data-service-detail-hero]').getByText('2h 20min', { exact: true })).toBeVisible();
   await expect(page.locator('[data-service-detail-hero] .speakable-quick-answer')).toBeVisible();
 
@@ -1456,7 +1456,7 @@ test('after-hours service detail keeps booking, guidance and schemas intact at F
     expect(parsedSchemas.some(schema => schema['@type'] === type)).toBe(true);
   }
   const serviceSchema = parsedSchemas.find(schema => schema['@type'] === 'Service');
-  expect(serviceSchema?.offers?.price).toBe('324');
+  expect(serviceSchema?.offers?.price).toBe('339');
   expect(serviceSchema?.offers?.priceCurrency).toBe('AUD');
 
   expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(11_000);
