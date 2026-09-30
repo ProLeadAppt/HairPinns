@@ -46,7 +46,8 @@ const serviceSlugMap: Record<string, string> = {
 const Services = () => {
   const [activeSection, setActiveSection] = useState("smoothing");
 
-  // Exact Fresha data - Source of Truth
+  // Selected prices have been checked against Fresha. Keep this release in
+  // preview until every displayed price and duration has been reconciled.
   const serviceCategories: ServiceCategory[] = [
     {
       id: "smoothing",
