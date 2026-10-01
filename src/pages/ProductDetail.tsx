@@ -40,7 +40,7 @@ import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import { getProductAvailability } from "@/lib/productAvailability";
 import { productOptionGuidance } from "@/lib/productOptionGuidance";
 import { getProductAdvice } from "@/lib/productAdvice";
-import { sanitisePublicArticleHtml } from "@/lib/shopifyContent";
+import { ProductDescription } from "@/components/product/ProductDescription";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -798,31 +798,10 @@ const ProductDetail = () => {
 
                   <TabsContent value="description" className="mt-4">
                     <div className="prose prose-sm max-w-none text-foreground">
-                      {(() => {
-                        try {
-                          if (productAdvice.length > 0) {
-                            return <div dangerouslySetInnerHTML={{ __html: sanitisePublicArticleHtml(product.descriptionHtml) }} />;
-                          }
-                          const rawDesc = product.description ?? product.descriptionHtml ?? "";
-                          const description = typeof rawDesc === "string" ? rawDesc : String(rawDesc);
-                          const sentences = description.split(/[.!?]+/).filter((s: string) => s.trim().length > 10);
-                          const keyPoints = sentences.slice(0, 5).map((s: string) => s.trim()).filter(Boolean);
-
-                          if (keyPoints.length === 0) {
-                            return <p>Professional hair care product designed for great results at home.</p>;
-                          }
-
-                          return (
-                            <div className="space-y-2">
-                              {keyPoints.map((point, index) => (
-                                <p key={index} className="text-sm leading-relaxed">{point}.</p>
-                              ))}
-                            </div>
-                          );
-                        } catch {
-                          return <p>Professional hair care product designed for great results at home.</p>;
-                        }
-                      })()}
+                      <ProductDescription
+                        description={product.description}
+                        descriptionHtml={product.descriptionHtml}
+                      />
                     </div>
                   </TabsContent>
 
