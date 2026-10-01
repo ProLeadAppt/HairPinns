@@ -2,10 +2,28 @@ import { describe, expect, it } from 'vitest';
 import { variantSnapshotTarget, variantSnapshotRoutes } from '../shared/productVariantSnapshots.js';
 import { collectVariantSnapshotManifest } from './generate-product-variant-snapshots.mjs';
 import { variantSnapshotIssue } from './variant-snapshot-validation.mjs';
+import productVariant, { config } from '../netlify/edge-functions/product-variant.js';
+import generatedManifest from '../shared/productVariantSnapshots.generated.js';
 
 const manifest = { 'hair-pinns-gift-card': { '45178788085941': { amount: '250.0', currencyCode: 'AUD' }, '10': { amount: '25.0', currencyCode: 'AUD' } } };
 const url = (query = '', handle = 'hair-pinns-gift-card') => new URL(`https://hairpinns.com/products/${handle}/${query}`);
 describe('variant snapshot routing', () => {
+  it('handles HEAD in the function without an unsupported manifest enum', () => {
+    expect(config).toEqual({ path: '/products/*' });
+    const previous = generatedManifest['hair-pinns-gift-card'];
+    generatedManifest['hair-pinns-gift-card'] = manifest['hair-pinns-gift-card'];
+    try {
+      const request = new Request(url('?variant=45178788085941&utm_source=google'), { method: 'HEAD' });
+      const rewritten = productVariant(request);
+      expect(rewritten.pathname).toBe('/_product-variants/hair-pinns-gift-card/45178788085941/index.html');
+      expect(rewritten.search).toBe('');
+      expect(request.url).toContain('variant=45178788085941&utm_source=google');
+      expect(productVariant(new Request(url('?variant=10'), { method: 'POST' }))).toBeUndefined();
+    } finally {
+      if (previous) generatedManifest['hair-pinns-gift-card'] = previous;
+      else delete generatedManifest['hair-pinns-gift-card'];
+    }
+  });
   it('selects the requested snapshot with arbitrary tracking parameters and order', () => {
     expect(variantSnapshotTarget(url('?utm_source=google&variant=45178788085941&country=AU&currency=AUD&utm_extra=a'), manifest)).toBe('/_product-variants/hair-pinns-gift-card/45178788085941/index.html');
     expect(variantSnapshotTarget(url('?variant=10'), manifest, 'HEAD')).toContain('/10/');

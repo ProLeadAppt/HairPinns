@@ -11,4 +11,6 @@ export default function productVariant(request) {
   return url;
 }
 
-export const config = { path: '/products/*', method: ['GET', 'HEAD'] };
+// Netlify's manifest validator does not accept HEAD in its method enum.
+// The handler gates GET/HEAD itself and leaves every other method untouched.
+export const config = { path: '/products/*' };
