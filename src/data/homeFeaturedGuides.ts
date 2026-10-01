@@ -9,9 +9,9 @@ export type HomeFeaturedGuide = {
 
 export const homeFeaturedGuides: HomeFeaturedGuide[] = [
   {
-    slug: "best-hair-products-australia-2025",
-    title: "Best Hair Products Australia 2025: Jena's Top Picks",
-    excerpt: "Jena's top hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia, shipped nationwide.",
+    slug: "how-to-use-juuce-hair-products",
+    title: "Which Juuce product does what?",
+    excerpt: "A practical guide to choosing and using Juuce products, without adding every bottle to your routine.",
     category: "Products",
     readTime: "6 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",

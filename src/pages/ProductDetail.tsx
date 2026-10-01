@@ -38,6 +38,9 @@ import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPag
 import { getProductHowTo } from "@/data/productHowTo";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import { getProductAvailability } from "@/lib/productAvailability";
+import { productOptionGuidance } from "@/lib/productOptionGuidance";
+import { getProductAdvice } from "@/lib/productAdvice";
+import { sanitisePublicArticleHtml } from "@/lib/shopifyContent";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -432,6 +435,8 @@ const ProductDetail = () => {
     const values = getOptionValues(optionName);
     return !(optionName === "Title" && values.length === 1 && values[0] === "Default Title");
   });
+  const optionGuidance = productOptionGuidance(visibleOptionNames, variantEdges.length, images.length);
+  const productAdvice = getProductAdvice(product.descriptionHtml || "");
 
   // Build product schemas
   const productDescription = buildMetaDescription(
@@ -720,9 +725,19 @@ const ProductDetail = () => {
                   </div>
                 ))}
 
-                {!activeVariant && <p role="status" className="text-sm text-destructive">This option is not available. Please choose a style above; no alternative has been added to your bag.</p>}
-                {images.length > 1 && <p className="text-sm text-muted-foreground">Select a labelled style to choose your brush or product. Gallery-only photographs do not change your selection.</p>}
+                {!activeVariant && <p role="status" className="text-sm text-destructive">This option is not available. Please choose an option above; no alternative has been added to your bag.</p>}
+                {optionGuidance && <p className="text-sm text-muted-foreground">{optionGuidance}</p>}
 
+                {productAdvice.length > 0 && (
+                  <dl aria-label="Product advice" className="space-y-3 border-t border-border pt-4">
+                    {productAdvice.map(({ heading, text }) => (
+                      <div key={heading}>
+                        <dt className="text-sm font-semibold">{heading}</dt>
+                        <dd className="mt-1 text-sm leading-6 text-muted-foreground">{text}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
                 <div data-product-purchase-actions="" className="space-y-3">
                   <Button
                     variant="primary"
@@ -785,6 +800,9 @@ const ProductDetail = () => {
                     <div className="prose prose-sm max-w-none text-foreground">
                       {(() => {
                         try {
+                          if (productAdvice.length > 0) {
+                            return <div dangerouslySetInnerHTML={{ __html: sanitisePublicArticleHtml(product.descriptionHtml) }} />;
+                          }
                           const rawDesc = product.description ?? product.descriptionHtml ?? "";
                           const description = typeof rawDesc === "string" ? rawDesc : String(rawDesc);
                           const sentences = description.split(/[.!?]+/).filter((s: string) => s.trim().length > 10);
