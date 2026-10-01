@@ -57,6 +57,12 @@ describe('snapshot publication guard', () => {
     expect(variantSnapshotIssue(html('25', '$25.00'), null)).toContain('Unavailable');
     expect(variantSnapshotIssue('This option is not available.', null)).toBeNull();
   });
+  it('rejects another variant even when its price is identical', () => {
+    const expected = { amount: '4.95', currencyCode: 'AUD', variantId: '45194473013429' };
+    const snapshot = (id: string) => html('4.95', '$4.95').replace('"priceCurrency":"AUD"', `"priceCurrency":"AUD","url":"https://hairpinns.com/products/purple-wide-tooth-combs/?variant=${id}"`);
+    expect(variantSnapshotIssue(snapshot('45194472980661'), expected)).toContain('different variant');
+    expect(variantSnapshotIssue(snapshot(expected.variantId), expected)).toBeNull();
+  });
 });
 
 describe('variant catalogue generation', () => {
@@ -64,6 +70,16 @@ describe('variant catalogue generation', () => {
   it('retains exact public catalogue prices rather than inventing them', async () => {
     const result = await collectVariantSnapshotManifest(async () => product);
     expect(result['hair-pinns-gift-card']['123']).toEqual({ amount: '19.95', currencyCode: 'AUD' });
+  });
+  it('routes all four additional Merchant Center products using catalogue IDs', async () => {
+    const handles = ['poppet-locks-little-plaited-piggy-tails', 'purple-wide-tooth-combs', 'wet-brush-original-detangler', 'aromaganic-clean-hair-colour-organics'];
+    const result = await collectVariantSnapshotManifest(async () => product);
+    for (const handle of handles) {
+      expect(result[handle]['123'].amount).toBe('19.95');
+      expect(variantSnapshotTarget(url('?utm_source=google&variant=123&currency=AUD', handle), result)).toBe(`/_product-variants/${handle}/123/index.html`);
+      expect(variantSnapshotTarget(url('?variant=999', handle), result)).toContain('/unavailable/');
+      expect(variantSnapshotTarget(url('', handle), result)).toBeNull();
+    }
   });
   it.each([null, { variants: { edges: [] } }, { variants: { ...product.variants, pageInfo: { hasNextPage: true } } }])('rejects missing or incomplete data', async fixture => {
     await expect(collectVariantSnapshotManifest(async () => fixture)).rejects.toThrow('Incomplete');

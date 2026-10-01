@@ -1,5 +1,12 @@
 // Only these diagnosed Google landing pages opt in to variant prerendering.
-export const VARIANT_SNAPSHOT_HANDLES = ['juuce-super-soft-hydration-moisture-mask', 'hair-pinns-gift-card'];
+export const VARIANT_SNAPSHOT_HANDLES = [
+  'juuce-super-soft-hydration-moisture-mask',
+  'hair-pinns-gift-card',
+  'poppet-locks-little-plaited-piggy-tails',
+  'purple-wide-tooth-combs',
+  'wet-brush-original-detangler',
+  'aromaganic-clean-hair-colour-organics',
+];
 
 export function variantSnapshotTarget(url, manifest, method = 'GET') {
   if (!['GET', 'HEAD'].includes(method)) return null;
