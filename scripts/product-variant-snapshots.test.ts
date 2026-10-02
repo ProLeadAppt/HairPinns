@@ -67,6 +67,25 @@ describe('snapshot publication guard', () => {
 
 describe('variant catalogue generation', () => {
   const product = { variants: { pageInfo: { hasNextPage: false }, edges: [{ node: { id: 'gid://shopify/ProductVariant/123', price: { amount: '19.95', currencyCode: 'AUD' } } }] } };
+  it('generates the Lamellar mask and routes the exact submitted Google query', async () => {
+    const handle = 'lamellar-vitality-butter-mask-treatment';
+    const id = '53403784380597';
+    const fixture = { variants: { pageInfo: { hasNextPage: false }, edges: [
+      { node: { id: `gid://shopify/ProductVariant/${id}`, price: { amount: '9.95', currencyCode: 'AUD' } } },
+      { node: { id: 'gid://shopify/ProductVariant/123', price: { amount: '49.95', currencyCode: 'AUD' } } },
+    ] } };
+    const result = await collectVariantSnapshotManifest(async () => fixture);
+    expect(result[handle]).toEqual({ [id]: { amount: '9.95', currencyCode: 'AUD' }, '123': { amount: '49.95', currencyCode: 'AUD' } });
+    const query = `?variant=${id}&country=AU&currency=AUD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic`;
+    for (const slash of ['', '/']) {
+      const submitted = new URL(`https://hairpinns.com/products/${handle}${slash}${query}`);
+      expect(variantSnapshotTarget(submitted, result)).toBe(`/_product-variants/${handle}/${id}/index.html`);
+      expect(submitted.search).toBe(query);
+    }
+    expect(variantSnapshotRoutes(result).find(route => route.route === `/products/${handle}/?variant=${id}`)?.expected).toEqual({ amount: '9.95', currencyCode: 'AUD', variantId: id });
+    expect(variantSnapshotTarget(url('?variant=999', handle), result)).toContain('/unavailable/');
+    expect(variantSnapshotTarget(url('', handle), result)).toBeNull();
+  });
   it('retains exact public catalogue prices rather than inventing them', async () => {
     const result = await collectVariantSnapshotManifest(async () => product);
     expect(result['hair-pinns-gift-card']['123']).toEqual({ amount: '19.95', currencyCode: 'AUD' });

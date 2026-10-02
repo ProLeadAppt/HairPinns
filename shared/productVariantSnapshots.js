@@ -6,6 +6,7 @@ export const VARIANT_SNAPSHOT_HANDLES = [
   'purple-wide-tooth-combs',
   'wet-brush-original-detangler',
   'aromaganic-clean-hair-colour-organics',
+  'lamellar-vitality-butter-mask-treatment',
 ];
 
 export function variantSnapshotTarget(url, manifest, method = 'GET') {
