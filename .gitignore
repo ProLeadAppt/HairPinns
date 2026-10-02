@@ -37,6 +37,9 @@ test-results/
 .playwright-cli/
 output/playwright/
 
+# Generated public snapshot provenance; rebuilt from Shopify before Vite.
+public/product-variant-snapshot-report.json
+
 # Google service account keys (GSC pulse)
 gsc-service-account.json
 *-service-account.json

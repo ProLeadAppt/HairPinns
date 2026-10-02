@@ -1,5 +1,27 @@
 import { expect, test } from '@playwright/test';
 
+test('a Google-linked variant beyond the first 100 keeps its own price and identity', async ({ page }) => {
+  const requestedCursors: unknown[] = [];
+  await page.route('**/graphql.json', async route => {
+    const body = route.request().postDataJSON();
+    const next = Boolean(body.variables?.variantCursor);
+    if (body.query.includes('query getProduct(')) requestedCursors.push(body.variables.variantCursor || null);
+    const ids = next ? [101] : Array.from({ length: 100 }, (_, i) => i + 1);
+    await route.fulfill({ json: { data: {
+      product: { id: 'gid://shopify/Product/1', title: 'Paged mask', handle: 'paged-mask', vendor: 'Hair Pinns', tags: [], description: 'Choose a size.', descriptionHtml: '', images: { edges: [] }, availableForSale: true,
+        variants: { edges: ids.map(id => ({ node: { id: `gid://shopify/ProductVariant/${id}`, title: String(id), availableForSale: true, quantityAvailable: 5, requiresShipping: true, price: { amount: id === 101 ? '9.95' : '49.95', currencyCode: 'AUD' }, selectedOptions: [{ name: 'Size', value: String(id) }] } })), pageInfo: { hasNextPage: !next, endCursor: next ? 'last-page' : 'first-page' } },
+      }, products: { edges: [] }, collections: { edges: [] }, productRecommendations: [],
+    } } });
+  });
+  await page.goto('/products/paged-mask/?variant=101&utm_source=google');
+  await expect(page.locator('[data-product-purchase-actions]').locator('..')).toContainText('$9.95');
+  await expect(page.getByRole('combobox', { name: 'Size', exact: true })).toContainText('101');
+  await expect.poll(() => requestedCursors).toEqual([null, 'first-page']);
+  const product = await page.locator('script[type="application/ld+json"]').evaluateAll(nodes => nodes.flatMap(node => { const d = JSON.parse(node.textContent || '{}'); return (d['@graph'] || [d]).filter(s => s['@type'] === 'Product'); }));
+  expect(product[0].offers).toMatchObject({ price: '9.95', url: 'https://hairpinns.com/products/paged-mask/?variant=101' });
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://hairpinns.com/products/paged-mask/');
+});
+
 for (const digital of [false, true]) {
   for (const variant of ['202', '999', '101', 'base']) {
     test(`${digital ? 'digital' : 'physical'} variant ${variant} stays coherent`, async ({ page }) => {

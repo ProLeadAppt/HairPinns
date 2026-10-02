@@ -404,7 +404,7 @@ async function main() {
             writeFileSync(outPath, cleanedHtml, 'utf8');
             results.push({
               route, ok: true, dt: Date.now() - t0,
-              bytes: cleanedHtml.length, h1Count, jsonLdCount, hasTitle,
+              bytes: Buffer.byteLength(cleanedHtml), h1Count, jsonLdCount, hasTitle,
               path: relative(root, outPath),
             });
             lastErr = null;
@@ -469,6 +469,10 @@ async function main() {
   // Write report
   const report = {
     when: new Date().toISOString(),
+    durationSeconds: Number(((Date.now() - t0Total) / 1000).toFixed(1)),
+    outputBytes: results.reduce((sum, result) => sum + (result.bytes || 0), 0),
+    variantSnapshotCount: variantSnapshots.length,
+    verifiedVariantSnapshots: results.filter(result => result.ok && variantSnapshotByRoute.has(result.route)).length,
     total: results.length,
     ok: results.filter((r) => r.ok).length,
     failed: results.filter((r) => !r.ok).length,

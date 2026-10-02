@@ -66,33 +66,28 @@ describe('snapshot publication guard', () => {
 });
 
 describe('variant catalogue generation', () => {
-  const product = { variants: { pageInfo: { hasNextPage: false }, edges: [{ node: { id: 'gid://shopify/ProductVariant/123', price: { amount: '19.95', currencyCode: 'AUD' } } }] } };
+  const node = (id = '123', amount = '19.95') => ({ id: `gid://shopify/ProductVariant/${id}`, availableForSale: true, requiresShipping: true, quantityAvailable: 5, price: { amount, currencyCode: 'AUD' } });
+  const page = (handles: string[], nodes = [node()]) => ({ nodes: handles.map(handle => ({ handle, variants: { nodes, pageInfo: { hasNextPage: false } } })), pageInfo: { hasNextPage: false } });
+  it('discovers newly published products without a hand-maintained allowlist', async () => {
+    const result = await collectVariantSnapshotManifest(async () => page(['future-product']), async () => null);
+    expect(result['future-product']['123'].amount).toBe('19.95');
+    expect(variantSnapshotTarget(url('?variant=123', 'future-product'), result)).toContain('/future-product/123/');
+  });
   it('generates the Lamellar mask and routes the exact submitted Google query', async () => {
-    const handle = 'lamellar-vitality-butter-mask-treatment';
-    const id = '53403784380597';
-    const fixture = { variants: { pageInfo: { hasNextPage: false }, edges: [
-      { node: { id: `gid://shopify/ProductVariant/${id}`, price: { amount: '9.95', currencyCode: 'AUD' } } },
-      { node: { id: 'gid://shopify/ProductVariant/123', price: { amount: '49.95', currencyCode: 'AUD' } } },
-    ] } };
-    const result = await collectVariantSnapshotManifest(async () => fixture);
-    expect(result[handle]).toEqual({ [id]: { amount: '9.95', currencyCode: 'AUD' }, '123': { amount: '49.95', currencyCode: 'AUD' } });
+    const handle = 'lamellar-vitality-butter-mask-treatment', id = '53403784380597';
+    const result = await collectVariantSnapshotManifest(async () => page([handle], [node(id, '9.95'), node('123', '49.95')]), async () => null);
+    expect(result[handle][id]).toMatchObject({ amount: '9.95', currencyCode: 'AUD' });
     const query = `?variant=${id}&country=AU&currency=AUD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic`;
     for (const slash of ['', '/']) {
       const submitted = new URL(`https://hairpinns.com/products/${handle}${slash}${query}`);
       expect(variantSnapshotTarget(submitted, result)).toBe(`/_product-variants/${handle}/${id}/index.html`);
       expect(submitted.search).toBe(query);
     }
-    expect(variantSnapshotRoutes(result).find(route => route.route === `/products/${handle}/?variant=${id}`)?.expected).toEqual({ amount: '9.95', currencyCode: 'AUD', variantId: id });
-    expect(variantSnapshotTarget(url('?variant=999', handle), result)).toContain('/unavailable/');
-    expect(variantSnapshotTarget(url('', handle), result)).toBeNull();
+    expect(variantSnapshotRoutes(result).find(route => route.route === `/products/${handle}/?variant=${id}`)?.expected).toMatchObject({ amount: '9.95', currencyCode: 'AUD', variantId: id, handle });
   });
-  it('retains exact public catalogue prices rather than inventing them', async () => {
-    const result = await collectVariantSnapshotManifest(async () => product);
-    expect(result['hair-pinns-gift-card']['123']).toEqual({ amount: '19.95', currencyCode: 'AUD' });
-  });
-  it('routes all four additional Merchant Center products using catalogue IDs', async () => {
-    const handles = ['poppet-locks-little-plaited-piggy-tails', 'purple-wide-tooth-combs', 'wet-brush-original-detangler', 'aromaganic-clean-hair-colour-organics'];
-    const result = await collectVariantSnapshotManifest(async () => product);
+  it('routes the previous Merchant Center products using catalogue IDs', async () => {
+    const handles = ['hair-pinns-gift-card', 'poppet-locks-little-plaited-piggy-tails', 'purple-wide-tooth-combs', 'wet-brush-original-detangler', 'aromaganic-clean-hair-colour-organics'];
+    const result = await collectVariantSnapshotManifest(async () => page(handles), async () => null);
     for (const handle of handles) {
       expect(result[handle]['123'].amount).toBe('19.95');
       expect(variantSnapshotTarget(url('?utm_source=google&variant=123&currency=AUD', handle), result)).toBe(`/_product-variants/${handle}/123/index.html`);
@@ -100,10 +95,14 @@ describe('variant catalogue generation', () => {
       expect(variantSnapshotTarget(url('', handle), result)).toBeNull();
     }
   });
-  it.each([null, { variants: { edges: [] } }, { variants: { ...product.variants, pageInfo: { hasNextPage: true } } }])('rejects missing or incomplete data', async fixture => {
-    await expect(collectVariantSnapshotManifest(async () => fixture)).rejects.toThrow('Incomplete');
+  it.each([null, { nodes: [] }, { nodes: [], pageInfo: { hasNextPage: true } }])('rejects incomplete product connections', async fixture => {
+    await expect(collectVariantSnapshotManifest(async () => fixture, async () => null)).rejects.toThrow('Incomplete');
   });
-  it('rejects bad prices and unexpected currencies', async () => {
-    await expect(collectVariantSnapshotManifest(async () => ({ variants: { edges: [{ node: { id: 'gid://shopify/ProductVariant/123', price: { amount: 'NaN', currencyCode: 'AUD' } } }] } }))).rejects.toThrow('Invalid');
+  it.each(['', 'NaN', '-1'])('rejects bad prices %s', async amount => {
+    await expect(collectVariantSnapshotManifest(async () => page(['bad-price'], [node('123', amount)]), async () => null)).rejects.toThrow('Invalid');
+  });
+  it('rejects unexpected currencies', async () => {
+    const n = node(); n.price.currencyCode = 'USD';
+    await expect(collectVariantSnapshotManifest(async () => page(['bad-currency'], [n]), async () => null)).rejects.toThrow('Invalid');
   });
 });

@@ -124,7 +124,36 @@ describe("getProductByHandle", () => {
     await getProductByHandle("hair-bows-choose-your-fave-size-style");
     const body = JSON.parse(String((fetchMock.mock.calls[0][1] as RequestInit).body));
     expect(body.query).toContain("images(first: 100)");
-    expect(body.query).toContain("variants(first: 100)");
+    expect(body.query).toContain("variants(first: 100, after: $variantCursor)");
+    expect(body.query).toContain("pageInfo { hasNextPage endCursor }");
+  });
+
+  it("loads variants beyond the first 100 and retains their exact prices/options", async () => {
+    const response = (ids: number[], hasNextPage: boolean, endCursor: string) => new Response(JSON.stringify({ data: { product: { handle: 'pagination-product', variants: { edges: ids.map(id => ({ node: { id: `gid://shopify/ProductVariant/${id}`, price: { amount: id === 101 ? '9.95' : '49.95', currencyCode: 'AUD' }, selectedOptions: [{ name: 'Size', value: String(id) }] } })), pageInfo: { hasNextPage, endCursor } } } } }), { status: 200 });
+    const fetchMock = vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(response(Array.from({ length: 100 }, (_, i) => i + 1), true, 'first-page'))
+      .mockResolvedValueOnce(response([101], false, 'last-page'));
+    const result = await getProductByHandle('pagination-product');
+    expect(result.variants.edges).toHaveLength(101);
+    expect(result.variants.edges[100].node.price.amount).toBe('9.95');
+    expect(JSON.parse(String(fetchMock.mock.calls[1][1].body)).variables).toEqual({ handle: 'pagination-product', variantCursor: 'first-page' });
+  });
+
+  it("fails closed if a later product-variant page is missing", async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { product: { variants: { edges: [{ node: { id: 'first' } }], pageInfo: { hasNextPage: true, endCursor: 'first-page' } } } } }), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ data: { product: null } }), { status: 200 }));
+    expect(await getProductByHandle('missing-next-page')).toBeNull();
+  });
+
+  it("refreshes product price and availability on a repeat SPA visit", async () => {
+    const response = (amount: string, availableForSale: boolean) => new Response(JSON.stringify({ data: { product: { variants: { edges: [{ node: { id: 'fresh-product', price: { amount }, availableForSale } }] } } } }), { status: 200 });
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(response('49.95', true)).mockResolvedValueOnce(response('9.95', false));
+    expect((await getProductByHandle('fresh-product')).variants.edges[0].node.price.amount).toBe('49.95');
+    const updated = await getProductByHandle('fresh-product');
+    expect(updated.variants.edges[0].node).toMatchObject({ price: { amount: '9.95' }, availableForSale: false });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 });
 

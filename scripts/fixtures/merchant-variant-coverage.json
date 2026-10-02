@@ -1,0 +1,1314 @@
+{
+  "catalogueAsOf": "2026-10-02T12:11:34.997Z",
+  "differentPriceHandles": [
+    "juuce-stuck-up-lacquer",
+    "lamellar-vitality-glass-hair-treatment",
+    "pure-sacred-mask-hydrating-hair-treatment",
+    "island-vibes-self-tanning-foam",
+    "island-vibes-application-mit",
+    "wet-brush-kids-detangler",
+    "mini-unicorn-ponytail",
+    "poppet-locks-unicorn-straight-ponytail",
+    "christmas-packs",
+    "pure-christmas-packs-2025",
+    "christmas-reusable-ponytails",
+    "juuce-duo-gift-packs"
+  ],
+  "products": {
+    "juuce-stuck-up-lacquer": {
+      "45170332663989": {
+        "amount": "18.95",
+        "currencyCode": "AUD",
+        "sku": "45170332663989",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45170332696757": {
+        "amount": "25.95",
+        "currencyCode": "AUD",
+        "sku": "45170332696757",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45432150950069": {
+        "amount": "25.95",
+        "currencyCode": "AUD",
+        "sku": "45432150950069",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      }
+    },
+    "wet-brush-shower-detangler": {
+      "45175604248757": {
+        "amount": "21.95",
+        "currencyCode": "AUD",
+        "sku": "45175604248757",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45175604281525": {
+        "amount": "21.95",
+        "currencyCode": "AUD",
+        "sku": "45175604281525",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45175604314293": {
+        "amount": "21.95",
+        "currencyCode": "AUD",
+        "sku": "45175604314293",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51341654196405": {
+        "amount": "21.95",
+        "currencyCode": "AUD",
+        "sku": "51341654196405",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "lamellar-vitality-glass-hair-treatment": {
+      "52142566178997": {
+        "amount": "51.95",
+        "currencyCode": "AUD",
+        "sku": "52142566178997",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52142566211765": {
+        "amount": "32.95",
+        "currencyCode": "AUD",
+        "sku": "52142566211765",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "pure-sacred-mask-hydrating-hair-treatment": {
+      "53403807187125": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53403807187125",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53403807219893": {
+        "amount": "45.95",
+        "currencyCode": "AUD",
+        "sku": "53403807219893",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "silicon-travel-bottle-duo": {
+      "45362675187893": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "45362675187893",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45362675220661": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "45362675220661",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "head-massager": {
+      "45179269316789": {
+        "amount": "2.95",
+        "currencyCode": "AUD",
+        "sku": "5",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45179269349557": {
+        "amount": "2.95",
+        "currencyCode": "AUD",
+        "sku": "5",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "45179269382325": {
+        "amount": "2.95",
+        "currencyCode": "AUD",
+        "sku": "5",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45179269415093": {
+        "amount": "2.95",
+        "currencyCode": "AUD",
+        "sku": "5",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "wet-brush-pro-paddle-detangler": {
+      "53205604532405": {
+        "amount": "29.95",
+        "currencyCode": "AUD",
+        "sku": "53205604532405",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53205604565173": {
+        "amount": "29.95",
+        "currencyCode": "AUD",
+        "sku": "53205604565173",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "wet-brush-pro-detangler": {
+      "53205168881845": {
+        "amount": "29.95",
+        "currencyCode": "AUD",
+        "sku": "53205168881845",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53205168914613": {
+        "amount": "29.95",
+        "currencyCode": "AUD",
+        "sku": "53205168914613",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "island-vibes-self-tanning-foam": {
+      "45181348020405": {
+        "amount": "34.95",
+        "currencyCode": "AUD",
+        "sku": "45181348020405",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45181348053173": {
+        "amount": "34.95",
+        "currencyCode": "AUD",
+        "sku": "45181348053173",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52458828300469": {
+        "amount": "24.95",
+        "currencyCode": "AUD",
+        "sku": "52458828300469",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "wet-brush-speed-dry": {
+      "53204776976565": {
+        "amount": "26.95",
+        "currencyCode": "AUD",
+        "sku": "53204776976565",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53204777009333": {
+        "amount": "26.95",
+        "currencyCode": "AUD",
+        "sku": "53204777009333",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53204777042101": {
+        "amount": "26.95",
+        "currencyCode": "AUD",
+        "sku": "53204777042101",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53204777074869": {
+        "amount": "26.95",
+        "currencyCode": "AUD",
+        "sku": "53204777074869",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "island-vibes-application-mit": {
+      "52458837967029": {
+        "amount": "11.95",
+        "currencyCode": "AUD",
+        "sku": "52458837967029",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52458837999797": {
+        "amount": "11.95",
+        "currencyCode": "AUD",
+        "sku": "52458837999797",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52458838032565": {
+        "amount": "14.95",
+        "currencyCode": "AUD",
+        "sku": "52458838032565",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "wet-brush-kids-detangler": {
+      "45432815419573": {
+        "amount": "16.95",
+        "currencyCode": "AUD",
+        "sku": "45432815419573",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52487561576629": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "52487561576629",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53203907805365": {
+        "amount": "16.95",
+        "currencyCode": "AUD",
+        "sku": "53203907805365",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53203907838133": {
+        "amount": "16.95",
+        "currencyCode": "AUD",
+        "sku": "53203907838133",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "53203907870901": {
+        "amount": "16.95",
+        "currencyCode": "AUD",
+        "sku": "53203907870901",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "53203907903669": {
+        "amount": "16.95",
+        "currencyCode": "AUD",
+        "sku": "53203907903669",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53203907936437": {
+        "amount": "14.95",
+        "currencyCode": "AUD",
+        "sku": "53203907936437",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53203907969205": {
+        "amount": "14.95",
+        "currencyCode": "AUD",
+        "sku": "53203907969205",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "53203908001973": {
+        "amount": "16.95",
+        "currencyCode": "AUD",
+        "sku": "53203908001973",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53203908034741": {
+        "amount": "16.95",
+        "currencyCode": "AUD",
+        "sku": "53203908034741",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "mini-mermaid-pony": {
+      "45197166182581": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "45197166182581",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45197166215349": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "45197166215349",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "45197166248117": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "45197166248117",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "45197166346421": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "45197166346421",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52406639100085": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "52406639100085",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52406641361077": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "52406641361077",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "52406642933941": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "52406642933941",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52407166238901": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "52407166238901",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "52407166271669": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "52407166271669",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "mini-unicorn-ponytail": {
+      "52407300849845": {
+        "amount": "5.0",
+        "currencyCode": "AUD",
+        "sku": "52407300849845",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52407300882613": {
+        "amount": "7.5",
+        "currencyCode": "AUD",
+        "sku": "52407300882613",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53374917116085": {
+        "amount": "7.5",
+        "currencyCode": "AUD",
+        "sku": "53374917116085",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "poppet-locks-unicorn-straight-ponytail": {
+      "52407297343669": {
+        "amount": "15.0",
+        "currencyCode": "AUD",
+        "sku": "52407297343669",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53374920982709": {
+        "amount": "20.0",
+        "currencyCode": "AUD",
+        "sku": "53374920982709",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "toner-masks": {
+      "45379460366517": {
+        "amount": "32.95",
+        "currencyCode": "AUD",
+        "sku": "45379460366517",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45379689840821": {
+        "amount": "32.95",
+        "currencyCode": "AUD",
+        "sku": "45379689840821",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45379689873589": {
+        "amount": "32.95",
+        "currencyCode": "AUD",
+        "sku": "45379689873589",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45379689906357": {
+        "amount": "32.95",
+        "currencyCode": "AUD",
+        "sku": "45379689906357",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45379689939125": {
+        "amount": "32.95",
+        "currencyCode": "AUD",
+        "sku": "45379689939125",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "pure-colour-optimising-treatments": {
+      "45431917904053": {
+        "amount": "34.95",
+        "currencyCode": "AUD",
+        "sku": "45431917904053",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45431917936821": {
+        "amount": "34.95",
+        "currencyCode": "AUD",
+        "sku": "45431917936821",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "45431917969589": {
+        "amount": "34.95",
+        "currencyCode": "AUD",
+        "sku": "45431917969589",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "45431918002357": {
+        "amount": "34.95",
+        "currencyCode": "AUD",
+        "sku": "45431918002357",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "glow-go-tote": {
+      "52456856354997": {
+        "amount": "24.95",
+        "currencyCode": "AUD",
+        "sku": "52456856354997",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52456856387765": {
+        "amount": "24.95",
+        "currencyCode": "AUD",
+        "sku": "52456856387765",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "christmas-packs": {
+      "51731872907445": {
+        "amount": "69.95",
+        "currencyCode": "AUD",
+        "sku": "51731872907445",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731872940213": {
+        "amount": "69.95",
+        "currencyCode": "AUD",
+        "sku": "51731872940213",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731872972981": {
+        "amount": "69.95",
+        "currencyCode": "AUD",
+        "sku": "51731872972981",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731873005749": {
+        "amount": "69.95",
+        "currencyCode": "AUD",
+        "sku": "51731873005749",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731873038517": {
+        "amount": "74.95",
+        "currencyCode": "AUD",
+        "sku": "51731873038517",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "51731873071285": {
+        "amount": "70.95",
+        "currencyCode": "AUD",
+        "sku": "51731873071285",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731873104053": {
+        "amount": "70.95",
+        "currencyCode": "AUD",
+        "sku": "51731873104053",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "51731873136821": {
+        "amount": "69.95",
+        "currencyCode": "AUD",
+        "sku": "51731873136821",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731873169589": {
+        "amount": "70.95",
+        "currencyCode": "AUD",
+        "sku": "51731873169589",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      }
+    },
+    "pure-christmas-packs-2025": {
+      "51731877134517": {
+        "amount": "89.9",
+        "currencyCode": "AUD",
+        "sku": "51731877134517",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "51731877167285": {
+        "amount": "89.95",
+        "currencyCode": "AUD",
+        "sku": "51731877167285",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "51731877200053": {
+        "amount": "89.9",
+        "currencyCode": "AUD",
+        "sku": "51731877200053",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "51731877232821": {
+        "amount": "89.9",
+        "currencyCode": "AUD",
+        "sku": "51731877232821",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "51731877265589": {
+        "amount": "89.95",
+        "currencyCode": "AUD",
+        "sku": "51731877265589",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "51731877298357": {
+        "amount": "108.95",
+        "currencyCode": "AUD",
+        "sku": "51731877298357",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731877331125": {
+        "amount": "89.9",
+        "currencyCode": "AUD",
+        "sku": "51731877331125",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "51731877363893": {
+        "amount": "91.95",
+        "currencyCode": "AUD",
+        "sku": "51731877363893",
+        "availability": "BackOrder",
+        "requiresShipping": true
+      },
+      "53208841846965": {
+        "amount": "126.95",
+        "currencyCode": "AUD",
+        "sku": "53208841846965",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "christmas-reusable-ponytails": {
+      "52019199180981": {
+        "amount": "20.0",
+        "currencyCode": "AUD",
+        "sku": "52019199180981",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52019199213749": {
+        "amount": "15.0",
+        "currencyCode": "AUD",
+        "sku": "52019199213749",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "52019199246517": {
+        "amount": "15.0",
+        "currencyCode": "AUD",
+        "sku": "52019199246517",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "juuce-duo-gift-packs": {
+      "53240947769525": {
+        "amount": "39.95",
+        "currencyCode": "AUD",
+        "sku": "53240947769525",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53240947802293": {
+        "amount": "37.95",
+        "currencyCode": "AUD",
+        "sku": "53240947802293",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "plastic-lined-shower-cap": {
+      "53389995704501": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53389995704501",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53389995737269": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53389995737269",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53389995770037": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53389995770037",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53389995802805": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53389995802805",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "satin-lined-shower-cap": {
+      "53389996916917": {
+        "amount": "14.95",
+        "currencyCode": "AUD",
+        "sku": "53389996916917",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53389996949685": {
+        "amount": "14.95",
+        "currencyCode": "AUD",
+        "sku": "53389996949685",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53396829405365": {
+        "amount": "14.95",
+        "currencyCode": "AUD",
+        "sku": "53396829405365",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53396829438133": {
+        "amount": "14.95",
+        "currencyCode": "AUD",
+        "sku": "53396829438133",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "hair-bows-choose-your-fave-size-style": {
+      "53400144478389": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400144478389",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400144543925": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400144543925",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400144511157": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400144511157",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53399966286005": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53399966286005",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400786305205": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400786305205",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400786370741": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400786370741",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400786337973": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400786337973",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400786403509": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400786403509",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400786436277": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400786436277",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400786534581": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400786534581",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400144576693": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400144576693",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794464437": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794464437",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794497205": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794497205",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794529973": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794529973",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794562741": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794562741",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794595509": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794595509",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794628277": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794628277",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794661045": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794661045",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794693813": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794693813",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794726581": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794726581",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794759349": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794759349",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794792117": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794792117",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400922226869": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400922226869",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400794824885": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400794824885",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400969642165": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400969642165",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799019189": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799019189",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799051957": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799051957",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799084725": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799084725",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799117493": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799117493",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799150261": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799150261",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799183029": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799183029",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799215797": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799215797",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400799248565": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400799248565",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880578741": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880578741",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880611509": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880611509",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880644277": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880644277",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880677045": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880677045",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880709813": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880709813",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880742581": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880742581",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880775349": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880775349",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880808117": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880808117",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400880840885": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53400880840885",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401049956533": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401049956533",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401049989301": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401049989301",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401050022069": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401050022069",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401050054837": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401050054837",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401205833909": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401205833909",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401205866677": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401205866677",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401205899445": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401205899445",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401205932213": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401205932213",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401205964981": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401205964981",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401523912885": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401523912885",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401523945653": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401523945653",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401523978421": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401523978421",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524011189": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524011189",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524043957": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524043957",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524076725": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524076725",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524109493": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524109493",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524142261": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524142261",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524175029": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524175029",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524207797": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524207797",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524240565": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524240565",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524273333": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524273333",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524306101": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524306101",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53401524338869": {
+        "amount": "4.95",
+        "currencyCode": "AUD",
+        "sku": "53401524338869",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "untitled-sep30_09-20-43": {
+      "53400313135285": {
+        "amount": "129.95",
+        "currencyCode": "AUD",
+        "sku": "53400313135285",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53400313168053": {
+        "amount": "129.95",
+        "currencyCode": "AUD",
+        "sku": "53400313168053",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "colour-pop-lucky-dip-hair-accessory-bags": {
+      "53405197762741": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53405197762741",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405197795509": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53405197795509",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405197828277": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53405197828277",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405197861045": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53405197861045",
+        "availability": "OutOfStock",
+        "requiresShipping": true
+      },
+      "53405197893813": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53405197893813",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405197926581": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53405197926581",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405197959349": {
+        "amount": "9.95",
+        "currencyCode": "AUD",
+        "sku": "53405197959349",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    },
+    "hair-tie-surprise-stacks": {
+      "53405219618997": {
+        "amount": "8.95",
+        "currencyCode": "AUD",
+        "sku": "53405219618997",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405219651765": {
+        "amount": "8.95",
+        "currencyCode": "AUD",
+        "sku": "53405219651765",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405219684533": {
+        "amount": "8.95",
+        "currencyCode": "AUD",
+        "sku": "53405219684533",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405219717301": {
+        "amount": "8.95",
+        "currencyCode": "AUD",
+        "sku": "53405219717301",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405219750069": {
+        "amount": "8.95",
+        "currencyCode": "AUD",
+        "sku": "53405219750069",
+        "availability": "InStock",
+        "requiresShipping": true
+      },
+      "53405219782837": {
+        "amount": "8.95",
+        "currencyCode": "AUD",
+        "sku": "53405219782837",
+        "availability": "InStock",
+        "requiresShipping": true
+      }
+    }
+  }
+}

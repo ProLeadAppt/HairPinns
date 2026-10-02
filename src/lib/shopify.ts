@@ -1,4 +1,5 @@
 import { projectConfig } from "@/config/projectConfig";
+import { collectVariantConnection } from "../../shared/variantSnapshotCatalogue.js";
 import {
   excludeRetiredProductEdges,
   isRetiredProductHandle,
@@ -95,7 +96,7 @@ export async function getProductByHandle(handle: string) {
   if (isRetiredProductHandle(handle)) return null;
 
   const query = `
-    query getProduct($handle: String!) {
+    query getProduct($handle: String!, $variantCursor: String) {
       product(handle: $handle) {
         id
         title
@@ -133,7 +134,7 @@ export async function getProductByHandle(handle: string) {
             }
           }
         }
-        variants(first: 100) {
+        variants(first: 100, after: $variantCursor) {
           edges {
             node {
               id
@@ -161,13 +162,24 @@ export async function getProductByHandle(handle: string) {
               }
             }
           }
+          pageInfo { hasNextPage endCursor }
         }
       }
     }
   `;
 
   try {
-    const data = await fetchShopify<{ product: any }>(query, { handle });
+    // Product prices/state must refresh on a later visit, rather than reuse
+    // a previous SPA navigation's read cache indefinitely.
+    const options = { cache: false, timeoutMs: 20000 };
+    const data = await fetchShopify<{ product: any }>(query, { handle }, options);
+    if (data.product?.variants?.pageInfo?.hasNextPage) {
+      const complete = await collectVariantConnection(data.product.variants, async cursor => {
+        const next = await fetchShopify<{ product: any }>(query, { handle, variantCursor: cursor }, options);
+        return next.product?.variants;
+      });
+      data.product.variants = { edges: complete.nodes.map(node => ({ node })), pageInfo: complete.pageInfo };
+    }
     return data.product;
   } catch (error) {
     console.error(`Failed to fetch product ${handle}:`, error);
