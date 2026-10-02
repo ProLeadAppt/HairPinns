@@ -9,6 +9,9 @@ const publicDir = resolve(root, 'public');
 const walkHtml = (directory) => {
   const files = [];
   for (const entry of readdirSync(directory)) {
+    // Internal variant rewrite targets deliberately share the product canonical.
+    // Their price/schema integrity is checked by prerender's snapshot guard.
+    if (directory === dist && entry === '_product-variants') continue;
     const path = resolve(directory, entry);
     if (statSync(path).isDirectory()) files.push(...walkHtml(path));
     else if (entry === 'index.html') files.push(path);
