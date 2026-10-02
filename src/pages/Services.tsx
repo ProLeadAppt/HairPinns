@@ -93,21 +93,21 @@ export const serviceCategories: ServiceCategory[] = [
           title: "1/4 Head Foils, Cut & Blow-dry",
           duration: "2h 15min",
           serviceCount: "2 services",
-          description: "Enhance your hair with a 1/4 head of foils, cut and blow-dry",
+          description: "Enhance your hair with a 1/4 head of foils, cut and blow-dry. Toner is not included. Pricing may vary with hair length.",
           price: "A$ 223"
         },
         {
           title: "1/2 Head of Foils, Cut & Blow-dry",
           duration: "2h 15min",
           serviceCount: "2 services",
-          description: "Spice up is the perfect package that combines highlights, style cut and blowdry in one pampering session",
+          description: "Spice up is the perfect package that combines highlights, style cut and blowdry in one pampering session. Toner is not included. Pricing may vary with hair length.",
           price: "A$ 253"
         },
         {
           title: "Full Head of Foils Package",
           duration: "2h 45min",
           serviceCount: "2 services",
-          description: "This package includes a full head of foils, style-cut & blow-dry",
+          description: "This package includes a full head of foils, style-cut & blow-dry. Toner is not included. Pricing may vary with hair length.",
           price: "A$ 283"
         }
       ]
@@ -203,7 +203,7 @@ export const serviceCategories: ServiceCategory[] = [
       title: "Time-Out",
       services: [
         {
-          title: "Hot Towel Treatment Add On",
+          title: "Hot Towel Express Treatment Add On",
           duration: "10min",
           description: "Add a hot towel treatment to any service to relax, unwind and get the best results from a hair mask.",
           price: "A$ 15"
@@ -296,6 +296,7 @@ export const serviceCategories: ServiceCategory[] = [
         },
         {
           title: "Iron Straight Add On",
+          duration: "5min",
           price: "A$ 24"
         }
       ]

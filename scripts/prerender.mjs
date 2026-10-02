@@ -33,10 +33,15 @@ import { fileURLToPath } from 'url';
 import { collectRoutes } from './collect-prerender-routes.js';
 import { commercePrerenderIssue, isTransientBrowserError, isTransientPrerenderRouteError } from './prerender-retry.mjs';
 import { getListeningPort, resolveRequestedPort } from './prerender-port.mjs';
+import variantManifest from '../shared/productVariantSnapshots.generated.js';
+import { variantSnapshotRoutes } from '../shared/productVariantSnapshots.js';
+import { variantSnapshotIssue } from './variant-snapshot-validation.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 const distDir = resolve(root, 'dist');
+const variantSnapshots = variantSnapshotRoutes(variantManifest);
+const variantSnapshotByRoute = new Map(variantSnapshots.map(item => [item.route, item]));
 
 // ----- args -----
 const args = process.argv.slice(2);
@@ -164,6 +169,8 @@ function routeToPath(route) {
   // /404         -> dist/404.html (Netlify convention)
   if (route === '/' || route === '') return { file: 'index.html', dir: '' };
   if (route === '/404') return { file: '404.html', dir: '' };
+  const snapshot = variantSnapshotByRoute.get(route);
+  if (snapshot) return { file: 'index.html', dir: snapshot.path.slice(1).replace(/\/index\.html$/, '') };
   const clean = route.replace(/^\//, '').replace(/\/$/, '');
   return { file: 'index.html', dir: clean };
 }
@@ -256,7 +263,7 @@ async function main() {
     console.warn('[prerender] dist/index.html does not look like a Vite SPA shell — proceeding anyway.');
   }
 
-  const allRoutes = await collectRoutes();
+  const allRoutes = [...await collectRoutes(), ...variantSnapshots.map(item => item.route)];
   // De-dupe + sort: static first (most important for crawlers), then alphabetical
   const order = (r) => {
     if (r === '/') return 0;
@@ -264,7 +271,7 @@ async function main() {
     if (/^\/(about|contact|services|booking|blog|faq|reviews|collections|areas|search|sitemap)$/.test(r)) return 1;
     return 2;
   };
-  const routes = [...new Set(allRoutes)].filter((route) => !ONLY_ROUTE || route === ONLY_ROUTE).sort((a, b) => {
+  const routes = [...new Set(allRoutes)].filter((route) => (!ONLY_ROUTE || route === ONLY_ROUTE) && (argMap['variant-snapshots-only'] !== 'true' || variantSnapshotByRoute.has(route))).sort((a, b) => {
     const oa = order(a), ob = order(b);
     return oa !== ob ? oa - ob : a.localeCompare(b);
   });
@@ -382,6 +389,11 @@ async function main() {
             const cleanedHtml = postProcessHtml(rawHtml);
             const commerceIssue = commercePrerenderIssue(route, cleanedHtml);
             if (commerceIssue) throw new Error(commerceIssue);
+            const snapshot = variantSnapshotByRoute.get(route);
+            if (snapshot) {
+              const issue = variantSnapshotIssue(cleanedHtml, snapshot.expected);
+              if (issue) throw new Error(issue);
+            }
             // Sanity checks: must have <h1>, <title>, meta description, JSON-LD
             const h1Count = (cleanedHtml.match(/<h1\b/gi) || []).length;
             const jsonLdCount = (cleanedHtml.match(/<script[^>]*type=["']application\/ld\+json["']/gi) || []).length;

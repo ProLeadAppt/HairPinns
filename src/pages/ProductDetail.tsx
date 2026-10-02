@@ -38,6 +38,9 @@ import { generateEnhancedProductSchema, generateBreadcrumbSchema, generateFAQPag
 import { getProductHowTo } from "@/data/productHowTo";
 import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import { getProductAvailability } from "@/lib/productAvailability";
+import { productOptionGuidance } from "@/lib/productOptionGuidance";
+import { getProductAdvice } from "@/lib/productAdvice";
+import { ProductDescription } from "@/components/product/ProductDescription";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
   widths.map((width) => `${shopifyImage(url, width)} ${width}w`).join(", ");
@@ -52,7 +55,8 @@ const imagesMatch = (left: any, right: any): boolean => Boolean(left && right &&
 const ProductDetail = () => {
   const { handle } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const requestedVariant = searchParams.get("variant");
+  const requestedVariantValues = searchParams.getAll("variant");
+  const requestedVariant = requestedVariantValues.length === 0 ? null : requestedVariantValues.length === 1 && requestedVariantValues[0] ? requestedVariantValues[0] : 'unavailable';
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentImage, setCurrentImage] = useState(0);
@@ -399,14 +403,20 @@ const ProductDetail = () => {
     );
   }
 
-  const activeVariant = variantEdges.find((e: any) => e.node.id === activeVariantId)?.node;
-  const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : parseFloat(product.priceRange?.minVariantPrice?.amount || "0");
+  // Resolve synchronously so the first render, schema and prerender agree.
+  // A partially selected, nonexistent combination must not reuse the URL's
+  // previous variant while the shopper completes their other options.
+  const hasUnmatchedOptions = activeVariantId === null && Object.keys(selectedOptions).length > 0;
+  const activeVariant = hasUnmatchedOptions ? undefined : requestedVariant !== null
+    ? variantEdges.find((e: any) => e.node.id === requestedVariant || e.node.id.split('/').pop() === requestedVariant)?.node
+    : variantEdges.find((e: any) => e.node.id === activeVariantId)?.node || variantEdges.find((e: any) => e.node.availableForSale)?.node || variantEdges[0]?.node;
+  const price = activeVariant ? parseFloat(activeVariant.price?.amount || "0") : 0;
   const compareAtPrice = activeVariant?.compareAtPrice?.amount
     ? parseFloat(activeVariant.compareAtPrice.amount)
     : null;
   const availability = getProductAvailability(activeVariant);
   const isAvailable = availability.canPurchase;
-  const isDigitalProduct = activeVariant?.requiresShipping === false;
+  const isDigitalProduct = activeVariant?.requiresShipping === false || (!activeVariant && variantEdges.every((e: any) => e.node.requiresShipping === false));
 
   const currentImg = images[currentImage];
 
@@ -432,11 +442,13 @@ const ProductDetail = () => {
     const values = getOptionValues(optionName);
     return !(optionName === "Title" && values.length === 1 && values[0] === "Default Title");
   });
+  const optionGuidance = productOptionGuidance(visibleOptionNames, variantEdges.length, images.length);
+  const productAdvice = getProductAdvice(product.descriptionHtml || "");
 
   // Build product schemas
   const productDescription = buildMetaDescription(
     product.description || `${product.title} - Professional hair care product from Hair Pinns`,
-    { suffix: "Shipped Australia-wide. Free shipping over $150." },
+    { suffix: isDigitalProduct ? "Delivered digitally by email. No physical shipping required." : "Shipped Australia-wide. Free shipping over $150." },
   );
 
   const productFaqs = isDigitalProduct
@@ -459,12 +471,13 @@ const ProductDetail = () => {
       { name: product.title, url: `https://hairpinns.com/products/${handle}` },
     ]),
     (() => {
+      if (!activeVariant) return null;
       try {
         return generateEnhancedProductSchema({
           name: product.title,
           description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
           image: imageUrls.length > 0 ? imageUrls : [getOGImage('product')],
-          url: `https://hairpinns.com/products/${handle}`,
+          url: `https://hairpinns.com/products/${handle}/?variant=${activeVariant.id.split('/').pop()}`,
           price: (Number.isFinite(price) ? price : 0).toString(),
           currency: activeVariant?.price?.currencyCode || "AUD",
           // brand = the product's manufacturer (Juuce, Aromaganic, QIQI, etc.)
@@ -472,7 +485,7 @@ const ProductDetail = () => {
           // the vendor isn't set in Shopify catalog. Hair Pinns acts as the
           // seller, not the brand, so seller is set separately in the schema.
           brand: product.vendor || "Hair Pinns",
-          sku: activeVariant?.sku || product.id?.split("/")?.pop() || product.handle || "",
+          sku: activeVariant.sku || activeVariant.id.split('/').pop() || "",
           productID: product.id,
           gtin: activeVariant?.barcode || undefined,
           availability: availability.schema,
@@ -503,7 +516,7 @@ const ProductDetail = () => {
         supply: howTo.supply?.map((s) => ({ name: s })),
       })];
     })(),
-  ];
+  ].filter(Boolean);
 
   return (
     <div className="min-h-screen bg-background">
@@ -720,9 +733,19 @@ const ProductDetail = () => {
                   </div>
                 ))}
 
-                {!activeVariant && <p role="status" className="text-sm text-destructive">This option is not available. Please choose a style above; no alternative has been added to your bag.</p>}
-                {images.length > 1 && <p className="text-sm text-muted-foreground">Select a labelled style to choose your brush or product. Gallery-only photographs do not change your selection.</p>}
+                {!activeVariant && <p role="status" className="text-sm text-destructive">This option is not available. Please choose an option above; no alternative has been added to your bag.</p>}
+                {optionGuidance && <p className="text-sm text-muted-foreground">{optionGuidance}</p>}
 
+                {productAdvice.length > 0 && (
+                  <dl aria-label="Product advice" className="space-y-3 border-t border-border pt-4">
+                    {productAdvice.map(({ heading, text }) => (
+                      <div key={heading}>
+                        <dt className="text-sm font-semibold">{heading}</dt>
+                        <dd className="mt-1 text-sm leading-6 text-muted-foreground">{text}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
                 <div data-product-purchase-actions="" className="space-y-3">
                   <Button
                     variant="primary"
@@ -748,6 +771,10 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="border-y border-[hsl(var(--after-hours-plum)/0.18)] py-3">
+                  {isDigitalProduct ? <>
+                    <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Digital delivery</p>
+                    <p className="mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Delivered by email. No physical shipping is required.</p>
+                  </> : <>
                   <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Shipping across Australia</p>
                   <p className="mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Shipping times below start after dispatch. Preorders and items available to order may need extra time before dispatch. Check the product description for availability. Express shipping does not bring forward preorder dispatch.</p>
                   <dl className="mt-2 text-sm text-[hsl(var(--hp-ink)/0.72)]">
@@ -756,6 +783,7 @@ const ProductDetail = () => {
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</dt><dd>Free standard</dd></div>
                   </dl>
                   <Link to="/policies/shipping" className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--hp-ink))] underline underline-offset-4">Read shipping policy</Link>
+                  </>}
                 </div>
 
                 <div>
@@ -783,28 +811,10 @@ const ProductDetail = () => {
 
                   <TabsContent value="description" className="mt-4">
                     <div className="prose prose-sm max-w-none text-foreground">
-                      {(() => {
-                        try {
-                          const rawDesc = product.description ?? product.descriptionHtml ?? "";
-                          const description = typeof rawDesc === "string" ? rawDesc : String(rawDesc);
-                          const sentences = description.split(/[.!?]+/).filter((s: string) => s.trim().length > 10);
-                          const keyPoints = sentences.slice(0, 5).map((s: string) => s.trim()).filter(Boolean);
-
-                          if (keyPoints.length === 0) {
-                            return <p>Professional hair care product designed for great results at home.</p>;
-                          }
-
-                          return (
-                            <div className="space-y-2">
-                              {keyPoints.map((point, index) => (
-                                <p key={index} className="text-sm leading-relaxed">{point}.</p>
-                              ))}
-                            </div>
-                          );
-                        } catch {
-                          return <p>Professional hair care product designed for great results at home.</p>;
-                        }
-                      })()}
+                      <ProductDescription
+                        description={product.description}
+                        descriptionHtml={product.descriptionHtml}
+                      />
                     </div>
                   </TabsContent>
 
@@ -923,7 +933,7 @@ const ProductDetail = () => {
       </main>
 
       <Footer />
-      {product && (
+      {product && activeVariant && (
         <SilentErrorBoundary>
           <StickyAddToCart
             productTitle={product.title}

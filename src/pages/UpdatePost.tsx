@@ -4,6 +4,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SEOHead from "@/components/SEOHead";
+import { formatPublicArticleHtml } from "@/lib/publicArticleLayout";
+import "@/styles/publicArticle.css";
 import { getOGImage } from "@/lib/sitemap";
 import {
   getPublicArticle,
@@ -51,7 +53,7 @@ const UpdatePost = ({ blogHandle = "updates", basePath = "/updates" }: { blogHan
   }, [handle, blogHandle]);
 
   const cleanHtml = useMemo(
-    () => sanitisePublicArticleHtml(article?.contentHtml || ""),
+    () => formatPublicArticleHtml(sanitisePublicArticleHtml(article?.contentHtml || "")),
     [article?.contentHtml],
   );
 
@@ -127,10 +129,11 @@ const UpdatePost = ({ blogHandle = "updates", basePath = "/updates" }: { blogHan
       <main id="main-content" tabIndex={-1} data-public-update="">
         <article>
           <header className="bg-[hsl(var(--hp-lavender))]">
-            <div className="mx-auto grid max-w-[78rem] gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.62fr_0.38fr] lg:items-end lg:px-8 lg:py-24">
+            <div className="journal-header mx-auto grid max-w-[78rem] gap-10 px-6 py-12 sm:px-8 sm:py-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end lg:px-12 lg:py-20">
               <div>
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-purple))]">Hair Pinns / {sectionLabel}</p>
-                <h1 className="mt-5 max-w-[15ch] font-heading text-[clamp(3rem,7vw,6.5rem)] font-semibold leading-[0.92] tracking-[-0.05em]">{article.title}</h1>
+                <h1 className="mt-5 max-w-[20ch] font-heading text-[clamp(2.65rem,5.5vw,5.5rem)] font-semibold leading-[1.04] tracking-[-0.035em]">{article.title}</h1>
+                {article.excerpt?.trim() && <p className="journal-deck">{publicExcerpt(article.excerpt, '', 320)}</p>}
               </div>
               <dl className="grid grid-cols-2 border-y border-[hsl(var(--hp-ink)/0.2)] py-5 text-sm">
                 <div><dt className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.56)]">From</dt><dd className="mt-2">{author}</dd></div>
@@ -140,28 +143,29 @@ const UpdatePost = ({ blogHandle = "updates", basePath = "/updates" }: { blogHan
           </header>
 
           {article.image?.url ? (
-            <figure className="mx-auto max-w-[78rem] border-x border-b border-[hsl(var(--hp-ink)/0.12)] bg-[hsl(var(--hp-lavender))]">
+            <figure className="journal-hero mx-auto max-w-[78rem] bg-[hsl(var(--hp-lavender))]">
               <img
                 src={article.image.url}
                 alt={article.image.altText || article.title}
                 width={article.image.width || 1600}
                 height={article.image.height || 900}
-                className="max-h-[46rem] w-full object-cover"
+                className="w-full object-contain"
                 loading="eager"
                 fetchPriority="high"
               />
             </figure>
           ) : null}
 
-          <div className="mx-auto grid max-w-[78rem] gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,46rem)_16rem] lg:justify-between lg:px-8">
+          <div className="journal-reading-layout">
             <div
-              className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-[hsl(var(--hp-ink))] prose-a:text-[hsl(var(--hp-purple))] prose-a:underline prose-a:underline-offset-4 prose-strong:text-[hsl(var(--hp-ink))]"
+              className="journal-body"
+              data-public-article-body=""
               dangerouslySetInnerHTML={{ __html: cleanHtml }}
             />
-            <aside className="h-fit border-t border-[hsl(var(--hp-purple))] pt-5">
+            <aside className="journal-next-step">
               <p className="text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--hp-purple))]">Useful next step</p>
               <p className="mt-4 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Browse Jena’s salon-tested products or book a personalised consultation in Bangor.</p>
-              <div className="mt-6 grid gap-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <Link to="/collections" className="flex min-h-12 items-center justify-between bg-[hsl(var(--hp-purple))] px-4 py-3 text-sm font-semibold text-white">Shop products <span aria-hidden="true">→</span></Link>
                 <Link to="/booking" className="flex min-h-12 items-center justify-between border border-[hsl(var(--hp-purple)/0.4)] px-4 py-3 text-sm font-semibold text-[hsl(var(--hp-ink))]">Book salon <span aria-hidden="true">↗</span></Link>
               </div>
@@ -170,7 +174,7 @@ const UpdatePost = ({ blogHandle = "updates", basePath = "/updates" }: { blogHan
         </article>
         <section className="bg-[hsl(var(--hp-lavender))]">
           <div className="mx-auto flex max-w-[78rem] flex-col gap-5 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-            <p className="max-w-2xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">This public edition is designed to be shared. It contains no recipient details, unsubscribe token or private preview link.</p>
+            <p className="max-w-2xl text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">More hair care advice and thoughtful picks from Jena.</p>
             <Link to={basePath} className="inline-flex min-h-11 items-center font-semibold text-[hsl(var(--hp-purple))]">Back to the {sectionLabel.toLowerCase()} <span className="ml-2" aria-hidden="true">→</span></Link>
           </div>
         </section>

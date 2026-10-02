@@ -1,0 +1,80 @@
+/* Public Shopify journal and email editions share this editorial foundation.
+   Scope it to this template so other site pages keep their existing layout. */
+.journal-deck {
+  max-width: 54ch;
+  margin-top: 1.5rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.7;
+  color: hsl(var(--hp-ink) / .76);
+}
+.journal-hero { padding: 0 1.5rem 2rem; }
+.journal-hero img { max-height: 34rem; height: auto; margin: 0 auto; }
+.journal-reading-layout {
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 4rem;
+}
+.journal-body {
+  min-width: 0;
+  color: hsl(var(--hp-ink) / .85);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.journal-body > :not(section),
+.journal-body .journal-section:not(.journal-section--illustrated) { max-width: 66ch; margin-left: auto; margin-right: auto; }
+.journal-body p { margin: 0 0 1.35em; }
+.journal-body h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.journal-body h3 { margin: 2.5rem 0 1rem; font-size: 1.4rem; line-height: 1.35; }
+.journal-body h4 { margin: 2rem 0 .75rem; font-size: 1.1rem; }
+.journal-body > h2:not(:first-child) { margin-top: 4rem; }
+.journal-body strong { color: hsl(var(--hp-ink)); font-weight: 600; }
+.journal-body h2 + p:has(> strong:only-child) { color: hsl(var(--hp-purple)); font-size: .95em; line-height: 1.6; }
+.journal-body a {
+  color: hsl(var(--hp-purple));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .25em;
+}
+.journal-body a:hover { text-decoration-thickness: 2px; }
+.journal-body a:focus-visible { outline: 2px solid hsl(var(--hp-purple)); outline-offset: 5px; }
+.journal-body p:has(> a:only-child) > a { display: inline-block; padding: .45rem 0; font-weight: 600; }
+.journal-body ul, .journal-body ol { margin: 1.5rem 0 2rem; padding-left: 1.5rem; }
+.journal-body ul { list-style: disc; }
+.journal-body ol { list-style: decimal; }
+.journal-body li { margin: .65rem 0; padding-left: .25rem; }
+.journal-body blockquote { margin: 2.5rem 0; border-left: 2px solid hsl(var(--hp-purple) / .4); padding: .5rem 0 .5rem 1.5rem; font-family: "Playfair Display", Georgia, serif; font-size: 1.35rem; }
+.journal-body blockquote p:last-child { margin-bottom: 0; }
+.journal-body .journal-section { margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid hsl(var(--hp-ink) / .16); }
+.journal-body .journal-section:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.journal-section-copy, .journal-section-media { min-width: 0; }
+.journal-section-copy > :last-child { margin-bottom: 0; }
+.journal-body figure { margin: 2rem 0 0; }
+.journal-body figure img { display: block; width: 100%; max-height: 30rem; height: auto; object-fit: contain; background: hsl(var(--hp-lavender) / .55); }
+.journal-body figure a { display: block; }
+.journal-body figcaption { margin-top: .9rem; font-size: .78rem; line-height: 1.65; color: hsl(var(--hp-ink) / .7); }
+.journal-body img { max-width: 100%; height: auto; }
+.journal-body small { font-size: .8em; line-height: 1.7; }
+.journal-body .price-note { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid hsl(var(--hp-ink) / .16); }
+.journal-body hr { margin: 3rem 0; border-color: hsl(var(--hp-ink) / .16); }
+.journal-body table { display: block; max-width: 100%; overflow-x: auto; margin: 2rem 0; border-collapse: collapse; }
+.journal-body th, .journal-body td { padding: .75rem; border-bottom: 1px solid hsl(var(--hp-ink) / .16); text-align: left; }
+.journal-next-step { max-width: 66ch; margin: 4rem auto 0; padding: 2rem; background: hsl(var(--hp-lavender)); border-top: 1px solid hsl(var(--hp-purple) / .3); }
+@media (min-width: 768px) {
+  .journal-reading-layout { padding: 5rem 3rem 6rem; }
+  .journal-body { font-size: 1.125rem; }
+  .journal-body .journal-section { margin-top: 5rem; padding-top: 4rem; }
+  .journal-hero { padding: 0 3rem 3rem; }
+}
+@media (min-width: 1024px) {
+  .journal-section--illustrated { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 4rem; align-items: start; }
+  .journal-body .journal-section--illustrated figure { margin-top: 0; }
+  .journal-section-media { padding-top: .4rem; }
+}

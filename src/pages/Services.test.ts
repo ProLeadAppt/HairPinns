@@ -60,3 +60,24 @@ describe("current Fresha service menu", () => {
     }
   });
 });
+
+describe("approved service menu clarifications", () => {
+  const foilTitles = ["Full Head of Foils Package", "1/2 Head of Foils, Cut & Blow-dry", "1/4 Head Foils, Cut & Blow-dry"];
+  const note = "Toner is not included. Pricing may vary with hair length.";
+  it.each(foilTitles)("states toner and length conditions for %s in directory and details", (title) => {
+    const directory = serviceCategories.flatMap(category => category.services).find(service => service.title === title);
+    const detail = serviceDetailData.flatMap(category => category.services).find(service => service.title === title);
+    expect(directory?.description).toContain(note);
+    expect(detail?.description).toContain(note);
+    expect(detail?.whatsIncluded).not.toContain("Toner application if needed");
+  });
+  it("uses the approved express treatment name without changing its price", () => {
+    expect(directoryPrices.get("Hot Towel Express Treatment Add On")).toBe("A$ 15");
+    expect(directoryPrices.has("Hot Towel Treatment Add On")).toBe(false);
+  });
+  it("shows five minutes for the iron-straight add-on without changing its price", () => {
+    const service = serviceCategories.flatMap(category => category.services).find(service => service.title === "Iron Straight Add On");
+    expect(service?.duration).toBe("5min");
+    expect(service?.price).toBe("A$ 24");
+  });
+});

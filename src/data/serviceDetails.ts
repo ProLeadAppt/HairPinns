@@ -336,14 +336,13 @@ export const serviceDetailData: ServiceCategoryData[] = [
         quickAnswer: "The Full Head of Foils package includes a full head of foil highlights, precision cut, and professional blow-dry for a complete blonde transformation. Typically takes 2h 45min and is ideal for dramatic lightening or all-over dimension.",
         duration: "2h 45min",
         price: "A$ 283",
-        description: "A full head of foils, precision cut and professional blow-dry in one appointment. Jena will talk through the tone, brightness and maintenance before starting so the result suits your hair and routine.",
+        description: "A full head of foils, precision cut and professional blow-dry in one appointment. Jena will talk through the tone, brightness and maintenance before starting so the result suits your hair and routine. Toner is not included. Pricing may vary with hair length.",
         metaDescription: "Full head foils package Bangor. Blonde highlights with cut and blow-dry, from A$283. Expert colour by Jena at Hair Pinns NSW.",
         whatsIncluded: [
           "Full head of foil highlights",
           "Custom colour consultation",
           "Precision style cut",
           "Professional blow-dry and styling",
-          "Toner application if needed",
           "Aftercare advice and product recommendations"
         ],
         whoItsFor: [
@@ -362,8 +361,8 @@ export const serviceDetailData: ServiceCategoryData[] = [
             description: "Carefully placed foils throughout your entire head create beautiful dimensional colour."
           },
           {
-            step: "Cut, Tone & Style",
-            description: "After colour, we cut your hair to perfection, apply toner if needed, and style you to leave looking amazing."
+            step: "Cut & Style",
+            description: "After colour, we cut your hair to perfection and style you to leave looking amazing. Toner is not included."
           }
         ],
         benefits: [
@@ -411,7 +410,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         quickAnswer: "The 1/2 Head of Foils package combines face-framing highlights on the crown and top sections with a style cut and blow-dry. Perfect for maintaining existing blonde or adding subtle brightness in one 2h 15min appointment.",
         duration: "2h 15min",
         price: "A$ 253",
-        description: "The Spice Up package combines half-head highlights with a style cut and blow-dry for a fresh, dimensional look. Perfect for maintaining brightness around the face or adding subtle highlights.",
+        description: "The Spice Up package combines half-head highlights with a style cut and blow-dry for a fresh, dimensional look. Perfect for maintaining brightness around the face or adding subtle highlights. Toner is not included. Pricing may vary with hair length.",
         metaDescription: "Half head foils Bangor. Highlights with cut and blow-dry, A$253. Book your appointment at Hair Pinns NSW.",
         whatsIncluded: [
           "1/2 head of strategically placed foils",
@@ -482,7 +481,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         quickAnswer: "The 1/4 Head Foils package includes strategically placed highlights around the face and parting, plus a cut and blow-dry. Ideal for maintenance or subtle face-framing brightness in about 2h 15min.",
         duration: "2h 15min",
         price: "A$ 223",
-        description: "Perfect for maintenance or adding just a touch of brightness, this package includes strategically placed quarter-head foils, a precision cut, and beautiful blow-dry.",
+        description: "Perfect for maintenance or adding just a touch of brightness, this package includes strategically placed quarter-head foils, a precision cut, and beautiful blow-dry. Toner is not included. Pricing may vary with hair length.",
         metaDescription: "Quarter head foils Bangor. Highlights with cut and blow-dry, A$223. Explore the options at Hair Pinns NSW.",
         whatsIncluded: [
           "1/4 head of precision foils",

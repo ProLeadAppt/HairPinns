@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Minus, Plus, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { notify } from "@/hooks/use-toast";
@@ -26,6 +26,14 @@ const FREE_STANDARD_SHIPPING = 150;
 
 export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: MiniCartProps) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  useEffect(() => {
+    const restoreCheckout = (event: PageTransitionEvent) => {
+      // Back from Shopify can restore this component with its pending state.
+      if (event.persisted) setIsCheckingOut(false);
+    };
+    window.addEventListener("pageshow", restoreCheckout);
+    return () => window.removeEventListener("pageshow", restoreCheckout);
+  }, []);
   const [removingLineId, setRemovingLineId] = useState<string | null>(null);
   const [updatingLineId, setUpdatingLineId] = useState<string | null>(null);
   const { cart, cartLoading, cartError, removeLine, updateLine, prepareCheckout } = useCart();
