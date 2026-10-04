@@ -7,6 +7,7 @@ export const VARIANT_SNAPSHOT_HANDLES = [
   'wet-brush-original-detangler',
   'aromaganic-clean-hair-colour-organics',
   'lamellar-vitality-butter-mask-treatment',
+  'pet-brush-by-wet-brush-pet-detangling-brushes',
 ];
 
 export function variantSnapshotTarget(url, manifest, method = 'GET') {

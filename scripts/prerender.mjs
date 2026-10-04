@@ -18,7 +18,8 @@
  *
  * Outputs:
  *   - dist/<route>/index.html for every successful route
- *   - dist/index.html is the SPA fallback (kept untouched)
+ *   - dist/index.html is the prerendered homepage
+ *   - dist/_product-shell.html preserves the clean Vite application entry
  *   - dist/404.html copy for the Netlify not-found case
  *   - dist/prerender-report.json (machine-readable for monitoring)
  *
@@ -262,6 +263,10 @@ async function main() {
   if (!/<div id="root"><\/div>/i.test(indexHtml) && !/<div id="root">\s*<\/div>/i.test(indexHtml)) {
     console.warn('[prerender] dist/index.html does not look like a Vite SPA shell — proceeding anyway.');
   }
+
+  // Preserve a clean application entry for products published after this build.
+  // The root index is subsequently replaced with the prerendered homepage.
+  writeFileSync(join(distDir, '_product-shell.html'), indexHtml, 'utf8');
 
   const allRoutes = [...await collectRoutes(), ...variantSnapshots.map(item => item.route)];
   // De-dupe + sort: static first (most important for crawlers), then alphabetical
