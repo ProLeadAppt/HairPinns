@@ -66,6 +66,20 @@ describe('snapshot publication guard', () => {
 });
 
 describe('variant catalogue generation', () => {
+  it('builds both PetBrush landing pages with their exact distinct public prices', async () => {
+    const handle = 'pet-brush-by-wet-brush-pet-detangling-brushes';
+    const prices = { '53421957808309': '25.95', '53421957841077': '15.95' };
+    const result = await collectVariantSnapshotManifest(async () => ({ variants: {
+      pageInfo: { hasNextPage: false },
+      edges: Object.entries(prices).map(([id, amount]) => ({ node: { id: `gid://shopify/ProductVariant/${id}`, price: { amount, currencyCode: 'AUD' } } })),
+    } }));
+    for (const [id, amount] of Object.entries(prices)) {
+      expect(result[handle][id]).toEqual({ amount, currencyCode: 'AUD' });
+      for (const slash of ['', '/']) {
+        expect(variantSnapshotTarget(new URL(`https://hairpinns.com/products/${handle}${slash}?variant=${id}&utm_source=google`), result)).toBe(`/_product-variants/${handle}/${id}/index.html`);
+      }
+    }
+  });
   const product = { variants: { pageInfo: { hasNextPage: false }, edges: [{ node: { id: 'gid://shopify/ProductVariant/123', price: { amount: '19.95', currencyCode: 'AUD' } } }] } };
   it('generates the Lamellar mask and routes the exact submitted Google query', async () => {
     const handle = 'lamellar-vitality-butter-mask-treatment';
