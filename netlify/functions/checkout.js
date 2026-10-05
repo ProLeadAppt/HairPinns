@@ -30,10 +30,22 @@ const CART_FIELDS = `
   attributes { key value }
   discountCodes { code applicable }
   lines(first: 100) {
+    pageInfo { hasNextPage }
     edges {
       node {
         id
         quantity
+        cost {
+          subtotalAmount { amount currencyCode }
+          totalAmount { amount currencyCode }
+        }
+        discountAllocations {
+          targetType
+          discountedAmount { amount currencyCode }
+          ... on CartAutomaticDiscountAllocation { title }
+          ... on CartCodeDiscountAllocation { code }
+          ... on CartCustomDiscountAllocation { title }
+        }
         merchandise {
           ... on ProductVariant {
             id

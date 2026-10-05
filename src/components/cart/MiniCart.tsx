@@ -5,6 +5,7 @@ import { notify } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { trackBeginCheckout } from "@/lib/ecommerceTracking";
 import { formatPrice } from "@/lib/utils";
+import { getCartLinePricing, getCartSavings } from "@/lib/cartPricing";
 import { gotoCheckout } from "@/lib/checkout";
 import { useCart } from "@/contexts/CartContext";
 import {
@@ -67,7 +68,8 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
 
   const lines = cart?.lines?.edges ?? [];
   const hasItems = lines.length > 0;
-  const itemCount = lines.reduce((sum: number, edge: any) => sum + edge.node.quantity, 0);
+  const itemCount = lines.reduce((sum, edge) => sum + edge.node.quantity, 0);
+  const savings = getCartSavings(cart);
   const subtotal = cart?.cost?.subtotalAmount?.amount
     ? parseFloat(cart.cost.subtotalAmount.amount)
     : propSubtotal;
@@ -241,11 +243,11 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
                 </section>
               )}
               <ol>
-                {lines.map((edge: any, index: number) => {
+                {lines.map((edge, index) => {
                   const node = edge.node;
                   const merchandise = node.merchandise;
-                  const price = parseFloat(merchandise?.price?.amount || "0");
-                  const lineCurrency = merchandise?.price?.currencyCode || currency;
+                  const lineCurrency = node.cost?.totalAmount?.currencyCode || merchandise?.price?.currencyCode || currency;
+                  const linePricing = getCartLinePricing(node, lineCurrency);
                   const productPath = merchandise?.product?.handle ? `/products/${merchandise.product.handle}` : null;
                   const variantTitle = merchandise?.title && merchandise.title !== "Default Title" ? merchandise.title : null;
                   return (
@@ -277,7 +279,14 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
                               {updatingLineId === node.id ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-b-transparent" aria-hidden="true" /> : <Plus className="h-4 w-4" aria-hidden="true" />}
                             </button>
                           </div>
-                          <span className="font-semibold">{formatPrice(price * node.quantity, lineCurrency)}</span>
+                          <span data-cart-line-price="" className="flex flex-wrap items-baseline gap-x-2 font-semibold">
+                            {linePricing.original !== null && (
+                              <del className="text-xs font-normal text-[hsl(var(--hp-ink)/0.66)]">
+                                <span className="sr-only">Before discount: </span>{formatPrice(linePricing.original, lineCurrency)}
+                              </del>
+                            )}
+                            <span><span className="sr-only">Line subtotal: </span>{formatPrice(linePricing.total, lineCurrency)}</span>
+                          </span>
                         </div>
                       </div>
                       <button type="button" className="flex h-11 w-11 items-center justify-center self-start text-[hsl(var(--hp-ink)/0.7)] hover:text-destructive disabled:opacity-50" onClick={() => handleRemoveLine(node.id)} disabled={removingLineId === node.id || updatingLineId === node.id} aria-label={`Remove ${merchandise?.product?.title || "item"} from bag`}>
@@ -331,9 +340,25 @@ export default function MiniCart({ open, onClose, subtotal: propSubtotal = 0 }: 
 
         <footer data-cart-checkout="" className="border-t border-[hsl(var(--after-hours-plum)/0.24)] bg-[hsl(var(--hp-lavender))] px-5 py-5 text-[hsl(var(--hp-ink))] sm:px-7">
           {hasItems && (
-            <div className="mb-4 flex items-baseline justify-between gap-4">
-              <span className="text-sm">Subtotal</span>
-              <strong className="font-heading text-2xl">{formatPrice(subtotal, currency)}</strong>
+            <div className="mb-4 space-y-2" aria-live="polite" aria-atomic="true">
+              {savings && (
+                <dl data-cart-savings="" className="space-y-2 text-sm">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <dt>Subtotal before discounts</dt>
+                    <dd className="tabular-nums">{formatPrice(savings.originalSubtotal, currency)}</dd>
+                  </div>
+                  {savings.discounts.map((discount) => (
+                    <div key={discount.label} className="flex items-baseline justify-between gap-4 text-[hsl(var(--after-hours-plum))]">
+                      <dt className="min-w-0 break-words">{discount.label}</dt>
+                      <dd className="shrink-0 font-semibold tabular-nums">−{formatPrice(discount.amount, currency)}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="text-sm">Subtotal</span>
+                <strong data-cart-subtotal="" className="font-heading text-2xl">{formatPrice(subtotal, currency)}</strong>
+              </div>
             </div>
           )}
           <button type="button" className="flex min-h-12 w-full items-center justify-between bg-[hsl(var(--after-hours-plum))] px-5 py-3 text-sm font-semibold text-[hsl(var(--after-hours-cream))] disabled:cursor-not-allowed disabled:opacity-45" onClick={handleCheckout} disabled={isCheckingOut || cartLoading || !!cartError || !hasItems}>

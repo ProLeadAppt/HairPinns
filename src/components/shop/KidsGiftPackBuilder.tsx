@@ -56,11 +56,14 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
                 const variants = sellableGiftVariants(product);
                 const choice = choices[product.id];
                 const selectedVariant = variants.find((variant) => variant.id === choice?.variantId);
+                const productPath = selectedVariant
+                  ? `/products/${product.handle}?variant=${encodeURIComponent(selectedVariant.id.split("/").pop() || selectedVariant.id)}`
+                  : `/products/${product.handle}`;
                 const image = selectedVariant?.image?.url || product.images?.edges?.[0]?.node?.url;
                 const imageAlt = selectedVariant?.image?.altText || product.images?.edges?.[0]?.node?.altText || product.title;
                 return (
                   <article key={product.id} className="flex min-w-0 flex-col border border-[hsl(var(--hp-lilac))] bg-white p-4">
-                    <Link to={`/products/${product.handle}`} className="block aspect-square bg-[hsl(var(--hp-lavender))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">
+                    <Link to={productPath} className="block aspect-square bg-[hsl(var(--hp-lavender))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">
                       {image && <img src={image} alt={imageAlt} loading="lazy" width="480" height="480" className="h-full w-full object-contain" />}
                     </Link>
                     <h3 className="mt-4 font-heading text-xl leading-tight text-[hsl(var(--hp-ink))]">{product.title}</h3>
@@ -82,7 +85,7 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
                         <option value="">Not in my gift</option>
                         {variants.map((variant) => <option key={variant.id} value={variant.id}>{variant.title === "Default Title" ? "Add this item" : variant.title}</option>)}
                       </select>
-                      {variants.length > 20 && <Link to={`/products/${product.handle}`} className="mt-2 inline-block min-h-11 py-2 text-sm font-semibold text-[hsl(var(--hp-purple))] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">See all styles and photos before choosing</Link>}
+                      {variants.length > 20 && <Link to={productPath} className="mt-2 inline-block min-h-11 py-2 text-sm font-semibold text-[hsl(var(--hp-purple))] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">See all styles and photos before choosing</Link>}
                       {choice && <div className="mt-3 flex items-center gap-3">
                         <label htmlFor={`gift-qty-${product.id}`} className="text-sm font-medium text-[hsl(var(--hp-ink))]">Quantity</label>
                         <select id={`gift-qty-${product.id}`} value={choice.quantity} onChange={(event) => setChoices((current) => ({ ...current, [product.id]: { ...current[product.id], quantity: Number(event.target.value) } }))} className="min-h-11 border border-[hsl(var(--hp-purple)/0.5)] bg-white px-3 text-[hsl(var(--hp-ink))] focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">
