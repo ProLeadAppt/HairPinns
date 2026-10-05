@@ -61,6 +61,34 @@ describe("checkout function action contract", () => {
     });
   });
 
+  it("requests Shopify line prices and allocation labels for every cart action", async () => {
+    const actions = [
+      { action: "get", cartId: shopifyCart.id },
+      { action: "add", lines: [{ merchandiseId: "gid://shopify/ProductVariant/1", quantity: 1 }] },
+      { action: "update", cartId: shopifyCart.id, lines: [{ id: "line-1", quantity: 2 }] },
+      { action: "remove", cartId: shopifyCart.id, lineIds: ["line-1"] },
+      { action: "checkout", cartId: shopifyCart.id, discountCodes: ["SALE"] },
+    ];
+    const operations = ["cart", "cartCreate", "cartLinesUpdate", "cartLinesRemove", "cartDiscountCodesUpdate"];
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+    for (const [index, action] of actions.entries()) {
+      fetchSpy.mockResolvedValueOnce(new Response(JSON.stringify({ data: {
+        [operations[index]]: index === 0 ? shopifyCart : { cart: shopifyCart, userErrors: [] },
+      } })));
+      const response = await handler(eventFor(action), {});
+      expect(response.statusCode).toBe(200);
+      const { query } = JSON.parse(fetchSpy.mock.calls[index][1].body);
+      expect(query).toContain("pageInfo { hasNextPage }");
+      expect(query).toMatch(/quantity\s+cost\s*\{\s*subtotalAmount/);
+      expect(query).toContain("discountAllocations");
+      expect(query).toContain("targetType");
+      expect(query).toContain("discountedAmount { amount currencyCode }");
+      expect(query).toContain("... on CartAutomaticDiscountAllocation { title }");
+      expect(query).toContain("... on CartCodeDiscountAllocation { code }");
+      expect(query).toContain("... on CartCustomDiscountAllocation { title }");
+    }
+  });
+
   it("marks a missing cart as stale so the client can recover", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(
       new Response(JSON.stringify({ data: { cart: null } }), {

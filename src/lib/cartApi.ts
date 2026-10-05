@@ -6,10 +6,19 @@ export interface CartMoney {
   currencyCode: string;
 }
 
+export interface CartDiscountAllocation {
+  targetType: string;
+  discountedAmount: CartMoney;
+  title?: string;
+  code?: string;
+}
+
 export interface CartLine {
   node: {
     id: string;
     quantity: number;
+    cost?: { subtotalAmount: CartMoney; totalAmount: CartMoney };
+    discountAllocations?: CartDiscountAllocation[];
     merchandise: {
       id: string;
       title?: string;
@@ -29,7 +38,7 @@ export interface CartSnapshot {
   id: string;
   checkoutUrl: string;
   totalQuantity?: number;
-  lines: { edges: CartLine[] };
+  lines: { edges: CartLine[]; pageInfo?: { hasNextPage: boolean } };
   cost: {
     subtotalAmount?: CartMoney;
     totalAmount: CartMoney;
