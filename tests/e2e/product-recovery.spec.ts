@@ -80,6 +80,14 @@ const purchaseActions = (page: Page) => page.locator('[data-product-purchase-act
 const productHeading = (page: Page) => page.getByRole('heading', { level: 1, name: title, exact: true });
 const missingHeading = (page: Page) => page.getByRole('heading', { name: 'Product not found', exact: true });
 
+async function markDocument(page: Page) {
+  return page.evaluate(() => {
+    const marker = crypto.randomUUID();
+    Reflect.set(window, '__productRecoveryDocument', marker);
+    return marker;
+  });
+}
+
 async function assertLoaded(page: Page) {
   await expect(productHeading(page)).toBeVisible();
   await expect(missingHeading(page)).toHaveCount(0);
@@ -164,13 +172,13 @@ test('a confirmed missing product is refetched after an SPA revisit', async ({ p
   await expect(missingHeading(page)).toBeVisible();
   expect(store.attempts()).toBe(1);
   await expect(page.getByRole('button', { name: 'Try again', exact: true })).toHaveCount(0);
-  const timeOrigin = await page.evaluate(() => performance.timeOrigin);
+  const documentMarker = await markDocument(page);
   await page.getByRole('link', { name: 'Browse Collections', exact: true }).click();
   await expect(page.getByRole('tablist', { name: 'Ways to shop' })).toBeVisible();
   await page.goBack();
   await assertLoaded(page);
   expect(store.attempts()).toBe(2);
-  expect(await page.evaluate(() => performance.timeOrigin)).toBe(timeOrigin);
+  expect(await page.evaluate(() => Reflect.get(window, '__productRecoveryDocument'))).toBe(documentMarker);
   expect(store.writes).toEqual([]);
 });
 
@@ -200,7 +208,7 @@ test('navigation away cancels a pending request and back/forward performs fresh 
   try {
     await page.goto(path);
     await expect.poll(store.attempts).toBe(1);
-    const timeOrigin = await page.evaluate(() => performance.timeOrigin);
+    const documentMarker = await markDocument(page);
     await page.getByRole('link', { name: 'Hair Pinns home', exact: true }).first().click();
     await expect(page).toHaveURL('/');
     await expect.poll(() => store.abortedReads.length).toBe(1);
@@ -219,7 +227,7 @@ test('navigation away cancels a pending request and back/forward performs fresh 
     await page.goBack();
     await assertLoaded(page);
     expect(store.attempts()).toBe(3);
-    expect(await page.evaluate(() => performance.timeOrigin)).toBe(timeOrigin);
+    expect(await page.evaluate(() => Reflect.get(window, '__productRecoveryDocument'))).toBe(documentMarker);
     expect(store.writes).toEqual([]);
   } finally {
     delayed.release();
