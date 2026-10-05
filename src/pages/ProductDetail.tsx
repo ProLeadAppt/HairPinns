@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getProductByHandle, getProductUrl } from "@/lib/shopify";
+import { loadProductByHandle, getProductUrl } from "@/lib/shopify";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { buildMetaDescription } from "@/lib/metadata";
 import RelatedContent from "@/components/RelatedContent";
@@ -59,6 +59,8 @@ const ProductDetail = () => {
   const requestedVariant = requestedVariantValues.length === 0 ? null : requestedVariantValues.length === 1 && requestedVariantValues[0] ? requestedVariantValues[0] : 'unavailable';
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [currentImage, setCurrentImage] = useState(0);
   const [activeVariantId, setActiveVariantId] = useState<string | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>({});
@@ -67,23 +69,20 @@ const ProductDetail = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const zoomButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Fetch product from Shopify (with 8s timeout to avoid perpetual loading)
+  // Cancel the actual request on navigation. The reader bounds each attempt
+  // and retries once; a timeout must never masquerade as a missing product.
   useEffect(() => {
     let isMounted = true;
-    let timeoutId: NodeJS.Timeout;
+    const controller = new AbortController();
 
     const fetchProduct = async () => {
       if (!handle) return;
 
       setLoading(true);
+      setLoadError(false);
+      setProduct(null);
       try {
-        const fetchPromise = getProductByHandle(handle);
-        const timeoutPromise = new Promise<null>((_, reject) => {
-          timeoutId = setTimeout(() => reject(new Error("Request timeout")), 8000);
-        });
-
-        const productData = await Promise.race([fetchPromise, timeoutPromise]);
-        clearTimeout(timeoutId);
+        const productData = await loadProductByHandle(handle, controller.signal);
 
         if (!isMounted) return;
 
@@ -91,10 +90,7 @@ const ProductDetail = () => {
           // Products must have at least one variant to be purchasable
           const hasVariants = productData.variants?.edges?.length > 0;
           if (!hasVariants) {
-            console.warn("Product has no variants (not purchasable):", productData.handle);
-            setProduct(null);
-            setLoading(false);
-            return;
+            throw new Error("Product response has no purchasable variants");
           }
 
           setProduct(productData);
@@ -113,18 +109,22 @@ const ProductDetail = () => {
             || productData.priceRange?.minVariantPrice?.currencyCode
             || "AUD";
 
-          // Track product view for conversion funnel
-          trackProductView({
-            product_id: productData.id,
-            variant_id: firstAvailableVariant?.id,
-            title: productData.title,
-            price: viewPrice,
-            currency: viewCurrency,
-            quantity: 1,
-          });
-          trackFunnelStep("view", {
-            product_id: productData.id,
-            product_title: productData.title,
+          // Optional analytics must not hide an otherwise valid product.
+          void Promise.all([
+            trackProductView({
+              product_id: productData.id,
+              variant_id: firstAvailableVariant?.id,
+              title: productData.title,
+              price: viewPrice,
+              currency: viewCurrency,
+              quantity: 1,
+            }),
+            trackFunnelStep("view", {
+              product_id: productData.id,
+              product_title: productData.title,
+            }),
+          ]).catch((error) => {
+            console.warn("Product view tracking failed:", error);
           });
 
           // Save to recently viewed (for collection pages)
@@ -139,9 +139,9 @@ const ProductDetail = () => {
 
         }
       } catch (error) {
-        if (!isMounted) return;
+        if (!isMounted || controller.signal.aborted) return;
         console.error("Failed to fetch product:", error);
-        notify.error("Failed to load product");
+        setLoadError(true);
         setProduct(null);
       } finally {
         if (isMounted) {
@@ -153,9 +153,9 @@ const ProductDetail = () => {
     fetchProduct();
     return () => {
       isMounted = false;
-      clearTimeout(timeoutId);
+      controller.abort();
     };
-  }, [handle]);
+  }, [handle, loadAttempt]);
 
   // Honour direct links (including sold-out options) and same-page URL changes.
   // An invalid link must not quietly select a different item for purchase.
@@ -364,6 +364,26 @@ const ProductDetail = () => {
             <p className="text-muted-foreground">Loading product...</p>
           </div>
         </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <div className="min-h-screen bg-background">
+        <SEOHead title="Unable to load product | Hair Pinns" description="Product details are temporarily unavailable. Please try again." canonical={`https://hairpinns.com/products/${handle ?? ""}`} noIndex={true} />
+        <Header />
+        <main className="flex items-center justify-center min-h-[60vh] px-4">
+          <div className="text-center max-w-md" role="alert">
+            <h1 className="text-2xl font-bold text-heading mb-2">We couldn’t load this product</h1>
+            <p className="text-muted-foreground mb-6">There was a temporary problem loading the details. Please try again.</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button variant="primary" onClick={() => setLoadAttempt((attempt) => attempt + 1)}>Try again</Button>
+              <Button asChild variant="outline"><Link to="/collections">Browse Collections</Link></Button>
+            </div>
+          </div>
+        </main>
         <Footer />
       </div>
     );

@@ -36,9 +36,10 @@ function getEndpoint(): string {
 export async function fetchShopify<T>(
   query: string,
   variables: Record<string, any> = {},
-  options: { cache?: boolean; timeoutMs?: number } = {}
+  options: { cache?: boolean; timeoutMs?: number; signal?: AbortSignal } = {}
 ): Promise<T> {
-  const shouldCache = options.cache !== false;
+  // A cancelled route must never poison another caller's cached request.
+  const shouldCache = options.cache !== false && !options.signal;
   const cacheKey = JSON.stringify({ query, variables, timeoutMs: options.timeoutMs });
   if (shouldCache) {
     const cached = shopifyRequestCache.get(cacheKey);
@@ -51,10 +52,14 @@ export async function fetchShopify<T>(
     const endpoint = getEndpoint();
     const token = storefrontToken || '';
     const controller = new AbortController();
+    const abortFromCaller = () => controller.abort(options.signal?.reason);
+    if (options.signal?.aborted) abortFromCaller();
+    else options.signal?.addEventListener("abort", abortFromCaller, { once: true });
     const timeout = options.timeoutMs
-      ? setTimeout(() => controller.abort(), options.timeoutMs)
+      ? setTimeout(() => controller.abort(new DOMException("Product request timed out", "TimeoutError")), options.timeoutMs)
       : undefined;
     try {
+      if (controller.signal.aborted) throw controller.signal.reason;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: {
@@ -65,7 +70,10 @@ export async function fetchShopify<T>(
         signal: controller.signal,
       });
 
+      if (!res.ok) throw new Error(`Shopify request failed (${res.status})`);
       const json = await res.json();
+      // Also discard a late response from transports which ignored cancellation.
+      if (controller.signal.aborted) throw controller.signal.reason;
 
       if (json.errors) {
         console.error("Shopify API errors:", json.errors);
@@ -75,6 +83,7 @@ export async function fetchShopify<T>(
       return json.data as T;
     } finally {
       if (timeout !== undefined) clearTimeout(timeout);
+      options.signal?.removeEventListener("abort", abortFromCaller);
     }
   })();
 
@@ -92,6 +101,11 @@ export async function fetchShopify<T>(
  * Get product by handle
  */
 export async function getProductByHandle(handle: string) {
+  return loadProductByHandle(handle);
+}
+
+/** Fresh, bounded product reads; null means a confirmed absent/retired product. */
+export async function loadProductByHandle(handle: string, signal?: AbortSignal) {
   if (isRetiredProductHandle(handle)) return null;
 
   const query = `
@@ -166,12 +180,23 @@ export async function getProductByHandle(handle: string) {
     }
   `;
 
-  try {
-    const data = await fetchShopify<{ product: any }>(query, { handle });
-    return data.product;
-  } catch (error) {
-    console.error(`Failed to fetch product ${handle}:`, error);
-    return null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    if (signal?.aborted) throw signal.reason;
+    try {
+      // Prices, availability and a previously missing product can change during
+      // a browsing session. Never retain either positive or negative reads.
+      const data = await fetchShopify<{ product: any }>(query, { handle }, { cache: false, timeoutMs: 8000, signal });
+      if (!data || !Object.prototype.hasOwnProperty.call(data, "product")) {
+        throw new Error("Shopify returned an incomplete product response");
+      }
+      if (data.product !== null && (!data.product || typeof data.product !== "object" || typeof data.product.id !== "string")) {
+        throw new Error("Shopify returned an invalid product response");
+      }
+      return data.product;
+    } catch (error) {
+      // Retry this read once. Mutations elsewhere in the client are untouched.
+      if (signal?.aborted || attempt === 1) throw error;
+    }
   }
 }
 

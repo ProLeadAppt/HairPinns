@@ -14,6 +14,7 @@ import {
 } from "@/hooks/use-toast";
 import ErrorBoundary, { ProductDetailErrorBoundary } from "./components/ErrorBoundary";
 import Index from "./pages/Index";
+import { loadLazyRoute } from "@/lib/lazyRouteRecovery";
 const Sonner = lazy(() => import("@/components/ui/sonner").then(({ Toaster }) => ({ default: Toaster })));
 const Collections = lazy(() => import("./pages/Collections"));
 const CollectionDetail = lazy(() => import("./pages/CollectionDetail"));
@@ -22,7 +23,7 @@ const JenasDailyTrioPage = lazy(() => import("./pages/JenasDailyTrioPage"));
 // All other routes are lazy-loaded to shrink the initial bundle.
 // Prerendered HTML is already served statically, so the JS chunk only
 // needs to download when the user navigates client-side.
-const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const ProductDetail = lazy(() => loadLazyRoute(() => import("./pages/ProductDetail")));
 const Services = lazy(() => import("./pages/Services"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 const Booking = lazy(() => import("./pages/Booking"));

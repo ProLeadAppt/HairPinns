@@ -2,6 +2,7 @@ import { Component, lazy, ReactNode, Suspense } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
+import { recoverLazyRoute } from "@/lib/lazyRouteRecovery";
 
 const Footer = lazy(() => import("@/components/Footer"));
 
@@ -73,8 +74,8 @@ class ErrorBoundary extends Component<Props, State> {
 }
 
 /**
- * Product-specific Error Boundary - shows "Product not found" instead of generic error.
- * Use for ProductDetail so users get a helpful message when something throws.
+ * Product render/import failures are distinct from a confirmed missing product.
+ * ProductDetail owns its real not-found state; this boundary offers recovery.
  */
 export class ProductDetailErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
@@ -82,12 +83,13 @@ export class ProductDetailErrorBoundary extends Component<Props, State> {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(): State {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error("ProductDetailErrorBoundary caught:", error.message, errorInfo.componentStack);
+    console.error("ProductDetailErrorBoundary caught:", error, errorInfo.componentStack);
+    recoverLazyRoute(error);
   }
 
   render() {
@@ -97,12 +99,15 @@ export class ProductDetailErrorBoundary extends Component<Props, State> {
           <Header />
           <main className="flex items-center justify-center min-h-[60vh] px-4">
             <div className="text-center max-w-md">
-              <h2 className="text-2xl font-bold text-heading mb-2">Product not found</h2>
+              <h2 className="text-2xl font-bold text-heading mb-2">We couldn&apos;t load this product</h2>
               <p className="text-muted-foreground mb-6">
-                This product doesn&apos;t exist or may have been removed from our store.
+                Please reload the page to try again, or browse our collections.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button asChild variant="primary">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center">
+                <Button variant="primary" onClick={() => window.location.reload()}>
+                  Reload Product
+                </Button>
+                <Button asChild variant="outline">
                   <Link to="/collections">Browse Collections</Link>
                 </Button>
                 <Button asChild variant="outline">
