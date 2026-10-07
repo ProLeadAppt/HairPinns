@@ -52,7 +52,10 @@ function normaliseUrls(payload) {
     } catch {
       continue;
     }
+    if (!['http:', 'https:'].includes(parsed.protocol)) continue;
+    if (parsed.username || parsed.password) continue;
     if (parsed.host !== SITE_HOST) continue; // IndexNow rejects cross-host URLs
+    parsed.hash = ''; // Fragments do not identify different crawlable documents.
     valid.push(parsed.toString());
   }
   return [...new Set(valid)]; // dedupe
@@ -99,7 +102,8 @@ export const handler = async (event) => {
     return json(502, { ok: false, error: `network error: ${err.message}` });
   }
 
-  // IndexNow returns 200 on accept, 202 on partial, 4xx on errors. Any 2xx is success.
+  // HTTP 202 means received with key validation pending; 200 confirms receipt.
+  // Neither response establishes crawling or indexing.
   if (!upstream.ok) {
     const text = await upstream.text().catch(() => '');
     return json(502, {
@@ -114,6 +118,7 @@ export const handler = async (event) => {
     ok: true,
     submitted: urls.length,
     status: upstream.status,
+    validationPending: upstream.status === 202,
     urls,
   });
 };

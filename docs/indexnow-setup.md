@@ -1,46 +1,11 @@
-# IndexNow Setup
+# IndexNow setup
 
-IndexNow lets you notify Bing and Yandex immediately when content changes. Faster indexing = faster visibility in cold traffic from these engines.
+The existing website integration uses the public host-verification key and root keyLocation defined in `netlify/functions/indexnow.js` and `scripts/submit-indexnow.js`. The matching text file is in `public/`; preserve this existing key and file. It is distinct from a Bing Webmaster API credential. The previously documented alternative key filename was stale.
 
----
+The `/api/indexnow` function forwards explicitly supplied URLs on `hairpinns.com`. The manual `npm run submit-indexnow` script sends every URL in `public/sitemap.xml`; it does not select content changes or discover removed URLs. No automatic content-publish trigger or durable submission history was found in source. Running either sender is a submission action and requires approval in the current workflow.
 
-## How It Works
+Read-only inspection on 7 October 2026 confirmed the source-discovered root verification file responds HTTP200 as UTF-8 text and matches the existing public key. That verifies public file availability, not past API acceptance or indexing.
 
-1. **Key file:** `public/hairpinns-indexnow-a1b2c3d4e5f6.txt` contains the verification key
-2. **Deploy:** The key file is served at `https://hairpinns.com/hairpinns-indexnow-a1b2c3d4e5f6.txt`
-3. **Submit:** Run the script to POST your sitemap URLs to IndexNow
+HTTP200 means receipt; HTTP202 means receipt with key validation pending. Neither proves crawling or indexing. See https://www.indexnow.org/documentation .
 
----
-
-## Running the Script
-
-**Prerequisites:** Generate sitemap first (happens automatically on `npm run build`).
-
-```bash
-npm run submit-indexnow
-```
-
-This reads `public/sitemap.xml`, extracts all URLs, and submits them to `https://api.indexnow.org/indexnow`. Bing and Yandex receive the notification and re-crawl the URLs.
-
----
-
-## When to Run
-
-- **After deploy:** Run post-deploy to notify search engines of any new or updated pages
-- **After content changes:** When adding new suburb pages, blog posts, or products
-- **CI/CD (optional):** Add to your deploy pipeline so every deploy triggers IndexNow
-
----
-
-## Key File
-
-- **Location:** `public/hairpinns-indexnow-a1b2c3d4e5f6.txt`
-- **Content:** The key only (UTF-8)
-- **Do not change** the key without updating `scripts/submit-indexnow.js` and this doc
-
----
-
-## Related Docs
-
-- [Multi-Channel Map Setup](multi-channel-map-setup.md) — Bing Webmaster Tools, sitemap submission
-- [GMB Sync Checklist](gmb-sync-checklist.md) — Google Business Profile
+Future automation should reuse this integration, select only changed/added/verified-removed canonical page URLs, debounce events and persist release/response state. Activate only after the exact trigger, state storage, caller restrictions, production release and first URL batch are reviewed. Do not run the full sitemap on every build or trigger from visitor page views.
