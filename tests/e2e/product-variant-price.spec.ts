@@ -28,14 +28,22 @@ for (const digital of [false, true]) {
         expect(schema.sku).toBe(resolvedVariant);
         await expect(page.getByRole('combobox', { name: 'Size', exact: true })).toContainText(resolvedVariant === '202' ? 'Large' : 'Small');
         expect(Boolean(schema.offers.shippingDetails)).toBe(!digital);
+        if (!digital) {
+          expect(schema.offers.shippingDetails).toHaveLength(8);
+          for (const details of schema.offers.shippingDetails) {
+            expect(details.shippingDestination.addressCountry).toBe('AU');
+            expect(details.shippingRate.value).toBe(variant === '202' ? '0' : '9.95');
+            expect(details.deliveryTime.handlingTime).toMatchObject({ minValue: 1, maxValue: 2, unitCode: 'DAY' });
+          }
+        }
         await expect(page.locator('[data-product-purchase-actions]').locator('..')).toContainText(variant === '202' ? '$250.00' : '$25.00');
         if (digital) {
           await expect(page.getByText('Digital delivery', { exact: true })).toBeVisible();
           await expect(page.getByText('Shipping across Australia', { exact: true })).toHaveCount(0);
-          await expect(page.getByText('$9.95 · 3–5 business days', { exact: true })).toHaveCount(0);
+          await expect(page.getByText('$9.95 · See destination estimates', { exact: true })).toHaveCount(0);
         } else {
-          await expect(page.getByText('$9.95 · 3–5 business days', { exact: true })).toBeVisible();
-          await expect(page.getByText('$14.95 · 1–2 business days', { exact: true })).toBeVisible();
+          await expect(page.getByText('$9.95 · See destination estimates', { exact: true })).toBeVisible();
+          await expect(page.getByText('$14.95 · Timing varies by destination', { exact: true })).toBeVisible();
         }
       }
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://hairpinns.com/products/test-product/');

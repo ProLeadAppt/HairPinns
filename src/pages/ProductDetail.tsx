@@ -793,10 +793,10 @@ const ProductDetail = () => {
                     <p className="mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Delivered by email. No physical shipping is required.</p>
                   </> : <>
                   <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--hp-ink)/0.76)]">Shipping across Australia</p>
-                  <p className="mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Shipping times below start after dispatch. Preorders and items available to order may need extra time before dispatch. Check the product description for availability. Express shipping does not bring forward preorder dispatch.</p>
+                  <p className="mt-2 text-sm leading-6 text-[hsl(var(--hp-ink)/0.72)]">Allow 1–2 business days for processing. Transit estimates start after dispatch and vary by destination. Preorders and items available to order may need extra time before dispatch. Check the product description for availability. Express shipping does not bring forward preorder dispatch.</p>
                   <dl className="mt-2 text-sm text-[hsl(var(--hp-ink)/0.72)]">
-                    <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Standard</dt><dd>$9.95 · 3–5 business days</dd></div>
-                    <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Express</dt><dd>$14.95 · 1–2 business days</dd></div>
+                    <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Standard</dt><dd>$9.95 · See destination estimates</dd></div>
+                    <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Express</dt><dd>$14.95 · Timing varies by destination</dd></div>
                     <div className="flex min-h-11 items-center justify-between border-t border-[hsl(var(--after-hours-plum)/0.14)]"><dt>Orders {FREE_SHIPPING_THRESHOLD_DISPLAY}+</dt><dd>Free standard</dd></div>
                   </dl>
                   <Link to="/policies/shipping" className="inline-flex min-h-11 items-center text-sm font-medium text-[hsl(var(--hp-ink))] underline underline-offset-4">Read shipping policy</Link>
