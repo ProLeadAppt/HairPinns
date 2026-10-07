@@ -447,8 +447,8 @@ const searchResultsSource = await readFile(path.join(ROOT, 'src/pages/SearchResu
 assert.match(productDetailSource, /data-product-purchase-actions=""/, 'Product detail needs a stable primary-purchase marker');
 assert.match(productDetailSource, /data-product-detail-core=""/, 'Product detail needs a stable core marker for floating-control handoff');
 assert.match(productDetailSource, /object-contain/, 'Product detail gallery must preserve complete product imagery');
-assert.match(productDetailSource, /Standard<\/dt><dd>\$9\.95 · 3–5 business days/, 'Product detail must use the published standard shipping facts');
-assert.match(productDetailSource, /Express<\/dt><dd>\$14\.95 · 1–2 business days/, 'Product detail must use the published express shipping facts');
+assert.match(productDetailSource, /Standard<\/dt><dd>\$9\.95 · See destination estimates/, 'Product detail must use the published standard rate and regional policy estimates');
+assert.match(productDetailSource, /Express<\/dt><dd>\$14\.95 · Timing varies by destination/, 'Product detail must use the published express rate without a nationwide timing promise');
 assert.match(productDetailSource, /FREE_SHIPPING_THRESHOLD_DISPLAY/, 'Product detail must use the canonical free-shipping threshold');
 assert.match(productDetailSource, /visibleOptionNames[\s\S]*?Default Title/, 'Product detail must hide Shopify default-only option chrome');
 assert.doesNotMatch(productDetailSource, /TrustStrip|ShippingCalculator|EstimatedDelivery|UrgencyIndicator|FrequentlyBoughtTogether/, 'Product detail must not expose unsourced proof, simulated delivery, or arbitrary bundles');

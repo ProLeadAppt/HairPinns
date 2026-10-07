@@ -27,6 +27,8 @@ const ProductRecommendations = ({
 
   useEffect(() => {
     let isMounted = true;
+    setLoading(true);
+    setRecommendations([]);
 
     const fetchRecommendations = async () => {
       try {

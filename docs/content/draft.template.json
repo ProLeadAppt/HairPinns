@@ -1,0 +1,19 @@
+{
+  "status": "draft",
+  "week": 0,
+  "title": "",
+  "seoTitle": "",
+  "slug": "",
+  "metaDescription": "",
+  "author": "Jena Pinn",
+  "content": {
+    "introduction": "",
+    "stylistTip": "",
+    "sections": [{ "heading": "", "content": "", "subsections": [{ "heading": "", "content": "" }], "bullets": [], "steps": [] }]
+  },
+  "booking": { "url": "", "service": "", "verifiedAt": "", "evidence": "" },
+  "products": [{ "handle": "", "variantId": "", "verifiedAt": "", "evidence": "" }],
+  "factReview": { "completed": false, "evidence": [] },
+  "overlapReview": { "completed": false, "decision": "" },
+  "activateEmail": false
+}

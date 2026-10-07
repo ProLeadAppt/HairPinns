@@ -76,7 +76,10 @@ export default function ProductReviews({ productId, title }: { productId: string
     observeContent.observe(target, { childList: true, subtree: true });
     window.jdgmCacheServer?.reloadAll();
     markReady();
-    const timeout = window.setTimeout(() => setStatus("error"), 20000);
+    const timeout = window.setTimeout(() => {
+      // A loaded widget must not be labelled as a failure after its timer expires.
+      if (!target.querySelector(".jdgm-rev-widg")) setStatus("error");
+    }, 20000);
     return () => { clearTimeout(timeout); observeContent.disconnect(); };
   }, [scriptReady, id]);
 

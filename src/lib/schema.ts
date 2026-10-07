@@ -1,4 +1,30 @@
-import { FREE_SHIPPING_THRESHOLD } from "@/config/shippingConfig";
+import { FREE_SHIPPING_THRESHOLD, SHIPPING_HANDLING_TIME, STANDARD_SHIPPING_TRANSIT_TIME } from "@/config/shippingConfig";
+
+/** Standard service only. Each destination receives its own post-dispatch
+ * estimate, rather than a nationwide transit promise. Rates stay unchanged.
+ */
+function standardShippingDetails(price: string, availability?: string) {
+  // Preorders/backorders have no verified dispatch lead time.
+  const readyToDispatch = !availability || availability === 'InStock';
+  return Object.entries(STANDARD_SHIPPING_TRANSIT_TIME).map(([region, transitTime]) => ({
+    '@type': 'OfferShippingDetails',
+    shippingDestination: {
+      '@type': 'DefinedRegion',
+      addressCountry: 'AU',
+      addressRegion: region,
+    },
+    shippingRate: {
+      '@type': 'MonetaryAmount',
+      value: Number(price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
+      currency: 'AUD',
+    },
+    ...(readyToDispatch ? { deliveryTime: {
+      '@type': 'ShippingDeliveryTime',
+      handlingTime: { '@type': 'QuantitativeValue', ...SHIPPING_HANDLING_TIME, unitCode: 'DAY' },
+      transitTime: { '@type': 'QuantitativeValue', ...transitTime, unitCode: 'DAY' },
+    } } : {}),
+  }));
+}
 
 // Schema.org JSON-LD utilities for SEO
 
@@ -327,18 +353,7 @@ export const generateProductSchema = (product: ProductData) => {
         '@type': 'Country',
         name: 'Australia',
       },
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'AU',
-        },
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: Number(product.price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
-          currency: 'AUD',
-        },
-      },
+      shippingDetails: standardShippingDetails(product.price, product.availability),
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
         applicableCountry: 'AU',
@@ -641,13 +656,13 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
     name: product.name,
     description: product.description,
     image: imageUrls.length > 0 ? imageUrls : [`${BASE_URL}/og-product.jpg`],
-    brand: {
+    ...(product.brand?.trim() ? { brand: {
       '@type': 'Brand',
-      name: product.brand || 'Hair Pinns',
-      ...((product.brand || 'Hair Pinns').trim().toLocaleLowerCase('en-AU') === 'hair pinns'
+      name: product.brand.trim(),
+      ...(product.brand.trim().toLocaleLowerCase('en-AU') === 'hair pinns'
         ? { url: BASE_URL }
         : {}),
-    },
+    } } : {}),
     category: product.category || 'Hair Care',
     offers: {
       '@type': 'Offer',
@@ -671,18 +686,7 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
         name: 'AU',
       },
       ...(product.requiresShipping === false ? {} : {
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          shippingRate: {
-            '@type': 'MonetaryAmount',
-            value: Number(product.price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
-            currency: 'AUD',
-          },
-          shippingDestination: {
-            '@type': 'DefinedRegion',
-            addressCountry: 'AU',
-          },
-        },
+        shippingDetails: standardShippingDetails(product.price, product.availability),
         hasMerchantReturnPolicy: {
           '@type': 'MerchantReturnPolicy',
           applicableCountry: 'AU',
