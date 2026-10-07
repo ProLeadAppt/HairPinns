@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { addCartLines, getCartSnapshot } from "@/lib/cartApi";
 import { getCartId } from "@/lib/cartManagement";
 import { buildGiftSelection, giftCategory, giftQuantitiesWereAdded, maxGiftQuantity, orderGiftProducts, sellableGiftVariants, type GiftCategory, type GiftChoice, type GiftProduct } from "@/lib/kidsGiftSelection";
+import { readGiftDraft, saveGiftDraft } from "@/lib/kidsGiftDraft";
 import { notify } from "@/hooks/use-toast";
 
 export default function KidsGiftPackBuilder({ products }: { products: GiftProduct[] }) {
-  const [choices, setChoices] = useState<Record<string, GiftChoice>>({});
+  const [choices, setChoices] = useState<Record<string, GiftChoice>>(() => {
+    try { return readGiftDraft(window.sessionStorage); } catch { return {}; }
+  });
   const [activeCategory, setActiveCategory] = useState<GiftCategory | "all">("all");
   const [adding, setAdding] = useState(false);
+  useEffect(() => {
+    try { saveGiftDraft(window.sessionStorage, choices); } catch { /* Storage may be disabled. */ }
+  }, [choices]);
   const sellableProducts = orderGiftProducts(products);
   const visibleProducts = activeCategory === "all" ? sellableProducts : sellableProducts.filter((product) => giftCategory(product) === activeCategory);
   const selection = buildGiftSelection(sellableProducts, choices);
@@ -100,6 +106,7 @@ export default function KidsGiftPackBuilder({ products }: { products: GiftProduc
             <div className="mt-8 border-t border-[hsl(var(--hp-lilac))] bg-white px-4 py-4 shadow-sm sm:px-6">
               <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div aria-live="polite"><p className="font-semibold text-[hsl(var(--hp-ink))]">{itemCount} {itemCount === 1 ? "item" : "items"} selected · {price}</p><p className="text-xs text-[hsl(var(--hp-ink)/0.72)]">Subtotal before delivery and any eligible Shopify discount. Final total appears in your bag.</p>{hasUnavailableChoice && <p className="mt-1 text-sm font-semibold text-[hsl(var(--hp-ink))]">One option or quantity has changed. Please choose an available one before adding your gift.</p>}</div>
+                <button type="button" onClick={() => setChoices({})} className="min-h-11 px-3 text-sm font-semibold text-[hsl(var(--hp-purple))] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-purple))]">Clear my selection</button>
                 <button type="button" disabled={!selection.lines.length || adding || hasUnavailableChoice} onClick={addSelection} className="min-h-12 bg-[hsl(var(--hp-purple))] px-8 font-semibold text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hp-ink))] disabled:cursor-not-allowed disabled:opacity-50">{adding ? "Adding to bag…" : "Add my selection to bag"}</button>
               </div>
             </div>

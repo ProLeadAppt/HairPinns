@@ -6,8 +6,9 @@ import KidsGiftPackBuilder from "./KidsGiftPackBuilder";
 const state = vi.hoisted(() => ({ choices: {} as Record<string, GiftChoice> }));
 vi.mock("react", async importOriginal => ({
   ...await importOriginal<typeof import("react")>(),
-  useState: (initial: unknown) => typeof initial === "object"
-    ? [state.choices, (update: (current: Record<string, GiftChoice>) => Record<string, GiftChoice>) => { state.choices = update(state.choices); }]
+  useEffect: () => undefined,
+  useState: (initial: unknown) => (typeof initial === "object" || typeof initial === "function")
+    ? [state.choices, (update: (current: Record<string, GiftChoice>) => Record<string, GiftChoice>) => { state.choices = typeof update === "function" ? update(state.choices) : update; }]
     : [initial, () => undefined],
 }));
 vi.mock("react-router-dom", () => ({ Link: "a" }));
