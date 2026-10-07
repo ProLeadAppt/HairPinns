@@ -19,6 +19,7 @@ import {
 import { loadProductByHandle, getProductUrl } from "@/lib/shopify";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { buildMetaDescription } from "@/lib/metadata";
+import { productBrand, recommendationCollection } from "@/lib/productBrand";
 import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { addCartLines } from "@/lib/cartApi";
@@ -500,11 +501,7 @@ const ProductDetail = () => {
           url: `https://hairpinns.com/products/${handle}/?variant=${activeVariant.id.split('/').pop()}`,
           price: (Number.isFinite(price) ? price : 0).toString(),
           currency: activeVariant?.price?.currencyCode || "AUD",
-          // brand = the product's manufacturer (Juuce, Aromaganic, QIQI, etc.)
-          // from Shopify's vendor field. Falls back to "Hair Pinns" only when
-          // the vendor isn't set in Shopify catalog. Hair Pinns acts as the
-          // seller, not the brand, so seller is set separately in the schema.
-          brand: product.vendor || "Hair Pinns",
+          brand: productBrand(product),
           sku: activeVariant.sku || activeVariant.id.split('/').pop() || "",
           productID: product.id,
           gtin: activeVariant?.barcode || undefined,
@@ -698,7 +695,7 @@ const ProductDetail = () => {
               <div className="min-w-0 space-y-6 lg:pt-2">
                 <div>
                   <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--hp-ink)/0.76)]">
-                    Product / {product.vendor || "Hair Pinns"}
+                    {productBrand(product) ? `Product / ${productBrand(product)}` : "Selected by Hair Pinns"}
                   </p>
                   <h1 className="mt-4 max-w-[24ch] font-heading text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.025em] text-[hsl(var(--hp-ink))]">
                     {product.title}
@@ -919,7 +916,7 @@ const ProductDetail = () => {
           <SilentErrorBoundary>
             <ProductRecommendations
               currentProductId={product.id}
-              currentCollectionHandle={product.collections?.edges?.[0]?.node?.handle}
+              currentCollectionHandle={recommendationCollection(product)}
             />
           </SilentErrorBoundary>
         )}

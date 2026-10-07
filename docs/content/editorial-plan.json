@@ -1,0 +1,802 @@
+[
+  {
+    "week": 1,
+    "title": "Dry Scalp vs. Dandruff: How to Tell the Difference and Treat Both",
+    "keyword": "dry scalp vs dandruff treatment",
+    "proposedCTA": "Clarifying Shampoo / Scalp Treatment",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "bond-repair-vs-protein-treatment-difference",
+        "title": "Bond Repair vs Protein Treatment: How to Choose",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Medical/scalp and efficacy review; do not promise growth, shedding prevention, diagnosis or treatment"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 2,
+    "title": "How Scalp Care Directs Hair Growth: The Science of Healthy Follicles",
+    "keyword": "scalp health for hair growth",
+    "proposedCTA": "Scalp Serum / Exfoliating Scrub",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "infrared-sauna-for-hair-scalp-health",
+        "title": "Infrared Sauna for Hair & Scalp Health. Yes, It's a Thing!",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Medical/scalp and efficacy review; do not promise growth, shedding prevention, diagnosis or treatment",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 3,
+    "title": "The Ultimate Guide to Clarifying Shampoos: When and How Often to Use Them",
+    "keyword": "how often to use clarifying shampoo",
+    "proposedCTA": "Detox Shampoo / In-Salon Scalp Treatment",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "how-often-should-you-replace-your-shampoo",
+        "title": "How Often Should You Replace Your Shampoo?",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 4,
+    "title": "How to Stop Winter Hair Shedding: Proven Tips & Products That Work",
+    "keyword": "winter hair shedding solutions",
+    "proposedCTA": "Leave-in Scalp Tonic / Hair Density Supplements",
+    "seasonalWindow": "June–August (Australian winter)",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Medical/scalp and efficacy review; do not promise growth, shedding prevention, diagnosis or treatment",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 5,
+    "title": "Why Blonde Hair Turns Brassy (and How to Fix It at Home)",
+    "keyword": "how to fix brassy blonde hair",
+    "proposedCTA": "Purple Shampoo & Conditioner",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 6,
+    "title": "Purple Shampoo vs. Blue Shampoo: Which One Does Your Hair Need?",
+    "keyword": "purple vs blue shampoo",
+    "proposedCTA": "Toning Mask Collection",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "can-you-use-purple-shampoo-every-day",
+        "title": "Can You Use Purple Shampoo Every Day? What Stylists Say",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 7,
+    "title": "How Long Does a Salon Toner Last? Secrets to Extending Your Shade",
+    "keyword": "how long does hair toner last",
+    "proposedCTA": "In-Salon Glossing Treatment",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "how-long-does-keratin-smoothing-last",
+        "title": "How Long Does Keratin Smoothing Actually Last?",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 8,
+    "title": "Can You Use Purple Shampoo on Brown Hair? What You Need to Know",
+    "keyword": "purple shampoo on dark hair",
+    "proposedCTA": "Neutralizing Conditioner",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "can-you-use-purple-shampoo-every-day",
+        "title": "Can You Use Purple Shampoo Every Day? What Stylists Say",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 9,
+    "title": "Moisture vs. Protein: What Is Your Damaged Hair Actually Missing?",
+    "keyword": "does my hair need protein or moisture",
+    "proposedCTA": "Protein Repair Treatment",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 10,
+    "title": "How Bond Rebuilders Work: Repairing Bleached and Chemically Treated Hair",
+    "keyword": "how bond repair shampoo works",
+    "proposedCTA": "In-Salon Bond Treatment / Repair Mask",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "best-shampoo-colour-treated-hair-australia",
+        "title": "Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)",
+        "overlap": 2
+      },
+      {
+        "slug": "bond-repair-vs-protein-treatment-difference",
+        "title": "Bond Repair vs Protein Treatment: How to Choose",
+        "overlap": 2
+      },
+      {
+        "slug": "olaplex-vs-k18-vs-juuce-bond-repair",
+        "title": "Olaplex vs K18 vs Juuce: Compare Bond Repair Routines",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 11,
+    "title": "How to Save Heat-Damaged Hair Without Cutting It Off",
+    "keyword": "fix heat damaged hair without cutting",
+    "proposedCTA": "Deep Conditioning Mask",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 12,
+    "title": "Can You Overuse Protein Treatments? Signs of Protein Overload",
+    "keyword": "signs of hair protein overload",
+    "proposedCTA": "Hydrating Leave-In Conditioner",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 13,
+    "title": "Balayage vs. Highlights: Which Coloring Technique Suits Your Lifestyle?",
+    "keyword": "balayage vs highlights difference",
+    "proposedCTA": "Balayage Consultation Booking",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 14,
+    "title": "How to Transition from Full Highlights to Low-Maintenance Balayage",
+    "keyword": "transition highlights to balayage",
+    "proposedCTA": "Partial Balayage Booking",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 15,
+    "title": "The Cost of Maintenance: How Often Do You Really Need Touch-Ups?",
+    "keyword": "hair root touch up schedule",
+    "proposedCTA": "Express Gloss & Touch-Up Service",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 16,
+    "title": "Grey Blending vs. Full Coverage: The Modern Approach to Aging Gracefully",
+    "keyword": "grey blending for dark hair",
+    "proposedCTA": "Grey Blending Color Service",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 17,
+    "title": "The Science of Heat Protectant: What Happens When You Skip It",
+    "keyword": "does heat protectant spray work",
+    "proposedCTA": "Thermal Protection Spray",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 18,
+    "title": "Blow Dry vs. Flat Iron: Which Thermal Tool Causes More Damage?",
+    "keyword": "blow dryer vs straightener damage",
+    "proposedCTA": "Blow Dry Cream & Heat Serum",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 19,
+    "title": "How to Get Salon Blowout Volume at Home (Step-by-Step)",
+    "keyword": "how to get blowout volume at home",
+    "proposedCTA": "Volumizing Mousse & Round Brush",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "salon-foils-vs-box-dye-highlights-at-home",
+        "title": "Salon Foils vs Box Dye Highlights: Honest Talk From Someone Who Fixes Them",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 20,
+    "title": "Ideal Heat Tool Temperatures for Fine, Medium, and Coarse Hair Types",
+    "keyword": "what temperature to straighten hair",
+    "proposedCTA": "Heat Protectant Oil",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 21,
+    "title": "How to Determine Your Exact Curl Pattern and Hair Porosity",
+    "keyword": "how to find hair porosity",
+    "proposedCTA": "Curl Defining Cream",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 22,
+    "title": "The Ultimate Nighttime Routine for Preserving Curls and Preventing Frizz",
+    "keyword": "how to protect curls overnight",
+    "proposedCTA": "Silk Pillowcase / Leave-In Cream",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 23,
+    "title": "Gel vs. Mousse vs. Cream: How to Layer Styling Products for Curls",
+    "keyword": "curly hair product layering order",
+    "proposedCTA": "Hydrating Gel & Curl Cream Set",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 24,
+    "title": "How to Use a Diffuser Attachment Without Creating Frizz",
+    "keyword": "how to diffuse curly hair",
+    "proposedCTA": "Diffuser Dryer & Anti-Frizz Spray",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 25,
+    "title": "Is Salon Shampoo Worth the Money? Cheap vs. Professional Formulas",
+    "keyword": "is salon shampoo worth it",
+    "proposedCTA": "Daily Essentials Shampoo & Conditioner",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 26,
+    "title": "Hidden Ingredients to Avoid in Drugstore Shampoos",
+    "keyword": "ingredients to avoid in shampoo",
+    "proposedCTA": "Clean Professional Shampoo Line",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 27,
+    "title": "Why Your Salon Color Fades So Fast (and How to Stop It)",
+    "keyword": "how to stop hair color fading",
+    "proposedCTA": "Color Protect Duo",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 28,
+    "title": "The Truth About Sulfates and Silicones: Are They Really Bad for Hair?",
+    "keyword": "are sulfates bad for hair",
+    "proposedCTA": "Sulfate-Free Hydrating Wash",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "truth-about-shampoo-after-straight-up-treatment",
+        "title": "The Truth About Shampoo After Straight Up Treatment",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 29,
+    "title": "What to Expect During Your First Keratin Smoothing Treatment",
+    "keyword": "what is a keratin treatment",
+    "proposedCTA": "Book Keratin Treatment",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "how-long-does-keratin-smoothing-last",
+        "title": "How Long Does Keratin Smoothing Actually Last?",
+        "overlap": 2
+      },
+      {
+        "slug": "keratin-smoothing-sydney-prices-brands",
+        "title": "Keratin Smoothing Sydney: Prices, Brands & What You Actually Get",
+        "overlap": 2
+      },
+      {
+        "slug": "whats-a-straight-up-smoothing-treatment",
+        "title": "What's a Straight Up Smoothing Treatment?",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 30,
+    "title": "Hair Gloss vs. Hair Glaze: How to Add Glass-Like Shine to Dull Hair",
+    "keyword": "hair gloss treatment benefits",
+    "proposedCTA": "Book Shine & Gloss Service",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 31,
+    "title": "How to Prepare Your Hair Before a Chemical or Color Service",
+    "keyword": "what to do before hair appointment",
+    "proposedCTA": "Pre-Color Treatment Kit",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 32,
+    "title": "Deep Conditioning Treatments: In-Salon vs. At-Home Masks Compared",
+    "keyword": "salon vs home deep conditioner",
+    "proposedCTA": "Professional Hair Mask",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "salon-foils-vs-box-dye-highlights-at-home",
+        "title": "Salon Foils vs Box Dye Highlights: Honest Talk From Someone Who Fixes Them",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 33,
+    "title": "How Long to Wait Between Bleach Sessions to Prevent Hair Breakage",
+    "keyword": "how long between bleach sessions",
+    "proposedCTA": "Bond Rebuilder Serum",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 34,
+    "title": "Demi-Permanent vs. Semi-Permanent vs. Permanent Hair Color Explained",
+    "keyword": "demi vs permanent hair color",
+    "proposedCTA": "Color Refresh Gloss Booking",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [
+      {
+        "slug": "permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss",
+        "title": "Permanent vs Semi-Permanent vs Demi-Permanent vs Gloss: A Plain English Guide",
+        "overlap": 3
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 35,
+    "title": "How to Prevent Hair Bleach Burns and Scalp Irritation",
+    "keyword": "scalp protection during bleaching",
+    "proposedCTA": "Soothing Scalp Treatment",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Medical/scalp and efficacy review; do not promise growth, shedding prevention, diagnosis or treatment"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 36,
+    "title": "Can You Go from Dark Brown to Platinum Blonde in One Day Safely?",
+    "keyword": "dark hair to platinum blonde process",
+    "proposedCTA": "Blonding Consultation Booking",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 37,
+    "title": "Hand-Tied vs. Tape-In Extensions: Which Style Fits Your Hair Type?",
+    "keyword": "hand tied vs tape in extensions",
+    "proposedCTA": "Extension Consultation Booking",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 38,
+    "title": "How to Brush and Wash Hair Extensions Without Damaging the Bonds",
+    "keyword": "how to wash hair extensions",
+    "proposedCTA": "Extension-Safe Shampoo & Brush",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 39,
+    "title": "Do Hair Extensions Damage Your Natural Hair? The Truth Exposed",
+    "keyword": "do extensions damage hair",
+    "proposedCTA": "Book Extension Fitting",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 40,
+    "title": "Best Oils and Products to Keep Human Hair Extensions Soft and Shiny",
+    "keyword": "best products for hair extensions",
+    "proposedCTA": "Extension Moisture Oil",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 41,
+    "title": "How Hard Water Ruins Salon Color (and How to Protect Your Hair)",
+    "keyword": "hard water hair damage fix",
+    "proposedCTA": "Hard Water Removal Shampoo",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 42,
+    "title": "Protecting Colored Hair from Chlorine and Saltwater Damage",
+    "keyword": "how to protect hair from chlorine",
+    "proposedCTA": "Leave-In Protective Shield",
+    "seasonalWindow": "November–February (Australian summer)",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 43,
+    "title": "How UV Rays Break Down Hair Protein (and What Hair Sunscreen Does)",
+    "keyword": "uv protection spray for hair",
+    "proposedCTA": "UV Shield Hair Spray",
+    "seasonalWindow": "November–February (Australian summer)",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 44,
+    "title": "Cold Weather Hair Survival Guide: Preventing Static and Split Ends",
+    "keyword": "how to stop winter hair static",
+    "proposedCTA": "Anti-Static Serum & Moisture Mask",
+    "seasonalWindow": "June–August (Australian winter)",
+    "overlapCandidates": [
+      {
+        "slug": "winter-hair-care-sydney-2026",
+        "title": "Winter Hair Care for Sydney Weather (2026 Guide)",
+        "overlap": 2
+      },
+      {
+        "slug": "winter-weather-hair-care-sydney",
+        "title": "Winter Weather Hair Care in Sydney – Why It Matters & How to Protect Your Hair",
+        "overlap": 2
+      }
+    ],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 45,
+    "title": "How to Bring Reference Photos to Your Salon Visit (and What to Ask)",
+    "keyword": "how to show stylist picture",
+    "proposedCTA": "Salon Booking Service",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 46,
+    "title": "The Ultimate Hair Care Holiday Gift Guide: Bundles for Every Hair Type",
+    "keyword": "best hair product gift sets",
+    "proposedCTA": "Holiday Product Gift Boxes",
+    "seasonalWindow": "November–December (gift/appointment lead time)",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 47,
+    "title": "Salon Etiquette 101: Tipping, Running Late, and Pre-Washing Rules",
+    "keyword": "hair salon etiquette guide",
+    "proposedCTA": "Book Holiday Appointment",
+    "seasonalWindow": "November–December (gift/appointment lead time)",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 48,
+    "title": "New Year, New Hair: How to Plan a Complete Hair Transformation",
+    "keyword": "hair makeover ideas",
+    "proposedCTA": "Full Transformation Consultation",
+    "seasonalWindow": "December–January; review current year and evidence",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 49,
+    "title": "Top Hair Color and Cut Trends Projected for the New Year",
+    "keyword": "upcoming hair color trends",
+    "proposedCTA": "New Year Transformation Booking",
+    "seasonalWindow": "December–January; review current year and evidence",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 50,
+    "title": "How to Reset Hair After Heavy Holiday Heat Styling",
+    "keyword": "post holiday hair repair",
+    "proposedCTA": "Detox & Repair Bundle",
+    "seasonalWindow": "December–January; review current year and evidence",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 51,
+    "title": "Building a Minimalist 3-Step Hair Routine That Actually Works",
+    "keyword": "simple healthy hair routine",
+    "proposedCTA": "Core 3-Step Starter Kit",
+    "seasonalWindow": "Evergreen; interleave with seasonal slots",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting"
+    ],
+    "status": "draft-plan-only"
+  },
+  {
+    "week": 52,
+    "title": "Year-In-Review: Hair Pinns' Favorite Transformations & Product Champions",
+    "keyword": "best hair products of the year",
+    "proposedCTA": "VIP Club Join / Consultation Booking",
+    "seasonalWindow": "December–January; review current year and evidence",
+    "overlapCandidates": [],
+    "gates": [
+      "Check overlap candidates; refresh an existing article if intent is already covered",
+      "Verify current product variants and actual service/booking routes before drafting",
+      "Proposed category/service is unverified; never invent a stock item, consultation or treatment route"
+    ],
+    "status": "draft-plan-only"
+  }
+]

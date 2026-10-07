@@ -50,12 +50,8 @@ const CollectionDetail = () => {
   const [quickViewHandle, setQuickViewHandle] = useState<string | null>(null);
 
   const collectionTitle = collection?.title || "Collection";
-  const collectionDescription = collection?.description || "Browse this hair care collection";
-  const collectionIntroduction = (() => {
-    const clean = collectionDescription.replace(/\s+/g, " ").trim();
-    const firstSentence = clean.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim() || clean;
-    return firstSentence.length > 180 ? `${firstSentence.slice(0, 177).trimEnd()}...` : firstSentence;
-  })();
+  const collectionDescription = collection?.description?.trim() || "";
+  const collectionIntroduction = collectionDescription;
 
   // Track GA4 view_item_list when collection loads
   useEffect(() => {
@@ -333,7 +329,7 @@ const CollectionDetail = () => {
     ...(faqs.length > 0 ? [generateFAQPageSchema(faqs)] : []),
     webPageSchema,
   ];
-  const metaDescription = buildMetaDescription(collectionDescription, {
+  const metaDescription = buildMetaDescription(collectionDescription || "Browse this hair care collection", {
     suffix: "Salon-selected hair care shipped Australia-wide, with free shipping on orders over $150.",
   });
 
@@ -376,9 +372,9 @@ const CollectionDetail = () => {
                 <h1 className="mb-4 max-w-[18ch] font-heading text-[clamp(2.6rem,5vw,5rem)] leading-[0.94] tracking-[-0.035em] text-[hsl(var(--hp-ink))]">
                   {collectionTitle}
                 </h1>
-                <p className="max-w-3xl text-base leading-7 text-[hsl(var(--hp-ink)/0.72)] md:text-lg">
+                {collectionIntroduction && <p className="max-w-3xl whitespace-pre-line text-base leading-7 text-[hsl(var(--hp-ink)/0.72)] md:text-lg">
                   {collectionIntroduction}
-                </p>
+                </p>}
               </div>
               {sortedProducts.length > 0 && (
                 <div className="border-t border-[hsl(var(--after-hours-plum)/0.22)] pt-3 lg:text-right">
@@ -561,20 +557,6 @@ const CollectionDetail = () => {
             )}
           </div>
         </section>}
-
-        {collectionDescription.trim() !== collectionIntroduction.trim() && (
-          <section className="border-t border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-cream))] py-10 md:py-14" aria-labelledby="about-collection-heading">
-            <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-              <details className="group border-y border-[hsl(var(--after-hours-plum)/0.2)] py-5">
-                <summary id="about-collection-heading" className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-heading text-2xl text-[hsl(var(--hp-ink))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))]">
-                  About this collection
-                  <span className="text-[hsl(var(--after-hours-copper))] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-                </summary>
-                <p className="max-w-3xl pb-2 pt-4 text-sm leading-7 text-[hsl(var(--hp-ink)/0.74)]">{collectionDescription}</p>
-              </details>
-            </div>
-          </section>
-        )}
 
         {faqs.length > 0 && (
           <section className="border-t border-[hsl(var(--after-hours-plum)/0.18)] bg-[hsl(var(--after-hours-paper))] py-12 md:py-16" aria-labelledby="collection-faq-heading">

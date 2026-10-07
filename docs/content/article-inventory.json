@@ -1,0 +1,889 @@
+[
+  {
+    "file": "src/data/blog-posts/5-ways-infrared-sauna-boosts-hair-skin-glow.tsx",
+    "slug": "5-ways-infrared-sauna-boosts-hair-skin-glow",
+    "title": "What to Expect From an Infrared Sauna Session at Hair Pinns",
+    "excerpt": "A simple, honest guide to the Hair Pinns infrared sauna, including what to bring, what a session feels like and how to plan your visit.",
+    "bodyWordCount": 416,
+    "archived": false,
+    "category": "Wellness",
+    "date": "August 12, 2025",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/beating-frizz-sydney-humidity.tsx",
+    "slug": "beating-frizz-sydney-humidity",
+    "title": "Beating Frizz in Sydney Humidity: A Stylist's Complete Guide",
+    "excerpt": "A stylist's complete guide to beating frizz in Sydney humidity, why it happens, what actually works, and the salon treatments that give you months of smooth hair.",
+    "bodyWordCount": 816,
+    "archived": false,
+    "category": "Seasonal",
+    "date": "April 19, 2026",
+    "productLinks": [
+      "https://hairpinns.com/collections/frizz-free-must-haves",
+      "https://hairpinns.com/collections/qiqi",
+      "https://hairpinns.com/collections/juuce-botanicals"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-products-australia-2025.tsx",
+    "slug": "best-hair-products-australia-2025",
+    "title": "Best Hair Products Australia 2025: Jena's Top Picks",
+    "excerpt": "Jena's top hair care picks for 2025. From bond repair to frizz control, these are the best hair products in Australia, shipped nationwide.",
+    "bodyWordCount": 571,
+    "archived": false,
+    "category": "Products",
+    "date": "February 25, 2025",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/aromaganic",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/wet-brush-detanglers"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-bangor.tsx",
+    "slug": "best-hair-salon-bangor",
+    "title": "Hair Salon in Bangor: What to Know Before Booking",
+    "excerpt": "A practical introduction to Hair Pinns in Bangor, including its location, current service focus, and how to check live availability before booking.",
+    "bodyWordCount": 142,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-near-como.tsx",
+    "slug": "best-hair-salon-near-como",
+    "title": "Best Hair Salon Near Como: What the Locals Say",
+    "excerpt": "Looking for a hair salon near Como? Here's what Como locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    "bodyWordCount": 411,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-near-cronulla.tsx",
+    "slug": "best-hair-salon-near-cronulla",
+    "title": "Best Hair Salon Near Cronulla: What the Locals Say",
+    "excerpt": "Looking for a hair salon near Cronulla? Here's what Cronulla locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    "bodyWordCount": 409,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-near-engadine.tsx",
+    "slug": "best-hair-salon-near-engadine",
+    "title": "Best Hair Salon Near Engadine: What the Locals Say",
+    "excerpt": "Looking for a hair salon near Engadine? Here's what Engadine locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    "bodyWordCount": 422,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-near-illawong.tsx",
+    "slug": "best-hair-salon-near-illawong",
+    "title": "Best Hair Salon Near Illawong: What the Locals Say",
+    "excerpt": "Looking for a hair salon near Illawong? Here's what Illawong locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    "bodyWordCount": 438,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-near-menai.tsx",
+    "slug": "best-hair-salon-near-menai",
+    "title": "Best Hair Salon Near Menai: What the Locals Say",
+    "excerpt": "Looking for a hair salon near Menai? Here's what locals actually value, and why Hair Pinns in Bangor is the short drive worth making.",
+    "bodyWordCount": 601,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-near-miranda.tsx",
+    "slug": "best-hair-salon-near-miranda",
+    "title": "Best Hair Salon Near Miranda: What the Locals Say",
+    "excerpt": "Looking for a hair salon near Miranda? Here's what Miranda locals look for in a family-friendly salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    "bodyWordCount": 437,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-hair-salon-near-sutherland.tsx",
+    "slug": "best-hair-salon-near-sutherland",
+    "title": "Best Hair Salon Near Sutherland: What the Locals Say",
+    "excerpt": "Looking for a hair salon near Sutherland? Here's what Sutherland locals value in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    "bodyWordCount": 423,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/best-shampoo-colour-treated-hair-australia.tsx",
+    "slug": "best-shampoo-colour-treated-hair-australia",
+    "title": "Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)",
+    "excerpt": "A stylist's guide to the best shampoos for colour-treated hair in Australia, what actually keeps colour vibrant, what strips it, and what to buy.",
+    "bodyWordCount": 592,
+    "archived": false,
+    "category": "Products",
+    "date": "April 19, 2026",
+    "productLinks": [
+      "/products/juuce-radiant-colour-shampoo",
+      "/products/juuce-radiant-colour-conditioner",
+      "/products/pure-sacred-mask-hydrating-hair-treatment"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/bond-repair-vs-protein-treatment-difference.tsx",
+    "slug": "bond-repair-vs-protein-treatment-difference",
+    "title": "Bond Repair vs Protein Treatment: How to Choose",
+    "excerpt": "Compare bond repair and protein treatments by formula, directions and your hair history, without relying on a home stretch test.",
+    "bodyWordCount": 547,
+    "archived": false,
+    "category": "Treatments",
+    "date": "May 8, 2026",
+    "productLinks": [
+      "/products/juuce-bond-repair-shampoo/",
+      "/products/juuce-bond-repair-conditioner/"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/can-you-use-purple-shampoo-every-day.tsx",
+    "slug": "can-you-use-purple-shampoo-every-day",
+    "title": "Can You Use Purple Shampoo Every Day? What Stylists Say",
+    "excerpt": "A straight answer on whether daily purple shampoo use is safe, the overuse warning signs, and how often you actually need it.",
+    "bodyWordCount": 541,
+    "archived": false,
+    "category": "Education",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/christmas-gift-packs-at-hair-pinns.tsx",
+    "slug": "christmas-gift-packs-at-hair-pinns",
+    "title": "🎁 Gift Packs at Hair Pinns 🎁",
+    "excerpt": "Spoil someone special with our Juuce and Pure gift packs loaded with hair-loving products.",
+    "bodyWordCount": 536,
+    "archived": true,
+    "category": "Products",
+    "date": "September 20, 2025",
+    "productLinks": [
+      "/collections/juuce-botanicals",
+      "/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/christmas-hair-gifts-2026.tsx",
+    "slug": "christmas-hair-gifts-2026",
+    "title": "Christmas Hair Care Gift Guide 2026",
+    "excerpt": "A simple guide to the current Juuce and Pure Christmas packs at Hair Pinns, plus a festive styling duo and salon-selected gift ideas.",
+    "bodyWordCount": 381,
+    "archived": false,
+    "category": "Seasonal",
+    "date": "5 September 2026",
+    "productLinks": [
+      "/products/christmas-packs",
+      "/products/pure-christmas-packs-2025",
+      "/products/festive-finish-gift-set-duo"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/hair-extensions-bangor.tsx",
+    "slug": "hair-extensions-bangor",
+    "title": "Hair Extensions in Bangor: Salon-Grade vs DIY Clip-Ins",
+    "excerpt": "Thinking about hair extensions in Bangor? Here's an honest breakdown of tape-ins, clip-ins, and ponytail extensions, what works, what doesn't, and where to shop.",
+    "bodyWordCount": 719,
+    "archived": false,
+    "category": "Products",
+    "date": "April 19, 2026",
+    "productLinks": [
+      "https://hairpinns.com/collections/poppet-locks-reuseable-hair-extension-ponytails",
+      "https://hairpinns.com/collections/wet-brush-detanglers",
+      "https://hairpinns.com/collections/hair-pinns-accessories"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/hair-products-melbourne-brisbane-perth-australia.tsx",
+    "slug": "hair-products-melbourne-brisbane-perth-australia",
+    "title": "Hair Products Melbourne, Brisbane & Perth: Salon Hair Care Australia-Wide",
+    "excerpt": "Where to buy professional hair products in Melbourne, Brisbane, Perth and across Australia. Hair Pinns ships hair care to every state and territory. Free shipping over $150.",
+    "bodyWordCount": 435,
+    "archived": false,
+    "category": "Products",
+    "date": "February 25, 2025",
+    "productLinks": [
+      "https://hairpinns.com/collections",
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/home-hair-care-myths-stylist-wishes-youd-stop.tsx",
+    "slug": "home-hair-care-myths-stylist-wishes-youd-stop",
+    "title": "Home Hair Care Myths a Stylist Wishes You'd Stop Believing",
+    "excerpt": "Working behind the chair since 2009, Jena shares the home hair care myths she hears most often and what works instead.",
+    "bodyWordCount": 652,
+    "archived": false,
+    "category": "Education",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/cut-packages/mid-length-wash-cut-blowdry",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/how-long-does-keratin-smoothing-last.tsx",
+    "slug": "how-long-does-keratin-smoothing-last",
+    "title": "How Long Does Keratin Smoothing Actually Last?",
+    "excerpt": "A direct answer to how long keratin smoothing lasts, by treatment type, aftercare, and the single biggest factor that determines whether you get 4 weeks or 12.",
+    "bodyWordCount": 525,
+    "archived": false,
+    "category": "Treatments",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/smoothing/mid-length-straight-up-smoothing",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/how-much-full-head-foils-cost-sydney.tsx",
+    "slug": "how-much-full-head-foils-cost-sydney",
+    "title": "How Much Does a Full Head of Foils Cost in Sydney?",
+    "excerpt": "Straight answers on the real price range for full head foils across Sydney, what's included, and when to expect extras.",
+    "bodyWordCount": 536,
+    "archived": false,
+    "category": "Colour",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/foil-packages/full-head-foils-package",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/how-often-should-you-replace-your-shampoo.tsx",
+    "slug": "how-often-should-you-replace-your-shampoo",
+    "title": "How Often Should You Replace Your Shampoo?",
+    "excerpt": "Understanding shampoo longevity helps you plan ahead and keeps your hair clean and healthy without wasting product or money.",
+    "bodyWordCount": 416,
+    "archived": false,
+    "category": "Education",
+    "date": "September 01, 2025",
+    "productLinks": [
+      "/collections/juuce-botanicals",
+      "/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/how-often-should-you-wash-your-hair.tsx",
+    "slug": "how-often-should-you-wash-your-hair",
+    "title": "How Often Should You Wash Your Hair? (By Hair Type)",
+    "excerpt": "A stylist's direct answer to how often you should wash your hair, broken down by hair type, scalp condition, and lifestyle.",
+    "bodyWordCount": 622,
+    "archived": false,
+    "category": "Education",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/how-to-recover-hair-from-box-dye-damage.tsx",
+    "slug": "how-to-recover-hair-from-box-dye-damage",
+    "title": "How to Recover Hair From Box Dye Damage",
+    "excerpt": "A stylist's honest guide to recovering hair from box dye damage, what the process actually looks like, how long it takes, and how much it costs in the Sutherland Shire.",
+    "bodyWordCount": 877,
+    "archived": false,
+    "category": "Colour",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/colouring-packages/long-hair-colour-package",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/heat-protection"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/infrared-sauna-for-hair-scalp-health.tsx",
+    "slug": "infrared-sauna-for-hair-scalp-health",
+    "title": "Infrared Sauna for Hair & Scalp Health. Yes, It's a Thing!",
+    "excerpt": "At Hair Pinns, we combine luxury with wellness. See how infrared sauna sessions can work wonders for your hair and scalp health.",
+    "bodyWordCount": 451,
+    "archived": false,
+    "category": "Wellness",
+    "date": "April 20, 2025",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/juuce-vs-pure-organic-shampoo.tsx",
+    "slug": "juuce-vs-pure-organic-shampoo",
+    "title": "Juuce vs Pure Organic Shampoo: Which Is Right for Your Hair?",
+    "excerpt": "A stylist's honest comparison of Juuce and Pure Organic shampoos, ingredients, performance, price, and which one actually suits your hair type.",
+    "bodyWordCount": 754,
+    "archived": false,
+    "category": "Products",
+    "date": "April 19, 2026",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/frizz-free-must-haves"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/keratin-smoothing-sydney-prices-brands.tsx",
+    "slug": "keratin-smoothing-sydney-prices-brands",
+    "title": "Keratin Smoothing Sydney: Prices, Brands & What You Actually Get",
+    "excerpt": "A stylist's honest breakdown of keratin smoothing in Sydney, what you pay, what brands work, and the difference between Straight Up, QIQI Vega, and Nanoplasty.",
+    "bodyWordCount": 914,
+    "archived": false,
+    "category": "Treatments",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/smoothing/mid-length-straight-up-smoothing",
+    "productLinks": [
+      "https://hairpinns.com/collections/qiqi",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/juuce-botanicals"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/keratin-vs-brazilian-blowout-vs-straight-up.tsx",
+    "slug": "keratin-vs-brazilian-blowout-vs-straight-up",
+    "title": "Keratin vs Brazilian Blowout vs Straight Up: Which One?",
+    "excerpt": "The three main smoothing treatments explained, true keratin, Brazilian blowout, and amino-acid Straight Up Smoothing. Which fits your hair and budget?",
+    "bodyWordCount": 751,
+    "archived": false,
+    "category": "Treatments",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/smoothing/mid-length-straight-up-smoothing",
+    "productLinks": [
+      "https://hairpinns.com/collections/qiqi",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/juuce-botanicals"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/kids-hair-gift-ideas.tsx",
+    "slug": "kids-hair-gift-ideas",
+    "title": "A kids hair gift they’ll actually use, without the guesswork",
+    "seoTitle": "Kids hair gift ideas: choose a useful gift | Hair Pinns",
+    "excerpt": "Start with something useful, let them choose the fun bit, and skip the extras they won’t use. You can choose the current items and styles online, and I’ll pack your selected items together as one gift.",
+    "bodyWordCount": 288,
+    "archived": false,
+    "category": "Kids gifts",
+    "date": "September 30, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/meet-jena-15-years-sutherland-shire.tsx",
+    "slug": "meet-jena-15-years-sutherland-shire",
+    "title": "Meet Jena: Hair Pinns Founder and Bangor Stylist",
+    "excerpt": "Meet Jena Pinn, the founder and stylist behind Hair Pinns in Bangor, serving local clients since the salon opened in 2009.",
+    "bodyWordCount": 199,
+    "archived": false,
+    "category": "About",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/olaplex-vs-k18-vs-juuce-bond-repair.tsx",
+    "slug": "olaplex-vs-k18-vs-juuce-bond-repair",
+    "title": "Olaplex vs K18 vs Juuce: Compare Bond Repair Routines",
+    "excerpt": "Compare Olaplex, K18 and Juuce by product type, current directions and routine, with links to manufacturer guidance and current Juuce products.",
+    "bodyWordCount": 538,
+    "archived": false,
+    "category": "Products",
+    "date": "May 6, 2026",
+    "productLinks": [
+      "/products/juuce-bond-repair-shampoo/",
+      "/products/juuce-bond-repair-conditioner/"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss.tsx",
+    "slug": "permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss",
+    "title": "Permanent vs Semi-Permanent vs Demi-Permanent vs Gloss: A Plain English Guide",
+    "excerpt": "Colour terminology is a mess. Four different types of colour, all do different jobs, all last different amounts of time. Here's the plain English version so you know what you're actually booking.",
+    "bodyWordCount": 667,
+    "archived": false,
+    "category": "Colour",
+    "date": "May 12, 2026",
+    "serviceCTA": "/services/colouring-packages/long-hair-colour-package",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/aromaganic"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/prevent-heat-damage-on-your-hair.tsx",
+    "slug": "prevent-heat-damage-on-your-hair",
+    "title": "Do you Know how to Prevent Heat Damage on your Hair?",
+    "excerpt": "We all love a good styling session, but if you're not protecting your hair from heat, humidity, and environmental stressors, you're setting yourself up for dryness, breakage, and dull strands.",
+    "bodyWordCount": 511,
+    "archived": false,
+    "category": "Hair Care",
+    "date": "March 25, 2025",
+    "productLinks": [
+      "https://hairpinns.com/products/juuce-protect-solar-enz",
+      "https://hairpinns.com/products/juuce-heat-shield",
+      "https://hairpinns.com/products/juuce-dry-heat-guard"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/qiqi-bare-repair-oil-shine-strength-smoothness.tsx",
+    "slug": "qiqi-bare-repair-oil-shine-strength-smoothness",
+    "title": "QIQI Bare Repair Oil – Shine, Strength & Smoothness in a Bottle",
+    "excerpt": "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel, QIQI Bare Repair Oil is the answer.",
+    "bodyWordCount": 436,
+    "archived": false,
+    "category": "Products",
+    "date": "July 27, 2025",
+    "productLinks": [
+      "/collections/qiqi",
+      "/collections/qiqi"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/qiqi-vega-vs-nanoplasty-whats-the-difference.tsx",
+    "slug": "qiqi-vega-vs-nanoplasty-whats-the-difference",
+    "title": "QIQI Vega vs Nanoplasty: What's the Difference?",
+    "excerpt": "Compare the exact treatment, expected result and aftercare before choosing. Here are the questions to ask at your smoothing consultation.",
+    "bodyWordCount": 399,
+    "archived": false,
+    "category": "Treatments",
+    "date": "June 12, 2025",
+    "serviceCTA": "/services/smoothing/mid-length-straight-up-smoothing",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/quench-your-hairs-thirst-hydration-bundle.tsx",
+    "slug": "quench-your-hairs-thirst-hydration-bundle",
+    "title": "Quench Your Hair's Thirst This Winter with Our Hydration Bundle",
+    "excerpt": "Dry, dull, or brittle hair? It might be dehydrated. Transform thirsty strands with our Hydration Bundle featuring Juuce's moisture-rich must-haves.",
+    "bodyWordCount": 523,
+    "archived": false,
+    "category": "Products",
+    "date": "June 11, 2025",
+    "productLinks": [
+      "/collections/juuce-botanicals",
+      "/collections/juuce-botanicals"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/salon-foils-vs-box-dye-highlights-at-home.tsx",
+    "slug": "salon-foils-vs-box-dye-highlights-at-home",
+    "title": "Salon Foils vs Box Dye Highlights: Honest Talk From Someone Who Fixes Them",
+    "excerpt": "Box-dye highlight kits look like a $30 shortcut. After working behind the chair since 2009, here's what I think you're saving and what you're risking.",
+    "bodyWordCount": 823,
+    "archived": false,
+    "category": "Colour",
+    "date": "May 5, 2026",
+    "serviceCTA": "/services/foil-packages/full-head-foils-package",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/salon-vs-supermarket-hair-products.tsx",
+    "slug": "salon-vs-supermarket-hair-products",
+    "title": "Supermarket VS Salon Hair Products",
+    "excerpt": "We've all grabbed a $6 shampoo thinking we scored a bargain. But what if that 'cheap' product might be costing you more in the long run? Here's why salon hair products in Australia are the smarter choice.",
+    "bodyWordCount": 559,
+    "archived": false,
+    "category": "Products",
+    "date": "April 20, 2025",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/say-goodbye-to-frizzy-hair-march-2025.tsx",
+    "slug": "say-goodbye-to-frizzy-hair-march-2025",
+    "title": "Say Goodbye to Frizzy Hair for Good? (March Edition)",
+    "excerpt": "Thinking about a smoothing treatment? Here are the questions to ask Jena before booking.",
+    "bodyWordCount": 378,
+    "archived": false,
+    "category": "Treatments",
+    "date": "March 21, 2025",
+    "serviceCTA": "/services/smoothing/mid-length-straight-up-smoothing",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/scalp-buildup-how-to-reset-hair.tsx",
+    "slug": "scalp-buildup-how-to-reset-hair",
+    "title": "Scalp Buildup: How to Reset Your Hair Without Overdoing It",
+    "excerpt": "Heavy roots, dull lengths or an itchy scalp can point to buildup. Here is how I handle it in the salon and at home.",
+    "bodyWordCount": 394,
+    "archived": false,
+    "category": "Education",
+    "date": "July 26, 2026",
+    "productLinks": [
+      "/products/juuce-deep-cleanse-shampoo",
+      "/products/juuce-super-soft-hydration-moisture-mask",
+      "/collections/scalp-health-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/school-formal-hair-trends-2026.tsx",
+    "slug": "school-formal-hair-trends-2026",
+    "title": "School Formal Hair Trends 2026: What's In and How to Book",
+    "excerpt": "A stylist's guide to 2026 school formal hair trends, what's in, what photographs well, how to prep, and when to book so you're not disappointed.",
+    "bodyWordCount": 616,
+    "archived": false,
+    "category": "Seasonal",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/kids-formal/high-school-formal-hairstyle",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/smooth-seal-strengthen-pure-precious-ends.tsx",
+    "slug": "smooth-seal-strengthen-pure-precious-ends",
+    "title": "💧Smooth, Seal & Strengthen: Why Your Ends Need Pure Precious Ends",
+    "excerpt": "If your hair feels dry at the ends, breaks easily, or looks frazzled, Pure Precious Ends is your new secret weapon.",
+    "bodyWordCount": 368,
+    "archived": false,
+    "category": "Products",
+    "date": "July 26, 2025",
+    "productLinks": [
+      "/collections/pure-certified-organic-hair-care",
+      "/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/sulfate-free-shampoo-australia.tsx",
+    "slug": "sulfate-free-shampoo-australia",
+    "title": "Sulfate-Free Shampoo Australia: What ‘Sulphate Free’ Really Means",
+    "excerpt": "A practical guide to sulfate-free shampoo in Australia, including what to check on the label and one current option verified by Jena.",
+    "bodyWordCount": 546,
+    "archived": false,
+    "category": "Products",
+    "date": "September 12, 2026",
+    "productLinks": [
+      "/products/aromaganic-pmint-hair-scalp-renewal-shampoo"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/summer-hair-care-australia-beach-sun-salt.tsx",
+    "slug": "summer-hair-care-australia-beach-sun-salt",
+    "title": "Summer Hair Care in Australia: Beach, Sun, Salt Guide",
+    "excerpt": "A stylist's complete guide to summer hair care in Australia, how to protect your hair from sun, salt, chlorine, and humidity, and the products that actually work.",
+    "bodyWordCount": 674,
+    "archived": false,
+    "category": "Seasonal",
+    "date": "April 19, 2026",
+    "productLinks": [
+      "https://hairpinns.com/collections/heat-protection",
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/frizz-free-must-haves"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/sutherland-shire-hair-salon-guide.tsx",
+    "slug": "sutherland-shire-hair-salon-guide",
+    "title": "The Sutherland Shire Hair Salon Guide: What to Look For",
+    "excerpt": "How to pick a Sutherland Shire hair salon that actually listens. A stylist's honest guide to colour, cuts, smoothing, and what makes a great local salon.",
+    "bodyWordCount": 774,
+    "archived": false,
+    "category": "Local",
+    "date": "April 19, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/the-7-colouring-mistakes-i-see-every-week.tsx",
+    "slug": "the-7-colouring-mistakes-i-see-every-week",
+    "title": "The 7 Colouring Mistakes I See Every Week (And How to Avoid Them)",
+    "excerpt": "Working behind the chair since 2009, Jena shares seven hair-colouring mistakes she sees regularly and how to avoid them.",
+    "bodyWordCount": 830,
+    "archived": false,
+    "category": "Colour",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/colouring-packages/long-hair-colour-package",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/aromaganic",
+      "https://hairpinns.com/collections/juuce-botanicals"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/the-secret-behind-that-steamy-towel-moment.tsx",
+    "slug": "the-secret-behind-that-steamy-towel-moment",
+    "title": "The Secret Behind That Steamy Towel Moment 🔥💆",
+    "excerpt": "Why hot towel treatments deserve a spot in your hair routine. Beyond the spa-like feels, there's real hair and scalp science happening.",
+    "bodyWordCount": 521,
+    "archived": false,
+    "category": "Treatments",
+    "date": "August 04, 2025",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/truth-about-shampoo-after-straight-up-treatment.tsx",
+    "slug": "truth-about-shampoo-after-straight-up-treatment",
+    "title": "The Truth About Shampoo After Straight Up Treatment",
+    "excerpt": "As a stylist, I want my clients to get the best results from their QIQI Straight Up Treatment. Here's what you really need to know about aftercare.",
+    "bodyWordCount": 580,
+    "archived": false,
+    "category": "Treatments",
+    "date": "May 25, 2025",
+    "productLinks": [
+      "/collections/qiqi",
+      "/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/wet-brush-vs-tangle-teezer.tsx",
+    "slug": "wet-brush-vs-tangle-teezer",
+    "title": "Wet Brush vs Tangle Teezer: Which Detangler Suits Your Hair?",
+    "excerpt": "Compare Wet Brush Original Detangler and Tangle Teezer Ultimate Detangler by hair routine, brush design and current product options.",
+    "bodyWordCount": 420,
+    "archived": false,
+    "category": "Products",
+    "date": "April 19, 2026",
+    "productLinks": [
+      "https://hairpinns.com/products/wet-brush-original-detangler/",
+      "https://hairpinns.com/products/wet-brush-pro-detangler/",
+      "https://hairpinns.com/products/wet-brush-shower-detangler/"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/what-is-an-infrared-sauna.tsx",
+    "slug": "what-is-an-infrared-sauna",
+    "title": "What is an 'Infrared Sauna'?",
+    "excerpt": "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out.",
+    "bodyWordCount": 441,
+    "archived": false,
+    "category": "Wellness",
+    "date": "April 11, 2025",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/what-is-lamellar-vitality-technology.tsx",
+    "slug": "what-is-lamellar-vitality-technology",
+    "title": "What is Lamellar Vitality Technology?",
+    "excerpt": "See how cutting-edge lamellar technology that's changing hair care with ultra-lightweight, targeted repair and instant shine.",
+    "bodyWordCount": 590,
+    "archived": false,
+    "category": "Education",
+    "date": "May 20, 2025",
+    "productLinks": [
+      "/collections/pure-certified-organic-hair-care",
+      "/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/whats-a-straight-up-smoothing-treatment.tsx",
+    "slug": "whats-a-straight-up-smoothing-treatment",
+    "title": "What's a Straight Up Smoothing Treatment?",
+    "excerpt": "Smooth, soft, frizz-free hair with QIQI Vega, a hair-friendly smoothing system with no harsh chemicals, no downtime, and results that last up to 6 months.",
+    "bodyWordCount": 665,
+    "archived": false,
+    "category": "Treatments",
+    "date": "September 02, 2025",
+    "serviceCTA": "/services/smoothing/mid-length-straight-up-smoothing",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/whats-the-best-hairspray-to-use.tsx",
+    "slug": "whats-the-best-hairspray-to-use",
+    "title": "What's the Best Hairspray to Use?",
+    "excerpt": "The 3 Types of Hair Spray We Love at Hair Pinns - delivering results without compromising hair health.",
+    "bodyWordCount": 544,
+    "archived": false,
+    "category": "Products",
+    "date": "July 13, 2025",
+    "productLinks": [
+      "/collections/juuce-botanicals",
+      "/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/when-do-i-use-a-leave-in-conditioner.tsx",
+    "slug": "when-do-i-use-a-leave-in-conditioner",
+    "title": "When Do I Use a Leave-In Conditioner? A Stylist's Honest Guide",
+    "excerpt": "A stylist's honest guide to when you should use a leave-in conditioner, how often, and which one suits your hair type, plus the leave-in mistakes most people make.",
+    "bodyWordCount": 776,
+    "archived": false,
+    "category": "Education",
+    "date": "May 14, 2026",
+    "productLinks": [
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/when-should-you-get-a-haircut.tsx",
+    "slug": "when-should-you-get-a-haircut",
+    "title": "When Should You Get a Haircut? Signs You're Overdue",
+    "excerpt": "A stylist's guide to the five clear signs you're overdue for a haircut, and how often different lengths and hair types actually need trims.",
+    "bodyWordCount": 583,
+    "archived": false,
+    "category": "Education",
+    "date": "April 19, 2026",
+    "serviceCTA": "/services/cut-packages/mid-length-wash-cut-blowdry",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/where-to-buy-salon-hair-products-australia.tsx",
+    "slug": "where-to-buy-salon-hair-products-australia",
+    "title": "Where to Buy Salon Hair Products in Australia",
+    "excerpt": "Looking for professional hair care you can trust? Here's your guide to buying professional hair products in Australia, shipped Australia-wide.",
+    "bodyWordCount": 506,
+    "archived": false,
+    "category": "Products",
+    "date": "February 25, 2025",
+    "productLinks": [
+      "https://hairpinns.com/collections",
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/which-juuce-range-is-best-for-you-quiz.tsx",
+    "slug": "which-juuce-range-is-best-for-you-quiz",
+    "title": "Which range is best for you?",
+    "excerpt": "QUIZ: Which Juuce Shampoo & Conditioner Duo is Right for You? Your dream hair is one quiz away. Answer 7 quick questions to find your perfect match.",
+    "bodyWordCount": 668,
+    "archived": false,
+    "category": "Education",
+    "date": "April 20, 2025",
+    "productLinks": [
+      "/collections/juuce-botanicals",
+      "/blog/which-juuce-range-is-best-for-you-quiz"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/why-heat-protection-is-essential.tsx",
+    "slug": "why-heat-protection-is-essential",
+    "title": "🔥 Why Heat Protection Is Essential for Healthy Hair",
+    "excerpt": "If you love your hair tools, then heat protectant needs to be your hair's best friend. Learn how to shield your strands from damage.",
+    "bodyWordCount": 639,
+    "archived": false,
+    "category": "Education",
+    "date": "May 18, 2025",
+    "productLinks": [
+      "/collections/juuce-botanicals",
+      "/collections/pure-certified-organic-hair-care"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/why-wet-brush-is-a-must-have.tsx",
+    "slug": "why-wet-brush-is-a-must-have",
+    "title": "A gentler way to detangle your hair",
+    "excerpt": "Start at the ends, work in small sections and pause when your brush catches.",
+    "bodyWordCount": 433,
+    "archived": false,
+    "category": "Products",
+    "date": "September 21, 2026",
+    "productLinks": [],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/winter-hair-care-sydney-2026.tsx",
+    "slug": "winter-hair-care-sydney-2026",
+    "title": "Winter Hair Care for Sydney Weather (2026 Guide)",
+    "excerpt": "A stylist's guide to winter hair care in Sydney, dealing with dry heat, wind, cold rain, and the specific problems Sydney winter causes for coloured and treated hair.",
+    "bodyWordCount": 565,
+    "archived": false,
+    "category": "Seasonal",
+    "date": "April 19, 2026",
+    "productLinks": [
+      "https://hairpinns.com/collections/juuce-botanicals",
+      "https://hairpinns.com/collections/pure-certified-organic-hair-care",
+      "https://hairpinns.com/collections/juuce-botanicals"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/winter-weather-hair-care-sydney.tsx",
+    "slug": "winter-weather-hair-care-sydney",
+    "title": "Winter Weather Hair Care in Sydney – Why It Matters & How to Protect Your Hair",
+    "excerpt": "As chilly winds and heavy rains roll into Sydney, learn how to keep your hair healthy, hydrated, and fabulous all season long.",
+    "bodyWordCount": 751,
+    "archived": false,
+    "category": "Seasonal",
+    "date": "May 22, 2025",
+    "productLinks": [
+      "/collections/juuce-botanicals",
+      "/collections/hair-treatments-masks"
+    ],
+    "unresolvedMetadata": false
+  },
+  {
+    "file": "src/data/blog-posts/your-hair-deserves-the-best-wet-brush.tsx",
+    "slug": "your-hair-deserves-the-best-wet-brush",
+    "title": "Your Hair Deserves the BEST!",
+    "excerpt": "Why you need the right hair brush and why we love Wet Brush Detanglers. Your choice of brush can completely change your hair health.",
+    "bodyWordCount": 412,
+    "archived": false,
+    "category": "Products",
+    "date": "May 09, 2025",
+    "productLinks": [
+      "/collections/wet-brush-detanglers",
+      "/collections/hair-pinns-accessories"
+    ],
+    "unresolvedMetadata": false
+  }
+]

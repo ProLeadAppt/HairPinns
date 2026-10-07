@@ -641,13 +641,13 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
     name: product.name,
     description: product.description,
     image: imageUrls.length > 0 ? imageUrls : [`${BASE_URL}/og-product.jpg`],
-    brand: {
+    ...(product.brand?.trim() ? { brand: {
       '@type': 'Brand',
-      name: product.brand || 'Hair Pinns',
-      ...((product.brand || 'Hair Pinns').trim().toLocaleLowerCase('en-AU') === 'hair pinns'
+      name: product.brand.trim(),
+      ...(product.brand.trim().toLocaleLowerCase('en-AU') === 'hair pinns'
         ? { url: BASE_URL }
         : {}),
-    },
+    } } : {}),
     category: product.category || 'Hair Care',
     offers: {
       '@type': 'Offer',

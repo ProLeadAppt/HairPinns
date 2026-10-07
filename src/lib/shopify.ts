@@ -120,6 +120,9 @@ export async function loadProductByHandle(handle: string, signal?: AbortSignal) 
         vendor
         productType
         tags
+        collections(first: 20) {
+          edges { node { handle title } }
+        }
         priceRange {
           minVariantPrice {
             amount

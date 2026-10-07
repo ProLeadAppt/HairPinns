@@ -28,6 +28,9 @@ describe("product brand schema", () => {
       url: "https://hairpinns.com",
     });
   });
+  it("omits an unknown brand instead of treating the retailer as manufacturer", () => {
+    expect(generateEnhancedProductSchema(baseProduct)).not.toHaveProperty("brand");
+  });
 
   it("does not attach physical shipping details to a digital product", () => {
     const schema = generateEnhancedProductSchema({

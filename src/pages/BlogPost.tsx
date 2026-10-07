@@ -23,6 +23,7 @@ import { topicsForBlogPost } from "@/data/topicMap";
 import { renderInlineLinks } from "@/lib/renderInlineLinks";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { buildMetaDescription } from "@/lib/metadata";
+import { articleWordCount } from "@/lib/articleContent";
 import UpdatePost from "@/pages/UpdatePost";
 import {
   generateOrganizationSchema,
@@ -45,11 +46,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     return <Navigate to={post.redirectTo} replace />;
   }
 
-  const wordCount =
-    post.content.introduction.split(/\s+/).filter((word) => word.length > 0).length +
-    post.content.sections.reduce((total, section) =>
-      total + section.content.split(/\s+/).filter((word) => word.length > 0).length, 0
-    );
+  const wordCount = articleWordCount(post.content);
 
   const organizationSchema = generateOrganizationSchema();
   const blogPostSchema = generateBlogPostSchema({
@@ -77,7 +74,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     ? generateFAQPageSchema(post.content.faqSection)
     : null;
   const currentUrl = `https://hairpinns.com/blog/${post.slug}`;
-  const metaDescription = buildMetaDescription(post.excerpt, {
+  const metaDescription = post.metaDescription?.trim() || buildMetaDescription(post.excerpt, {
     suffix: "Practical hair advice from Jena at Hair Pinns.",
   });
 
@@ -193,6 +190,11 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
             {renderInlineLinks(post.content.introduction)}
           </p>
 
+          {post.content.stylistTip && <aside aria-label="Pro Stylist Tip" className="my-10 border-l-4 border-[hsl(var(--after-hours-copper))] bg-[hsl(var(--hp-lavender))] p-6">
+            <h2 className="font-heading text-2xl">Pro Stylist Tip</h2>
+            <p className="mt-3 leading-7">{renderInlineLinks(post.content.stylistTip)}</p>
+          </aside>}
+
           {/* Content Sections */}
           {post.content.sections.map((section, index) => (
             <div key={index} className="reveal mb-16">
@@ -203,6 +205,12 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
               <p className="max-w-[65ch] text-[1.06rem] leading-8 text-[hsl(var(--hp-ink)/0.78)]">
                 {renderInlineLinks(section.content)}
               </p>
+              {section.subsections?.map((item, subIndex) => <div key={subIndex} className="mt-7">
+                <h3 className="font-heading text-xl">{item.heading}</h3>
+                <p className="mt-3 leading-8">{renderInlineLinks(item.content)}</p>
+              </div>)}
+              {section.bullets?.length > 0 && <ul className="mt-5 list-disc space-y-2 pl-6">{section.bullets.map((item, itemIndex) => <li key={itemIndex}>{renderInlineLinks(item)}</li>)}</ul>}
+              {section.steps?.length > 0 && <ol className="mt-5 list-decimal space-y-2 pl-6">{section.steps.map((item, itemIndex) => <li key={itemIndex}>{renderInlineLinks(item)}</li>)}</ol>}
 
               {/* Keep the product shortcut usable on short and long guides. */}
               {index === Math.min(2, post.content.sections.length - 1) && post.content.productModule && (
