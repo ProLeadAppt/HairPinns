@@ -33,8 +33,8 @@ const GuideImage = ({
       <source srcSet={imagesEnabled ? buildShopifySrcSet(post.image, widths) : undefined} sizes={sizes} />
       <img
         src={imagesEnabled ? shopifyImage(post.image, lead ? 720 : 360) : undefined}
-        alt={post.title}
-        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        alt={post.imageAlt || post.title}
+        className={`h-full w-full ${post.imageFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
         loading="lazy"
         decoding="async"
         width={lead ? 960 : 480}

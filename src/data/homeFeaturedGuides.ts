@@ -5,6 +5,8 @@ export type HomeFeaturedGuide = {
   category: string;
   readTime: string;
   image: string;
+  imageAlt?: string;
+  imageFit?: "cover" | "contain";
 };
 
 export const homeFeaturedGuides: HomeFeaturedGuide[] = [
@@ -25,12 +27,14 @@ export const homeFeaturedGuides: HomeFeaturedGuide[] = [
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560",
   },
   {
-    slug: "hair-products-melbourne-brisbane-perth-australia",
-    title: "Hair Products Melbourne, Brisbane & Perth: Salon Hair Care Australia-Wide",
-    excerpt: "Where to buy professional hair products in Melbourne, Brisbane, Perth and across Australia. Hair Pinns ships hair care to every state and territory. Free shipping over $150.",
-    category: "Products",
-    readTime: "4 min read",
-    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-119.jpg?v=1747030697",
+    slug: "coloured-hair-care-routine",
+    title: "What should you use on coloured hair between salon visits?",
+    excerpt: "Find a simple coloured hair care routine: shampoo, conditioner, leave-ins and toning. Explore salon-picked products from Hair Pinns in Bangor.",
+    category: "Hair care",
+    readTime: "7 min read",
+    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-013.jpg?v=1744178584",
+    imageAlt: "Juuce Radiant Colour Shampoo product photograph",
+    imageFit: "contain",
   },
   {
     slug: "salon-vs-supermarket-hair-products",

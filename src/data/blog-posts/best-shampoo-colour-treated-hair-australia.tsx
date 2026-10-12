@@ -38,7 +38,7 @@ const post = {
         },
         {
           heading: "Build a simple routine before adding extras",
-          content: "Start with a suitable cleanser and conditioner. Add a toner, treatment or styling product only when it addresses a specific need. Browse [colour-treated hair care](/collections/colour-treated-hair) for current options, or [ask Jena for help choosing](/contact). The product pages show current prices, so you can compare the cost of the routine you actually need."
+          content: "Start with a suitable cleanser and conditioner. Add a toner, treatment or styling product only when it addresses a specific need. For help putting those steps together between salon visits, read our [coloured hair care routine](/blog/coloured-hair-care-routine/). Browse [colour-treated hair care](/collections/colour-treated-hair) for current options, or [ask Jena for help choosing](/contact). The product pages show current prices, so you can compare the cost of the routine you actually need."
         }
       ],
       productModule: {
