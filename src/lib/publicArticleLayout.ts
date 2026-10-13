@@ -1,8 +1,27 @@
+import { shopifyImageWebp } from "@/lib/shopifyImage";
+
 /** Arrange already-sanitised Shopify markup without changing its copy or links. */
 export function formatPublicArticleHtml(html: string): string {
   if (typeof DOMParser === 'undefined') return html;
   const document = new DOMParser().parseFromString(html, 'text/html');
   const body = document.body;
+
+  // Respect the editor's image width and original fallback URL. Avoid fetching
+  // full-size product photos for small article illustrations on high-DPI screens.
+  for (const image of Array.from(body.querySelectorAll('img[width]'))) {
+    const source = image.getAttribute('src') || '';
+    const width = Number(image.getAttribute('width'));
+    if (
+      image.hasAttribute('srcset') ||
+      !Number.isInteger(width) || width < 1 || width > 1200 ||
+      /[?&](?:width|height|format)=/i.test(source) ||
+      !/^https:\/\/cdn\.shopify\.com\/s\/files\/.*\.(?:jpe?g|png|webp)(?:\?|$)/i.test(source)
+    ) continue;
+    image.setAttribute('srcset', [1, 2, 3]
+      .map(scale => `${shopifyImageWebp(source, width * scale)} ${width * scale}w`)
+      .join(', '));
+    image.setAttribute('sizes', `(max-width: ${width}px) 100vw, ${width}px`);
+  }
 
   // Older editor posts often have flat h2/p markup instead of sections.
   // Give those posts the same rhythm as future semantic Shopify articles.
