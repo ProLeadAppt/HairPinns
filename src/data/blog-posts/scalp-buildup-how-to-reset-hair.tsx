@@ -8,6 +8,8 @@ const post = {
   "metaDescription": "Hair feeling coated? Learn when deep cleansing shampoo fits, how to use it gently and what to check for coloured hair. Read Jena’s practical guide.",
   "category": "Education",
   "date": "July 26, 2026",
+  "publishedDate": "2026-07-26",
+  "updatedDate": "2026-10-17",
   "readTime": "7 min read",
   "image": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-010.jpg?v=1744179511",
   "author": "Jena Pinn",

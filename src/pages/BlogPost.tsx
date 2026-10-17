@@ -23,6 +23,7 @@ import { topicsForBlogPost } from "@/data/topicMap";
 import { renderInlineLinks } from "@/lib/renderInlineLinks";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { buildMetaDescription } from "@/lib/metadata";
+import { articleDates } from "@/lib/articleDates";
 import { articleWordCount } from "@/lib/articleContent";
 import UpdatePost from "@/pages/UpdatePost";
 import {
@@ -47,13 +48,15 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
   }
 
   const wordCount = articleWordCount(post.content);
+  const dates = articleDates(post);
 
   const organizationSchema = generateOrganizationSchema();
   const blogPostSchema = generateBlogPostSchema({
     title: post.title,
     description: post.excerpt,
     author: post.author,
-    datePublished: new Date(post.date).toISOString(),
+    datePublished: dates.datePublished,
+    dateModified: dates.dateModified,
     image: post.image,
     url: `https://hairpinns.com/blog/${post.slug}`,
     wordCount: wordCount,
@@ -136,7 +139,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
               </nav>
               <dl className="mt-6 grid grid-cols-3 border-y border-[hsl(var(--hp-ink)/0.22)] py-4 text-[hsl(var(--hp-ink))]">
                 <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
-                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd></div>
+                <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd>{dates.updatedLabel && <dd className="mt-2 text-sm">Updated <time dateTime={post.updatedDate}>{dates.updatedLabel}</time></dd>}</div>
                 <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
               </dl>
             </div>
