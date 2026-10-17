@@ -258,10 +258,10 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'scalp-buildup-how-to-reset-hair',
     title: 'Scalp Buildup: How to Reset Your Hair Without Overdoing It',
-    excerpt: 'Heavy roots, dull lengths or an itchy scalp can point to buildup. Here is how I handle it in the salon and at home.',
+    excerpt: 'A practical wash-day guide to oily roots, product build-up and where a deep cleanse fits, without giving every head of hair the same routine.',
     category: 'Education',
     date: 'July 26, 2026',
-    readTime: '4 min read',
+    readTime: '7 min read',
     image: blogImg04,
     author: 'Jena Pinn',
   },
