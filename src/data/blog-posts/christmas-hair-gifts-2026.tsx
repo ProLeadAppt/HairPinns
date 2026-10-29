@@ -1,80 +1,88 @@
 import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
-  slug: "christmas-hair-gifts-2026",
-  title: "Christmas Hair Care Gift Guide 2026",
-  excerpt: "A simple guide to the current Juuce and Pure Christmas packs at Hair Pinns, plus a festive styling duo and salon-selected gift ideas.",
-  category: "Seasonal",
-  date: "5 September 2026",
-  readTime: "4 min read",
-  image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-118.jpg?v=1747030560",
-  author: "Jena Pinn",
-  content: {
-    introduction: "Christmas hair care should be easy to choose and useful after the wrapping comes off. This year's Hair Pinns edit starts with the current Juuce and Pure Christmas packs, plus a Festive Finish duo. Each product page carries the latest pack options, price and availability, so you can choose from current information rather than an old seasonal list.",
-    sections: [
+  "slug": "christmas-hair-gifts-2026",
+  "title": "Christmas hair gifts, without the guesswork",
+  "excerpt": "Start with their favourite routine, compare the gift options and make Christmas a little easier with gift wrapping on request and local pickup.",
+  "metaDescription": "Choose a useful hair-care gift with Jena's simple Christmas guide. Explore gift options, free gift wrapping on request and free local pickup at Hair Pinns.",
+  "category": "Seasonal",
+  "date": "5 September 2026",
+  "publishedDate": "2026-09-05",
+  "updatedDate": "2026-10-29",
+  "readTime": "3 min read",
+  "image": "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C032E8E9-A3EC-4E52-B2BA-DDB30BF770B3.png?v=1788442670",
+  "author": "Jena Pinn",
+  "content": {
+    "introduction": "A useful hair-care gift starts with the person you're buying for. Their favourite range is a good clue. If you're not sure, start with their routine rather than the prettiest box.\n\nI've kept this guide simple: a familiar favourite, a practical brush, or a browse through the gift options. Free gift wrapping is available on request, and there's free local pickup too.",
+    "sections": [
       {
-        heading: "Juuce Christmas Packs",
-        content: "The Juuce Christmas Packs bring the current Juuce gift options together on one product page. Open the product page to compare the available variants and choose the option that best matches the recipient's hair routine.",
+        "heading": "A favourite is a good place to start",
+        "content": "If you know their usual shampoo, conditioner or favourite range, use that as your starting point. Read the pack contents rather than assuming a familiar name means the same products are inside.\n\nIf you're less sure, think about what they've mentioned: caring for curls, keeping blonde looking fresh or finding a routine for fine hair. Read the product information, and ask me if you'd like a hand narrowing it down. Or choose for yourself. I am not judging."
       },
       {
-        heading: "Pure Christmas Packs",
-        content: "The Pure Christmas Packs are the seasonal place to start for someone who already uses Pure or prefers that range. Current variants and availability are shown on the product page before you add a pack to your bag.",
+        "heading": "One less Christmas job",
+        "content": "Gift wrapping is free if you'd like it. Ask when you order and let me know which items are gifts so we can confirm what you need.\n\nFree local pickup is available too. Confirm the collection arrangements and wait until your order is ready before coming in. If you're ordering for delivery, check the current delivery information before paying so you can plan around your destination."
       },
       {
-        heading: "Festive Finish Gift Set Duo",
-        content: "The Festive Finish Gift Set Duo is another simple gifting option in the Haircare Bundles & Gift Sets collection. Check the product page for the current details and availability.",
-      },
-      {
-        heading: "Choose by hair need when you are unsure",
-        content: "If you do not know the recipient's preferred brand, start with the Hair Pinns shop and browse by hair need. Frizz control, blonde care, heat protection, fine and flat hair, curls, scalp care and colour-treated hair each have their own clear path.",
-      },
-      {
-        heading: "Christmas shipping",
-        content: "Hair Pinns ships products Australia-wide, with free standard shipping on orders over $150. Delivery timing depends on the destination and the carrier, so check the current shipping information before ordering. Hair Pinns will publish any confirmed Christmas cut-off separately rather than promise a date that may change.",
-      },
+        "heading": "Don't forget your own hair",
+        "content": "If you'd like your hair done before Christmas, plan ahead. Think about the service you need, then check the current appointment options. It's one less thing to squeeze into December.",
+        "booking": true
+      }
     ],
-    productModule: {
-      title: "Shop the Christmas edit",
-      products: [
-        { name: "Juuce Christmas Packs", link: "/products/christmas-packs", description: "See current Juuce pack options" },
-        { name: "Pure Christmas Packs", link: "/products/pure-christmas-packs-2025", description: "See current Pure pack options" },
-        { name: "Festive Finish Gift Set Duo", link: "/products/festive-finish-gift-set-duo", description: "View the festive styling duo" },
-      ],
+    "quickAnswer": {
+      "question": "How do I choose a Christmas hair-care gift?",
+      "answer": "Start with a range they already use, compare the actual pack contents or consider a practical brush. Check current product options before ordering. Hair Pinns offers free gift wrapping on request and free local pickup."
     },
-    quickAnswer: {
-      question: "What Christmas hair care packs can I buy from Hair Pinns?",
-      answer: "Hair Pinns currently features Juuce Christmas Packs, Pure Christmas Packs and the Festive Finish Gift Set Duo. Check each product page for current variants, price and availability.",
-    },
-    keyTakeaways: [
-      "Compare current Juuce and Pure pack variants on their product pages",
-      "Use the Festive Finish Gift Set Duo as another ready-made option",
-      "Browse by hair need if you are unsure which brand to choose",
-      "Check current availability and shipping information before ordering",
+    "keyTakeaways": [
+      "Choose for their routine, not just the packaging.",
+      "Read pack contents and check current options before ordering.",
+      "Ask for free gift wrapping and confirm local pickup arrangements.",
+      "Check current booking options for your own pre-Christmas appointment."
     ],
-    faqSection: [
+    "faqSection": [
       {
-        question: "Where can I see the current Hair Pinns Christmas packs?",
-        answer: "Open the Juuce Christmas Packs or Pure Christmas Packs product page, or browse Haircare Bundles & Gift Sets. Those pages show the current options and availability.",
+        "question": "Can I have my gift wrapped?",
+        "answer": "Yes. Gift wrapping is free on request. Ask when ordering and let Jena know which items are gifts so the details can be confirmed."
       },
       {
-        question: "Can I buy Hair Pinns Christmas packs online?",
-        answer: "Yes. Packs that are available to purchase can be added to your bag from their Hair Pinns product page and checked out online.",
+        "question": "Can I collect my order locally?",
+        "answer": "Free local pickup is available. Confirm the collection arrangements and wait for confirmation that your order is ready before coming in."
       },
       {
-        question: "Does Hair Pinns ship Christmas packs Australia-wide?",
-        answer: "Hair Pinns ships products Australia-wide. Free standard shipping applies to orders over $150. Check the shipping policy for current details.",
-      },
-      {
-        question: "What if I do not know which pack to choose?",
-        answer: "Browse by hair need in the Hair Pinns shop, or ask Jena for guidance before choosing. The product page will show the current variants available for each pack.",
-      },
+        "question": "Are the two brushes in the photograph a set?",
+        "answer": "No. The brushes are sold individually. Check the product page for current colour options and details."
+      }
     ],
+    "choices": [
+      {
+        "heading": "Know their favourite range?",
+        "content": "Compare the Juuce Christmas pack options and read exactly what's included.",
+        "label": "View Juuce packs",
+        "href": "/products/christmas-packs"
+      },
+      {
+        "heading": "Prefer a practical little gift?",
+        "content": "Have a look at the Wet Brush Pro Paddle Detangler. Check the current colours and product details before choosing. Brushes are sold individually.",
+        "label": "View the brush",
+        "href": "/products/wet-brush-pro-paddle-detangler"
+      },
+      {
+        "heading": "Still deciding?",
+        "content": "Browse the gift collection, then choose for the person's routine. There's no need to add more just to make the present bigger.",
+        "label": "Browse gifts",
+        "href": "/collections/haircare-bundles-gift-sets"
+      }
+    ],
+    "closing": "One useful job off the list. Start with the gift options and choose something that makes sense for them."
   },
-  cta: {
-    type: "product",
-    productPath: "/collections/haircare-bundles-gift-sets",
-    customText: "Shop bundles & gifts",
+  "cta": {
+    "type": "product",
+    "productPath": "/collections/haircare-bundles-gift-sets",
+    "customText": "Browse gifts"
   },
+  "layout": "gift-guide",
+  "imageAlt": "Pink and purple Wet Brush Pro Paddle Detangler brushes, sold individually",
+  "imageCaption": "Brushes are sold individually. Check current colours on the product page."
 } as const;
 
 export default function BlogPostPage() {

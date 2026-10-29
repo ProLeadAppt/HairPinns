@@ -50,7 +50,6 @@ import blogImg50 from "@/assets/images/hair.pinns_1767331566_3800975130675413617
 import blogImg51 from "@/assets/images/1DA64B8E-CC51-41CF-85AF-226190D5BF4C.webp";
 import blogImg52 from "@/assets/images/hair.pinns_1772611255_3845264368586306528_2244281067.avif";
 import blogImg53 from "@/assets/images/hair.pinns_1764877632_3780390041894992722_2244281067.avif";
-import blogImg54 from "@/assets/images/hair.pinns_1766355936_3792790949849160975_2244281067.avif";
 import blogImg55 from "@/assets/images/hair.pinns_1773039624_3848857785019116769_2244281067.avif";
 import blogImg56 from "@/assets/blog/leave-in-products.webp";
 import blogImg57 from "@/assets/images/hair.pinns_1773039624_3848857785019133819_2244281067.avif";
@@ -617,12 +616,12 @@ export const blogSummaries: BlogSummary[] = [
   },
   {
     slug: 'christmas-hair-gifts-2026',
-    title: 'Christmas Hair Care Gift Guide 2026',
-    excerpt: 'A simple guide to the current Juuce and Pure Christmas packs at Hair Pinns, plus a festive styling duo and salon-selected gift ideas.',
+    title: "Christmas hair gifts, without the guesswork",
+    excerpt: "Start with their favourite routine, compare the gift options and make Christmas a little easier with gift wrapping on request and local pickup.",
     category: 'Seasonal',
     date: '5 September 2026',
-    readTime: '4 min read',
-    image: blogImg54,
+    readTime: "3 min read",
+    image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/C032E8E9-A3EC-4E52-B2BA-DDB30BF770B3.png?v=1788442670",
     author: 'Jena Pinn',
   },
   {

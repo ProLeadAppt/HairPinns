@@ -15,6 +15,7 @@ import ProgressBar from "@/components/blog/ProgressBar";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import AuthorBio from "@/components/blog/AuthorBio";
 import SocialShareBar from "@/components/blog/SocialShareBar";
+import GiftGuideBody from "@/components/blog/GiftGuideBody";
 import QuickAnswer from "@/components/blog/QuickAnswer";
 import KeyTakeaways from "@/components/blog/KeyTakeaways";
 import { getOGImage } from "@/lib/sitemap";
@@ -47,7 +48,15 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     return <Navigate to={post.redirectTo} replace />;
   }
 
-  const wordCount = articleWordCount(post.content);
+  const isGiftGuide = post.layout === "gift-guide";
+  const wordCount = articleWordCount(isGiftGuide ? {
+    ...post.content,
+    sections: [
+      ...post.content.sections,
+      ...post.content.choices.map((choice: { heading: string; content: string }) => ({ content: `${choice.heading} ${choice.content}` })),
+      { content: post.content.closing },
+    ],
+  } : post.content);
   const dates = articleDates(post);
 
   const organizationSchema = generateOrganizationSchema();
@@ -135,9 +144,9 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
               </div>
               <nav aria-label="Article shortcuts" className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-[hsl(var(--hp-purple))]">
                 <a href="#article-content" className="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">Read the guide</a>
-                {post.content.productModule && <a href="#article-products" className="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">See the product picks</a>}
+                {(post.content.productModule || isGiftGuide) && <a href="#article-products" className="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">See the product picks</a>}
               </nav>
-              <dl className="mt-6 grid grid-cols-3 border-y border-[hsl(var(--hp-ink)/0.22)] py-4 text-[hsl(var(--hp-ink))]">
+              <dl className={`${isGiftGuide ? "[&_dt]:text-xs" : ""} mt-6 grid grid-cols-3 border-y border-[hsl(var(--hp-ink)/0.22)] py-4 text-[hsl(var(--hp-ink))]`}>
                 <div><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Written by</dt><dd className="mt-2 text-sm">{post.author}</dd></div>
                 <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Published</dt><dd className="mt-2 text-sm">{post.date}</dd>{dates.updatedLabel && <dd className="mt-2 text-sm">Updated <time dateTime={post.updatedDate}>{dates.updatedLabel}</time></dd>}</div>
                 <div className="border-l border-[hsl(var(--hp-ink)/0.18)] pl-4"><dt className="text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">Reading</dt><dd className="mt-2 text-sm">{post.readTime}</dd></div>
@@ -163,8 +172,8 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
                 1200,
                 1600,
               ].map((width) => `${shopifyImage(post.image, width)} ${width}w`).join(", ")}
-              alt={post.title}
-              className="h-full w-full object-cover"
+              alt={post.imageAlt || post.title}
+              className={`h-full w-full ${isGiftGuide ? "object-contain bg-white p-5" : "object-cover"}`}
               loading="eager"
               fetchpriority="high"
               decoding="async"
@@ -176,8 +185,11 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
           </div>
         </section>
 
+        {isGiftGuide && post.imageCaption && <p className="mx-auto max-w-[78rem] px-4 pt-3 text-sm text-[hsl(var(--hp-ink))] sm:px-6">{post.imageCaption}</p>}
+
         {/* Article Content */}
         <article id="article-content" tabIndex={-1} className="mx-auto max-w-[48rem] scroll-mt-28 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+          {isGiftGuide ? <GiftGuideBody content={post.content} destination={post.cta.productPath} /> : <>
           {/* Quick Answer Box - AI SEO Optimization */}
           {post.content.quickAnswer && (
             <div className="quick-answer">
@@ -254,6 +266,8 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
               customText={post.cta.customText}
             />
           )}
+
+          </>}
 
           {visibleFaqs.length > 0 && (
             <div className="reveal mt-20 border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-10">
