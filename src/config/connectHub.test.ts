@@ -28,6 +28,7 @@ describe("salon QR connection hub", () => {
     expect(html).toContain('aria-label="Connect with Hair Pinns"');
     expect(html).toContain(":focus-visible");
     expect(html).toContain('href="https://hairpinns.com/connect/"');
+    expect(html).toContain('name="robots" content="noindex, follow"');
     expect(html).toContain("prefers-reduced-motion");
     expect(html).not.toContain('target="_blank"');
   });
