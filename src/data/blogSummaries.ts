@@ -81,7 +81,7 @@ export const blogSummaries: BlogSummary[] = [
     category: "Salon advice",
     date: "3 November 2026",
     readTime: "4 min read",
-    image: "https://hairpinns.com/assets/images/jena-founder-1080w-Ky6yef-B.webp",
+    image: "/blog-images/event-appointment-jena.webp",
     author: "Jena Pinn",
   },
   {

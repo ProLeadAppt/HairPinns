@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
+import { canonicalSiteUrl } from '@/config/businessConfig';
 import { BUSINESS_NAP } from '@/config/businessConfig';
 import { describe, expect, it } from 'vitest';
 import { articleDates } from './articleDates';
@@ -21,7 +22,12 @@ describe('Event appointment campaign', () => {
     expect(articleWordCount(post.content)).toBeLessThan(1000);
   });
   it('uses an existing original portrait and useful internal destinations', () => {
-    expect(post.image).toBe('https://hairpinns.com/assets/images/jena-founder-1080w-Ky6yef-B.webp');
+    expect(post.image).toBe('/blog-images/event-appointment-jena.webp');
+    expect(canonicalSiteUrl(post.image)).toBe('https://hairpinns.com/blog-images/event-appointment-jena.webp');
+    expect(readFileSync(new URL('../../public/blog-images/event-appointment-jena.webp', import.meta.url))).toEqual(readFileSync(new URL('../assets/images/jena-founder-1080w.webp', import.meta.url)));
+    const template = readFileSync(new URL('../pages/BlogPost.tsx', import.meta.url), 'utf8');
+    expect(template).toContain('ogImage={socialImage}');
+    expect(template).toContain('image: socialImage');
     expect(readFileSync(new URL('../assets/images/jena-founder-1080w.webp', import.meta.url)).byteLength).toBeGreaterThan(10000);
     expect(source).toContain('](/services/)');
     expect(source).toContain('](/blog/how-to-use-juuce-hair-products/)');

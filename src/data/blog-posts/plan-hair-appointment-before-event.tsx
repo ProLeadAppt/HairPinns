@@ -11,7 +11,7 @@ const post = {
   "date": "3 November 2026",
   "publishedDate": "2026-11-03",
   "readTime": "4 min read",
-  "image": "https://hairpinns.com/assets/images/jena-founder-1080w-Ky6yef-B.webp",
+  "image": "/blog-images/event-appointment-jena.webp",
   "imageAlt": "Jena from Hair Pinns in Bangor with softly waved, highlighted hair",
   "author": "Jena Pinn",
   "showLeadMagnet": false,
