@@ -82,7 +82,7 @@ describe("build-time entity and proof parity", () => {
 
     expect(priceProof).toBeDefined();
     expect(priceProof?.sourceType).toBe("fresha");
-    expect(getPublishableProof("2026-07-25")).toContain(priceProof);
+    expect(getPublishableProof("2026-11-03")).toContain(priceProof);
     expect(
       serviceDetailData.every(
         (category) => category.priceProofId === SERVICE_PRICE_PROOF_ID,

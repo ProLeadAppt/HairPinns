@@ -1,4 +1,5 @@
 import { useParams, Navigate } from "react-router-dom";
+import { canonicalSiteUrl } from "@/config/businessConfig";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -58,6 +59,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     ],
   } : post.content);
   const dates = articleDates(post);
+  const socialImage = canonicalSiteUrl(post.image);
 
   const organizationSchema = generateOrganizationSchema();
   const blogPostSchema = generateBlogPostSchema({
@@ -66,7 +68,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     author: post.author,
     datePublished: dates.datePublished,
     dateModified: dates.dateModified,
-    image: post.image,
+    image: socialImage,
     url: `https://hairpinns.com/blog/${post.slug}`,
     wordCount: wordCount,
   });
@@ -107,7 +109,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
         title={post.seoTitle || `${post.title} | Hair Pinns Blog`}
         description={metaDescription}
         canonical={currentUrl}
-        ogImage={post.image}
+        ogImage={socialImage}
         ogType="article"
         hrefLang="en-AU"
         schemaJson={schemas}
@@ -238,7 +240,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
               )}
 
               {/* Insert Lead Magnet after 5th section */}
-              {index === 4 && <LeadMagnetBox />}
+              {index === 4 && post.showLeadMagnet !== false && <LeadMagnetBox />}
 
               {/* Insert CTA after 2nd section if available */}
               {index === 1 && post.cta && (

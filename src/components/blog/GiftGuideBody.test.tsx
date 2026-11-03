@@ -27,6 +27,6 @@ describe('scoped Christmas gift guide', () => {
     expect(post.layout).toBe('gift-guide');
     expect(template).toContain('post.layout === "gift-guide"');
     expect(template).toContain('{isGiftGuide ? <GiftGuideBody');
-    expect(template).toContain('{index === 4 && <LeadMagnetBox />}'); // legacy branch retained
+    expect(template).toContain('{index === 4 && post.showLeadMagnet !== false && <LeadMagnetBox />}'); // default branch retained unless the post explicitly opts out
   });
 });

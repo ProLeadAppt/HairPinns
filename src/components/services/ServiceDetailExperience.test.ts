@@ -13,7 +13,7 @@ afterEach(() => {
 describe("ServiceDetailExperience review proof", () => {
   it("renders venue-level Fresha proof without replacing the booking action", () => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date("2026-07-26T12:00:00Z"));
+    vi.setSystemTime(new Date("2026-11-03T12:00:00Z"));
 
     const categoryData = serviceDetailData.find((category) => category.slug === "smoothing");
     const serviceData = categoryData?.services.find(
@@ -37,7 +37,7 @@ describe("ServiceDetailExperience review proof", () => {
     );
 
     expect(html).toContain('data-review-proof-source="fresha"');
-    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 983 reviews");
+    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 1001 reviews");
     expect(html).toContain(BOOK_CTA_LABEL);
   });
 });
