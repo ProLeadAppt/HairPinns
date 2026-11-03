@@ -75,6 +75,16 @@ export interface BlogSummary {
 
 export const blogSummaries: BlogSummary[] = [
   {
+    slug: "plan-hair-appointment-before-event",
+    title: "Planning your hair appointment before a special event",
+    excerpt: "A date in the diary? Start with your ready-by time, a little inspiration and the right service. Here’s a simple checklist for your next event appointment.",
+    category: "Salon advice",
+    date: "3 November 2026",
+    readTime: "4 min read",
+    image: "https://hairpinns.com/assets/images/jena-founder-1080w-Ky6yef-B.webp",
+    author: "Jena Pinn",
+  },
+  {
     slug: 'kids-hair-gift-ideas',
     title: 'A kids hair gift they’ll actually use, without the guesswork',
     excerpt: 'Start with something useful, let them choose the fun bit, and skip the extras they won’t use. Choose the current items and styles online, and Jena will pack your selection together.',

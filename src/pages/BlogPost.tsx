@@ -238,7 +238,7 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
               )}
 
               {/* Insert Lead Magnet after 5th section */}
-              {index === 4 && <LeadMagnetBox />}
+              {index === 4 && post.showLeadMagnet !== false && <LeadMagnetBox />}
 
               {/* Insert CTA after 2nd section if available */}
               {index === 1 && post.cta && (

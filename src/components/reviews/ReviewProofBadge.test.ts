@@ -8,7 +8,7 @@ describe("ReviewProofBadge", () => {
   it("renders explicit Fresha venue attribution and source link", () => {
     const proof = resolveVenueReviewProof(
       { entityType: "service", entitySlug: "mid-length-straight-up-smoothing" },
-      "2026-07-26",
+      "2026-11-03",
     );
     expect(proof).not.toBeNull();
 
@@ -17,7 +17,7 @@ describe("ReviewProofBadge", () => {
     );
 
     expect(html).toContain('data-review-proof-source="fresha"');
-    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 983 reviews");
+    expect(html).toContain("Hair Pinns venue on Fresha: 5.0 from 1001 reviews");
     expect(html).toContain(`href="${proof!.sourceUrl}"`);
     expect(html).not.toContain("AggregateRating");
   });
