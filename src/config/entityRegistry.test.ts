@@ -115,7 +115,7 @@ describe("compatibility projections", () => {
 
 describe("proof registry", () => {
   it("publishes only sourced, current proof and excludes unverified Google claims", () => {
-    const publishable = getPublishableProof("2026-10-01");
+    const publishable = getPublishableProof("2026-11-11");
 
     expect(publishable.map((proof) => proof.id)).toContain(
       "fresha-venue-rating",
@@ -124,9 +124,9 @@ describe("proof registry", () => {
       expect.objectContaining({
         id: "fresha-venue-rating",
         sourceType: "fresha",
-        checkedDate: "2026-09-30",
-        expiryDate: "2026-10-30",
-        value: { rating: 5, reviewCount: 983 },
+        checkedDate: "2026-11-11",
+        expiryDate: "2026-12-11",
+        value: { rating: 5, reviewCount: 1007 },
       }),
     );
     expect(
@@ -139,7 +139,7 @@ describe("proof registry", () => {
 
   it("fails closed after dynamic proof expires", () => {
     expect(
-      getPublishableProof("2026-10-31").map((proof) => proof.id),
+      getPublishableProof("2026-12-12").map((proof) => proof.id),
     ).not.toContain("fresha-venue-rating");
   });
 

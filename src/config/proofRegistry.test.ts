@@ -4,7 +4,7 @@ import { getPublishableProofById } from "./proofRegistry";
 describe("publishable proof lookup", () => {
   it("returns the current published Fresha venue proof", () => {
     expect(
-      getPublishableProofById("fresha-venue-rating", "2026-10-01")?.id,
+      getPublishableProofById("fresha-venue-rating", "2026-11-11")?.id,
     ).toBe("fresha-venue-rating");
   });
 
@@ -13,7 +13,7 @@ describe("publishable proof lookup", () => {
       getPublishableProofById("google-rating-unresolved", "2026-07-26"),
     ).toBeUndefined();
     expect(
-      getPublishableProofById("fresha-venue-rating", "2026-10-31"),
+      getPublishableProofById("fresha-venue-rating", "2026-12-12"),
     ).toBeUndefined();
   });
 });
