@@ -7,5 +7,6 @@ describe('approved event editorial',()=>{
  const html=renderToStaticMarkup(<MemoryRouter><EventEditorial post={post} seo={<meta name="description" content="Test" />} /></MemoryRouter>);
  it('renders approved heading, genuine logo and all seven article anchors',()=>{expect(html.match(/<h1>/g)).toHaveLength(1);expect(html).toContain(post.title);expect(html).toContain('hair-pinns-logo-full');for(let i=0;i<7;i++){expect(html).toContain(`id="event-section-${i}"`);expect(html).toContain(`href="#event-section-${i}"`);}});
  it('preserves paragraph structure and service links without preview labels',()=>{expect(html).toContain('First paragraph.');expect(html).toContain('Second paragraph.');expect(html).toContain('href="/services/"');expect(html).not.toContain('NOT PUBLISHED');});
+ it('uses font-independent decorative SVG arrows in both calls to action',()=>{expect(html.match(/lucide-arrow-up-right/g)).toHaveLength(2);expect(html).not.toContain('↗');});
  it('includes keyboard skip link and native mobile contents disclosure',()=>{expect(html).toContain('href="#main-content"');expect(html).toContain('<details');expect(html).toContain('aria-label="Article contents"');});
 });
