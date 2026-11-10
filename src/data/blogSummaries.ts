@@ -74,6 +74,16 @@ export interface BlogSummary {
 }
 
 export const blogSummaries: BlogSummary[] = [
+{
+    slug: "plan-hair-appointment-before-event",
+    title: "Planning your hair for Christmas parties and special events",
+    excerpt: "A practical checklist for planning your hair for Christmas parties and special events at Hair Pinns in Bangor.",
+    category: "Salon advice",
+    date: "11 November 2026",
+    readTime: "4 min read",
+    image: "/blog-images/event-appointment-jena.webp",
+    author: "Jena Pinn"
+},
   {
     slug: 'kids-hair-gift-ideas',
     title: 'A kids hair gift they’ll actually use, without the guesswork',

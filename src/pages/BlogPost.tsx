@@ -1,3 +1,4 @@
+import EventEditorial from "@/components/blog/EventEditorial";
 import { useParams, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
@@ -100,6 +101,10 @@ export const BlogPostTemplate = ({ post }: { post: any }) => {
     ...(faqSchema ? [faqSchema] : []),
     ...(personSchema ? [personSchema] : []),
   ];
+
+  if (post.slug === "plan-hair-appointment-before-event") {
+    return <EventEditorial post={post} seo={<SEOHead title={post.seoTitle} description={metaDescription} canonical={currentUrl} ogImage={post.image} ogType="article" hrefLang="en-AU" schemaJson={schemas} />} />;
+  }
 
   return (
     <div className="min-h-screen bg-[hsl(var(--after-hours-paper))]">

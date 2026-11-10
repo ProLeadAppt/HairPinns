@@ -1,6 +1,12 @@
 import { afterEach, expect, it, vi } from 'vitest';
 import { getCollectionArtwork } from './collectionArtwork';
 
+// All requests below use mocked fetch. Unit tests must not require live credentials.
+vi.mock('@/config/projectConfig', () => ({ projectConfig: { shopify: {
+  domain: 'artwork-test.myshopify.com', storefrontToken: 'unit-test-only',
+  apiVersion: '2026-07', storeUrl: 'https://artwork-test.myshopify.com',
+} } }));
+
 afterEach(() => { vi.restoreAllMocks(); vi.useRealTimers(); });
 
 it('uses the merchant collection image before a product photograph', async () => {
