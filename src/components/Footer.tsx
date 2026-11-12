@@ -250,17 +250,7 @@ const Footer = () => {
           <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
             <div>
               <p>© {new Date().getFullYear()} Hair Pinns. All rights reserved. Est. by Jena Pinn.</p>
-              <p className="mt-1">
-                
-                <a
-                  href="https://munyal.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center text-[hsl(var(--hp-ink)/0.8)] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
-                >
-                  Built by Munyal · Personally crafted by Tyson Kaye
-                </a>
-              </p>
+
             </div>
             <nav className="flex flex-wrap gap-x-5" aria-label="Legal links">
               <Link to="/policies/shipping" className={linkClass}>Shipping</Link>
@@ -274,6 +264,22 @@ const Footer = () => {
             <span>Mastercard</span>
             <span>Afterpay</span>
             <span>Zip</span>
+          </div>
+          <div className="mt-6 border-t border-[hsl(var(--hp-purple)/0.18)] pt-5">
+            <a
+              href="https://munyal.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Built by Munyal · Personally crafted by Tyson Kaye"
+              className="group inline-flex min-h-11 max-w-full items-center gap-4 py-1 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-[hsl(var(--hp-purple))] focus-visible:outline-offset-4"
+            >
+              <span aria-hidden="true" className="h-8 w-px shrink-0 bg-[hsl(var(--after-hours-copper))]" />
+              <span className="min-w-0">
+                <span className="block text-sm leading-6 text-[hsl(var(--hp-ink)/0.8)]">Built by <span className="font-heading text-xl tracking-[-0.02em] text-[hsl(var(--hp-ink))] group-hover:underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4">Munyal</span></span>
+                <span className="sr-only"> · </span>
+                <span className="block text-xs leading-5 text-[hsl(var(--hp-ink)/0.8)]">Personally crafted by <span className="font-medium">Tyson Kaye</span></span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
