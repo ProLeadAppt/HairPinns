@@ -251,14 +251,14 @@ const Footer = () => {
             <div>
               <p>© {new Date().getFullYear()} Hair Pinns. All rights reserved. Est. by Jena Pinn.</p>
               <p className="mt-1">
-                This website was built by{" "}
+                
                 <a
                   href="https://munyal.com.au"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center text-[hsl(var(--hp-ink)/0.8)] underline decoration-[hsl(var(--after-hours-copper))] underline-offset-4 hover:text-[hsl(var(--after-hours-copper))]"
                 >
-                  Munyal
+                  Built by Munyal · Personally crafted by Tyson Kaye
                 </a>
               </p>
             </div>
@@ -282,3 +282,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
