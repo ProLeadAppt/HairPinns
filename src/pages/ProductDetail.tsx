@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { loadProductByHandle, getProductUrl } from "@/lib/shopify";
+import { loadProductByHandle } from "@/lib/shopify";
 import { shopifyImage, shopifyImageWebp } from "@/lib/shopifyImage";
 import { buildMetaDescription } from "@/lib/metadata";
 import { productBrand, recommendationCollection } from "@/lib/productBrand";
@@ -24,6 +24,9 @@ import RelatedContent from "@/components/RelatedContent";
 import { topicsForCollection } from "@/data/topicMap";
 import { addCartLines } from "@/lib/cartApi";
 import { getCampaign } from '@/lib/campaignAttribution';
+import { readCheckoutLinker } from '@/lib/checkout';
+import { productIdentifiers } from '@/lib/productIdentifiers';
+import { canonicalSiteUrl } from '@/config/businessConfig';
 import { trackAddToCart, trackBeginCheckout, trackProductView, trackFunnelStep } from "@/lib/ecommerceTracking";
 import { notify } from "@/hooks/use-toast";
 
@@ -316,6 +319,15 @@ const ProductDetail = () => {
       campaignInput.value = JSON.stringify(getCampaign());
       form.appendChild(campaignInput);
 
+      const linker = await readCheckoutLinker();
+      if (linker) {
+        const linkerInput = document.createElement('input');
+        linkerInput.type = 'hidden';
+        linkerInput.name = 'linker';
+        linkerInput.value = linker;
+        form.appendChild(linkerInput);
+      }
+
       document.body.appendChild(form);
       form.submit();
     } catch (error) {
@@ -481,17 +493,19 @@ const ProductDetail = () => {
     (() => {
       if (!activeVariant) return null;
       try {
+        const identifiers = productIdentifiers(activeVariant);
         return generateEnhancedProductSchema({
           name: product.title,
           description: product.description || `${product.title} - Professional hair care product from Hair Pinns`,
           image: imageUrls.length > 0 ? imageUrls : [getOGImage('product')],
-          url: `https://hairpinns.com/products/${handle}/?variant=${activeVariant.id.split('/').pop()}`,
+          url: canonicalSiteUrl(`/products/${handle}/?variant=${activeVariant.id.split('/').pop()}`),
           price: (Number.isFinite(price) ? price : 0).toString(),
           currency: activeVariant?.price?.currencyCode || "AUD",
           brand: productBrand(product),
-          sku: activeVariant.sku || activeVariant.id.split('/').pop() || "",
+          sku: identifiers.sku,
           productID: product.id,
-          gtin: activeVariant?.barcode || undefined,
+          gtin: identifiers.gtin,
+          mpn: identifiers.mpn,
           availability: availability.schema,
           requiresShipping: activeVariant?.requiresShipping !== false,
           // productType reflects Shopify's product taxonomy ("Shampoo",
@@ -526,7 +540,7 @@ const ProductDetail = () => {
       <SEOHead
         title={`${product.title} | Hair Pinns`}
         description={productDescription}
-        canonical={`https://hairpinns.com/products/${handle}`}
+        canonical={canonicalSiteUrl(`/products/${handle}`)}
         ogImage={images[0]?.url || getOGImage('product')}
         ogType="product"
         hrefLang="en-AU"

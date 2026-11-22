@@ -232,6 +232,39 @@ describe("checkout function action contract", () => {
     expect(JSON.parse(response.body).checkoutUrl).toContain('utm_source=email');
   });
 
+  it('stores the original referrer and click id, and forwards the click id to checkout', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(new Response(JSON.stringify({
+      data: { cart: shopifyCart },
+    }))).mockResolvedValueOnce(new Response(JSON.stringify({
+      data: { cartAttributesUpdate: { cart: shopifyCart, userErrors: [] } },
+    })));
+    const response = await handler(eventFor({
+      action: 'checkout',
+      cartId: shopifyCart.id,
+      campaign: {
+        gclid: 'CjwKCAjwtest',
+        referrer: 'https://www.google.com/search?q=brush',
+        landing: '/products/wet-brush-original-detangler/?gclid=CjwKCAjwtest',
+        email: 'person@example.test',
+      },
+      linker: '1*abc~def',
+    }));
+    expect(response.statusCode).toBe(200);
+    expect(JSON.parse(fetchSpy.mock.calls[1][1].body).variables.attributes).toEqual([
+      { key: 'hp_utm_source', value: 'google' },
+      { key: 'hp_utm_medium', value: 'cpc' },
+      { key: 'hp_gclid', value: 'CjwKCAjwtest' },
+      { key: 'hp_referrer', value: 'https://www.google.com/search' },
+      { key: 'hp_landing', value: '/products/wet-brush-original-detangler/?gclid=CjwKCAjwtest' },
+    ]);
+    const url = new URL(JSON.parse(response.body).checkoutUrl);
+    expect(url.searchParams.get('gclid')).toBe('CjwKCAjwtest');
+    expect(url.searchParams.get('utm_source')).toBe('google');
+    expect(url.searchParams.get('_gl')).toBe('1*abc~def');
+    expect(url.searchParams.has('referrer')).toBe(false);
+    expect(url.searchParams.has('email')).toBe(false);
+  });
+
   it('preserves campaign on the Buy Now form redirect', async () => {
     const attributes = [{ key: 'hp_utm_source', value: 'email' }];
     vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(new Response(JSON.stringify({

@@ -416,7 +416,7 @@ Create `public/llms.txt` with the following content:
 
 ## Key Facts
 - Location: 60 Goorgool Rd, Bangor NSW 2234, Australia
-- Phone: 0468 093 991
+- Phone: 0416 037 663
 - Email: hairpinns1@gmail.com
 - Hours: Tue 10am-5pm, Wed 6pm-9pm, Thu 9am-9pm, Fri 9am-5:30pm, Sat 8am-2pm
 - Google Rating: 4.9 stars (53+ reviews)
@@ -472,7 +472,7 @@ Create `public/llms-full.txt` with expanded content. This is a curated file for 
 ## About Hair Pinns
 Hair Pinns is located at 60 Goorgool Rd, Bangor NSW 2234. The salon is owned by Jena Pinn, a professional hairstylist serving the Sutherland Shire community. The salon holds a 4.9-star Google rating from 53+ verified reviews. Appointments can be booked 24/7 online through Fresha at https://hairpinns.com/booking.
 
-Contact: 0468 093 991 | hairpinns1@gmail.com
+Contact: 0416 037 663 | hairpinns1@gmail.com
 
 Opening Hours:
 - Tuesday: 10:00 AM – 5:00 PM
@@ -514,7 +514,7 @@ For product purchases, Hair Pinns ships Australia-wide through their online stor
 
 ## Frequently Asked Questions
 - **Do you ship products Australia-wide?** Yes, all hair care products are available for delivery across Australia.
-- **How do I book an appointment?** Book online 24/7 at https://hairpinns.com/booking via Fresha, or call 0468 093 991.
+- **How do I book an appointment?** Book online 24/7 at https://hairpinns.com/booking via Fresha, or call 0416 037 663.
 - **What are your opening hours?** Tuesday to Saturday, with varying hours. Closed Sunday and Monday.
 - **Where are you located?** 60 Goorgool Rd, Bangor NSW 2234 (Sutherland Shire, Sydney).
 ```

@@ -24,6 +24,41 @@ describe('campaign boundary', () => {
       expect(checkoutWithCampaign(url, { utm_source: 'email' })).toBe(url);
     }
   });
+
+  it('keeps Google and Meta click IDs and derives a source when the ad did not send one', () => {
+    expect(sanitiseCampaign({
+      gclid: 'CjwKCAjwtest',
+      fbclid: 'IwARtest',
+      email: 'person@example.test',
+    })).toMatchObject({ gclid: 'CjwKCAjwtest', fbclid: 'IwARtest', utm_source: 'google', utm_medium: 'cpc' });
+  });
+
+  it('turns an external Google referrer into source labels without copying the checkout hop', () => {
+    expect(sanitiseCampaign({
+      referrer: 'https://www.google.com/search?q=wet+brush',
+      landing: '/products/wet-brush-original-detangler/?gclid=CjwKCAjwtest',
+    })).toEqual({
+      gclid: 'CjwKCAjwtest',
+      referrer: 'https://www.google.com/search',
+      landing: '/products/wet-brush-original-detangler/?gclid=CjwKCAjwtest',
+      utm_source: 'google',
+      utm_medium: 'cpc',
+    });
+    expect(sanitiseCampaign({ referrer: 'https://hairpinns.com/collections/' })).toEqual({});
+  });
+
+  it('puts click IDs on the Shopify checkout URL and the GA linker when one is supplied', () => {
+    const result = new URL(checkoutWithCampaign(
+      'https://checkout.shopify.com/checkouts/cn/test?key=keep',
+      { gclid: 'CjwKCAjwtest', referrer: 'https://www.google.com/' },
+      '1*abc~def',
+    ));
+    expect(result.searchParams.get('key')).toBe('keep');
+    expect(result.searchParams.get('gclid')).toBe('CjwKCAjwtest');
+    expect(result.searchParams.get('utm_source')).toBe('google');
+    expect(result.searchParams.get('_gl')).toBe('1*abc~def');
+    expect(result.searchParams.has('referrer')).toBe(false);
+  });
 });
 
 describe('campaign navigation', () => {
@@ -41,15 +76,15 @@ describe('campaign navigation', () => {
 
   it('retains a campaign after internal navigation and replaces it for a new campaign', async () => {
     const { captureCampaign, getCampaign } = await import('./campaignAttribution');
-    captureCampaign('?utm_source=shopify_email&utm_medium=email&utm_content=hero', 1000);
-    expect(getCampaign(1001)).toEqual({ utm_source: 'shopify_email', utm_medium: 'email', utm_content: 'hero' });
-    captureCampaign('?utm_source=facebook&utm_campaign=second', 1002);
-    expect(getCampaign(1003)).toEqual({ utm_source: 'facebook', utm_campaign: 'second' });
+    captureCampaign('?utm_source=shopify_email&utm_medium=email&utm_content=hero', 1000, '', '/');
+    expect(getCampaign(1001)).toEqual({ utm_source: 'shopify_email', utm_medium: 'email', utm_content: 'hero', landing: '/' });
+    captureCampaign('?utm_source=facebook&utm_campaign=second', 1002, '', '/blog/');
+    expect(getCampaign(1003)).toEqual({ utm_source: 'facebook', utm_campaign: 'second', landing: '/blog/' });
   });
 
   it('expires old campaign state and survives corrupt storage', async () => {
     const { captureCampaign, getCampaign } = await import('./campaignAttribution');
-    captureCampaign('?utm_source=shopify_email', 1000);
+    captureCampaign('?utm_source=shopify_email', 1000, '', '/');
     expect(getCampaign(1000 + 30 * 60 * 1000)).toEqual({});
     sessionStorage.setItem('hp_campaign_v1', '{bad');
     expect(getCampaign()).toEqual({});
@@ -58,8 +93,8 @@ describe('campaign navigation', () => {
   it('continues using memory when browser storage is blocked', async () => {
     const { captureCampaign, getCampaign } = await import('./campaignAttribution');
     const spy = vi.spyOn(sessionStorage, 'setItem').mockImplementation(() => { throw new Error('blocked'); });
-    captureCampaign('?utm_source=shopify_email', 1000);
-    expect(getCampaign(1001)).toEqual({ utm_source: 'shopify_email' });
+    captureCampaign('?utm_source=shopify_email', 1000, '', '/');
+    expect(getCampaign(1001)).toEqual({ utm_source: 'shopify_email', landing: '/' });
     spy.mockRestore();
   });
 });

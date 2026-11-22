@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { marketingAttributionAllowed } from "@/lib/attributionConsent";
 
 /**
  * GA4, Meta Pixel and Microsoft Clarity initialization scripts
@@ -16,8 +17,20 @@ const GA4_SCRIPT_ID = "hp-ga4-script";
 const META_PIXEL_SCRIPT_ID = "hp-meta-pixel-inline";
 const CLARITY_SCRIPT_ID = "hp-clarity-inline";
 
+const SHOPIFY_CONSENT_SCRIPT_ID = "hp-shopify-consent";
+
 const TrackingScripts = () => {
   useEffect(() => {
+    // Load Shopify's Customer Privacy API without recording a consent choice.
+    // A banner, when one exists, remains the only thing that may opt in or out.
+    if (!document.getElementById(SHOPIFY_CONSENT_SCRIPT_ID)) {
+      const consent = document.createElement("script");
+      consent.id = SHOPIFY_CONSENT_SCRIPT_ID;
+      consent.async = true;
+      consent.src = "https://cdn.shopify.com/shopifycloud/consent-tracking-api/v0.1/consent-tracking-api.js";
+      document.head.appendChild(consent);
+    }
+
     if (!document.getElementById(GA4_SCRIPT_ID)) {
       const script = document.createElement("script");
       script.id = GA4_SCRIPT_ID;
@@ -26,7 +39,7 @@ const TrackingScripts = () => {
       document.head.appendChild(script);
     }
 
-    if (META_PIXEL_ID && !document.getElementById(META_PIXEL_SCRIPT_ID)) {
+    if (META_PIXEL_ID && marketingAttributionAllowed() && !document.getElementById(META_PIXEL_SCRIPT_ID)) {
       const script = document.createElement("script");
       script.id = META_PIXEL_SCRIPT_ID;
       script.type = "text/javascript";

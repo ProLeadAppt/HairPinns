@@ -135,7 +135,7 @@ Create `public/llms.txt` — the emerging standard for telling AI systems what a
 ## About
 - Owner and lead stylist: Jena Pinn
 - Location: 60 Goorgool Rd, Bangor NSW 2234, Australia
-- Phone: 0468 093 991
+- Phone: 0416 037 663
 - Booking: https://hairpinns.com/booking
 
 ## Services

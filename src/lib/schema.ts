@@ -52,6 +52,8 @@ interface ProductData {
   currency: string;
   brand?: string;
   sku?: string;
+  /** Public product page. A SKU is not a URL. */
+  url?: string;
   availability?: string;
   rating?: {
     ratingValue: number;
@@ -83,6 +85,7 @@ interface HowToData {
   supply?: Array<{ name: string }>;
 }
 
+import { canonicalSiteUrl } from '@/config/businessConfig';
 import {
   ENTITY_REGISTRY,
   getOpeningHoursSpecification as getRegistryOpeningHoursSpecification,
@@ -343,7 +346,7 @@ export const generateProductSchema = (product: ProductData) => {
     image: product.image,
     offers: {
       '@type': 'Offer',
-      url: `${BASE_URL}/products/${product.sku || ''}`,
+      ...(product.url ? { url: canonicalSiteUrl(product.url) } : {}),
       priceCurrency: product.currency || 'AUD',
       price: product.price,
       availability: product.availability
@@ -647,7 +650,9 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
   const rawImages = Array.isArray(product.image) ? product.image : (product.image ? [product.image] : []);
   const imageUrls = rawImages.filter((url): url is string => typeof url === "string" && url.length > 0);
 
-  const canonicalUrl = product.url || `${BASE_URL}/products/${product.sku || product.productID || ''}`;
+  const canonicalUrl = product.url
+    ? canonicalSiteUrl(product.url)
+    : `${BASE_URL}/products/${product.sku || product.productID || ''}`;
 
   const schema: any = {
     '@context': 'https://schema.org',
@@ -720,8 +725,10 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
     schema.mpn = product.mpn;
   }
 
-  if (product.gtin) {
-    schema.gtin = product.gtin;
+  const gtinDigits = (product.gtin || '').replace(/\D/g, '');
+  const gtinKey = ({ 8: 'gtin8', 12: 'gtin12', 13: 'gtin13', 14: 'gtin14' } as Record<number, string>)[gtinDigits.length];
+  if (gtinKey) {
+    schema[gtinKey] = gtinDigits;
   }
 
   if (product.color) {

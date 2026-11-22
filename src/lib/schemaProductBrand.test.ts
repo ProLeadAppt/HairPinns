@@ -32,6 +32,18 @@ describe("product brand schema", () => {
     expect(generateEnhancedProductSchema(baseProduct)).not.toHaveProperty("brand");
   });
 
+  it("uses a real GTIN length and leaves missing identifiers out", () => {
+    const withGtin = generateEnhancedProductSchema({ ...baseProduct, gtin: "9312345678901", mpn: "MPN-1" });
+    expect(withGtin.gtin13).toBe("9312345678901");
+    expect(withGtin.mpn).toBe("MPN-1");
+    expect(withGtin).not.toHaveProperty("gtin");
+
+    const withoutIds = generateEnhancedProductSchema({ ...baseProduct, sku: "", gtin: "12345" });
+    expect(withoutIds).not.toHaveProperty("sku");
+    expect(withoutIds).not.toHaveProperty("gtin13");
+    expect(withoutIds.offers.url).toBe("https://hairpinns.com/products/repair-shampoo/");
+  });
+
   it("does not attach physical shipping details to a digital product", () => {
     const schema = generateEnhancedProductSchema({
       ...baseProduct,
