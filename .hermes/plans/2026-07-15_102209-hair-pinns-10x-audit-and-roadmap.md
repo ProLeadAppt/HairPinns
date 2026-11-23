@@ -102,7 +102,7 @@ A second live crawl completed after the initial roadmap was written and material
 - A deleted Christmas article remains in the sitemap.
 - Six indexed local articles publish the unfinished sentence: “Composite of client feedback, real quote to be added before publish.”
 - Seven local articles contain pricing or experience claims that conflict with the live service menu, including a $30 under-12 price and an unverified Polaroid/lollipop promise.
-- Eighteen area surfaces show `+61 468 093 991` while linking to the 0416 number.
+- Eighteen area surfaces now use `0416 037 663`.
 - Broken service fragments include `#colour`, `#cuts`, and an individual service slug used as a section fragment.
 - `/search/` is indexable and included in the sitemap.
 - 139 titles exceed 60 characters, 143 descriptions exceed 160 characters, and 71 descriptions are under 120 characters. GSC data should determine which templates and pages are fixed first.
@@ -113,7 +113,7 @@ These findings move crawl integrity, public-claim integrity, real HTTP 404 behav
 
 ### Critical trust and technical findings
 
-1. **NAP inconsistency:** live footer and rendered schema use `0416 037 663`, while `public/llms.txt` publishes `0468 093 991`. Confirm the correct public number with Jena, then update every human and machine-readable surface atomically.
+1. **NAP:** the public number is `0416 037 663` on the live footer, rendered schema, and `public/llms.txt`.
 2. **Canonical mismatch:** production redirects `/services` and `/blog` to trailing-slash URLs, while the sitemap lists non-trailing-slash URLs. Homepage canonical is `https://hairpinns.com/`, but `og:url` is `https://hairpinns.com`. Pick one URL form and align redirects, sitemap, canonicals, OG, schema, internal links and LLM files.
 3. **Six collection prerender failures:** every full build currently times out on `/collections/best-sellers-nov`, `/collections/juuce`, `/collections/pure`, `/collections/styling`, `/collections/treatments` and `/collections/wet-brush`. The build exits successfully despite those failures. This weakens crawler parity and masks regressions.
 4. **Malformed LeadConnector widget request:** Lighthouse recorded a 404 request whose URL is an encoded `<script>` tag. This indicates the widget snippet is being inserted as a URL instead of executable markup, likely through an external optimisation layer.

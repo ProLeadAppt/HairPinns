@@ -38,6 +38,11 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('set', 'linker', {
+        domains: ['femtat-zu.myshopify.com', 'checkout.shopify.com'],
+        accept_incoming: true,
+        decorate_forms: true
+      });
       gtag('js', new Date());
       gtag('config', 'G-N6Y1TJMWGG');
     </script>

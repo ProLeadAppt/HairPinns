@@ -22,7 +22,7 @@ Map pack visibility is not just Google. Apple Maps (2B+ devices) and Bing both d
 2. **Add NAP** — use values from `businessConfig.ts`:
    - Name: Hair Pinns
    - Address: 60 Goorgool Rd, Bangor NSW 2234
-   - Phone: 0468 093 991
+   - Phone: 0416 037 663
    - Website: https://hairpinns.com
    - Email: hairpinns1@gmail.com
 3. **Hours** — match GBP: Tue 10–5, Wed 6–9, Thu 9–9, Fri 9–5:30, Sat 8–2
@@ -64,8 +64,8 @@ Every map and directory listing must use identical NAP. Reference `businessConfi
 | Region | NSW |
 | Postcode | 2234 |
 | Country | AU |
-| Phone (display) | 0468 093 991 |
-| Phone (raw) | +61468093991 |
+| Phone (display) | 0416 037 663 |
+| Phone (raw) | 0416 037 663 |
 | Website | https://hairpinns.com |
 | Email | hairpinns1@gmail.com |
 

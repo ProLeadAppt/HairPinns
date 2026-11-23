@@ -48,7 +48,7 @@ Google evaluates whether your business is genuinely local and trusted. Off-site 
 
 - **Name:** Hair Pinns
 - **Address:** 60 Goorgool Rd, Bangor NSW 2234
-- **Phone:** 0468 093 991 (or +61 468 093 991)
+- **Phone:** 0416 037 663
 - **Website:** https://hairpinns.com
 
 **Source of truth:** `src/config/businessConfig.ts`

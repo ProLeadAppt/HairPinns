@@ -17,8 +17,8 @@ Keep the Hair Pinns website and Google Business Profile in sync for maximum loca
 | Postcode | 2234 | | |
 | Country | AU | | |
 | Full address | 60 Goorgool Rd, Bangor NSW 2234 | | |
-| Phone (display) | 0468 093 991 | | |
-| Phone (raw) | +61468093991 | | |
+| Phone (display) | 0416 037 663 | | |
+| Phone (raw) | 0416 037 663 | | |
 | Website URL | https://hairpinns.com | | |
 | Email | hairpinns1@gmail.com | | |
 

@@ -7,7 +7,7 @@
  * working while callers migrate to the action contract.
  */
 
-import { sanitiseCampaign, campaignAttributes, checkoutWithCampaign } from '../../shared/campaignAttribution.js';
+import { sanitiseCampaign, sanitiseLinker, campaignAttributes, checkoutWithCampaign, isAttributionAttribute } from '../../shared/campaignAttribution.js';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -233,6 +233,7 @@ function parseBody(event) {
       cartId: params.get('cartId') || undefined,
       lines: (() => { try { return JSON.parse(params.get('lines') || '[]'); } catch { return []; } })(),
       campaign: (() => { try { return JSON.parse(params.get('campaign') || '{}'); } catch { return {}; } })(),
+      linker: params.get('linker') || undefined,
     };
   }
   try {
@@ -276,8 +277,8 @@ async function attachCampaign(cart, campaign) {
   const incoming = campaignAttributes(campaign);
   if (!incoming.length) return cart;
   const existing = cart.attributes || [];
-  if (incoming.every(({ key, value }) => existing.some((entry) => entry.key === key && entry.value === value))
-    && existing.filter(({ key }) => key.startsWith('hp_utm_')).length === incoming.length) return cart;
+  const stored = existing.filter(({ key }) => isAttributionAttribute(key));
+  if (incoming.length === stored.length && incoming.every(({ key, value }) => stored.some((entry) => entry.key === key && entry.value === value))) return cart;
   try {
     const data = await fetchShopify(
       `mutation cartAttributesUpdate($cartId: ID!, $attributes: [AttributeInput!]!) {
@@ -285,7 +286,7 @@ async function attachCampaign(cart, campaign) {
           cart { ${CART_FIELDS} } userErrors { field message code }
         }
       }`,
-      { cartId: cart.id, attributes: [...existing.filter(({ key }) => !key.startsWith('hp_utm_')), ...incoming] },
+      { cartId: cart.id, attributes: [...existing.filter(({ key }) => !isAttributionAttribute(key)), ...incoming] },
       1500,
     );
     assertUserErrors(data.cartAttributesUpdate);
@@ -297,9 +298,9 @@ async function attachCampaign(cart, campaign) {
   }
 }
 
-function responseForCart(cart, campaign = {}) {
+function responseForCart(cart, campaign = {}, linker = '') {
   if (!cart?.id) throw new CheckoutError('Shopify returned an incomplete bag.', 502, 'INVALID_CART_RESPONSE');
-  const checkoutUrl = checkoutWithCampaign(ensureShopifyCheckoutUrl(cart.checkoutUrl), campaign);
+  const checkoutUrl = checkoutWithCampaign(ensureShopifyCheckoutUrl(cart.checkoutUrl), campaign, sanitiseLinker(linker));
   const snapshot = { ...cart, checkoutUrl: checkoutUrl || cart.checkoutUrl || '' };
   return {
     cart: snapshot,
@@ -319,6 +320,7 @@ export const handler = async (event) => {
   try {
     const body = parseBody(event);
     const campaign = sanitiseCampaign(body.campaign);
+    const linker = sanitiseLinker(body.linker);
     const action = inferLegacyAction(body);
     if (!['get', 'add', 'update', 'remove', 'checkout'].includes(action)) {
       throw new CheckoutError('Action must be get, add, update, remove or checkout.', 400, 'INVALID_ACTION');
@@ -360,7 +362,7 @@ export const handler = async (event) => {
     }
 
     if (action === 'add' || action === 'checkout') cart = await attachCampaign(cart, campaign);
-    const result = responseForCart(cart, campaign);
+    const result = responseForCart(cart, campaign, linker);
     if (event.queryStringParameters?.redirect === 'true') {
       if (!result.checkoutUrl) {
         throw new CheckoutError('Checkout is temporarily unavailable.', 502, 'CHECKOUT_URL_MISSING');

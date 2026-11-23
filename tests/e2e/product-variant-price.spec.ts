@@ -8,7 +8,7 @@ for (const digital of [false, true]) {
           id: 'gid://shopify/Product/1', title: digital ? 'Hair Pinns Gift Card' : 'Juuce Mask', handle: 'test-product', vendor: 'Hair Pinns', tags: [],
           description: digital ? 'Delivered instantly via email.' : 'Hydration mask.', descriptionHtml: '', images: { edges: [] }, collections: { edges: [] }, availableForSale: true,
           priceRange: { minVariantPrice: { amount: '25.00', currencyCode: 'AUD' }, maxVariantPrice: { amount: '250.00', currencyCode: 'AUD' } },
-          variants: { edges: ['101', '202'].map((id, index) => ({ node: { id: `gid://shopify/ProductVariant/${id}`, title: index ? 'Large' : 'Small', availableForSale: true, quantityAvailable: 5, requiresShipping: !digital, price: { amount: index ? '250.00' : '25.00', currencyCode: 'AUD' }, selectedOptions: [{ name: 'Size', value: index ? 'Large' : 'Small' }] } })) },
+          variants: { edges: ['101', '202'].map((id, index) => ({ node: { id: `gid://shopify/ProductVariant/${id}`, title: index ? 'Large' : 'Small', sku: index ? 'JUICE-LG' : '', barcode: index ? '9312345678901' : '', availableForSale: true, quantityAvailable: 5, requiresShipping: !digital, price: { amount: index ? '250.00' : '25.00', currencyCode: 'AUD' }, selectedOptions: [{ name: 'Size', value: index ? 'Large' : 'Small' }] } })) },
         }, products: { edges: [] }, collections: { edges: [] }, productRecommendations: [],
       } } }));
       await page.goto(`/products/test-product/?${variant === 'base' ? '' : `variant=${variant}&`}utm_source=google`);
@@ -25,7 +25,14 @@ for (const digital of [false, true]) {
         const schema = (await getProducts())[0];
         const resolvedVariant = variant === 'base' ? '101' : variant;
         expect(schema.offers.url).toBe(`https://hairpinns.com/products/test-product/?variant=${resolvedVariant}`);
-        expect(schema.sku).toBe(resolvedVariant);
+        expect(schema['@id']).toBe(`https://hairpinns.com/products/test-product/?variant=${resolvedVariant}`);
+        if (resolvedVariant === '202') {
+          expect(schema.sku).toBe('JUICE-LG');
+          expect(schema.gtin13).toBe('9312345678901');
+        } else {
+          expect(schema.sku).toBeUndefined();
+          expect(schema.gtin13).toBeUndefined();
+        }
         await expect(page.getByRole('combobox', { name: 'Size', exact: true })).toContainText(resolvedVariant === '202' ? 'Large' : 'Small');
         expect(Boolean(schema.offers.shippingDetails)).toBe(!digital);
         if (!digital) {

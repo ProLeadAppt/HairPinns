@@ -1,3 +1,4 @@
+import { canonicalSiteUrl } from "@/config/businessConfig";
 import { projectConfig } from "@/config/projectConfig";
 import {
   excludeRetiredProductEdges,
@@ -157,6 +158,8 @@ export async function loadProductByHandle(handle: string, signal?: AbortSignal) 
               title
               sku
               barcode
+              mpn: metafield(namespace: "custom", key: "mpn") { value }
+              googleMpn: metafield(namespace: "mm-google-shopping", key: "mpn") { value }
               availableForSale
               quantityAvailable
               requiresShipping
@@ -770,7 +773,7 @@ export async function getAllCollections(first: number = 20) {
  * Get product URL for fallback
  */
 export function getProductUrl(handle: string): string {
-  return `${storeUrl}/products/${handle}`;
+  return canonicalSiteUrl(`/products/${handle}`);
 }
 
 /**

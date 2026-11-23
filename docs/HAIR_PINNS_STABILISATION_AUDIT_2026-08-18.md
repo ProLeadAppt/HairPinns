@@ -154,7 +154,7 @@ No billable checkout, review request, real-customer contact mutation or external
 
 #### AI-02 — Voice routing is only partially verified — High
 
-- **Evidence:** Five Voice AI agents exist; four unassigned duplicates are legacy/FAQ variants. Sam is assigned to `0468 093 991` and the all-in-one webchat widget. His embedded web call connected and produced the expected greeting, but caller speech was unavailable and no post-call action was visible in the inspected action configuration. Isabella is the only enabled Conversation AI agent and one approved synthetic website chat routed to her exactly once, with no duplicate reply.
+- **Evidence:** Five Voice AI agents exist; four unassigned duplicates are legacy/FAQ variants. Sam is assigned to `0416 037 663` and the all-in-one webchat widget. His embedded web call connected and produced the expected greeting, but caller speech was unavailable and no post-call action was visible in the inspected action configuration. Isabella is the only enabled Conversation AI agent and one approved synthetic website chat routed to her exactly once, with no duplicate reply.
 - **Impact:** Text ownership is now clear, but a real inbound voice path could still fail to capture fields, write notes, notify the salon or trigger `AI – Callback`.
 - **Recommendation:** Preserve Isabella as text owner and Sam as voice owner. Complete a controlled two-way voice test with an authorised test number, then verify transcript, knowledge answers, field capture, contact notes, notification, callback workflow and human escalation.
 - **Dependencies:** An authorised test phone number and action-time approval for the external call/recording/workflow effects.
