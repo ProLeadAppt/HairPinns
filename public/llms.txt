@@ -1,4 +1,4 @@
-# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-09-12
+# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-11-11
 
 # Hair Pinns
 
@@ -24,12 +24,12 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 
 ## Published surfaces
 
-- 60 active guides
+- 66 active guides
 - 15 service detail pages
 - 17 salon service-area pages
 - 20 Australian shipping pages
-- 21 product collections
-- 119 products
+- 22 product collections
+- 135 products
 
 ## Primary links
 

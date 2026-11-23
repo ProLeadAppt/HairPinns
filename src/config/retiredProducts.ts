@@ -1,6 +1,4 @@
-export const RETIRED_PRODUCT_HANDLES = new Set([
-  "walnut-scrub-hair-scalp-pre-wash-treatment",
-]);
+export const RETIRED_PRODUCT_HANDLES = new Set<string>([]);
 
 export const isRetiredProductHandle = (handle: string): boolean =>
   RETIRED_PRODUCT_HANDLES.has(handle);

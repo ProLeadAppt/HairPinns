@@ -85,29 +85,18 @@
   status = 302
   force = true
 
-# Retired Pure Walnut Scrub product. Keep both current and legacy URL forms
-# out of the SPA so old links permanently resolve to relevant scalp care.
-[[redirects]]
-  from = "/products/walnut-scrub-hair-scalp-pre-wash-treatment"
-  to = "/collections/scalp-health-care/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/products/walnut-scrub-hair-scalp-pre-wash-treatment/"
-  to = "/collections/scalp-health-care/"
-  status = 301
-  force = true
-
+# Pure Walnut Scrub is a live Shopify product again. Legacy singular
+# /product/... URLs 301 to the canonical product page. Do not send the
+# /products/... URL to a collection — Merchant Center needs the product itself.
 [[redirects]]
   from = "/product/walnut-scrub-hair-scalp-pre-wash-treatment"
-  to = "/collections/scalp-health-care/"
+  to = "/products/walnut-scrub-hair-scalp-pre-wash-treatment/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/product/walnut-scrub-hair-scalp-pre-wash-treatment/"
-  to = "/collections/scalp-health-care/"
+  to = "/products/walnut-scrub-hair-scalp-pre-wash-treatment/"
   status = 301
   force = true
 
