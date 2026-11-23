@@ -1,4 +1,4 @@
-# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-09-12
+# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-11-11
 
 # AI crawler policy for Hair Pinns
 

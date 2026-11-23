@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { FileText, ShoppingBag, MapPin, BookOpen, Info } from "lucide-react";
 import { generateWebPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { SHOP_TAXONOMY } from "@/config/commerceNavigation";
+import { UNCATEGORISED_PRODUCTS } from "@/data/uncategorisedProducts.generated.js";
 
 const Sitemap = () => {
   const sitemapSections = [
@@ -34,6 +35,14 @@ const Sitemap = () => {
         ),
       ]
     },
+    ...(UNCATEGORISED_PRODUCTS.length > 0 ? [{
+      title: "Also available",
+      icon: ShoppingBag,
+      links: UNCATEGORISED_PRODUCTS.map((product) => ({
+        title: product.title,
+        url: `/products/${product.handle}`,
+      })),
+    }] : []),
     {
       title: "Service Areas",
       icon: MapPin,

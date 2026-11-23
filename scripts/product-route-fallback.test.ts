@@ -56,7 +56,7 @@ describe('products published after the static build', () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
-  it.each(['/products/walnut-scrub-hair-scalp-pre-wash-treatment', '/products/new/product', '/products/%2e%2e', '/products/bad_handle', '/collections/example'])('does not recover retired or malformed route %s', async path => {
+  it.each(['/products/new/product', '/products/%2e%2e', '/products/bad_handle', '/collections/example'])('does not recover malformed route %s', async path => {
     const next = vi.fn();
     expect(await productVariant(request(path), { next })).toBeUndefined();
     expect(next).not.toHaveBeenCalled();

@@ -15,9 +15,14 @@ import {
   renderSitemapUrl,
 } from './sitemap-utils.js';
 import { isIndexableRoute } from './route-policy.js';
-import { isRetiredProductHandle } from './retired-products.js';
+import { isRetiredProductHandle, RETIRED_PRODUCT_HANDLES } from './retired-products.js';
 import { writeShopifyRouteCache } from './shopify-route-cache.js';
 import { collectShopifyConnection } from './shopify-pagination.js';
+import { reportOnlineStoreParity } from './shopify-catalog-parity.js';
+import {
+  productsMissingPublicCollection,
+  renderUncategorisedProductsModule,
+} from './uncategorised-products.js';
 import {
   CHRISTMAS_PRODUCTS,
   isPublicCollectionHandle,
@@ -102,6 +107,9 @@ async function getShopifyProducts() {
         handle
         title
         updatedAt
+        collections(first: 50) {
+          edges { node { handle } }
+        }
         images(first: 5) {
           edges { node { url altText } }
         }
@@ -117,18 +125,35 @@ async function getShopifyProducts() {
     handle: node.handle,
     title: node.title,
     updatedAt: node.updatedAt,
+    collections: (node.collections?.edges || []).map((edge) => edge.node?.handle).filter(Boolean),
     images: (node.images?.edges || [])
       .map((ie) => ({ url: ie.node.url, altText: ie.node.altText || node.title }))
       .filter((img) => img.url),
-  })).filter((p) => p.handle && !isRetiredProductHandle(p.handle));
-  if (products.length === 0) throw new Error('[sitemap] Shopify returned no products; refusing an incomplete sitemap');
+  })).filter((p) => p.handle);
+  // Cross-check the public Online Store catalogue so products that 404 on
+  // hairpinns.com (visible in products.json but not the Storefront API) are
+  // reported at build time instead of disappearing from the sitemap silently.
+  const domain = process.env.VITE_SHOPIFY_MYSHOPIFY_DOMAIN || 'femtat-zu.myshopify.com';
+  await reportOnlineStoreParity({
+    domain,
+    storefrontHandles: products.map((product) => product.handle),
+    retiredHandles: [...RETIRED_PRODUCT_HANDLES],
+  });
+  const indexableProducts = products.filter((p) => !isRetiredProductHandle(p.handle));
+  if (indexableProducts.length === 0) throw new Error('[sitemap] Shopify returned no products; refusing an incomplete sitemap');
   const missingChristmasProducts = CHRISTMAS_PRODUCTS
     .map((product) => product.handle)
-    .filter((handle) => !products.some((product) => product.handle === handle));
+    .filter((handle) => !indexableProducts.some((product) => product.handle === handle));
   if (missingChristmasProducts.length > 0) {
     throw new Error(`[sitemap] Required Christmas products are missing: ${missingChristmasProducts.join(', ')}`);
   }
-  return products;
+  const uncategorised = productsMissingPublicCollection(indexableProducts, isPublicCollectionHandle);
+  const uncategorisedPath = resolve(root, 'src/data/uncategorisedProducts.generated.js');
+  writeFileSync(uncategorisedPath, renderUncategorisedProductsModule(uncategorised), 'utf8');
+  if (uncategorised.length > 0) {
+    console.warn(`[sitemap] ${uncategorised.length} Storefront product(s) are not in a public collection. The HTML sitemap links them so they are not orphan routes: ${uncategorised.map((product) => product.handle).join(', ')}`);
+  }
+  return indexableProducts;
 }
 
 async function getShopifyCollections() {

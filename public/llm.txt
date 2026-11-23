@@ -1,4 +1,4 @@
-# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-09-12
+# GENERATED FILE - DO NOT EDIT. Canonical source date: 2026-11-11
 
 # Hair Pinns: full crawler context
 
@@ -26,12 +26,12 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 
 ## Published surfaces
 
-- 60 active guides
+- 66 active guides
 - 15 service detail pages
 - 17 salon service-area pages
 - 20 Australian shipping pages
-- 21 product collections
-- 119 products
+- 22 product collections
+- 135 products
 
 ## Primary links
 
@@ -52,6 +52,8 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 
 ## Active guide URLs
 
+- https://hairpinns.com/blog/plan-hair-appointment-before-event/
+- https://hairpinns.com/blog/kids-hair-gift-ideas/
 - https://hairpinns.com/blog/best-hair-products-australia-2025/
 - https://hairpinns.com/blog/where-to-buy-salon-hair-products-australia/
 - https://hairpinns.com/blog/hair-products-melbourne-brisbane-perth-australia/
@@ -112,6 +114,10 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/blog/olaplex-vs-k18-vs-juuce-bond-repair/
 - https://hairpinns.com/blog/bond-repair-vs-protein-treatment-difference/
 - https://hairpinns.com/blog/permanent-vs-semi-permanent-vs-demi-permanent-vs-gloss/
+- https://hairpinns.com/blog/coloured-hair-care-routine/
+- https://hairpinns.com/blog/small-hair-gifts-under-30/
+- https://hairpinns.com/blog/how-to-use-juuce-hair-products/
+- https://hairpinns.com/blog/how-to-apply-hair-finishing-products/
 
 ## Service URLs
 
@@ -197,6 +203,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/collections/colour-treated-hair/
 - https://hairpinns.com/collections/hair-tools-brushes/
 - https://hairpinns.com/collections/hair-styling-products/
+- https://hairpinns.com/collections/diy-kids-gift-packs/
 
 ## Product URLs
 
@@ -210,6 +217,8 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/aromaganic-pumpd-hair-full-volume-shampoo/
 - https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-conditioner/
 - https://hairpinns.com/products/aromaganic-smooth-hair-super-silky-shampoo/
+- https://hairpinns.com/products/hydrate-bundle/
+- https://hairpinns.com/products/juuce-2-in-one-kaktis/
 - https://hairpinns.com/products/juuce-20-in-one-miracle/
 - https://hairpinns.com/products/juuce-amp-it-up-volume/
 - https://hairpinns.com/products/juuce-anti-dandruff-shampoo/
@@ -225,6 +234,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/juuce-double-up-thicken/
 - https://hairpinns.com/products/juuce-dry-heat-guard/
 - https://hairpinns.com/products/juuce-dry-shampoo-volumiser/
+- https://hairpinns.com/products/juuce-fibre-goo-sumo-grip/
 - https://hairpinns.com/products/juuce-full-volume-conditioner/
 - https://hairpinns.com/products/juuce-full-volume-shampoo/
 - https://hairpinns.com/products/juuce-heat-shield/
@@ -264,6 +274,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/lamellar-vitality-conditioner/
 - https://hairpinns.com/products/lamellar-vitality-luminous-leave-in-silky-foam/
 - https://hairpinns.com/products/lamellar-vitality-butter-mask-treatment/
+- https://hairpinns.com/products/walnut-scrub-hair-scalp-pre-wash-treatment/
 - https://hairpinns.com/products/pure-goddess-shampoo/
 - https://hairpinns.com/products/pure-goddess-conditioner/
 - https://hairpinns.com/products/pure-precious-shampoo/
@@ -283,7 +294,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/pure-styling-primer-anti-humidity-heat-protector/
 - https://hairpinns.com/products/hair-pinns-gift-card/
 - https://hairpinns.com/products/silicon-travel-bottle-duo/
-- https://hairpinns.com/products/head-massager/
 - https://hairpinns.com/products/wet-brush-pro-paddle-detangler/
 - https://hairpinns.com/products/wet-brush-pro-detangler/
 - https://hairpinns.com/products/island-vibes-self-tanning-foam/
@@ -299,7 +309,6 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/pure-fusion-complex-shampoo/
 - https://hairpinns.com/products/pure-fusion-complex-conditioner/
 - https://hairpinns.com/products/pure-finest-volumizing-powder/
-- https://hairpinns.com/products/wet-brush-pro-shine-enhancer/
 - https://hairpinns.com/products/poppet-locks-little-plaited-piggy-tails/
 - https://hairpinns.com/products/poppet-locks-unicorn-straight-ponytail/
 - https://hairpinns.com/products/toner-masks/
@@ -317,8 +326,22 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/products/pure-christmas-packs-2025/
 - https://hairpinns.com/products/christmas-reusable-ponytails/
 - https://hairpinns.com/products/rose-sunkiss-fix-hands-feet-face-tan-mist/
+- https://hairpinns.com/products/goodbye-frizz-quad/
 - https://hairpinns.com/products/pure-volumizing-spray/
+- https://hairpinns.com/products/mother-s-day-pamper-pack/
 - https://hairpinns.com/products/juuce-duo-gift-packs/
+- https://hairpinns.com/products/plastic-lined-shower-cap/
+- https://hairpinns.com/products/satin-lined-shower-cap/
+- https://hairpinns.com/products/wet-brush-mini-keyring/
+- https://hairpinns.com/products/hair-bows-choose-your-fave-size-style/
+- https://hairpinns.com/products/untitled-sep30_09-20-43/
+- https://hairpinns.com/products/colour-pop-lucky-dip-hair-accessory-bags/
+- https://hairpinns.com/products/hair-tie-surprise-stacks/
+- https://hairpinns.com/products/pet-brush-by-wet-brush-pet-detangling-brushes/
+- https://hairpinns.com/products/brushworx-mystique-round-brush/
+- https://hairpinns.com/products/juuce-smooth-protect-duo/
+- https://hairpinns.com/products/juuce-christmas-tote-pack-hydrate/
+- https://hairpinns.com/products/perfect-pony-duo/
 
 ## Declared local service areas
 
