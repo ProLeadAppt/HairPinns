@@ -3,6 +3,8 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "best-shampoo-colour-treated-hair-australia",
     title: "Best Shampoo for Colour-Treated Hair in Australia (2026 Guide)",
+    seoTitle: "Best Shampoo for Colour-Treated Hair (AU) | Hair Pinns",
+    metaDescription: "Compare the best shampoos for colour-treated hair in Australia. See what protects colour, how to read labels, and Jena's salon picks at Hair Pinns.",
     excerpt: "A stylist's guide to the best shampoos for colour-treated hair in Australia, what actually keeps colour vibrant, what strips it, and what to buy.",
     category: "Products",
     date: "April 19, 2026",
