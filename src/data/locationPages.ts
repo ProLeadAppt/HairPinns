@@ -1,4 +1,5 @@
 import { BUSINESS_NAP } from "../config/businessConfig";
+import { PRIORITY_LOCATION_COPY } from "./locationPageCopy";
 
 export type LocationEvidenceStatus =
   | "canonical-location"
@@ -15,6 +16,10 @@ export interface LocationPageData {
   popularServices: string[];
   faqs: Array<{ question: string; answer: string }>;
   nearbyLocations: string[];
+  /** Exact title for priority suburb pages. Falls back when omitted. */
+  seoTitle?: string;
+  /** Exact meta description for priority suburb pages. Falls back when omitted. */
+  metaDescription?: string;
   /** Reserved for permissioned, source-backed first-person guidance only. */
   jenaTip?: string;
 }
@@ -79,7 +84,7 @@ const LOCATION_DEFINITIONS: readonly LocationDefinition[] = [
     name: "Padstow",
     fullName: "Padstow NSW 2211, Australia",
     postcode: "2211",
-    nearbyLocations: ["cronulla-2230", "miranda-2228", "caringbah-2229"],
+    nearbyLocations: ["alfords-point-2234", "illawong-2234", "menai-2234", "bangor-2234"],
   },
   {
     slug: "cronulla-2230",
@@ -131,6 +136,13 @@ const LOCATION_DEFINITIONS: readonly LocationDefinition[] = [
     nearbyLocations: ["kirrawee-2232", "kareela-2232", "menai-2234", "miranda-2228"],
   },
   {
+    slug: "engadine-2233",
+    name: "Engadine",
+    fullName: "Engadine NSW 2233, Australia",
+    postcode: "2233",
+    nearbyLocations: ["bangor-2234", "menai-2234", "sutherland-2232", "kirrawee-2232"],
+  },
+  {
     slug: "barden-ridge-2234",
     name: "Barden Ridge",
     fullName: "Barden Ridge NSW 2234, Australia",
@@ -154,6 +166,7 @@ const POPULAR_SERVICES = [
 
 const buildLocationPage = (definition: LocationDefinition): LocationPageData => {
   const isCanonicalLocation = definition.slug === "bangor-2234";
+  const priorityCopy = PRIORITY_LOCATION_COPY[definition.slug as keyof typeof PRIORITY_LOCATION_COPY];
 
   return {
     ...definition,
@@ -161,22 +174,15 @@ const buildLocationPage = (definition: LocationDefinition): LocationPageData => 
     evidenceStatus: isCanonicalLocation
       ? "canonical-location"
       : "pending-local-evidence",
-    localIntro: isCanonicalLocation
-      ? `Hair Pinns is an appointment-only Bangor hair salon at ${BUSINESS_NAP.address.street}. Check the current service menu and appointment availability through Fresha, or text ${BUSINESS_NAP.phone.display} for help choosing a service before visiting.`
-      : `Hair Pinns serves clients travelling from ${definition.name} at its appointment-only salon in Bangor. Check the current service menu and appointment availability through Fresha, and use live directions to ${BUSINESS_NAP.address.street} before leaving.`,
+    localIntro: priorityCopy?.localIntro ?? (
+      isCanonicalLocation
+        ? `Hair Pinns is an appointment-only Bangor hair salon at ${BUSINESS_NAP.address.street}. Check the current service menu and appointment availability through Fresha, or text ${BUSINESS_NAP.phone.display} for help choosing a service before visiting.`
+        : `Hair Pinns serves clients travelling from ${definition.name} at its appointment-only salon in Bangor. Check the current service menu and appointment availability through Fresha, and use live directions to ${BUSINESS_NAP.address.street} before leaving.`
+    ),
     popularServices: [...POPULAR_SERVICES],
-    faqs: isCanonicalLocation
-      ? [
-          {
-            question: "Where is Hair Pinns located?",
-            answer: `Hair Pinns is at ${BUSINESS_NAP.address.full}.`,
-          },
-          {
-            question: "How do I check appointment availability?",
-            answer: `View current appointment times through Fresha or text ${BUSINESS_NAP.phone.display} before visiting.`,
-          },
-        ]
-      : [],
+    faqs: priorityCopy?.faqs ?? [],
+    seoTitle: priorityCopy?.seoTitle,
+    metaDescription: priorityCopy?.metaDescription,
   };
 };
 

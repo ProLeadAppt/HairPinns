@@ -16,8 +16,11 @@ import { ENTITY_REGISTRY } from "@/config/entityRegistry";
 import { generateLocalBusinessSchema } from "@/lib/schema";
 import {
   buildLocationFaqSchema,
+  competingLocalBlogSlug,
+  getLocationHeading,
   getLocationJourneyHeading,
   getLocationMetaDescription,
+  getLocationSeoTitle,
   getLocationTravelCopy,
 } from "@/lib/locationPresentation";
 import { resolveVenueReviewProof } from "@/lib/venueReviewProof";
@@ -48,7 +51,7 @@ const LocationPage = () => {
   return (
     <>
       <SEOHead
-        title={`Hairdresser & Hair Salon near ${locationData.name} | Hair Pinns`}
+        title={getLocationSeoTitle(locationData)}
         description={getLocationMetaDescription(locationData)}
         canonical={canonicalUrl}
         ogImage={getOGImage("default")}
@@ -81,7 +84,7 @@ const LocationPage = () => {
                   {travelCopy.heroLabel}
                 </p>
                 <h1 className="max-w-3xl font-heading text-[clamp(2.8rem,7vw,5.8rem)] leading-[0.98] text-[hsl(var(--hp-ink))]">
-                  Hairdresser near {locationData.name}
+                  {getLocationHeading(locationData)}
                 </h1>
                 <p className="mt-7 max-w-2xl text-lg leading-relaxed text-[hsl(var(--hp-ink)/0.82)]">
                   One-on-one salon care with Jena for colour, blonding, smoothing, cuts and styling from the Bangor salon.
@@ -201,7 +204,11 @@ const LocationPage = () => {
             </div>
           </nav>
 
-          <RelatedContent topics={["smoothing", "cuts", "colour", "frizz-control"]} heading="More from Hair Pinns" />
+          <RelatedContent
+            topics={["smoothing", "cuts", "colour", "frizz-control"]}
+            heading="More from Hair Pinns"
+            excludeSlug={competingLocalBlogSlug(locationData.slug)}
+          />
         </main>
         <Footer />
       </div>

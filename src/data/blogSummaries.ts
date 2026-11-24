@@ -347,7 +347,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'sutherland-shire-hair-salon-guide',
     title: 'The Sutherland Shire Hair Salon Guide: What to Look For',
-    excerpt: "How to pick a Sutherland Shire hair salon that actually listens. A stylist's honest guide to colour, cuts, smoothing, and what makes a great local salon.",
+    excerpt: "How to pick a Sutherland Shire hair salon that actually listens. Jena's practical guide to colour, cuts, smoothing, and what makes a useful local salon.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '8 min read',
@@ -367,7 +367,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-menai',
     title: 'Best Hair Salon Near Menai: What the Locals Say',
-    excerpt: "Looking for a hair salon near Menai? Here's what locals actually value, and why Hair Pinns in Bangor is the short drive worth making.",
+    excerpt: "Looking for a hair salon near Menai? Here is the short trip to Hair Pinns in Bangor, and how Jena plans colour, smoothing and cuts one-on-one.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '5 min read',
@@ -537,7 +537,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-illawong',
     title: 'Best Hair Salon Near Illawong: What the Locals Say',
-    excerpt: "Looking for a hair salon near Illawong? Here's what Illawong locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    excerpt: "Looking for a hair salon near Illawong? Hair Pinns is Jena's one-on-one studio in nearby Bangor, with street parking at the salon.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
@@ -547,7 +547,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-sutherland',
     title: 'Best Hair Salon Near Sutherland: What the Locals Say',
-    excerpt: "Looking for a hair salon near Sutherland? Here's what Sutherland locals value in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    excerpt: "Looking for a hairdresser near Sutherland? Many locals head up Old Illawarra Road to Jena's one-on-one studio in Bangor.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
@@ -557,7 +557,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-cronulla',
     title: 'Best Hair Salon Near Cronulla: What the Locals Say',
-    excerpt: "Looking for a hair salon near Cronulla? Here's what Cronulla locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    excerpt: "Looking for a hairdresser near Cronulla? Here is why some locals leave the beach strip for Jena's one-on-one studio in Bangor.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
@@ -567,7 +567,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-como',
     title: 'Best Hair Salon Near Como: What the Locals Say',
-    excerpt: "Looking for a hair salon near Como? Here's what Como locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    excerpt: "Looking for a hairdresser near Como? Hair Pinns is Jena's one-on-one studio in Bangor, with parking at the salon.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
@@ -577,7 +577,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-miranda',
     title: 'Best Hair Salon Near Miranda: What the Locals Say',
-    excerpt: "Looking for a hair salon near Miranda? Here's what Miranda locals look for in a family-friendly salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    excerpt: "Tired of busy shopping-centre salons near Miranda? Hair Pinns is Jena's calm one-on-one studio in Bangor.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',
@@ -587,7 +587,7 @@ export const blogSummaries: BlogSummary[] = [
   {
     slug: 'best-hair-salon-near-engadine',
     title: 'Best Hair Salon Near Engadine: What the Locals Say',
-    excerpt: "Looking for a hair salon near Engadine? Here's what Engadine locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    excerpt: "Searching for a hair salon near Engadine? Hair Pinns is Jena's one-on-one studio in Bangor, with street parking and online booking.",
     category: 'Local',
     date: 'April 19, 2026',
     readTime: '4 min read',

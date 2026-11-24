@@ -25,8 +25,8 @@ const AreasIndex = () => {
   return (
     <div className="min-h-screen bg-[hsl(var(--after-hours-paper))]">
       <SEOHead
-        title="Areas We Serve – Hair Salon in Sutherland Shire | Hair Pinns"
-        description="Hair Pinns serves the Sutherland Shire with colour, blonding, keratin smoothing, braids & cuts. Find your local area and book online today."
+        title="Hair Salon Sutherland Shire Areas | Hair Pinns"
+        description="One-on-one hair salon in Bangor serving the Sutherland Shire for colour, blonding, smoothing and cuts. Find your suburb and book online."
         canonical="https://hairpinns.com/areas"
         ogImage={getOGImage("suburb")}
         ogType="website"
@@ -45,9 +45,9 @@ const AreasIndex = () => {
         <section className="bg-[hsl(var(--hp-lavender))] text-[hsl(var(--hp-ink))]" aria-labelledby="areas-title">
           <div className="mx-auto grid max-w-[78rem] gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-[0.68fr_0.32fr] lg:gap-20 lg:px-8 lg:pb-24 lg:pt-20">
             <div>
-              <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Bangor / Sutherland Shire</p>
-              <h1 id="areas-title" className="mt-5 max-w-[9ch] font-heading text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.88] tracking-[-0.06em] text-[hsl(var(--hp-ink))]">
-                Worth the short drive.
+              <p className="after-hours-kicker text-[hsl(var(--after-hours-copper))]">Worth the short drive</p>
+              <h1 id="areas-title" className="mt-5 max-w-[16ch] font-heading text-[clamp(2.7rem,6vw,5.4rem)] font-semibold leading-[0.92] tracking-[-0.045em] text-[hsl(var(--hp-ink))]">
+                Sutherland Shire Hair Salon, Based in Bangor
               </h1>
             </div>
             <div className="self-end border-t border-[hsl(var(--hp-ink)/0.28)] pt-6">

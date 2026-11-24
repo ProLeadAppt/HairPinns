@@ -9,5 +9,8 @@ describe("LocationPage review proof wiring", () => {
     expect(source).toContain('entityType: "location"');
     expect(source).toContain("entitySlug: locationData.slug");
     expect(source).toContain("<ReviewProofBadge");
+    expect(source).toContain("getLocationSeoTitle(locationData)");
+    expect(source).toContain("getLocationHeading(locationData)");
+    expect(source).toContain("excludeSlug={competingLocalBlogSlug(locationData.slug)}");
   });
 });

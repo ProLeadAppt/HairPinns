@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   buildLocationFaqSchema,
+  competingLocalBlogSlug,
+  getLocationHeading,
   getLocationJourneyHeading,
   getLocationMetaDescription,
+  getLocationSeoTitle,
   getLocationTravelCopy,
 } from "./locationPresentation";
 import { locationPages } from "../data/locationPages";
@@ -35,6 +38,17 @@ describe("location page presentation policy", () => {
     expect(getLocationJourneyHeading(locationPages["bangor-2234"])).toBe(
       "Visit Hair Pinns in Bangor",
     );
+    expect(getLocationHeading(locationPages["bangor-2234"])).toBe("Hairdresser in Bangor");
+    expect(getLocationHeading(locationPages["menai-2234"])).toBe("Hairdresser near Menai");
+    expect(getLocationSeoTitle(locationPages["bangor-2234"])).toBe(
+      "Hairdresser in Bangor NSW 2234 | Hair Pinns",
+    );
+  });
+
+  it("hides the same-suburb local guide from area-page related links", () => {
+    expect(competingLocalBlogSlug("bangor-2234")).toBe("best-hair-salon-bangor");
+    expect(competingLocalBlogSlug("menai-2234")).toBe("best-hair-salon-near-menai");
+    expect(competingLocalBlogSlug("engadine-2233")).toBe("best-hair-salon-near-engadine");
   });
 
   it("keeps every location meta description concise and evidence-safe", () => {

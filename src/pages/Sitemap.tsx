@@ -6,6 +6,16 @@ import { FileText, ShoppingBag, MapPin, BookOpen, Info } from "lucide-react";
 import { generateWebPageSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { SHOP_TAXONOMY } from "@/config/commerceNavigation";
 import { UNCATEGORISED_PRODUCTS } from "@/data/uncategorisedProducts.generated.js";
+import { getAllLocationSlugs, getLocationData } from "@/data/locationPages";
+
+const serviceAreaLinks = [
+  { title: "All Service Areas", url: "/areas" },
+  ...getAllLocationSlugs()
+    .map((slug) => getLocationData(slug))
+    .filter((location): location is NonNullable<ReturnType<typeof getLocationData>> => Boolean(location))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((location) => ({ title: location.name, url: `/areas/${location.slug}` })),
+];
 
 const Sitemap = () => {
   const sitemapSections = [
@@ -46,22 +56,7 @@ const Sitemap = () => {
     {
       title: "Service Areas",
       icon: MapPin,
-      links: [
-        { title: "All Service Areas", url: "/areas" },
-        { title: "Bangor", url: "/areas/bangor-2234" },
-        { title: "Menai", url: "/areas/menai-2234" },
-        { title: "Illawong", url: "/areas/illawong-2234" },
-        { title: "Alfords Point", url: "/areas/alfords-point-2234" },
-        { title: "Sutherland", url: "/areas/sutherland-2232" },
-        { title: "Kirrawee", url: "/areas/kirrawee-2232" },
-        { title: "Kareela", url: "/areas/kareela-2232" },
-        { title: "Como", url: "/areas/como-2226" },
-        { title: "Gymea", url: "/areas/gymea-2227" },
-        { title: "Miranda", url: "/areas/miranda-2228" },
-        { title: "Cronulla", url: "/areas/cronulla-2230" },
-        { title: "Caringbah", url: "/areas/caringbah-2229" },
-        { title: "Sylvania", url: "/areas/sylvania-2224" },
-      ]
+      links: serviceAreaLinks
     },
     {
       title: "Shipping Destinations",
