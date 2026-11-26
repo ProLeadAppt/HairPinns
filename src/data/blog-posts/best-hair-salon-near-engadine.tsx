@@ -4,69 +4,63 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "best-hair-salon-near-engadine",
     title: "Best Hair Salon Near Engadine: What the Locals Say",
-    excerpt: "Looking for a hair salon near Engadine? Here's what Engadine locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    seoTitle: "Hair Salon Near Engadine: Local Guide | Hair Pinns",
+    metaDescription: "Searching for a hair salon near Engadine? Discover one-on-one colour, smoothing and cuts with Jena at Hair Pinns in Bangor with easy street parking.",
+    excerpt: "Searching for a hair salon near Engadine? Hair Pinns is Jena's one-on-one studio in Bangor, with street parking and online booking.",
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-064.jpg?v=1744178553",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Engadine and searching for a hair salon, the local options work for most people, but a lot of Engadine clients drive to Bangor for Hair Pinns because of the combination of consistency, honest pricing, and services that cover the whole family. Here's what matters when you're picking a salon close to Engadine, and honest answers about whether we're the right fit.",
+      introduction: "Engadine clients who want a one-on-one appointment come north to Hair Pinns in Bangor. Jena Pinn works from " + BUSINESS_NAP.address.street + ". The new [Engadine area page](/areas/engadine-2233) has the route, hours and booking notes.",
       sections: [
         {
-          heading: "Why Engadine Locals Drive to Bangor",
-          content: "Hair Pinns is 10–14 minutes from central Engadine via the Princes Highway and Old Illawarra Road. Free parking out the front. For Engadine locals it's generally faster than heading north into Sutherland or south into Heathcote for a salon, and the Bangor parking is a non-issue."
+          heading: "The drive north from Engadine",
+          content: "Head north on the Princes Highway, then Old Illawarra Road toward Bangor. Check live directions before you leave. Street parking is at " + BUSINESS_NAP.address.street + ". Wednesday runs from 4pm to 9pm and Thursday from 9am to 9pm if you are coming after work."
         },
         {
-          heading: "What Engadine Clients Tell Us They Value",
-          content: "Three things come up with Engadine clients: (1) They want stylist continuity, seeing the same person every visit who knows their hair history and can adjust as hair changes over time. At Hair Pinns, that's Jena or her trusted team who've been here for years. (2) They want transparent pricing on a public menu. (3) They want a salon that works for the whole family, kids' cuts, mum's colour, seniors' wash-and-set. Engadine clients especially appreciate that we cover the full age range well."
+          heading: "The same person every visit",
+          content: "Hair Pinns is a single-chair studio. You see Jena, and she keeps the notes from the last visit. That is the point of the trip for clients who are tired of explaining their colour from the start each time."
         },
         {
-          heading: "Services Popular with Engadine Locals",
-          content: "The most-booked services for Engadine clients: family cut appointments, kids cut-and-blowdry bundles, seniors' colour and styling (we do gentle colour suited to mature hair very well), and mid-length cut packages. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
+          heading: "What to book",
+          content: "Colour, blonding, Straight Up Smoothing and cuts are on the live menu, including children's cuts where the current age bracket is listed. Check Fresha for the present price rather than an old screenshot. Book on the [booking page](/booking) or call " + BUSINESS_NAP.phone.display + "."
         },
         {
-          heading: "Why the Engadine Trip Works",
-          content: "For Engadine households, Hair Pinns combines children's cuts, adult colour and styling services in one Bangor location. Current services, prices and availability are published through the live booking menu so families can plan before travelling."
-        },
-        {
-          heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair. Most of our Engadine clients first came for one service, often a kids cut or a gentle senior colour, while keeping their existing salon for other services. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          heading: "Start with one appointment",
+          content: "Book the service you need first. If you want a colour change, Jena will say whether it fits in one visit or should be staged. There is no membership and no requirement to move every appointment across."
         }
       ],
       quickAnswer: {
-        question: "What's the best hair salon near Engadine?",
-        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
+        question: "Is there a hair salon near Engadine?",
+        answer: "Hair Pinns is in Bangor at " + BUSINESS_NAP.address.street + ". The usual roads are the Princes Highway and Old Illawarra Road. Check live directions, then book online or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
-        "Hair Pinns Bangor is 10–14 minutes from Engadine via the Princes Highway",
-        "Free parking out the front, no meter hunting",
-        "Popular Engadine bookings: family cut packages, kids cuts, seniors colour",
-        "One stylist who knows your hair across multiple generations",
-        "Try one service first, no membership required"
+        "Engadine to Bangor follows the Princes Highway and Old Illawarra Road",
+        "Check live directions, then use the street parking at " + BUSINESS_NAP.address.street ,
+        "Jena works one-on-one on colour, smoothing and cuts",
+        "Children's cuts follow the age bracket on the live menu",
+        "Wednesday and Thursday include evening hours"
       ],
       faqSection: [
         {
-          question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + " in Bangor, with local parking and online booking. Jena has worked behind the chair since 2009.",
+          question: "Which roads connect Engadine to Hair Pinns?",
+          answer: "The Princes Highway north, then Old Illawarra Road into Bangor. Check live directions on the day. The studio is at " + BUSINESS_NAP.address.street + "."
         },
         {
-          question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
+          question: "Can more than one person in the household book?",
+          answer: "Yes. Each person books their own time with Jena, including a child's cut when the live menu lists that service. She sees one client at a time."
         },
         {
-          question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
+          question: "How do Engadine clients see the price before they travel?",
+          answer: "The booking page opens the live Fresha menu. Call " + BUSINESS_NAP.phone.display + " if you want Jena to help you choose the closest service first."
         },
         {
-          question: "Is Hair Pinns good for older clients?",
-          answer: "Hair Pinns welcomes clients of all ages. If you have mobility, sensory, or appointment-support needs, contact the salon before booking so Jena can explain the space and available options.",
-        },
-        {
-          question: "What's the parking situation at Hair Pinns?",
-          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+          question: "Are there evening appointments for the drive from Engadine?",
+          answer: "Wednesday is 4pm to 9pm and Thursday is 9am to 9pm. Sunday and Monday are closed. The Engadine area page repeats the full week."
         }
-      ],
+      ]
     },
     cta: {
       type: "booking",

@@ -37,6 +37,7 @@ test('every legacy suburb client route resolves to its postcode canonical page',
     'oyster-bay': 'oyster-bay-2225',
     padstow: 'padstow-2211',
     sylvania: 'sylvania-2224',
+    engadine: 'engadine-2233',
   } as const;
 
   for (const [legacySlug, canonicalSlug] of Object.entries(redirects)) {

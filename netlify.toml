@@ -202,9 +202,13 @@
   to = "/areas/sylvania-2224"
   status = 301
   force = true
-# Suburbs with no matching /areas/ entry (woronora, engadine, heathcote and
-# sydney) fall
-# through to the /areas index — better than a 404 on a stale link.
+[[redirects]]
+  from = "/near/engadine"
+  to = "/areas/engadine-2233"
+  status = 301
+  force = true
+# Suburbs with no matching /areas/ entry (woronora, heathcote and sydney) fall
+# through to the /areas index, which is better than a 404 on a stale link.
 [[redirects]]
   from = "/near/*"
   to = "/areas"
@@ -295,6 +299,11 @@
 [[redirects]]
   from = "/suburbs/sylvania"
   to = "/areas/sylvania-2224/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/suburbs/engadine"
+  to = "/areas/engadine-2233/"
   status = 301
   force = true
 [[redirects]]

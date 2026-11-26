@@ -52,7 +52,25 @@ export const getLocationJourneyHeading = (location: LocationPageData): string =>
     ? "Visit Hair Pinns in Bangor"
     : `From ${location.name} to Bangor`;
 
+export const getLocationHeading = (location: LocationPageData): string =>
+  location.slug === "bangor-2234"
+    ? "Hairdresser in Bangor"
+    : `Hairdresser near ${location.name}`;
+
+export const getLocationSeoTitle = (location: LocationPageData): string =>
+  location.seoTitle ?? `Hairdresser & Hair Salon near ${location.name} | Hair Pinns`;
+
 export const getLocationMetaDescription = (location: LocationPageData): string =>
-  location.evidenceStatus === "canonical-location"
-    ? `Hair salon in Bangor for one-on-one colour, blonding, smoothing, cuts and styling. Book online or call ${BUSINESS_NAP.phone.display}.`
-    : `Hair salon near ${location.name} for colour, blonding, smoothing, cuts and styling at Hair Pinns in Bangor. Book online or call ${BUSINESS_NAP.phone.display}.`;
+  location.metaDescription ?? (
+    location.evidenceStatus === "canonical-location"
+      ? `Hair salon in Bangor for one-on-one colour, blonding, smoothing, cuts and styling. Book online or call ${BUSINESS_NAP.phone.display}.`
+      : `Hair salon near ${location.name} for colour, blonding, smoothing, cuts and styling at Hair Pinns in Bangor. Book online or call ${BUSINESS_NAP.phone.display}.`
+  );
+
+/** Area pages should not promote the same-suburb local guide as a competing URL. */
+export const competingLocalBlogSlug = (areaSlug: string): string => {
+  const suburb = areaSlug.replace(/-\d{4}$/, "");
+  return suburb === "bangor"
+    ? "best-hair-salon-bangor"
+    : `best-hair-salon-near-${suburb}`;
+};

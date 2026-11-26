@@ -4,6 +4,8 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
   slug: "best-hair-salon-bangor",
   title: "Hair Salon in Bangor: What to Know Before Booking",
+  seoTitle: "Hair Salon in Bangor: Booking Guide | Hair Pinns",
+  metaDescription: "A practical guide to Hair Pinns at " + BUSINESS_NAP.address.street + ", Bangor, covering colour, smoothing, cuts, salon hours and how to book online with Jena.",
   excerpt: "A practical introduction to Hair Pinns in Bangor, including its location, current service focus, and how to check live availability before booking.",
   category: "Local",
   date: "April 19, 2026",
@@ -27,7 +29,7 @@ const post = {
       },
       {
         heading: "Address and Contact",
-        content: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. You can view live availability online or call " + BUSINESS_NAP.phone.display + " for help with service selection."
+        content: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor NSW 2234. Street parking is at the studio. Tuesday is 9am to 5pm, Wednesday is 4pm to 9pm, Thursday is 9am to 9pm, Friday is 9am to 5pm, and Saturday is 8am to 2pm. Sunday and Monday are closed. The [Bangor area page](/areas/bangor-2234) repeats the visit notes. You can view live availability online or call " + BUSINESS_NAP.phone.display + " for help with service selection."
       }
     ],
     quickAnswer: {

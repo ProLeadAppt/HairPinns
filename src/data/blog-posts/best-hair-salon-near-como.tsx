@@ -4,69 +4,63 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "best-hair-salon-near-como",
     title: "Best Hair Salon Near Como: What the Locals Say",
-    excerpt: "Looking for a hair salon near Como? Here's what Como locals look for in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    seoTitle: "Hair Salon Near Como: Local Guide | Hair Pinns",
+    metaDescription: "Looking for a hairdresser near Como? Discover one-on-one colour, smoothing and cuts with Jena at Hair Pinns in Bangor, with free parking out front.",
+    excerpt: "Looking for a hairdresser near Como? Hair Pinns is Jena's one-on-one studio in Bangor, with parking at the salon.",
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-042.jpg?v=1744250283",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Como and searching for a hair salon, the options nearest you are limited, which is why a lot of Como locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Como, and honest answers about whether we're the right fit.",
+      introduction: "Como has fewer salons than the bigger Shire centres, so many locals drive to Hair Pinns in Bangor. Jena Pinn works one-on-one at " + BUSINESS_NAP.address.street + ". The [Como area page](/areas/como-2226) has the visit notes.",
       sections: [
         {
-          heading: "Why Como Locals Drive to Bangor",
-          content: "Hair Pinns is 8–10 minutes from Como via Como Bridge and the Princes Highway. Free parking out the front of the salon, no meter hunting. Como sits on the bridge between the Sutherland Shire proper and the St George area; heading south to Bangor is usually quicker than heading north into busier suburbs."
+          heading: "From Como toward Bangor",
+          content: "A common drive is toward the Princes Highway, then north on Old Illawarra Road into Bangor. Check live directions before you leave. Street parking is at the front of " + BUSINESS_NAP.address.street + "."
         },
         {
-          heading: "What Como Clients Tell Us They Value",
-          content: "Three things come up with Como clients: (1) They want one stylist every visit who remembers their hair history, not rotating staff where every visit starts from scratch. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing on a public menu, no surprise fees. (3) They want low-maintenance results, colour that grows out gracefully, cuts that don't need a blowdry to look right. Most Como clients stay long-term because the results hold up."
+          heading: "Jena remembers the hair",
+          content: "You see Jena every visit. Hair Pinns is a single-chair studio, so the colour history stays with her. The live menu shows the price before you confirm."
         },
         {
-          heading: "Services Popular with Como Locals",
-          content: "The most-booked services for Como clients: full head foils with toner refreshes, mid-length cut-and-blowdry packages, and Straight Up Smoothing for clients who want to eliminate frizz between visits. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
+          heading: "Foils, cuts and smoothing",
+          content: "Como clients book foils, mid-length cuts and Straight Up Smoothing. Smoothing is for clients who want frizz calmed between visits. Jena explains aftercare in the consultation and does not quote one duration for everyone. Book on the [booking page](/booking) or call " + BUSINESS_NAP.phone.display + "."
         },
         {
-          heading: "Why the Como Trip Works",
-          content: "For Como clients, the short trip to Bangor provides local parking, one-to-one service and colour plans designed to grow out cleanly. Current prices and appointment availability remain visible through the live booking menu."
-        },
-        {
-          heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair. Most of our Como clients first came for a full head foils or a smoothing treatment while keeping their existing salon for everything else. After a few visits, most switch fully. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          heading: "One service is enough to start",
+          content: "Book the appointment you want first. You can decide later whether to move other visits across. Call " + BUSINESS_NAP.phone.display + " if you want help choosing the service before you drive."
         }
       ],
       quickAnswer: {
-        question: "What's the best hair salon near Como?",
-        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
+        question: "Where is the hairdresser near Como?",
+        answer: "Hair Pinns is in Bangor at " + BUSINESS_NAP.address.street + ". Check live directions via the Princes Highway and Old Illawarra Road. Book online or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
-        "Hair Pinns Bangor is 8–10 minutes from Como via Como Bridge",
-        "Free parking out the front, no meter hunting",
-        "Popular Como bookings: full head foils, mid-length cut-and-blowdry, smoothing",
-        "Stylist continuity and transparent pricing drive switch-over decisions",
-        "Try one service first, no membership required"
+        "The usual corridor is the Princes Highway and Old Illawarra Road",
+        "Check live directions from Como before you leave",
+        "Street parking is at the front of " + BUSINESS_NAP.address.street ,
+        "Jena does foils, cuts and smoothing one-on-one",
+        "Start with one booked service"
       ],
       faqSection: [
         {
-          question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + " in Bangor, with local parking and online booking. Jena has worked behind the chair since 2009.",
+          question: "How do Como clients reach Hair Pinns?",
+          answer: "Head toward the Princes Highway, then north on Old Illawarra Road into Bangor. Check live directions. The studio is at " + BUSINESS_NAP.address.street + "."
         },
         {
-          question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
+          question: "What is the parking like for the Como trip?",
+          answer: "There is street parking at the front of " + BUSINESS_NAP.address.street + ". The Como area page repeats the address and the hours."
         },
         {
-          question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
+          question: "Who does the colour if I come from Como?",
+          answer: "Jena does. Hair Pinns is her one-on-one studio, so the consultation and the service are with the same person."
         },
         {
-          question: "Is Hair Pinns good for older clients?",
-          answer: "Hair Pinns welcomes clients of all ages. If you have mobility, sensory, or appointment-support needs, contact the salon before booking so Jena can explain the space and available options.",
-        },
-        {
-          question: "What's the parking situation at Hair Pinns?",
-          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+          question: "Can I book an evening from Como?",
+          answer: "Wednesday is 4pm to 9pm and Thursday is 9am to 9pm. Use the booking page for a live time, or call " + BUSINESS_NAP.phone.display + "."
         }
-      ],
+      ]
     },
     cta: {
       type: "booking",

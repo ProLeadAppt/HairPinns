@@ -4,63 +4,65 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "best-hair-salon-near-menai",
     title: "Best Hair Salon Near Menai: What the Locals Say",
-    excerpt: "Looking for a hair salon near Menai? Here's what locals actually value, and why Hair Pinns in Bangor is the short drive worth making.",
+    seoTitle: "Hair Salon Near Menai: Local Guide | Hair Pinns",
+    metaDescription: "Looking for a hairdresser near Menai? See why Menai locals choose Jena at Hair Pinns in Bangor, 5 mins away with free parking and honest pricing.",
+    excerpt: "Looking for a hair salon near Menai? Here is the short trip to Hair Pinns in Bangor, and how Jena plans colour, smoothing and cuts one-on-one.",
     category: "Local",
     date: "April 19, 2026",
     readTime: "5 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-120.jpg?v=1747030506",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Menai and searching for a hair salon, you've got options, but the consistent feedback we hear from Menai locals who've become Hair Pinns regulars is the same: 'Wish I'd found you sooner.' Here's what matters when you're picking a salon close to Menai, and honest answers about whether we're the right fit.",
+      introduction: "If you are in Menai and looking for a hairdresser, Hair Pinns is Jena Pinn's one-on-one studio at " + BUSINESS_NAP.address.street + ", Bangor. This guide covers the short trip, what to book, and how a colour correction consultation actually works. Visit notes are on the [Menai area page](/areas/menai-2234).",
       sections: [
         {
-          heading: "Why Locals Drive to Bangor (It's Closer Than You Think)",
-          content: "Hair Pinns is a 5-minute drive from central Menai via Menai Road. Free parking right outside. For most Menai postcodes it's faster than driving into Sutherland or Miranda and trying to find parking. Many of our regulars come from Menai Heights, Barden Ridge, and Woronora, combined they make up a significant portion of our client base."
+          heading: "The short trip from Menai",
+          content: "Menai Road links Menai with Bangor. Many clients allow about 5 minutes, then check live directions before they leave. Street parking is at " + BUSINESS_NAP.address.street + ". Wednesday runs from 4pm to 9pm and Thursday from 9am to 9pm if an evening visit suits you better than a shopping-centre appointment."
         },
         {
-          heading: "What Menai Clients Tell Us They Value",
-          content: "The three things that come up in every new-client consultation from the Menai area: (1) They want a salon that remembers them, not a rotating stylist roster. At Hair Pinns you see Jena every time, or her trusted team who've been with the salon for years. (2) They want honest pricing without upsell pressure. Our service menu is public, no surprise fees. (3) They want a salon that treats their hair like an investment, not a transaction."
+          heading: "One chair, with Jena",
+          content: "You see Jena at every visit. Hair Pinns is her appointment-only studio, so the person who consults with you is the person who does the hair. The live booking menu shows the current service and price before you confirm. Call " + BUSINESS_NAP.phone.display + " if you want help choosing before you travel."
         },
         {
-          heading: "Services Popular with Menai Locals",
-          content: "The most-booked services for Menai clients: Straight Up Smoothing (reduces frizz for 8–12 weeks, crucial in Sydney's humid summer), full head foils for blonde maintenance, and mid-length wash/cut/blowdry. We also do kids and formal styling, popular with Menai families heading to school events. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
+          heading: "Services Menai clients book",
+          content: "Colour, foils, Straight Up Smoothing and cuts are the usual bookings. Straight Up Smoothing is for clients who want frizz calmed. Jena explains aftercare at the consultation and does not quote one lifespan for every head of hair. Book on the [booking page](/booking) or call the salon."
         },
         {
-          heading: "Real Review from a Menai Client",
-          content: "'I went to Jena after a box dye went wrong. She didn't try to fix it all in one go. Took three sessions, was upfront about the cost, and now my blonde actually looks like I wanted it to. Won't go anywhere else.', Sarah M., Menai. This captures our approach. We don't promise miracles that damage your hair. We build toward the result, honestly, and charge for what we actually do."
+          heading: "How Jena plans a colour correction",
+          content: "If a box colour or an old foil job needs work, Jena starts with the consultation, not a promise. She asks what was used at home or in the last salon, looks at the hair, and says what this visit can do. If the change should be staged, she says so before you book. You then choose the matching service at the live price. There is no one-visit guarantee."
         },
         {
-          heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair. Most of our clients from Menai first came for one specific service, usually smoothing or a fix, while keeping their existing salon for everything else. After a few visits, they switch. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no hard sell."
+          heading: "Try one service first",
+          content: "You do not have to move every future appointment across. Book the service you actually want, then decide what comes next. If you are unsure, call " + BUSINESS_NAP.phone.display + " and Jena will help you match the booking to the hair."
         }
       ],
       quickAnswer: {
-        question: "What's the best hair salon near Menai?",
-        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
+        question: "Where is the hair salon near Menai?",
+        answer: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor. Menai Road is the usual link, and many clients allow about 5 minutes. Check live directions, then book online or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
-        "Hair Pinns Bangor is a 5-minute drive from Menai with free parking",
-        "Regular clients come from Menai Heights, Barden Ridge, and Woronora",
-        "Most-booked services: Straight Up Smoothing, full head foils, mid-length cuts",
-        "Honest pricing, no upsell pressure, consistent stylist each visit",
-        "Try a single service first, no membership required"
+        "Menai Road links Menai with the Bangor studio at " + BUSINESS_NAP.address.street ,
+        "Check live directions, and allow about 5 minutes for the usual trip",
+        "Jena works one-on-one on colour, foils, smoothing and cuts",
+        "A colour correction starts with a consultation, and may take more than one visit",
+        "Wednesday and Thursday include evening hours"
       ],
       faqSection: [
         {
-          question: "How far is Hair Pinns from Menai, and is it worth the drive?",
-          answer: "Hair Pinns is a 5-minute drive from central Menai via Menai Road with free parking right outside. For most Menai postcodes it's actually faster than driving into Sutherland or Miranda and trying to find parking. Lots of our regulars come from Menai Heights, Barden Ridge, and Woronora, and they say it's worth the short drive because they see the same stylist every time and get honest advice."
+          question: "Is Hair Pinns in Menai or Bangor?",
+          answer: "Hair Pinns is in Bangor at " + BUSINESS_NAP.address.street + ". Menai Road is the usual link from Menai. The Menai area page has the visit notes, including street parking and hours."
         },
         {
-          question: "What makes a good salon for local clients in Menai?",
-          answer: "The three things Menai clients consistently tell us they value: a salon that remembers them and doesn't rotate stylists every visit, honest pricing with no upsell pressure and transparent menus, and a salon that treats their hair like an investment rather than a transaction. If a salon checks those boxes, you've found the right fit."
+          question: "How does Jena handle a colour correction for Menai clients?",
+          answer: "She asks what is already on the hair, looks at the condition, and says what this visit can do. If the change needs another appointment, she says that before you book. You pay the live price for the service you choose."
         },
         {
-          question: "What are the most popular services among Menai clients at Hair Pinns?",
-          answer: "Straight Up Smoothing is huge, it reduces frizz for 8–12 weeks, which is crucial in Sydney's humid summers. Full head foils for blonde maintenance, and mid-length wash/cut/blowdry are also really popular. We also do kids and formal styling, which Menai families book for school events. Book online 24/7 or call to find out exact pricing for your specific needs."
+          question: "Does Straight Up Smoothing have one published duration?",
+          answer: "No single number is published here. Jena talks through aftercare for your hair at the appointment, because home routine changes how the result wears."
         },
         {
-          question: "Do I have to switch salons completely, or can I try Hair Pinns for one service?",
-          answer: "Most Menai clients book a single service first, usually smoothing or a fix, while keeping their existing salon for everything else. After a few visits, they usually switch over, but we're happy either way. No commitment required, no membership, no hard sell. Try us once for a specific service and see if we're the right fit."
+          question: "How do I book from Menai?",
+          answer: "Use the booking page for live times, or call " + BUSINESS_NAP.phone.display + ". Wednesday is open 4pm to 9pm and Thursday is open 9am to 9pm."
         }
       ]
     },

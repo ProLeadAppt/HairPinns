@@ -44,6 +44,7 @@ import { FREE_SHIPPING_THRESHOLD_DISPLAY } from "@/config/shippingConfig";
 import { getProductAvailability } from "@/lib/productAvailability";
 import { productOptionGuidance } from "@/lib/productOptionGuidance";
 import { getProductAdvice } from "@/lib/productAdvice";
+import { getProductSeoOverride } from "@/lib/productSeo";
 import { ProductDescription } from "@/components/product/ProductDescription";
 
 const buildShopifySrcSet = (url: string, widths: number[]) =>
@@ -479,7 +480,8 @@ const ProductDetail = () => {
   const productAdvice = getProductAdvice(product.descriptionHtml || "");
 
   // Build product schemas
-  const productDescription = buildMetaDescription(
+  const productSeo = getProductSeoOverride(handle);
+  const productDescription = productSeo?.description ?? buildMetaDescription(
     product.description || `${product.title} - Professional hair care product from Hair Pinns`,
     { suffix: isDigitalProduct ? "Delivered digitally by email. No physical shipping required." : "Shipped Australia-wide. Free shipping over $150." },
   );
@@ -538,7 +540,7 @@ const ProductDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title={`${product.title} | Hair Pinns`}
+        title={productSeo?.title ?? `${product.title} | Hair Pinns`}
         description={productDescription}
         canonical={canonicalSiteUrl(`/products/${handle}`)}
         ogImage={images[0]?.url || getOGImage('product')}

@@ -18,6 +18,7 @@ const LEGACY_SUBURB_TARGETS: Record<string, string> = {
   "oyster-bay": "oyster-bay-2225",
   padstow: "padstow-2211",
   sylvania: "sylvania-2224",
+  engadine: "engadine-2233",
 };
 
 /** Client-side counterpart to the permanent Netlify legacy suburb redirects. */

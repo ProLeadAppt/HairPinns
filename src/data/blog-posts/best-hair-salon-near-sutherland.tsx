@@ -4,69 +4,63 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "best-hair-salon-near-sutherland",
     title: "Best Hair Salon Near Sutherland: What the Locals Say",
-    excerpt: "Looking for a hair salon near Sutherland? Here's what Sutherland locals value in a salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    seoTitle: "Hair Salon Near Sutherland Guide | Hair Pinns",
+    metaDescription: "Looking for a hairdresser near Sutherland? See why locals head 10 minutes up to Bangor for Jena's one-on-one colour, smoothing and cuts at Hair Pinns.",
+    excerpt: "Looking for a hairdresser near Sutherland? Many locals head up Old Illawarra Road to Jena's one-on-one studio in Bangor.",
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Sutherland and searching for a hair salon, you have plenty of options in town, but a lot of Sutherland locals make the short drive to Bangor for Hair Pinns. Here's what matters when you're picking a salon close to Sutherland, and honest answers about whether we're worth the drive.",
+      introduction: "Sutherland has salons in town. Hair Pinns is the one-on-one studio up the road in Bangor, at " + BUSINESS_NAP.address.street + ". The [Sutherland area page](/areas/sutherland-2232) has the route and the hours.",
       sections: [
         {
-          heading: "Why Sutherland Locals Drive to Bangor",
-          content: "Hair Pinns is 10–12 minutes from central Sutherland via Old Illawarra Road, generally faster than trying to find parking in central Sutherland during peak hours. Free parking out the front of the salon. Several of our regulars make the drive because the parking and the predictable time beats the convenience of walking distance in the Sutherland CBD."
+          heading: "Up Old Illawarra Road",
+          content: "The usual drive is north on Old Illawarra Road. Many locals allow about 10 minutes, then check live directions before they leave. Street parking is at " + BUSINESS_NAP.address.street + ", which is often simpler than hunting for a park in central Sutherland."
         },
         {
-          heading: "What Sutherland Clients Tell Us They Value",
-          content: "Three things come up every time from Sutherland locals: (1) They want one stylist per visit, consistently, not a rotating team where no one remembers the last conversation. At Hair Pinns you see Jena every visit, or her trusted team. (2) They want transparent pricing, full service menu public, no surprise fees at checkout. (3) They want long-term hair health prioritised over the single-service sale. Most Sutherland clients have been with us for several years."
+          heading: "Jena, every visit",
+          content: "You do not meet a new person each time. Jena consults and Jena does the hair. The live menu shows the service and the price before you confirm, so the quote is the booking, not a surprise at the end."
         },
         {
-          heading: "Services Popular with Sutherland Locals",
-          content: "The most-booked services for Sutherland clients: full colour packages (cut and colour combined) and Straight Up Smoothing for Sydney humidity (8–12 weeks of frizz-free hair). We also do colour correction and toner refreshes. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
+          heading: "Colour, smoothing and cuts",
+          content: "Sutherland clients book colour packages, toner refreshes, Straight Up Smoothing and cuts. If a colour needs more than one visit, Jena says that in the consultation. Smoothing is for frizz control, and she explains aftercare rather than quoting one lifespan. Book on the [booking page](/booking) or call " + BUSINESS_NAP.phone.display + "."
         },
         {
-          heading: "Why the Sutherland Trip Works",
-          content: "For Sutherland clients, Hair Pinns offers a quieter Bangor setting, local parking, transparent online pricing and continuity with Jena. Colour correction is planned around hair condition and may be staged over multiple visits when that is the safer approach."
-        },
-        {
-          heading: "What If You're Not Ready to Switch Salons?",
-          content: "Totally fair. Most of our Sutherland clients first booked us for one specific service, usually a colour correction or smoothing treatment, while keeping their existing salon for routine cuts. After two or three visits, most switch fully. We're happy either way. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          heading: "Try the service you actually need",
+          content: "Start with the appointment you want, whether that is a cut or a colour correction. You can keep other bookings elsewhere. Call " + BUSINESS_NAP.phone.display + " if you want help matching the service before you drive up."
         }
       ],
       quickAnswer: {
-        question: "What's the best hair salon near Sutherland?",
-        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
+        question: "How far is Hair Pinns from Sutherland?",
+        answer: "The studio is in Bangor at " + BUSINESS_NAP.address.street + ". Old Illawarra Road is the usual route, and many locals allow about 10 minutes. Check live directions, then book online or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
-        "Hair Pinns Bangor is 10–12 minutes from Sutherland via Old Illawarra Road",
-        "Free parking out the front beats central Sutherland parking hunts",
-        "Popular Sutherland bookings: full colour packages, smoothing, event blowdries",
-        "Transparent pricing and stylist continuity drive most switch-over decisions",
-        "Try one service first, no membership required"
+        "Old Illawarra Road is the usual route north from Sutherland",
+        "Allow about 10 minutes, and check live directions",
+        "Street parking is at " + BUSINESS_NAP.address.street ,
+        "Jena does colour, smoothing and cuts one-on-one",
+        "A colour correction may be staged across visits"
       ],
       faqSection: [
         {
-          question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + " in Bangor, with local parking and online booking. Jena has worked behind the chair since 2009.",
+          question: "Why do Sutherland locals drive to Bangor?",
+          answer: "Hair Pinns is Jena's one-on-one studio, about 10 minutes up Old Illawarra Road, with street parking at " + BUSINESS_NAP.address.street + ". Check live directions on the day."
         },
         {
-          question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
+          question: "How does a colour correction start?",
+          answer: "Jena looks at what is already on the hair and says what this visit can do. If the change should wait for another appointment, she says so before you book."
         },
         {
-          question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
+          question: "Is smoothing sold with a fixed wear time?",
+          answer: "No. Straight Up Smoothing is booked to calm frizz, and the aftercare is explained for your hair. This guide does not state a set number of weeks."
         },
         {
-          question: "Is Hair Pinns good for older clients?",
-          answer: "Hair Pinns welcomes clients of all ages. If you have mobility, sensory, or appointment-support needs, contact the salon before booking so Jena can explain the space and available options.",
-        },
-        {
-          question: "What's the parking situation at Hair Pinns?",
-          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+          question: "How do I book from Sutherland?",
+          answer: "Use the booking page or call " + BUSINESS_NAP.phone.display + ". Wednesday is 4pm to 9pm and Thursday is 9am to 9pm. The Sutherland area page lists the rest of the week."
         }
-      ],
+      ]
     },
     cta: {
       type: "booking",

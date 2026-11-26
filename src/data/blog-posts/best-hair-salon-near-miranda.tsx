@@ -4,69 +4,63 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 const post = {
     slug: "best-hair-salon-near-miranda",
     title: "Best Hair Salon Near Miranda: What the Locals Say",
-    excerpt: "Looking for a hair salon near Miranda? Here's what Miranda locals look for in a family-friendly salon, and why Hair Pinns in Bangor is a short drive worth making.",
+    seoTitle: "Hair Salon Near Miranda: Local Guide | Hair Pinns",
+    metaDescription: "Tired of busy shopping-centre salons near Miranda? See why locals visit Hair Pinns in Bangor for calm one-on-one colour, smoothing and cuts with Jena.",
+    excerpt: "Tired of busy shopping-centre salons near Miranda? Hair Pinns is Jena's calm one-on-one studio in Bangor.",
     category: "Local",
     date: "April 19, 2026",
     readTime: "4 min read",
     image: "https://cdn.shopify.com/s/files/1/0691/6079/6341/files/Juuce-091.jpg?v=1747026587",
     author: "Jena Pinn",
     content: {
-      introduction: "If you're in Miranda and searching for a hair salon, you have no shortage of options in and around Westfield. But many Miranda locals, especially families with school-age kids, make the drive to Bangor for Hair Pinns because we do family appointments well. Here's what matters when you're picking a salon close to Miranda, and honest answers about whether we're the right fit.",
+      introduction: "Miranda has no shortage of salons around the shopping centre. Hair Pinns is the quieter booking: Jena Pinn, one client at a time, at " + BUSINESS_NAP.address.street + ", Bangor. The [Miranda area page](/areas/miranda-2228) covers the drive and the hours.",
       sections: [
         {
-          heading: "Why Miranda Locals Drive to Bangor",
-          content: "Hair Pinns is 10–12 minutes from central Miranda via Kingsway and Old Illawarra Road. Free parking out the front, very different from Miranda Westfield's parking situation. For families bringing kids, the out-the-front parking and the quieter suburb vibe is often the whole reason they switched."
+          heading: "Skip the centre car park",
+          content: "The usual route is the Kingsway toward Old Illawarra Road, then north into Bangor. Check live directions. Street parking is at " + BUSINESS_NAP.address.street + ", which is the practical difference from a centre visit."
         },
         {
-          heading: "What Miranda Clients Tell Us They Value",
-          content: "Three things come up with Miranda clients: (1) They want one stylist per person per visit, parents want a consistent stylist, kids want someone who remembers them. At Hair Pinns every family member sees the same stylist consistently. (2) They want transparent pricing, including kids services, on a public menu. (3) They want a salon that handles the practical stuff, booking the whole family in one session, kids' cuts that don't turn into a battle, formal styling for school events. Miranda families especially stay long-term."
+          heading: "A calm, one-on-one appointment",
+          content: "Jena sees one client at a time. Parents, children and anyone else in the household each book their own time with her, including a child's cut when the live menu lists the current age bracket. There is no rotating roster."
         },
         {
-          heading: "Services Popular with Miranda Locals",
-          content: "The most-booked services for Miranda clients: family appointments (parent + kids in one session), kids cut-and-blowdry bundles, mid-length cuts for mums, and formal styling for school formals and events. We also do smoothing and foils, of course, but the family-appointment angle is what Miranda clients specifically mention. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
+          heading: "What Miranda clients book",
+          content: "Colour, blonding, Straight Up Smoothing, cuts and formal styling are on the menu. The family angle is simple: book the services you need, at the live prices, in a room that is not a shopping-centre corridor. Use the [booking page](/booking) or call " + BUSINESS_NAP.phone.display + "."
         },
         {
-          heading: "Why the Miranda Trip Works",
-          content: "For Miranda families, the Bangor location offers straightforward parking, online booking and a quieter appointment setting. Hair Pinns provides children's cuts, adult services and formal styling, with current prices and age brackets kept in the live Fresha menu."
-        },
-        {
-          heading: "What If You're Not Ready to Switch Salons?",
-          content: "Fair. Most of our Miranda clients first came for a formal styling appointment (school formal, wedding) or a one-off smoothing, while keeping their existing salon for routine cuts. After a few visits, most switch fully, especially once the kids come along and family booking becomes a factor. If you want to try us first, book a single-service appointment. No commitment, no membership, no pressure."
+          heading: "Evenings after the shops",
+          content: "Wednesday is open 4pm to 9pm and Thursday is open 9am to 9pm. Saturday is 8am to 2pm. If you want to avoid the centre at peak time, those windows are the ones to check first."
         }
       ],
       quickAnswer: {
-        question: "What's the best hair salon near Miranda?",
-        answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + ", Bangor and offers colour, smoothing, cuts, and styling. Check current services and availability through Fresha or call " + BUSINESS_NAP.phone.display + "."
+        question: "Where can Miranda locals book a quieter salon?",
+        answer: "Hair Pinns is at " + BUSINESS_NAP.address.street + ", Bangor. Check live directions via the Kingsway and Old Illawarra Road. Jena works one-on-one. Book online or call " + BUSINESS_NAP.phone.display + "."
       },
       keyTakeaways: [
-        "Hair Pinns Bangor is 10–12 minutes from Miranda via Kingsway",
-        "Free parking out the front, easier than Miranda Westfield for families",
-        "Popular Miranda bookings: family appointments, kids cuts, formal styling",
-        "Every family member sees a consistent stylist",
-        "Try one service first, no membership required"
+        "The usual roads from Miranda are the Kingsway and Old Illawarra Road",
+        "Street parking is at " + BUSINESS_NAP.address.street + ", not a shopping-centre car park",
+        "Jena sees one client at a time for colour, smoothing and cuts",
+        "Children's cuts follow the age bracket on the live menu",
+        "Wednesday and Thursday include evening hours"
       ],
       faqSection: [
         {
-          question: "Where is the best hair salon in Bangor?",
-          answer: "Hair Pinns is located at " + BUSINESS_NAP.address.street + " in Bangor, with local parking and online booking. Jena has worked behind the chair since 2009.",
+          question: "Why leave Miranda for a salon in Bangor?",
+          answer: "Hair Pinns is an appointment-only studio, away from the shopping-centre crowds. Street parking is at " + BUSINESS_NAP.address.street + ". Check live directions before you leave."
         },
         {
-          question: "Do you offer kids' haircuts at Hair Pinns?",
-          answer: "Yes. Hair Pinns offers children's haircuts. Check the live Fresha service menu for current age brackets, prices and appointment availability.",
+          question: "Can I book a child's cut as well as my own?",
+          answer: "Yes, when the live menu lists the child's service. Each person has their own time with Jena. She does not run several chairs at once."
         },
         {
-          question: "Can I get a same-day appointment at Hair Pinns?",
-          answer: "For cuts: often yes, especially weekday mornings. For colour, smoothing, or extensions: usually 1-2 weeks out. Online booking shows real-time availability, if you see a slot, take it.",
+          question: "What is different about the Miranda visit?",
+          answer: "You are in a single-chair studio in Bangor, not a centre salon. Colour, smoothing and cuts are one-on-one, and the price is on the booking page before you confirm."
         },
         {
-          question: "Is Hair Pinns good for older clients?",
-          answer: "Hair Pinns welcomes clients of all ages. If you have mobility, sensory, or appointment-support needs, contact the salon before booking so Jena can explain the space and available options.",
-        },
-        {
-          question: "What's the parking situation at Hair Pinns?",
-          answer: "Free off-street parking at the rear of the salon, plus 2-hour street parking on the main road. Never had a client miss an appointment for parking.",
+          question: "When can I come from Miranda after work?",
+          answer: "Wednesday runs 4pm to 9pm and Thursday runs 9am to 9pm. Call " + BUSINESS_NAP.phone.display + " or use the booking page for the times that are actually open."
         }
-      ],
+      ]
     },
     cta: {
       type: "booking",

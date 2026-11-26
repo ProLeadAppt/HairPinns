@@ -28,7 +28,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 
 - 66 active guides
 - 15 service detail pages
-- 17 salon service-area pages
+- 18 salon service-area pages
 - 20 Australian shipping pages
 - 22 product collections
 - 135 products
@@ -154,6 +154,7 @@ Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 - https://hairpinns.com/areas/caringbah-2229/
 - https://hairpinns.com/areas/oyster-bay-2225/
 - https://hairpinns.com/areas/sutherland-2232/
+- https://hairpinns.com/areas/engadine-2233/
 - https://hairpinns.com/areas/barden-ridge-2234/
 - https://hairpinns.com/areas/alfords-point-2234/
 
