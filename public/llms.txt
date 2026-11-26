@@ -14,11 +14,11 @@
 
 ## Opening hours
 
-- Tuesday: 09:00–17:00
-- Wednesday: 16:00–21:00
-- Thursday: 09:00–21:00
-- Friday: 09:00–17:00
-- Saturday: 08:00–14:00
+- Tuesday: 09:00-17:00
+- Wednesday: 16:00-21:00
+- Thursday: 09:00-21:00
+- Friday: 09:00-17:00
+- Saturday: 08:00-14:00
 
 Timezone: Australia/Sydney. Hours source checked 2026-07-25.
 
