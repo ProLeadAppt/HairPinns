@@ -79,7 +79,7 @@ describe("AI discovery generation", () => {
   });
 
   it("projects canonical facts without inventing ratings", () => {
-    expect(files["llms.txt"]).toContain("Tuesday: 09:00–17:00");
+    expect(files["llms.txt"]).toContain("Tuesday: 09:00-17:00");
     expect(files["llms.txt"]).toContain("60 Goorgool Road, Bangor NSW 2234");
     expect(files["llms.txt"]).toContain("0416 037 663");
     expect(files["llms.txt"]).toContain("2 active guides");

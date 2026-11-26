@@ -27,7 +27,7 @@ const groupRoutes = (routes) => {
 
 const renderHours = (registry) =>
   registry.hours.weekly
-    .map(({ day, opens, closes }) => `- ${day}: ${opens}–${closes}`)
+    .map(({ day, opens, closes }) => `- ${day}: ${opens}-${closes}`)
     .join('\n');
 
 const renderLinks = (siteUrl, routes) =>

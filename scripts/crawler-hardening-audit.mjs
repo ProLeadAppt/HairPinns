@@ -56,7 +56,7 @@ const auditDiscoveryFiles = () => {
     return errors;
   }
   for (const hours of structured.openingHoursSpecification || []) {
-    const line = `${hours.dayOfWeek}: ${hours.opens}–${hours.closes}`;
+    const line = `${hours.dayOfWeek}: ${hours.opens}-${hours.closes}`;
     if (!files['llms.txt'].includes(line) || !files['llms-full.txt'].includes(line)) {
       errors.push(`AI discovery hours drift: ${line}`);
     }

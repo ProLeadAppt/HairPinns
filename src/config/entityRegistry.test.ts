@@ -13,6 +13,7 @@ import {
 import {
   BUSINESS_HOURS,
   BUSINESS_HOURS_DISPLAY,
+  BUSINESS_WEEK_DISPLAY,
   BUSINESS_NAP,
   GBP_REVIEW_URL,
   GBP_URL,
@@ -94,13 +95,23 @@ describe("compatibility projections", () => {
     });
     expect(BUSINESS_HOURS).toBe(ENTITY_REGISTRY.hours.weekly);
     expect(BUSINESS_HOURS_DISPLAY).toEqual([
-      "Tue: 9am - 5pm",
-      "Wed: 4pm - 9pm",
-      "Thu: 9am - 9pm",
-      "Fri: 9am - 5pm",
-      "Sat: 8am - 2pm",
-      "Sun - Mon: Closed",
+      "Tue: 9am-5pm",
+      "Wed: 4pm-9pm",
+      "Thu: 9am-9pm",
+      "Fri: 9am-5pm",
+      "Sat: 8am-2pm",
+      "Sun-Mon: Closed",
     ]);
+    expect(BUSINESS_WEEK_DISPLAY).toEqual([
+      ["Mon", "Closed"],
+      ["Tue", "9am-5pm"],
+      ["Wed", "4pm-9pm"],
+      ["Thu", "9am-9pm"],
+      ["Fri", "9am-5pm"],
+      ["Sat", "8am-2pm"],
+      ["Sun", "Closed"],
+    ]);
+    expect([...BUSINESS_HOURS_DISPLAY, ...BUSINESS_WEEK_DISPLAY.map(([, hours]) => hours)].join(" ")).not.toMatch(/[\u2013\u2014]/);
     expect(GBP_URL).toBe(ENTITY_REGISTRY.profiles.google.profileUrl);
     expect(GBP_REVIEW_URL).toBe(ENTITY_REGISTRY.profiles.google.reviewUrl);
   });

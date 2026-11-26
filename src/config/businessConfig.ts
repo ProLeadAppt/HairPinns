@@ -67,7 +67,7 @@ export const BUSINESS_WEEK_DISPLAY = BUSINESS_DAY_ORDER.map((day) => {
   const hours = BUSINESS_HOURS.find((entry) => entry.day === day);
   return [
     SHORT_DAY[day],
-    hours ? `${formatTime(hours.opens)}–${formatTime(hours.closes)}` : "Closed",
+    hours ? `${formatTime(hours.opens)}-${formatTime(hours.closes)}` : "Closed",
   ] as const;
 });
 
@@ -75,9 +75,9 @@ export const BUSINESS_WEEK_DISPLAY = BUSINESS_DAY_ORDER.map((day) => {
 export const BUSINESS_HOURS_DISPLAY = [
   ...BUSINESS_HOURS.map(
     (hours) =>
-      `${SHORT_DAY[hours.day]}: ${formatTime(hours.opens)} - ${formatTime(hours.closes)}`,
+      `${SHORT_DAY[hours.day]}: ${formatTime(hours.opens)}-${formatTime(hours.closes)}`,
   ),
-  "Sun - Mon: Closed",
+  "Sun-Mon: Closed",
 ] as const;
 
 /** Canonical Google Places identifiers and actions. */
