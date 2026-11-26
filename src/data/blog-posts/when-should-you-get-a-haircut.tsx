@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "How Often You Actually Need a Haircut",
-          content: "Short hair (pixie, bob): every 4–6 weeks. The shape loses definition quickly and a trim keeps it looking styled. Mid-length hair: every 8–10 weeks. Balances shape maintenance with growing out. Long hair: every 10–12 weeks minimum for a dusting, 12–14 weeks for a proper trim. Curly hair: every 10–12 weeks regardless of length, dry cutting every few months keeps curl shape intact. Damaged or colour-treated hair: every 6–8 weeks to stop split ends travelling up the shaft."
+          content: "Short hair (pixie, bob): every 4 to 6 weeks. The shape loses definition quickly and a trim keeps it looking styled. Mid-length hair: every 8 to 10 weeks. Balances shape maintenance with growing out. Long hair: every 10 to 12 weeks minimum for a dusting, 12 to 14 weeks for a proper trim. Curly hair: every 10 to 12 weeks regardless of length, dry cutting every few months keeps curl shape intact. Damaged or colour-treated hair: every 6 to 8 weeks to stop split ends travelling up the shaft."
         },
         {
           heading: "Sign 1: Ends Feel 'Stringy' or Wispy",
@@ -26,11 +26,11 @@ const post = {
         },
         {
           heading: "Sign 3: Layers Look Flat or Undefined",
-          content: "Layered cuts rely on specific lengths to create movement. After 10–12 weeks, layers grow out and the cut looks blunt or shapeless. If your hair looks 'flat' when you used to have movement, that's a cut signal."
+          content: "Layered cuts rely on specific lengths to create movement. After 10 to 12 weeks, layers grow out and the cut looks blunt or shapeless. If your hair looks 'flat' when you used to have movement, that's a cut signal."
         },
         {
           heading: "Sign 4: You Can't Remember When You Last Booked",
-          content: "If you can't remember your last haircut date, you're overdue. Track it in your phone calendar. For most people, 10–12 weeks is the upper limit before hair health starts to decline."
+          content: "If you can't remember your last haircut date, you're overdue. Track it in your phone calendar. For most people, 10 to 12 weeks is the upper limit before hair health starts to decline."
         },
         {
           heading: "Sign 5: Hair Feels Dry and Products Don't Work",
@@ -38,15 +38,15 @@ const post = {
         },
         {
           heading: "Don't Grow Out Hair Without Trimming",
-          content: "The biggest mistake when growing hair: skipping trims entirely. Ends split, splits travel up the shaft, and eventually you have to cut more to remove damage than if you'd trimmed every 10–12 weeks. Even growing hair needs a 1cm trim every 3 months to stay healthy. Mention 'dusting, just the ends' and a good stylist will trim minimally."
+          content: "The biggest mistake when growing hair: skipping trims entirely. Ends split, splits travel up the shaft, and eventually you have to cut more to remove damage than if you'd trimmed every 10 to 12 weeks. Even growing hair needs a 1cm trim every 3 months to stay healthy. Mention 'dusting, just the ends' and a good stylist will trim minimally."
         }
       ],
       quickAnswer: {
         question: "When should you get a haircut?",
-        answer: "Get a haircut every 4–6 weeks for short hair, every 8–10 weeks for mid-length, and every 10–12 weeks for long hair. Signs you're overdue: stringy or wispy ends, styling taking longer than usual, layers looking flat, or products no longer absorbing into damaged ends. Even when growing hair out, trim every 3 months to prevent damage."
+        answer: "Get a haircut every 4 to 6 weeks for short hair, every 8 to 10 weeks for mid-length, and every 10 to 12 weeks for long hair. Signs you're overdue: stringy or wispy ends, styling taking longer than usual, layers looking flat, or products no longer absorbing into damaged ends. Even when growing hair out, trim every 3 months to prevent damage."
       },
       keyTakeaways: [
-        "Short hair every 4–6 weeks, mid-length 8–10, long 10–12, curly every 10–12",
+        "Short hair every 4 to 6 weeks, mid-length 8 to 10, long 10 to 12, curly every 10 to 12",
         "Sign #1: stringy or wispy ends (split ends travelling up the shaft)",
         "Sign #2: styling takes longer or doesn't hold as well",
         "Sign #3: layers look flat or undefined",

@@ -29,7 +29,7 @@ export const glossary: GlossaryTerm[] = [
     id: "keratin-treatment",
     term: "Keratin treatment",
     definition:
-      "A salon treatment that uses keratin protein and heat to seal the hair cuticle, reducing frizz and cutting blow-dry time. Results last 8–12 weeks with sulphate-free aftercare. Formaldehyde-free formulas are the safe standard in Australia.",
+      "A salon treatment that uses keratin protein and heat to seal the hair cuticle, reducing frizz and cutting blow-dry time. Results last 8 to 12 weeks with sulphate-free aftercare. Formaldehyde-free formulas are the safe standard in Australia.",
     link: { label: "Keratin smoothing in Sydney", href: "/blog/keratin-smoothing-sydney-prices-brands" },
     category: "treatments",
   },
@@ -37,7 +37,7 @@ export const glossary: GlossaryTerm[] = [
     id: "straight-up-smoothing",
     term: "Straight Up Smoothing",
     definition:
-      "A natural, formaldehyde-free amino-acid smoothing treatment that reduces frizz by up to 90% without flattening movement. Holds 8–12 weeks. Suits hair that wants smoothness but not stick-straight.",
+      "A natural, formaldehyde-free amino-acid smoothing treatment that reduces frizz by up to 90% without flattening movement. Holds 8 to 12 weeks. Suits hair that wants smoothness but not stick-straight.",
     link: { label: "Straight Up Smoothing service", href: "/services/smoothing/mid-length-straight-up-smoothing" },
     category: "treatments",
   },
@@ -45,7 +45,7 @@ export const glossary: GlossaryTerm[] = [
     id: "nanoplasty",
     term: "Nanoplasty",
     definition:
-      "A molecular smoothing and restoration treatment that uses smaller protein molecules to penetrate the hair shaft. Longer-lasting (up to 5 months) and stronger on damaged hair than standard smoothing, but takes 3–4 hours and costs more.",
+      "A molecular smoothing and restoration treatment that uses smaller protein molecules to penetrate the hair shaft. Longer-lasting (up to 5 months) and stronger on damaged hair than standard smoothing, but takes 3 to 4 hours and costs more.",
     category: "treatments",
   },
   {
@@ -68,7 +68,7 @@ export const glossary: GlossaryTerm[] = [
     id: "scalp-detox",
     term: "Scalp detox",
     definition:
-      "A clarifying scalp treatment that removes product build-up, hard-water minerals and excess sebum. Booked every 6–12 weeks depending on hair routine. Useful before colour services so colour deposits evenly.",
+      "A clarifying scalp treatment that removes product build-up, hard-water minerals and excess sebum. Booked every 6 to 12 weeks depending on hair routine. Useful before colour services so colour deposits evenly.",
     category: "treatments",
   },
 
@@ -85,28 +85,28 @@ export const glossary: GlossaryTerm[] = [
     id: "toner",
     term: "Toner",
     definition:
-      "A semi-permanent colour service that neutralises unwanted tones in lightened hair, pulling out brass, warmth or yellow. Lasts 4–8 weeks; needed every 6–8 weeks to keep blondes cool.",
+      "A semi-permanent colour service that neutralises unwanted tones in lightened hair, pulling out brass, warmth or yellow. Lasts 4 to 8 weeks; needed every 6 to 8 weeks to keep blondes cool.",
     category: "colour",
   },
   {
     id: "glaze",
     term: "Glaze",
     definition:
-      "A clear or tinted shine treatment that seals the cuticle and refreshes colour vibrancy. Similar to a toner but more about shine than tone correction. Lasts 2–4 weeks.",
+      "A clear or tinted shine treatment that seals the cuticle and refreshes colour vibrancy. Similar to a toner but more about shine than tone correction. Lasts 2 to 4 weeks.",
     category: "colour",
   },
   {
     id: "colour-correction",
     term: "Colour correction",
     definition:
-      "Specialist multi-step service to fix unwanted colour outcomes, box-dye disasters, brassy blonde, banded foils, uneven regrowth. Often takes 2–3 sessions because doing it safely matters more than doing it fast.",
+      "Specialist multi-step service to fix unwanted colour outcomes, box-dye disasters, brassy blonde, banded foils, uneven regrowth. Often takes 2 to 3 sessions because doing it safely matters more than doing it fast.",
     category: "colour",
   },
   {
     id: "brassiness",
     term: "Brassiness",
     definition:
-      "Unwanted warm orange or yellow tones in lightened hair, caused by sun, mineral-rich water, oxidation, and time. Counteracted with purple shampoo at home and a salon toner every 6–8 weeks.",
+      "Unwanted warm orange or yellow tones in lightened hair, caused by sun, mineral-rich water, oxidation, and time. Counteracted with purple shampoo at home and a salon toner every 6 to 8 weeks.",
     category: "colour",
   },
 
@@ -122,7 +122,7 @@ export const glossary: GlossaryTerm[] = [
     id: "purple-shampoo",
     term: "Purple shampoo",
     definition:
-      "A violet-pigmented shampoo that neutralises yellow and brassy tones in blonde, silver or grey hair. Use 1–2 times a week with a 3–5 minute dwell time. Pure Forever Blonde is our most-recommended.",
+      "A violet-pigmented shampoo that neutralises yellow and brassy tones in blonde, silver or grey hair. Use 1 to 2 times a week with a 3 to 5 minute dwell time. Pure Forever Blonde is our most-recommended.",
     link: { label: "Pure Forever Blonde", href: "/collections/pure-certified-organic-hair-care" },
     category: "products",
   },
@@ -145,7 +145,7 @@ export const glossary: GlossaryTerm[] = [
     id: "clarifying-shampoo",
     term: "Clarifying shampoo",
     definition:
-      "A deeper-cleaning shampoo that strips build-up from product, oil, chlorine and hard water. Used once every 2–4 weeks, not daily. Don't use it on freshly coloured or smoothed hair, it'll fade the result.",
+      "A deeper-cleaning shampoo that strips build-up from product, oil, chlorine and hard water. Used once every 2 to 4 weeks, not daily. Don't use it on freshly coloured or smoothed hair, it'll fade the result.",
     category: "products",
   },
 
@@ -213,14 +213,14 @@ export const glossary: GlossaryTerm[] = [
     id: "hair-botox",
     term: "Hair botox",
     definition:
-      "A misleading marketing name, there's no actual botox in it. It's a deep conditioning and filler treatment that smooths and plumps damaged hair with proteins, peptides and emollients. Lasts 4–8 weeks. Less smoothing than keratin, more conditioning.",
+      "A misleading marketing name, there's no actual botox in it. It's a deep conditioning and filler treatment that smooths and plumps damaged hair with proteins, peptides and emollients. Lasts 4 to 8 weeks. Less smoothing than keratin, more conditioning.",
     category: "treatments",
   },
   {
     id: "brazilian-blowout",
     term: "Brazilian Blowout",
     definition:
-      "A smoothing system that uses a polymer-based formula to seal the cuticle and reduce frizz. Faster than traditional keratin (about 90 minutes) but historically contained formaldehyde. Formaldehyde-free versions exist in Australia. Lasts 8–12 weeks.",
+      "A smoothing system that uses a polymer-based formula to seal the cuticle and reduce frizz. Faster than traditional keratin (about 90 minutes) but historically contained formaldehyde. Formaldehyde-free versions exist in Australia. Lasts 8 to 12 weeks.",
     category: "treatments",
   },
 
@@ -229,21 +229,21 @@ export const glossary: GlossaryTerm[] = [
     id: "semi-permanent",
     term: "Semi-permanent colour",
     definition:
-      "Colour that coats the outside of the hair shaft and washes out in 4–8 shampoos. Doesn't lift natural colour or contain ammonia. Good for refreshing tones, adding shine, or trying a colour without commitment.",
+      "Colour that coats the outside of the hair shaft and washes out in 4 to 8 shampoos. Doesn't lift natural colour or contain ammonia. Good for refreshing tones, adding shine, or trying a colour without commitment.",
     category: "colour",
   },
   {
     id: "demi-permanent",
     term: "Demi-permanent colour",
     definition:
-      "Sits between semi and permanent, uses low-volume developer (no ammonia) and lasts 12–24 washes. Won't lift natural colour but deposits tone evenly. Ideal for blending greys, tone correction, and gloss services.",
+      "Sits between semi and permanent, uses low-volume developer (no ammonia) and lasts 12 to 24 washes. Won't lift natural colour but deposits tone evenly. Ideal for blending greys, tone correction, and gloss services.",
     category: "colour",
   },
   {
     id: "permanent-colour",
     term: "Permanent colour",
     definition:
-      "Uses ammonia and developer to open the cuticle, lift natural colour, and deposit new colour molecules. Lasts until it grows out, regrowth needs touching up every 4–8 weeks. The only option that can lighten dark natural hair.",
+      "Uses ammonia and developer to open the cuticle, lift natural colour, and deposit new colour molecules. Lasts until it grows out, regrowth needs touching up every 4 to 8 weeks. The only option that can lighten dark natural hair.",
     category: "colour",
   },
   {

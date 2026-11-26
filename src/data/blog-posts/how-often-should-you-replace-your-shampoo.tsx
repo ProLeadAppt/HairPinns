@@ -14,19 +14,19 @@ const post = {
       sections: [
         {
           heading: "How Long Does a 300ml Shampoo Last?",
-          content: "The average wash uses around 10ml of shampoo. That means:\n\n• 2 washes a week: ~20ml per week → 300ml lasts about 15 weeks (3.5 months)\n• 3 washes a week: ~30ml per week → 300ml lasts about 10 weeks (2.5 months)\n• Daily washers (7x): ~70ml per week → 300ml lasts about 4–5 weeks\n\n(Of course, hair length, thickness, and how much you lather up all make a difference!)"
+          content: "The average wash uses around 10ml of shampoo. That means:\n\n• 2 washes a week: ~20ml per week → 300ml lasts about 15 weeks (3.5 months)\n• 3 washes a week: ~30ml per week → 300ml lasts about 10 weeks (2.5 months)\n• Daily washers (7x): ~70ml per week → 300ml lasts about 4 to 5 weeks\n\n(Of course, hair length, thickness, and how much you lather up all make a difference!)"
         },
         {
           heading: "Signs It's Time to Restock",
-          content: "• Your bottle feels lighter and you're squeezing the last drops.\n• Your hair isn't feeling as fresh. Sometimes product loses its effectiveness if it's been open too long (12–18 months shelf life is standard).\n• You're tempted to use way more than you need because it's not lathering well anymore."
+          content: "• Your bottle feels lighter and you're squeezing the last drops.\n• Your hair isn't feeling as fresh. Sometimes product loses its effectiveness if it's been open too long (12 to 18 months shelf life is standard).\n• You're tempted to use way more than you need because it's not lathering well anymore."
         },
         {
           heading: "Pro Tip: Don't Overdo It",
-          content: "A 5–10 cent coin-sized amount is enough for most people. Fine or short hair = less, thick or long hair = a touch more. Overusing only makes you run out faster and can dry out your scalp."
+          content: "A 5 to 10 cent coin-sized amount is enough for most people. Fine or short hair = less, thick or long hair = a touch more. Overusing only makes you run out faster and can dry out your scalp."
         },
         {
           heading: "Keep Your Routine Fresh",
-          content: "On average, most clients should expect to replace their 300ml shampoo every 2–3 months. If you wash less often, it'll stretch a bit longer.\n\n👉 Shop your next bottle here: HairPinns.com Shampoo Collection"
+          content: "On average, most clients should expect to replace their 300ml shampoo every 2 to 3 months. If you wash less often, it'll stretch a bit longer.\n\n👉 Shop your next bottle here: HairPinns.com Shampoo Collection"
         }
       ],
       productModule: {

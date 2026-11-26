@@ -26,15 +26,15 @@ const post = {
         },
         {
           heading: "Weekly Summer Routine",
-          content: "Weekly bond-repair mask (Juuce Bond Repair, left on 10–15 minutes). This rebuilds what UV and chlorine are actively breaking. Once a week clarify with a clarifying shampoo to remove product and mineral buildup. Sulfate-free everyday shampoo otherwise. Heat protection before any hot tool, but honestly, try to air-dry through summer when you can. Less heat means less compound damage."
+          content: "Weekly bond-repair mask (Juuce Bond Repair, left on 10 to 15 minutes). This rebuilds what UV and chlorine are actively breaking. Once a week clarify with a clarifying shampoo to remove product and mineral buildup. Sulfate-free everyday shampoo otherwise. Heat protection before any hot tool, but honestly, try to air-dry through summer when you can. Less heat means less compound damage."
         },
         {
           heading: "Blondes Need Extra Help in Summer",
-          content: "Blonde hair turning brassy, orange, or green is summer's signature damage. Purple or violet toning shampoo 1–2 times a week stops brassiness. For green from chlorine, apply a clarifying shampoo with baking soda mixed in (tablespoon per handful) before you leave the pool, rinse, and it won't set. Already green? A clarifying shampoo routine over a few washes usually lifts it. If not, book a toner refresh."
+          content: "Blonde hair turning brassy, orange, or green is summer's signature damage. Purple or violet toning shampoo 1 to 2 times a week stops brassiness. For green from chlorine, apply a clarifying shampoo with baking soda mixed in (tablespoon per handful) before you leave the pool, rinse, and it won't set. Already green? A clarifying shampoo routine over a few washes usually lifts it. If not, book a toner refresh."
         },
         {
           heading: "Should You Time Your Colour Around Summer?",
-          content: "If you're a regular colour client, time major colour work (full foils, balayage refresh, colour correction) for late summer or early autumn, March–May, so the colour is fresh going into less-damaging seasons. Going into summer with a brand-new platinum blonde and no pre-summer protection plan is setting money on fire. Your stylist can plan this with you, bring it up at your next appointment."
+          content: "If you're a regular colour client, time major colour work (full foils, balayage refresh, colour correction) for late summer or early autumn, March to May, so the colour is fresh going into less-damaging seasons. Going into summer with a brand-new platinum blonde and no pre-summer protection plan is setting money on fire. Your stylist can plan this with you, bring it up at your next appointment."
         },
         {
           heading: "Products to Stock for Summer",
@@ -51,14 +51,14 @@ const post = {
       },
       quickAnswer: {
         question: "How do you protect your hair in Australian summer?",
-        answer: "Protect summer hair by wetting it with fresh water before the beach or pool, applying leave-in conditioner or oil as a barrier, rinsing with fresh water immediately after, and washing with clarifying shampoo to remove salt and chlorine. Weekly bond-repair masks, sulfate-free shampoo, and purple shampoo for blondes are essential. Time major colour work for March–May, not pre-summer."
+        answer: "Protect summer hair by wetting it with fresh water before the beach or pool, applying leave-in conditioner or oil as a barrier, rinsing with fresh water immediately after, and washing with clarifying shampoo to remove salt and chlorine. Weekly bond-repair masks, sulfate-free shampoo, and purple shampoo for blondes are essential. Time major colour work for March to May, not pre-summer."
       },
       keyTakeaways: [
         "UV, salt, chlorine, and humidity all damage hair, effects compound",
         "Wet hair with fresh water before the beach so it absorbs less salt",
         "Rinse immediately after the beach, never let salt dry in the sun",
         "Weekly bond-repair mask is the single best summer habit",
-        "Time major colour work for March–May, not pre-summer"
+        "Time major colour work for March to May, not pre-summer"
       ],
       faqSection: [
         {

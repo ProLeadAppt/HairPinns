@@ -27,15 +27,15 @@ const post = {
         },
         {
           heading: "Should You Do a Trial?",
-          content: "For complex updos, yes, always. A 30-minute trial 1–2 weeks before the formal lets you see the look on your own hair, photograph it, and adjust. For simpler looks like Hollywood waves or a sleek low bun, usually unnecessary if you trust your stylist. If you've never been to the salon before, a trial is always worth it, the stylist learns your hair's quirks before the main event."
+          content: "For complex updos, yes, always. A 30-minute trial 1 to 2 weeks before the formal lets you see the look on your own hair, photograph it, and adjust. For simpler looks like Hollywood waves or a sleek low bun, usually unnecessary if you trust your stylist. If you've never been to the salon before, a trial is always worth it, the stylist learns your hair's quirks before the main event."
         },
         {
           heading: "Extensions for Formal",
-          content: "Clip-in extensions remain the best way to add length or thickness for a formal night without committing to permanent extensions. We sell high-quality clip-ins you can install yourself the day of, or the stylist can blend them in during the appointment. Budget $100–$250 for good-quality clip-ins in the right colour match. Avoid cheap synthetic, they don't hold heat and look obvious in photos."
+          content: "Clip-in extensions remain the best way to add length or thickness for a formal night without committing to permanent extensions. We sell high-quality clip-ins you can install yourself the day of, or the stylist can blend them in during the appointment. Budget $100 to $250 for good-quality clip-ins in the right colour match. Avoid cheap synthetic, they don't hold heat and look obvious in photos."
         },
         {
           heading: "When to Book",
-          content: "For a formal in October–November, book your hair appointment by early August. Good formal appointment slots fill up 2–3 months out because most schools have formals clustered in the same weeks. If you leave it until September, you'll struggle to get your preferred time. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
+          content: "For a formal in October to November, book your hair appointment by early August. Good formal appointment slots fill up 2 to 3 months out because most schools have formals clustered in the same weeks. If you leave it until September, you'll struggle to get your preferred time. Book online 24/7 at hairpinns.com/booking or call " + BUSINESS_NAP.phone.display + "."
         },
         {
           heading: "Makeup Timing on Formal Day",
@@ -44,13 +44,13 @@ const post = {
       ],
       quickAnswer: {
         question: "What are the 2026 school formal hair trends?",
-        answer: "The 2026 school formal hair trends booking most often are soft Hollywood waves with a deep side part, sleek low buns with a middle part, half-up volume-crown styles, and loose textured updos with pulled-out face-framing pieces. Book 2–3 months ahead for formal season, and do a trial 1–2 weeks before the formal if the look is complex."
+        answer: "The 2026 school formal hair trends booking most often are soft Hollywood waves with a deep side part, sleek low buns with a middle part, half-up volume-crown styles, and loose textured updos with pulled-out face-framing pieces. Book 2 to 3 months ahead for formal season, and do a trial 1 to 2 weeks before the formal if the look is complex."
       },
       keyTakeaways: [
         "Four top 2026 trends: Hollywood waves, sleek low bun, half-up volume, textured updo",
         "Defined shapes photograph better than loose texture in flash lighting",
-        "Book 2–3 months before formal season, slots fill fast",
-        "Do a trial for complex updos 1–2 weeks before the main event",
+        "Book 2 to 3 months before formal season, slots fill fast",
+        "Do a trial for complex updos 1 to 2 weeks before the main event",
         "Hair before makeup on formal day"
       ],
       faqSection: [

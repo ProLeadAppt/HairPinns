@@ -13,15 +13,15 @@ const post = {
       introduction: "When it comes to styling, hairspray is a must-have, but not all sprays are created equal. At Hair Pinns, we only recommend styling products that deliver results without compromising hair health. Today, we're breaking down the three go-to hairsprays we use behind the chair and sell in our salon, so you can choose the right one for your hair goals!",
       sections: [
         {
-          heading: "1. Juuce Stuck Up – Maximum Hold Hairspray",
+          heading: "1. Juuce Stuck Up: Maximum Hold Hairspray",
           content: "If you're after serious staying power, Juuce Stuck Up is your styling soulmate. This is our favourite strong-hold hairspray for securing updos, taming frizz, or locking in curls that last all day (and night). It adds high shine, resists humidity, and is completely brush-out friendly, which means no sticky build-up and no drama when it's time to restyle or refresh.\n\n🖤 Best for: Upstyles, curls, frizz control\n💨 Hold level: Strong\n🪮 Formula: Brush-out formula with zero build-up\n🌿 Bonus: Vegan, paraben-free, and cruelty-free"
         },
         {
-          heading: "2. Pure Halo Spray – Flexible Everyday Hold",
+          heading: "2. Pure Halo Spray: Flexible Everyday Hold",
           content: "Think of Pure Halo Spray as your everyday go-to for soft, touchable hold. It keeps your style in place while allowing movement, so your hair never feels stiff or crunchy. Plus, it's enriched with organic extracts to nourish and protect your hair while you style.\n\n💛 Best for: Daily styling, soft waves, natural movement\n💨 Hold level: Flexible to medium\n🌿 Bonus: Sulphate- and paraben-free, with organic ingredients"
         },
         {
-          heading: "3. Pure Plumping Clay Spray – Texture + Volume",
+          heading: "3. Pure Plumping Clay Spray: Texture + Volume",
           content: "Need volume and texture without the stickiness of a traditional hairspray? Say hello to Pure Plumping Clay Spray. This unique spray blends the benefits of a texturiser, root booster, and dry clay into one. It lifts fine hair at the roots, adds body through the mid-lengths, and gives that lived-in, effortless look we all love.\n\n💗 Best for: Fine or flat hair, texture, volume at the roots\n💨 Hold level: Light to medium, with a matte finish\n🌿 Bonus: Gentle on the scalp, ideal for creating tousled styles or prepping for updos"
         },
         {

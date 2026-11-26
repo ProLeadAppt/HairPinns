@@ -18,11 +18,11 @@ const post = {
         },
         {
           heading: "🌿 Hero Ingredients:",
-          content: "Certified Organic Goji Berry Extract – rich in antioxidants to nourish and restore damaged ends\n\nVitamin E – strengthens and smooths the hair cuticle for a glossy finish"
+          content: "Certified Organic Goji Berry Extract, rich in antioxidants to nourish and restore damaged ends\n\nVitamin E, strengthens and smooths the hair cuticle for a glossy finish"
         },
         {
           heading: "📋 How to Use:",
-          content: "1. Apply a small amount to dry or towel-dried hair\n2. Focus on the mid-lengths to ends (especially the driest areas)\n3. Style as usual – blowdry, straighten, or let it air dry\n4. Use daily or as needed for a silky, polished finish\n\n💡 Bonus Tip: You can also run a tiny bit over dry hair after styling to tame frizz and add shine!"
+          content: "1. Apply a small amount to dry or towel-dried hair\n2. Focus on the mid-lengths to ends (especially the driest areas)\n3. Style as usual, blowdry, straighten, or let it air dry\n4. Use daily or as needed for a silky, polished finish\n\n💡 Bonus Tip: You can also run a tiny bit over dry hair after styling to tame frizz and add shine!"
         },
         {
           heading: "🛍️ Ready to rescue those ends?",

@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "Hair Products Melbourne: Same Quality, Delivered",
-          content: "Melbourne's humidity and hard water can be tough on hair. We ship Juuce, QIQI, Pure and Wet Brush to Melbourne with free shipping on orders over $150. Jena picks every product and tests it for results. No guesswork. Standard delivery 3–5 business days; express 1–2 days."
+          content: "Melbourne's humidity and hard water can be tough on hair. We ship Juuce, QIQI, Pure and Wet Brush to Melbourne with free shipping on orders over $150. Jena picks every product and tests it for results. No guesswork. Standard delivery 3 to 5 business days; express 1 to 2 days."
         },
         {
           heading: "Hair Products Brisbane: Queensland-Wide Delivery",
@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "Hair Products Perth: Western Australia Covered",
-          content: "Perth and Western Australia are fully covered. We ship professional hair care Australia-wide, no exceptions. Whether you're in Perth CBD, Fremantle or regional WA, your order arrives in 3–5 business days standard, 1–2 days express. Free shipping over $150."
+          content: "Perth and Western Australia are fully covered. We ship professional hair care Australia-wide, no exceptions. Whether you're in Perth CBD, Fremantle or regional WA, your order arrives in 3 to 5 business days standard, 1 to 2 days express. Free shipping over $150."
         },
         {
           heading: "Why Hair Pinns for Australia-Wide Hair Care",
@@ -44,7 +44,7 @@ const post = {
       faqSection: [
         {
           question: "Does Hair Pinns ship professional hair products to Melbourne?",
-          answer: "Yes. Melbourne's humidity and hard water are tough on hair, and we ship Juuce, QIQI, Pure, and Wet Brush to Melbourne with free shipping on orders over $150. Standard delivery is 3–5 business days, express is 1–2 days. Every product is personally tested by me, so you get professional-grade hair care delivered to your door."
+          answer: "Yes. Melbourne's humidity and hard water are tough on hair, and we ship Juuce, QIQI, Pure, and Wet Brush to Melbourne with free shipping on orders over $150. Standard delivery is 3 to 5 business days, express is 1 to 2 days. Every product is personally tested by me, so you get professional-grade hair care delivered to your door."
         },
         {
           question: "What hair products should I use in Brisbane's subtropical climate?",
@@ -52,7 +52,7 @@ const post = {
         },
         {
           question: "Can I get professional hair products shipped to Perth and Western Australia?",
-          answer: "Absolutely. Perth and Western Australia are fully covered. Whether you're in Perth CBD, Fremantle, or regional WA, your order arrives in 3–5 business days standard or 1–2 days express. Free shipping over $150. No exceptions, your best hair is a click away no matter where you are in Australia."
+          answer: "Absolutely. Perth and Western Australia are fully covered. Whether you're in Perth CBD, Fremantle, or regional WA, your order arrives in 3 to 5 business days standard or 1 to 2 days express. Free shipping over $150. No exceptions, your best hair is a click away no matter where you are in Australia."
         },
         {
           question: "Why should I buy hair products from Hair Pinns instead of a big retailer?",

@@ -206,7 +206,7 @@ export const blogSummaries: BlogSummary[] = [
   },
   {
     slug: 'qiqi-bare-repair-oil-shine-strength-smoothness',
-    title: 'QIQI Bare Repair Oil – Shine, Strength & Smoothness in a Bottle',
+    title: 'QIQI Bare Repair Oil: Shine, Strength & Smoothness in a Bottle',
     excerpt: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel, QIQI Bare Repair Oil is the answer.",
     category: 'Products',
     date: 'July 27, 2025',
@@ -286,7 +286,7 @@ export const blogSummaries: BlogSummary[] = [
   },
   {
     slug: 'winter-weather-hair-care-sydney',
-    title: 'Winter Weather Hair Care in Sydney – Why It Matters & How to Protect Your Hair',
+    title: 'Winter Weather Hair Care in Sydney: Why It Matters & How to Protect Your Hair',
     excerpt: 'As chilly winds and heavy rains roll into Sydney, learn how to keep your hair healthy, hydrated, and fabulous all season long.',
     category: 'Seasonal',
     date: 'May 22, 2025',

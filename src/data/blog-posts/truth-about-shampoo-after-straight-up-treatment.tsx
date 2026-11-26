@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "Why Can One Wash Make a Difference?",
-          content: "If you've just had your QIQI treatment and your hair suddenly feels frizzy again after one wash, chances are the shampoo you used wasn't compatible, even if it claimed to be \"natural\" or \"hydrating.\"\n\nWhat I always look out for are two ingredients that can affect results:\n\nSulphates – harsh cleansing agents that strip the hair\nSodium chloride (salt) – often used as a thickener in shampoos, but it can break down smoothing treatments\n\nEven one use of a shampoo with salt or sulphates can cause your hair to feel rougher, puffier, or less sleek; or worse- strip it out completely."
+          content: "If you've just had your QIQI treatment and your hair suddenly feels frizzy again after one wash, chances are the shampoo you used wasn't compatible, even if it claimed to be \"natural\" or \"hydrating.\"\n\nWhat I always look out for are two ingredients that can affect results:\n\nSulphates, harsh cleansing agents that strip the hair\nSodium chloride (salt), often used as a thickener in shampoos, but it can break down smoothing treatments\n\nEven one use of a shampoo with salt or sulphates can cause your hair to feel rougher, puffier, or less sleek; or worse- strip it out completely."
         },
         {
           heading: "It's Not About Selling You Stuff. It's About Protecting Your Results",
@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "My Go-To Aftercare Recommendations:",
-          content: "QIQI - The Shampoo, Conditioner & definitely the super soaker masque– made to extend and protect the treatment with longer lasting results.\nPure Haircare Goddess or Miracle Renew – gentle, clean, and smoothing.\nJuuce Heat Shield or Solar Enz – protects your hair from heat styling without buildup.\nJuuce Botanic Oil Serum - to keep that frizz away & add extra shine ✨\n\nThese aren't just \"nice to have\" products. They're the key to keeping your hair feeling the way it did when you left the salon."
+          content: "QIQI - The Shampoo, Conditioner & definitely the super soaker masque, made to extend and protect the treatment with longer lasting results.\nPure Haircare Goddess or Miracle Renew, gentle, clean, and smoothing.\nJuuce Heat Shield or Solar Enz, protects your hair from heat styling without buildup.\nJuuce Botanic Oil Serum - to keep that frizz away & add extra shine ✨\n\nThese aren't just \"nice to have\" products. They're the key to keeping your hair feeling the way it did when you left the salon."
         },
         {
           heading: "Not Sure What's Safe? Just Ask Me!",

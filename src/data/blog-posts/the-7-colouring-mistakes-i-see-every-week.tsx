@@ -18,31 +18,31 @@ const post = {
         },
         {
           heading: "Mistake 2: Bleaching at Home to 'Save Money'",
-          content: "Home bleach damage is the single most common reason clients book a consultation. The maths never works out, a $30 home bleach kit that goes wrong turns into $400–$800 of colour correction over 2–3 visits, plus 6+ months of extra conditioning. I'd rather you booked a quarter-head foil package ($200ish) than touched a home bleach kit. Every time."
+          content: "Home bleach damage is the single most common reason clients book a consultation. The maths never works out, a $30 home bleach kit that goes wrong turns into $400 to $800 of colour correction over 2 to 3 visits, plus 6+ months of extra conditioning. I'd rather you booked a quarter-head foil package ($200ish) than touched a home bleach kit. Every time."
         },
         {
           heading: "Mistake 3: Washing Hair Too Soon After Colour",
-          content: "The first wash after colour sets how long the colour holds. Most people wash within 24 hours, colour pigments are still settling into the cortex for 48–72 hours after the service. Waiting 72 hours before the first wash, then washing with a sulfate-free shampoo, adds weeks to the colour's life. One small change, big payoff."
+          content: "The first wash after colour sets how long the colour holds. Most people wash within 24 hours, colour pigments are still settling into the cortex for 48 to 72 hours after the service. Waiting 72 hours before the first wash, then washing with a sulfate-free shampoo, adds weeks to the colour's life. One small change, big payoff."
         },
         {
           heading: "Mistake 4: Using Regular Shampoo on Coloured Hair",
-          content: "Sulfates (SLS, SLES) strip colour. Faster than sun, faster than heat, faster than anything else. If your shampoo lathers aggressively and leaves hair 'squeaky clean', it's stripping colour. Switch to a sulfate-free shampoo, we stock Juuce, Pure, and Aromaganic sulfate-free ranges at the salon. The difference in colour longevity is dramatic: 4 weeks vs 8–10."
+          content: "Sulfates (SLS, SLES) strip colour. Faster than sun, faster than heat, faster than anything else. If your shampoo lathers aggressively and leaves hair 'squeaky clean', it's stripping colour. Switch to a sulfate-free shampoo, we stock Juuce, Pure, and Aromaganic sulfate-free ranges at the salon. The difference in colour longevity is dramatic: 4 weeks vs 8 to 10."
         },
         {
           heading: "Mistake 5: Going Too Light in One Session",
-          content: "Clients come in wanting to go from brunette to Scandinavian blonde in one appointment. It almost never works safely. Each lightening session lifts 2–3 levels; going 4–5 levels means bleach pushed too far, and hair that looks ashy the first week but feels like cotton candy by week three. Real platinum transformations are 2–3 sessions, 4–6 weeks apart. Any stylist who promises it in one session is prioritising the sale over your hair."
+          content: "Clients come in wanting to go from brunette to Scandinavian blonde in one appointment. It almost never works safely. Each lightening session lifts 2 to 3 levels; going 4 to 5 levels means bleach pushed too far, and hair that looks ashy the first week but feels like cotton candy by week three. Real platinum transformations are 2 to 3 sessions, 4 to 6 weeks apart. Any stylist who promises it in one session is prioritising the sale over your hair."
         },
         {
           heading: "Mistake 6: Skipping Bond Builder During Colour",
-          content: "A bond-building additive (Olaplex, Smartbond, or similar) mixed into bleach or colour is the single biggest hair-health upgrade of the last decade. It costs $20–$40 to add to a service and the difference in hair condition post-colour is night and day. If your salon doesn't offer it or charges $80+ for it, that's a red flag. We include bond builder in all our colour packages because not using it is cutting corners on hair health."
+          content: "A bond-building additive (Olaplex, Smartbond, or similar) mixed into bleach or colour is the single biggest hair-health upgrade of the last decade. It costs $20 to $40 to add to a service and the difference in hair condition post-colour is night and day. If your salon doesn't offer it or charges $80+ for it, that's a red flag. We include bond builder in all our colour packages because not using it is cutting corners on hair health."
         },
         {
           heading: "Mistake 7: Chasing Instagram Colours on Wrong Base",
-          content: "Pinterest and Instagram colour inspiration is amazing, but the photo you're showing me was taken on a model with a naturally level-7 blonde base, professional lighting, and a fresh service. If your base is level-4 dark brunette, achieving that exact photo takes 2–3 sessions and will look different in real light. I'll always tell you what's achievable and what isn't, and what the photo is hiding. Pick colour based on your own base, not someone else's."
+          content: "Pinterest and Instagram colour inspiration is amazing, but the photo you're showing me was taken on a model with a naturally level-7 blonde base, professional lighting, and a fresh service. If your base is level-4 dark brunette, achieving that exact photo takes 2 to 3 sessions and will look different in real light. I'll always tell you what's achievable and what isn't, and what the photo is hiding. Pick colour based on your own base, not someone else's."
         },
         {
           heading: "A Quick Story: The Most-Common Fix",
-          content: "Composite of several clients I've seen: comes in after a home bleach and box-dye combo, hair orange-banded at the mid-lengths, platinum patches at the front, and brittle texture overall. We don't try to fix it in one visit. Visit one: cut off the worst damage, apply a colour-depositing toner to unify the tone, bond-repair mask. Visit two (4 weeks later): low-lights in the orange bands to restore dimension. Visit three (4 weeks later): final toner and gloss. Cost across all three: around $500–$700. Cost of the one-visit miracle a different salon quoted: $300 but with the damage doubled. Slower is cheaper and better. Every time."
+          content: "Composite of several clients I've seen: comes in after a home bleach and box-dye combo, hair orange-banded at the mid-lengths, platinum patches at the front, and brittle texture overall. We don't try to fix it in one visit. Visit one: cut off the worst damage, apply a colour-depositing toner to unify the tone, bond-repair mask. Visit two (4 weeks later): low-lights in the orange bands to restore dimension. Visit three (4 weeks later): final toner and gloss. Cost across all three: around $500 to $700. Cost of the one-visit miracle a different salon quoted: $300 but with the damage doubled. Slower is cheaper and better. Every time."
         }
       ],
       productModule: {
@@ -62,7 +62,7 @@ const post = {
         "Home bleach kits almost always cost more than a salon service in the long run",
         "Wait 72 hours before the first wash post-colour for best longevity",
         "Sulfate-free shampoo is non-negotiable for colour-treated hair",
-        "Real platinum transformations are 2–3 sessions, not one"
+        "Real platinum transformations are 2 to 3 sessions, not one"
       ],
       faqSection: [
         {

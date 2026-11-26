@@ -18,7 +18,7 @@ const post = {
         },
         {
           heading: "The Daily Routine That Reduces Frizz",
-          content: "Four habits matter. (1) Sulfate-free shampoo, sulfates roughen the cuticle, making hair frizz-prone. (2) Conditioner on every wash, mid-lengths to ends, left on for 2–3 minutes. (3) Leave-in with a lightweight silicone or oil on damp hair before styling, this creates a barrier against humidity. (4) Avoid over-washing. Hair washed daily is hair stripped daily. 2–3 washes a week is plenty for most hair types."
+          content: "Four habits matter. (1) Sulfate-free shampoo, sulfates roughen the cuticle, making hair frizz-prone. (2) Conditioner on every wash, mid-lengths to ends, left on for 2 to 3 minutes. (3) Leave-in with a lightweight silicone or oil on damp hair before styling, this creates a barrier against humidity. (4) Avoid over-washing. Hair washed daily is hair stripped daily. 2 to 3 washes a week is plenty for most hair types."
         },
         {
           heading: "Styling to Prevent Frizz",
@@ -34,11 +34,11 @@ const post = {
         },
         {
           heading: "The Salon Treatment That Changes Everything: Straight Up Smoothing",
-          content: "If your hair is frizz-prone and humidity is ruining your life from October to March, a salon smoothing treatment is the biggest upgrade available. Straight Up Smoothing is our signature treatment, no formaldehyde, suits most hair types, and gives 8–12 weeks of frizz-free hair through Sydney humidity. It doesn't make hair poker-straight, it seals the cuticle so humidity can't penetrate. Most clients say it changed their relationship with hair in summer. Priced $220–$480 depending on length. Book a consultation first if you've never had a smoothing treatment so we can assess your hair."
+          content: "If your hair is frizz-prone and humidity is ruining your life from October to March, a salon smoothing treatment is the biggest upgrade available. Straight Up Smoothing is our signature treatment, no formaldehyde, suits most hair types, and gives 8 to 12 weeks of frizz-free hair through Sydney humidity. It doesn't make hair poker-straight, it seals the cuticle so humidity can't penetrate. Most clients say it changed their relationship with hair in summer. Priced $220 to $480 depending on length. Book a consultation first if you've never had a smoothing treatment so we can assess your hair."
         },
         {
           heading: "When to Book Smoothing for Best Results",
-          content: "Smoothing treatments hold 8–12 weeks. To cover peak humidity (December–February), book a smoothing in late October or November. For year-round control, clients typically book twice a year, one pre-summer (October–November) and one mid-autumn (April–May). Aftercare is non-negotiable: sulfate-free shampoo only, or the smoothing washes out fast."
+          content: "Smoothing treatments hold 8 to 12 weeks. To cover peak humidity (December to February), book a smoothing in late October or November. For year-round control, clients typically book twice a year, one pre-summer (October to November) and one mid-autumn (April to May). Aftercare is non-negotiable: sulfate-free shampoo only, or the smoothing washes out fast."
         },
         {
           heading: "When Frizz Means Damage, Not Humidity",
@@ -55,13 +55,13 @@ const post = {
       },
       quickAnswer: {
         question: "How do you beat frizz in Sydney humidity?",
-        answer: "Beat Sydney humidity frizz with sulfate-free shampoo, daily conditioner on mid-lengths to ends, a leave-in or oil before styling, and low-heat blow-drying with a heat protectant. For long-term control, a salon smoothing treatment like Straight Up Smoothing gives 8–12 weeks of frizz-free hair through peak humidity. Best booked in October–November for summer coverage."
+        answer: "Beat Sydney humidity frizz with sulfate-free shampoo, daily conditioner on mid-lengths to ends, a leave-in or oil before styling, and low-heat blow-drying with a heat protectant. For long-term control, a salon smoothing treatment like Straight Up Smoothing gives 8 to 12 weeks of frizz-free hair through peak humidity. Best booked in October to November for summer coverage."
       },
       keyTakeaways: [
         "Frizz happens when humidity swells the hair cortex and lifts the cuticle",
         "Daily basics: sulfate-free shampoo, conditioner every wash, leave-in before styling",
         "Heat styling with protectant actually reduces frizz by sealing the cuticle",
-        "Straight Up Smoothing gives 8–12 weeks of humidity-proof hair",
+        "Straight Up Smoothing gives 8 to 12 weeks of humidity-proof hair",
         "If hair frizzes in low humidity too, it's damage, fix with bond repair first"
       ],
       faqSection: [

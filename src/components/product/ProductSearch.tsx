@@ -115,7 +115,7 @@ export default function ProductSearch({
     const currency = product.priceRange.minVariantPrice.currencyCode;
     return minimum === maximum
       ? formatPrice(minimum, currency)
-      : `${formatPrice(minimum, currency)} – ${formatPrice(maximum, currency)}`;
+      : `${formatPrice(minimum, currency)} to ${formatPrice(maximum, currency)}`;
   };
 
   const suggestionCount = results.length + articles.length;

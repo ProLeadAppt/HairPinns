@@ -91,9 +91,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "New South Wales",
     abbreviation: "NSW",
     capital: "Sydney",
-    postcodeRange: "2000–2999",
+    postcodeRange: "2000 to 2999",
     standardDeliveryDays: standardShippingDays("NSW"),
-    expressDeliveryDays: "1–2",
+    expressDeliveryDays: "1 to 2",
     majorCities: ["Sydney", "Newcastle", "Wollongong", "Central Coast", "Wagga Wagga", "Coffs Harbour"],
     climateHook: "Most NSW hair is fighting humidity ten months of the year. My whole product wall is built around that one problem.",
     localIntro: "Hi NSW, I'm Jena. I run Hair Pinns from my home salon in Bangor and ship everything from right here in 2234. That's why you're the fastest state on my list. Sydney usually lands the next business day, Newcastle, Wollongong and the Central Coast in two to three, and regional NSW (Wagga, Dubbo, Tamworth, the Mid North Coast) about the same. Twenty years of doing hair in Sydney's humidity has shaped my whole product wall, so what you're ordering is what I'm actually using on local heads every week. Free shipping over $150.",
@@ -106,7 +106,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       {
         label: "QIQI smoothing aftercare",
         collectionPath: "/collections/qiqi",
-        reason: "Keeps salon smoothing treatments going for 3–5 months in Sydney's worst humid weeks.",
+        reason: "Keeps salon smoothing treatments going for 3 to 5 months in Sydney's worst humid weeks.",
       },
       {
         label: "Pure Certified Organic",
@@ -117,11 +117,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How fast does Hair Pinns ship to Sydney?",
-        answer: "Sydney metro orders placed before 1 pm typically arrive next business day via AusPost or courier. Standard delivery 1–3 business days; express 1–2 days. Free shipping on orders over $150 AUD.",
+        answer: "Sydney metro orders placed before 1 pm typically arrive next business day via AusPost or courier. Standard delivery 1 to 3 business days; express 1 to 2 days. Free shipping on orders over $150 AUD.",
       },
       {
         question: "Do you deliver to regional NSW (Wagga Wagga, Coffs Harbour, Dubbo, Tamworth)?",
-        answer: "Yes. AusPost covers every NSW postcode in the 2000–2999 range. Regional NSW typically lands within 2–3 business days; remote postcodes may extend to 4–5 days.",
+        answer: "Yes. AusPost covers every NSW postcode in the 2000 to 2999 range. Regional NSW typically lands within 2 to 3 business days; remote postcodes may extend to 4 to 5 days.",
       },
       {
         question: "What products work best for Sydney humidity?",
@@ -140,9 +140,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "Victoria",
     abbreviation: "VIC",
     capital: "Melbourne",
-    postcodeRange: "3000–3999",
+    postcodeRange: "3000 to 3999",
     standardDeliveryDays: standardShippingDays("VIC"),
-    expressDeliveryDays: "1–2",
+    expressDeliveryDays: "1 to 2",
     majorCities: ["Melbourne", "Geelong", "Ballarat", "Bendigo", "Shepparton", "Mildura"],
     climateHook: "Melbourne does four seasons in a day, and your hair feels every one of them. Bond repair and deep hydration are the two products you can't skip.",
     localIntro: "Hi Victoria, Jena here. I send your orders down from Bangor, NSW, so Melbourne usually has them in three to five days standard or one to two express. Geelong, Ballarat, Bendigo, Shepparton and Mildura all sit in that same window. My Melbourne clients always tell me the same thing. Winter strips moisture out of their hair, summer adds a different kind of damage, and the heating cycle through autumn ruins ends. So I lean hard on bond repair and weekly hydration when I'm picking products for VIC orders. Free shipping over $150.",
@@ -166,11 +166,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How long does Hair Pinns take to ship to Melbourne?",
-        answer: "Melbourne metro deliveries typically arrive within 3–5 business days via AusPost standard or 1–2 days via express post. Free shipping over $150 AUD.",
+        answer: "Melbourne metro deliveries typically arrive within 3 to 5 business days via AusPost standard or 1 to 2 days via express post. Free shipping over $150 AUD.",
       },
       {
         question: "Do you ship to regional Victoria (Geelong, Ballarat, Bendigo)?",
-        answer: "Yes. Every Victorian postcode in the 3000–3999 range is covered. Regional VIC typically arrives in 3–5 business days; remote postcodes may take an extra day.",
+        answer: "Yes. Every Victorian postcode in the 3000 to 3999 range is covered. Regional VIC typically arrives in 3 to 5 business days; remote postcodes may take an extra day.",
       },
       {
         question: "What products help with Melbourne's dry winter hair?",
@@ -189,9 +189,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "Queensland",
     abbreviation: "QLD",
     capital: "Brisbane",
-    postcodeRange: "4000–4999",
+    postcodeRange: "4000 to 4999",
     standardDeliveryDays: standardShippingDays("QLD"),
-    expressDeliveryDays: "2–3",
+    expressDeliveryDays: "2 to 3",
     majorCities: ["Brisbane", "Gold Coast", "Sunshine Coast", "Townsville", "Cairns", "Toowoomba"],
     climateHook: "QLD weather is the worst combination for hair anywhere in the country. Chlorine, salt, UV and humidity all at once, all year. Your hair needs to fight back.",
     localIntro: "Hi Queensland, I'm Jena. I run Hair Pinns from Bangor in Sydney's south and your orders go out the same day Monday to Friday. Brisbane and the Gold Coast usually have them in three to five days standard, two to three days express. Sunshine Coast, Townsville, Cairns and Toowoomba sit in the same window. Your weather is the worst hair conditions in the country, no contest. So when I'm picking what to recommend for QLD orders I lean on the things that actually hold up. QIQI smoothing aftercare to keep humidity from undoing your blow-dry, Solar Enz to stop the sun cooking your colour, Pure Forever Blonde to keep brass at bay. Free shipping over $150.",
@@ -215,11 +215,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How long does shipping to Brisbane take?",
-        answer: "Brisbane metro orders typically arrive within 3–5 business days via AusPost standard, or 2–3 days via express. Free shipping on orders over $150 AUD.",
+        answer: "Brisbane metro orders typically arrive within 3 to 5 business days via AusPost standard, or 2 to 3 days via express. Free shipping on orders over $150 AUD.",
       },
       {
         question: "Do you ship to Far North Queensland (Cairns, Townsville)?",
-        answer: "Yes. Every QLD postcode in the 4000–4999 range is covered. Cairns and Townsville typically arrive within 4–5 business days; remote tropical postcodes may take an extra 1–2 days.",
+        answer: "Yes. Every QLD postcode in the 4000 to 4999 range is covered. Cairns and Townsville typically arrive within 4 to 5 business days; remote tropical postcodes may take an extra 1 to 2 days.",
       },
       {
         question: "What products protect blonde hair from Queensland sun?",
@@ -227,7 +227,7 @@ export const shippingStates: Record<string, ShippingStateData> = {
       },
       {
         question: "Can hair smoothing survive Queensland humidity?",
-        answer: "Yes. But only with sulphate-free aftercare. QIQI smoothing-aftercare shampoo and conditioner extend the treatment by 2–3 months even in Cairns or Brisbane summer humidity.",
+        answer: "Yes. But only with sulphate-free aftercare. QIQI smoothing-aftercare shampoo and conditioner extend the treatment by 2 to 3 months even in Cairns or Brisbane summer humidity.",
       },
     ],
     nearbyStates: ["new-south-wales", "northern-territory"],
@@ -238,9 +238,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "Western Australia",
     abbreviation: "WA",
     capital: "Perth",
-    postcodeRange: "6000–6999",
+    postcodeRange: "6000 to 6999",
     standardDeliveryDays: standardShippingDays("WA"),
-    expressDeliveryDays: "3–5",
+    expressDeliveryDays: "3 to 5",
     majorCities: ["Perth", "Fremantle", "Mandurah", "Bunbury", "Kalgoorlie", "Geraldton"],
     climateHook: "Perth's water is hard, the UV is brutal, and the wind never stops. Three different things damaging your hair at once, three different fixes.",
     localIntro: "Hi WA, Jena here. You're the furthest from my Bangor dispatch hub so your orders take a little longer than the east coast. Perth metro usually lands in five to eight days standard or three to five days express. Mandurah, Bunbury, Fremantle and the rest of the Perth peripheral are in that same window. Regional WA (Kalgoorlie, Geraldton, Broome, Albany) takes a bit longer. The thing about Perth hair is the water. It's mineral-heavy and it leaves residue your shampoo can't always shift. So when I'm picking products for WA orders I lean on scalp-detox treatments to clear that residue, and bond repair to fix what the UV and wind keep undoing. Worth the wait. Free shipping over $150.",
@@ -264,11 +264,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How long does Hair Pinns take to ship to Perth?",
-        answer: "Perth metro orders typically arrive within 5–8 business days via AusPost standard or 3–5 days via express post. Distance from the east-coast dispatch hub adds 1–2 days vs. east-coast capitals. Free shipping over $150 AUD.",
+        answer: "Perth metro orders typically arrive within 5 to 8 business days via AusPost standard or 3 to 5 days via express post. Distance from the east-coast dispatch hub adds 1 to 2 days vs. east-coast capitals. Free shipping over $150 AUD.",
       },
       {
         question: "Do you ship to regional Western Australia?",
-        answer: "Yes. Every WA postcode in the 6000–6999 range is covered. Regional towns (Kalgoorlie, Geraldton, Albany, Broome) typically arrive within 7–10 business days standard.",
+        answer: "Yes. Every WA postcode in the 6000 to 6999 range is covered. Regional towns (Kalgoorlie, Geraldton, Albany, Broome) typically arrive within 7 to 10 business days standard.",
       },
       {
         question: "What products work best for Perth's hard water?",
@@ -287,9 +287,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "South Australia",
     abbreviation: "SA",
     capital: "Adelaide",
-    postcodeRange: "5000–5999",
+    postcodeRange: "5000 to 5999",
     standardDeliveryDays: standardShippingDays("SA"),
-    expressDeliveryDays: "2–4",
+    expressDeliveryDays: "2 to 4",
     majorCities: ["Adelaide", "Mount Gambier", "Whyalla", "Murray Bridge", "Port Lincoln", "Victor Harbor"],
     climateHook: "Adelaide is dry. Hot dry summers, cold dry winters, and not enough rain in between. Your hair needs weekly hydration or it goes brittle fast.",
     localIntro: "Hi South Australia, I'm Jena. Your orders ship from my Bangor salon in Sydney and usually land in four to six days standard or two to four days express. Mount Gambier, Whyalla, Murray Bridge and the Fleurieu Peninsula are in that same window. SA hair is the opposite problem to Queensland. It's dry, not humid, and the moisture loss is constant. So when I'm packing SA orders I'm choosing deep hydration masks for the weekly reset, lightweight oil serums to seal ends, and sulphate-free shampoos so the dryness isn't getting worse with every wash. None of it heavy. Free shipping over $150.",
@@ -313,11 +313,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How long does shipping take to Adelaide?",
-        answer: "Adelaide metro orders typically arrive within 4–6 business days via AusPost standard or 2–4 days express. Free shipping on orders over $150 AUD.",
+        answer: "Adelaide metro orders typically arrive within 4 to 6 business days via AusPost standard or 2 to 4 days express. Free shipping on orders over $150 AUD.",
       },
       {
         question: "Do you ship to regional South Australia?",
-        answer: "Yes. Every SA postcode in the 5000–5999 range is covered. Mount Gambier, Whyalla, and the Fleurieu Peninsula typically arrive within 5–7 business days standard.",
+        answer: "Yes. Every SA postcode in the 5000 to 5999 range is covered. Mount Gambier, Whyalla, and the Fleurieu Peninsula typically arrive within 5 to 7 business days standard.",
       },
       {
         question: "What products help dry Adelaide hair?",
@@ -336,9 +336,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "Tasmania",
     abbreviation: "TAS",
     capital: "Hobart",
-    postcodeRange: "7000–7999",
+    postcodeRange: "7000 to 7999",
     standardDeliveryDays: standardShippingDays("TAS"),
-    expressDeliveryDays: "3–5",
+    expressDeliveryDays: "3 to 5",
     majorCities: ["Hobart", "Launceston", "Devonport", "Burnie", "Ulverstone"],
     climateHook: "Tassie cycles your hair through wet and cold then dry and heated, every single day in winter. Hair hates that. Bond repair and weekly hydration fix it.",
     localIntro: "Hi Tassie, I'm Jena. Hobart and Launceston usually get your orders in five to eight days from my Bangor dispatch, or three to five days express. Devonport, Burnie and the north-west coast are the same. Bass Strait adds a day or two compared to the mainland, but tracking comes through to your inbox the moment your order leaves. The Tassie hair problem is the cycle. Wet and cold outside, dry and heated inside, repeat. That cycle breaks bonds and strips moisture, so I pack TAS orders with Juuce Bond Repair for daily strength, a weekly hydration mask to reset, and a Wet Brush because wet hair gets brushed a lot in your climate. Free shipping over $150.",
@@ -362,11 +362,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How long does shipping take to Tasmania?",
-        answer: "Hobart and Launceston typically receive orders within 5–8 business days via AusPost standard or 3–5 days express. Bass Strait crossing adds 1–2 days vs. mainland states. Free shipping over $150 AUD.",
+        answer: "Hobart and Launceston typically receive orders within 5 to 8 business days via AusPost standard or 3 to 5 days express. Bass Strait crossing adds 1 to 2 days vs. mainland states. Free shipping over $150 AUD.",
       },
       {
         question: "Do you ship to Devonport, Burnie, and the north-west coast?",
-        answer: "Yes. Every TAS postcode in the 7000–7999 range is covered. North-west TAS typically arrives within 6–9 business days standard.",
+        answer: "Yes. Every TAS postcode in the 7000 to 7999 range is covered. North-west TAS typically arrives within 6 to 9 business days standard.",
       },
       {
         question: "What products work for cold wet Tasmanian winters?",
@@ -385,9 +385,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "Australian Capital Territory",
     abbreviation: "ACT",
     capital: "Canberra",
-    postcodeRange: "0200–0299, 2600–2618, 2900–2920",
+    postcodeRange: "0200 to 0299, 2600 to 2618, 2900 to 2920",
     standardDeliveryDays: standardShippingDays("ACT"),
-    expressDeliveryDays: "1–2",
+    expressDeliveryDays: "1 to 2",
     majorCities: ["Canberra", "Belconnen", "Tuggeranong", "Gungahlin", "Woden"],
     climateHook: "Canberra winters are brutally dry, summers are brutally dry, and the heating cycles in between finish the job. Your hair is thirsty all year.",
     localIntro: "Hi Canberra, Jena here. You're one of the closest states to my Bangor dispatch hub so your orders are quick. Two to four days standard or one to two days express. All your suburbs (Belconnen, Tuggeranong, Gungahlin, Woden) are in that same window. The Canberra problem is dryness, full stop. Cold dry air in winter, hot dry air in summer, indoor heating cycling through both. So I lean hydration heavy for ACT orders. Weekly Juuce Super Soft Hydration Mask, daily Pure Lamellar Vitality, a finishing oil to seal ends, and bond repair if your hair is colour-treated. The dry climate hates your hair, but the right routine wins. Free shipping over $150.",
@@ -411,11 +411,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How fast does shipping reach Canberra?",
-        answer: "Canberra metro orders typically arrive within 2–4 business days via AusPost standard or 1–2 days express. One of the fastest windows on the Hair Pinns network. Free shipping over $150 AUD.",
+        answer: "Canberra metro orders typically arrive within 2 to 4 business days via AusPost standard or 1 to 2 days express. One of the fastest windows on the Hair Pinns network. Free shipping over $150 AUD.",
       },
       {
         question: "Do you ship to all Canberra suburbs (Belconnen, Tuggeranong, Gungahlin)?",
-        answer: "Yes. Every ACT postcode is covered. All metro Canberra suburbs sit within the 2–4 day standard window.",
+        answer: "Yes. Every ACT postcode is covered. All metro Canberra suburbs sit within the 2 to 4 day standard window.",
       },
       {
         question: "What products help dry Canberra hair?",
@@ -434,9 +434,9 @@ export const shippingStates: Record<string, ShippingStateData> = {
     name: "Northern Territory",
     abbreviation: "NT",
     capital: "Darwin",
-    postcodeRange: "0800–0899, 0900–0999",
+    postcodeRange: "0800 to 0899, 0900 to 0999",
     standardDeliveryDays: standardShippingDays("NT"),
-    expressDeliveryDays: "4–6",
+    expressDeliveryDays: "4 to 6",
     majorCities: ["Darwin", "Alice Springs", "Palmerston", "Katherine", "Nhulunbuy"],
     climateHook: "NT is two completely different hair problems in one territory. Darwin sweats your blow-dry out by morning, Alice Springs cooks your colour by lunchtime.",
     localIntro: "Hi NT, I'm Jena. You're the furthest from my Bangor dispatch hub so your orders take the longest. Darwin metro usually has them in six to ten days standard or four to six days express, and Alice Springs, Palmerston and Katherine are about the same. The Top End and the Red Centre are two completely different hair problems, so I pack NT orders differently depending on where you are. Up north it's the humidity, so smoothing aftercare from QIQI and frizz-control oils. Down in the centre it's UV and dry air, so heat protection, Solar Enz, weekly hydration masks. Tell me your postcode if you're on the fence and I'll point you at the right routine. Free shipping over $150.",
@@ -460,11 +460,11 @@ export const shippingStates: Record<string, ShippingStateData> = {
     faqs: [
       {
         question: "How long does Hair Pinns take to ship to Darwin?",
-        answer: "Darwin metro orders typically arrive within 6–10 business days via AusPost standard or 4–6 days express. NT's distance from east-coast dispatch hubs adds 2–4 days vs. NSW or VIC.",
+        answer: "Darwin metro orders typically arrive within 6 to 10 business days via AusPost standard or 4 to 6 days express. NT's distance from east-coast dispatch hubs adds 2 to 4 days vs. NSW or VIC.",
       },
       {
         question: "Do you ship to Alice Springs and remote NT?",
-        answer: "Yes. Every NT postcode is covered. Alice Springs typically arrives within 8–12 business days standard; remote and Indigenous community postcodes may extend further.",
+        answer: "Yes. Every NT postcode is covered. Alice Springs typically arrives within 8 to 12 business days standard; remote and Indigenous community postcodes may extend further.",
       },
       {
         question: "What products work for Darwin's tropical humidity?",

@@ -14,11 +14,11 @@ const post = {
       sections: [
         {
           heading: "Myth: You Need to Wash Your Hair Every Day",
-          content: "Most people over-wash. Washing strips natural oils (sebum) that protect and moisturise the hair shaft. For fine straight hair, every 2–3 days is enough. For thick or wavy hair, 2–3 times a week. For curly hair, once a week plus co-washes. Greasy-feeling hair in the first week of washing less is the scalp rebalancing, push through it and it settles in 2–3 weeks."
+          content: "Most people over-wash. Washing strips natural oils (sebum) that protect and moisturise the hair shaft. For fine straight hair, every 2 to 3 days is enough. For thick or wavy hair, 2 to 3 times a week. For curly hair, once a week plus co-washes. Greasy-feeling hair in the first week of washing less is the scalp rebalancing, push through it and it settles in 2 to 3 weeks."
         },
         {
           heading: "Myth: Trimming Makes Hair Grow Faster",
-          content: "Trimming doesn't change growth rate, hair grows at the root, not the tip. What trimming does do is prevent splits from travelling up the shaft, which means more hair stays on your head instead of breaking off. So yes, trim every 10–12 weeks if you're growing hair out. But you're preventing loss, not accelerating growth."
+          content: "Trimming doesn't change growth rate, hair grows at the root, not the tip. What trimming does do is prevent splits from travelling up the shaft, which means more hair stays on your head instead of breaking off. So yes, trim every 10 to 12 weeks if you're growing hair out. But you're preventing loss, not accelerating growth."
         },
         {
           heading: "Myth: 100 Brush Strokes a Night for Shiny Hair",
@@ -34,11 +34,11 @@ const post = {
         },
         {
           heading: "Myth: Expensive Shampoo Is Always Better",
-          content: "Price correlates with quality but not perfectly. A $25 sulfate-free shampoo that suits your hair will outperform a $70 one that doesn't. What matters: sulfate-free formula, pH-balanced (5.0–6.5), no heavy silicones if you're curly or fine. Ask your stylist for a recommendation based on your hair type rather than buying the most-expensive option."
+          content: "Price correlates with quality but not perfectly. A $25 sulfate-free shampoo that suits your hair will outperform a $70 one that doesn't. What matters: sulfate-free formula, pH-balanced (5.0 to 6.5), no heavy silicones if you're curly or fine. Ask your stylist for a recommendation based on your hair type rather than buying the most-expensive option."
         },
         {
           heading: "What Actually Works",
-          content: "The basics that actually move the needle on hair health: sulfate-free shampoo, conditioner on mid-lengths to ends (never the scalp), a weekly bond-repair mask if you colour or heat-style, heat protection every time you use a hot tool, and a trim every 10–12 weeks. Skip the rest. No supplement, brush technique, or rinse temperature replaces those basics."
+          content: "The basics that actually move the needle on hair health: sulfate-free shampoo, conditioner on mid-lengths to ends (never the scalp), a weekly bond-repair mask if you colour or heat-style, heat protection every time you use a hot tool, and a trim every 10 to 12 weeks. Skip the rest. No supplement, brush technique, or rinse temperature replaces those basics."
         }
       ],
       quickAnswer: {
@@ -46,7 +46,7 @@ const post = {
         answer: "The biggest home hair care myths are: needing to wash daily, trimming speeds up growth, 100 brush strokes for shine, cold water rinses add shine, natural oils repair damage, and expensive shampoo is always better. What actually works: sulfate-free shampoo, conditioner on mid-lengths, weekly bond-repair mask, heat protection, and regular trims."
       },
       keyTakeaways: [
-        "Over-washing strips natural oils, most hair needs every 2–3 days max",
+        "Over-washing strips natural oils, most hair needs every 2 to 3 days max",
         "Trimming prevents breakage, it doesn't speed up growth",
         "Natural oils mask damage, they don't repair broken bonds",
         "Sulfate-free shampoo is the single biggest home-care upgrade",

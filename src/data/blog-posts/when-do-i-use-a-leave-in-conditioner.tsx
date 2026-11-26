@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "What a Leave-In Conditioner Actually Does",
-          content: "A leave-in is a lightweight conditioning product you apply after washing and don't rinse out. Unlike your in-shower conditioner (which works for 2–3 minutes then washes off), a leave-in stays on your hair all day. It does three things: adds slip for easier detangling, locks in moisture to fight frizz, and creates a protective barrier against heat, humidity, and environmental damage. Think of it like moisturiser for your hair, daily care that compounds over time."
+          content: "A leave-in is a lightweight conditioning product you apply after washing and don't rinse out. Unlike your in-shower conditioner (which works for 2 to 3 minutes then washes off), a leave-in stays on your hair all day. It does three things: adds slip for easier detangling, locks in moisture to fight frizz, and creates a protective barrier against heat, humidity, and environmental damage. Think of it like moisturiser for your hair, daily care that compounds over time."
         },
         {
           heading: "When You Should Be Using a Leave-In",
@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "How to Apply a Leave-In Properly",
-          content: "Most people use way too much, in the wrong place, on the wrong hair state. The right way:\n\n1. Start with clean, towel-dried hair, damp, not soaking wet.\n2. Pump or spray 1–2 dollops into your palms (less than you think, you can always add more).\n3. Rub palms together and apply mid-lengths to ends. Avoid the roots, that's where oil builds up.\n4. Comb through with a Wet Brush to distribute evenly.\n5. Style as usual.\n\nDaily, after every wash, on damp hair. That's the routine."
+          content: "Most people use way too much, in the wrong place, on the wrong hair state. The right way:\n\n1. Start with clean, towel-dried hair, damp, not soaking wet.\n2. Pump or spray 1 to 2 dollops into your palms (less than you think, you can always add more).\n3. Rub palms together and apply mid-lengths to ends. Avoid the roots, that's where oil builds up.\n4. Comb through with a Wet Brush to distribute evenly.\n5. Style as usual.\n\nDaily, after every wash, on damp hair. That's the routine."
         },
         {
           heading: "Choosing the Right Leave-In for Your Hair Type",

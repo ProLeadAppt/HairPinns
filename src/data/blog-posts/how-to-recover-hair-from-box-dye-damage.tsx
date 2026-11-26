@@ -22,15 +22,15 @@ const post = {
         },
         {
           heading: "Step 2: Visit One, Stabilise, Don't Lift",
-          content: "The first visit is almost never where we get to the final colour. It's the visit where we stabilise the hair, cut off the worst damaged ends, apply a colour-depositing toner or gloss to even out the tone, and do a bond-repair treatment. Goal: your hair is healthier, more even, and looks presentable, even if it's not the final shade. Cost: usually $200–$350 depending on length. Time: 2–3 hours."
+          content: "The first visit is almost never where we get to the final colour. It's the visit where we stabilise the hair, cut off the worst damaged ends, apply a colour-depositing toner or gloss to even out the tone, and do a bond-repair treatment. Goal: your hair is healthier, more even, and looks presentable, even if it's not the final shade. Cost: usually $200 to $350 depending on length. Time: 2 to 3 hours."
         },
         {
           heading: "Step 3: Visit Two, Gentle Progression",
-          content: "4–6 weeks after visit one, visit two starts the progression toward your goal colour. This might be low-lights to break up banding, a partial foil package to introduce dimension, or a gentle gloss for tone. We're still not going for 'the full transformation', we're one step closer. Cost: $250–$400. Another bond-repair treatment goes in."
+          content: "4 to 6 weeks after visit one, visit two starts the progression toward your goal colour. This might be low-lights to break up banding, a partial foil package to introduce dimension, or a gentle gloss for tone. We're still not going for 'the full transformation', we're one step closer. Cost: $250 to $400. Another bond-repair treatment goes in."
         },
         {
           heading: "Step 4: Visit Three, Final Colour",
-          content: "4–6 weeks after visit two, the final visit is where we land on your goal colour. By now the hair is healthier, more predictable, and can handle the final step (full balayage, a toner refresh, a cut to remove the last damaged length). Cost: $280–$450. Total cost across all three visits: $730–$1200. Total time: 10–14 weeks."
+          content: "4 to 6 weeks after visit two, the final visit is where we land on your goal colour. By now the hair is healthier, more predictable, and can handle the final step (full balayage, a toner refresh, a cut to remove the last damaged length). Cost: $280 to $450. Total cost across all three visits: $730 to $1200. Total time: 10 to 14 weeks."
         },
         {
           heading: "Honest Answer: What If You Can't Wait That Long?",
@@ -55,13 +55,13 @@ const post = {
       },
       quickAnswer: {
         question: "How do you recover hair from box dye damage?",
-        answer: "Box dye damage is recovered over 2–3 salon visits spaced 4–6 weeks apart, not in one session. Visit one stabilises tone and cuts damaged ends; visit two adds dimension with low-lights or foils; visit three lands on the final colour. Total cost in the Sutherland Shire: $730–$1200. Weekly bond-repair masks and sulfate-free shampoo are essential between visits."
+        answer: "Box dye damage is recovered over 2 to 3 salon visits spaced 4 to 6 weeks apart, not in one session. Visit one stabilises tone and cuts damaged ends; visit two adds dimension with low-lights or foils; visit three lands on the final colour. Total cost in the Sutherland Shire: $730 to $1200. Weekly bond-repair masks and sulfate-free shampoo are essential between visits."
       },
       keyTakeaways: [
         "Box dye over previous colour causes unpredictable banding and patchy lift",
-        "Recovery is always multi-visit, 2–3 visits over 8–14 weeks",
+        "Recovery is always multi-visit, 2 to 3 visits over 8 to 14 weeks",
         "Visit one stabilises, visit two progresses, visit three lands the final colour",
-        "Total cost in the Sutherland Shire: $730–$1200 depending on length and damage",
+        "Total cost in the Sutherland Shire: $730 to $1200 depending on length and damage",
         "Weekly bond-repair mask and sulfate-free shampoo are non-negotiable between visits"
       ],
       faqSection: [

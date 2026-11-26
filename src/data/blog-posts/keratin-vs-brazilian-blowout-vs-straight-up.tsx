@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "The Three Categories, Clearly Defined",
-          content: "True keratin treatment: uses a keratin-based solution sealed with heat. Modern versions are formaldehyde-free. Results last 3–5 months. Reduces frizz significantly and can straighten curls depending on formulation. Brazilian blowout (brand name Brazilian Blowout®, also used generically): a specific protein-based treatment originally formulated in Brazil. Historically contained formaldehyde; current formulations have reformulated but concerns linger. Results last 2–3 months. Amino-acid smoothing (Straight Up Smoothing): a newer category using amino acids to smooth the cuticle without changing hair structure. No formaldehyde, no harsh chemicals. Results last 8–12 weeks. Hair keeps natural movement."
+          content: "True keratin treatment: uses a keratin-based solution sealed with heat. Modern versions are formaldehyde-free. Results last 3 to 5 months. Reduces frizz significantly and can straighten curls depending on formulation. Brazilian blowout (brand name Brazilian Blowout®, also used generically): a specific protein-based treatment originally formulated in Brazil. Historically contained formaldehyde; current formulations have reformulated but concerns linger. Results last 2 to 3 months. Amino-acid smoothing (Straight Up Smoothing): a newer category using amino acids to smooth the cuticle without changing hair structure. No formaldehyde, no harsh chemicals. Results last 8 to 12 weeks. Hair keeps natural movement."
         },
         {
           heading: "Which Keeps Natural Movement, Which Flattens It?",
@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "Price Comparison in Sydney (2026)",
-          content: "Straight Up Smoothing: $400–$600 at Hair Pinns depending on hair length. Mid-range for the service category. True keratin treatment: $500–$900 at premium salons. Brazilian blowout: $450–$750. Nanoplasty (a different restoration-focused treatment often confused with these): $700–$1200. Cheaper options exist for all of these but usually signal shortcut technique or lower-quality formulas."
+          content: "Straight Up Smoothing: $400 to $600 at Hair Pinns depending on hair length. Mid-range for the service category. True keratin treatment: $500 to $900 at premium salons. Brazilian blowout: $450 to $750. Nanoplasty (a different restoration-focused treatment often confused with these): $700 to $1200. Cheaper options exist for all of these but usually signal shortcut technique or lower-quality formulas."
         },
         {
           heading: "Durability vs Cost: Math That Matters",
@@ -34,7 +34,7 @@ const post = {
         },
         {
           heading: "Which One Should You Choose?",
-          content: "Choose Straight Up Smoothing if: you want to keep your natural wave or curl, you want a gentle treatment without compromise on ingredients, you prefer a 10–12 week refresh cycle, or you're new to smoothing and want the lowest-risk option. Choose keratin if: you want long-lasting results (4+ months), you're committed to sulfate-free aftercare, you don't mind a straighter result, and you're willing to pay the premium. Choose Brazilian blowout only if: you want hair to be genuinely straight with low volume, and you've done it before without issues. Personally, I recommend Straight Up Smoothing to 80% of new clients and it gives them everything they actually wanted."
+          content: "Choose Straight Up Smoothing if: you want to keep your natural wave or curl, you want a gentle treatment without compromise on ingredients, you prefer a 10 to 12 week refresh cycle, or you're new to smoothing and want the lowest-risk option. Choose keratin if: you want long-lasting results (4+ months), you're committed to sulfate-free aftercare, you don't mind a straighter result, and you're willing to pay the premium. Choose Brazilian blowout only if: you want hair to be genuinely straight with low volume, and you've done it before without issues. Personally, I recommend Straight Up Smoothing to 80% of new clients and it gives them everything they actually wanted."
         },
         {
           heading: "Book a Consultation First",
@@ -51,13 +51,13 @@ const post = {
       },
       quickAnswer: {
         question: "What's the difference between keratin, Brazilian blowout, and Straight Up Smoothing?",
-        answer: "Straight Up Smoothing uses amino acids, keeps natural movement, and lasts 8–12 weeks ($400–$600). Keratin treatments use keratin sealed with heat, straighten more, and last 3–5 months ($500–$900). Brazilian blowout uses protein and produces the straightest result but is the most polarising ($450–$750). Choose Straight Up for gentle natural results, keratin for long-lasting straightness."
+        answer: "Straight Up Smoothing uses amino acids, keeps natural movement, and lasts 8 to 12 weeks ($400 to $600). Keratin treatments use keratin sealed with heat, straighten more, and last 3 to 5 months ($500 to $900). Brazilian blowout uses protein and produces the straightest result but is the most polarising ($450 to $750). Choose Straight Up for gentle natural results, keratin for long-lasting straightness."
       },
       keyTakeaways: [
-        "Straight Up = amino acids, keeps natural wave, 8–12 weeks, gentlest",
-        "Keratin = true keratin sealed with heat, 3–5 months, straighter result",
+        "Straight Up = amino acids, keeps natural wave, 8 to 12 weeks, gentlest",
+        "Keratin = true keratin sealed with heat, 3 to 5 months, straighter result",
         "Brazilian blowout = protein concentrate, most polarising, straightest",
-        "Pricing: $400–$600 Straight Up, $500–$900 keratin, $450–$750 Brazilian",
+        "Pricing: $400 to $600 Straight Up, $500 to $900 keratin, $450 to $750 Brazilian",
         "All require sulfate-free aftercare to deliver on durability promise"
       ],
       faqSection: [

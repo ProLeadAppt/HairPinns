@@ -18,11 +18,11 @@ const post = {
         },
         {
           heading: "💆 2. It Boosts Scalp Circulation",
-          content: "Your scalp is skin too – and it thrives on good circulation. The warmth from the towel increases blood flow, which helps stimulate hair follicles, support healthy growth, and even soothe tension headaches.\n\nWin-win-win."
+          content: "Your scalp is skin too, and it thrives on good circulation. The warmth from the towel increases blood flow, which helps stimulate hair follicles, support healthy growth, and even soothe tension headaches.\n\nWin-win-win."
         },
         {
           heading: "🧘 3. It's Relaxation You Can Feel",
-          content: "Let's be honest – salon time is often the only real \"me time\" many of us get. A hot towel moment gives your nervous system a break. The warmth triggers a calming response in the body, helping reduce stress and tension.\n\nAnd less stress = healthier hair (it's all connected!)."
+          content: "Let's be honest, salon time is often the only real \"me time\" many of us get. A hot towel moment gives your nervous system a break. The warmth triggers a calming response in the body, helping reduce stress and tension.\n\nAnd less stress = healthier hair (it's all connected!)."
         },
         {
           heading: "🌸 4. It Enhances Product Performance",

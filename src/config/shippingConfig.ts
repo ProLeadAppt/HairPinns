@@ -25,5 +25,5 @@ export const STANDARD_SHIPPING_TRANSIT_TIME = {
 
 export function standardShippingDays(region: keyof typeof STANDARD_SHIPPING_TRANSIT_TIME): string {
   const { minValue, maxValue } = STANDARD_SHIPPING_TRANSIT_TIME[region];
-  return `${minValue}–${maxValue}`;
+  return `${minValue} to ${maxValue}`;
 }

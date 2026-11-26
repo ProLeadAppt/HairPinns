@@ -63,7 +63,7 @@ describe('product offer accuracy', () => {
   it('keeps policy-visible regional estimates aligned with product schema', () => {
     for (const [region, minValue, maxValue] of regionalTransit) {
       const state = Object.values(shippingStates).find(state => state.abbreviation === region);
-      expect(state?.standardDeliveryDays).toBe(`${minValue}–${maxValue}`);
+      expect(state?.standardDeliveryDays).toBe(`${minValue} to ${maxValue}`);
     }
   });
 });
