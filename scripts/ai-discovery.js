@@ -162,7 +162,6 @@ ${serviceAreas.map((area) => `- ${area}`).join('\n')}
       profiles.fresha.venueUrl,
       profiles.instagram,
       profiles.facebook,
-      profiles.sustainableSalons,
     ],
     routeSummary,
     discovery: {

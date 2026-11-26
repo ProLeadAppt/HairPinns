@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "Make the Switch Today",
-          content: "If you're trying to grow longer, healthier hair or just want to keep your strands strong and smooth, using the right brush is essential, and a Wet Brush is one of the simplest, most affordable changes you can make to your routine.\n\nWe carry a selection of Wet Brush Detanglers right here on HairPinns.com. Treat yourself (or your kids, or your partner!) to one and feel the difference every time you brush.\n\nWet Brush Detanglers – Hair Pinns Home Hair Care"
+          content: "If you're trying to grow longer, healthier hair or just want to keep your strands strong and smooth, using the right brush is essential, and a Wet Brush is one of the simplest, most affordable changes you can make to your routine.\n\nWe carry a selection of Wet Brush Detanglers right here on HairPinns.com. Treat yourself (or your kids, or your partner!) to one and feel the difference every time you brush.\n\nWet Brush Detanglers: Hair Pinns Home Hair Care"
         }
       ],
       productModule: {

@@ -36,15 +36,15 @@ const post = {
       faqSection: [
         {
           question: "Keratin vs. smoothing: which lasts longer?",
-          answer: "Smoothing services (like our Straight Up treatment using QIQI Vega) are the right starting point for most frizz-prone clients, gentler, colour-safe, no formaldehyde, no downtime, and results you can wash and style the same day. They last 4–8 weeks depending on hair type. Keratin treatments penetrate deeper and last 2–4 months, but they're a bigger commitment and harsher on colour-treated or fine hair. We almost always recommend starting with smoothing: if your hair still fights the humidity halfway through, that's the signal to graduate to keratin."
+          answer: "Smoothing services (like our Straight Up treatment using QIQI Vega) are the right starting point for most frizz-prone clients, gentler, colour-safe, no formaldehyde, no downtime, and results you can wash and style the same day. They last 4 to 8 weeks depending on hair type. Keratin treatments penetrate deeper and last 2 to 4 months, but they're a bigger commitment and harsher on colour-treated or fine hair. We almost always recommend starting with smoothing: if your hair still fights the humidity halfway through, that's the signal to graduate to keratin."
         },
         {
           question: "What's the best treatment for frizz in humid Sydney weather?",
-          answer: "For Sydney's changeable climate, coastal humidity, summer storms, and salt air, keratin is the more durable option. It restructures the cuticle, locks out humidity, and holds for 2–4 months even through the worst of a Sydney summer. Smoothing (like our Straight Up QIQI Vega treatment) is the gentler choice for first-timers, blonde or colour-treated hair, and clients who don't want the longer appointment or aftercare rules. Most of our Sutherland Shire clients start with smoothing, then switch to keratin for the worst humidity months (December to March)."
+          answer: "For Sydney's changeable climate, coastal humidity, summer storms, and salt air, keratin is the more durable option. It restructures the cuticle, locks out humidity, and holds for 2 to 4 months even through the worst of a Sydney summer. Smoothing (like our Straight Up QIQI Vega treatment) is the gentler choice for first-timers, blonde or colour-treated hair, and clients who don't want the longer appointment or aftercare rules. Most of our Sutherland Shire clients start with smoothing, then switch to keratin for the worst humidity months (December to March)."
         },
         {
           question: "How long does the Straight Up smoothing treatment take, and is there any downtime?",
-          answer: "The appointment runs about 2–3 hours depending on hair length and thickness. There's zero downtime, you can wash, tie up, and style your hair the same day. No three-day waiting period like old-school keratin. Aftercare is simple: sulphate-free shampoo, less frequent washing, and a quality heat protectant. With the right routine, results last up to 6 months on most hair types."
+          answer: "The appointment runs about 2 to 3 hours depending on hair length and thickness. There's zero downtime, you can wash, tie up, and style your hair the same day. No three-day waiting period like old-school keratin. Aftercare is simple: sulphate-free shampoo, less frequent washing, and a quality heat protectant. With the right routine, results last up to 6 months on most hair types."
         }
       ]
     },

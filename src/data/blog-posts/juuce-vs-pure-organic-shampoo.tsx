@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "The Quick Verdict",
-          content: "Choose Juuce if you want performance-driven professional formulas for colour-treated, damaged, or heat-styled hair. Choose Pure if you want certified organic, sensitive-scalp-friendly, eco-conscious hair care. Both are high-quality. They solve different problems."
+          content: "Choose Juuce if you want performance-driven professional formulas for colour-treated, damaged, or heat-styled hair. Choose Pure if you want a gentler wash for a sensitive scalp. Both are high-quality. They solve different problems."
         },
         {
           heading: "Juuce: The Performance Specialist",
@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "Pure: The Organic Specialist",
-          content: "Pure is certified organic, sulfate-free, paraben-free, and uses cold-pressed botanical oils. This matters if: (1) You have a sensitive scalp that reacts to synthetic sulfates. (2) You prefer natural ingredients for health or environmental reasons. (3) Your hair responds better to gentler cleansing. Pure Sacred Mask is a weekly favourite for my clients who want deep conditioning without silicones."
+          content: "Pure is certified organic, sulfate-free, paraben-free, and uses cold-pressed botanical oils. This matters if you have a sensitive scalp that reacts to synthetic sulfates, or if your hair responds better to a gentler cleanse. Pure Sacred Mask is a weekly favourite for my clients who want deep conditioning without silicones."
         },
         {
           heading: "Which One for Your Hair Type",
@@ -30,7 +30,7 @@ const post = {
         },
         {
           heading: "Price Comparison",
-          content: "Juuce shampoos range $25–$40 for 300ml, conditioners $28–$42. Pure shampoos $32–$48 for 300ml, conditioners $35–$52. Pure is slightly more expensive gram-for-gram because of the organic certification costs. But both are comparable to salon-brand prices and both significantly outperform supermarket options at the same or lower price point."
+          content: "Juuce shampoos range $25 to $40 for 300ml, conditioners $28 to $42. Pure shampoos $32 to $48 for 300ml, conditioners $35 to $52. Pure costs a little more per bottle. Both sit in the usual salon-brand range."
         },
         {
           heading: "What I Use At Home",
@@ -51,13 +51,13 @@ const post = {
       },
       quickAnswer: {
         question: "Juuce vs Pure Organic shampoo, which is better?",
-        answer: "Juuce is the performance specialist, better for colour-treated, damaged, or heat-styled hair with targeted ranges like Bond Repair and Heat Shield. Pure is certified organic, better for sensitive scalps, eco-conscious buyers, and sulfate-free routines. Both are high-quality; they solve different problems. You can mix them."
+        answer: "Juuce is the performance specialist, better for colour-treated, damaged, or heat-styled hair with targeted ranges like Bond Repair and Heat Shield. Pure is the gentler wash, better for a sensitive scalp and a sulfate-free routine. Both are high-quality. They solve different problems. You can mix them."
       },
       keyTakeaways: [
         "Juuce = performance specialist (bond repair, colour care, heat protection)",
-        "Pure = certified organic specialist (sensitive scalp, natural ingredients)",
+        "Pure = gentler wash (sensitive scalp, sulfate-free)",
         "Sensitive scalp → Pure. Damaged hair → Juuce. Smoothed hair → Pure.",
-        "Price is comparable, $25–$52 per bottle depending on range",
+        "Price is comparable, $25 to $52 per bottle depending on range",
         "Mixing brands (shampoo from one, mask from another) is fine and often better"
       ],
       faqSection: [
@@ -71,7 +71,7 @@ const post = {
         },
         {
           question: "Is Pure Organic shampoo worth the extra cost compared to Juuce?",
-          answer: "Pure is slightly more expensive gram-for-gram because of the organic certification costs, Pure shampoos run $32–$48 for 300ml, Juuce runs $25–$40. But both are comparable to salon-brand prices and both significantly outperform supermarket options at the same or lower price point. You're paying for certification and natural ingredients, which matters if you have a sensitive scalp or care about eco-conscious products."
+          answer: "Pure costs a little more per bottle. Pure shampoos run $32 to $48 for 300ml, Juuce runs $25 to $40. Both sit in the usual salon-brand range. Choose Pure when your scalp needs a gentler wash."
         },
         {
           question: "If I have a sensitive scalp, should I choose Pure over Juuce?",

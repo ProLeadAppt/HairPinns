@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "The Short Answer by Hair Type",
-          content: "Fine or straight hair: every 2 days. Thick or wavy hair: every 3–4 days. Curly hair: every 5–7 days (or co-wash between). Oily scalp: every 1–2 days (but use a gentle shampoo). Dry or colour-treated hair: every 3–4 days maximum. If you exercise daily or live somewhere humid, add one extra wash per week. If you don't exercise and have normal scalp oil production, you can usually go one day longer than you think."
+          content: "Fine or straight hair: every 2 days. Thick or wavy hair: every 3 to 4 days. Curly hair: every 5 to 7 days (or co-wash between). Oily scalp: every 1 to 2 days (but use a gentle shampoo). Dry or colour-treated hair: every 3 to 4 days maximum. If you exercise daily or live somewhere humid, add one extra wash per week. If you don't exercise and have normal scalp oil production, you can usually go one day longer than you think."
         },
         {
           heading: "Why Washing Too Often Damages Hair",
@@ -39,10 +39,10 @@ const post = {
       ],
       quickAnswer: {
         question: "How often should you wash your hair?",
-        answer: "How often you wash your hair depends on your hair type: fine or straight hair every 2 days, thick or wavy every 3–4 days, curly every 5–7 days, oily scalp every 1–2 days with a gentle shampoo, and dry or colour-treated every 3–4 days maximum. Most people wash too often, reducing by one day per week usually improves hair health."
+        answer: "How often you wash your hair depends on your hair type: fine or straight hair every 2 days, thick or wavy every 3 to 4 days, curly every 5 to 7 days, oily scalp every 1 to 2 days with a gentle shampoo, and dry or colour-treated every 3 to 4 days maximum. Most people wash too often, reducing by one day per week usually improves hair health."
       },
       keyTakeaways: [
-        "Fine: every 2 days. Thick: every 3–4. Curly: every 5–7. Oily: every 1–2.",
+        "Fine: every 2 days. Thick: every 3 to 4. Curly: every 5 to 7. Oily: every 1 to 2.",
         "Over-washing strips oils and triggers more oil production, makes hair greasier",
         "Signs of over-washing: dry ends, faded colour, tight scalp, faster-greasing roots",
         "Signs of under-washing: itchy scalp, flakes, flat roots, products underperforming",

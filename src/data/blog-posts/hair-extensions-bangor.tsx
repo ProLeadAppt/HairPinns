@@ -14,11 +14,11 @@ const post = {
       sections: [
         {
           heading: "The Four Main Types of Hair Extensions",
-          content: "Clip-ins: temporary, attached at home, worn for events. $80–$400 depending on quality. Low commitment, DIY-friendly. Tape-ins: semi-permanent adhesive strips, lasting 6–8 weeks between moves. $500–$1500 installation plus hair. Sewn-in wefts: braided base with wefts sewn in, popular for thick hair. $600–$1200. Bonded/fusion: glued individual strands, longest-lasting but most damaging if removed incorrectly. $1500–$3000."
+          content: "Clip-ins: temporary, attached at home, worn for events. $80 to $400 depending on quality. Low commitment, DIY-friendly. Tape-ins: semi-permanent adhesive strips, lasting 6 to 8 weeks between moves. $500 to $1500 installation plus hair. Sewn-in wefts: braided base with wefts sewn in, popular for thick hair. $600 to $1200. Bonded/fusion: glued individual strands, longest-lasting but most damaging if removed incorrectly. $1500 to $3000."
         },
         {
           heading: "The Ponytail Shortcut Most People Miss",
-          content: "For formals, events, and just-want-more-hair days, a high-quality clip-on ponytail is a far better solution than most people realise. They add dramatic length and volume, take 2 minutes to attach, cause zero damage, and cost $50–$200 instead of $2000+. Poppet Locks make reusable clip-on ponytails we stock at Hair Pinns, real human hair, come in natural colours, last years with proper care. Most of my formal clients use these."
+          content: "For formals, events, and just-want-more-hair days, a high-quality clip-on ponytail is a far better solution than most people realise. They add dramatic length and volume, take 2 minutes to attach, cause zero damage, and cost $50 to $200 instead of $2000+. Poppet Locks make reusable clip-on ponytails we stock at Hair Pinns, real human hair, come in natural colours, last years with proper care. Most of my formal clients use these."
         },
         {
           heading: "Why Hair Pinns Doesn't Do Permanent Extensions",
@@ -47,7 +47,7 @@ const post = {
       },
       quickAnswer: {
         question: "Where can I buy hair extensions in Bangor?",
-        answer: "Hair Pinns in Bangor stocks reusable Poppet Locks clip-on ponytails, real human hair, zero damage, $50–$200. For permanent tape-ins or bonded extensions, ask Jena for a referral to a trusted Sutherland Shire extensions specialist."
+        answer: "Hair Pinns in Bangor stocks reusable Poppet Locks clip-on ponytails, real human hair, zero damage, $50 to $200. For permanent tape-ins or bonded extensions, ask Jena for a referral to a trusted Sutherland Shire extensions specialist."
       },
       keyTakeaways: [
         "Four main extension types: clip-ins, tape-ins, sewn-in wefts, bonded",
@@ -59,11 +59,11 @@ const post = {
       faqSection: [
         {
           question: "What's the easiest and cheapest type of hair extension to get?",
-          answer: "Clip-on ponytails are the shortcut most people miss. They add dramatic length and volume, take 2 minutes to attach, cause zero damage, and cost $50–$200 instead of $2000+. Poppet Locks make reusable clip-on ponytails from real human hair in natural colours that last years with proper care. If you want the volume without the commitment, start here."
+          answer: "Clip-on ponytails are the shortcut most people miss. They add dramatic length and volume, take 2 minutes to attach, cause zero damage, and cost $50 to $200 instead of $2000+. Poppet Locks make reusable clip-on ponytails from real human hair in natural colours that last years with proper care. If you want the volume without the commitment, start here."
         },
         {
           question: "How much do permanent hair extensions cost, and what's the difference between types?",
-          answer: "Tape-ins cost $500–$1500 for installation plus hair and last 6–8 weeks between moves. Sewn-in wefts are $600–$1200 and popular for thick hair. Bonded or fusion extensions are $1500–$3000, longest-lasting but most damaging if removed wrong. Each has trade-offs on cost, maintenance, and damage risk. That's why I recommend starting with a clip-on ponytail to see if you actually want permanent extensions."
+          answer: "Tape-ins cost $500 to $1500 for installation plus hair and last 6 to 8 weeks between moves. Sewn-in wefts are $600 to $1200 and popular for thick hair. Bonded or fusion extensions are $1500 to $3000, longest-lasting but most damaging if removed wrong. Each has trade-offs on cost, maintenance, and damage risk. That's why I recommend starting with a clip-on ponytail to see if you actually want permanent extensions."
         },
         {
           question: "Can hair extensions damage my hair?",

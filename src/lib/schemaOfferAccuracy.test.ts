@@ -21,7 +21,7 @@ describe('product offer accuracy', () => {
       (price, expectedShipping) => {
         const offer = generate({ ...product, price }).offers;
         expect(offer.price).toBe(price);
-        expect(offer.shippingDetails).toHaveLength(8);
+        expect(offer.shippingDetails).toHaveLength(9);
         for (const details of offer.shippingDetails) {
           expect(details.shippingRate).toMatchObject({ value: expectedShipping, currency: 'AUD' });
         }
@@ -34,15 +34,27 @@ describe('product offer accuracy', () => {
       expect(offer.availability).toBe('https://schema.org/InStock');
       expect(offer).not.toHaveProperty('priceValidUntil');
       expect(offer.hasMerchantReturnPolicy).toMatchObject({ applicableCountry: 'AU', merchantReturnDays: 14, returnMethod: 'https://schema.org/ReturnByMail' });
-      expect(offer.shippingDetails.map(details => details.shippingDestination.addressRegion).sort()).toEqual(regionalTransit.map(([region]) => region).sort());
+      expect(offer.shippingDetails.filter(details => details.shippingDestination.addressRegion).map(details => details.shippingDestination.addressRegion).sort()).toEqual(regionalTransit.map(([region]) => region).sort());
     });
-    it.each(['BackOrder', 'PreOrder', 'OutOfStock'])(`${name} does not promise dispatch timing for %s`, availability => {
+    it.each(['InStock', 'BackOrder', 'PreOrder', 'OutOfStock'])(`${name} publishes deliveryTime for %s`, availability => {
       const details = generate({ ...product, availability }).offers.shippingDetails;
-      expect(details).toHaveLength(8);
-      for (const region of details) {
-        expect(region.shippingRate.value).toBe('9.95');
-        expect(region).not.toHaveProperty('deliveryTime');
-      }
+      expect(details).toHaveLength(9);
+      const australia = details.find(item => !item.shippingDestination.addressRegion);
+      expect(australia).toMatchObject({
+        '@type': 'OfferShippingDetails',
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'AU' },
+        shippingRate: { value: '9.95', currency: 'AUD' },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
+          transitTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 10, unitCode: 'DAY' },
+          businessDays: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          },
+        },
+      });
+      expect(australia.deliveryTime).not.toHaveProperty('cutoffTime');
     });
     it.each(regionalTransit)(`${name} separates handling from the %s post-dispatch estimate`, (region, minValue, maxValue) => {
       const details = generate(product).offers.shippingDetails.find(details => details.shippingDestination.addressRegion === region);
@@ -54,16 +66,19 @@ describe('product offer accuracy', () => {
           '@type': 'ShippingDeliveryTime',
           handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
           transitTime: { '@type': 'QuantitativeValue', minValue, maxValue, unitCode: 'DAY' },
+          businessDays: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          },
         },
       });
       expect(details.deliveryTime).not.toHaveProperty('cutoffTime');
-      expect(details.deliveryTime).not.toHaveProperty('businessDays');
     });
   }
   it('keeps policy-visible regional estimates aligned with product schema', () => {
     for (const [region, minValue, maxValue] of regionalTransit) {
       const state = Object.values(shippingStates).find(state => state.abbreviation === region);
-      expect(state?.standardDeliveryDays).toBe(`${minValue}–${maxValue}`);
+      expect(state?.standardDeliveryDays).toBe(`${minValue} to ${maxValue}`);
     }
   });
 });

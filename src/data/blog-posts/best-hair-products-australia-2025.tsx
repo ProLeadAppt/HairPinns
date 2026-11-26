@@ -18,11 +18,11 @@ const post = {
         },
         {
           heading: "Best for Blonde & Colour Care",
-          content: "Aromaganic's colour care range keeps blonde bright and brass-free. Pair with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, a quality violet shampoo used 1–2 times weekly makes a huge difference. My clients in Sydney's sun and humidity swear by this combo."
+          content: "Aromaganic's colour care range keeps blonde bright and brass-free. Pair with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, a quality violet shampoo used 1 to 2 times weekly makes a huge difference. My clients in Sydney's sun and humidity swear by this combo."
         },
         {
           heading: "Best for Frizz & Humidity",
-          content: "Juuce Heat Shield doubles as heat protection and anti-humidity defence. Pure Guardian Angel is another hero for frizz-prone hair. For a full smoothing routine, the Straight Up Smoothing treatment from the salon plus at-home maintenance with these products gives 3–4 months of smooth, manageable hair, even in Sydney's humid summers."
+          content: "Juuce Heat Shield doubles as heat protection and anti-humidity defence. Pure Guardian Angel is another hero for frizz-prone hair. For a full smoothing routine, the Straight Up Smoothing treatment from the salon plus at-home maintenance with these products gives 3 to 4 months of smooth, manageable hair, even in Sydney's humid summers."
         },
         {
           heading: "Best for Volume & Fine Hair",
@@ -42,7 +42,7 @@ const post = {
         products: [
           { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Best for damaged and colour-treated hair" },
           { name: "Aromaganic Colour Care", link: "https://hairpinns.com/collections/aromaganic", description: "Best for blonde and colour maintenance" },
-          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Best for sensitive scalps and eco-conscious" },
+          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Best for sensitive scalps" },
           { name: "Wet Brush", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Best detangler for all hair types" }
         ]
       },
@@ -57,7 +57,7 @@ const post = {
         },
         {
           question: "How do I prevent blonde hair from turning brassy in Australia's sun and humidity?",
-          answer: "Aromaganic's colour care range keeps blonde bright and brass-free, paired with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, use a quality violet shampoo 1–2 times weekly, it makes a huge difference. My Sydney clients swear by this combo because our sun and humidity are relentless on blonde."
+          answer: "Aromaganic's colour care range keeps blonde bright and brass-free, paired with Juuce Radiant Colour Duo for daily maintenance. For purple toning at home, use a quality violet shampoo 1 to 2 times weekly, it makes a huge difference. My Sydney clients swear by this combo because our sun and humidity are relentless on blonde."
         },
         {
           question: "What's the best detangler for all hair types?",

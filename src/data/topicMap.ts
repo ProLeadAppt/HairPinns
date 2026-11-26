@@ -254,7 +254,7 @@ export const topics: Topic[] = [
     ],
     collectionSlugs: ['pure-certified-organic-hair-care', 'aromaganic'],
     serviceSlugs: [],
-    keywords: ['organic', 'natural', 'pure', 'sulfate-free', 'eco'],
+    keywords: ['organic', 'natural', 'pure', 'sulfate-free'],
   },
   {
     slug: 'curly-hair',

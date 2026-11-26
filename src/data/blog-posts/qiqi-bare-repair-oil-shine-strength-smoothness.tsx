@@ -2,7 +2,8 @@ import { BlogPostTemplate } from "@/pages/BlogPost";
 
 const post = {
     slug: "qiqi-bare-repair-oil-shine-strength-smoothness",
-    title: "QIQI Bare Repair Oil – Shine, Strength & Smoothness in a Bottle",
+    title: "QIQI Bare Repair Oil: Shine, Strength & Smoothness in a Bottle",
+    seoTitle: "QIQI Bare Repair Oil: Shine and Strength | Hair Pinns",
     excerpt: "If you're chasing healthier, shinier, frizz-free hair without that heavy, greasy feel, QIQI Bare Repair Oil is the answer.",
     category: "Products",
     date: "July 27, 2025",
@@ -14,11 +15,11 @@ const post = {
       sections: [
         {
           heading: "🌿 What Makes It So Good?",
-          content: "Lightweight, Dry Oil Finish – absorbs instantly with no residue\nPlant-Based Repair Blend – hydrates, protects and strengthens without buildup\nFrizz Control & Smooth Texture – say goodbye to flyaways and rough ends\nBoosts Shine & Softness – leaves hair silky, glossy and touchable\nSafe for All Hair Types – including coloured, dry, or damaged hair\n\nThis is not your average hair oil. It delivers deep nourishment and long-lasting results without ever feeling greasy or heavy."
+          content: "Lightweight, Dry Oil Finish, absorbs instantly with no residue\nPlant-Based Repair Blend, hydrates, protects and strengthens without buildup\nFrizz Control & Smooth Texture, say goodbye to flyaways and rough ends\nBoosts Shine & Softness, leaves hair silky, glossy and touchable\nSafe for All Hair Types, including coloured, dry, or damaged hair\n\nThis is not your average hair oil. It delivers deep nourishment and long-lasting results without ever feeling greasy or heavy."
         },
         {
           heading: "🧴 How to Use It",
-          content: "1. Pump 1–3 drops into your palms and warm between your hands.\n2. Apply to damp or dry hair, focusing on the mid-lengths and ends.\n3. Style as usual – or use it to smooth flyaways and finish your look.\n4. Use daily or as needed. Avoid roots to keep volume natural.\n\nPro tip: A little goes a long way, so start small and build it up if your hair needs more love."
+          content: "1. Pump 1 to 3 drops into your palms and warm between your hands.\n2. Apply to damp or dry hair, focusing on the mid-lengths and ends.\n3. Style as usual, or use it to smooth flyaways and finish your look.\n4. Use daily or as needed. Avoid roots to keep volume natural.\n\nPro tip: A little goes a long way, so start small and build it up if your hair needs more love."
         },
         {
           heading: "✨ The Result…",

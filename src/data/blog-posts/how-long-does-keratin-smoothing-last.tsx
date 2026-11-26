@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "By Treatment Type",
-          content: "Straight Up Smoothing (amino-acid based): 8–12 weeks. QIQI Vega / traditional keratin: 3–4 months. Nanoplasty: up to 5 months. Brazilian Blowout: 2–3 months. These are maximums with proper aftercare, realistic averages are often 20–30% shorter. If someone tells you 'keratin lasts 6 months', they're describing the absolute best case, not the average."
+          content: "Straight Up Smoothing (amino-acid based): 8 to 12 weeks. QIQI Vega / traditional keratin: 3 to 4 months. Nanoplasty: up to 5 months. Brazilian Blowout: 2 to 3 months. These are maximums with proper aftercare, realistic averages are often 20 to 30% shorter. If someone tells you 'keratin lasts 6 months', they're describing the absolute best case, not the average."
         },
         {
           heading: "The Single Biggest Factor: Aftercare Shampoo",
@@ -22,27 +22,27 @@ const post = {
         },
         {
           heading: "Other Factors That Shorten Treatment Life",
-          content: "Chlorine pool water (wear a swim cap or wet hair with clean water first). Sun exposure (UV breaks down treatment, use a UV filter leave-in). Heat styling above 200°C (cumulative damage to the treatment layer). Saltwater swimming (rinse thoroughly after). Check your local water information before assuming mineral build-up. Sydney Water classifies its average supply as soft; follow your smoothing aftercare instructions before using a clarifying treatment. Daily washing (stretch to every 3–4 days minimum)."
+          content: "Chlorine pool water (wear a swim cap or wet hair with clean water first). Sun exposure (UV breaks down treatment, use a UV filter leave-in). Heat styling above 200°C (cumulative damage to the treatment layer). Saltwater swimming (rinse thoroughly after). Check your local water information before assuming mineral build-up. Sydney Water classifies its average supply as soft; follow your smoothing aftercare instructions before using a clarifying treatment. Daily washing (stretch to every 3 to 4 days minimum)."
         },
         {
           heading: "Factors That Extend It",
-          content: "Washing every 3–4 days instead of daily. Sulfate-free shampoo only. A leave-in conditioner (Pure Precious Ends or similar) after each wash. Silk pillowcase to reduce friction. Heat protection spray before any hot-tool styling. Weekly bond-repair mask (Juuce Bond Repair) to keep the treatment layer intact. Clients who follow all six get the advertised duration. Clients who skip most get a fraction."
+          content: "Washing every 3 to 4 days instead of daily. Sulfate-free shampoo only. A leave-in conditioner (Pure Precious Ends or similar) after each wash. Silk pillowcase to reduce friction. Heat protection spray before any hot-tool styling. Weekly bond-repair mask (Juuce Bond Repair) to keep the treatment layer intact. Clients who follow all six get the advertised duration. Clients who skip most get a fraction."
         },
         {
           heading: "When to Book Your Refresh",
-          content: "Signs you need a refresh: frizz returning in humidity, hair feeling less manageable at the mid-lengths, blow-dry time increasing back to pre-treatment levels. Don't wait until it's completely gone, book when you're 70–80% to that point so you never fully lose the result. Most Hair Pinns clients book refreshes at the 10-week mark for Straight Up, 14-week mark for QIQI Vega."
+          content: "Signs you need a refresh: frizz returning in humidity, hair feeling less manageable at the mid-lengths, blow-dry time increasing back to pre-treatment levels. Don't wait until it's completely gone, book when you're 70 to 80% to that point so you never fully lose the result. Most Hair Pinns clients book refreshes at the 10-week mark for Straight Up, 14-week mark for QIQI Vega."
         }
       ],
       quickAnswer: {
         question: "How long does keratin smoothing last?",
-        answer: "Keratin smoothing lasts 2 months to 5 months depending on treatment type: Straight Up Smoothing 8–12 weeks, traditional keratin or QIQI Vega 3–4 months, Nanoplasty up to 5 months, and Brazilian Blowout 2–3 months. The single biggest factor determining duration is whether you use sulfate-free shampoo, sulfates dissolve the treatment and cut results by up to 70%."
+        answer: "Keratin smoothing lasts 2 months to 5 months depending on treatment type: Straight Up Smoothing 8 to 12 weeks, traditional keratin or QIQI Vega 3 to 4 months, Nanoplasty up to 5 months, and Brazilian Blowout 2 to 3 months. The single biggest factor determining duration is whether you use sulfate-free shampoo, sulfates dissolve the treatment and cut results by up to 70%."
       },
       keyTakeaways: [
-        "Straight Up 8–12 weeks, QIQI Vega 3–4 months, Nanoplasty up to 5 months",
+        "Straight Up 8 to 12 weeks, QIQI Vega 3 to 4 months, Nanoplasty up to 5 months",
         "Sulfate-free shampoo is the #1 factor, drugstore shampoo kills treatments fast",
         "Chlorine, sun, heat above 200°C, and hard water all shorten results",
         "Leave-in + silk pillowcase + weekly bond mask = advertised duration",
-        "Book your refresh at 70–80% fade, not 100%, never fully lose the result"
+        "Book your refresh at 70 to 80% fade, not 100%, never fully lose the result"
       ],
       faqSection: [
         {

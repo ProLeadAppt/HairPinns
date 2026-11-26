@@ -18,7 +18,7 @@ const post = {
         },
         {
           heading: "The Best Products for Protection",
-          content: "To keep your hair looking and feeling amazing, I recommend these must-have products from Juuce:\n\n✔️ Juuce Solar Enz – Perfect for summer, this leave-in treatment protects your hair from UV damage, prevents colour fade, and repairs sun-exposed strands. A must-have if you spend a lot of time outdoors!\n\n✔️ Juuce Heat Shield – Your go-to for heat styling. This lightweight spray adds a protective barrier against hot tools while keeping your hair smooth and hydrated.\n\n✔️ Juuce Dry Heat Guard – Ideal for those who use heat tools frequently, this formula helps prevent heat stress, keeping your strands strong and resilient. It also is a quick fix to use to protect your hair against the sun."
+          content: "To keep your hair looking and feeling amazing, I recommend these must-have products from Juuce:\n\n✔️ Juuce Solar Enz: Perfect for summer, this leave-in treatment protects your hair from UV damage, prevents colour fade, and repairs sun-exposed strands. A must-have if you spend a lot of time outdoors!\n\n✔️ Juuce Heat Shield: Your go-to for heat styling. This lightweight spray adds a protective barrier against hot tools while keeping your hair smooth and hydrated.\n\n✔️ Juuce Dry Heat Guard: Ideal for those who use heat tools frequently, this formula helps prevent heat stress, keeping your strands strong and resilient. It also is a quick fix to use to protect your hair against the sun."
         },
         {
           heading: "Make Heat Protection a Habit",

@@ -13,16 +13,16 @@ const post = {
       introduction: "'Can I use purple shampoo every day?' is one of the most common blonde-care questions I hear. Short answer: no, you shouldn't, and most people using it daily are making their hair ashy, dull, or damaged without realising it. Here's when to use it, how often, and what to do instead.",
       sections: [
         {
-          heading: "The Short Answer: 1–2 Times Per Week Maximum",
-          content: "Use purple shampoo 1–2 times per week if you're blonde, platinum, silver, or have cool-toned highlights. Skip it the other wash days and use a regular sulfate-free shampoo. Using it more often doesn't tone hair faster, it over-deposits violet pigment and can turn blonde ashy-grey or even lilac-tinted in extreme cases. Less is more."
+          heading: "The Short Answer: 1 to 2 Times Per Week Maximum",
+          content: "Use purple shampoo 1 to 2 times per week if you're blonde, platinum, silver, or have cool-toned highlights. Skip it the other wash days and use a regular sulfate-free shampoo. Using it more often doesn't tone hair faster, it over-deposits violet pigment and can turn blonde ashy-grey or even lilac-tinted in extreme cases. Less is more."
         },
         {
           heading: "Why Daily Use Backfires",
-          content: "Purple shampoo works by depositing violet pigment onto the hair shaft to neutralise yellow tones. Every use adds more pigment. Used daily, the pigment layers up and: (1) Makes hair look dull or grey. (2) Strips natural shine because the pigment sits on top rather than in the hair. (3) Dries hair out, most purple shampoos are less moisturising than regular shampoo. (4) Builds up on fine hair, weighing it down. The fix: less frequent use plus a clarifying rinse every 4–6 weeks."
+          content: "Purple shampoo works by depositing violet pigment onto the hair shaft to neutralise yellow tones. Every use adds more pigment. Used daily, the pigment layers up and: (1) Makes hair look dull or grey. (2) Strips natural shine because the pigment sits on top rather than in the hair. (3) Dries hair out, most purple shampoos are less moisturising than regular shampoo. (4) Builds up on fine hair, weighing it down. The fix: less frequent use plus a clarifying rinse every 4 to 6 weeks."
         },
         {
           heading: "When to Use More Often (Genuine Cases)",
-          content: "If you've just come out of a colour appointment with brass immediately showing, one extra wash with purple shampoo in the first 48 hours is fine to knock out brassiness. If you swim in chlorinated pools frequently, 2–3 times per week helps offset chlorine's yellowing effect. If you're trying to push blonde towards a cooler tone for a specific look, short-term 2x per week for 2–3 weeks is fine. Then back to 1x per week maintenance."
+          content: "If you've just come out of a colour appointment with brass immediately showing, one extra wash with purple shampoo in the first 48 hours is fine to knock out brassiness. If you swim in chlorinated pools frequently, 2 to 3 times per week helps offset chlorine's yellowing effect. If you're trying to push blonde towards a cooler tone for a specific look, short-term 2x per week for 2 to 3 weeks is fine. Then back to 1x per week maintenance."
         },
         {
           heading: "Signs You're Overusing",
@@ -30,17 +30,17 @@ const post = {
         },
         {
           heading: "What to Use Between Purple Shampoo Washes",
-          content: "A sulfate-free colour-safe shampoo the other 1–3 wash days per week. My pick for blonde maintenance: Aromaganic Colour Care (Australian, certified organic, doesn't add pigment but protects colour). Juuce Radiant is another good option. Every wash doesn't need to be a toning wash, most of the work happens between salon visits with gentle colour-safe maintenance."
+          content: "A sulfate-free colour-safe shampoo the other 1 to 3 wash days per week. My pick for blonde maintenance: Aromaganic Colour Care (Australian, certified organic, doesn't add pigment but protects colour). Juuce Radiant is another good option. Every wash doesn't need to be a toning wash, most of the work happens between salon visits with gentle colour-safe maintenance."
         }
       ],
       quickAnswer: {
         question: "Can you use purple shampoo every day?",
-        answer: "No, don't use purple shampoo every day. Use it 1–2 times per week maximum for blonde, platinum, silver, or cool-toned highlights. Daily use over-deposits violet pigment and can turn blonde ashy, grey, or even lilac-tinted. Use a sulfate-free colour-safe shampoo on other wash days and clarify every 4–6 weeks."
+        answer: "No, don't use purple shampoo every day. Use it 1 to 2 times per week maximum for blonde, platinum, silver, or cool-toned highlights. Daily use over-deposits violet pigment and can turn blonde ashy, grey, or even lilac-tinted. Use a sulfate-free colour-safe shampoo on other wash days and clarify every 4 to 6 weeks."
       },
       keyTakeaways: [
-        "Use purple shampoo 1–2 times per week maximum",
+        "Use purple shampoo 1 to 2 times per week maximum",
         "Daily use over-deposits pigment, causing grey, lilac, or dull hair",
-        "Temporary 2–3x per week is fine for brass, chlorine, or tone-shifting periods",
+        "Temporary 2 to 3x per week is fine for brass, chlorine, or tone-shifting periods",
         "Signs of overuse: ashy-grey tint, lilac undertones, dry/straw-like hair",
         "Use sulfate-free colour-safe shampoo on non-purple wash days"
       ],

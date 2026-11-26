@@ -487,7 +487,8 @@ assert.match(aboutSource, /fallbackSrc: salonInteriorWebp[\s\S]*fallbackSrc: bob
 assert.match(floatingActionsSource, /\[data-about-page\]/, 'Scroll-to-top control must not cover the About founder journey');
 const servicesDataBlock = servicesSource.slice(servicesSource.indexOf('const serviceCategories'), servicesSource.indexOf('// Scroll spy'));
 assert.equal((servicesDataBlock.match(/\n\s+id: "/g) || []).length, 12, 'Services directory must keep the 12 sections of currently public Fresha options');
-assert.equal((servicesDataBlock.match(/\n\s+price: /g) || []).length, 44, 'Services directory must keep the 44 currently public Fresha options');
+assert.equal((servicesDataBlock.match(/\n\s+price: /g) || []).length, 43, 'Services directory must keep the 43 public Fresha options. The infrared sauna is withheld.');
+assert.doesNotMatch(servicesSource, /sauna/i, 'Services directory must not publish a sauna');
 const serviceMapBlock = servicesSource.slice(servicesSource.indexOf('const serviceSlugMap'), servicesSource.indexOf('export const serviceCategories'));
 assert.equal((serviceMapBlock.match(/: "/g) || []).length, 15, 'Services directory must preserve all 15 detail-page mappings');
 assert.match(servicesSource, /generateOrganizationSchema[\s\S]*generateEnhancedLocalBusinessSchema[\s\S]*generateFAQPageSchema[\s\S]*generateBreadcrumbSchema[\s\S]*generateServiceItemListSchema/, 'Services route must preserve its five schema sources');

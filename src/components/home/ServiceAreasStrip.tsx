@@ -43,7 +43,7 @@ const ServiceAreasStrip = () => {
               Serving the Sutherland Shire
             </p>
             <p className="text-sm text-muted-foreground">
-              Based in Bangor. Most clients drive 5–15 minutes. Booked in your suburb every week.
+              Based in Bangor. Most clients drive 5 to 15 minutes. Booked in your suburb every week.
             </p>
           </div>
         </div>

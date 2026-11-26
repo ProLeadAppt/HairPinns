@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "💧 What's Inside the Hydration Bundle?",
-          content: "1. Juuce Hyaluronic Hydrate Shampoo\nThis shampoo is your first step toward serious hydration. Packed with hyaluronic acid, a moisture magnet that holds 1000x its weight in water. It gently cleanses without stripping your natural oils.\n\n2. Juuce Hyaluronic Hydrate Conditioner\nPair it with the hydrate conditioner to lock in moisture, smooth rough cuticles, and detangle like a dream. Your hair will feel softer, more elastic, and easier to manage.\n\n3. Super Soft Hydrating Mask\nA weekly treat your hair will love. This ultra-nourishing mask delivers deep hydration and softness, perfect for brittle or stressed-out strands. Apply it after shampooing, leave it in for 5–10 minutes, and rinse for buttery smooth results.\n\n4. Juuce Reviva Foam\nThe ultimate leave-in moisture booster. Lightweight yet powerful, this foam hydrates, tames frizz, and gives your hair a silky finish without weighing it down. It also protects against environmental stress and heat."
+          content: "1. Juuce Hyaluronic Hydrate Shampoo\nThis shampoo is your first step toward serious hydration. Packed with hyaluronic acid, a moisture magnet that holds 1000x its weight in water. It gently cleanses without stripping your natural oils.\n\n2. Juuce Hyaluronic Hydrate Conditioner\nPair it with the hydrate conditioner to lock in moisture, smooth rough cuticles, and detangle like a dream. Your hair will feel softer, more elastic, and easier to manage.\n\n3. Super Soft Hydrating Mask\nA weekly treat your hair will love. This ultra-nourishing mask delivers deep hydration and softness, perfect for brittle or stressed-out strands. Apply it after shampooing, leave it in for 5 to 10 minutes, and rinse for buttery smooth results.\n\n4. Juuce Reviva Foam\nThe ultimate leave-in moisture booster. Lightweight yet powerful, this foam hydrates, tames frizz, and gives your hair a silky finish without weighing it down. It also protects against environmental stress and heat."
         },
         {
           heading: "🌬️ Why Hydration Matters (Especially in Winter)",
@@ -22,7 +22,7 @@ const post = {
         },
         {
           heading: "💙 The Hair Pinns Hydration Routine",
-          content: "Here's how to get the best out of your bundle:\n\n1. Cleanse: Start with the Hydrate Shampoo to remove build-up and prep the hair. Repeat as necessary.\n2. Condition: Apply the Hydrate Conditioner mid-lengths to ends and leave for 2–3 minutes.\n3. Treat: Once a week, swap out your conditioner for the Super Soft Mask for a deeper drink.\n4. Protect + Finish: Work the Reviva Foam through towel-dried hair before styling or air-drying."
+          content: "Here's how to get the best out of your bundle:\n\n1. Cleanse: Start with the Hydrate Shampoo to remove build-up and prep the hair. Repeat as necessary.\n2. Condition: Apply the Hydrate Conditioner mid-lengths to ends and leave for 2 to 3 minutes.\n3. Treat: Once a week, swap out your conditioner for the Super Soft Mask for a deeper drink.\n4. Protect + Finish: Work the Reviva Foam through towel-dried hair before styling or air-drying."
         },
         {
           heading: "✨ Shop the Bundle & Save",

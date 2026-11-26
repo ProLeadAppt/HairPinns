@@ -1,29 +1,60 @@
-import { FREE_SHIPPING_THRESHOLD, SHIPPING_HANDLING_TIME, STANDARD_SHIPPING_TRANSIT_TIME } from "@/config/shippingConfig";
+import { australiaWideStandardTransit, FREE_SHIPPING_THRESHOLD, SHIPPING_HANDLING_TIME, STANDARD_SHIPPING_TRANSIT_TIME } from "@/config/shippingConfig";
 
-/** Standard service only. Each destination receives its own post-dispatch
- * estimate, rather than a nationwide transit promise. Rates stay unchanged.
+/** Published copy says "business days" for handling and standard transit. */
+const SHIPPING_BUSINESS_DAYS = {
+  '@type': 'OpeningHoursSpecification',
+  dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+};
+
+function shippingDeliveryTime(transit: { minValue: number; maxValue: number }) {
+  return {
+    '@type': 'ShippingDeliveryTime',
+    handlingTime: {
+      '@type': 'QuantitativeValue',
+      minValue: SHIPPING_HANDLING_TIME.minValue,
+      maxValue: SHIPPING_HANDLING_TIME.maxValue,
+      unitCode: 'DAY',
+    },
+    transitTime: {
+      '@type': 'QuantitativeValue',
+      minValue: transit.minValue,
+      maxValue: transit.maxValue,
+      unitCode: 'DAY',
+    },
+    businessDays: SHIPPING_BUSINESS_DAYS,
+  };
+}
+
+/** Standard service only. State rows keep their published windows. The first
+ * row is the Australia-wide destination Search Console reads, using the
+ * lowest and highest of those same windows. Rates stay unchanged.
  */
-function standardShippingDetails(price: string, availability?: string) {
-  // Preorders/backorders have no verified dispatch lead time.
-  const readyToDispatch = !availability || availability === 'InStock';
-  return Object.entries(STANDARD_SHIPPING_TRANSIT_TIME).map(([region, transitTime]) => ({
+function standardShippingDetails(price: string) {
+  const shippingRate = {
+    '@type': 'MonetaryAmount',
+    value: Number(price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
+    currency: 'AUD',
+  };
+  const australiaWide = {
+    '@type': 'OfferShippingDetails',
+    shippingDestination: {
+      '@type': 'DefinedRegion',
+      addressCountry: 'AU',
+    },
+    shippingRate,
+    deliveryTime: shippingDeliveryTime(australiaWideStandardTransit()),
+  };
+  const regional = Object.entries(STANDARD_SHIPPING_TRANSIT_TIME).map(([region, transitTime]) => ({
     '@type': 'OfferShippingDetails',
     shippingDestination: {
       '@type': 'DefinedRegion',
       addressCountry: 'AU',
       addressRegion: region,
     },
-    shippingRate: {
-      '@type': 'MonetaryAmount',
-      value: Number(price) >= FREE_SHIPPING_THRESHOLD ? '0' : '9.95',
-      currency: 'AUD',
-    },
-    ...(readyToDispatch ? { deliveryTime: {
-      '@type': 'ShippingDeliveryTime',
-      handlingTime: { '@type': 'QuantitativeValue', ...SHIPPING_HANDLING_TIME, unitCode: 'DAY' },
-      transitTime: { '@type': 'QuantitativeValue', ...transitTime, unitCode: 'DAY' },
-    } } : {}),
+    shippingRate,
+    deliveryTime: shippingDeliveryTime(transitTime),
   }));
+  return [australiaWide, ...regional];
 }
 
 // Schema.org JSON-LD utilities for SEO
@@ -113,7 +144,6 @@ const BUSINESS_SAME_AS = [
   ENTITY_REGISTRY.profiles.fresha.venueUrl,
   ENTITY_REGISTRY.profiles.instagram,
   ENTITY_REGISTRY.profiles.facebook,
-  ENTITY_REGISTRY.profiles.sustainableSalons,
 ];
 
 export type SchemaNode = Record<string, unknown>;
@@ -356,7 +386,7 @@ export const generateProductSchema = (product: ProductData) => {
         '@type': 'Country',
         name: 'Australia',
       },
-      shippingDetails: standardShippingDetails(product.price, product.availability),
+      shippingDetails: standardShippingDetails(product.price),
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
         applicableCountry: 'AU',
@@ -691,7 +721,7 @@ export const generateEnhancedProductSchema = (product: EnhancedProductData) => {
         name: 'AU',
       },
       ...(product.requiresShipping === false ? {} : {
-        shippingDetails: standardShippingDetails(product.price, product.availability),
+        shippingDetails: standardShippingDetails(product.price),
         hasMerchantReturnPolicy: {
           '@type': 'MerchantReturnPolicy',
           applicableCountry: 'AU',

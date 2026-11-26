@@ -22,7 +22,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'keratin-vs-smoothing',
     question: "What's the difference between keratin and smoothing?",
-    answer: "Keratin (formaldehyde-free modern formulas) restructures more deeply and reduces frizz for 2–4 months; smoothing is lighter, ideal for colour-treated or fine hair, lasting 4–8 weeks. Aftercare decides longevity: sulphate-free cleanser, low heat, UV protection, and regular hydration masks. Start with smoothing if you're new or blonde; move to keratin if your hair is coarse or highly porous.",
+    answer: "Keratin (formaldehyde-free modern formulas) restructures more deeply and reduces frizz for 2 to 4 months; smoothing is lighter, ideal for colour-treated or fine hair, lasting 4 to 8 weeks. Aftercare decides longevity: sulphate-free cleanser, low heat, UV protection, and regular hydration masks. Start with smoothing if you're new or blonde; move to keratin if your hair is coarse or highly porous.",
     category: 'treatments',
     relatedLinks: [
       { text: 'Book Keratin Treatment', url: '/services#smoothing' },
@@ -32,7 +32,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'smoothing-duration',
     question: "How long do smoothing results last?",
-    answer: "Typically 4–8 weeks. Wash less frequently, use heat protectant, and avoid salt/chlorine to maximise life. A silk pillowcase and microfibre towel help keep the cuticle smooth between washes.",
+    answer: "Typically 4 to 8 weeks. Wash less frequently, use heat protectant, and avoid salt/chlorine to maximise life. A silk pillowcase and microfibre towel help keep the cuticle smooth between washes.",
     category: 'treatments',
     relatedLinks: [
       { text: 'View Smoothing Services', url: '/services#smoothing' },
@@ -42,7 +42,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'blonde-care',
     question: "How do I care for blonde hair between toning?",
-    answer: "Use a gentle, colour-safe cleanser, hydrate weekly, and apply a violet or blue-violet treatment every 1–2 weeks (short dwell time of 3–5 minutes). If water is mineral-rich (common around the Shire), chelate once a fortnight to keep brass at bay. In-salon glosses every 6–8 weeks will keep the tone fresher for longer.",
+    answer: "Use a gentle, colour-safe cleanser, hydrate weekly, and apply a violet or blue-violet treatment every 1 to 2 weeks (short dwell time of 3 to 5 minutes). If water is mineral-rich (common around the Shire), chelate once a fortnight to keep brass at bay. In-salon glosses every 6 to 8 weeks will keep the tone fresher for longer.",
     category: 'colour',
     relatedLinks: [
       { text: 'Book Toning Service', url: '/services#colouring-packages' },
@@ -62,7 +62,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'colour-routine',
     question: "What's a simple routine for colour-treated hair?",
-    answer: "Cleanse 2–3 times per week with sulphate-free shampoo, deep condition with a mask weekly, protect hair with heat and UV products before styling, and finish with a pH-balanced leave-in conditioner. This routine will extend your colour vibrancy and keep hair healthy between appointments.",
+    answer: "Cleanse 2 to 3 times per week with sulphate-free shampoo, deep condition with a mask weekly, protect hair with heat and UV products before styling, and finish with a pH-balanced leave-in conditioner. This routine will extend your colour vibrancy and keep hair healthy between appointments.",
     category: 'colour',
     relatedLinks: [
       { text: 'Book Colour Service', url: '/services#colouring-packages' },
@@ -72,7 +72,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'brass-protection',
     question: "Which products protect against brassiness?",
-    answer: "Violet/blue-violet treatments (purple shampoo or toning masks), UV filter sprays, and chelating washes used sparingly (once every 2–4 weeks). Choose products labelled 'colour-safe' and avoid over-toning, which can lead to ash buildup. Professional glosses every 6–8 weeks provide the best long-term brass protection.",
+    answer: "Violet/blue-violet treatments (purple shampoo or toning masks), UV filter sprays, and chelating washes used sparingly (once every 2 to 4 weeks). Choose products labelled 'colour-safe' and avoid over-toning, which can lead to ash buildup. Professional glosses every 6 to 8 weeks provide the best long-term brass protection.",
     category: 'products',
     relatedLinks: [
       { text: 'Shop Blonde Care', url: '/collections' },
@@ -82,7 +82,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'wash-after-colour',
     question: "Can I wash hair the same day after colour?",
-    answer: "Wait 24–48 hours for the cuticle to fully close and the colour to set. When you do wash, use cool water and a gentle, sulphate-free cleanser. Protect from heat styling during the first week to maximize colour longevity.",
+    answer: "Wait 24 to 48 hours for the cuticle to fully close and the colour to set. When you do wash, use cool water and a gentle, sulphate-free cleanser. Protect from heat styling during the first week to maximize colour longevity.",
     category: 'colour',
     relatedLinks: [
       { text: 'Colour Services', url: '/services#colouring-packages' },
@@ -92,7 +92,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'repair-timeline',
     question: "When will I see repair results?",
-    answer: "Surface smoothness appears immediately after treatment. Strength and elasticity improvements take 4–6 weeks with consistent care using bond-building treatments, protein masks, and heat protection. Severe damage may require multiple treatments spaced 4–6 weeks apart.",
+    answer: "Surface smoothness appears immediately after treatment. Strength and elasticity improvements take 4 to 6 weeks with consistent care using bond-building treatments, protein masks, and heat protection. Severe damage may require multiple treatments spaced 4 to 6 weeks apart.",
     category: 'treatments',
     relatedLinks: [
       { text: 'Repair Treatments', url: '/services#smoothing' },
@@ -112,7 +112,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'trim-frequency',
     question: "How often should I trim?",
-    answer: "Every 8–12 weeks to prevent split ends from migrating up the hair shaft. If you're growing hair out, trim every 12–16 weeks with 'dusting' (minimal length removal). Regular trims actually help hair grow healthier and longer by preventing breakage.",
+    answer: "Every 8 to 12 weeks to prevent split ends from migrating up the hair shaft. If you're growing hair out, trim every 12 to 16 weeks with 'dusting' (minimal length removal). Regular trims actually help hair grow healthier and longer by preventing breakage.",
     category: 'general',
     relatedLinks: [
       { text: 'Book a Cut', url: '/services#cut-packages' },
@@ -122,7 +122,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'cruelty-free',
     question: "Do you offer cruelty-free options?",
-    answer: "Yes, we stock several cruelty-free and vegan product lines. Look for 'cruelty-free certified' badges on product pages, or filter by 'cruelty-free' when shopping collections. Need help choosing? Message us on the contact page.",
+    answer: "Jena stocks several lines that are not tested on animals. If you need help choosing, message her on the contact page.",
     category: 'products',
     relatedLinks: [
       { text: 'Shop All Products', url: '/collections' },

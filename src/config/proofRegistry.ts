@@ -57,8 +57,9 @@ export const PROOF_REGISTRY: readonly ProofRecord[] = [
     checkedDate: "2026-07-25",
     expiryDate: "2027-01-25",
     dynamic: true,
-    publicationStatus: "published",
+    publicationStatus: "withheld",
     value: { listed: true },
+    note: "Withheld. Hair Pinns does not publish a Sustainable Salons claim.",
   },
   {
     id: "jena-behind-chair-since-2009",

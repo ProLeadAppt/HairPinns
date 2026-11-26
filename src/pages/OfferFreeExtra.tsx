@@ -63,7 +63,7 @@ export default function OfferFreeExtra() {
           <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:items-end lg:px-8 lg:py-24">
             <div>
               <p className="after-hours-kicker text-[hsl(var(--hp-ink)/0.88)]">
-                {isActive ? "Now on / 05–12 August" : isUpcoming ? "Starts 9:00am AEST / 05 August" : "Offer ended / 12 August"}
+                {isActive ? "Now on / 05 to 12 August" : isUpcoming ? "Starts 9:00am AEST / 05 August" : "Offer ended / 12 August"}
               </p>
               <h1 id="free-extra-title" className="mt-6 max-w-[11ch] font-heading text-[clamp(3.4rem,8vw,7.5rem)] font-semibold leading-[0.88] tracking-[-0.055em] text-[hsl(var(--hp-ink))]">
                 {promotion.headline}
