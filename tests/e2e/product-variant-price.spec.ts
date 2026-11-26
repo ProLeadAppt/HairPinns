@@ -36,7 +36,7 @@ for (const digital of [false, true]) {
         await expect(page.getByRole('combobox', { name: 'Size', exact: true })).toContainText(resolvedVariant === '202' ? 'Large' : 'Small');
         expect(Boolean(schema.offers.shippingDetails)).toBe(!digital);
         if (!digital) {
-          expect(schema.offers.shippingDetails).toHaveLength(8);
+          expect(schema.offers.shippingDetails).toHaveLength(9);
           for (const details of schema.offers.shippingDetails) {
             expect(details.shippingDestination.addressCountry).toBe('AU');
             expect(details.shippingRate.value).toBe(variant === '202' ? '0' : '9.95');

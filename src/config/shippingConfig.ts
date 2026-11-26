@@ -27,3 +27,12 @@ export function standardShippingDays(region: keyof typeof STANDARD_SHIPPING_TRAN
   const { minValue, maxValue } = STANDARD_SHIPPING_TRANSIT_TIME[region];
   return `${minValue} to ${maxValue}`;
 }
+
+/** Envelope of the published state windows. Not a new estimate. */
+export function australiaWideStandardTransit(): { minValue: number; maxValue: number } {
+  const windows = Object.values(STANDARD_SHIPPING_TRANSIT_TIME);
+  return {
+    minValue: Math.min(...windows.map((window) => window.minValue)),
+    maxValue: Math.max(...windows.map((window) => window.maxValue)),
+  };
+}
