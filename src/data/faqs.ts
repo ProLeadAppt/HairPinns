@@ -122,7 +122,7 @@ export const comprehensiveFAQs: FAQ[] = [
   {
     id: 'cruelty-free',
     question: "Do you offer cruelty-free options?",
-    answer: "Yes, we stock several cruelty-free and vegan product lines. Look for 'cruelty-free certified' badges on product pages, or filter by 'cruelty-free' when shopping collections. Need help choosing? Message us on the contact page.",
+    answer: "Jena stocks several lines that are not tested on animals. If you need help choosing, message her on the contact page.",
     category: 'products',
     relatedLinks: [
       { text: 'Shop All Products', url: '/collections' },

@@ -42,7 +42,7 @@ const post = {
         products: [
           { name: "Juuce Bond Repair", link: "https://hairpinns.com/collections/juuce-botanicals", description: "Best for damaged and colour-treated hair" },
           { name: "Aromaganic Colour Care", link: "https://hairpinns.com/collections/aromaganic", description: "Best for blonde and colour maintenance" },
-          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Best for sensitive scalps and eco-conscious" },
+          { name: "Pure Organic Range", link: "https://hairpinns.com/collections/pure-certified-organic-hair-care", description: "Best for sensitive scalps" },
           { name: "Wet Brush", link: "https://hairpinns.com/collections/wet-brush-detanglers", description: "Best detangler for all hair types" }
         ]
       },

@@ -113,7 +113,6 @@ const BUSINESS_SAME_AS = [
   ENTITY_REGISTRY.profiles.fresha.venueUrl,
   ENTITY_REGISTRY.profiles.instagram,
   ENTITY_REGISTRY.profiles.facebook,
-  ENTITY_REGISTRY.profiles.sustainableSalons,
 ];
 
 export type SchemaNode = Record<string, unknown>;

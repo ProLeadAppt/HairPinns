@@ -14,7 +14,7 @@ const post = {
       sections: [
         {
           heading: "1. Juuce Stuck Up: Maximum Hold Hairspray",
-          content: "If you're after serious staying power, Juuce Stuck Up is your styling soulmate. This is our favourite strong-hold hairspray for securing updos, taming frizz, or locking in curls that last all day (and night). It adds high shine, resists humidity, and is completely brush-out friendly, which means no sticky build-up and no drama when it's time to restyle or refresh.\n\n🖤 Best for: Upstyles, curls, frizz control\n💨 Hold level: Strong\n🪮 Formula: Brush-out formula with zero build-up\n🌿 Bonus: Vegan, paraben-free, and cruelty-free"
+          content: "If you're after serious staying power, Juuce Stuck Up is your styling soulmate. This is our favourite strong-hold hairspray for securing updos, taming frizz, or locking in curls that last all day (and night). It adds high shine, resists humidity, and is completely brush-out friendly, which means no sticky build-up and no drama when it's time to restyle or refresh.\n\n🖤 Best for: Upstyles, curls, frizz control\n💨 Hold level: Strong\n🪮 Formula: Brush-out formula with zero build-up\n🌿 Bonus: paraben-free"
         },
         {
           heading: "2. Pure Halo Spray: Flexible Everyday Hold",
@@ -58,8 +58,8 @@ const post = {
           answer: "Use a clarifying shampoo once a week. Juuce Deep Cleanse lifts product buildup without leaving hair feeling stripped. After one wash, hair feels light again.",
         },
         {
-          question: "Is aerosol hairspray bad for the environment?",
-          answer: "Modern aerosols are CFC-free and VOC-compliant. The bigger environmental cost is over-use, a 2-second burst is enough. Hold the can 30cm away for a fine, even mist.",
+          question: "How much hairspray should I use?",
+          answer: "A short burst is enough. Hold the can about 30cm away for a fine, even mist.",
         },
         {
           question: "Can hairspray be used on dry shampoo days?",

@@ -51,7 +51,7 @@ const post = {
         },
         {
           question: "Are Juuce products tested on animals?",
-          answer: "No, Juuce is cruelty-free and vegan certified. The full range is plant-based, including the protein complexes.",
+          answer: "No. Juuce is not tested on animals.",
         },
         {
           question: "Can I use Juuce on extensions?",

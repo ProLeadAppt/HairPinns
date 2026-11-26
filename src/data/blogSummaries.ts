@@ -136,8 +136,8 @@ export const blogSummaries: BlogSummary[] = [
   },
   {
     slug: 'what-is-an-infrared-sauna',
-    title: "What is an 'Infrared Sauna'?",
-    excerpt: "If you haven't experienced the magic of infrared heat and color therapy combined… you're seriously missing out.",
+    title: "Hair Pinns does not offer sauna sessions",
+    excerpt: "Hair Pinns is a hair salon in Bangor. Jena does not offer infrared sauna sessions, and she does not claim a sauna helps hair.",
     category: 'Wellness',
     date: 'April 11, 2025',
     readTime: '4 min read',
@@ -186,8 +186,8 @@ export const blogSummaries: BlogSummary[] = [
   },
   {
     slug: '5-ways-infrared-sauna-boosts-hair-skin-glow',
-    title: '5 Ways Infrared Sauna Sessions Boost Your Hair, Skin & Overall Glow',
-    excerpt: "In today's fast paced world, stress, pollution, and product buildup can leave your strands dull. Our infrared sauna experience works from the inside out.",
+    title: "A hair visit at Hair Pinns is not a sauna session",
+    excerpt: "Hair Pinns does not offer infrared sauna sessions. A visit with Jena is a hair appointment: cut, colour, foils, or smoothing.",
     category: 'Wellness',
     date: 'August 12, 2025',
     readTime: '5 min read',
@@ -336,8 +336,8 @@ export const blogSummaries: BlogSummary[] = [
   },
   {
     slug: 'infrared-sauna-for-hair-scalp-health',
-    title: "Infrared Sauna for Hair & Scalp Health. Yes, It's a Thing!",
-    excerpt: 'At Hair Pinns, we combine luxury with wellness. See how infrared sauna sessions can work wonders for your hair and scalp health.',
+    title: "Scalp care is done in the chair, not a sauna",
+    excerpt: "Hair Pinns does not use a sauna for scalp or hair care. Build-up, itch, and dryness are handled in the chair with Jena.",
     category: 'Wellness',
     date: 'April 20, 2025',
     readTime: '4 min read',

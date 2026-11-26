@@ -63,7 +63,7 @@ const post = {
         },
         {
           question: "What services does Hair Pinns offer?",
-          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, bridal styling, and infrared sauna. Jena personally handles all smoothing, extensions, and bridal work.",
+          answer: "Cuts, colour, foils, keratin smoothing, QIQI Vega, Nanoplasty, hair extensions, and bridal styling. Jena personally handles all smoothing, extensions, and bridal work.",
         },
         {
           question: "Do you ship products Australia-wide?",

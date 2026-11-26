@@ -20,16 +20,16 @@ const COLLECTION_FAQS: Record<string, FAQItem[]> = {
     { question: "Where can I buy Juuce in Australia?", answer: "Hair Pinns stocks Juuce hair care and ships Australia-wide. Free shipping over $150. Picked by Jena since 2009. Shop the Juuce range at hairpinns.com." },
   ],
   pure: [
-    { question: "What is Pure hair care?", answer: "Pure is a certified organic hair care brand offering eco-friendly, high-performance shampoos, conditioners, and treatments. Hair Pinns stocks the Pure range and ships Australia-wide with free shipping over $150." },
+    { question: "What is Pure hair care?", answer: "Pure is a certified organic hair care brand offering gentle, high-performance shampoos, conditioners, and treatments. Hair Pinns stocks the Pure range and ships Australia-wide with free shipping over $150." },
     { question: "Where can I buy Pure organic hair care in Australia?", answer: "Hair Pinns stocks Pure certified organic hair care and ships Australia-wide. Free shipping over $150. Picked by Jena since 2009." },
     { question: "Does Pure ship to Sydney and Melbourne?", answer: "Yes. Hair Pinns ships Pure hair care to Sydney, Melbourne, Brisbane, Perth, and all of Australia. Free shipping on orders over $150." },
   ],
   "pure-organic": [
-    { question: "What is Pure organic hair care?", answer: "Pure is a certified organic hair care brand offering eco-friendly, high-performance shampoos, conditioners, and treatments. Hair Pinns stocks the Pure range and ships Australia-wide with free shipping over $150." },
+    { question: "What is Pure organic hair care?", answer: "Pure is a certified organic hair care brand offering gentle, high-performance shampoos, conditioners, and treatments. Hair Pinns stocks the Pure range and ships Australia-wide with free shipping over $150." },
     { question: "Where can I buy Pure in Australia?", answer: "Hair Pinns stocks Pure certified organic hair care and ships Australia-wide. Free shipping over $150. Shop at hairpinns.com." },
   ],
   "pure-certified-organic-hair-care": [
-    { question: "What is Pure certified organic hair care?", answer: "Pure is a certified organic hair care brand offering eco-friendly, high-performance formulas. Hair Pinns stocks the Pure range and ships Australia-wide with free shipping over $150." },
+    { question: "What is Pure certified organic hair care?", answer: "Pure is a certified organic hair care brand offering gentle, high-performance formulas. Hair Pinns stocks the Pure range and ships Australia-wide with free shipping over $150." },
     { question: "Where can I buy Pure organic hair care in Australia?", answer: "Hair Pinns stocks Pure certified organic hair care and ships Australia-wide. Free shipping over $150. Picked by Jena since 2009." },
   ],
   qiqi: [

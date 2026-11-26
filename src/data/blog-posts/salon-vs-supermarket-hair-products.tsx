@@ -48,7 +48,7 @@ const post = {
           {
             name: "Pure Certified Organic Range",
             link: "https://hairpinns.com/collections/pure-certified-organic-hair-care",
-            description: "Clean, eco-friendly hair care, Australia-wide delivery"
+            description: "Gentle daily hair care, shipped Australia-wide"
           }
         ]
       },

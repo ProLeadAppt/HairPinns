@@ -209,12 +209,6 @@ export const serviceCategories: ServiceCategory[] = [
           price: "A$ 15"
         },
         {
-          title: "Infrared Sauna",
-          subtitle: "Enjoy flexible wellness options with our casual, 5, or 10 visit passes. Choose the package that suits your lifestyle and experience soothing infrared sauna sessions whenever you need a relaxing escape.",
-          description: "Express Sauna Seah, 30min, A$ 25\n1 hour Session, 1h, A$ 35",
-          price: "from A$ 25"
-        },
-        {
           title: "Scalp Detox",
           duration: "1h",
           description: "Refresh your scalp with a gentle treatment designed to remove everyday buildup and impurities. Enjoy a soothing experience that leaves your hair feeling cleaner and your scalp revitalised. Perfect for anyone seeking a clean, balanced foundation for healthier hair.\nWe use a scope camera to check your scalp for impurities and build up then after the specialized cleanse and blowdry, we re-scope to show you the amazing results afterwards",

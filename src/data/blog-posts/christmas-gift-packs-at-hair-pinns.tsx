@@ -20,7 +20,7 @@ const post = {
         },
         {
           heading: "🌿 Pure Gift Packs",
-          content: "Pure is Hair Pinns' go-to brand for certified organic, eco-friendly hair care that doesn't compromise on performance. Each pack is carefully matched to hair concerns like:\n\nDeep hydration: Perfect for dry or thirsty hair that needs moisture.\nRepair & strength: Ideal for restoring damaged or chemically treated hair.\nCurl care & definition: Designed to nourish natural curls while enhancing bounce.\nShine & smoothness: Great for anyone wanting naturally glossy, frizz-free locks.\n\nEvery Pure pack also comes with a free mask, a rich, intensive treatment designed to be used weekly for a big dose of nourishment. It's the kind of self-care product that makes hair feel instantly healthier and stronger, which is why it's such a special addition to these bundles."
+          content: "Pure is Hair Pinns' go-to range for a gentle daily wash that still performs. Each pack is carefully matched to hair concerns like:\n\nDeep hydration: Perfect for dry or thirsty hair that needs moisture.\nRepair & strength: Ideal for restoring damaged or chemically treated hair.\nCurl care & definition: Designed to nourish natural curls while enhancing bounce.\nShine & smoothness: Great for anyone wanting naturally glossy, frizz-free locks.\n\nEvery Pure pack also comes with a free mask, a rich, intensive treatment designed to be used weekly for a big dose of nourishment. It's the kind of self-care product that makes hair feel instantly healthier and stronger, which is why it's such a special addition to these bundles."
         },
         {
           heading: "💜 The Perfect Gift",
