@@ -1,3 +1,4 @@
+import { auditImageUrl } from '../../shared/auditImageUrl.js';
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ShoppingBag, Zap } from "lucide-react";
@@ -354,7 +355,7 @@ const ProductDetail = () => {
 
   const variantEdges = product?.variants?.edges ?? [];
   const images = (product?.images?.edges ?? []).map((e: any) => e?.node).filter(Boolean);
-  const imageUrls = images.map((img: any) => img?.url).filter(Boolean);
+  const imageUrls = images.map((img: any) => img?.url).filter(Boolean).map(auditImageUrl);
 
   if (loading) {
     return (

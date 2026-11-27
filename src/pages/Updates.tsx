@@ -46,7 +46,7 @@ const Updates = () => {
   const schemas = useMemo(() => [
     generateWebPageSchema({
       name: "Updates from Jena | Hair Pinns",
-      description: "Public Hair Pinns email editions, salon news and useful product updates from Jena in Bangor, NSW.",
+      description: "Read Jena’s public Hair Pinns email editions, salon news, practical hair advice and product updates from her salon in Bangor, NSW.",
       url: UPDATES_URL,
     }),
     generateBreadcrumbSchema([
@@ -71,7 +71,7 @@ const Updates = () => {
     <div className="editorial-route min-h-screen bg-[hsl(var(--hp-white))] text-[hsl(var(--hp-ink))]">
       <SEOHead
         title="Updates from Jena | Hair Pinns"
-        description="Public Hair Pinns email editions, salon news and useful product updates from Jena in Bangor, NSW."
+        description="Read Jena’s public Hair Pinns email editions, salon news, practical hair advice and product updates from her salon in Bangor, NSW."
         canonical={UPDATES_URL}
         ogImage={getOGImage("blog")}
         schemaJson={schemas}

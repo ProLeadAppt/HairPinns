@@ -32,7 +32,7 @@ const post = {
         },
         {
           heading: "Check your local water before buying a treatment",
-          content: "[Sydney Water reports](https://www.sydneywater.com.au/water-the-environment/how-we-manage-sydneys-water/safe-drinking-water/water-analysis.html) an average hardness of about 57 mg/L as calcium carbonate, which falls within its soft-water classification. Local supplies can vary. Check the information for your area before assuming hard water is the cause of dull hair or buying a filter or mineral-removing treatment."
+          content: "[Sydney Water reports](https://www.sydneywater.com.au/about/what-we-do/safe-drinking-water/whats-in-your-water.html) an average hardness of about 57 mg/L as calcium carbonate, which falls within its soft-water classification. Local supplies can vary. Check the information for your area before assuming hard water is the cause of dull hair or buying a filter or mineral-removing treatment."
         },
         {
           heading: "Add treatments for your hair, not a promised timeline",

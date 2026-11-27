@@ -19,7 +19,14 @@ describe("product SEO overrides", () => {
     expect(`${seo?.title}${seo?.description}`).not.toMatch(/[\u2013\u2014…]|color\b/);
   });
 
-  it("leaves every other product on the default metadata path", () => {
+  it("keeps the Brushworx description informative without clipping", () => {
+    const seo = getProductSeoOverride("brushworx-mystique-round-brush");
+    expect(seo?.description.length).toBeGreaterThan(110);
+    expect(seo?.description.length).toBeLessThanOrEqual(160);
+    expect(buildMetaDescription(seo?.description ?? "")).toBe(seo?.description);
+  });
+
+  it("leaves unrelated products on the default metadata path", () => {
     expect(getProductSeoOverride(undefined)).toBeUndefined();
     expect(getProductSeoOverride("juuce-radiant-colour-shampoo")).toBeUndefined();
 

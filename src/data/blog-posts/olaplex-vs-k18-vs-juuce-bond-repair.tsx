@@ -18,7 +18,7 @@ const post = {
       },
       {
         "heading": "Olaplex: check which No.3 formula you have",
-        "content": "[Olaplex’s current No.3PLUS page](https://olaplex.com/products/olaplex-n-3plus-complete-repair-treatment-100ml) describes a protein-free pre-wash treatment with a three-minute application before shampoo and conditioner. Its [older No.3 Hair Perfector guide](https://olaplex.com/blogs/manual/home-use-with-olaplex-no-3-hair-perfector) gives different instructions. Read the exact bottle you own rather than applying an old No.3 routine to every newer product. These are manufacturer directions, not a head-to-head performance result."
+        "content": "[Olaplex’s current No.3PLUS page](https://olaplex.com/products/olaplex-n-3plus-complete-repair-treatment-100ml) describes a protein-free pre-wash treatment with a three-minute application before shampoo and conditioner. Its [comparison of No.3 Hair Perfector and No.3PLUS](https://olaplex.com/blogs/news/no3-vs-no3plus) explains the different instructions. Read the exact bottle you own rather than applying an old No.3 routine to every newer product. These are manufacturer directions, not a head-to-head performance result."
       },
       {
         "heading": "K18: a leave-in treatment with its own routine",
