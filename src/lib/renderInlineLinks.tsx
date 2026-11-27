@@ -1,3 +1,4 @@
+import { canonicalCommerceHref } from "@/lib/canonicalCommerceHref";
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 
@@ -23,7 +24,7 @@ export function renderInlineLinks(text: string): ReactNode[] {
 
     if (href.startsWith("/")) {
       nodes.push(
-        <Link key={keyCounter++} to={href} className="text-brand-600 underline hover:text-brand-700">
+        <Link key={keyCounter++} to={canonicalCommerceHref(href)} className="text-brand-600 underline hover:text-brand-700">
           {label}
         </Link>
       );
@@ -31,7 +32,7 @@ export function renderInlineLinks(text: string): ReactNode[] {
       nodes.push(
         <a
           key={keyCounter++}
-          href={href}
+          href={canonicalCommerceHref(href)}
           target="_blank"
           rel="noopener noreferrer"
           className="text-brand-600 underline hover:text-brand-700"

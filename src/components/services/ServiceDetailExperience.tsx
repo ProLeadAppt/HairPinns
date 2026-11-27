@@ -1,3 +1,4 @@
+import { canonicalCommerceHref } from "@/lib/canonicalCommerceHref";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedContent from "@/components/RelatedContent";
@@ -188,7 +189,7 @@ const ServiceDetailExperience = ({
             </header>
             <div className="border-t border-[hsl(var(--after-hours-plum)/0.3)]">
               {serviceData.homeCareBundles.products.map((product, index) => (
-                <a key={product.link} href={product.link} className="group grid min-h-28 grid-cols-[2rem_1fr_auto] gap-3 border-b border-[hsl(var(--after-hours-plum)/0.22)] py-6" style={{ color: "hsl(var(--after-hours-plum))" }}>
+                <a key={product.link} href={canonicalCommerceHref(product.link)} className="group grid min-h-28 grid-cols-[2rem_1fr_auto] gap-3 border-b border-[hsl(var(--after-hours-plum)/0.22)] py-6" style={{ color: "hsl(var(--after-hours-plum))" }}>
                   <span className="font-mono text-[0.67rem] text-[hsl(var(--hp-ink)/0.72)]">{number(index)}</span>
                   <span>
                     <span className="block font-heading text-xl font-semibold leading-tight sm:text-2xl">{product.name}</span>
