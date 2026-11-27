@@ -1,3 +1,4 @@
+import { canonicalCommerceHref } from "@/lib/canonicalCommerceHref";
 import { Link } from "react-router-dom";
 
 interface Product {
@@ -19,7 +20,7 @@ const ProductModule = ({ title, products }: ProductModuleProps) => (
       {products.map((product, index) => (
         <Link
           key={`${product.link}-${index}`}
-          to={product.link}
+          to={canonicalCommerceHref(product.link)}
           className="group grid min-h-20 grid-cols-[2.4rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-[hsl(var(--after-hours-plum)/0.18)] py-4 !text-[hsl(var(--hp-ink))] hover:no-underline"
         >
           <span className="font-mono text-[0.61rem] tracking-[0.14em] text-[hsl(var(--hp-ink)/0.72)]">{String(index + 1).padStart(2, "0")}</span>

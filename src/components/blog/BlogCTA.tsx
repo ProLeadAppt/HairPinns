@@ -1,3 +1,4 @@
+import { canonicalCommerceHref } from "@/lib/canonicalCommerceHref";
 import { BOOK_URL, trackBookingClick } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
 import { Link } from "react-router-dom";
@@ -35,7 +36,7 @@ const BlogCTA = ({ type, servicePath, productPath, customText }: BlogCTAProps) =
   } else if (type === "product" && productPath) {
     title = customText || "From Jena’s shelf";
     body = "Professional hair care selected in the salon and shipped Australia-wide.";
-    actions = <a href={productPath} target="_blank" rel="noopener noreferrer" className={actionClass}>Shop the recommendation<span aria-hidden="true">↗</span></a>;
+    actions = <a href={canonicalCommerceHref(productPath)} target="_blank" rel="noopener noreferrer" className={actionClass}>Shop the recommendation<span aria-hidden="true">↗</span></a>;
   } else if (type === "booking") {
     title = customText || "Want to try these products?";
     body = "See live salon times in Fresha or browse Jena’s professional shelf online.";

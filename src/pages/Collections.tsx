@@ -1,3 +1,4 @@
+import { canonicalCommerceHref } from "@/lib/canonicalCommerceHref";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { BOOK_URL } from "@/config/bookingConfig";
 import { BUSINESS_NAP } from "@/config/businessConfig";
+import { collectionIndexSchema } from "@/lib/collectionIndexSchema";
 import {
   CHRISTMAS_PRODUCTS,
   DIY_KIDS_GIFTS,
@@ -32,7 +34,7 @@ const buildShopifySrcSet = (url: string, webp = false) =>
 const DestinationCard = ({ destination, index }: { destination: CommerceDestination; index: number }) => (
   <li className="min-w-0">
     <Link
-      to={destination.href}
+      to={canonicalCommerceHref(destination.href)}
       className="group block h-full border-t border-[hsl(var(--after-hours-plum)/0.24)] pt-3 text-[hsl(var(--hp-ink))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--after-hours-copper))] focus-visible:ring-offset-4"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-[hsl(var(--after-hours-cream))]">
@@ -91,6 +93,7 @@ const Collections = () => {
     selectAndFocusTab(nextIndex);
   };
   const schemas = [
+    collectionIndexSchema(),
     generateStoreSchema(),
     generateBreadcrumbSchema([
       { name: "Home", url: "https://hairpinns.com/" },
@@ -189,7 +192,7 @@ const Collections = () => {
                     <ul className="mt-4 grid gap-0 border-t border-[hsl(var(--after-hours-plum)/0.16)] sm:grid-cols-3">
                       {group.secondaryDestinations.map((destination) => (
                         <li key={destination.handle} className="border-b border-[hsl(var(--after-hours-plum)/0.16)] sm:border-r sm:last:border-r-0">
-                          <Link to={destination.href} className="flex min-h-12 items-center justify-between px-3 text-sm font-semibold text-[hsl(var(--hp-ink))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[hsl(var(--after-hours-copper))]">
+                          <Link to={canonicalCommerceHref(destination.href)} className="flex min-h-12 items-center justify-between px-3 text-sm font-semibold text-[hsl(var(--hp-ink))] hover:text-[hsl(var(--after-hours-copper))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[hsl(var(--after-hours-copper))]">
                             {destination.name}<ArrowRight className="h-4 w-4" aria-hidden="true" />
                           </Link>
                         </li>
