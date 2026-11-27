@@ -777,7 +777,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         duration: "1h",
         price: "A$ 104",
         description: "The ultimate refresh for long hair. Enjoy a relaxing wash, precision cut, and professional blow-dry that leaves your long locks looking absolutely gorgeous.",
-        metaDescription: "Long hair cut and blow-dry Bangor. Wash, precision cut and styling, A$104. Book at Hair Pinns NSW.",
+        metaDescription: "Book a long hair wash, cut and blow-dry at Hair Pinns in Bangor. A one-hour appointment with Jena includes a precision cut and professional styling.",
         whatsIncluded: [
           "Luxurious hair wash with scalp massage",
           "Deep conditioning treatment",
@@ -977,7 +977,7 @@ export const serviceDetailData: ServiceCategoryData[] = [
         duration: "1h",
         price: "A$ 67",
         description: "Pamper your kids with a deep cleanse shampoo, relaxing head massage and condition paired with a haircut and blowdry.",
-        metaDescription: "Kids haircut and blow-dry Bangor. A salon visit with wash, cut and styling, A$67. Hair Pinns NSW.",
+        metaDescription: "Book a kids haircut and blow-dry at Hair Pinns in Bangor. The one-hour salon bundle includes a wash, condition, age-appropriate cut and styling.",
         whatsIncluded: [
           "Deep cleanse shampoo",
           "Relaxing head massage",

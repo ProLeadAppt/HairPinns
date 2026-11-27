@@ -1,3 +1,5 @@
+import { auditImageUrl } from '../shared/auditImageUrl.js';
+
 export const xmlEscape = (value) => {
   if (value == null) return '';
   return String(value)
@@ -74,7 +76,7 @@ export const renderSitemapUrl = (entry) => {
   const imageBlock = (entry.images || [])
     .slice(0, 5)
     .map(
-      (image) => `    <image:image>\n      <image:loc>${xmlEscape(image.url)}</image:loc>${image.altText ? `\n      <image:title>${xmlEscape(image.altText)}</image:title>` : ''}\n    </image:image>`,
+      (image) => `    <image:image>\n      <image:loc>${xmlEscape(auditImageUrl(image.url))}</image:loc>${image.altText ? `\n      <image:title>${xmlEscape(image.altText)}</image:title>` : ''}\n    </image:image>`,
     )
     .join('\n');
   const lastmod = normaliseLastmod(entry.lastmod);
